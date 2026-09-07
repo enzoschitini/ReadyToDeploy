@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projetos - Primo Academy</title>
+<meta name="description" content="Aprender de verdade é construindo. Escolha um projeto do seu nível e pratique o que as trilhas ensinam - cada um tem objetivo, requisitos e desafios extras." />
+<meta name="theme-color" content="#000000" />
+<meta name="color-scheme" content="dark" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   Design tokens — base aprenda.oprimo.dev, paleta custom (fundo preto + indigo)
+   ============================================================ */
+:root{
+  --background:#000000;
+  --foreground:#f8f8f2;
+  --card:#0d0d16;
+  --card-foreground:#f8f8f2;
+  --primary:#bd93f9;
+  --primary-foreground:#11121a;
+  --secondary:#1c1c2e;
+  --muted:#15151f;
+  --muted-foreground:#9aa0c4;
+  --accent:#1c1c2e;
+  --accent-foreground:#f8f8f2;
+  --border:#232338;
+  --ring:#7d6cff;
+
+  --brand-indigo:#7d6cff;
+  --brand-purple:#bd93f9;
+  --brand-pink:#ff79c6;
+  --brand-cyan:#8be9fd;
+  --brand-orange:#ffb86c;
+  --brand-yellow:#f1fa8c;
+
+  --font-sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --font-display:"Archivo",system-ui,sans-serif;
+
+  --container:72rem;      /* max-w-6xl */
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;border:0 solid var(--border);}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:1rem;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{display:block;max-width:100%;height:auto;}
+svg{display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;cursor:pointer;}
+h1,h2,h3,p,ul,ol,dl,dd,blockquote,figure{margin:0;}
+ul,ol{padding:0;list-style:none;}
+
+/* ---------- helpers ---------- */
+.mono{font-family:var(--font-mono);}
+.display{font-family:var(--font-display);}
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:1rem;}
+@media (min-width:640px){.container{padding-inline:1.5rem;}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+.skip-link:focus{
+  position:fixed;left:1rem;top:1rem;z-index:50;width:auto;height:auto;margin:0;clip:auto;
+  overflow:visible;white-space:normal;border-radius:.375rem;background:var(--primary);
+  padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;color:var(--primary-foreground);
+}
+
+/* ---------- keyframes (1:1 com o site original) ---------- */
+@keyframes orb-drift{0%,100%{transform:translate(0) scale(1)}33%{transform:translate(40px,-30px) scale(1.05)}66%{transform:translate(-30px,25px) scale(.97)}}
+@keyframes orb-drift-slow{0%,100%{transform:translate(0) scale(1)}50%{transform:translate(-50px,35px) scale(1.08)}}
+@keyframes caret-blink{0%,70%,100%{opacity:1}20%,50%{opacity:0}}
+@keyframes live-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
+@keyframes reveal-up{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translate(0)}}
+@keyframes gradient-pan{0%,100%{background-position:0%}50%{background-position:100%}}
+@keyframes pulse{50%{opacity:.5}}
+
+.anim-orb{will-change:transform;animation:orb-drift 14s ease-in-out infinite;}
+.anim-orb-slow{will-change:transform;animation:orb-drift-slow 18s ease-in-out infinite;}
+.anim-caret{animation:caret-blink 1s step-end infinite;}
+.anim-live{animation:live-pulse 1.6s ease-in-out infinite;}
+.anim-gradient{background-size:200% 200%;animation:gradient-pan 8s ease-in-out infinite;}
+.anim-blob,.anim-blob-halo{border-radius:63% 37% 54% 46% / 55% 48% 52% 45%;}
+.anim-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite;}
+
+/* reveal on scroll */
+.reveal{opacity:0;}
+.reveal.in{animation:reveal-up .7s cubic-bezier(.22,1,.36,1) both;}
+.stagger>*{animation:reveal-up .7s cubic-bezier(.22,1,.36,1) both;}
+.stagger>*:nth-child(1){animation-delay:60ms}
+.stagger>*:nth-child(2){animation-delay:.14s}
+.stagger>*:nth-child(3){animation-delay:.22s}
+.stagger>*:nth-child(4){animation-delay:.3s}
+.stagger>*:nth-child(5){animation-delay:.38s}
+.stagger>*:nth-child(6){animation-delay:.46s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  .reveal{opacity:1;}
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:40;
+  border-bottom:1px solid var(--border);
+  background:rgba(0,0,0,.8);
+}
+@supports ((backdrop-filter:blur(8px)) or (-webkit-backdrop-filter:blur(8px))){
+  .site-header{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+}
+.header-inner{display:flex;height:3.5rem;align-items:center;justify-content:space-between;gap:1rem;}
+.brand{font-family:var(--font-mono);font-size:.875rem;font-weight:700;letter-spacing:-.025em;color:var(--foreground);}
+.brand .slash{color:var(--brand-indigo);}
+.main-nav{display:none;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.875rem;}
+.main-nav a{border-radius:.375rem;padding:.375rem .75rem;color:var(--muted-foreground);transition:color .15s,background-color .15s;}
+.main-nav a:hover{background:rgba(33,34,44,.6);color:var(--foreground);}
+.header-actions{display:none;align-items:center;justify-content:flex-end;gap:.75rem;min-width:80px;}
+.btn-sm{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  border-radius:.375rem;height:2.25rem;padding-inline:.75rem;font-size:.875rem;font-weight:600;
+  background:var(--brand-indigo);color:#fff;box-shadow:0 14px 34px -12px rgba(125,108,255,.7);
+  transition:all .15s;
+}
+.btn-sm:hover{filter:brightness(1.1);}
+.menu-btn{
+  display:inline-flex;width:2.25rem;height:2.25rem;align-items:center;justify-content:center;
+  border-radius:.375rem;border:1px solid var(--border);background:var(--card);color:var(--foreground);
+  transition:border-color .15s;
+}
+.menu-btn:hover{border-color:rgba(248,248,242,.4);}
+.menu-btn svg{width:1.25rem;height:1.25rem;}
+.mobile-menu{display:none;border-top:1px solid var(--border);background:var(--background);}
+.mobile-menu.open{display:block;}
+.mobile-menu ul{display:flex;flex-direction:column;padding:.5rem 0 1rem;font-family:var(--font-mono);font-size:.875rem;}
+.mobile-menu a{padding:.625rem .25rem;color:var(--muted-foreground);transition:color .15s;}
+.mobile-menu a:hover{color:var(--foreground);}
+@media (min-width:768px){
+  .main-nav,.header-actions{display:flex;}
+  .menu-btn{display:none;}
+  .mobile-menu,.mobile-menu.open{display:none;}
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.scroll-progress{
+  pointer-events:none;position:fixed;inset-inline:0;top:0;z-index:50;height:2px;
+  transform-origin:left;transform:scaleX(0);transition:transform 80ms linear;
+  background:linear-gradient(to right,var(--brand-indigo),var(--brand-cyan),var(--brand-pink));
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+main{flex:1;}
+.hero-wrap{position:relative;overflow:hidden;}
+.hero-bg{pointer-events:none;position:absolute;inset:0;overflow:hidden;}
+.hero-grid-lines{
+  position:absolute;inset:0;opacity:.07;color:var(--foreground);
+  background-image:linear-gradient(to right,currentColor 1px,transparent 1px),
+                   linear-gradient(to bottom,currentColor 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 30%,transparent 75%);
+  mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 30%,transparent 75%);
+}
+.orb{position:absolute;border-radius:9999px;filter:blur(64px);}
+.orb-pink{right:-6rem;top:-6rem;width:420px;height:420px;opacity:.22;background:radial-gradient(circle,var(--brand-pink) 0%,transparent 70%);}
+.orb-purple{bottom:-8rem;left:-8rem;width:480px;height:480px;opacity:.24;background:radial-gradient(circle,var(--brand-purple) 0%,transparent 70%);}
+.orb-cyan{left:50%;top:33.333%;width:320px;height:320px;opacity:.14;transform:translateX(-50%);animation-delay:-4s;background:radial-gradient(circle,var(--brand-cyan) 0%,transparent 70%);}
+
+.hero{position:relative;padding-block:4rem;}
+@media (min-width:640px){.hero{padding-block:6rem;}}
+.hero-grid{display:grid;align-items:center;gap:2.5rem;}
+@media (min-width:1024px){.hero-grid{grid-template-columns:1.2fr .8fr;gap:2rem;}}
+
+.eyebrow-row{display:flex;align-items:center;gap:.75rem;}
+.eyebrow{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--brand-cyan);}
+.live-tag{display:none;align-items:center;gap:.375rem;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+@media (min-width:640px){.live-tag{display:inline-flex;}}
+.dot-live{position:relative;display:inline-flex;width:6px;height:6px;}
+.dot-live span:first-child{position:absolute;inset:0;border-radius:9999px;background:var(--brand-indigo);}
+.dot-live span:last-child{position:relative;display:inline-block;width:6px;height:6px;border-radius:9999px;background:var(--brand-indigo);}
+
+h1.hero-title{
+  margin-top:1rem;
+  display:grid;grid-template-rows:auto auto;min-height:1.9em;
+  font-family:var(--font-display);font-size:2.25rem;font-weight:900;
+  text-transform:uppercase;line-height:.95;letter-spacing:-.025em;
+}
+@media (min-width:640px){h1.hero-title{font-size:3.75rem;}}
+@media (min-width:768px){h1.hero-title{font-size:4.5rem;}}
+.grad-text{
+  background-image:linear-gradient(to right,var(--brand-indigo),var(--brand-cyan),var(--brand-pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-title .word{grid-row-start:2;white-space:nowrap;}
+
+.hero-lead{margin-top:1.25rem;max-width:28rem;font-size:1rem;color:var(--muted-foreground);}
+@media (min-width:640px){.hero-lead{font-size:1.125rem;}}
+code.type{display:inline-flex;align-items:baseline;white-space:pre-wrap;font-family:var(--font-mono);color:var(--brand-indigo);}
+.caret{margin-left:1px;display:inline-block;height:1em;width:.55em;transform:translateY(2px);background:var(--brand-indigo);}
+
+.cta-row{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.75rem;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  border-radius:.375rem;height:2.75rem;padding-inline:1.5rem;font-size:1rem;
+  transition:all .15s;outline:none;
+}
+.btn:focus-visible{box-shadow:0 0 0 3px rgba(125,108,255,.5);}
+.btn-primary{background:var(--brand-indigo);color:#fff;font-weight:600;box-shadow:0 14px 34px -12px rgba(125,108,255,.7);}
+.btn-primary:hover{filter:brightness(1.1);}
+.btn-outline{border:1px solid var(--border);background:transparent;font-weight:500;}
+.btn-outline:hover{background:var(--accent);color:var(--accent-foreground);}
+
+/* blob portrait */
+.hero-portrait{position:relative;margin-inline:auto;display:none;width:100%;max-width:420px;aspect-ratio:3/4;}
+@media (min-width:1024px){.hero-portrait{display:block;}}
+.halo-1{pointer-events:none;position:absolute;inset:-4rem;opacity:.45;filter:blur(48px);
+  background:radial-gradient(circle 320px at 50% 50%,rgba(189,147,249,.55),transparent 70%);}
+.halo-2{pointer-events:none;position:absolute;inset:-2rem;opacity:.3;filter:blur(32px);
+  background:radial-gradient(circle 220px at 50% 50%,rgba(125,108,255,.18),transparent 70%);}
+.blob-photo{position:relative;height:100%;width:100%;overflow:hidden;}
+.blob-photo img{height:100%;width:100%;object-fit:cover;object-position:center 22%;}
+.blob-photo .veil{pointer-events:none;position:absolute;inset:0;
+  background:linear-gradient(to top right,rgba(0,0,0,.6),transparent 50%,transparent);}
+
+/* stats */
+.stats{
+  margin-top:2.5rem;display:grid;max-width:28rem;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-block:1.25rem;
+}
+.stats dt{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.stats dd{margin:.25rem 0 0;font-family:var(--font-display);font-size:1.5rem;font-weight:900;}
+@media (min-width:640px){.stats dd{font-size:1.875rem;}}
+
+/* ============================================================
+   SEÇÕES
+   ============================================================ */
+section{scroll-margin-top:5rem;}
+.s-mt-16{margin-top:4rem;}
+.s-mt-20{margin-top:5rem;}
+.kicker{font-family:var(--font-mono);font-size:.875rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;}
+.see-all{display:inline-flex;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--brand-indigo);transition:color .15s;}
+.see-all:hover{color:var(--brand-cyan);}
+.see-all span{display:inline-block;transition:transform .2s;}
+.see-all:hover span{transform:translateX(2px);}
+
+.panel{
+  position:relative;margin-top:1.25rem;overflow:hidden;
+  border-radius:1rem;border:1px solid var(--border);background:var(--card);padding:1.5rem;
+}
+@media (min-width:640px){.panel{padding:2rem;}}
+@media (min-width:768px){.panel{padding:2.5rem;}}
+.glow{pointer-events:none;position:absolute;width:18rem;height:18rem;border-radius:9999px;filter:blur(64px);}
+.glow-tr{right:-6rem;top:-6rem;}
+.glow-bl{bottom:-6rem;left:-6rem;}
+.g-cyan{background:rgba(139,233,253,.1);}
+.g-pink{background:rgba(255,121,198,.1);}
+.g-accent{background:rgba(125,108,255,.1);}
+.g-purple{background:rgba(189,147,249,.1);}
+
+/* manifesto */
+.quote-icon{width:1.75rem;height:1.75rem;color:rgba(139,233,253,.5);}
+@media (min-width:640px){.quote-icon{width:2.25rem;height:2.25rem;}}
+blockquote.manifesto{
+  margin-top:1rem;font-family:var(--font-display);font-size:1.5rem;font-weight:900;
+  text-transform:uppercase;line-height:1.05;letter-spacing:-.025em;text-wrap:balance;color:var(--foreground);
+}
+@media (min-width:640px){blockquote.manifesto{font-size:1.875rem;}}
+@media (min-width:768px){blockquote.manifesto{font-size:2.25rem;}}
+.manifesto-p{margin-top:1.75rem;max-width:65ch;font-size:1rem;color:var(--muted-foreground);}
+@media (min-width:640px){.manifesto-p{font-size:1.125rem;}}
+.manifesto-pull{
+  margin-top:1.25rem;max-width:65ch;border-left:2px solid var(--brand-pink);padding-left:1rem;
+  font-family:var(--font-display);font-size:1.125rem;font-weight:700;line-height:1.375;color:var(--foreground);
+}
+@media (min-width:640px){.manifesto-pull{font-size:1.25rem;}}
+@media (min-width:768px){.manifesto-pull{font-size:1.5rem;}}
+.manifesto-foot{
+  margin-top:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+  border-top:1px solid var(--border);padding-top:1.5rem;
+}
+.cta-inline{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.875rem;font-weight:600;color:var(--brand-indigo);transition:color .15s;}
+.cta-inline:hover{color:var(--brand-cyan);}
+.cta-inline .arrow{display:inline-block;transition:transform .2s;}
+.cta-inline:hover .arrow{transform:translateX(4px);}
+@media (min-width:640px){.cta-inline{font-size:1rem;}}
+.foot-note{font-family:var(--font-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+
+/* cards grid */
+.card-grid{margin-top:1rem;display:grid;gap:1rem;}
+@media (min-width:640px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.card{
+  display:flex;flex-direction:column;gap:.75rem;
+  border-radius:.75rem;border:1px solid var(--border);background:var(--card);padding:1.25rem;
+  transition:border-color .15s;
+}
+.card:hover{border-color:var(--brand-indigo);}
+.card-meta{display:flex;align-items:center;gap:.5rem;}
+.badge{
+  display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;gap:.25rem;
+  white-space:nowrap;border-radius:.375rem;border:1px solid transparent;padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:.75rem;font-weight:500;
+  background:rgba(139,233,253,.15);color:var(--brand-cyan);
+}
+.meta-text{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.meta-right{margin-left:auto;display:flex;align-items:center;gap:.5rem;}
+.pill-hot{
+  display:inline-flex;align-items:center;gap:.25rem;border-radius:9999px;
+  border:1px solid rgba(255,121,198,.3);background:rgba(255,121,198,.1);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--brand-pink);
+}
+.pill-new{
+  display:inline-flex;align-items:center;border-radius:9999px;
+  border:1px solid rgba(125,108,255,.4);background:rgba(125,108,255,.1);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--brand-indigo);
+}
+.rating{display:inline-flex;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.rating .star{color:var(--brand-indigo);}
+.rating .score{color:var(--foreground);}
+.rating .count{color:rgba(154,160,196,.6);}
+.card h3{
+  font-family:var(--font-display);font-size:1.25rem;font-weight:800;text-transform:uppercase;
+  color:var(--card-foreground);transition:color .15s;
+}
+.card:hover h3{color:var(--brand-indigo);}
+.card p{font-size:.875rem;color:var(--muted-foreground);}
+.tag-row{display:flex;flex-wrap:wrap;gap:.375rem;}
+.tag{
+  display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;
+  white-space:nowrap;border-radius:.375rem;border:1px solid var(--border);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:.75rem;font-weight:500;color:var(--foreground);
+}
+.card-cta{margin-top:auto;font-family:var(--font-mono);font-size:.75rem;color:var(--brand-indigo);}
+.sec-sub{margin-top:.5rem;max-width:28rem;font-size:.875rem;color:var(--muted-foreground);}
+
+/* idealizador */
+.author-panel{position:relative;margin-top:1.25rem;overflow:hidden;border-radius:1rem;border:1px solid var(--border);background:var(--card);}
+.author-panel .glow{opacity:0;transition:opacity .7s;}
+.author-panel:hover .glow{opacity:1;}
+.author-inner{position:relative;display:grid;gap:1.5rem;padding:1.5rem;}
+@media (min-width:640px){.author-inner{grid-template-columns:auto 1fr;align-items:start;gap:2rem;padding:2rem;}}
+.avatar-wrap{position:relative;flex-shrink:0;}
+.avatar{
+  position:relative;width:6rem;height:6rem;overflow:hidden;border-radius:9999px;
+  border:2px solid var(--border);transition:transform .3s,border-color .3s;
+}
+.author-panel:hover .avatar{transform:scale(1.04);border-color:var(--brand-purple);}
+@media (min-width:640px){.avatar{width:7rem;height:7rem;}}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.online-dot{
+  position:absolute;bottom:0;right:0;display:inline-flex;width:1.25rem;height:1.25rem;
+  align-items:center;justify-content:center;border-radius:9999px;background:var(--card);
+}
+.online-dot span{display:inline-block;width:.75rem;height:.75rem;border-radius:9999px;background:var(--brand-indigo);box-shadow:0 0 12px rgba(125,108,255,.7);}
+.author-body{display:flex;min-width:0;flex-direction:column;}
+.author-name-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.75rem;row-gap:.25rem;}
+.author-body h3{font-family:var(--font-display);font-size:1.5rem;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;color:var(--card-foreground);}
+@media (min-width:640px){.author-body h3{font-size:1.875rem;}}
+.handle{font-family:var(--font-mono);font-size:.875rem;color:var(--muted-foreground);}
+.chip-row{margin-top:.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
+.chip-creator{
+  display:inline-flex;align-items:center;gap:.375rem;border-radius:.375rem;
+  border:1px solid rgba(189,147,249,.4);background:rgba(189,147,249,.1);
+  padding:.125rem .5rem;font-family:var(--font-mono);font-size:.75rem;font-weight:500;color:var(--brand-purple);
+}
+.chip-creator svg{width:.75rem;height:.75rem;}
+.chip-online{display:inline-flex;align-items:center;gap:.375rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.author-bio{margin-top:1rem;max-width:65ch;font-size:1rem;color:var(--muted-foreground);}
+.skill-list{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.5rem;}
+.skill-list li{
+  border-radius:.375rem;border:1px solid var(--border);background:rgba(0,0,0,.6);
+  padding:.25rem .625rem;font-family:var(--font-mono);font-size:.75rem;color:rgba(248,248,242,.8);
+  transition:color .15s,border-color .15s;
+}
+.skill-list li:hover{border-color:var(--brand-cyan);color:var(--brand-cyan);}
+.author-links{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;}
+.link-solid{
+  display:inline-flex;align-items:center;gap:.375rem;border-radius:.375rem;background:var(--brand-indigo);
+  padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;font-weight:600;color:#fff;transition:all .15s;
+}
+.link-solid:hover{filter:brightness(1.1);box-shadow:0 14px 34px -12px rgba(125,108,255,.7);}
+.link-solid svg{width:1rem;height:1rem;}
+.link-ghost{
+  display:inline-flex;align-items:center;gap:.375rem;border-radius:.375rem;border:1px solid var(--border);
+  background:transparent;padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;font-weight:500;
+  color:var(--foreground);transition:border-color .15s,background-color .15s;
+}
+.link-ghost:hover{border-color:rgba(248,248,242,.4);background:var(--muted);}
+.link-ghost svg{width:1rem;height:1rem;}
+
+/* terminal */
+.terminal{overflow:hidden;border-radius:.75rem;border:1px solid var(--border);background:#050508;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);}
+.terminal-bar{display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(255,255,255,.05);background:#0d0d16;padding:.625rem 1rem;}
+.tdot{width:.75rem;height:.75rem;border-radius:9999px;}
+.terminal-bar .path{margin-left:.75rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.terminal-body{padding:1.25rem;font-family:var(--font-mono);font-size:.875rem;}
+.terminal-body p+p{margin-top:.375rem;}
+@media (min-width:640px){.terminal-body{font-size:1rem;}}
+.t-prompt{color:var(--brand-cyan);}
+.t-url{word-break:break-all;color:var(--brand-indigo);}
+.t-comment{margin-left:.5rem;display:none;color:var(--muted-foreground);}
+@media (min-width:640px){.t-comment{display:inline;}}
+
+.contrib-grid{margin-top:1.75rem;display:grid;gap:1.5rem;}
+@media (min-width:640px){.contrib-grid{grid-template-columns:1fr auto;align-items:end;}}
+.contrib-grid h3{font-family:var(--font-display);font-size:1.5rem;font-weight:900;text-transform:uppercase;line-height:1.05;letter-spacing:-.025em;color:var(--foreground);}
+@media (min-width:640px){.contrib-grid h3{font-size:1.875rem;}}
+.contrib-grid p{margin-top:.75rem;max-width:65ch;font-size:1rem;color:var(--muted-foreground);}
+@media (min-width:640px){.contrib-grid p{font-size:1.125rem;}}
+.contrib-btns{display:flex;flex-wrap:wrap;gap:.75rem;}
+@media (min-width:640px){.contrib-btns{justify-content:flex-end;}}
+
+.contributors{margin-top:2rem;border-top:1px solid var(--border);padding-top:1.5rem;}
+.contributors-row{margin-top:1rem;display:flex;flex-direction:column;gap:.75rem;}
+@media (min-width:640px){.contributors-row{flex-direction:row;align-items:center;gap:1.25rem;}}
+.avatars{display:flex;flex-shrink:0;flex-wrap:wrap;align-items:center;padding-left:.5rem;}
+.avatars li{position:relative;margin-left:-.5rem;}
+.avatars li:first-child{margin-left:0;}
+.avatars a{display:block;border-radius:9999px;box-shadow:0 0 0 2px var(--card);transition:transform .15s;}
+.avatars a:hover{z-index:10;transform:translateY(-2px);}
+.avatars img{width:2.75rem;height:2.75rem;border-radius:9999px;background:var(--muted);object-fit:cover;}
+.contributors-row>p{max-width:65ch;font-size:.875rem;color:var(--muted-foreground);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{margin-top:5rem;border-top:1px solid var(--border);background:rgba(255,255,255,.02);}
+.footer-grid{display:grid;gap:2.5rem;padding-block:3rem;}
+@media (min-width:768px){.footer-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+.footer-brand{grid-column:span 2;}
+.footer-brand>p:first-child{font-family:var(--font-mono);font-size:.875rem;font-weight:700;color:var(--foreground);}
+.footer-desc{margin-top:.75rem;max-width:24rem;font-size:.875rem;color:var(--muted-foreground);}
+.footer-gh{
+  margin-top:1.25rem;display:inline-flex;align-items:center;gap:.5rem;border-radius:.375rem;
+  border:1px solid var(--border);background:var(--card);padding:.375rem .75rem;
+  font-family:var(--font-mono);font-size:.75rem;transition:border-color .15s,background-color .15s;
+}
+.footer-gh:hover{border-color:rgba(248,248,242,.4);background:var(--muted);}
+.footer-gh svg{width:1rem;height:1rem;flex-shrink:0;}
+.footer-col h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.footer-col ul{margin-top:.75rem;display:flex;flex-direction:column;gap:.5rem;font-size:.875rem;}
+.footer-col a{color:var(--muted-foreground);transition:color .15s;}
+.footer-col a:hover{color:var(--foreground);}
+.footer-bottom{border-top:1px solid var(--border);}
+.footer-bottom-inner{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:.5rem;
+  padding-block:1.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+}
+@media (min-width:640px){.footer-bottom-inner{flex-direction:row;align-items:center;}}
+.footer-bottom-inner .strong{color:var(--foreground);}
+.footer-bottom-inner a{font-weight:700;color:var(--brand-pink);transition:color .15s;}
+.footer-bottom-inner a:hover{color:var(--foreground);}
+
+/* utilitários de cor */
+.c-accent{color:var(--brand-indigo);}
+.c-cyan{color:var(--brand-cyan);}
+.c-pink{color:var(--brand-pink);}
+.c-fg{color:var(--foreground);}
+
+/* ============================================================
+   PÁGINA PROJETOS — cabeçalho, filtros e listagem
+   ============================================================ */
+.page-wrap{position:relative;overflow:hidden;}
+.page-bg{pointer-events:none;position:absolute;inset:0;height:32rem;overflow:hidden;}
+.page-bg .orb-pink{right:-8rem;top:-10rem;width:380px;height:380px;opacity:.16;}
+.page-bg .orb-purple{left:-10rem;top:-6rem;width:420px;height:420px;opacity:.18;bottom:auto;}
+.page-main{position:relative;padding-block:3rem;}
+@media (min-width:640px){.page-main{padding-block:4rem;}}
+
+.main-nav a.is-active{background:var(--muted);color:var(--foreground);}
+.mobile-menu a[aria-current="page"]{color:var(--foreground);}
+
+.crumbs{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.crumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem;}
+.crumbs a{transition:color .15s;}
+.crumbs a:hover{color:var(--foreground);}
+.crumbs .sep{color:var(--brand-purple);}
+.crumbs .current{color:var(--foreground);}
+
+h1.page-title{
+  margin-top:1rem;font-family:var(--font-display);font-size:1.875rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:-.025em;line-height:1.05;
+}
+@media (min-width:640px){h1.page-title{font-size:2.25rem;}}
+.page-lead{margin-top:.5rem;max-width:65ch;color:var(--muted-foreground);}
+
+.browser{margin-top:2rem;display:flex;flex-direction:column;gap:2rem;}
+.filters{display:flex;flex-direction:column;gap:1rem;}
+.search-input{
+  width:100%;border-radius:.75rem;border:1px solid var(--border);background:var(--card);
+  padding:.75rem 1rem;font-family:var(--font-sans);font-size:.875rem;color:var(--foreground);
+  outline:none;transition:border-color .15s;
+}
+.search-input::placeholder{color:var(--muted-foreground);}
+.search-input:focus{border-color:var(--brand-indigo);}
+.search-input::-webkit-search-cancel-button{filter:invert(1) opacity(.5);}
+
+.filter-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
+.filter-label{display:none;font-family:var(--font-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+@media (min-width:640px){.filter-label{display:inline;}}
+.level-group{display:grid;width:100%;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;}
+@media (min-width:640px){.level-group{display:flex;width:auto;}}
+.chip-btn{
+  border-radius:.375rem;border:1px solid var(--border);padding:.25rem .625rem;
+  font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+  transition:color .15s,border-color .15s,background-color .15s;
+}
+.chip-btn:hover{border-color:var(--brand-indigo);color:var(--foreground);}
+.chip-btn[aria-pressed="true"]{border-color:var(--brand-indigo);background:rgba(125,108,255,.15);color:var(--brand-indigo);}
+
+.topic-wrap{width:100%;}
+@media (min-width:640px){.topic-wrap{margin-left:auto;width:auto;}}
+.topic-anchor{position:relative;}
+.topic-btn{
+  display:flex;width:100%;align-items:center;justify-content:center;gap:.375rem;
+  border-radius:.375rem;border:1px solid var(--border);padding:.375rem .625rem;
+  font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+  transition:color .15s,border-color .15s,background-color .15s;
+}
+@media (min-width:640px){.topic-btn{width:auto;justify-content:flex-start;padding-block:.25rem;}}
+.topic-btn:hover{border-color:var(--brand-indigo);color:var(--foreground);}
+.topic-btn.active{border-color:var(--brand-indigo);background:rgba(125,108,255,.15);color:var(--brand-indigo);}
+.topic-btn .count-badge{border-radius:.125rem;background:rgba(125,108,255,.25);padding-inline:.25rem;font-variant-numeric:tabular-nums;}
+.topic-btn .caret-icon{display:inline-block;transition:transform .2s;}
+.topic-btn[aria-expanded="true"] .caret-icon{transform:rotate(180deg);}
+
+.topic-menu{
+  position:absolute;left:0;right:0;top:100%;z-index:20;margin-top:.5rem;width:100%;
+  border-radius:.75rem;border:1px solid var(--border);background:var(--card);padding:.5rem;
+  box-shadow:0 10px 15px -3px rgba(0,0,0,.5),0 4px 6px -4px rgba(0,0,0,.5);
+}
+@media (min-width:640px){.topic-menu{left:auto;width:16rem;}}
+.topic-menu[hidden]{display:none;}
+.topic-search{
+  margin-bottom:.5rem;width:100%;border-radius:.375rem;border:1px solid var(--border);
+  background:var(--background);padding:.375rem .625rem;font-family:var(--font-mono);
+  font-size:.75rem;color:var(--foreground);outline:none;
+}
+.topic-search::placeholder{color:var(--muted-foreground);}
+.topic-search:focus{border-color:var(--brand-indigo);}
+.topic-list{max-height:16rem;overflow-y:auto;}
+.topic-list ul{display:flex;flex-direction:column;}
+.topic-item{
+  display:flex;width:100%;align-items:center;gap:.5rem;border-radius:.375rem;
+  padding:.375rem .5rem;text-align:left;font-family:var(--font-mono);font-size:.75rem;
+  transition:background-color .15s,color .15s;
+}
+.topic-item:hover{background:var(--muted);}
+.topic-item[aria-pressed="true"]{color:var(--brand-indigo);}
+.topic-item .box{
+  display:flex;width:.875rem;height:.875rem;flex-shrink:0;align-items:center;justify-content:center;
+  border-radius:3px;border:1px solid var(--border);font-size:9px;line-height:1;
+}
+.topic-item[aria-pressed="true"] .box{border-color:var(--brand-indigo);background:rgba(125,108,255,.2);}
+.topic-item .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topic-item .n{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted-foreground);}
+.topic-empty{padding:.75rem .25rem;text-align:center;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+
+.count-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.75rem;}
+.count-text{font-family:var(--font-mono);color:var(--muted-foreground);}
+.active-chip{
+  display:inline-flex;align-items:center;gap:.25rem;border-radius:.375rem;
+  border:1px solid var(--brand-indigo);background:rgba(125,108,255,.15);
+  padding:.25rem .25rem .25rem .625rem;font-family:var(--font-mono);color:var(--brand-indigo);
+}
+.active-chip button{
+  display:flex;width:1rem;height:1rem;align-items:center;justify-content:center;
+  border-radius:.125rem;transition:background-color .15s;
+}
+.active-chip button:hover{background:rgba(125,108,255,.25);}
+.clear-btn{font-family:var(--font-mono);color:var(--brand-indigo);text-underline-offset:4px;}
+.clear-btn:hover{text-decoration:underline;}
+
+.level-sections{display:flex;flex-direction:column;gap:2.5rem;}
+.level-sections[hidden]{display:none;}
+.level-sections section[hidden]{display:none;}
+.empty-state{
+  border-radius:.75rem;border:1px dashed var(--border);padding:3rem 1rem;
+  text-align:center;font-size:.875rem;color:var(--muted-foreground);
+}
+.empty-state[hidden]{display:none;}
+.card[hidden]{display:none;}
+
+</style>
+</head>
+
+<body>
+<a href="#conteudo" class="sr-only skip-link">Pular para o conteúdo</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Primo Academy - início"><span class="slash">~/</span>.primo-academy.sh</a>
+
+    <nav class="main-nav" aria-label="Principal">
+      <a href="index.html#trilhas">Trilhas</a>
+      <a href="index.html#trilhas">Bootcamps</a>
+      <a href="projetos.html" aria-current="page" class="is-active">Projetos</a>
+      <a href="index.html#contribua">Ranking</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="index.html#contribua" class="btn-sm">Entrar</a>
+    </div>
+
+    <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="menu-mobile">
+    <nav class="container" aria-label="Menu mobile">
+      <ul>
+        <li><a href="index.html#trilhas">Trilhas</a></li>
+        <li><a href="index.html#trilhas">Bootcamps</a></li>
+        <li><a href="projetos.html" aria-current="page">Projetos</a></li>
+        <li><a href="index.html#contribua">Ranking</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-wrap">
+    <div class="page-bg" aria-hidden="true">
+      <div class="hero-grid-lines"></div>
+      <div class="orb orb-pink anim-orb"></div>
+      <div class="orb orb-purple anim-orb-slow"></div>
+    </div>
+
+    <div class="container page-main">
+      <!-- ============================ CABEÇALHO DA PÁGINA ============================ -->
+      <nav class="crumbs" aria-label="Navegação estrutural">
+        <ol>
+          <li><a href="index.html">Início</a></li>
+          <li aria-hidden="true" class="sep">/</li>
+          <li><span aria-current="page" class="current">Projetos</span></li>
+        </ol>
+      </nav>
+
+      <h1 class="page-title">Projetos</h1>
+      <p class="page-lead">Aprender de verdade é construindo. Escolha um projeto do seu nível e pratique o que as trilhas ensinam — cada um tem objetivo, requisitos e desafios extras.</p>
+
+      <!-- ============================ FILTROS ============================ -->
+      <div class="browser">
+        <div class="filters">
+          <input type="search" id="q" class="search-input" placeholder="Buscar projetos por nome, descrição ou tópico…" aria-label="Buscar projetos" autocomplete="off" />
+
+          <div class="filter-row">
+            <span class="filter-label">Nível</span>
+            <div class="level-group" id="level-group">
+              <button type="button" class="chip-btn" aria-pressed="false" data-level="iniciante">Iniciante</button>
+              <button type="button" class="chip-btn" aria-pressed="false" data-level="intermediario">Intermediário</button>
+              <button type="button" class="chip-btn" aria-pressed="false" data-level="avancado">Avançado</button>
+            </div>
+
+            <div class="topic-wrap">
+              <div class="topic-anchor" id="topic-anchor">
+                <button type="button" class="topic-btn" id="topic-btn" aria-expanded="false" aria-haspopup="true" aria-controls="topic-menu">
+                  Tópico<span class="count-badge" id="topic-count" hidden>0</span><span class="caret-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="topic-menu" id="topic-menu" hidden>
+                  <input type="search" id="topic-q" class="topic-search" placeholder="Filtrar tópicos…" aria-label="Filtrar tópicos" autocomplete="off" />
+                  <div class="topic-list" id="topic-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="count-row" id="count-row">
+            <span class="count-text" id="count-text">22 de 22 projetos</span>
+          </div>
+        </div>
+
+        <!-- ============================ LISTAGEM ============================ -->
+        <div class="level-sections" id="level-sections">
+        <section id="nivel-iniciante" aria-labelledby="nivel-iniciante-titulo" data-level="iniciante">
+          <h2 id="nivel-iniciante-titulo" class="kicker">// Iniciante</h2>
+          <div class="card-grid">
+            <a class="card" href="#" data-slug="calculadora-de-gorjeta" data-difficulty="iniciante" data-skills="javascript,dom,html,css" data-published="2026-08-30" data-haystack="Calculadora de Gorjeta Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser. javascript dom html css">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">2-3 horas</span>
+              </div>
+              <h3>Calculadora de Gorjeta</h3>
+              <p>Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.</p>
+              <div class="tag-row"><span class="tag">javascript</span><span class="tag">dom</span><span class="tag">html</span><span class="tag">css</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="catalogo-de-produtos-react" data-difficulty="iniciante" data-skills="react,jsx,componentes,props,listas,renderizacao-condicional,eventos,use-state,acessibilidade" data-published="2026-08-30" data-haystack="Catálogo de Produtos em React Construa uma vitrine interativa com cards reutilizáveis, filtros, busca, estados vazios e uma experiência visual gostosa de explorar. react jsx componentes props listas renderizacao-condicional eventos use-state acessibilidade">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">4-6 horas</span>
+              </div>
+              <h3>Catálogo de Produtos em React</h3>
+              <p>Construa uma vitrine interativa com cards reutilizáveis, filtros, busca, estados vazios e uma experiência visual gostosa de explorar.</p>
+              <div class="tag-row"><span class="tag">react</span><span class="tag">jsx</span><span class="tag">componentes</span><span class="tag">props</span><span class="tag">+5</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="habit-tracker-react" data-difficulty="iniciante" data-skills="react,use-state,formularios,formularios-controlados,estado,imutabilidade,estado-derivado,acessibilidade" data-published="2026-08-30" data-haystack="Habit Tracker em React Crie um rastreador de hábitos com formulário controlado, grade semanal, filtros e estatísticas derivadas. react use-state formularios formularios-controlados estado imutabilidade estado-derivado acessibilidade">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">6-10 horas</span>
+              </div>
+              <h3>Habit Tracker em React</h3>
+              <p>Crie um rastreador de hábitos com formulário controlado, grade semanal, filtros e estatísticas derivadas.</p>
+              <div class="tag-row"><span class="tag">react</span><span class="tag">use-state</span><span class="tag">formularios</span><span class="tag">formularios-controlados</span><span class="tag">+4</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="lista-de-tarefas" data-difficulty="iniciante" data-skills="javascript,dom,localstorage,css" data-published="2026-08-30" data-haystack="Lista de Tarefas Um app de to-do que salva suas tarefas mesmo depois de fechar o navegador. javascript dom localstorage css">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">3-5 horas</span>
+              </div>
+              <h3>Lista de Tarefas</h3>
+              <p>Um app de to-do que salva suas tarefas mesmo depois de fechar o navegador.</p>
+              <div class="tag-row"><span class="tag">javascript</span><span class="tag">dom</span><span class="tag">localstorage</span><span class="tag">css</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="pagina-de-perfil" data-difficulty="iniciante" data-skills="html,css,semantica" data-published="2026-08-30" data-haystack="Página de Perfil Construa sua própria página de perfil (tipo um mini currículo online) só com HTML e CSS. html css semantica">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">2-4 horas</span>
+              </div>
+              <h3>Página de Perfil</h3>
+              <p>Construa sua própria página de perfil (tipo um mini currículo online) só com HTML e CSS.</p>
+              <div class="tag-row"><span class="tag">html</span><span class="tag">css</span><span class="tag">semantica</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="nivel-intermediario" aria-labelledby="nivel-intermediario-titulo" data-level="intermediario">
+          <h2 id="nivel-intermediario-titulo" class="kicker">// Intermediário</h2>
+          <div class="card-grid">
+            <a class="card" href="#" data-slug="api-rest-com-autenticacao" data-difficulty="intermediario" data-skills="backend,api,autenticacao,banco-de-dados,testes" data-published="2026-08-25" data-haystack="API REST com Autenticação Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes. backend api autenticacao banco-de-dados testes">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1-2 semanas</span>
+              </div>
+              <h3>API REST com Autenticação</h3>
+              <p>Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes.</p>
+              <div class="tag-row"><span class="tag">backend</span><span class="tag">api</span><span class="tag">autenticacao</span><span class="tag">banco-de-dados</span><span class="tag">+1</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="auditoria-de-acessibilidade-web" data-difficulty="intermediario" data-skills="acessibilidade,wcag,html-semantico,css,testes,aria" data-published="2026-08-30" data-haystack="Auditoria de Acessibilidade Web Escolha um fluxo real ou fictício, corrija barreiras de acessibilidade e entregue um relatório com testes manuais e automatizados. acessibilidade wcag html-semantico css testes aria">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 fim de semana</span>
+              </div>
+              <h3>Auditoria de Acessibilidade Web</h3>
+              <p>Escolha um fluxo real ou fictício, corrija barreiras de acessibilidade e entregue um relatório com testes manuais e automatizados.</p>
+              <div class="tag-row"><span class="tag">acessibilidade</span><span class="tag">wcag</span><span class="tag">html-semantico</span><span class="tag">css</span><span class="tag">+2</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="auditoria-seo-aeo-geo" data-difficulty="intermediario" data-skills="seo,aeo,geo,dados-estruturados,core-web-vitals" data-published="2026-08-28" data-haystack="Auditoria de SEO, AEO e GEO Audite e otimize uma página real nas três camadas: SEO técnico, resposta direta (AEO) e citação por IA generativa (GEO). seo aeo geo dados-estruturados core-web-vitals">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 fim de semana</span>
+              </div>
+              <h3>Auditoria de SEO, AEO e GEO</h3>
+              <p>Audite e otimize uma página real nas três camadas: SEO técnico, resposta direta (AEO) e citação por IA generativa (GEO).</p>
+              <div class="tag-row"><span class="tag">seo</span><span class="tag">aeo</span><span class="tag">geo</span><span class="tag">dados-estruturados</span><span class="tag">+1</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="busca-com-filtros" data-difficulty="intermediario" data-skills="javascript,algoritmos,big-o,dom" data-published="2026-08-30" data-haystack="Busca com Filtros Uma lista pesquisável e filtrável, com atenção ao custo das operações conforme os dados crescem. javascript algoritmos big-o dom">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">4-6 horas</span>
+              </div>
+              <h3>Busca com Filtros</h3>
+              <p>Uma lista pesquisável e filtrável, com atenção ao custo das operações conforme os dados crescem.</p>
+              <div class="tag-row"><span class="tag">javascript</span><span class="tag">algoritmos</span><span class="tag">big-o</span><span class="tag">dom</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="central-de-notificacoes" data-difficulty="intermediario" data-skills="rabbitmq,mensageria,pub-sub,arquitetura,backend" data-published="2026-08-26" data-haystack="Central de Notificações Um serviço que recebe eventos do sistema e decide quem avisa por e-mail, push ou SMS — usando roteamento por topic. rabbitmq mensageria pub-sub arquitetura backend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 semana</span>
+              </div>
+              <h3>Central de Notificações</h3>
+              <p>Um serviço que recebe eventos do sistema e decide quem avisa por e-mail, push ou SMS — usando roteamento por topic.</p>
+              <div class="tag-row"><span class="tag">rabbitmq</span><span class="tag">mensageria</span><span class="tag">pub-sub</span><span class="tag">arquitetura</span><span class="tag">+1</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="clima-agora" data-difficulty="intermediario" data-skills="javascript,api,fetch,async" data-published="2026-08-30" data-haystack="Clima Agora Um app que mostra a previsão do tempo de qualquer cidade consumindo uma API pública. javascript api fetch async">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">4-6 horas</span>
+              </div>
+              <h3>Clima Agora</h3>
+              <p>Um app que mostra a previsão do tempo de qualquer cidade consumindo uma API pública.</p>
+              <div class="tag-row"><span class="tag">javascript</span><span class="tag">api</span><span class="tag">fetch</span><span class="tag">async</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="fila-de-atendimento" data-difficulty="intermediario" data-skills="rabbitmq,mensageria,filas,api,backend" data-published="2026-08-26" data-haystack="Fila de Atendimento Um sistema de senha de atendimento com prioridade — onde a fila não é uma tabela no banco, é uma fila de verdade. rabbitmq mensageria filas api backend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 semana</span>
+              </div>
+              <h3>Fila de Atendimento</h3>
+              <p>Um sistema de senha de atendimento com prioridade — onde a fila não é uma tabela no banco, é uma fila de verdade.</p>
+              <div class="tag-row"><span class="tag">rabbitmq</span><span class="tag">mensageria</span><span class="tag">filas</span><span class="tag">api</span><span class="tag">+1</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="jogo-da-memoria-react" data-difficulty="intermediario" data-skills="react,use-state,listas,eventos,renderizacao-condicional,use-effect,use-reducer,acessibilidade" data-published="2026-09-03" data-haystack="Jogo da Memória em React Construa um jogo da memória com cartas, estado de rodada, pares encontrados, bloqueio de jogadas e feedback visual. react use-state listas eventos renderizacao-condicional use-effect use-reducer acessibilidade">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 fim de semana</span>
+              </div>
+              <h3>Jogo da Memória em React</h3>
+              <p>Construa um jogo da memória com cartas, estado de rodada, pares encontrados, bloqueio de jogadas e feedback visual.</p>
+              <div class="tag-row"><span class="tag">react</span><span class="tag">use-state</span><span class="tag">listas</span><span class="tag">eventos</span><span class="tag">+4</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="kanban-de-missoes-react" data-difficulty="intermediario" data-skills="react,formularios,estado,estado-derivado,use-reducer,context,custom-hooks,arquitetura,acessibilidade" data-published="2026-09-03" data-haystack="Kanban de Missões em React Crie um quadro de missões com colunas, filtros, formulário, reducer e ações explícitas para mover tarefas. react formularios estado estado-derivado use-reducer context custom-hooks arquitetura acessibilidade">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 fim de semana</span>
+              </div>
+              <h3>Kanban de Missões em React</h3>
+              <p>Crie um quadro de missões com colunas, filtros, formulário, reducer e ações explícitas para mover tarefas.</p>
+              <div class="tag-row"><span class="tag">react</span><span class="tag">formularios</span><span class="tag">estado</span><span class="tag">estado-derivado</span><span class="tag">+5</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="landing-page-responsiva" data-difficulty="intermediario" data-skills="css,tailwind,responsivo,flexbox,grid" data-published="2026-08-30" data-haystack="Landing Page Responsiva Uma página de divulgação de produto que fica perfeita no celular e no desktop, usando Tailwind. css tailwind responsivo flexbox grid">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 fim de semana</span>
+              </div>
+              <h3>Landing Page Responsiva</h3>
+              <p>Uma página de divulgação de produto que fica perfeita no celular e no desktop, usando Tailwind.</p>
+              <div class="tag-row"><span class="tag">css</span><span class="tag">tailwind</span><span class="tag">responsivo</span><span class="tag">flexbox</span><span class="tag">+1</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="modelagem-de-banco" data-difficulty="intermediario" data-skills="sql,banco-de-dados,modelagem,backend" data-published="2026-08-25" data-haystack="Modelagem de um Banco de Dados Modele o banco de um mini e-commerce e escreva as consultas que respondem perguntas de verdade — só SQL, sem ORM no caminho. sql banco-de-dados modelagem backend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">3-5 dias</span>
+              </div>
+              <h3>Modelagem de um Banco de Dados</h3>
+              <p>Modele o banco de um mini e-commerce e escreva as consultas que respondem perguntas de verdade — só SQL, sem ORM no caminho.</p>
+              <div class="tag-row"><span class="tag">sql</span><span class="tag">banco-de-dados</span><span class="tag">modelagem</span><span class="tag">backend</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="pokedex-react" data-difficulty="intermediario" data-skills="react,fetch,use-effect,estado-assincrono,custom-hooks,context,use-reducer,arquitetura,acessibilidade" data-published="2026-08-30" data-haystack="Pokédex em React Construa uma Pokédex que consome API, trata estados assíncronos, organiza favoritos e mostra detalhes em uma arquitetura limpa. react fetch use-effect estado-assincrono custom-hooks context use-reducer arquitetura acessibilidade">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 fim de semana</span>
+              </div>
+              <h3>Pokédex em React</h3>
+              <p>Construa uma Pokédex que consome API, trata estados assíncronos, organiza favoritos e mostra detalhes em uma arquitetura limpa.</p>
+              <div class="tag-row"><span class="tag">react</span><span class="tag">fetch</span><span class="tag">use-effect</span><span class="tag">estado-assincrono</span><span class="tag">+5</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="processador-de-planilhas" data-difficulty="intermediario" data-skills="rabbitmq,mensageria,workers,api,backend" data-published="2026-08-26" data-haystack="Processador de Planilhas Upload de CSV grande que responde na hora e processa por trás — com retry, dead letter queue e relatório de erros linha a linha. rabbitmq mensageria workers api backend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 semana</span>
+              </div>
+              <h3>Processador de Planilhas</h3>
+              <p>Upload de CSV grande que responde na hora e processa por trás — com retry, dead letter queue e relatório de erros linha a linha.</p>
+              <div class="tag-row"><span class="tag">rabbitmq</span><span class="tag">mensageria</span><span class="tag">workers</span><span class="tag">api</span><span class="tag">+1</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="quiz-react" data-difficulty="intermediario" data-skills="react,hooks,state,componentes" data-published="2026-08-30" data-haystack="Quiz em React Um quiz de múltipla escolha em React, com pontuação e tela de resultado. react hooks state componentes">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1 fim de semana</span>
+              </div>
+              <h3>Quiz em React</h3>
+              <p>Um quiz de múltipla escolha em React, com pontuação e tela de resultado.</p>
+              <div class="tag-row"><span class="tag">react</span><span class="tag">hooks</span><span class="tag">state</span><span class="tag">componentes</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="servico-com-docker" data-difficulty="intermediario" data-skills="docker,containers,devops,backend" data-published="2026-08-25" data-haystack="Empacote um Serviço com Docker Pegue sua API, coloque num container e suba app + banco com um comando só usando Docker Compose — do Dockerfile ao ambiente que roda igual em qualquer máquina. docker containers devops backend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">3-5 dias</span>
+              </div>
+              <h3>Empacote um Serviço com Docker</h3>
+              <p>Pegue sua API, coloque num container e suba app + banco com um comando só usando Docker Compose — do Dockerfile ao ambiente que roda igual em qualquer máquina.</p>
+              <div class="tag-row"><span class="tag">docker</span><span class="tag">containers</span><span class="tag">devops</span><span class="tag">backend</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="nivel-avancado" aria-labelledby="nivel-avancado-titulo" data-level="avancado">
+          <h2 id="nivel-avancado-titulo" class="kicker">// Avançado</h2>
+          <div class="card-grid">
+            <a class="card" href="#" data-slug="dashboard-analitico" data-difficulty="avancado" data-skills="react,performance,dataviz,typescript" data-published="2026-08-30" data-haystack="Dashboard Analítico Um painel com gráficos e métricas em React, com foco em performance e organização de estado. react performance dataviz typescript">
+              <div class="card-meta">
+                <span class="badge">Avançado</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1-2 semanas</span>
+              </div>
+              <h3>Dashboard Analítico</h3>
+              <p>Um painel com gráficos e métricas em React, com foco em performance e organização de estado.</p>
+              <div class="tag-row"><span class="tag">react</span><span class="tag">performance</span><span class="tag">dataviz</span><span class="tag">typescript</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+            <a class="card" href="#" data-slug="encurtador-de-url" data-difficulty="avancado" data-skills="system-design,api,backend,banco-de-dados" data-published="2026-08-30" data-haystack="Encurtador de URL Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura. system-design api backend banco-de-dados">
+              <div class="card-meta">
+                <span class="badge">Avançado</span>
+                <span class="pill-new" aria-label="Conteúdo novo" hidden>novo</span>
+                <span class="meta-text">1-2 semanas</span>
+              </div>
+              <h3>Encurtador de URL</h3>
+              <p>Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura.</p>
+              <div class="tag-row"><span class="tag">system-design</span><span class="tag">api</span><span class="tag">backend</span><span class="tag">banco-de-dados</span></div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+          </div>
+        </section>
+        </div>
+
+        <p class="empty-state" id="empty-state" hidden>Nenhum projeto encontrado com esses filtros.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p><span class="c-accent">~/</span>.primo-academy.sh</p>
+      <p class="footer-desc">Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.</p>
+      <a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank" class="footer-gh">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
+        <span>github.com/lucianodiisouza/aprenda-community</span>
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h2>// conteúdo</h2>
+      <ul>
+        <li><a href="index.html#trilhas">Trilhas</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="index.html#trilhas">Bootcamps</a></li>
+        <li><a href="index.html#contribua">Ranking</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2>// projeto</h2>
+      <ul>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank">Código no GitHub</a></li>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md" rel="noopener noreferrer" target="_blank">Como contribuir</a></li>
+        <li><a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">Sobre o autor</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 · código sob <span class="strong">AGPL-3.0</span> · conteúdo sob <span class="strong">CC BY-SA 4.0</span></p>
+      <p>criado por <a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">OPrimoDev</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- menu mobile ---------- */
+  var menuBtn = document.getElementById('menu-btn');
+  var menu = document.getElementById('menu-mobile');
+  menuBtn.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      menu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---------- barra de progresso de scroll ---------- */
+  var bar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var ratio = max > 0 ? window.scrollY / max : 0;
+    bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, ratio)) + ')';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  /* ---------- badge "novo": publicado nos últimos 30 dias ---------- */
+  var NEW_DAYS = 30;
+  [].forEach.call(document.querySelectorAll('.card[data-published]'), function (card) {
+    var t = Date.parse(card.getAttribute('data-published'));
+    if (isNaN(t)) return;
+    var age = Date.now() - t;
+    if (age >= 0 && age <= 86400000 * NEW_DAYS) {
+      var pill = card.querySelector('.pill-new');
+      if (pill) pill.hidden = false;
+    }
+  });
+
+  /* ---------- estado dos filtros ---------- */
+  var NOUN = 'projeto';
+  var cards = [].slice.call(document.querySelectorAll('.card[data-slug]'));
+  var sections = [].slice.call(document.querySelectorAll('#level-sections section'));
+  var LEVEL_LABELS = { iniciante: 'Iniciante', intermediario: 'Intermediário', avancado: 'Avançado' };
+  var TOTAL = cards.length;
+
+  var levels = new Set();
+  var skills = new Set();
+  var query = '';
+  var topicQuery = '';
+
+  function norm(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  /* tópicos: contagem por skill, ordenado por count desc e depois nome */
+  var counts = new Map();
+  cards.forEach(function (card) {
+    card.getAttribute('data-skills').split(',').forEach(function (s) {
+      counts.set(s, (counts.get(s) || 0) + 1);
+    });
+  });
+  var TOPICS = [];
+  counts.forEach(function (count, name) { TOPICS.push({ name: name, count: count }); });
+  TOPICS.sort(function (a, b) {
+    return b.count - a.count || a.name.localeCompare(b.name, 'pt-BR');
+  });
+
+  var qInput = document.getElementById('q');
+  var topicBtn = document.getElementById('topic-btn');
+  var topicMenu = document.getElementById('topic-menu');
+  var topicList = document.getElementById('topic-list');
+  var topicCount = document.getElementById('topic-count');
+  var topicQInput = document.getElementById('topic-q');
+  var countRow = document.getElementById('count-row');
+  var countText = document.getElementById('count-text');
+  var emptyState = document.getElementById('empty-state');
+  var sectionsWrap = document.getElementById('level-sections');
+
+  function matches(card) {
+    if (levels.size > 0 && !levels.has(card.getAttribute('data-difficulty'))) return false;
+    if (skills.size > 0) {
+      var cardSkills = card.getAttribute('data-skills').split(',');
+      var hit = cardSkills.some(function (s) { return skills.has(s); });
+      if (!hit) return false;
+    }
+    var q = norm(query.trim());
+    if (q && norm(card.getAttribute('data-haystack')).indexOf(q) === -1) return false;
+    return true;
+  }
+
+  function renderTopics() {
+    var q = norm(topicQuery.trim());
+    var list = q ? TOPICS.filter(function (t) { return norm(t.name).indexOf(q) !== -1; }) : TOPICS;
+    if (list.length === 0) {
+      topicList.innerHTML = '<p class="topic-empty">nenhum tópico</p>';
+      return;
+    }
+    var ul = document.createElement('ul');
+    list.forEach(function (t) {
+      var on = skills.has(t.name);
+      var li = document.createElement('li');
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'topic-item';
+      btn.setAttribute('aria-pressed', String(on));
+      btn.dataset.topic = t.name;
+      btn.innerHTML = '<span class="box" aria-hidden="true">' + (on ? '✓' : '') + '</span>' +
+        '<span class="name"></span><span class="n">' + t.count + '</span>';
+      btn.querySelector('.name').textContent = t.name;
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+    topicList.innerHTML = '';
+    topicList.appendChild(ul);
+  }
+
+  function renderChips(visible) {
+    countRow.innerHTML = '';
+    countText.textContent = visible + ' de ' + TOTAL + ' ' + NOUN + (TOTAL === 1 ? '' : 's');
+    countRow.appendChild(countText);
+
+    function chip(label, onRemove) {
+      var span = document.createElement('span');
+      span.className = 'active-chip';
+      span.appendChild(document.createTextNode(label));
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Remover filtro ' + label);
+      b.textContent = '✕';
+      b.addEventListener('click', onRemove);
+      span.appendChild(b);
+      countRow.appendChild(span);
+    }
+
+    levels.forEach(function (lv) {
+      chip(LEVEL_LABELS[lv] || lv, function () { levels.delete(lv); apply(); });
+    });
+    skills.forEach(function (sk) {
+      chip(sk, function () { skills.delete(sk); apply(); });
+    });
+
+    if (levels.size || skills.size || query.trim()) {
+      var clear = document.createElement('button');
+      clear.type = 'button';
+      clear.className = 'clear-btn';
+      clear.textContent = 'limpar';
+      clear.addEventListener('click', function () {
+        query = ''; qInput.value = '';
+        levels.clear(); skills.clear();
+        apply();
+      });
+      countRow.appendChild(clear);
+    }
+  }
+
+  function apply() {
+    var visible = 0;
+    cards.forEach(function (card) {
+      var ok = matches(card);
+      card.hidden = !ok;
+      if (ok) visible++;
+    });
+    sections.forEach(function (sec) {
+      var any = [].some.call(sec.querySelectorAll('.card'), function (c) { return !c.hidden; });
+      sec.hidden = !any;
+    });
+    sectionsWrap.hidden = visible === 0;
+    emptyState.hidden = visible !== 0;
+
+    [].forEach.call(document.querySelectorAll('#level-group .chip-btn'), function (btn) {
+      btn.setAttribute('aria-pressed', String(levels.has(btn.dataset.level)));
+    });
+    topicBtn.classList.toggle('active', skills.size > 0);
+    topicCount.hidden = skills.size === 0;
+    topicCount.textContent = String(skills.size);
+
+    renderChips(visible);
+    renderTopics();
+  }
+
+  /* ---------- eventos ---------- */
+  qInput.addEventListener('input', function () { query = qInput.value; apply(); });
+
+  document.getElementById('level-group').addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.chip-btn');
+    if (!btn) return;
+    var lv = btn.dataset.level;
+    if (levels.has(lv)) levels.delete(lv); else levels.add(lv);
+    apply();
+  });
+
+  topicBtn.addEventListener('click', function () {
+    var open = topicMenu.hidden;
+    topicMenu.hidden = !open;
+    topicBtn.setAttribute('aria-expanded', String(open));
+    if (open) { topicQInput.value = ''; topicQuery = ''; renderTopics(); topicQInput.focus(); }
+  });
+  topicQInput.addEventListener('input', function () { topicQuery = topicQInput.value; renderTopics(); });
+  topicList.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.topic-item');
+    if (!btn) return;
+    var t = btn.dataset.topic;
+    if (skills.has(t)) skills.delete(t); else skills.add(t);
+    apply();
+  });
+
+  document.addEventListener('mousedown', function (ev) {
+    if (topicMenu.hidden) return;
+    if (!document.getElementById('topic-anchor').contains(ev.target)) closeTopics();
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && !topicMenu.hidden) closeTopics();
+  });
+  function closeTopics() {
+    topicMenu.hidden = true;
+    topicBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  apply();
+})();
+</script>
+</body>
+</html>

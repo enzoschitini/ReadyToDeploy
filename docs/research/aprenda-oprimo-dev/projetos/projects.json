@@ -1,0 +1,548 @@
+[
+ {
+  "slug": "api-rest-com-autenticacao",
+  "title": "API REST com Autenticação",
+  "description": "Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes.",
+  "difficulty": "intermediario",
+  "published": "2026-08-25",
+  "skills": [
+   "backend",
+   "api",
+   "autenticacao",
+   "banco-de-dados",
+   "testes"
+  ],
+  "trilhas": [
+   "backend"
+  ],
+  "estimate": "1-2 semanas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "auditoria-de-acessibilidade-web",
+  "title": "Auditoria de Acessibilidade Web",
+  "description": "Escolha um fluxo real ou fictício, corrija barreiras de acessibilidade e entregue um relatório com testes manuais e automatizados.",
+  "difficulty": "intermediario",
+  "published": "2026-08-30",
+  "skills": [
+   "acessibilidade",
+   "wcag",
+   "html-semantico",
+   "css",
+   "testes",
+   "aria"
+  ],
+  "trilhas": [
+   "acessibilidade-web",
+   "html",
+   "css-fundamentos"
+  ],
+  "estimate": "1 fim de semana",
+  "creators": [
+   {
+    "name": "Bruno Fernandes Horn",
+    "github": "brunofhorn"
+   }
+  ]
+ },
+ {
+  "slug": "auditoria-seo-aeo-geo",
+  "title": "Auditoria de SEO, AEO e GEO",
+  "description": "Audite e otimize uma página real nas três camadas: SEO técnico, resposta direta (AEO) e citação por IA generativa (GEO).",
+  "difficulty": "intermediario",
+  "published": "2026-08-28",
+  "skills": [
+   "seo",
+   "aeo",
+   "geo",
+   "dados-estruturados",
+   "core-web-vitals"
+  ],
+  "trilhas": [
+   "seo-aeo-geo"
+  ],
+  "estimate": "1 fim de semana",
+  "creators": [
+   {
+    "name": "Breno Alvim",
+    "github": "obrenoalvim"
+   }
+  ]
+ },
+ {
+  "slug": "busca-com-filtros",
+  "title": "Busca com Filtros",
+  "description": "Uma lista pesquisável e filtrável, com atenção ao custo das operações conforme os dados crescem.",
+  "difficulty": "intermediario",
+  "published": "2026-08-30",
+  "skills": [
+   "javascript",
+   "algoritmos",
+   "big-o",
+   "dom"
+  ],
+  "trilhas": [
+   "frontend",
+   "complexidade-de-algoritmos"
+  ],
+  "estimate": "4-6 horas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "calculadora-de-gorjeta",
+  "title": "Calculadora de Gorjeta",
+  "description": "Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.",
+  "difficulty": "iniciante",
+  "published": "2026-08-30",
+  "skills": [
+   "javascript",
+   "dom",
+   "html",
+   "css"
+  ],
+  "trilhas": [
+   "frontend",
+   "programacao-do-zero"
+  ],
+  "estimate": "2-3 horas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "catalogo-de-produtos-react",
+  "title": "Catálogo de Produtos em React",
+  "description": "Construa uma vitrine interativa com cards reutilizáveis, filtros, busca, estados vazios e uma experiência visual gostosa de explorar.",
+  "difficulty": "iniciante",
+  "published": "2026-08-30",
+  "skills": [
+   "react",
+   "jsx",
+   "componentes",
+   "props",
+   "listas",
+   "renderizacao-condicional",
+   "eventos",
+   "use-state",
+   "acessibilidade"
+  ],
+  "trilhas": [
+   "react-do-zero"
+  ],
+  "estimate": "4-6 horas",
+  "creators": [
+   {
+    "name": "Bruno Fernandes Horn",
+    "github": "brunofhorn"
+   }
+  ]
+ },
+ {
+  "slug": "central-de-notificacoes",
+  "title": "Central de Notificações",
+  "description": "Um serviço que recebe eventos do sistema e decide quem avisa por e-mail, push ou SMS — usando roteamento por topic.",
+  "difficulty": "intermediario",
+  "published": "2026-08-26",
+  "skills": [
+   "rabbitmq",
+   "mensageria",
+   "pub-sub",
+   "arquitetura",
+   "backend"
+  ],
+  "trilhas": [
+   "rabbitmq-mensageria",
+   "backend"
+  ],
+  "estimate": "1 semana",
+  "creators": [
+   {
+    "name": "Rafael Coelho",
+    "github": "rafa-coelho"
+   }
+  ]
+ },
+ {
+  "slug": "clima-agora",
+  "title": "Clima Agora",
+  "description": "Um app que mostra a previsão do tempo de qualquer cidade consumindo uma API pública.",
+  "difficulty": "intermediario",
+  "published": "2026-08-30",
+  "skills": [
+   "javascript",
+   "api",
+   "fetch",
+   "async"
+  ],
+  "trilhas": [
+   "frontend"
+  ],
+  "estimate": "4-6 horas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "dashboard-analitico",
+  "title": "Dashboard Analítico",
+  "description": "Um painel com gráficos e métricas em React, com foco em performance e organização de estado.",
+  "difficulty": "avancado",
+  "published": "2026-08-30",
+  "skills": [
+   "react",
+   "performance",
+   "dataviz",
+   "typescript"
+  ],
+  "trilhas": [
+   "frontend"
+  ],
+  "estimate": "1-2 semanas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "encurtador-de-url",
+  "title": "Encurtador de URL",
+  "description": "Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura.",
+  "difficulty": "avancado",
+  "published": "2026-08-30",
+  "skills": [
+   "system-design",
+   "api",
+   "backend",
+   "banco-de-dados"
+  ],
+  "trilhas": [
+   "backend",
+   "frontend"
+  ],
+  "estimate": "1-2 semanas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "fila-de-atendimento",
+  "title": "Fila de Atendimento",
+  "description": "Um sistema de senha de atendimento com prioridade — onde a fila não é uma tabela no banco, é uma fila de verdade.",
+  "difficulty": "intermediario",
+  "published": "2026-08-26",
+  "skills": [
+   "rabbitmq",
+   "mensageria",
+   "filas",
+   "api",
+   "backend"
+  ],
+  "trilhas": [
+   "rabbitmq-mensageria",
+   "backend"
+  ],
+  "estimate": "1 semana",
+  "creators": [
+   {
+    "name": "Rafael Coelho",
+    "github": "rafa-coelho"
+   }
+  ]
+ },
+ {
+  "slug": "habit-tracker-react",
+  "title": "Habit Tracker em React",
+  "description": "Crie um rastreador de hábitos com formulário controlado, grade semanal, filtros e estatísticas derivadas.",
+  "difficulty": "iniciante",
+  "published": "2026-08-30",
+  "skills": [
+   "react",
+   "use-state",
+   "formularios",
+   "formularios-controlados",
+   "estado",
+   "imutabilidade",
+   "estado-derivado",
+   "acessibilidade"
+  ],
+  "trilhas": [
+   "react-do-zero"
+  ],
+  "estimate": "6-10 horas",
+  "creators": [
+   {
+    "name": "Bruno Fernandes Horn",
+    "github": "brunofhorn"
+   }
+  ]
+ },
+ {
+  "slug": "jogo-da-memoria-react",
+  "title": "Jogo da Memória em React",
+  "description": "Construa um jogo da memória com cartas, estado de rodada, pares encontrados, bloqueio de jogadas e feedback visual.",
+  "difficulty": "intermediario",
+  "published": "2026-09-03",
+  "skills": [
+   "react",
+   "use-state",
+   "listas",
+   "eventos",
+   "renderizacao-condicional",
+   "use-effect",
+   "use-reducer",
+   "acessibilidade"
+  ],
+  "trilhas": [
+   "react-do-zero"
+  ],
+  "estimate": "1 fim de semana",
+  "creators": [
+   {
+    "name": "Bruno Fernandes Horn",
+    "github": "brunofhorn"
+   }
+  ]
+ },
+ {
+  "slug": "kanban-de-missoes-react",
+  "title": "Kanban de Missões em React",
+  "description": "Crie um quadro de missões com colunas, filtros, formulário, reducer e ações explícitas para mover tarefas.",
+  "difficulty": "intermediario",
+  "published": "2026-09-03",
+  "skills": [
+   "react",
+   "formularios",
+   "estado",
+   "estado-derivado",
+   "use-reducer",
+   "context",
+   "custom-hooks",
+   "arquitetura",
+   "acessibilidade"
+  ],
+  "trilhas": [
+   "react-do-zero"
+  ],
+  "estimate": "1 fim de semana",
+  "creators": [
+   {
+    "name": "Bruno Fernandes Horn",
+    "github": "brunofhorn"
+   }
+  ]
+ },
+ {
+  "slug": "landing-page-responsiva",
+  "title": "Landing Page Responsiva",
+  "description": "Uma página de divulgação de produto que fica perfeita no celular e no desktop, usando Tailwind.",
+  "difficulty": "intermediario",
+  "published": "2026-08-30",
+  "skills": [
+   "css",
+   "tailwind",
+   "responsivo",
+   "flexbox",
+   "grid"
+  ],
+  "trilhas": [
+   "frontend"
+  ],
+  "estimate": "1 fim de semana",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "lista-de-tarefas",
+  "title": "Lista de Tarefas",
+  "description": "Um app de to-do que salva suas tarefas mesmo depois de fechar o navegador.",
+  "difficulty": "iniciante",
+  "published": "2026-08-30",
+  "skills": [
+   "javascript",
+   "dom",
+   "localstorage",
+   "css"
+  ],
+  "trilhas": [
+   "frontend"
+  ],
+  "estimate": "3-5 horas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "modelagem-de-banco",
+  "title": "Modelagem de um Banco de Dados",
+  "description": "Modele o banco de um mini e-commerce e escreva as consultas que respondem perguntas de verdade — só SQL, sem ORM no caminho.",
+  "difficulty": "intermediario",
+  "published": "2026-08-25",
+  "skills": [
+   "sql",
+   "banco-de-dados",
+   "modelagem",
+   "backend"
+  ],
+  "trilhas": [
+   "sql-banco-de-dados"
+  ],
+  "estimate": "3-5 dias",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "pagina-de-perfil",
+  "title": "Página de Perfil",
+  "description": "Construa sua própria página de perfil (tipo um mini currículo online) só com HTML e CSS.",
+  "difficulty": "iniciante",
+  "published": "2026-08-30",
+  "skills": [
+   "html",
+   "css",
+   "semantica"
+  ],
+  "trilhas": [
+   "frontend",
+   "html"
+  ],
+  "estimate": "2-4 horas",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "pokedex-react",
+  "title": "Pokédex em React",
+  "description": "Construa uma Pokédex que consome API, trata estados assíncronos, organiza favoritos e mostra detalhes em uma arquitetura limpa.",
+  "difficulty": "intermediario",
+  "published": "2026-08-30",
+  "skills": [
+   "react",
+   "fetch",
+   "use-effect",
+   "estado-assincrono",
+   "custom-hooks",
+   "context",
+   "use-reducer",
+   "arquitetura",
+   "acessibilidade"
+  ],
+  "trilhas": [
+   "react-do-zero"
+  ],
+  "estimate": "1 fim de semana",
+  "creators": [
+   {
+    "name": "Bruno Fernandes Horn",
+    "github": "brunofhorn"
+   }
+  ]
+ },
+ {
+  "slug": "processador-de-planilhas",
+  "title": "Processador de Planilhas",
+  "description": "Upload de CSV grande que responde na hora e processa por trás — com retry, dead letter queue e relatório de erros linha a linha.",
+  "difficulty": "intermediario",
+  "published": "2026-08-26",
+  "skills": [
+   "rabbitmq",
+   "mensageria",
+   "workers",
+   "api",
+   "backend"
+  ],
+  "trilhas": [
+   "rabbitmq-mensageria",
+   "backend"
+  ],
+  "estimate": "1 semana",
+  "creators": [
+   {
+    "name": "Rafael Coelho",
+    "github": "rafa-coelho"
+   }
+  ]
+ },
+ {
+  "slug": "quiz-react",
+  "title": "Quiz em React",
+  "description": "Um quiz de múltipla escolha em React, com pontuação e tela de resultado.",
+  "difficulty": "intermediario",
+  "published": "2026-08-30",
+  "skills": [
+   "react",
+   "hooks",
+   "state",
+   "componentes"
+  ],
+  "trilhas": [
+   "frontend"
+  ],
+  "estimate": "1 fim de semana",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ },
+ {
+  "slug": "servico-com-docker",
+  "title": "Empacote um Serviço com Docker",
+  "description": "Pegue sua API, coloque num container e suba app + banco com um comando só usando Docker Compose — do Dockerfile ao ambiente que roda igual em qualquer máquina.",
+  "difficulty": "intermediario",
+  "published": "2026-08-25",
+  "skills": [
+   "docker",
+   "containers",
+   "devops",
+   "backend"
+  ],
+  "trilhas": [
+   "docker-fundamentos",
+   "docker-compose-e-workflows"
+  ],
+  "estimate": "3-5 dias",
+  "creators": [
+   {
+    "name": "Luciano dii Souza",
+    "github": "lucianodiisouza"
+   }
+  ]
+ }
+]

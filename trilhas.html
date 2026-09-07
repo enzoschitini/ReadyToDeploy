@@ -1,0 +1,1636 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trilhas · Primo Academy</title>
+<meta name="description" content="Escolha por onde começar. Cada trilha é um caminho de estudo com recursos curados, em português e de graça." />
+<meta name="theme-color" content="#000000" />
+<meta name="color-scheme" content="dark" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script>document.documentElement.classList.add('js');</script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   Design tokens — mesmos de index.html (fundo preto + indigo)
+   ============================================================ */
+:root{
+  --background:#000000;
+  --foreground:#f8f8f2;
+  --card:#0d0d16;
+  --card-foreground:#f8f8f2;
+  --primary:#bd93f9;
+  --primary-foreground:#11121a;
+  --secondary:#1c1c2e;
+  --muted:#15151f;
+  --muted-foreground:#9aa0c4;
+  --accent:#1c1c2e;
+  --accent-foreground:#f8f8f2;
+  --border:#232338;
+  --ring:#7d6cff;
+
+  --brand-indigo:#7d6cff;
+  --brand-purple:#bd93f9;
+  --brand-pink:#ff79c6;
+  --brand-cyan:#8be9fd;
+  --brand-orange:#ffb86c;
+  --brand-yellow:#f1fa8c;
+
+  --font-sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --font-display:"Archivo",system-ui,sans-serif;
+
+  --container:72rem;
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;border:0 solid var(--border);}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:1rem;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{display:block;max-width:100%;height:auto;}
+svg{display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;cursor:pointer;}
+input{font:inherit;color:inherit;background:none;}
+h1,h2,h3,p,ul,ol,dl,dd,blockquote,figure{margin:0;}
+ul,ol{padding:0;list-style:none;}
+
+/* ---------- helpers ---------- */
+.mono{font-family:var(--font-mono);}
+.display{font-family:var(--font-display);}
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:1rem;}
+@media (min-width:640px){.container{padding-inline:1.5rem;}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+.skip-link:focus{
+  position:fixed;left:1rem;top:1rem;z-index:50;width:auto;height:auto;margin:0;clip:auto;
+  overflow:visible;white-space:normal;border-radius:.375rem;background:var(--primary);
+  padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;color:var(--primary-foreground);
+}
+[hidden]{display:none!important;}
+
+/* ---------- keyframes ---------- */
+@keyframes reveal-up{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translate(0)}}
+@keyframes pulse{50%{opacity:.5}}
+
+.js .reveal{opacity:0;}
+.reveal.in{animation:reveal-up .7s cubic-bezier(.22,1,.36,1) both;}
+.stagger>*{animation:reveal-up .7s cubic-bezier(.22,1,.36,1) both;}
+.stagger>*:nth-child(1){animation-delay:40ms}
+.stagger>*:nth-child(2){animation-delay:80ms}
+.stagger>*:nth-child(3){animation-delay:.12s}
+.stagger>*:nth-child(4){animation-delay:.16s}
+.stagger>*:nth-child(5){animation-delay:.2s}
+.stagger>*:nth-child(6){animation-delay:.24s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  .js .reveal{opacity:1;}
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:40;
+  border-bottom:1px solid var(--border);
+  background:rgba(0,0,0,.8);
+}
+@supports ((backdrop-filter:blur(8px)) or (-webkit-backdrop-filter:blur(8px))){
+  .site-header{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+}
+.header-inner{display:flex;height:3.5rem;align-items:center;justify-content:space-between;gap:1rem;}
+.brand{font-family:var(--font-mono);font-size:.875rem;font-weight:700;letter-spacing:-.025em;color:var(--foreground);}
+.brand .slash{color:var(--brand-indigo);}
+.main-nav{display:none;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.875rem;}
+.main-nav a{border-radius:.375rem;padding:.375rem .75rem;color:var(--muted-foreground);transition:color .15s,background-color .15s;}
+.main-nav a:hover{background:rgba(33,34,44,.6);color:var(--foreground);}
+.main-nav a[aria-current="page"]{background:var(--muted);color:var(--foreground);}
+.header-actions{display:none;align-items:center;justify-content:flex-end;gap:.75rem;min-width:80px;}
+.btn-sm{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  border-radius:.375rem;height:2.25rem;padding-inline:.75rem;font-size:.875rem;font-weight:600;
+  background:var(--brand-indigo);color:#fff;box-shadow:0 14px 34px -12px rgba(125,108,255,.7);
+  transition:all .15s;
+}
+.btn-sm:hover{filter:brightness(1.1);}
+.menu-btn{
+  display:inline-flex;width:2.25rem;height:2.25rem;align-items:center;justify-content:center;
+  border-radius:.375rem;border:1px solid var(--border);background:var(--card);color:var(--foreground);
+  transition:border-color .15s;
+}
+.menu-btn:hover{border-color:rgba(248,248,242,.4);}
+.menu-btn svg{width:1.25rem;height:1.25rem;}
+.mobile-menu{display:none;border-top:1px solid var(--border);background:var(--background);}
+.mobile-menu.open{display:block;}
+.mobile-menu ul{display:flex;flex-direction:column;padding:.5rem 0 1rem;font-family:var(--font-mono);font-size:.875rem;}
+.mobile-menu a{padding:.625rem .25rem;color:var(--muted-foreground);transition:color .15s;}
+.mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--foreground);}
+@media (min-width:768px){
+  .main-nav,.header-actions{display:flex;}
+  .menu-btn{display:none;}
+  .mobile-menu,.mobile-menu.open{display:none;}
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.scroll-progress{
+  pointer-events:none;position:fixed;inset-inline:0;top:0;z-index:50;height:2px;
+  transform-origin:left;transform:scaleX(0);transition:transform 80ms linear;
+  background:linear-gradient(to right,var(--brand-indigo),var(--brand-cyan),var(--brand-pink));
+}
+
+/* ============================================================
+   PÁGINA
+   ============================================================ */
+main{flex:1;}
+.page{padding-block:3rem;}
+@media (min-width:640px){.page{padding-block:4rem;}}
+
+/* breadcrumb */
+.breadcrumb{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.breadcrumb ol{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem;}
+.breadcrumb a{transition:color .15s;}
+.breadcrumb a:hover{color:var(--foreground);}
+.breadcrumb .sep{color:var(--brand-purple);}
+.breadcrumb .current{color:var(--foreground);}
+
+h1.page-title{
+  margin-top:1rem;font-family:var(--font-display);font-size:1.875rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:-.025em;line-height:1.05;
+}
+@media (min-width:640px){h1.page-title{font-size:2.25rem;}}
+.page-lead{margin-top:.5rem;max-width:65ch;color:var(--muted-foreground);}
+
+/* ---------- filtros ---------- */
+.browser{margin-top:2rem;display:flex;flex-direction:column;gap:2rem;}
+.filter-bar{display:flex;flex-direction:column;gap:1rem;}
+.search-input{
+  width:100%;border-radius:.75rem;border:1px solid var(--border);background:var(--card);
+  padding:.75rem 1rem;font-size:.875rem;color:var(--foreground);outline:none;
+  transition:border-color .15s;
+}
+.search-input::placeholder{color:var(--muted-foreground);}
+.search-input:focus{border-color:var(--brand-indigo);}
+
+.filter-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
+.filter-label{display:none;font-family:var(--font-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+@media (min-width:640px){.filter-label{display:inline;}}
+.level-group{display:grid;width:100%;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;}
+@media (min-width:640px){.level-group{display:flex;width:auto;}}
+.level-pill{
+  border-radius:.375rem;border:1px solid var(--border);padding:.25rem .625rem;
+  font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+  transition:color .15s,border-color .15s,background-color .15s;
+}
+.level-pill:hover{border-color:var(--brand-indigo);color:var(--foreground);}
+.level-pill[aria-pressed="true"]{border-color:var(--brand-indigo);background:rgba(125,108,255,.15);color:var(--brand-indigo);}
+
+.topic-wrap{width:100%;}
+@media (min-width:640px){.topic-wrap{margin-left:auto;width:auto;}}
+.topic-anchor{position:relative;}
+.topic-btn{
+  display:flex;width:100%;align-items:center;justify-content:center;gap:.375rem;
+  border-radius:.375rem;border:1px solid var(--border);padding:.375rem .625rem;
+  font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+  transition:color .15s,border-color .15s,background-color .15s;
+}
+.topic-btn:hover{border-color:var(--brand-indigo);color:var(--foreground);}
+@media (min-width:640px){.topic-btn{width:auto;justify-content:flex-start;padding-block:.25rem;}}
+.topic-btn.has-selection{border-color:var(--brand-indigo);background:rgba(125,108,255,.15);color:var(--brand-indigo);}
+.topic-btn .count-chip{border-radius:.125rem;background:rgba(125,108,255,.25);padding-inline:.25rem;font-variant-numeric:tabular-nums;}
+.topic-btn .caret{transition:transform .15s;}
+.topic-btn[aria-expanded="true"] .caret{transform:rotate(180deg);}
+
+.topic-panel{
+  position:absolute;left:0;right:0;top:100%;z-index:20;margin-top:.5rem;
+  border-radius:.75rem;border:1px solid var(--border);background:var(--card);padding:.5rem;
+  box-shadow:0 10px 15px -3px rgba(0,0,0,.4),0 4px 6px -4px rgba(0,0,0,.4);
+}
+@media (min-width:640px){.topic-panel{left:auto;right:0;width:16rem;}}
+.topic-filter{
+  margin-bottom:.5rem;width:100%;border-radius:.375rem;border:1px solid var(--border);
+  background:var(--background);padding:.375rem .625rem;font-family:var(--font-mono);
+  font-size:.75rem;color:var(--foreground);outline:none;
+}
+.topic-filter::placeholder{color:var(--muted-foreground);}
+.topic-filter:focus{border-color:var(--brand-indigo);}
+.topic-list-wrap{max-height:16rem;overflow-y:auto;}
+.topic-list{display:flex;flex-direction:column;}
+.topic-opt{
+  display:flex;width:100%;align-items:center;gap:.5rem;border-radius:.375rem;
+  padding:.375rem .5rem;text-align:left;font-family:var(--font-mono);font-size:.75rem;
+  transition:background-color .15s,color .15s;
+}
+.topic-opt:hover{background:var(--muted);}
+.topic-opt[aria-selected="true"]{color:var(--brand-indigo);}
+.tick{
+  display:flex;width:.875rem;height:.875rem;flex-shrink:0;align-items:center;justify-content:center;
+  border-radius:3px;border:1px solid var(--border);font-size:.625rem;line-height:1;
+}
+.topic-opt[aria-selected="true"] .tick{border-color:var(--brand-indigo);background:rgba(125,108,255,.2);}
+.topic-opt[aria-selected="true"] .tick::before{content:"✓";}
+.topic-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topic-count{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted-foreground);}
+.topic-empty{padding:.75rem .25rem;text-align:center;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+
+.summary-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.75rem;}
+.result-count{font-family:var(--font-mono);color:var(--muted-foreground);}
+.chip{
+  display:inline-flex;align-items:center;gap:.25rem;border-radius:.375rem;
+  border:1px solid var(--brand-indigo);background:rgba(125,108,255,.15);
+  padding:.25rem .25rem .25rem .625rem;font-family:var(--font-mono);color:var(--brand-indigo);
+}
+.chip button{
+  display:flex;width:1rem;height:1rem;align-items:center;justify-content:center;
+  border-radius:.125rem;transition:background-color .15s;
+}
+.chip button:hover{background:rgba(125,108,255,.25);}
+.clear-btn{font-family:var(--font-mono);color:var(--brand-indigo);text-underline-offset:4px;}
+.clear-btn:hover{text-decoration:underline;}
+
+/* ---------- cards ---------- */
+.card-grid{display:grid;gap:1rem;}
+@media (min-width:640px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.card{
+  display:flex;flex-direction:column;gap:.75rem;
+  border-radius:.75rem;border:1px solid var(--border);background:var(--card);padding:1.25rem;
+  transition:border-color .15s;
+}
+.card:hover{border-color:var(--brand-indigo);}
+.card-meta{display:flex;align-items:center;gap:.5rem;}
+.badge{
+  display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;gap:.25rem;
+  white-space:nowrap;border-radius:.375rem;border:1px solid transparent;padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:.75rem;font-weight:500;
+  background:rgba(139,233,253,.15);color:var(--brand-cyan);
+}
+.meta-text{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.meta-right{margin-left:auto;display:flex;align-items:center;gap:.5rem;}
+.pill-hot{
+  display:inline-flex;align-items:center;gap:.25rem;border-radius:9999px;
+  border:1px solid rgba(255,121,198,.3);background:rgba(255,121,198,.1);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--brand-pink);
+}
+.pill-new{
+  display:inline-flex;align-items:center;border-radius:9999px;
+  border:1px solid rgba(125,108,255,.4);background:rgba(125,108,255,.1);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--brand-indigo);
+}
+.rating{display:inline-flex;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.rating .star{color:var(--brand-indigo);}
+.rating .score{color:var(--foreground);}
+.rating .count{color:rgba(154,160,196,.6);}
+.card h3{
+  font-family:var(--font-display);font-size:1.25rem;font-weight:800;text-transform:uppercase;
+  color:var(--card-foreground);transition:color .15s;
+}
+.card:hover h3{color:var(--brand-indigo);}
+.card p{font-size:.875rem;color:var(--muted-foreground);}
+.card-cta{margin-top:auto;font-family:var(--font-mono);font-size:.75rem;color:var(--brand-indigo);}
+
+.empty-state{
+  border-radius:.75rem;border:1px dashed var(--border);padding:3rem 1rem;
+  text-align:center;font-size:.875rem;color:var(--muted-foreground);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{margin-top:5rem;border-top:1px solid var(--border);background:rgba(255,255,255,.02);}
+.footer-grid{display:grid;gap:2.5rem;padding-block:3rem;}
+@media (min-width:768px){.footer-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+.footer-brand{grid-column:span 2;}
+.footer-brand>p:first-child{font-family:var(--font-mono);font-size:.875rem;font-weight:700;color:var(--foreground);}
+.footer-desc{margin-top:.75rem;max-width:24rem;font-size:.875rem;color:var(--muted-foreground);}
+.footer-gh{
+  margin-top:1.25rem;display:inline-flex;align-items:center;gap:.5rem;border-radius:.375rem;
+  border:1px solid var(--border);background:var(--card);padding:.375rem .75rem;
+  font-family:var(--font-mono);font-size:.75rem;transition:border-color .15s,background-color .15s;
+}
+.footer-gh:hover{border-color:rgba(248,248,242,.4);background:var(--muted);}
+.footer-gh svg{width:1rem;height:1rem;flex-shrink:0;}
+.footer-col h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.footer-col ul{margin-top:.75rem;display:flex;flex-direction:column;gap:.5rem;font-size:.875rem;}
+.footer-col a{color:var(--muted-foreground);transition:color .15s;}
+.footer-col a:hover{color:var(--foreground);}
+.footer-bottom{border-top:1px solid var(--border);}
+.footer-bottom-inner{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:.5rem;
+  padding-block:1.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+}
+@media (min-width:640px){.footer-bottom-inner{flex-direction:row;align-items:center;}}
+.footer-bottom-inner .strong{color:var(--foreground);}
+.footer-bottom-inner a{font-weight:700;color:var(--brand-pink);transition:color .15s;}
+.footer-bottom-inner a:hover{color:var(--foreground);}
+
+/* utilitários de cor */
+.c-accent{color:var(--brand-indigo);}
+.c-cyan{color:var(--brand-cyan);}
+.c-pink{color:var(--brand-pink);}
+.c-fg{color:var(--foreground);}
+</style>
+</head>
+
+<body>
+<a href="#conteudo" class="sr-only skip-link">Pular para o conteúdo</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="Primo Academy - início"><span class="slash">~/</span>.primo-academy.sh</a>
+
+    <nav class="main-nav" aria-label="Principal">
+      <a href="trilhas.html" aria-current="page">Trilhas</a>
+      <a href="index.html#trilhas">Bootcamps</a>
+      <a href="index.html#projetos">Projetos</a>
+      <a href="index.html#contribua">Ranking</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="index.html#contribua" class="btn-sm">Entrar</a>
+    </div>
+
+    <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="menu-mobile">
+    <nav class="container" aria-label="Menu mobile">
+      <ul>
+        <li><a href="trilhas.html" aria-current="page">Trilhas</a></li>
+        <li><a href="index.html#trilhas">Bootcamps</a></li>
+        <li><a href="index.html#projetos">Projetos</a></li>
+        <li><a href="index.html#contribua">Ranking</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <div class="container page">
+    <!-- ============================ BREADCRUMB ============================ -->
+    <nav class="breadcrumb" aria-label="Navegação estrutural">
+      <ol>
+        <li><a href="index.html">Início</a></li>
+        <li aria-hidden="true" class="sep">/</li>
+        <li><span aria-current="page" class="current">Trilhas</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="page-title">Trilhas</h1>
+    <p class="page-lead">Escolha por onde começar. Cada trilha é um caminho de estudo com recursos curados.</p>
+
+    <!-- ============================ BROWSER ============================ -->
+    <div class="browser">
+      <!-- ---------- filtros ---------- -->
+      <div class="filter-bar reveal">
+        <input type="search" id="q" class="search-input"
+               placeholder="Buscar trilhas por nome, descrição ou tópico…"
+               aria-label="Buscar trilhas" autocomplete="off" />
+
+        <div class="filter-row">
+          <span class="filter-label">Nível</span>
+
+          <div class="level-group" role="group" aria-label="Filtrar por nível">
+            <button type="button" class="level-pill" aria-pressed="false" data-level="iniciante">Iniciante</button>
+            <button type="button" class="level-pill" aria-pressed="false" data-level="intermediario">Intermediário</button>
+            <button type="button" class="level-pill" aria-pressed="false" data-level="avancado">Avançado</button>
+          </div>
+
+          <div class="topic-wrap">
+            <div class="topic-anchor" id="topic-anchor">
+              <button type="button" id="topic-btn" class="topic-btn" aria-expanded="false" aria-haspopup="true" aria-controls="topic-panel">
+                Tópico<span class="count-chip" id="topic-count-chip" hidden>0</span><span class="caret" aria-hidden="true">▾</span>
+              </button>
+
+              <div class="topic-panel" id="topic-panel" hidden>
+                <input type="search" id="topic-filter" class="topic-filter"
+                       placeholder="Filtrar tópicos…" aria-label="Filtrar tópicos" autocomplete="off" />
+                <div class="topic-list-wrap">
+                  <ul class="topic-list" id="topic-list" role="listbox" aria-multiselectable="true" aria-label="Tópicos">
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="react"><span class="tick" aria-hidden="true"></span><span class="topic-name">react</span><span class="topic-count">6</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="css"><span class="tick" aria-hidden="true"></span><span class="topic-name">css</span><span class="topic-count">5</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="acessibilidade"><span class="tick" aria-hidden="true"></span><span class="topic-name">acessibilidade</span><span class="topic-count">4</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="algoritmos"><span class="tick" aria-hidden="true"></span><span class="topic-name">algoritmos</span><span class="topic-count">4</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="javascript"><span class="tick" aria-hidden="true"></span><span class="topic-name">javascript</span><span class="topic-count">4</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="typescript"><span class="tick" aria-hidden="true"></span><span class="topic-name">typescript</span><span class="topic-count">4</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="a11y"><span class="tick" aria-hidden="true"></span><span class="topic-name">a11y</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="arquitetura"><span class="tick" aria-hidden="true"></span><span class="topic-name">arquitetura</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="colaboracao"><span class="tick" aria-hidden="true"></span><span class="topic-name">colaboracao</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="containers"><span class="tick" aria-hidden="true"></span><span class="topic-name">containers</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="core-web-vitals"><span class="tick" aria-hidden="true"></span><span class="topic-name">core-web-vitals</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="devops"><span class="tick" aria-hidden="true"></span><span class="topic-name">devops</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="formularios"><span class="tick" aria-hidden="true"></span><span class="topic-name">formularios</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="logica"><span class="tick" aria-hidden="true"></span><span class="topic-name">logica</span><span class="topic-count">3</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="avif"><span class="tick" aria-hidden="true"></span><span class="topic-name">avif</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="backend"><span class="tick" aria-hidden="true"></span><span class="topic-name">backend</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="banco-de-dados"><span class="tick" aria-hidden="true"></span><span class="topic-name">banco-de-dados</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cache-control"><span class="tick" aria-hidden="true"></span><span class="topic-name">cache-control</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cache-strategy"><span class="tick" aria-hidden="true"></span><span class="topic-name">cache-strategy</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cdn"><span class="tick" aria-hidden="true"></span><span class="topic-name">cdn</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cls"><span class="tick" aria-hidden="true"></span><span class="topic-name">cls</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="docker"><span class="tick" aria-hidden="true"></span><span class="topic-name">docker</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="estruturas-de-dados"><span class="tick" aria-hidden="true"></span><span class="topic-name">estruturas-de-dados</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="framer-motion"><span class="tick" aria-hidden="true"></span><span class="topic-name">framer-motion</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="frontend"><span class="tick" aria-hidden="true"></span><span class="topic-name">frontend</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="fundamentos"><span class="tick" aria-hidden="true"></span><span class="topic-name">fundamentos</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="git"><span class="tick" aria-hidden="true"></span><span class="topic-name">git</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="github-actions"><span class="tick" aria-hidden="true"></span><span class="topic-name">github-actions</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="html"><span class="tick" aria-hidden="true"></span><span class="topic-name">html</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="indexeddb"><span class="tick" aria-hidden="true"></span><span class="topic-name">indexeddb</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="inp"><span class="tick" aria-hidden="true"></span><span class="topic-name">inp</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="lcp"><span class="tick" aria-hidden="true"></span><span class="topic-name">lcp</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="linux"><span class="tick" aria-hidden="true"></span><span class="topic-name">linux</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="node"><span class="tick" aria-hidden="true"></span><span class="topic-name">node</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="prompt-engineering"><span class="tick" aria-hidden="true"></span><span class="topic-name">prompt-engineering</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="recursao"><span class="tick" aria-hidden="true"></span><span class="topic-name">recursao</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rollup"><span class="tick" aria-hidden="true"></span><span class="topic-name">rollup</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="semver"><span class="tick" aria-hidden="true"></span><span class="topic-name">semver</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="seo"><span class="tick" aria-hidden="true"></span><span class="topic-name">seo</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="service-worker"><span class="tick" aria-hidden="true"></span><span class="topic-name">service-worker</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="spa"><span class="tick" aria-hidden="true"></span><span class="topic-name">spa</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ssr"><span class="tick" aria-hidden="true"></span><span class="topic-name">ssr</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="stale-while-revalidate"><span class="tick" aria-hidden="true"></span><span class="topic-name">stale-while-revalidate</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="supply-chain"><span class="tick" aria-hidden="true"></span><span class="topic-name">supply-chain</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="visual-regression"><span class="tick" aria-hidden="true"></span><span class="topic-name">visual-regression</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="vite"><span class="tick" aria-hidden="true"></span><span class="topic-name">vite</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="web-vitals"><span class="tick" aria-hidden="true"></span><span class="topic-name">web-vitals</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="webp"><span class="tick" aria-hidden="true"></span><span class="topic-name">webp</span><span class="topic-count">2</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="aeo"><span class="tick" aria-hidden="true"></span><span class="topic-name">aeo</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="agentes"><span class="tick" aria-hidden="true"></span><span class="topic-name">agentes</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ai"><span class="tick" aria-hidden="true"></span><span class="topic-name">ai</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ai-assisted-development"><span class="tick" aria-hidden="true"></span><span class="topic-name">ai-assisted-development</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ai-coding"><span class="tick" aria-hidden="true"></span><span class="topic-name">ai-coding</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ai-ethics"><span class="tick" aria-hidden="true"></span><span class="topic-name">ai-ethics</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="amqp"><span class="tick" aria-hidden="true"></span><span class="topic-name">amqp</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="angular"><span class="tick" aria-hidden="true"></span><span class="topic-name">angular</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="animacoes"><span class="tick" aria-hidden="true"></span><span class="topic-name">animacoes</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="animation"><span class="tick" aria-hidden="true"></span><span class="topic-name">animation</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="api"><span class="tick" aria-hidden="true"></span><span class="topic-name">api</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="apis"><span class="tick" aria-hidden="true"></span><span class="topic-name">apis</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="aria"><span class="tick" aria-hidden="true"></span><span class="topic-name">aria</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="arvores"><span class="tick" aria-hidden="true"></span><span class="topic-name">arvores</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="atomic-deploys"><span class="tick" aria-hidden="true"></span><span class="topic-name">atomic-deploys</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="audit"><span class="tick" aria-hidden="true"></span><span class="topic-name">audit</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="auth"><span class="tick" aria-hidden="true"></span><span class="topic-name">auth</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="automerge"><span class="tick" aria-hidden="true"></span><span class="topic-name">automerge</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="avaliacao"><span class="tick" aria-hidden="true"></span><span class="topic-name">avaliacao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="axe-core"><span class="tick" aria-hidden="true"></span><span class="topic-name">axe-core</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="background-sync"><span class="tick" aria-hidden="true"></span><span class="topic-name">background-sync</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="bash"><span class="tick" aria-hidden="true"></span><span class="topic-name">bash</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="bcp47"><span class="tick" aria-hidden="true"></span><span class="topic-name">bcp47</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="bidirecionalidade"><span class="tick" aria-hidden="true"></span><span class="topic-name">bidirecionalidade</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="big-o"><span class="tick" aria-hidden="true"></span><span class="topic-name">big-o</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="blue-green"><span class="tick" aria-hidden="true"></span><span class="topic-name">blue-green</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="box-model"><span class="tick" aria-hidden="true"></span><span class="topic-name">box-model</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="broadcast"><span class="tick" aria-hidden="true"></span><span class="topic-name">broadcast</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="bugsnag"><span class="tick" aria-hidden="true"></span><span class="topic-name">bugsnag</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="build"><span class="tick" aria-hidden="true"></span><span class="topic-name">build</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="bundle"><span class="tick" aria-hidden="true"></span><span class="topic-name">bundle</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cache"><span class="tick" aria-hidden="true"></span><span class="topic-name">cache</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cache-first"><span class="tick" aria-hidden="true"></span><span class="topic-name">cache-first</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="canary"><span class="tick" aria-hidden="true"></span><span class="topic-name">canary</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="canary-deploy"><span class="tick" aria-hidden="true"></span><span class="topic-name">canary-deploy</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="changelog"><span class="tick" aria-hidden="true"></span><span class="topic-name">changelog</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="changesets"><span class="tick" aria-hidden="true"></span><span class="topic-name">changesets</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="chave-valor"><span class="tick" aria-hidden="true"></span><span class="topic-name">chave-valor</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="chromatic"><span class="tick" aria-hidden="true"></span><span class="topic-name">chromatic</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ci"><span class="tick" aria-hidden="true"></span><span class="topic-name">ci</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ci-cd"><span class="tick" aria-hidden="true"></span><span class="topic-name">ci-cd</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ciberseguranca"><span class="tick" aria-hidden="true"></span><span class="topic-name">ciberseguranca</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ciencia-da-computacao"><span class="tick" aria-hidden="true"></span><span class="topic-name">ciencia-da-computacao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="claude-code"><span class="tick" aria-hidden="true"></span><span class="topic-name">claude-code</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cldr"><span class="tick" aria-hidden="true"></span><span class="topic-name">cldr</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cloudflare"><span class="tick" aria-hidden="true"></span><span class="topic-name">cloudflare</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cloudflare-flagship"><span class="tick" aria-hidden="true"></span><span class="topic-name">cloudflare-flagship</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cloudflare-images"><span class="tick" aria-hidden="true"></span><span class="topic-name">cloudflare-images</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cloudflare-pages"><span class="tick" aria-hidden="true"></span><span class="topic-name">cloudflare-pages</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cloudflare-workers"><span class="tick" aria-hidden="true"></span><span class="topic-name">cloudflare-workers</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="code-quality"><span class="tick" aria-hidden="true"></span><span class="topic-name">code-quality</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="code-review"><span class="tick" aria-hidden="true"></span><span class="topic-name">code-review</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="code-splitting"><span class="tick" aria-hidden="true"></span><span class="topic-name">code-splitting</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cody"><span class="tick" aria-hidden="true"></span><span class="topic-name">cody</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="component-testing"><span class="tick" aria-hidden="true"></span><span class="topic-name">component-testing</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="componentes"><span class="tick" aria-hidden="true"></span><span class="topic-name">componentes</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="composite"><span class="tick" aria-hidden="true"></span><span class="topic-name">composite</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="compound-components"><span class="tick" aria-hidden="true"></span><span class="topic-name">compound-components</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="consent"><span class="tick" aria-hidden="true"></span><span class="topic-name">consent</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="container-queries"><span class="tick" aria-hidden="true"></span><span class="topic-name">container-queries</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="content-security-policy"><span class="tick" aria-hidden="true"></span><span class="topic-name">content-security-policy</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="continue"><span class="tick" aria-hidden="true"></span><span class="topic-name">continue</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="conventional-commits"><span class="tick" aria-hidden="true"></span><span class="topic-name">conventional-commits</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cookies"><span class="tick" aria-hidden="true"></span><span class="topic-name">cookies</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="copilot"><span class="tick" aria-hidden="true"></span><span class="topic-name">copilot</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cores"><span class="tick" aria-hidden="true"></span><span class="topic-name">cores</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cors"><span class="tick" aria-hidden="true"></span><span class="topic-name">cors</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="crdt"><span class="tick" aria-hidden="true"></span><span class="topic-name">crdt</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="critical-rendering-path"><span class="tick" aria-hidden="true"></span><span class="topic-name">critical-rendering-path</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="crowdin"><span class="tick" aria-hidden="true"></span><span class="topic-name">crowdin</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cs"><span class="tick" aria-hidden="true"></span><span class="topic-name">cs</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="csf3"><span class="tick" aria-hidden="true"></span><span class="topic-name">csf3</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="csp"><span class="tick" aria-hidden="true"></span><span class="topic-name">csp</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="csrf"><span class="tick" aria-hidden="true"></span><span class="topic-name">csrf</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="css-animation"><span class="tick" aria-hidden="true"></span><span class="topic-name">css-animation</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="css-variables"><span class="tick" aria-hidden="true"></span><span class="topic-name">css-variables</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cssom"><span class="tick" aria-hidden="true"></span><span class="topic-name">cssom</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="cursor"><span class="tick" aria-hidden="true"></span><span class="topic-name">cursor</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="custom-properties"><span class="tick" aria-hidden="true"></span><span class="topic-name">custom-properties</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="d1"><span class="tick" aria-hidden="true"></span><span class="topic-name">d1</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="data-minimization"><span class="tick" aria-hidden="true"></span><span class="topic-name">data-minimization</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="dependabot"><span class="tick" aria-hidden="true"></span><span class="topic-name">dependabot</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="design-system"><span class="tick" aria-hidden="true"></span><span class="topic-name">design-system</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="design-tokens"><span class="tick" aria-hidden="true"></span><span class="topic-name">design-tokens</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="dexie"><span class="tick" aria-hidden="true"></span><span class="topic-name">dexie</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="distributed-tracing"><span class="tick" aria-hidden="true"></span><span class="topic-name">distributed-tracing</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="docker-compose"><span class="tick" aria-hidden="true"></span><span class="topic-name">docker-compose</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="documento"><span class="tick" aria-hidden="true"></span><span class="topic-name">documento</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="dom"><span class="tick" aria-hidden="true"></span><span class="topic-name">dom</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="dompurify"><span class="tick" aria-hidden="true"></span><span class="topic-name">dompurify</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="drag"><span class="tick" aria-hidden="true"></span><span class="topic-name">drag</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="durable-objects"><span class="tick" aria-hidden="true"></span><span class="topic-name">durable-objects</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="e2e"><span class="tick" aria-hidden="true"></span><span class="topic-name">e2e</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="edge"><span class="tick" aria-hidden="true"></span><span class="topic-name">edge</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="edge-computing"><span class="tick" aria-hidden="true"></span><span class="topic-name">edge-computing</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="edge-runtime"><span class="tick" aria-hidden="true"></span><span class="topic-name">edge-runtime</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ephemeral-envs"><span class="tick" aria-hidden="true"></span><span class="topic-name">ephemeral-envs</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="error-tracking"><span class="tick" aria-hidden="true"></span><span class="topic-name">error-tracking</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="esbuild"><span class="tick" aria-hidden="true"></span><span class="topic-name">esbuild</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="estado"><span class="tick" aria-hidden="true"></span><span class="topic-name">estado</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="etag"><span class="tick" aria-hidden="true"></span><span class="topic-name">etag</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="eventsource"><span class="tick" aria-hidden="true"></span><span class="topic-name">eventsource</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="exponential-backoff"><span class="tick" aria-hidden="true"></span><span class="topic-name">exponential-backoff</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="feature-flags"><span class="tick" aria-hidden="true"></span><span class="topic-name">feature-flags</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="filas"><span class="tick" aria-hidden="true"></span><span class="topic-name">filas</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="flagsmith"><span class="tick" aria-hidden="true"></span><span class="topic-name">flagsmith</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="flexbox"><span class="tick" aria-hidden="true"></span><span class="topic-name">flexbox</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="font-display"><span class="tick" aria-hidden="true"></span><span class="topic-name">font-display</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="font-loading"><span class="tick" aria-hidden="true"></span><span class="topic-name">font-loading</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="formatjs"><span class="tick" aria-hidden="true"></span><span class="topic-name">formatjs</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="forms"><span class="tick" aria-hidden="true"></span><span class="topic-name">forms</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="gdpr"><span class="tick" aria-hidden="true"></span><span class="topic-name">gdpr</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="geo"><span class="tick" aria-hidden="true"></span><span class="topic-name">geo</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="gestures"><span class="tick" aria-hidden="true"></span><span class="topic-name">gestures</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="github"><span class="tick" aria-hidden="true"></span><span class="topic-name">github</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="github-copilot"><span class="tick" aria-hidden="true"></span><span class="topic-name">github-copilot</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="grafos"><span class="tick" aria-hidden="true"></span><span class="topic-name">grafos</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="grid"><span class="tick" aria-hidden="true"></span><span class="topic-name">grid</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="has"><span class="tick" aria-hidden="true"></span><span class="topic-name">has</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="hash"><span class="tick" aria-hidden="true"></span><span class="topic-name">hash</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="headless"><span class="tick" aria-hidden="true"></span><span class="topic-name">headless</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="heartbeat"><span class="tick" aria-hidden="true"></span><span class="topic-name">heartbeat</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="helm"><span class="tick" aria-hidden="true"></span><span class="topic-name">helm</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="hooks"><span class="tick" aria-hidden="true"></span><span class="topic-name">hooks</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="html-semantico"><span class="tick" aria-hidden="true"></span><span class="topic-name">html-semantico</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="http"><span class="tick" aria-hidden="true"></span><span class="topic-name">http</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="httponly"><span class="tick" aria-hidden="true"></span><span class="topic-name">httponly</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="i18n"><span class="tick" aria-hidden="true"></span><span class="topic-name">i18n</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="i18next"><span class="tick" aria-hidden="true"></span><span class="topic-name">i18next</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ia"><span class="tick" aria-hidden="true"></span><span class="topic-name">ia</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ia-generativa"><span class="tick" aria-hidden="true"></span><span class="topic-name">ia-generativa</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="icu"><span class="tick" aria-hidden="true"></span><span class="topic-name">icu</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="idb"><span class="tick" aria-hidden="true"></span><span class="topic-name">idb</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="image-optimization"><span class="tick" aria-hidden="true"></span><span class="topic-name">image-optimization</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="imagens"><span class="tick" aria-hidden="true"></span><span class="topic-name">imagens</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="install-prompt"><span class="tick" aria-hidden="true"></span><span class="topic-name">install-prompt</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="internacionalizacao"><span class="tick" aria-hidden="true"></span><span class="topic-name">internacionalizacao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="intl"><span class="tick" aria-hidden="true"></span><span class="topic-name">intl</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="intl-collator"><span class="tick" aria-hidden="true"></span><span class="topic-name">intl-collator</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="intl-datetimeformat"><span class="tick" aria-hidden="true"></span><span class="topic-name">intl-datetimeformat</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="intl-listformat"><span class="tick" aria-hidden="true"></span><span class="topic-name">intl-listformat</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="intl-numberformat"><span class="tick" aria-hidden="true"></span><span class="topic-name">intl-numberformat</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="invalidation"><span class="tick" aria-hidden="true"></span><span class="topic-name">invalidation</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="isr"><span class="tick" aria-hidden="true"></span><span class="topic-name">isr</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="jsx"><span class="tick" aria-hidden="true"></span><span class="topic-name">jsx</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="k8s"><span class="tick" aria-hidden="true"></span><span class="topic-name">k8s</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="keyframes"><span class="tick" aria-hidden="true"></span><span class="topic-name">keyframes</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="kubernetes"><span class="tick" aria-hidden="true"></span><span class="topic-name">kubernetes</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="kv"><span class="tick" aria-hidden="true"></span><span class="topic-name">kv</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="l10n"><span class="tick" aria-hidden="true"></span><span class="topic-name">l10n</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="language-tag"><span class="tick" aria-hidden="true"></span><span class="topic-name">language-tag</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="launchdarkly"><span class="tick" aria-hidden="true"></span><span class="topic-name">launchdarkly</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="layout"><span class="tick" aria-hidden="true"></span><span class="topic-name">layout</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="lgpd"><span class="tick" aria-hidden="true"></span><span class="topic-name">lgpd</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="lighthouse"><span class="tick" aria-hidden="true"></span><span class="topic-name">lighthouse</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="lighthouse-ci"><span class="tick" aria-hidden="true"></span><span class="topic-name">lighthouse-ci</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="llm"><span class="tick" aria-hidden="true"></span><span class="topic-name">llm</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="locale"><span class="tick" aria-hidden="true"></span><span class="topic-name">locale</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="localizacao"><span class="tick" aria-hidden="true"></span><span class="topic-name">localizacao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="localstorage"><span class="tick" aria-hidden="true"></span><span class="topic-name">localstorage</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="locize"><span class="tick" aria-hidden="true"></span><span class="topic-name">locize</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="lockfile"><span class="tick" aria-hidden="true"></span><span class="topic-name">lockfile</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="logical-properties"><span class="tick" aria-hidden="true"></span><span class="topic-name">logical-properties</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="logs"><span class="tick" aria-hidden="true"></span><span class="topic-name">logs</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="long-polling"><span class="tick" aria-hidden="true"></span><span class="topic-name">long-polling</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="lottie"><span class="tick" aria-hidden="true"></span><span class="topic-name">lottie</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="manifest"><span class="tick" aria-hidden="true"></span><span class="topic-name">manifest</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="mensagem-de-commit"><span class="tick" aria-hidden="true"></span><span class="topic-name">mensagem-de-commit</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="mensageria"><span class="tick" aria-hidden="true"></span><span class="topic-name">mensageria</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="messageformat"><span class="tick" aria-hidden="true"></span><span class="topic-name">messageformat</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="meta-frameworks"><span class="tick" aria-hidden="true"></span><span class="topic-name">meta-frameworks</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="metrics"><span class="tick" aria-hidden="true"></span><span class="topic-name">metrics</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="middleware"><span class="tick" aria-hidden="true"></span><span class="topic-name">middleware</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="modelagem-de-dados"><span class="tick" aria-hidden="true"></span><span class="topic-name">modelagem-de-dados</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="mongodb"><span class="tick" aria-hidden="true"></span><span class="topic-name">mongodb</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="motion"><span class="tick" aria-hidden="true"></span><span class="topic-name">motion</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="msw"><span class="tick" aria-hidden="true"></span><span class="topic-name">msw</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="namespaces"><span class="tick" aria-hidden="true"></span><span class="topic-name">namespaces</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="network-first"><span class="tick" aria-hidden="true"></span><span class="topic-name">network-first</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="next-image"><span class="tick" aria-hidden="true"></span><span class="topic-name">next-image</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="nextjs"><span class="tick" aria-hidden="true"></span><span class="topic-name">nextjs</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="nosql"><span class="tick" aria-hidden="true"></span><span class="topic-name">nosql</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="npm-audit"><span class="tick" aria-hidden="true"></span><span class="topic-name">npm-audit</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="observabilidade"><span class="tick" aria-hidden="true"></span><span class="topic-name">observabilidade</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="observability"><span class="tick" aria-hidden="true"></span><span class="topic-name">observability</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="offline-first"><span class="tick" aria-hidden="true"></span><span class="topic-name">offline-first</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="open-telemetry"><span class="tick" aria-hidden="true"></span><span class="topic-name">open-telemetry</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="opentelemetry"><span class="tick" aria-hidden="true"></span><span class="topic-name">opentelemetry</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="optimistic-updates"><span class="tick" aria-hidden="true"></span><span class="topic-name">optimistic-updates</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="orquestracao"><span class="tick" aria-hidden="true"></span><span class="topic-name">orquestracao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="otlp"><span class="tick" aria-hidden="true"></span><span class="topic-name">otlp</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="owasp"><span class="tick" aria-hidden="true"></span><span class="topic-name">owasp</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="paint"><span class="tick" aria-hidden="true"></span><span class="topic-name">paint</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="performance"><span class="tick" aria-hidden="true"></span><span class="topic-name">performance</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="pii"><span class="tick" aria-hidden="true"></span><span class="topic-name">pii</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="playwright"><span class="tick" aria-hidden="true"></span><span class="topic-name">playwright</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="pluralization"><span class="tick" aria-hidden="true"></span><span class="topic-name">pluralization</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="position"><span class="tick" aria-hidden="true"></span><span class="topic-name">position</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="postgresql"><span class="tick" aria-hidden="true"></span><span class="topic-name">postgresql</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="pr-preview"><span class="tick" aria-hidden="true"></span><span class="topic-name">pr-preview</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="precaching"><span class="tick" aria-hidden="true"></span><span class="topic-name">precaching</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="prefers-reduced-motion"><span class="tick" aria-hidden="true"></span><span class="topic-name">prefers-reduced-motion</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="presence"><span class="tick" aria-hidden="true"></span><span class="topic-name">presence</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="preview-deploys"><span class="tick" aria-hidden="true"></span><span class="topic-name">preview-deploys</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="preview-environments"><span class="tick" aria-hidden="true"></span><span class="topic-name">preview-environments</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="programacao"><span class="tick" aria-hidden="true"></span><span class="topic-name">programacao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="prompts"><span class="tick" aria-hidden="true"></span><span class="topic-name">prompts</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="pseudo-locale"><span class="tick" aria-hidden="true"></span><span class="topic-name">pseudo-locale</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="pseudo-localization"><span class="tick" aria-hidden="true"></span><span class="topic-name">pseudo-localization</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="pwa"><span class="tick" aria-hidden="true"></span><span class="topic-name">pwa</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="r2"><span class="tick" aria-hidden="true"></span><span class="topic-name">r2</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rabbitmq"><span class="tick" aria-hidden="true"></span><span class="topic-name">rabbitmq</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="radix"><span class="tick" aria-hidden="true"></span><span class="topic-name">radix</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rag"><span class="tick" aria-hidden="true"></span><span class="topic-name">rag</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="react-aria"><span class="tick" aria-hidden="true"></span><span class="topic-name">react-aria</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="react-hook-form"><span class="tick" aria-hidden="true"></span><span class="topic-name">react-hook-form</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="react-intl"><span class="tick" aria-hidden="true"></span><span class="topic-name">react-intl</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="react-query"><span class="tick" aria-hidden="true"></span><span class="topic-name">react-query</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="react-testing-library"><span class="tick" aria-hidden="true"></span><span class="topic-name">react-testing-library</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="real-time"><span class="tick" aria-hidden="true"></span><span class="topic-name">real-time</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="real-user-monitoring"><span class="tick" aria-hidden="true"></span><span class="topic-name">real-user-monitoring</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="reconexao"><span class="tick" aria-hidden="true"></span><span class="topic-name">reconexao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="redes"><span class="tick" aria-hidden="true"></span><span class="topic-name">redes</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="redis"><span class="tick" aria-hidden="true"></span><span class="topic-name">redis</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="refactor"><span class="tick" aria-hidden="true"></span><span class="topic-name">refactor</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="release-health"><span class="tick" aria-hidden="true"></span><span class="topic-name">release-health</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="renovate"><span class="tick" aria-hidden="true"></span><span class="topic-name">renovate</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="responsive-images"><span class="tick" aria-hidden="true"></span><span class="topic-name">responsive-images</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="responsividade"><span class="tick" aria-hidden="true"></span><span class="topic-name">responsividade</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rhf"><span class="tick" aria-hidden="true"></span><span class="topic-name">rhf</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rive"><span class="tick" aria-hidden="true"></span><span class="topic-name">rive</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rollback"><span class="tick" aria-hidden="true"></span><span class="topic-name">rollback</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rollbar"><span class="tick" aria-hidden="true"></span><span class="topic-name">rollbar</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rollout"><span class="tick" aria-hidden="true"></span><span class="topic-name">rollout</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rooms"><span class="tick" aria-hidden="true"></span><span class="topic-name">rooms</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rsc"><span class="tick" aria-hidden="true"></span><span class="topic-name">rsc</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rtl"><span class="tick" aria-hidden="true"></span><span class="topic-name">rtl</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rum"><span class="tick" aria-hidden="true"></span><span class="topic-name">rum</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="rxjs"><span class="tick" aria-hidden="true"></span><span class="topic-name">rxjs</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="samesite"><span class="tick" aria-hidden="true"></span><span class="topic-name">samesite</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sampling"><span class="tick" aria-hidden="true"></span><span class="topic-name">sampling</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sanitizacao"><span class="tick" aria-hidden="true"></span><span class="topic-name">sanitizacao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sbom"><span class="tick" aria-hidden="true"></span><span class="topic-name">sbom</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="schema"><span class="tick" aria-hidden="true"></span><span class="topic-name">schema</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="schema-markup"><span class="tick" aria-hidden="true"></span><span class="topic-name">schema-markup</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="scroll-linked"><span class="tick" aria-hidden="true"></span><span class="topic-name">scroll-linked</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="scrubbing"><span class="tick" aria-hidden="true"></span><span class="topic-name">scrubbing</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="secret-scanning"><span class="tick" aria-hidden="true"></span><span class="topic-name">secret-scanning</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="secure"><span class="tick" aria-hidden="true"></span><span class="topic-name">secure</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="security"><span class="tick" aria-hidden="true"></span><span class="topic-name">security</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="seguranca"><span class="tick" aria-hidden="true"></span><span class="topic-name">seguranca</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="seguranca-da-informacao"><span class="tick" aria-hidden="true"></span><span class="topic-name">seguranca-da-informacao</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="seguranca-defensiva"><span class="tick" aria-hidden="true"></span><span class="topic-name">seguranca-defensiva</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="seletores"><span class="tick" aria-hidden="true"></span><span class="topic-name">seletores</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="semantica"><span class="tick" aria-hidden="true"></span><span class="topic-name">semantica</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sentry"><span class="tick" aria-hidden="true"></span><span class="topic-name">sentry</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="server-actions"><span class="tick" aria-hidden="true"></span><span class="topic-name">server-actions</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="server-sent-events"><span class="tick" aria-hidden="true"></span><span class="topic-name">server-sent-events</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="server-state"><span class="tick" aria-hidden="true"></span><span class="topic-name">server-state</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="service-worker-lifecycle"><span class="tick" aria-hidden="true"></span><span class="topic-name">service-worker-lifecycle</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="session-replay"><span class="tick" aria-hidden="true"></span><span class="topic-name">session-replay</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sessionstorage"><span class="tick" aria-hidden="true"></span><span class="topic-name">sessionstorage</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="shell"><span class="tick" aria-hidden="true"></span><span class="topic-name">shell</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="signed-commits"><span class="tick" aria-hidden="true"></span><span class="topic-name">signed-commits</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sistemas"><span class="tick" aria-hidden="true"></span><span class="topic-name">sistemas</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="size-limit"><span class="tick" aria-hidden="true"></span><span class="topic-name">size-limit</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="snyk"><span class="tick" aria-hidden="true"></span><span class="topic-name">snyk</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="socket-io"><span class="tick" aria-hidden="true"></span><span class="topic-name">socket-io</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="source-maps"><span class="tick" aria-hidden="true"></span><span class="topic-name">source-maps</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="span"><span class="tick" aria-hidden="true"></span><span class="topic-name">span</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sql"><span class="tick" aria-hidden="true"></span><span class="topic-name">sql</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="sse"><span class="tick" aria-hidden="true"></span><span class="topic-name">sse</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ssg"><span class="tick" aria-hidden="true"></span><span class="topic-name">ssg</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="ssh"><span class="tick" aria-hidden="true"></span><span class="topic-name">ssh</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="storybook"><span class="tick" aria-hidden="true"></span><span class="topic-name">storybook</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="style-dictionary"><span class="tick" aria-hidden="true"></span><span class="topic-name">style-dictionary</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="tanstack-query"><span class="tick" aria-hidden="true"></span><span class="topic-name">tanstack-query</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="teclado"><span class="tick" aria-hidden="true"></span><span class="topic-name">teclado</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="terminal"><span class="tick" aria-hidden="true"></span><span class="topic-name">terminal</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="testes"><span class="tick" aria-hidden="true"></span><span class="topic-name">testes</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="testing-library"><span class="tick" aria-hidden="true"></span><span class="topic-name">testing-library</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="tests"><span class="tick" aria-hidden="true"></span><span class="topic-name">tests</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="theming"><span class="tick" aria-hidden="true"></span><span class="topic-name">theming</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="tipografia"><span class="tick" aria-hidden="true"></span><span class="topic-name">tipografia</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="tipos"><span class="tick" aria-hidden="true"></span><span class="topic-name">tipos</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="trace"><span class="tick" aria-hidden="true"></span><span class="topic-name">trace</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="traces"><span class="tick" aria-hidden="true"></span><span class="topic-name">traces</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="transform"><span class="tick" aria-hidden="true"></span><span class="topic-name">transform</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="transitions"><span class="tick" aria-hidden="true"></span><span class="topic-name">transitions</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="translation-workflow"><span class="tick" aria-hidden="true"></span><span class="topic-name">translation-workflow</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="tree-shaking"><span class="tick" aria-hidden="true"></span><span class="topic-name">tree-shaking</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="trusted-types"><span class="tick" aria-hidden="true"></span><span class="topic-name">trusted-types</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="unit-testing"><span class="tick" aria-hidden="true"></span><span class="topic-name">unit-testing</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="unix"><span class="tick" aria-hidden="true"></span><span class="topic-name">unix</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="v8"><span class="tick" aria-hidden="true"></span><span class="topic-name">v8</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="validation"><span class="tick" aria-hidden="true"></span><span class="topic-name">validation</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="vapid"><span class="tick" aria-hidden="true"></span><span class="topic-name">vapid</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="vercel"><span class="tick" aria-hidden="true"></span><span class="topic-name">vercel</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="vercel-edge"><span class="tick" aria-hidden="true"></span><span class="topic-name">vercel-edge</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="vercel-functions"><span class="tick" aria-hidden="true"></span><span class="topic-name">vercel-functions</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="versionamento"><span class="tick" aria-hidden="true"></span><span class="topic-name">versionamento</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="vibe-coding"><span class="tick" aria-hidden="true"></span><span class="topic-name">vibe-coding</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="view-transitions"><span class="tick" aria-hidden="true"></span><span class="topic-name">view-transitions</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="vitest"><span class="tick" aria-hidden="true"></span><span class="topic-name">vitest</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="wcag"><span class="tick" aria-hidden="true"></span><span class="topic-name">wcag</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="web-push"><span class="tick" aria-hidden="true"></span><span class="topic-name">web-push</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="webpack"><span class="tick" aria-hidden="true"></span><span class="topic-name">webpack</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="websocket"><span class="tick" aria-hidden="true"></span><span class="topic-name">websocket</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="workbox"><span class="tick" aria-hidden="true"></span><span class="topic-name">workbox</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="wrangler"><span class="tick" aria-hidden="true"></span><span class="topic-name">wrangler</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="xss"><span class="tick" aria-hidden="true"></span><span class="topic-name">xss</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="yaml"><span class="tick" aria-hidden="true"></span><span class="topic-name">yaml</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="yjs"><span class="tick" aria-hidden="true"></span><span class="topic-name">yjs</span><span class="topic-count">1</span></button></li>
+                  <li><button type="button" class="topic-opt" role="option" aria-selected="false" data-topic="zod"><span class="tick" aria-hidden="true"></span><span class="topic-name">zod</span><span class="topic-count">1</span></button></li>
+                  </ul>
+                  <p class="topic-empty" id="topic-empty" hidden>nenhum tópico</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-row">
+          <span class="result-count" id="result-count" aria-live="polite">41 de 41 trilhas</span>
+          <span id="active-chips" style="display:contents"></span>
+          <button type="button" class="clear-btn" id="clear-btn" hidden>limpar</button>
+        </div>
+      </div>
+
+      <!-- ---------- grade ---------- -->
+      <div class="reveal" style="animation-delay:80ms">
+        <div class="card-grid stagger" id="card-grid">
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/acessibilidade-web"
+               data-slug="acessibilidade-web"
+               data-nivel="iniciante"
+               data-skills="acessibilidade wcag html-semantico teclado formularios aria testes"
+               data-busca="acessibilidade web: interfaces para todas as pessoas trilha para quem quer construir páginas e aplicações que funcionem para mais pessoas. cobre fundamentos de acessibilidade, wcag, html semântico, teclado, foco, formulários, linguagem clara, contraste, aria, conteúdo dinâmico, multimídia, ferramentas de teste, auditoria e quizzes formativos ao longo da jornada. pré-requisitos recomendados: html e css básicos. acessibilidade wcag html-semantico teclado formularios aria testes">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span><span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">20 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Acessibilidade Web: Interfaces para todas as pessoas</h3>
+              <p>Trilha para quem quer construir páginas e aplicações que funcionem para mais pessoas. Cobre fundamentos de acessibilidade, WCAG, HTML semântico, teclado, foco, formulários, linguagem clara, contraste, ARIA, conteúdo dinâmico, multimídia, ferramentas de teste, auditoria e quizzes formativos ao longo da jornada. Pré-requisitos recomendados: HTML e CSS básicos.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/angular"
+               data-slug="angular"
+               data-nivel="intermediario"
+               data-skills="angular typescript frontend spa rxjs"
+               data-busca="angular trilha para aprender angular moderno: typescript, cli, workspace, componentes standalone, templates, serviços, rotas, guards, formulários, http, rxjs, signals, estado, ui, acessibilidade, i18n, pwa, testes, performance, ssr e deploy. angular typescript frontend spa rxjs">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span><span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">24 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>Angular</h3>
+              <p>Trilha para aprender Angular moderno: TypeScript, CLI, workspace, componentes standalone, templates, serviços, rotas, guards, formulários, HTTP, RxJS, Signals, estado, UI, acessibilidade, i18n, PWA, testes, performance, SSR e deploy.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/backend"
+               data-slug="backend"
+               data-nivel="intermediario"
+               data-skills="javascript node http api backend"
+               data-busca="backend trilha para quem quer construir a parte que roda no servidor: do http e node.js até uma api completa em express, com banco de dados, autenticação e deploy. javascript node http api backend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">15 nós</span>
+                <span class="meta-right"><span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span><span class="rating" aria-label="Avaliação média 5.0 de 5, 22 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(22)</span></span></span>
+              </div>
+              <h3>Backend</h3>
+              <p>Trilha para quem quer construir a parte que roda no servidor: do HTTP e Node.js até uma API completa em Express, com banco de dados, autenticação e deploy.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/ciberseguranca-para-desenvolvedores"
+               data-slug="ciberseguranca-para-desenvolvedores"
+               data-nivel="iniciante"
+               data-skills="seguranca-da-informacao ciberseguranca redes owasp seguranca-defensiva"
+               data-busca="cibersegurança para desenvolvedores trilha introdutória de segurança da informação para desenvolvedores: dos fundamentos de dados, redes e protocolos até vulnerabilidades, owasp top 10 e segurança defensiva. seguranca-da-informacao ciberseguranca redes owasp seguranca-defensiva">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">13 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Cibersegurança para Desenvolvedores</h3>
+              <p>Trilha introdutória de Segurança da Informação para desenvolvedores: dos fundamentos de dados, redes e protocolos até vulnerabilidades, OWASP Top 10 e segurança defensiva.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/complexidade-de-algoritmos"
+               data-slug="complexidade-de-algoritmos"
+               data-nivel="intermediario"
+               data-skills="algoritmos big-o estruturas-de-dados recursao logica"
+               data-busca="complexidade de algoritmos aprenda a medir e comparar o custo de algoritmos: big o, melhor/pior caso, espaço, recursão, padrões clássicos (busca binária, dois ponteiros, sliding window) e como ler código alheio sem se perder. algoritmos big-o estruturas-de-dados recursao logica">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">13 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 4 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(4)</span></span></span>
+              </div>
+              <h3>Complexidade de Algoritmos</h3>
+              <p>Aprenda a medir e comparar o custo de algoritmos: Big O, melhor/pior caso, espaço, recursão, padrões clássicos (busca binária, dois ponteiros, sliding window) e como ler código alheio sem se perder.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/conventional-commits"
+               data-slug="conventional-commits"
+               data-nivel="intermediario"
+               data-skills="conventional-commits git semver changelog mensagem-de-commit colaboracao"
+               data-busca="conventional commits trilha pra quem já usa git em time e quer parar de brigar com o histórico. você começa pelo problema que os commits convencionais resolvem, monta o modelo mental do formato type(scope): descrição, cobre tipos, corpo, rodapé e quebras (breaking change), e termina ligando letra de commit com versão semântica e changelog automático. pré-requisito: noções de git (commit, branch, push) e trabalho em equipe. conventional-commits git semver changelog mensagem-de-commit colaboracao">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span><span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">10 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Conventional Commits</h3>
+              <p>Trilha pra quem já usa Git em time e quer parar de brigar com o histórico. Você começa pelo problema que os commits convencionais resolvem, monta o modelo mental do formato type(scope): descrição, cobre tipos, corpo, rodapé e quebras (BREAKING CHANGE), e termina ligando letra de commit com versão semântica e changelog automático. Pré-requisito: noções de Git (commit, branch, push) e trabalho em equipe.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/css-animacoes"
+               data-slug="css-animacoes"
+               data-nivel="intermediario"
+               data-skills="css animacoes transitions transform keyframes acessibilidade"
+               data-busca="css animações: movimento com responsabilidade trilha focada em **movimento** - como fazer a web ganhar vida. cobre transitions, transform (2d e 3d), animações com @keyframes (básicas e avançadas), casos clássicos de ui animada e acessibilidade visual (prefers-reduced-motion, prefers-color-scheme, prefers-contrast). pré-requisito: css-fundamentos e css-layout. css animacoes transitions transform keyframes acessibilidade">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">6 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>CSS Animações: Movimento com Responsabilidade</h3>
+              <p>Trilha focada em **movimento** - como fazer a web ganhar vida. Cobre Transitions, Transform (2D e 3D), Animações com @keyframes (básicas e avançadas), casos clássicos de UI animada e acessibilidade visual (prefers-reduced-motion, prefers-color-scheme, prefers-contrast). Pré-requisito: css-fundamentos e css-layout.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/css-fundamentos"
+               data-slug="css-fundamentos"
+               data-nivel="iniciante"
+               data-skills="css seletores box-model tipografia cores"
+               data-busca="css fundamentos: a base que tudo sustenta trilha para quem nunca escreveu css ou quer consolidar a base. cobre sintaxe, inclusão, seletores, cores, unidades, tipografia, box model, display, pseudo-classes, pseudo-elementos, cascata/especificidade e devtools. pré-requisito pras trilhas de layout, animações e css moderno. css seletores box-model tipografia cores">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">15 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 7 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(7)</span></span></span>
+              </div>
+              <h3>CSS Fundamentos: a Base que Tudo Sustenta</h3>
+              <p>Trilha para quem nunca escreveu CSS ou quer consolidar a base. Cobre sintaxe, inclusão, seletores, cores, unidades, tipografia, box model, display, pseudo-classes, pseudo-elementos, cascata/especificidade e DevTools. Pré-requisito pras trilhas de layout, animações e CSS moderno.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/css-layout"
+               data-slug="css-layout"
+               data-nivel="intermediario"
+               data-skills="css flexbox grid position responsividade"
+               data-busca="css layout: position, flexbox e grid aprofundados trilha focada em **layout** - como colocar elementos onde você quer. cobre position, flexbox (introdução, container, itens, casos clássicos), grid (introdução, container, itens, casos) e responsividade com media queries + container queries básico. pré-requisito: css-fundamentos. css flexbox grid position responsividade">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">10 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 2 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(2)</span></span></span>
+              </div>
+              <h3>CSS Layout: Position, Flexbox e Grid Aprofundados</h3>
+              <p>Trilha focada em **layout** - como colocar elementos onde você quer. Cobre Position, Flexbox (introdução, container, itens, casos clássicos), Grid (introdução, container, itens, casos) e responsividade com media queries + container queries básico. Pré-requisito: css-fundamentos.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/css-moderno"
+               data-slug="css-moderno"
+               data-nivel="avancado"
+               data-skills="css custom-properties container-queries has arquitetura"
+               data-busca="css moderno: variáveis, seletores novos e arquitetura trilha focada no **css que existe hoje** mas que pouca gente domina. cobre custom properties (variáveis e theming), funções modernas (clamp, min, max, calc), container queries, `:has()` (o seletor pai), logical properties, arquitetura (bem, organização), performance e o ecossistema além do css puro. pré-requisito: css-fundamentos, css-layout, css-animacoes. css custom-properties container-queries has arquitetura">
+              <div class="card-meta">
+                <span class="badge">Avançado</span>
+                <span class="meta-text">9 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>CSS Moderno: Variáveis, Seletores Novos e Arquitetura</h3>
+              <p>Trilha focada no **CSS que existe hoje** mas que pouca gente domina. Cobre Custom Properties (variáveis e theming), funções modernas (clamp, min, max, calc), Container Queries, `:has()` (o seletor pai), Logical Properties, arquitetura (BEM, organização), performance e o ecossistema além do CSS puro. Pré-requisito: css-fundamentos, css-layout, css-animacoes.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/docker-compose-e-workflows"
+               data-slug="docker-compose-e-workflows"
+               data-nivel="intermediario"
+               data-skills="docker docker-compose containers devops yaml"
+               data-busca="docker compose e workflows trilha para quem quer orquestrar **vários containers** com um único arquivo declarativo: subir uma stack completa (app + banco + cache) com um comando, gerenciar variáveis de ambiente, volumes, redes internas, hot reload em desenvolvimento e workflows de produção. pré-requisito: `docker-fundamentos`. docker docker-compose containers devops yaml">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">8 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>Docker Compose e Workflows</h3>
+              <p>Trilha para quem quer orquestrar **vários containers** com um único arquivo declarativo: subir uma stack completa (app + banco + cache) com um comando, gerenciar variáveis de ambiente, volumes, redes internas, hot reload em desenvolvimento e workflows de produção. Pré-requisito: `docker-fundamentos`.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/docker-fundamentos"
+               data-slug="docker-fundamentos"
+               data-nivel="intermediario"
+               data-skills="docker containers devops linux imagens"
+               data-busca="docker fundamentos trilha para quem quer entender e usar **containers** no dia a dia: o que são, por que existem, como rodar, criar imagens com dockerfile, persistir dados, fazer containers conversarem e empacotar uma aplicação de verdade. pré-requisito: terminal linux/macos e noções de git. docker containers devops linux imagens">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">10 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 5 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(5)</span></span></span>
+              </div>
+              <h3>Docker Fundamentos</h3>
+              <p>Trilha para quem quer entender e usar **containers** no dia a dia: o que são, por que existem, como rodar, criar imagens com Dockerfile, persistir dados, fazer containers conversarem e empacotar uma aplicação de verdade. Pré-requisito: terminal Linux/macOS e noções de Git.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/edge-deploy-frontend"
+               data-slug="edge-deploy-frontend"
+               data-nivel="intermediario"
+               data-skills="edge edge-computing edge-runtime cloudflare-workers cloudflare-pages cloudflare vercel vercel-edge vercel-functions isr ssr ssg spa build vite webpack esbuild rollup image-optimization next-image cloudflare-images webp avif preview-environments ephemeral-envs atomic-deploys blue-green canary-deploy rollback cache-control cache-strategy cdn wrangler kv durable-objects d1 r2 preview-deploys pr-preview ci-cd github-actions"
+               data-busca="edge deploy frontend: build, runtime, cloudflare workers, vercel edge, image opt, preview envs, atomic deploys trilha sobre build e deploy de apps frontend modernos: do build output (static, ssr, ssg, isr, edge) ao runtime (node, serverless, edge), passando por cloudflare workers (v8 isolate, kv, r2, d1, durable objects), vercel edge (edge runtime, isr, on-demand revalidation), image optimization (next/image, cloudflare images, formato moderno, lazy loading), preview environments por pr (ephemeral envs, branch urls), e atomic deploys com cache (blue/green, cache headers, invalidation, rollback). cobre o workflow completo de &#x27;codigo em producao&#x27;. edge edge-computing edge-runtime cloudflare-workers cloudflare-pages cloudflare vercel vercel-edge vercel-functions isr ssr ssg spa build vite webpack esbuild rollup image-optimization next-image cloudflare-images webp avif preview-environments ephemeral-envs atomic-deploys blue-green canary-deploy rollback cache-control cache-strategy cdn wrangler kv durable-objects d1 r2 preview-deploys pr-preview ci-cd github-actions">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Edge Deploy Frontend: build, runtime, Cloudflare Workers, Vercel Edge, image opt, preview envs, atomic deploys</h3>
+              <p>Trilha sobre build e deploy de apps frontend modernos: do build output (static, SSR, SSG, ISR, edge) ao runtime (Node, serverless, edge), passando por Cloudflare Workers (V8 isolate, KV, R2, D1, Durable Objects), Vercel Edge (Edge runtime, ISR, on-demand revalidation), image optimization (Next/Image, Cloudflare Images, formato moderno, lazy loading), preview environments por PR (ephemeral envs, branch URLs), e atomic deploys com cache (blue/green, cache headers, invalidation, rollback). Cobre o workflow completo de &#x27;codigo em producao&#x27;.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/engenharia-ia"
+               data-slug="engenharia-ia"
+               data-nivel="intermediario"
+               data-skills="ia ai ai-coding ai-assisted-development claude-code cursor github-copilot copilot cody continue code-review audit refactor tests prompts prompt-engineering code-quality ai-ethics supply-chain secret-scanning vibe-coding"
+               data-busca="engenharia assistida por ia: claude code, cursor, copilot, audit, testes e refactor trilha sobre engenharia de software assistida por ia: comparativo de ferramentas (claude code, cursor, copilot, cody, continue), como dividir tarefas para ia (prompt direto vs plano multi-step), como auditar codigo gerado (red flags, seguranca, performance), ia em testes (gerar e validar que nao sao teatro), ia em refactor (validar tipos, edge cases), quando nao usar ia (lockfile, secrets, legal), code review de pr com muito codigo gerado (prompts reproduziveis, diffs auditaveis). foco em patterns, nao em ferramentas especificas - cobre claude code e cursor como exemplo mas patterns se aplicam a qualquer ai coding tool. ia ai ai-coding ai-assisted-development claude-code cursor github-copilot copilot cody continue code-review audit refactor tests prompts prompt-engineering code-quality ai-ethics supply-chain secret-scanning vibe-coding">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">8 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>Engenharia assistida por IA: Claude Code, Cursor, Copilot, audit, testes e refactor</h3>
+              <p>Trilha sobre engenharia de software assistida por IA: comparativo de ferramentas (Claude Code, Cursor, Copilot, Cody, Continue), como dividir tarefas para IA (prompt direto vs plano multi-step), como auditar codigo gerado (red flags, seguranca, performance), IA em testes (gerar e validar que nao sao teatro), IA em refactor (validar tipos, edge cases), quando NAO usar IA (lockfile, secrets, legal), code review de PR com muito codigo gerado (prompts reproduziveis, diffs auditaveis). Foco em patterns, nao em ferramentas especificas - cobre Claude Code e Cursor como exemplo mas patterns se aplicam a qualquer AI coding tool.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/estruturas-de-dados"
+               data-slug="estruturas-de-dados"
+               data-nivel="intermediario"
+               data-skills="estruturas-de-dados algoritmos arvores grafos hash recursao cs"
+               data-busca="estruturas de dados aprofundamento em estruturas de dados: sequências, pilhas, filas, hash tables, recursão na prática, árvores (bst, balanceadas), heaps, grafos (representação, bfs/dfs, algoritmos clássicos) e tries. cobre o que devs e candidatos a entrevistas técnicas precisam dominar - com diagramas mermaid, quizzes formativos e checkpoints validados em js. estruturas-de-dados algoritmos arvores grafos hash recursao cs">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span><span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">14 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>Estruturas de Dados</h3>
+              <p>Aprofundamento em estruturas de dados: sequências, pilhas, filas, hash tables, recursão na prática, árvores (BST, balanceadas), heaps, grafos (representação, BFS/DFS, algoritmos clássicos) e tries. Cobre o que devs e candidatos a entrevistas técnicas precisam dominar - com diagramas Mermaid, quizzes formativos e checkpoints validados em JS.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/form-libraries"
+               data-slug="form-libraries"
+               data-nivel="intermediario"
+               data-skills="react-hook-form rhf zod forms validation schema typescript react"
+               data-busca="form libraries: react hook form + zod trilha sobre formulários em produção com react hook form (performance via uncontrolled inputs) e zod (schema declarativo reutilizável no client e no server). cobre o que falta entre forms básicos da `frontend` e a complexidade de um checkout real: validação declarativa, type-safety ponta a ponta, multi-step com persistência, e reuso de schema no backend. react-hook-form rhf zod forms validation schema typescript react">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Form Libraries: React Hook Form + Zod</h3>
+              <p>Trilha sobre formulários em produção com React Hook Form (performance via uncontrolled inputs) e Zod (schema declarativo reutilizável no client e no server). Cobre o que falta entre forms básicos da `frontend` e a complexidade de um checkout real: validação declarativa, type-safety ponta a ponta, multi-step com persistência, e reuso de schema no backend.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/frontend"
+               data-slug="frontend"
+               data-nivel="intermediario"
+               data-skills="html css javascript react frontend"
+               data-busca="frontend trilha para quem quer construir a parte visual e interativa de sites e apps web: do html/css até react, com prática do começo ao fim. html css javascript react frontend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">12 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 4.8 de 5, 6 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">4.8</span><span class="count" aria-hidden="true">(6)</span></span></span>
+              </div>
+              <h3>Frontend</h3>
+              <p>Trilha para quem quer construir a parte visual e interativa de sites e apps web: do HTML/CSS até React, com prática do começo ao fim.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/fundamentos-de-cs"
+               data-slug="fundamentos-de-cs"
+               data-nivel="intermediario"
+               data-skills="ciencia-da-computacao fundamentos logica algoritmos sistemas"
+               data-busca="fundamentos de ciência da computação o mínimo viável de cs pra quem programa: como o computador funciona, dados, lógica, algoritmos, estruturas, memória, compilação, redes e pensamento sistêmico. serve do iniciante ao sênior via profundidade progressiva dentro de cada nó. ciencia-da-computacao fundamentos logica algoritmos sistemas">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">10 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>Fundamentos de Ciência da Computação</h3>
+              <p>O mínimo viável de CS pra quem programa: como o computador funciona, dados, lógica, algoritmos, estruturas, memória, compilação, redes e pensamento sistêmico. Serve do iniciante ao sênior via profundidade progressiva dentro de cada nó.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/git"
+               data-slug="git"
+               data-nivel="iniciante"
+               data-skills="git versionamento github colaboracao"
+               data-busca="git trilha completa de git - do controle de versão do zero (o que é um commit) até rebase, reflog, bisect e workflows de colaboração. cobre básico, intermediário e avançado, com prática em cada nível e um projeto final de contribuição open source. git versionamento github colaboracao">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">23 nós</span>
+                <span class="meta-right"><span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span><span class="rating" aria-label="Avaliação média 5.0 de 5, 10 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(10)</span></span></span>
+              </div>
+              <h3>Git</h3>
+              <p>Trilha completa de Git - do controle de versão do zero (o que é um commit) até rebase, reflog, bisect e workflows de colaboração. Cobre básico, intermediário e avançado, com prática em cada nível e um projeto final de contribuição open source.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/html"
+               data-slug="html"
+               data-nivel="iniciante"
+               data-skills="html semantica acessibilidade formularios seo"
+               data-busca="html trilha completa de html - do zero absoluto (o que é uma página web) até html semântico avançado, formulários, acessibilidade e meta tags. ideal como primeira trilha antes de css ou javascript. html semantica acessibilidade formularios seo">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">18 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 3 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(3)</span></span></span>
+              </div>
+              <h3>HTML</h3>
+              <p>Trilha completa de HTML - do zero absoluto (o que é uma página web) até HTML semântico avançado, formulários, acessibilidade e meta tags. Ideal como primeira trilha antes de CSS ou JavaScript.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/i18n"
+               data-slug="i18n"
+               data-nivel="intermediario"
+               data-skills="i18n l10n internacionalizacao localizacao intl intl-numberformat intl-datetimeformat intl-collator intl-listformat icu messageformat pluralization rtl bidirecionalidade logical-properties i18next formatjs react-intl translation-workflow locize crowdin pseudo-localization pseudo-locale locale language-tag bcp47 cldr"
+               data-busca="i18n / l10n: intl apis, icu messageformat, rtl, translation workflow e pseudo-localization trilha sobre internacionalizacao e localizacao: intl apis (numberformat, datetimeformat, collator, listformat) pra formatacao locale-aware, icu messageformat pra pluralizacao e selecao, rtl e bidirecionalidade (dir, logical properties), translation workflow (i18next, locize, crowdin), e pseudo-localization em ci pra detectar bugs cedo. cobre o lado client; back-end de i18n coberto em backend. i18n l10n internacionalizacao localizacao intl intl-numberformat intl-datetimeformat intl-collator intl-listformat icu messageformat pluralization rtl bidirecionalidade logical-properties i18next formatjs react-intl translation-workflow locize crowdin pseudo-localization pseudo-locale locale language-tag bcp47 cldr">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>i18n / l10n: Intl APIs, ICU MessageFormat, RTL, translation workflow e pseudo-localization</h3>
+              <p>Trilha sobre internacionalizacao e localizacao: Intl APIs (NumberFormat, DateTimeFormat, Collator, ListFormat) pra formatacao locale-aware, ICU MessageFormat pra pluralizacao e selecao, RTL e bidirecionalidade (dir, logical properties), translation workflow (i18next, Locize, Crowdin), e pseudo-localization em CI pra detectar bugs cedo. Cobre o lado client; back-end de i18n coberto em backend.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/kubernetes"
+               data-slug="kubernetes"
+               data-nivel="avancado"
+               data-skills="kubernetes k8s containers devops orquestracao helm"
+               data-busca="kubernetes trilha para quem quer **orquestrar containers em escala**: entender a arquitetura de um cluster, rodar um cluster local com minikube/k3d, dominar kubectl, criar pods/deployments/services/configmaps/volumes/ingress, escalar e observar a aplicação. pré-requisito: `docker-fundamentos` e `docker-compose-e-workflows`. kubernetes k8s containers devops orquestracao helm">
+              <div class="card-meta">
+                <span class="badge">Avançado</span>
+                <span class="meta-text">12 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>Kubernetes</h3>
+              <p>Trilha para quem quer **orquestrar containers em escala**: entender a arquitetura de um cluster, rodar um cluster local com minikube/k3d, dominar kubectl, criar Pods/Deployments/Services/ConfigMaps/Volumes/Ingress, escalar e observar a aplicação. Pré-requisito: `docker-fundamentos` e `docker-compose-e-workflows`.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/motion"
+               data-slug="motion"
+               data-nivel="intermediario"
+               data-skills="motion framer-motion animation react view-transitions rive lottie framer-motion a11y prefers-reduced-motion css-animation gestures drag scroll-linked"
+               data-busca="motion: animacao js declarativa, view transitions, rive e a11y trilha sobre animacao js declarativa em react: motion (ex-framer motion) para gestural, layout animations e animatepresence, view transitions api nativa do browser para transicoes de estado, rive/lottie para animacoes vetoriais vindas do design, e acessibilidade (prefers-reduced-motion, vestibular disorders) como requisito desde o design. complementa a `css-animacoes` (que cobre css-only) com a camada js e api nativa para padroes que css nao resolve. motion framer-motion animation react view-transitions rive lottie framer-motion a11y prefers-reduced-motion css-animation gestures drag scroll-linked">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Motion: animacao JS declarativa, View Transitions, Rive e a11y</h3>
+              <p>Trilha sobre animacao JS declarativa em React: Motion (ex-Framer Motion) para gestural, layout animations e AnimatePresence, View Transitions API nativa do browser para transicoes de estado, Rive/Lottie para animacoes vetoriais vindas do design, e acessibilidade (prefers-reduced-motion, vestibular disorders) como requisito desde o design. Complementa a `css-animacoes` (que cobre CSS-only) com a camada JS e API nativa para padroes que CSS nao resolve.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/nextjs"
+               data-slug="nextjs"
+               data-nivel="intermediario"
+               data-skills="nextjs react rsc ssr server-actions meta-frameworks typescript middleware auth"
+               data-busca="next.js e meta-frameworks trilha de meta-frameworks react (next.js como referência canônica) cobrindo app router, react server components, server actions, streaming ssr, middleware, autenticação e deploy. vai do porquê até construir uma aplicação full-stack production-grade com ssr, seo e data layer moderna. nextjs react rsc ssr server-actions meta-frameworks typescript middleware auth">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span><span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">10 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Next.js e Meta-frameworks</h3>
+              <p>Trilha de meta-frameworks React (Next.js como referência canônica) cobrindo App Router, React Server Components, Server Actions, streaming SSR, middleware, autenticação e deploy. Vai do porquê até construir uma aplicação full-stack production-grade com SSR, SEO e data layer moderna.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/nosql"
+               data-slug="nosql"
+               data-nivel="intermediario"
+               data-skills="nosql mongodb redis banco-de-dados documento chave-valor"
+               data-busca="nosql: bancos não-relacionais complemento à trilha de sql: o que é nosql, quando usar, modelo de documento (mongodb) e chave-valor (redis). comparação prática com sql pra você escolher o banco certo pra cada problema. nosql mongodb redis banco-de-dados documento chave-valor">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">10 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>NoSQL: Bancos Não-Relacionais</h3>
+              <p>Complemento à trilha de SQL: o que é NoSQL, quando usar, modelo de documento (MongoDB) e chave-valor (Redis). Comparação prática com SQL pra você escolher o banco certo pra cada problema.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/observabilidade-frontend"
+               data-slug="observabilidade-frontend"
+               data-nivel="intermediario"
+               data-skills="observabilidade observability logs metrics traces rum real-user-monitoring error-tracking sentry rollbar bugsnag source-maps release-health sampling web-vitals lcp inp cls core-web-vitals session-replay open-telemetry opentelemetry otlp trace span distributed-tracing feature-flags launchdarkly flagsmith cloudflare-flagship rollout canary lgpd gdpr pii data-minimization consent scrubbing"
+               data-busca="observabilidade frontend: sentry, rum, opentelemetry, feature flags e pii trilha sobre observabilidade no client: 3 sinais classicos (logs, metrics, traces) + rum, error tracking com sentry (source maps, release health, sampling), real user monitoring (web vitals, custom metrics, session replay), opentelemetry web (traces distribuidos, otlp, contexto), feature flags (launchdarkly, flagsmith, cloudflare flagship) pra rollout progressivo, e pii/lgpd/gdpr no client (scrubbing, consentimento, data minimization). cobre o lado client; back-end de observabilidade coberto em backend. observabilidade observability logs metrics traces rum real-user-monitoring error-tracking sentry rollbar bugsnag source-maps release-health sampling web-vitals lcp inp cls core-web-vitals session-replay open-telemetry opentelemetry otlp trace span distributed-tracing feature-flags launchdarkly flagsmith cloudflare-flagship rollout canary lgpd gdpr pii data-minimization consent scrubbing">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Observabilidade Frontend: Sentry, RUM, OpenTelemetry, feature flags e PII</h3>
+              <p>Trilha sobre observabilidade no client: 3 sinais classicos (logs, metrics, traces) + RUM, error tracking com Sentry (source maps, release health, sampling), Real User Monitoring (Web Vitals, custom metrics, session replay), OpenTelemetry Web (traces distribuidos, OTLP, contexto), feature flags (LaunchDarkly, Flagsmith, Cloudflare Flagship) pra rollout progressivo, e PII/LGPD/GDPR no client (scrubbing, consentimento, data minimization). Cobre o lado client; back-end de observabilidade coberto em backend.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/performance-web"
+               data-slug="performance-web"
+               data-nivel="intermediario"
+               data-skills="performance core-web-vitals lcp inp cls lighthouse web-vitals critical-rendering-path v8 dom cssom layout paint composite vite rollup bundle code-splitting tree-shaking avif webp responsive-images font-display font-loading cdn cache-control etag stale-while-revalidate service-worker size-limit lighthouse-ci"
+               data-busca="performance web: core web vitals, bundle, imagens, cdn e ci trilha sobre performance web de ponta a ponta: core web vitals (lcp/inp/cls) com diagnostico via lighthouse e web-vitals, critical rendering path (dom/cssom/render tree/layout/paint/composite), bundle analysis com vite/rollup e code splitting, otimizacao de imagens (avif/webp, srcset) e fonts (font-display, preload), estrategias de cache (cache-control, etag, cdn edge) e automacao em ci (lighthouse ci, size-limit, perf budgets). foco no que o dev frontend controla: o que o browser recebe, como renderiza, e como garantir que nao regrida. performance core-web-vitals lcp inp cls lighthouse web-vitals critical-rendering-path v8 dom cssom layout paint composite vite rollup bundle code-splitting tree-shaking avif webp responsive-images font-display font-loading cdn cache-control etag stale-while-revalidate service-worker size-limit lighthouse-ci">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Performance Web: Core Web Vitals, bundle, imagens, CDN e CI</h3>
+              <p>Trilha sobre performance web de ponta a ponta: Core Web Vitals (LCP/INP/CLS) com diagnostico via Lighthouse e web-vitals, Critical Rendering Path (DOM/CSSOM/Render Tree/Layout/Paint/Composite), bundle analysis com Vite/Rollup e code splitting, otimizacao de imagens (AVIF/WebP, srcset) e fonts (font-display, preload), estrategias de cache (Cache-Control, ETag, CDN edge) e automacao em CI (Lighthouse CI, size-limit, perf budgets). Foco no que o dev frontend controla: o que o browser recebe, como renderiza, e como garantir que nao regrida.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/programacao-do-zero"
+               data-slug="programacao-do-zero"
+               data-nivel="iniciante"
+               data-skills="logica algoritmos programacao fundamentos"
+               data-busca="programação do zero trilha para quem nunca programou: do pensamento computacional ao primeiro projeto real, com uma linguagem à sua escolha. logica algoritmos programacao fundamentos">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">13 nós</span>
+                <span class="meta-right"><span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span><span class="rating" aria-label="Avaliação média 4.8 de 5, 31 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">4.8</span><span class="count" aria-hidden="true">(31)</span></span></span>
+              </div>
+              <h3>Programação do Zero</h3>
+              <p>Trilha para quem nunca programou: do pensamento computacional ao primeiro projeto real, com uma linguagem à sua escolha.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/prompt-engineering"
+               data-slug="prompt-engineering"
+               data-nivel="iniciante"
+               data-skills="prompt-engineering ia-generativa llm rag agentes avaliacao seguranca"
+               data-busca="prompt engineering trilha completa de prompt engineering - do zero absoluto (o que é um llm) até construir produtos com ia. 24 nós em 3 fases lineares: básico (8), intermediário (9) e avançado (6 + projeto final). cobre anatomia de prompt, few-shot, chain-of-thought, rag, function calling, agentes, segurança, avaliação e custo - com quiz, mermaid e projeto final agnóstico de stack. não exige saber programar. prompt-engineering ia-generativa llm rag agentes avaliacao seguranca">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">24 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>Prompt Engineering</h3>
+              <p>Trilha completa de Prompt Engineering - do zero absoluto (o que é um LLM) até construir produtos com IA. 24 nós em 3 fases lineares: Básico (8), Intermediário (9) e Avançado (6 + projeto final). Cobre anatomia de prompt, few-shot, chain-of-thought, RAG, function calling, agentes, segurança, avaliação e custo - com Quiz, Mermaid e projeto final agnóstico de stack. Não exige saber programar.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/pwa"
+               data-slug="pwa"
+               data-nivel="intermediario"
+               data-skills="pwa service-worker manifest workbox cache-strategy cache-first network-first stale-while-revalidate indexeddb dexie idb offline-first background-sync web-push vapid service-worker-lifecycle install-prompt precaching"
+               data-busca="pwa: service workers, estrategias de cache, indexeddb, background sync e offline-first trilha sobre progressive web apps: o que e pwa (manifesto, instalacao, criterios), service workers (ciclo de vida, registro, escopo, atualizacao), estrategias de cache (cache first, network first, stale-while-revalidate, workbox), indexeddb (api nativa, dexie, queries, indices, migrations), background sync (sync api, periodic sync, fallback), notificacoes push (web push, vapid, subscription management). foco em apps que funcionam sem rede e instalam no device. pwa service-worker manifest workbox cache-strategy cache-first network-first stale-while-revalidate indexeddb dexie idb offline-first background-sync web-push vapid service-worker-lifecycle install-prompt precaching">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>PWA: Service Workers, estrategias de cache, IndexedDB, background sync e offline-first</h3>
+              <p>Trilha sobre Progressive Web Apps: o que e PWA (manifesto, instalacao, criterios), Service Workers (ciclo de vida, registro, escopo, atualizacao), estrategias de cache (cache first, network first, stale-while-revalidate, Workbox), IndexedDB (API nativa, Dexie, queries, indices, migrations), background sync (Sync API, periodic sync, fallback), notificacoes push (Web Push, VAPID, subscription management). Foco em apps que funcionam sem rede e instalam no device.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/rabbitmq-mensageria"
+               data-slug="rabbitmq-mensageria"
+               data-nivel="intermediario"
+               data-skills="rabbitmq mensageria filas amqp arquitetura backend"
+               data-busca="rabbitmq e mensageria trilha para quem já constrói apis e precisa desacoplar sistemas com filas. começa pelo problema que a mensageria resolve, monta o modelo mental de exchanges e roteamento, e só então parte pro código: publicar, consumir, garantir entrega e tratar o que falha. pré-requisito: uma linguagem de backend e noções de docker. rabbitmq mensageria filas amqp arquitetura backend">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span><span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">12 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 6 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(6)</span></span></span>
+              </div>
+              <h3>RabbitMQ e Mensageria</h3>
+              <p>Trilha para quem já constrói APIs e precisa desacoplar sistemas com filas. Começa pelo problema que a mensageria resolve, monta o modelo mental de exchanges e roteamento, e só então parte pro código: publicar, consumir, garantir entrega e tratar o que falha. Pré-requisito: uma linguagem de backend e noções de Docker.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/react-do-zero"
+               data-slug="react-do-zero"
+               data-nivel="iniciante"
+               data-skills="react javascript jsx componentes hooks estado formularios apis acessibilidade arquitetura"
+               data-busca="react do zero: componentes, estado e hooks trilha prática para quem já conhece html, css e javascript básico e quer aprender react desde o primeiro componente. cobre vite, jsx, componentes, props, composição, eventos, estado, formulários, acessibilidade em componentes, efeitos, consumo de api, refs, context, reducer, custom hooks, arquitetura, debugging, diagramas e quizzes formativos em todos os nós. inclui cinco projetos relacionados para praticar em etapas. react javascript jsx componentes hooks estado formularios apis acessibilidade arquitetura">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">24 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>React do Zero: Componentes, Estado e Hooks</h3>
+              <p>Trilha prática para quem já conhece HTML, CSS e JavaScript básico e quer aprender React desde o primeiro componente. Cobre Vite, JSX, componentes, props, composição, eventos, estado, formulários, acessibilidade em componentes, efeitos, consumo de API, refs, Context, reducer, Custom Hooks, arquitetura, debugging, diagramas e quizzes formativos em todos os nós. Inclui cinco projetos relacionados para praticar em etapas.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/real-time"
+               data-slug="real-time"
+               data-nivel="intermediario"
+               data-skills="real-time websocket server-sent-events sse eventsource socket-io long-polling reconexao exponential-backoff heartbeat presence rooms namespaces crdt yjs automerge colaboracao broadcast"
+               data-busca="real-time: websockets, sse, socket.io, reconexao e presence trilha sobre comunicacao real-time no browser: websocket nativo (api, readystate, eventos), server-sent events (eventsource, reconexao automatica), socket.io (rooms, namespaces, fallback), reconexao e estado (exponential backoff, fila de mensagens offline, heartbeat), e presence e colaboracao (presence indicators, crdts, intro). cobre o lado client; o lado server coberto em backend. real-time websocket server-sent-events sse eventsource socket-io long-polling reconexao exponential-backoff heartbeat presence rooms namespaces crdt yjs automerge colaboracao broadcast">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Real-time: WebSockets, SSE, Socket.IO, reconexao e presence</h3>
+              <p>Trilha sobre comunicacao real-time no browser: WebSocket nativo (API, readyState, eventos), Server-Sent Events (EventSource, reconexao automatica), Socket.IO (rooms, namespaces, fallback), reconexao e estado (exponential backoff, fila de mensagens offline, heartbeat), e presence e colaboracao (presence indicators, CRDTs, intro). Cobre o lado client; o lado server coberto em backend.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/seguranca-frontend"
+               data-slug="seguranca-frontend"
+               data-nivel="intermediario"
+               data-skills="security xss csrf csp cors cookies samesite httponly secure content-security-policy trusted-types localstorage sessionstorage indexeddb dompurify sanitizacao supply-chain npm-audit snyk dependabot renovate lockfile sbom signed-commits"
+               data-busca="seguranca frontend: xss, csrf, csp, cors, storage seguro e supply chain trilha de seguranca especifica do frontend: xss (stored, reflected, dom-based) e sanitizacao com dompurify, csrf com samesite cookies e tokens sincronizador, csp como defesa em profundidade, headers de hardening, storage seguro (localstorage vs sessionstorage vs cookies httponly vs indexeddb vs memory), cors e preflight, e supply chain (lockfile, npm audit, snyk, signed commits). complementa a ciberseguranca-para-devs com o foco no browser e no bundle. security xss csrf csp cors cookies samesite httponly secure content-security-policy trusted-types localstorage sessionstorage indexeddb dompurify sanitizacao supply-chain npm-audit snyk dependabot renovate lockfile sbom signed-commits">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Seguranca Frontend: XSS, CSRF, CSP, CORS, storage seguro e supply chain</h3>
+              <p>Trilha de seguranca especifica do frontend: XSS (stored, reflected, DOM-based) e sanitizacao com DOMPurify, CSRF com SameSite cookies e tokens sincronizador, CSP como defesa em profundidade, headers de hardening, storage seguro (localStorage vs sessionStorage vs cookies httpOnly vs IndexedDB vs memory), CORS e preflight, e supply chain (lockfile, npm audit, Snyk, signed commits). Complementa a ciberseguranca-para-devs com o foco no browser e no bundle.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/seo-aeo-geo"
+               data-slug="seo-aeo-geo"
+               data-nivel="intermediario"
+               data-skills="seo aeo geo schema-markup core-web-vitals"
+               data-busca="seo, aeo e geo trilha prática de otimização para busca: dos fundamentos de seo técnico e on-page até aeo (busca por resposta) e geo (motores generativos como chatgpt e perplexity). seo aeo geo schema-markup core-web-vitals">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">13 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 3 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(3)</span></span></span>
+              </div>
+              <h3>SEO, AEO e GEO</h3>
+              <p>Trilha prática de otimização para busca: dos fundamentos de SEO técnico e on-page até AEO (busca por resposta) e GEO (motores generativos como ChatGPT e Perplexity).</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/sql-banco-de-dados"
+               data-slug="sql-banco-de-dados"
+               data-nivel="iniciante"
+               data-skills="sql banco-de-dados postgresql modelagem-de-dados"
+               data-busca="sql e banco de dados trilha de sql puro, do zero: modelagem, consultas, joins, agregação, índices, transações e segurança. base sólida para quem vai usar qualquer orm depois. sql banco-de-dados postgresql modelagem-de-dados">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">14 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 10 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(10)</span></span></span>
+              </div>
+              <h3>SQL e Banco de Dados</h3>
+              <p>Trilha de SQL puro, do zero: modelagem, consultas, joins, agregação, índices, transações e segurança. Base sólida para quem vai usar qualquer ORM depois.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/storybook-design-systems"
+               data-slug="storybook-design-systems"
+               data-nivel="intermediario"
+               data-skills="storybook design-system design-tokens style-dictionary theming compound-components headless radix react-aria css-variables semver changesets chromatic visual-regression a11y csf3"
+               data-busca="storybook &amp; design systems: tokens, primitives, versionamento trilha sobre construir, documentar e versionar uma biblioteca de componentes: o que é (e o que não é) um design system, tokens e theming com style dictionary, primitives compostas (compound + headless), storybook como ambiente de desenvolvimento e documentação, versionamento com semver + changesets, e test runner com visual regression (chromatic) + acessibilidade automatizada. complementa a `frontend` (que cobre como usar componentes) com a mentalidade de quem cria a biblioteca que 50 apps vão consumir. storybook design-system design-tokens style-dictionary theming compound-components headless radix react-aria css-variables semver changesets chromatic visual-regression a11y csf3">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">8 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Storybook &amp; Design Systems: tokens, primitives, versionamento</h3>
+              <p>Trilha sobre construir, documentar e versionar uma biblioteca de componentes: o que é (e o que não é) um design system, tokens e theming com Style Dictionary, primitives compostas (compound + headless), Storybook como ambiente de desenvolvimento e documentação, versionamento com Semver + Changesets, e test runner com visual regression (Chromatic) + acessibilidade automatizada. Complementa a `frontend` (que cobre como USAR componentes) com a mentalidade de quem CRIA a biblioteca que 50 apps vão consumir.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/tanstack-query"
+               data-slug="tanstack-query"
+               data-nivel="intermediario"
+               data-skills="tanstack-query react-query server-state cache invalidation optimistic-updates react"
+               data-busca="tanstack query: server state na prática trilha sobre tanstack query (react query) pra gerenciar o estado que vem do servidor: queries, mutations, cache, invalidação, optimistic updates e devtools. complementa o data fetching da `frontend` (que é vanilla `fetch` + `useeffect`) e da `nextjs` (que é server-side) com o lado client-side, o paradigma que a maioria das spas precisa dominar. tanstack-query react-query server-state cache invalidation optimistic-updates react">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">7 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>TanStack Query: server state na prática</h3>
+              <p>Trilha sobre TanStack Query (React Query) pra gerenciar o estado que vem do servidor: queries, mutations, cache, invalidação, optimistic updates e devtools. Complementa o data fetching da `frontend` (que é vanilla `fetch` + `useEffect`) e da `nextjs` (que é server-side) com o lado client-side, o paradigma que a maioria das SPAs precisa dominar.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/terminal-para-devs"
+               data-slug="terminal-para-devs"
+               data-nivel="iniciante"
+               data-skills="terminal bash shell linux unix ssh"
+               data-busca="terminal para devs trilha para quem precisa lidar com **ambientes unix** (vps, máquina local, container): os comandos e ferramentas essenciais que funcionam em qualquer terminal moderno. bash como linha de base, com notas onde macos (bsd) ou zsh divergem. pré-requisito declarado das trilhas de containers. terminal bash shell linux unix ssh">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">15 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 4 avaliações"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(4)</span></span></span>
+              </div>
+              <h3>Terminal para Devs</h3>
+              <p>Trilha para quem precisa lidar com **ambientes unix** (VPS, máquina local, container): os comandos e ferramentas essenciais que funcionam em qualquer terminal moderno. Bash como linha de base, com notas onde macOS (BSD) ou Zsh divergem. Pré-requisito declarado das trilhas de containers.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/testing-frontend"
+               data-slug="testing-frontend"
+               data-nivel="intermediario"
+               data-skills="vitest testing-library react-testing-library playwright e2e unit-testing component-testing a11y axe-core visual-regression ci github-actions msw"
+               data-busca="testing frontend: vitest, testing library, playwright trilha sobre testes em camadas no client-side: pirâmide de testes, unit com vitest, component com testing library, e2e com playwright, visual regression, acessibilidade automatizada (axe) e pipeline de ci. complementa a `backend` (que cobre vitest pra node) com o lado client: testar react, simular o usuário, validar fluxos de ponta a ponta e automatizar a verificação de qualidade em pr. vitest testing-library react-testing-library playwright e2e unit-testing component-testing a11y axe-core visual-regression ci github-actions msw">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">8 nós</span>
+                <span class="meta-right"></span>
+              </div>
+              <h3>Testing Frontend: Vitest, Testing Library, Playwright</h3>
+              <p>Trilha sobre testes em camadas no client-side: pirâmide de testes, unit com Vitest, component com Testing Library, E2E com Playwright, visual regression, acessibilidade automatizada (axe) e pipeline de CI. Complementa a `backend` (que cobre Vitest pra Node) com o lado client: testar React, simular o usuário, validar fluxos de ponta a ponta e automatizar a verificação de qualidade em PR.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+            <a class="card" href="https://aprenda.oprimo.dev/trilhas/typescript"
+               data-slug="typescript"
+               data-nivel="intermediario"
+               data-skills="typescript javascript tipos node"
+               data-busca="typescript da tipagem estática ao uso profissional em node: tipos primitivos, generics, utilitários, configuração e integração com express e orm. pré-requisito da trilha backend (recomendado, não bloqueante). typescript javascript tipos node">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">12 nós</span>
+                <span class="meta-right"><span class="rating" aria-label="Avaliação média 5.0 de 5, 1 avaliação"><span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(1)</span></span></span>
+              </div>
+              <h3>TypeScript</h3>
+              <p>Da tipagem estática ao uso profissional em Node: tipos primitivos, generics, utilitários, configuração e integração com Express e ORM. Pré-requisito da trilha Backend (recomendado, não bloqueante).</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+        </div>
+        <p class="empty-state" id="empty-state" hidden>Nenhuma trilha encontrada com esses filtros.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p><span class="c-accent">~/</span>.primo-academy.sh</p>
+      <p class="footer-desc">Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.</p>
+      <a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank" class="footer-gh">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
+        <span>github.com/lucianodiisouza/aprenda-community</span>
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h2>// conteúdo</h2>
+      <ul>
+        <li><a href="trilhas.html">Trilhas</a></li>
+        <li><a href="index.html#projetos">Projetos</a></li>
+        <li><a href="index.html#trilhas">Bootcamps</a></li>
+        <li><a href="index.html#contribua">Ranking</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2>// projeto</h2>
+      <ul>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank">Código no GitHub</a></li>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md" rel="noopener noreferrer" target="_blank">Como contribuir</a></li>
+        <li><a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">Sobre o autor</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 · código sob <span class="strong">AGPL-3.0</span> · conteúdo sob <span class="strong">CC BY-SA 4.0</span></p>
+      <p>criado por <a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">OPrimoDev</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var TOTAL = 41;
+  var LEVEL_LABEL = { iniciante: 'Iniciante', intermediario: 'Intermediário', avancado: 'Avançado' };
+
+  /* ---------- menu mobile ---------- */
+  var menuBtn = document.getElementById('menu-btn');
+  var menu = document.getElementById('menu-mobile');
+  menuBtn.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      menu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---------- barra de progresso de scroll ---------- */
+  var bar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var ratio = max > 0 ? window.scrollY / max : 0;
+    bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, ratio)) + ')';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- reveal ao entrar na viewport ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    reveals.forEach(function (el) { io.observe(el); });
+    /* rede de segurança: nada pode ficar invisível se o observer não disparar */
+    setTimeout(function () {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    }, 1500);
+  } else {
+    reveals.forEach(function (el) { el.style.opacity = '1'; });
+  }
+
+  /* ============================================================
+     Filtros — mesma lógica do site original
+     (AND entre grupos, OR dentro de cada grupo; busca sem acento)
+     ============================================================ */
+  function normalize(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  var cards = [].slice.call(document.querySelectorAll('#card-grid .card')).map(function (el) {
+    return {
+      el: el,
+      level: el.dataset.nivel,
+      skills: el.dataset.skills.split(' '),
+      haystack: normalize(el.dataset.busca)
+    };
+  });
+
+  var query = '';
+  var levels = Object.create(null);
+  var topics = Object.create(null);
+
+  var qInput = document.getElementById('q');
+  var grid = document.getElementById('card-grid');
+  var emptyState = document.getElementById('empty-state');
+  var resultCount = document.getElementById('result-count');
+  var chipsHost = document.getElementById('active-chips');
+  var clearBtn = document.getElementById('clear-btn');
+  var levelPills = [].slice.call(document.querySelectorAll('.level-pill'));
+  var topicBtn = document.getElementById('topic-btn');
+  var topicPanel = document.getElementById('topic-panel');
+  var topicAnchor = document.getElementById('topic-anchor');
+  var topicFilter = document.getElementById('topic-filter');
+  var topicOpts = [].slice.call(document.querySelectorAll('.topic-opt'));
+  var topicEmpty = document.getElementById('topic-empty');
+  var topicChip = document.getElementById('topic-count-chip');
+
+  function keys(o) { return Object.keys(o); }
+
+  function apply() {
+    var q = normalize(query.trim());
+    var activeLevels = keys(levels);
+    var activeTopics = keys(topics);
+    var shown = 0;
+
+    cards.forEach(function (c) {
+      var ok = (activeLevels.length === 0 || levels[c.level] === true)
+        && (activeTopics.length === 0 || c.skills.some(function (s) { return topics[s] === true; }))
+        && (!q || c.haystack.indexOf(q) !== -1);
+      c.el.hidden = !ok;
+      if (ok) shown++;
+    });
+
+    grid.hidden = shown === 0;
+    emptyState.hidden = shown !== 0;
+    resultCount.textContent = shown + ' de ' + TOTAL + ' trilha' + (TOTAL === 1 ? '' : 's');
+
+    /* chips ativos */
+    chipsHost.textContent = '';
+    activeLevels.forEach(function (lv) { chipsHost.appendChild(makeChip(LEVEL_LABEL[lv] || lv, function () { toggleLevel(lv); })); });
+    activeTopics.forEach(function (tp) { chipsHost.appendChild(makeChip(tp, function () { toggleTopic(tp); })); });
+
+    var any = query.trim() !== '' || activeLevels.length > 0 || activeTopics.length > 0;
+    clearBtn.hidden = !any;
+
+    topicChip.hidden = activeTopics.length === 0;
+    topicChip.textContent = String(activeTopics.length);
+    topicBtn.classList.toggle('has-selection', activeTopics.length > 0);
+  }
+
+  function makeChip(label, onRemove) {
+    var span = document.createElement('span');
+    span.className = 'chip';
+    span.appendChild(document.createTextNode(label));
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Remover filtro ' + label);
+    btn.textContent = '✕';
+    btn.addEventListener('click', onRemove);
+    span.appendChild(btn);
+    return span;
+  }
+
+  function toggleLevel(lv) {
+    if (levels[lv]) delete levels[lv]; else levels[lv] = true;
+    levelPills.forEach(function (p) {
+      p.setAttribute('aria-pressed', levels[p.dataset.level] ? 'true' : 'false');
+    });
+    apply();
+  }
+
+  function toggleTopic(tp) {
+    if (topics[tp]) delete topics[tp]; else topics[tp] = true;
+    topicOpts.forEach(function (o) {
+      o.setAttribute('aria-selected', topics[o.dataset.topic] ? 'true' : 'false');
+    });
+    apply();
+  }
+
+  qInput.addEventListener('input', function () { query = qInput.value; apply(); });
+  levelPills.forEach(function (p) {
+    p.addEventListener('click', function () { toggleLevel(p.dataset.level); });
+  });
+  topicOpts.forEach(function (o) {
+    o.addEventListener('click', function () { toggleTopic(o.dataset.topic); });
+  });
+
+  clearBtn.addEventListener('click', function () {
+    query = '';
+    qInput.value = '';
+    levels = Object.create(null);
+    topics = Object.create(null);
+    levelPills.forEach(function (p) { p.setAttribute('aria-pressed', 'false'); });
+    topicOpts.forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+    apply();
+  });
+
+  /* ---------- dropdown de tópicos ---------- */
+  function openTopics(open) {
+    topicPanel.hidden = !open;
+    topicBtn.setAttribute('aria-expanded', String(open));
+    if (open) { topicFilter.value = ''; filterTopics(); topicFilter.focus(); }
+  }
+  topicBtn.addEventListener('click', function () { openTopics(topicPanel.hidden); });
+
+  document.addEventListener('mousedown', function (e) {
+    if (!topicPanel.hidden && !topicAnchor.contains(e.target)) openTopics(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !topicPanel.hidden) { openTopics(false); topicBtn.focus(); }
+  });
+
+  function filterTopics() {
+    var t = normalize(topicFilter.value.trim());
+    var visible = 0;
+    topicOpts.forEach(function (o) {
+      var ok = !t || normalize(o.dataset.topic).indexOf(t) !== -1;
+      o.parentNode.hidden = !ok;
+      if (ok) visible++;
+    });
+    topicEmpty.hidden = visible !== 0;
+  }
+  topicFilter.addEventListener('input', filterTopics);
+
+  apply();
+})();
+</script>
+</body>
+</html>
