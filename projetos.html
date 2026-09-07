@@ -666,7 +666,7 @@ h1.page-title{
 
       <!-- ============================ FILTROS ============================ -->
       <div class="browser">
-        <div class="filters">
+        <div class="filters reveal">
           <input type="search" id="q" class="search-input" placeholder="Buscar projetos por nome, descrição ou tópico…" aria-label="Buscar projetos" autocomplete="off" />
 
           <div class="filter-row">
@@ -696,10 +696,11 @@ h1.page-title{
         </div>
 
         <!-- ============================ LISTAGEM ============================ -->
+        <div class="reveal" style="animation-delay:80ms">
         <div class="level-sections" id="level-sections">
         <section id="nivel-iniciante" aria-labelledby="nivel-iniciante-titulo" data-level="iniciante">
           <h2 id="nivel-iniciante-titulo" class="kicker">// Iniciante</h2>
-          <div class="card-grid">
+          <div class="card-grid stagger">
             <a class="card" href="#" data-slug="calculadora-de-gorjeta" data-difficulty="iniciante" data-skills="javascript,dom,html,css" data-published="2026-08-30" data-haystack="Calculadora de Gorjeta Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser. javascript dom html css">
               <div class="card-meta">
                 <span class="badge">Iniciante</span>
@@ -760,7 +761,7 @@ h1.page-title{
 
         <section id="nivel-intermediario" aria-labelledby="nivel-intermediario-titulo" data-level="intermediario">
           <h2 id="nivel-intermediario-titulo" class="kicker">// Intermediário</h2>
-          <div class="card-grid">
+          <div class="card-grid stagger">
             <a class="card" href="#" data-slug="api-rest-com-autenticacao" data-difficulty="intermediario" data-skills="backend,api,autenticacao,banco-de-dados,testes" data-published="2026-08-25" data-haystack="API REST com Autenticação Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes. backend api autenticacao banco-de-dados testes">
               <div class="card-meta">
                 <span class="badge">Intermediário</span>
@@ -931,7 +932,7 @@ h1.page-title{
 
         <section id="nivel-avancado" aria-labelledby="nivel-avancado-titulo" data-level="avancado">
           <h2 id="nivel-avancado-titulo" class="kicker">// Avançado</h2>
-          <div class="card-grid">
+          <div class="card-grid stagger">
             <a class="card" href="#" data-slug="dashboard-analitico" data-difficulty="avancado" data-skills="react,performance,dataviz,typescript" data-published="2026-08-30" data-haystack="Dashboard Analítico Um painel com gráficos e métricas em React, com foco em performance e organização de estado. react performance dataviz typescript">
               <div class="card-meta">
                 <span class="badge">Avançado</span>
@@ -956,6 +957,7 @@ h1.page-title{
             </a>
           </div>
         </section>
+        </div>
         </div>
 
         <p class="empty-state" id="empty-state" hidden>Nenhum projeto encontrado com esses filtros.</p>
@@ -1036,6 +1038,25 @@ h1.page-title{
   window.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('resize', updateProgress);
   updateProgress();
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- reveal ao entrar na viewport ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    reveals.forEach(function (el) { io.observe(el); });
+    /* rede de segurança: nada pode ficar invisível se o observer não disparar */
+    setTimeout(function () {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    }, 1500);
+  } else {
+    reveals.forEach(function (el) { el.style.opacity = '1'; });
+  }
 
   /* ---------- badge "novo": publicado nos últimos 30 dias ---------- */
   var NEW_DAYS = 30;
