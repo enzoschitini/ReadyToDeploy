@@ -11,8 +11,6 @@
 | --- | --- |
 | Módulos | 10 (1 a 10) |
 | Itens totais | 85 |
-| Aulas em vídeo com duração informada | 41 |
-| Duração total em vídeo | 11h 09min 40s |
 
 ### Tipos de conteúdo
 

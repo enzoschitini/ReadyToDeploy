@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Primo Academy - Roadmaps de programação em português</title>
+<meta name="description" content="Trilhas de estudo de programação, gratuitas e open source, feitas para o público brasileiro. Aprenda do zero." />
+<meta name="theme-color" content="#131320" />
+<meta name="color-scheme" content="dark" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   Design tokens — extraídos de aprenda.oprimo.dev (tema dark)
+   ============================================================ */
+:root{
+  --background:#131320;
+  --foreground:#f8f8f2;
+  --card:#191a28;
+  --card-foreground:#f8f8f2;
+  --primary:#bd93f9;
+  --primary-foreground:#11121a;
+  --secondary:#2b2c44;
+  --muted:#21222c;
+  --muted-foreground:#9aa0c4;
+  --accent:#2b2c44;
+  --accent-foreground:#f8f8f2;
+  --border:#2b2c44;
+  --ring:#50fa7b;
+
+  --brand-green:#50fa7b;
+  --brand-purple:#bd93f9;
+  --brand-pink:#ff79c6;
+  --brand-cyan:#8be9fd;
+  --brand-orange:#ffb86c;
+  --brand-yellow:#f1fa8c;
+
+  --font-sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --font-display:"Archivo",system-ui,sans-serif;
+
+  --container:72rem;      /* max-w-6xl */
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;border:0 solid var(--border);}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:1rem;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{display:block;max-width:100%;height:auto;}
+svg{display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;cursor:pointer;}
+h1,h2,h3,p,ul,ol,dl,dd,blockquote,figure{margin:0;}
+ul,ol{padding:0;list-style:none;}
+
+/* ---------- helpers ---------- */
+.mono{font-family:var(--font-mono);}
+.display{font-family:var(--font-display);}
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:1rem;}
+@media (min-width:640px){.container{padding-inline:1.5rem;}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+.skip-link:focus{
+  position:fixed;left:1rem;top:1rem;z-index:50;width:auto;height:auto;margin:0;clip:auto;
+  overflow:visible;white-space:normal;border-radius:.375rem;background:var(--primary);
+  padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;color:var(--primary-foreground);
+}
+
+/* ---------- keyframes (1:1 com o site original) ---------- */
+@keyframes orb-drift{0%,100%{transform:translate(0) scale(1)}33%{transform:translate(40px,-30px) scale(1.05)}66%{transform:translate(-30px,25px) scale(.97)}}
+@keyframes orb-drift-slow{0%,100%{transform:translate(0) scale(1)}50%{transform:translate(-50px,35px) scale(1.08)}}
+@keyframes caret-blink{0%,70%,100%{opacity:1}20%,50%{opacity:0}}
+@keyframes live-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
+@keyframes reveal-up{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translate(0)}}
+@keyframes gradient-pan{0%,100%{background-position:0%}50%{background-position:100%}}
+@keyframes pulse{50%{opacity:.5}}
+
+.anim-orb{will-change:transform;animation:orb-drift 14s ease-in-out infinite;}
+.anim-orb-slow{will-change:transform;animation:orb-drift-slow 18s ease-in-out infinite;}
+.anim-caret{animation:caret-blink 1s step-end infinite;}
+.anim-live{animation:live-pulse 1.6s ease-in-out infinite;}
+.anim-gradient{background-size:200% 200%;animation:gradient-pan 8s ease-in-out infinite;}
+.anim-blob,.anim-blob-halo{border-radius:63% 37% 54% 46% / 55% 48% 52% 45%;}
+.anim-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite;}
+
+/* reveal on scroll */
+.reveal{opacity:0;}
+.reveal.in{animation:reveal-up .7s cubic-bezier(.22,1,.36,1) both;}
+.stagger>*{animation:reveal-up .7s cubic-bezier(.22,1,.36,1) both;}
+.stagger>*:nth-child(1){animation-delay:60ms}
+.stagger>*:nth-child(2){animation-delay:.14s}
+.stagger>*:nth-child(3){animation-delay:.22s}
+.stagger>*:nth-child(4){animation-delay:.3s}
+.stagger>*:nth-child(5){animation-delay:.38s}
+.stagger>*:nth-child(6){animation-delay:.46s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  .reveal{opacity:1;}
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:40;
+  border-bottom:1px solid var(--border);
+  background:rgba(19,19,32,.8);
+}
+@supports ((backdrop-filter:blur(8px)) or (-webkit-backdrop-filter:blur(8px))){
+  .site-header{background:rgba(19,19,32,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+}
+.header-inner{display:flex;height:3.5rem;align-items:center;justify-content:space-between;gap:1rem;}
+.brand{font-family:var(--font-mono);font-size:.875rem;font-weight:700;letter-spacing:-.025em;color:var(--foreground);}
+.brand .slash{color:var(--brand-green);}
+.main-nav{display:none;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.875rem;}
+.main-nav a{border-radius:.375rem;padding:.375rem .75rem;color:var(--muted-foreground);transition:color .15s,background-color .15s;}
+.main-nav a:hover{background:rgba(33,34,44,.6);color:var(--foreground);}
+.header-actions{display:none;align-items:center;justify-content:flex-end;gap:.75rem;min-width:80px;}
+.btn-sm{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  border-radius:.375rem;height:2.25rem;padding-inline:.75rem;font-size:.875rem;font-weight:600;
+  background:var(--brand-green);color:#11121a;box-shadow:0 14px 34px -12px rgba(80,250,123,.7);
+  transition:all .15s;
+}
+.btn-sm:hover{filter:brightness(1.1);}
+.menu-btn{
+  display:inline-flex;width:2.25rem;height:2.25rem;align-items:center;justify-content:center;
+  border-radius:.375rem;border:1px solid var(--border);background:var(--card);color:var(--foreground);
+  transition:border-color .15s;
+}
+.menu-btn:hover{border-color:rgba(248,248,242,.4);}
+.menu-btn svg{width:1.25rem;height:1.25rem;}
+.mobile-menu{display:none;border-top:1px solid var(--border);background:var(--background);}
+.mobile-menu.open{display:block;}
+.mobile-menu ul{display:flex;flex-direction:column;padding:.5rem 0 1rem;font-family:var(--font-mono);font-size:.875rem;}
+.mobile-menu a{padding:.625rem .25rem;color:var(--muted-foreground);transition:color .15s;}
+.mobile-menu a:hover{color:var(--foreground);}
+@media (min-width:768px){
+  .main-nav,.header-actions{display:flex;}
+  .menu-btn{display:none;}
+  .mobile-menu,.mobile-menu.open{display:none;}
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.scroll-progress{
+  pointer-events:none;position:fixed;inset-inline:0;top:0;z-index:50;height:2px;
+  transform-origin:left;transform:scaleX(0);transition:transform 80ms linear;
+  background:linear-gradient(to right,var(--brand-green),var(--brand-cyan),var(--brand-pink));
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+main{flex:1;}
+.hero-wrap{position:relative;overflow:hidden;}
+.hero-bg{pointer-events:none;position:absolute;inset:0;overflow:hidden;}
+.hero-grid-lines{
+  position:absolute;inset:0;opacity:.07;color:var(--foreground);
+  background-image:linear-gradient(to right,currentColor 1px,transparent 1px),
+                   linear-gradient(to bottom,currentColor 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 30%,transparent 75%);
+  mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 30%,transparent 75%);
+}
+.orb{position:absolute;border-radius:9999px;filter:blur(64px);}
+.orb-pink{right:-6rem;top:-6rem;width:420px;height:420px;opacity:.22;background:radial-gradient(circle,var(--brand-pink) 0%,transparent 70%);}
+.orb-purple{bottom:-8rem;left:-8rem;width:480px;height:480px;opacity:.24;background:radial-gradient(circle,var(--brand-purple) 0%,transparent 70%);}
+.orb-cyan{left:50%;top:33.333%;width:320px;height:320px;opacity:.14;transform:translateX(-50%);animation-delay:-4s;background:radial-gradient(circle,var(--brand-cyan) 0%,transparent 70%);}
+
+.hero{position:relative;padding-block:4rem;}
+@media (min-width:640px){.hero{padding-block:6rem;}}
+.hero-grid{display:grid;align-items:center;gap:2.5rem;}
+@media (min-width:1024px){.hero-grid{grid-template-columns:1.2fr .8fr;gap:2rem;}}
+
+.eyebrow-row{display:flex;align-items:center;gap:.75rem;}
+.eyebrow{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--brand-cyan);}
+.live-tag{display:none;align-items:center;gap:.375rem;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+@media (min-width:640px){.live-tag{display:inline-flex;}}
+.dot-live{position:relative;display:inline-flex;width:6px;height:6px;}
+.dot-live span:first-child{position:absolute;inset:0;border-radius:9999px;background:var(--brand-green);}
+.dot-live span:last-child{position:relative;display:inline-block;width:6px;height:6px;border-radius:9999px;background:var(--brand-green);}
+
+h1.hero-title{
+  margin-top:1rem;
+  display:grid;grid-template-rows:auto auto;min-height:1.9em;
+  font-family:var(--font-display);font-size:2.25rem;font-weight:900;
+  text-transform:uppercase;line-height:.95;letter-spacing:-.025em;
+}
+@media (min-width:640px){h1.hero-title{font-size:3.75rem;}}
+@media (min-width:768px){h1.hero-title{font-size:4.5rem;}}
+.grad-text{
+  background-image:linear-gradient(to right,var(--brand-green),var(--brand-cyan),var(--brand-pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-title .word{grid-row-start:2;white-space:nowrap;}
+
+.hero-lead{margin-top:1.25rem;max-width:28rem;font-size:1rem;color:var(--muted-foreground);}
+@media (min-width:640px){.hero-lead{font-size:1.125rem;}}
+code.type{display:inline-flex;align-items:baseline;white-space:pre-wrap;font-family:var(--font-mono);color:var(--brand-green);}
+.caret{margin-left:1px;display:inline-block;height:1em;width:.55em;transform:translateY(2px);background:var(--brand-green);}
+
+.cta-row{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.75rem;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  border-radius:.375rem;height:2.75rem;padding-inline:1.5rem;font-size:1rem;
+  transition:all .15s;outline:none;
+}
+.btn:focus-visible{box-shadow:0 0 0 3px rgba(80,250,123,.5);}
+.btn-primary{background:var(--brand-green);color:#11121a;font-weight:600;box-shadow:0 14px 34px -12px rgba(80,250,123,.7);}
+.btn-primary:hover{filter:brightness(1.1);}
+.btn-outline{border:1px solid var(--border);background:transparent;font-weight:500;}
+.btn-outline:hover{background:var(--accent);color:var(--accent-foreground);}
+
+/* blob portrait */
+.hero-portrait{position:relative;margin-inline:auto;display:none;width:100%;max-width:420px;aspect-ratio:3/4;}
+@media (min-width:1024px){.hero-portrait{display:block;}}
+.halo-1{pointer-events:none;position:absolute;inset:-4rem;opacity:.45;filter:blur(48px);
+  background:radial-gradient(circle 320px at 50% 50%,rgba(189,147,249,.55),transparent 70%);}
+.halo-2{pointer-events:none;position:absolute;inset:-2rem;opacity:.3;filter:blur(32px);
+  background:radial-gradient(circle 220px at 50% 50%,rgba(80,250,123,.18),transparent 70%);}
+.blob-photo{position:relative;height:100%;width:100%;overflow:hidden;}
+.blob-photo img{height:100%;width:100%;object-fit:cover;object-position:center 22%;}
+.blob-photo .veil{pointer-events:none;position:absolute;inset:0;
+  background:linear-gradient(to top right,rgba(19,19,32,.5),transparent 50%,transparent);}
+
+/* stats */
+.stats{
+  margin-top:2.5rem;display:grid;max-width:28rem;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-block:1.25rem;
+}
+.stats dt{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.stats dd{margin:.25rem 0 0;font-family:var(--font-display);font-size:1.5rem;font-weight:900;}
+@media (min-width:640px){.stats dd{font-size:1.875rem;}}
+
+/* ============================================================
+   SEÇÕES
+   ============================================================ */
+section{scroll-margin-top:5rem;}
+.s-mt-16{margin-top:4rem;}
+.s-mt-20{margin-top:5rem;}
+.kicker{font-family:var(--font-mono);font-size:.875rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;}
+.see-all{display:inline-flex;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--brand-green);transition:color .15s;}
+.see-all:hover{color:var(--brand-cyan);}
+.see-all span{display:inline-block;transition:transform .2s;}
+.see-all:hover span{transform:translateX(2px);}
+
+.panel{
+  position:relative;margin-top:1.25rem;overflow:hidden;
+  border-radius:1rem;border:1px solid var(--border);background:var(--card);padding:1.5rem;
+}
+@media (min-width:640px){.panel{padding:2rem;}}
+@media (min-width:768px){.panel{padding:2.5rem;}}
+.glow{pointer-events:none;position:absolute;width:18rem;height:18rem;border-radius:9999px;filter:blur(64px);}
+.glow-tr{right:-6rem;top:-6rem;}
+.glow-bl{bottom:-6rem;left:-6rem;}
+.g-cyan{background:rgba(139,233,253,.1);}
+.g-pink{background:rgba(255,121,198,.1);}
+.g-green{background:rgba(80,250,123,.1);}
+.g-purple{background:rgba(189,147,249,.1);}
+
+/* manifesto */
+.quote-icon{width:1.75rem;height:1.75rem;color:rgba(139,233,253,.5);}
+@media (min-width:640px){.quote-icon{width:2.25rem;height:2.25rem;}}
+blockquote.manifesto{
+  margin-top:1rem;font-family:var(--font-display);font-size:1.5rem;font-weight:900;
+  text-transform:uppercase;line-height:1.05;letter-spacing:-.025em;text-wrap:balance;color:var(--foreground);
+}
+@media (min-width:640px){blockquote.manifesto{font-size:1.875rem;}}
+@media (min-width:768px){blockquote.manifesto{font-size:2.25rem;}}
+.manifesto-p{margin-top:1.75rem;max-width:65ch;font-size:1rem;color:var(--muted-foreground);}
+@media (min-width:640px){.manifesto-p{font-size:1.125rem;}}
+.manifesto-pull{
+  margin-top:1.25rem;max-width:65ch;border-left:2px solid var(--brand-pink);padding-left:1rem;
+  font-family:var(--font-display);font-size:1.125rem;font-weight:700;line-height:1.375;color:var(--foreground);
+}
+@media (min-width:640px){.manifesto-pull{font-size:1.25rem;}}
+@media (min-width:768px){.manifesto-pull{font-size:1.5rem;}}
+.manifesto-foot{
+  margin-top:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+  border-top:1px solid var(--border);padding-top:1.5rem;
+}
+.cta-inline{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.875rem;font-weight:600;color:var(--brand-green);transition:color .15s;}
+.cta-inline:hover{color:var(--brand-cyan);}
+.cta-inline .arrow{display:inline-block;transition:transform .2s;}
+.cta-inline:hover .arrow{transform:translateX(4px);}
+@media (min-width:640px){.cta-inline{font-size:1rem;}}
+.foot-note{font-family:var(--font-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+
+/* cards grid */
+.card-grid{margin-top:1rem;display:grid;gap:1rem;}
+@media (min-width:640px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.card{
+  display:flex;flex-direction:column;gap:.75rem;
+  border-radius:.75rem;border:1px solid var(--border);background:var(--card);padding:1.25rem;
+  transition:border-color .15s;
+}
+.card:hover{border-color:var(--brand-green);}
+.card-meta{display:flex;align-items:center;gap:.5rem;}
+.badge{
+  display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;gap:.25rem;
+  white-space:nowrap;border-radius:.375rem;border:1px solid transparent;padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:.75rem;font-weight:500;
+  background:rgba(139,233,253,.15);color:var(--brand-cyan);
+}
+.meta-text{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.meta-right{margin-left:auto;display:flex;align-items:center;gap:.5rem;}
+.pill-hot{
+  display:inline-flex;align-items:center;gap:.25rem;border-radius:9999px;
+  border:1px solid rgba(255,121,198,.3);background:rgba(255,121,198,.1);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--brand-pink);
+}
+.pill-new{
+  display:inline-flex;align-items:center;border-radius:9999px;
+  border:1px solid rgba(80,250,123,.4);background:rgba(80,250,123,.1);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--brand-green);
+}
+.rating{display:inline-flex;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.rating .star{color:var(--brand-green);}
+.rating .score{color:var(--foreground);}
+.rating .count{color:rgba(154,160,196,.6);}
+.card h3{
+  font-family:var(--font-display);font-size:1.25rem;font-weight:800;text-transform:uppercase;
+  color:var(--card-foreground);transition:color .15s;
+}
+.card:hover h3{color:var(--brand-green);}
+.card p{font-size:.875rem;color:var(--muted-foreground);}
+.tag-row{display:flex;flex-wrap:wrap;gap:.375rem;}
+.tag{
+  display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;
+  white-space:nowrap;border-radius:.375rem;border:1px solid var(--border);padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:.75rem;font-weight:500;color:var(--foreground);
+}
+.card-cta{margin-top:auto;font-family:var(--font-mono);font-size:.75rem;color:var(--brand-green);}
+.sec-sub{margin-top:.5rem;max-width:28rem;font-size:.875rem;color:var(--muted-foreground);}
+
+/* idealizador */
+.author-panel{position:relative;margin-top:1.25rem;overflow:hidden;border-radius:1rem;border:1px solid var(--border);background:var(--card);}
+.author-panel .glow{opacity:0;transition:opacity .7s;}
+.author-panel:hover .glow{opacity:1;}
+.author-inner{position:relative;display:grid;gap:1.5rem;padding:1.5rem;}
+@media (min-width:640px){.author-inner{grid-template-columns:auto 1fr;align-items:start;gap:2rem;padding:2rem;}}
+.avatar-wrap{position:relative;flex-shrink:0;}
+.avatar{
+  position:relative;width:6rem;height:6rem;overflow:hidden;border-radius:9999px;
+  border:2px solid var(--border);transition:transform .3s,border-color .3s;
+}
+.author-panel:hover .avatar{transform:scale(1.04);border-color:var(--brand-purple);}
+@media (min-width:640px){.avatar{width:7rem;height:7rem;}}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.online-dot{
+  position:absolute;bottom:0;right:0;display:inline-flex;width:1.25rem;height:1.25rem;
+  align-items:center;justify-content:center;border-radius:9999px;background:var(--card);
+}
+.online-dot span{display:inline-block;width:.75rem;height:.75rem;border-radius:9999px;background:var(--brand-green);box-shadow:0 0 12px rgba(80,250,123,.7);}
+.author-body{display:flex;min-width:0;flex-direction:column;}
+.author-name-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.75rem;row-gap:.25rem;}
+.author-body h3{font-family:var(--font-display);font-size:1.5rem;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;color:var(--card-foreground);}
+@media (min-width:640px){.author-body h3{font-size:1.875rem;}}
+.handle{font-family:var(--font-mono);font-size:.875rem;color:var(--muted-foreground);}
+.chip-row{margin-top:.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
+.chip-creator{
+  display:inline-flex;align-items:center;gap:.375rem;border-radius:.375rem;
+  border:1px solid rgba(189,147,249,.4);background:rgba(189,147,249,.1);
+  padding:.125rem .5rem;font-family:var(--font-mono);font-size:.75rem;font-weight:500;color:var(--brand-purple);
+}
+.chip-creator svg{width:.75rem;height:.75rem;}
+.chip-online{display:inline-flex;align-items:center;gap:.375rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.author-bio{margin-top:1rem;max-width:65ch;font-size:1rem;color:var(--muted-foreground);}
+.skill-list{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.5rem;}
+.skill-list li{
+  border-radius:.375rem;border:1px solid var(--border);background:rgba(19,19,32,.6);
+  padding:.25rem .625rem;font-family:var(--font-mono);font-size:.75rem;color:rgba(248,248,242,.8);
+  transition:color .15s,border-color .15s;
+}
+.skill-list li:hover{border-color:var(--brand-cyan);color:var(--brand-cyan);}
+.author-links{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;}
+.link-solid{
+  display:inline-flex;align-items:center;gap:.375rem;border-radius:.375rem;background:var(--brand-green);
+  padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;font-weight:600;color:#11121a;transition:all .15s;
+}
+.link-solid:hover{filter:brightness(1.1);box-shadow:0 14px 34px -12px rgba(80,250,123,.7);}
+.link-solid svg{width:1rem;height:1rem;}
+.link-ghost{
+  display:inline-flex;align-items:center;gap:.375rem;border-radius:.375rem;border:1px solid var(--border);
+  background:transparent;padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;font-weight:500;
+  color:var(--foreground);transition:border-color .15s,background-color .15s;
+}
+.link-ghost:hover{border-color:rgba(248,248,242,.4);background:var(--muted);}
+.link-ghost svg{width:1rem;height:1rem;}
+
+/* terminal */
+.terminal{overflow:hidden;border-radius:.75rem;border:1px solid var(--border);background:#0a0a13;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);}
+.terminal-bar{display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(255,255,255,.05);background:#131320;padding:.625rem 1rem;}
+.tdot{width:.75rem;height:.75rem;border-radius:9999px;}
+.terminal-bar .path{margin-left:.75rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.terminal-body{padding:1.25rem;font-family:var(--font-mono);font-size:.875rem;}
+.terminal-body p+p{margin-top:.375rem;}
+@media (min-width:640px){.terminal-body{font-size:1rem;}}
+.t-prompt{color:var(--brand-cyan);}
+.t-url{word-break:break-all;color:var(--brand-green);}
+.t-comment{margin-left:.5rem;display:none;color:var(--muted-foreground);}
+@media (min-width:640px){.t-comment{display:inline;}}
+
+.contrib-grid{margin-top:1.75rem;display:grid;gap:1.5rem;}
+@media (min-width:640px){.contrib-grid{grid-template-columns:1fr auto;align-items:end;}}
+.contrib-grid h3{font-family:var(--font-display);font-size:1.5rem;font-weight:900;text-transform:uppercase;line-height:1.05;letter-spacing:-.025em;color:var(--foreground);}
+@media (min-width:640px){.contrib-grid h3{font-size:1.875rem;}}
+.contrib-grid p{margin-top:.75rem;max-width:65ch;font-size:1rem;color:var(--muted-foreground);}
+@media (min-width:640px){.contrib-grid p{font-size:1.125rem;}}
+.contrib-btns{display:flex;flex-wrap:wrap;gap:.75rem;}
+@media (min-width:640px){.contrib-btns{justify-content:flex-end;}}
+
+.contributors{margin-top:2rem;border-top:1px solid var(--border);padding-top:1.5rem;}
+.contributors-row{margin-top:1rem;display:flex;flex-direction:column;gap:.75rem;}
+@media (min-width:640px){.contributors-row{flex-direction:row;align-items:center;gap:1.25rem;}}
+.avatars{display:flex;flex-shrink:0;flex-wrap:wrap;align-items:center;padding-left:.5rem;}
+.avatars li{position:relative;margin-left:-.5rem;}
+.avatars li:first-child{margin-left:0;}
+.avatars a{display:block;border-radius:9999px;box-shadow:0 0 0 2px var(--card);transition:transform .15s;}
+.avatars a:hover{z-index:10;transform:translateY(-2px);}
+.avatars img{width:2.75rem;height:2.75rem;border-radius:9999px;background:var(--muted);object-fit:cover;}
+.contributors-row>p{max-width:65ch;font-size:.875rem;color:var(--muted-foreground);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{margin-top:5rem;border-top:1px solid var(--border);background:rgba(19,19,32,.4);}
+.footer-grid{display:grid;gap:2.5rem;padding-block:3rem;}
+@media (min-width:768px){.footer-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+.footer-brand{grid-column:span 2;}
+.footer-brand>p:first-child{font-family:var(--font-mono);font-size:.875rem;font-weight:700;color:var(--foreground);}
+.footer-desc{margin-top:.75rem;max-width:24rem;font-size:.875rem;color:var(--muted-foreground);}
+.footer-gh{
+  margin-top:1.25rem;display:inline-flex;align-items:center;gap:.5rem;border-radius:.375rem;
+  border:1px solid var(--border);background:var(--card);padding:.375rem .75rem;
+  font-family:var(--font-mono);font-size:.75rem;transition:border-color .15s,background-color .15s;
+}
+.footer-gh:hover{border-color:rgba(248,248,242,.4);background:var(--muted);}
+.footer-gh svg{width:1rem;height:1rem;flex-shrink:0;}
+.footer-col h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.footer-col ul{margin-top:.75rem;display:flex;flex-direction:column;gap:.5rem;font-size:.875rem;}
+.footer-col a{color:var(--muted-foreground);transition:color .15s;}
+.footer-col a:hover{color:var(--foreground);}
+.footer-bottom{border-top:1px solid var(--border);}
+.footer-bottom-inner{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:.5rem;
+  padding-block:1.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+}
+@media (min-width:640px){.footer-bottom-inner{flex-direction:row;align-items:center;}}
+.footer-bottom-inner .strong{color:var(--foreground);}
+.footer-bottom-inner a{font-weight:700;color:var(--brand-pink);transition:color .15s;}
+.footer-bottom-inner a:hover{color:var(--foreground);}
+
+/* utilitários de cor */
+.c-green{color:var(--brand-green);}
+.c-cyan{color:var(--brand-cyan);}
+.c-pink{color:var(--brand-pink);}
+.c-fg{color:var(--foreground);}
+</style>
+</head>
+
+<body>
+<a href="#conteudo" class="sr-only skip-link">Pular para o conteúdo</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="brand" aria-label="Primo Academy - início"><span class="slash">~/</span>.primo-academy.sh</a>
+
+    <nav class="main-nav" aria-label="Principal">
+      <a href="#trilhas">Trilhas</a>
+      <a href="#trilhas">Bootcamps</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contribua">Ranking</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#contribua" class="btn-sm">Entrar</a>
+    </div>
+
+    <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="menu-mobile">
+    <nav class="container" aria-label="Menu mobile">
+      <ul>
+        <li><a href="#trilhas">Trilhas</a></li>
+        <li><a href="#trilhas">Bootcamps</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contribua">Ranking</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <div class="hero-wrap">
+    <!-- fundo animado -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid-lines"></div>
+      <div class="orb orb-pink anim-orb"></div>
+      <div class="orb orb-purple anim-orb-slow"></div>
+      <div class="orb orb-cyan anim-orb"></div>
+    </div>
+
+    <div class="container hero">
+      <!-- ============================ HERO ============================ -->
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow-row">
+            <p class="eyebrow">Grátis · Open source · PT-BR</p>
+            <span class="live-tag">
+              <span class="dot-live"><span class="anim-live"></span><span></span></span>no ar
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="grad-text anim-gradient">Aprenda</span>
+            <span class="word grad-text anim-gradient" id="rotating-word" aria-label="APRENDA PROGRAMAR">PROGRAMAR</span>
+          </h1>
+
+          <p class="hero-lead">
+            Do primeiro <code class="type"><span id="type-text"></span><span class="caret anim-caret" aria-hidden="true"></span></code>
+            ao primeiro projeto no ar. Trilhas guiadas em português, no seu ritmo.
+          </p>
+
+          <div class="cta-row">
+            <a href="#trilhas" class="btn btn-primary">Começar agora →</a>
+            <a href="https://github.com/lucianodiisouza/aprenda-community" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver no GitHub</a>
+          </div>
+        </div>
+
+        <div class="hero-portrait" aria-hidden="true">
+          <div class="halo-1 anim-blob-halo"></div>
+          <div class="halo-2 anim-blob-halo"></div>
+          <div class="blob-photo anim-blob">
+            <img src="https://aprenda.oprimo.dev/luciano.jpg" alt="" loading="eager" decoding="async" />
+            <div class="veil"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================ STATS ============================ -->
+      <dl class="stats">
+        <div>
+          <dt>trilhas</dt>
+          <dd class="c-green" data-count="41">0</dd>
+        </div>
+        <div>
+          <dt>projetos</dt>
+          <dd class="c-cyan" data-count="22">0</dd>
+        </div>
+        <div>
+          <dt>nós</dt>
+          <dd class="c-pink" data-count="483">0</dd>
+        </div>
+      </dl>
+
+      <!-- ============================ MANIFESTO ============================ -->
+      <section id="manifesto" class="s-mt-20" aria-labelledby="manifesto-titulo">
+        <div class="reveal">
+          <h2 id="manifesto-titulo" class="kicker">// manifesto</h2>
+        </div>
+        <div class="reveal" style="animation-delay:80ms">
+          <div class="panel">
+            <div class="glow glow-tr g-cyan" aria-hidden="true"></div>
+            <div class="glow glow-bl g-pink" aria-hidden="true"></div>
+            <div style="position:relative">
+              <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/>
+                <path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/>
+              </svg>
+
+              <blockquote class="manifesto">
+                Se Inteligência Artificial veio para ficar ou se ela vai sumir um dia, <br />
+                <span class="c-cyan">aprender virou <strong class="c-green">prioridade[0]</strong>.</span>
+              </blockquote>
+
+              <p class="manifesto-p">
+                Roadmaps, trilhas e projetos curados por Luciano dii Souza,
+                <strong class="c-fg" style="font-weight:600">OPrimoDev</strong>: são
+                <strong class="c-green" style="font-weight:600">12 anos</strong>
+                de Engenharia de Software e experiência em projetos nacionais e internacionais.
+              </p>
+
+              <p class="manifesto-pull">
+                Numa era com tanto conteúdo, separar o joio do trigo é a única forma de aprender de verdade.
+              </p>
+
+              <div class="manifesto-foot">
+                <a href="#trilhas" class="cta-inline">
+                  Aprenda de graça. Contribua pra que mais gente aprenda.<span class="arrow" aria-hidden="true">→</span>
+                </a>
+                <span class="foot-note">grátis · open source · PT-BR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ TRILHAS ============================ -->
+      <section id="trilhas" class="s-mt-16" aria-labelledby="trilhas-titulo">
+        <div class="reveal">
+          <div class="sec-head">
+            <h2 id="trilhas-titulo" class="kicker">// trilhas</h2>
+            <a href="#trilhas" class="see-all">ver todos<span>→</span></a>
+          </div>
+        </div>
+        <div class="reveal" style="animation-delay:80ms">
+          <div class="card-grid stagger">
+            <a class="card" href="#trilhas">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">13 nós</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 4.8 de 5, 31 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">4.8</span><span class="count" aria-hidden="true">(31)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Programação do Zero</h3>
+              <p>Trilha para quem nunca programou: do pensamento computacional ao primeiro projeto real, com uma linguagem à sua escolha.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+
+            <a class="card" href="#trilhas">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">15 nós</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 22 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(22)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Backend</h3>
+              <p>Trilha para quem quer construir a parte que roda no servidor: do HTTP e Node.js até uma API completa em Express, com banco de dados, autenticação e deploy.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+
+            <a class="card" href="#trilhas">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">23 nós</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 10 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(10)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Git</h3>
+              <p>Trilha completa de Git - do controle de versão do zero (o que é um commit) até rebase, reflog, bisect e workflows de colaboração. Cobre básico, intermediário e avançado, com prática em cada nível e um projeto final de contribuição open source.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+
+            <a class="card" href="#trilhas">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">14 nós</span>
+                <span class="meta-right">
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 10 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(10)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>SQL e Banco de Dados</h3>
+              <p>Trilha de SQL puro, do zero: modelagem, consultas, joins, agregação, índices, transações e segurança. Base sólida para quem vai usar qualquer ORM depois.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ PROJETOS ============================ -->
+      <section id="projetos" class="s-mt-16" aria-labelledby="projetos-titulo">
+        <div class="reveal">
+          <div class="sec-head">
+            <h2 id="projetos-titulo" class="kicker">// projetos</h2>
+            <a href="#projetos" class="see-all">ver todos<span>→</span></a>
+          </div>
+        </div>
+        <div class="reveal" style="animation-delay:80ms">
+          <p class="sec-sub">Aprender de verdade é construindo. Pratique o que as trilhas ensinam.</p>
+        </div>
+        <div class="reveal" style="animation-delay:160ms">
+          <div class="card-grid stagger">
+            <a class="card" href="#projetos">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">2-3 horas</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 4 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(4)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Calculadora de Gorjeta</h3>
+              <p>Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.</p>
+              <div class="tag-row">
+                <span class="tag">javascript</span><span class="tag">dom</span><span class="tag">html</span><span class="tag">css</span>
+              </div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+
+            <a class="card" href="#projetos">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">1-2 semanas</span>
+              </div>
+              <h3>API REST com Autenticação</h3>
+              <p>Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes.</p>
+              <div class="tag-row">
+                <span class="tag">backend</span><span class="tag">api</span><span class="tag">autenticacao</span><span class="tag">banco-de-dados</span><span class="tag">+1</span>
+              </div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+
+            <a class="card" href="#projetos">
+              <div class="card-meta">
+                <span class="badge">Avançado</span>
+                <span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">1-2 semanas</span>
+              </div>
+              <h3>Dashboard Analítico</h3>
+              <p>Um painel com gráficos e métricas em React, com foco em performance e organização de estado.</p>
+              <div class="tag-row">
+                <span class="tag">react</span><span class="tag">performance</span><span class="tag">dataviz</span><span class="tag">typescript</span>
+              </div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ IDEALIZADOR ============================ -->
+      <section id="idealizador" class="s-mt-20" aria-labelledby="idealizador-titulo">
+        <div class="reveal">
+          <h2 id="idealizador-titulo" class="kicker">// idealizador</h2>
+        </div>
+        <div class="reveal" style="animation-delay:120ms">
+          <div class="author-panel">
+            <div class="glow glow-tr g-purple" aria-hidden="true" style="width:16rem;height:16rem;background:rgba(189,147,249,.2)"></div>
+            <div class="glow glow-bl g-cyan" aria-hidden="true" style="width:16rem;height:16rem;background:rgba(139,233,253,.15)"></div>
+
+            <div class="author-inner">
+              <div class="avatar-wrap">
+                <div class="avatar">
+                  <img src="https://github.com/lucianodiisouza.png?size=200" alt="Foto de PrimoDev" width="112" height="112" loading="lazy" />
+                </div>
+                <span class="online-dot" aria-label="Online"><span class="anim-live"></span></span>
+              </div>
+
+              <div class="author-body">
+                <div class="author-name-row">
+                  <h3>PrimoDev</h3>
+                  <span class="handle">@lucianodiisouza</span>
+                </div>
+
+                <div class="chip-row">
+                  <span class="chip-creator">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                      <path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>
+                    </svg>criador do projeto
+                  </span>
+                  <span class="chip-online">
+                    <span class="dot-live"><span class="anim-live"></span><span></span></span>online
+                  </span>
+                </div>
+
+                <p class="author-bio">Engenheiro de software apaixonado por educação. Criei a Primo Academy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.</p>
+
+                <ul class="skill-list">
+                  <li>React Native</li><li>TypeScript</li><li>SwiftUI</li>
+                </ul>
+
+                <div class="author-links">
+                  <a href="https://oprimo.dev" target="_blank" rel="noopener noreferrer" class="link-solid">
+                    oprimo.dev
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                  </a>
+                  <a href="https://github.com/lucianodiisouza" target="_blank" rel="noopener noreferrer" class="link-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                      <path d="M9 18c-4.51 2-5-2-7-2"/>
+                    </svg>GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ CONTRIBUA ============================ -->
+      <section id="contribua" class="s-mt-20" aria-labelledby="contribua-titulo">
+        <div class="reveal">
+          <h2 id="contribua-titulo" class="kicker">// contribua</h2>
+        </div>
+        <div class="reveal" style="animation-delay:80ms">
+          <div class="panel">
+            <div class="glow glow-tr g-green" aria-hidden="true"></div>
+            <div class="glow glow-bl g-purple" aria-hidden="true"></div>
+
+            <div style="position:relative">
+              <div class="terminal">
+                <div class="terminal-bar">
+                  <span class="tdot" style="background:#ff5555"></span>
+                  <span class="tdot" style="background:#f1fa8c"></span>
+                  <span class="tdot" style="background:#50fa7b"></span>
+                  <span class="path">~/primo-academy</span>
+                </div>
+                <div class="terminal-body">
+                  <p><span class="t-prompt">$</span> <span class="c-fg">git clone</span> <span class="t-url">https://github.com/lucianodiisouza/aprenda-community</span></p>
+                  <p><span class="t-prompt">$</span> <span class="c-fg">cd</span> <span class="c-fg">aprenda-community</span></p>
+                  <p><span class="t-prompt">$</span> <span class="c-fg">pnpm install</span></p>
+                  <p>
+                    <span class="t-prompt">$</span> <span class="c-fg">pnpm content:new</span>
+                    <span class="t-comment">// cria uma nova trilha</span>
+                    <span class="caret anim-caret" aria-hidden="true" style="margin-left:.25rem"></span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="contrib-grid">
+                <div>
+                  <h3>Faça parte do que vem <span class="c-green">depois</span>.</h3>
+                  <p>A Primo Academy é open source e vive de contribuição. Toda ajuda conta, seja uma trilha nova, correção de typo ou compartilhamento com quem precisa.</p>
+                </div>
+                <div class="contrib-btns">
+                  <a href="https://github.com/lucianodiisouza/aprenda-community" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver no GitHub →</a>
+                  <a href="https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Guia de contribuição</a>
+                </div>
+              </div>
+
+              <div class="contributors">
+                <p class="foot-note">// quem já construiu isso (8)</p>
+                <div class="contributors-row">
+                  <ul class="avatars" aria-label="Contribuidores">
+                    <li><a href="https://github.com/lucianodiisouza" target="_blank" rel="noopener noreferrer" aria-label="Luciano dii Souza — 46 contribuições"><img src="https://github.com/lucianodiisouza.png" alt="Luciano dii Souza" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/brunofhorn" target="_blank" rel="noopener noreferrer" aria-label="Bruno Fernandes Horn — 9 contribuições"><img src="https://github.com/brunofhorn.png" alt="Bruno Fernandes Horn" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/obrenoalvim" target="_blank" rel="noopener noreferrer" aria-label="Breno Alvim — 4 contribuições"><img src="https://github.com/obrenoalvim.png" alt="Breno Alvim" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/rafa-coelho" target="_blank" rel="noopener noreferrer" aria-label="Rafael Coelho — 4 contribuições"><img src="https://github.com/rafa-coelho.png" alt="Rafael Coelho" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/ajesus1308" target="_blank" rel="noopener noreferrer" aria-label="Alex Jesus (ojesus_cyber) — 2 contribuições"><img src="https://github.com/ajesus1308.png" alt="Alex Jesus (ojesus_cyber)" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/lucasgab2230" target="_blank" rel="noopener noreferrer" aria-label="Lucas Gabriel Witchemichen — 2 contribuições"><img src="https://github.com/lucasgab2230.png" alt="Lucas Gabriel Witchemichen" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/theneocarvalho" target="_blank" rel="noopener noreferrer" aria-label="Manoel Carvalho — 2 contribuições"><img src="https://github.com/theneocarvalho.png" alt="Manoel Carvalho" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/lucaspedruo" target="_blank" rel="noopener noreferrer" aria-label="Lucas Pedro — 1 contribuição"><img src="https://github.com/lucaspedruo.png" alt="Lucas Pedro" width="44" height="44" loading="lazy" /></a></li>
+                  </ul>
+                  <p>Trilhas, projetos e bootcamps construídos por gente da comunidade. <span class="c-fg">Seu avatar pode ser o próximo.</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p><span class="c-green">~/</span>.primo-academy.sh</p>
+      <p class="footer-desc">Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.</p>
+      <a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank" class="footer-gh">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
+        <span>github.com/lucianodiisouza/aprenda-community</span>
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h2>// conteúdo</h2>
+      <ul>
+        <li><a href="#trilhas">Trilhas</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#trilhas">Bootcamps</a></li>
+        <li><a href="#contribua">Ranking</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2>// projeto</h2>
+      <ul>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank">Código no GitHub</a></li>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md" rel="noopener noreferrer" target="_blank">Como contribuir</a></li>
+        <li><a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">Sobre o autor</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 · código sob <span class="strong">AGPL-3.0</span> · conteúdo sob <span class="strong">CC BY-SA 4.0</span></p>
+      <p>criado por <a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">OPrimoDev</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- menu mobile ---------- */
+  var menuBtn = document.getElementById('menu-btn');
+  var menu = document.getElementById('menu-mobile');
+  menuBtn.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      menu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---------- barra de progresso de scroll ---------- */
+  var bar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var ratio = max > 0 ? window.scrollY / max : 0;
+    bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, ratio)) + ')';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- reveal ao entrar na viewport ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.style.opacity = '1'; });
+  }
+
+  /* ---------- contadores das estatísticas ---------- */
+  var counters = document.querySelectorAll('.stats dd[data-count]');
+  function runCounter(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    if (reduced) { el.textContent = String(target); return; }
+    var start = performance.now();
+    var duration = 1200;
+    (function step(now) {
+      var t = Math.min(1, (now - start) / duration);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = String(Math.round(target * eased));
+      if (t < 1) requestAnimationFrame(step);
+    })(start);
+  }
+  if ('IntersectionObserver' in window) {
+    var ioc = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { runCounter(entry.target); ioc.unobserve(entry.target); }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { ioc.observe(el); });
+  } else {
+    counters.forEach(runCounter);
+  }
+
+  /* ---------- palavra rotativa do H1 (lista original do site) ---------- */
+  var WORDS = ['PROGRAMAR','LÓGICA','HTML','CSS','TYPESCRIPT','FRONTEND','BACKEND','ANGULAR',
+    'NEXT.JS','GIT','TERMINAL','DOCKER','KUBERNETES','SQL','NOSQL','RABBITMQ','ESTRUTURAS',
+    'BIG-O','IA','PROMPTS','PERFORMANCE','ACESSIBILIDADE','SEGURANÇA','TESTES','PWA',
+    'REAL-TIME','SEO','MOTION'];
+  var wordEl = document.getElementById('rotating-word');
+  if (!reduced) {
+    var wi = 0;
+    setInterval(function () {
+      wi = (wi + 1) % WORDS.length;
+      wordEl.style.opacity = '0';
+      wordEl.style.transition = 'opacity .25s ease-out';
+      setTimeout(function () {
+        wordEl.textContent = WORDS[wi];
+        wordEl.setAttribute('aria-label', 'APRENDA ' + WORDS[wi]);
+        wordEl.style.opacity = '1';
+      }, 250);
+    }, 2600);
+  }
+
+  /* ---------- typewriter do parágrafo do hero ---------- */
+  var SNIPPETS = ['console.log("olá, dev")', 'print("olá, dev")', 'git commit -m "start"', 'npm run dev'];
+  var typeEl = document.getElementById('type-text');
+  if (reduced) {
+    typeEl.textContent = SNIPPETS[0];
+  } else {
+    var si = 0, ci = 0, deleting = false;
+    (function tick() {
+      var full = SNIPPETS[si];
+      ci += deleting ? -1 : 1;
+      typeEl.textContent = full.slice(0, ci);
+      var delay = deleting ? 45 : 85;
+      if (!deleting && ci === full.length) { deleting = true; delay = 1600; }
+      else if (deleting && ci === 0) { deleting = false; si = (si + 1) % SNIPPETS.length; delay = 350; }
+      setTimeout(tick, delay);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
