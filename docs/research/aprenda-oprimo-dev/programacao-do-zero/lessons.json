@@ -1,0 +1,357 @@
+[
+ {
+  "slug": "logica",
+  "badge": "essencial",
+  "title": "Lógica de Programação",
+  "read": "1 min de leitura",
+  "prose": "<p>Antes de aprender qualquer linguagem, vem a <strong>lógica de programação</strong>: a\nhabilidade de quebrar um problema em passos claros e ordenados - como uma receita\nde bolo.</p>\n<p>Um programa nada mais é do que uma <strong>sequência de instruções</strong> que o computador\nexecuta na ordem em que você escreveu. Aqui você começa a pensar em: o que\nprecisa acontecer primeiro? E depois? O que se repete?</p>\n<blockquote>\n<p>Dica: não se preocupe com &quot;qual linguagem aprender&quot; ainda. Primeiro treine o\nraciocínio de dividir um problema em passos.</p>\n</blockquote>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-python\"># Pense como quem escreve uma receita.\n# Quais são os passos para &quot;ir ao mercado comprar pão&quot;?\n\nprint(&quot;1. Pegar a chave&quot;)\nprint(&quot;2. Sair de casa&quot;)\nprint(&quot;3. Travar a porta&quot;)\nprint(&quot;4. Ir até a padaria&quot;)\nprint(&quot;5. Comprar pão&quot;)\nprint(&quot;Pronto!&quot;)\n</code></pre></div>",
+  "resources": [
+   {
+    "href": "https://www.youtube.com/results?search_query=logica+de+programacao",
+    "name": "O que é lógica de programação?",
+    "tags": [
+     {
+      "free": false,
+      "label": "Vídeo"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "ambiente",
+  "badge": "essencial",
+  "title": "Configurando o Ambiente",
+  "read": "1 min de leitura",
+  "prose": "<p>Antes de escrever qualquer linha de código, você precisa de <strong>onde escrever</strong>. Um\nprograma é um arquivo de texto salvo com uma extensão específica (<code>.js</code>, <code>.ts</code>,\n<code>.py</code>...) - o computador não entende código &quot;soltando&quot; no chat.</p>\n<p>Você vai precisar de três coisas:</p>\n<ol>\n<li><strong>Uma linguagem instalada</strong> - para essa trilha, <strong>JavaScript (Node.js)</strong> é uma\nboa pedida porque não precisa configurar quase nada, ou <strong>Python 3</strong> se você\npreferir. Baixe o instalador oficial e siga o &quot;next, next, finish&quot;.</li>\n<li><strong>Um editor de código</strong> - o <strong>VS Code</strong> é gratuito, leve, cheio de extensões\núteis e roda em Windows, Mac e Linux.</li>\n<li><strong>Um terminal</strong> - aquela tela preta onde você digita comandos. No Mac e Linux\njá vem embutido; no Windows, o terminal do VS Code ou o PowerShell resolvem.</li>\n</ol>\n<p>Depois de instalar tudo, teste no terminal:</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-bash\">node --version\n</code></pre></div>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Howto/Tools_and_setup/What_software_do_I_need",
+    "name": "Configurando o ambiente de desenvolvimento (MDN PT-BR)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   },
+   {
+    "href": "https://nodejs.org/pt-br/download",
+    "name": "Instalando Node.js (página oficial)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   },
+   {
+    "href": "https://code.visualstudio.com/",
+    "name": "Visual Studio Code (editor recomendado)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "variaveis",
+  "badge": "essencial",
+  "title": "Variáveis e Tipos",
+  "read": "1 min de leitura",
+  "prose": "<p>Uma <strong>variável</strong> é como uma caixinha com um nome, onde você guarda um valor para\nusar depois. Por exemplo: guardar a <code>idade</code> de alguém, ou o <code>nome</code> de um produto.</p>\n<p>Os valores têm <strong>tipos</strong> diferentes:</p>\n<ul>\n<li><strong>Texto</strong> (string): <code>&quot;Olá, mundo&quot;</code></li>\n<li><strong>Número</strong>: <code>42</code>, <code>3.14</code></li>\n<li><strong>Booleano</strong> (verdadeiro/falso): <code>true</code>, <code>false</code></li>\n</ul>\n<p>Entender variáveis e tipos é a base para guardar e manipular informação - algo que\ntodo programa faz o tempo inteiro.</p>\n<!--QUIZ-->",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps/Variables",
+    "name": "Variáveis e tipos de dados (artigo)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "operadores",
+  "badge": "essencial",
+  "title": "Operadores e Expressões",
+  "read": "1 min de leitura",
+  "prose": "<p><strong>Operadores</strong> são os símbolos que fazem operações com valores. Você já conhece\nvários da matemática.</p>\n<p><strong>Aritméticos</strong> - com números:</p>\n<ul>\n<li><code>+</code> soma, <code>-</code> subtração, <code>*</code> multiplicação, <code>/</code> divisão</li>\n<li><code>%</code> resto da divisão (útil para saber se um número é par: <code>n % 2 === 0</code>)</li>\n<li><code>**</code> potência (em JavaScript e Python)</li>\n</ul>\n<p><strong>Comparação</strong> - comparam dois valores e devolvem <code>true</code> ou <code>false</code>:</p>\n<ul>\n<li><code>===</code> igual a (sempre prefira três sinais; <code>==</code> faz conversões estranhas)</li>\n<li><code>!==</code> diferente de</li>\n<li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code> menor/maior que</li>\n</ul>\n<p><strong>Lógicos</strong> - combinam condições:</p>\n<ul>\n<li><code>&amp;&amp;</code> (e) - as duas precisam ser verdadeiras</li>\n<li><code>||</code> (ou) - pelo menos uma é verdadeira</li>\n<li><code>!</code> (não) - inverte o valor</li>\n</ul>\n<p>Operadores combinados viram <strong>expressões</strong> - toda expressão tem um valor.\n<code>2 + 3</code> vale <code>5</code>; <code>idade &gt;= 18</code> vale <code>true</code> ou <code>false</code>. É o que permite\nmontar lógica sem precisar escrever várias linhas.</p>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_operators",
+    "name": "Expressões e operadores (MDN PT-BR)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "condicionais",
+  "badge": "essencial",
+  "title": "Condicionais",
+  "read": "1 min de leitura",
+  "prose": "<p><strong>Condicionais</strong> deixam o programa <strong>tomar decisões</strong>. É o famoso &quot;se... então...&quot;:</p>\n<blockquote>\n<p><strong>Se</strong> a idade for maior ou igual a 18, <strong>então</strong> pode dirigir; <strong>senão</strong>, não pode.</p>\n</blockquote>\n<p>Em código, isso aparece como <code>if</code> (se) e <code>else</code> (senão). É o que permite um programa\nreagir de formas diferentes dependendo da situação - em vez de sempre fazer a mesma\ncoisa.</p>\n<p>Domine condicionais e você já consegue escrever programas que se comportam de\nmaneiras diferentes conforme os dados que recebem.</p>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Building_blocks/conditionals",
+    "name": "Tomada de decisão com if/else (artigo)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "loops",
+  "badge": "essencial",
+  "title": "Laços e Iteração",
+  "read": "1 min de leitura",
+  "prose": "<p>Às vezes o programa precisa <strong>repetir</strong> uma ação várias vezes - somar 100\nnúmeros, percorrer uma lista, tentar até algo dar certo. Para isso servem os\n<strong>laços</strong> (loops).</p>\n<p>O <code>for</code> é o mais comum quando você <strong>sabe quantas vezes</strong> quer repetir:</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">for (let i = 0; i &lt; 5; i++) {\n  console.log(i); // imprime 0, 1, 2, 3, 4\n}\n</code></pre></div>\n<p>O <code>while</code> é para quando você <strong>não sabe</strong> quantas vezes - repete enquanto a\ncondição for verdadeira:</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">let resposta = &quot;&quot;;\nwhile (resposta !== &quot;sair&quot;) {\n  resposta = perguntarAoUsuario();\n}\n</code></pre></div>\n<p>Para <strong>percorrer arrays</strong> existe o <code>for...of</code> (mais legível):</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">const nomes = [&quot;Ana&quot;, &quot;Bruno&quot;, &quot;Carla&quot;];\nfor (const nome of nomes) {\n  console.log(`Olá, ${nome}!`);\n}\n</code></pre></div>\n<p>Cuidado com o <strong>loop infinito</strong>: se a condição nunca virar falsa, o programa\ntrava. <code>Ctrl+C</code> no terminal resolve. Se acontecer muito, é sinal de que a\ncondição precisa de uma mudança.</p>\n<h2>Experimente</h2>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-javascript\">// Soma os números de 1 a 10\nlet total = 0;\nfor (let i = 1; i &lt;= 10; i++) {\n  total += i;\n}\nconsole.log(&quot;Soma de 1 a 10 =&quot;, total);\n</code></pre></div>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Loops_and_iteration",
+    "name": "Loops e iteração (MDN PT-BR)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "funcoes",
+  "badge": "essencial",
+  "title": "Funções",
+  "read": "1 min de leitura",
+  "prose": "<p>Uma <strong>função</strong> é um bloco de código com um nome, que faz uma tarefa específica e\npode ser <strong>reutilizado</strong> quantas vezes você quiser - sem reescrever tudo.</p>\n<p>Pense numa função como uma máquina: você coloca uma entrada (os <strong>parâmetros</strong>),\nela processa e devolve um resultado. Por exemplo, uma função <code>somar(a, b)</code> recebe\ndois números e devolve a soma.</p>\n<p>Funções são o que mantêm o código <strong>organizado e sem repetição</strong>. Conforme os\nprogramas crescem, elas se tornam essenciais para não virar bagunça.</p>\n<h2>Experimente</h2>\n<p>Copie o código acima e rode no seu editor - Node.js, navegador (console do DevTools) ou Python, conforme o exemplo. Modifique à vontade e veja o que acontece.</p>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Building_blocks/Functions",
+    "name": "Funções - blocos de código reutilizáveis (artigo)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "strings",
+  "badge": "essencial",
+  "title": "Strings e Manipulação de Texto",
+  "read": "1 min de leitura",
+  "prose": "<p><strong>String</strong> é o tipo que guarda <strong>texto</strong> - sempre entre aspas (<code>&quot;olá&quot;</code> ou\n<code>&#x27;olá&#x27;</code>). Você pode juntar, cortar, procurar, trocar - tudo com <strong>métodos</strong> da\nprópria string.</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">const nome = &quot;Primo&quot;;\nnome.toUpperCase();      // &quot;PRIMO&quot;\nnome.toLowerCase();      // &quot;primo&quot;\nnome.length;             // 5\nnome[0];                 // &quot;P&quot; (primeiro caractere)\n&quot;Olá, &quot; + nome + &quot;!&quot;;    // &quot;Olá, Primo!&quot; (concatenação)\n`Olá, ${nome}!`;         // &quot;Olá, Primo!&quot; (template literal - mais legível)\n</code></pre></div>\n<p>Strings são <strong>imutáveis</strong> em quase toda linguagem: <code>nome.toUpperCase()</code> <strong>não</strong>\nmuda <code>nome</code>, devolve uma string nova. Para guardar, é preciso\n<code>const novo = nome.toUpperCase();</code>.</p>\n<p>Quando o texto tem aspas dentro, use uma barra invertida para escapar:\n<code>&quot;Ele disse: \\&quot;olá\\&quot;&quot;</code>. Ou use aspas diferentes: <code>&#x27;Ele disse: &quot;olá&quot;&#x27;</code>.</p>\n<h2>Experimente</h2>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-javascript\">const frase = &quot;  aprender programação é divertido  &quot;;\nconsole.log(&quot;original:&quot;, JSON.stringify(frase));\nconsole.log(&quot;tamanho:&quot;, frase.length);\nconsole.log(&quot;sem espaços:&quot;, JSON.stringify(frase.trim()));\nconsole.log(&quot;maiúsculo:&quot;, frase.toUpperCase());\nconsole.log(&quot;começa com &#x27;aprender&#x27;?&quot;, frase.trim().startsWith(&quot;aprender&quot;));\n</code></pre></div>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "name": "String (MDN PT-BR)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "arrays",
+  "badge": "essencial",
+  "title": "Listas (Arrays)",
+  "read": "1 min de leitura",
+  "prose": "<p>Um <strong>array</strong> (ou lista) guarda <strong>vários valores em ordem</strong>, dentro de uma única\nvariável. É uma das estruturas mais usadas em qualquer programa.</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">const notas = [8, 9, 7, 10];\nnotas[0];      // 8 (o primeiro!)\nnotas.length;  // 4\nnotas.push(6); // adiciona 6 no final\nnotas.pop();   // remove o último\nnotas.includes(9); // true - busca um valor\n</code></pre></div>\n<p>Para <strong>percorrer</strong> todos os itens, o jeito clássico é o <code>for</code>. Mas existem\nmétodos que deixam isso mais legível e poderoso:</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">const dobrados = notas.map(n =&gt; n * 2);\nconst maioresQue7 = notas.filter(n =&gt; n &gt; 7);\nconst soma = notas.reduce((total, n) =&gt; total + n, 0);\n</code></pre></div>\n<ul>\n<li><code>map</code> - transforma cada item em outro (mesma quantidade de itens).</li>\n<li><code>filter</code> - mantém só os itens que passam no teste.</li>\n<li><code>reduce</code> - combina todos os itens em um único valor.</li>\n</ul>\n<p>Map, filter e reduce são a base da <strong>programação funcional</strong> - não precisa\nvirar especialista agora, mas é bom saber que existem. Eles evitam muitos\n<code>for</code> complicados.</p>\n<h2>Experimente</h2>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-javascript\">const notas = [8, 9, 7, 10, 6];\nconsole.log(&quot;notas:&quot;, notas);\nconsole.log(&quot;maior:&quot;, Math.max(...notas));\nconsole.log(&quot;média:&quot;, notas.reduce((t, n) =&gt; t + n, 0) / notas.length);\nconsole.log(&quot;aprovados (&gt;=7):&quot;, notas.filter(n =&gt; n &gt;= 7));\n</code></pre></div>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "name": "Array (MDN PT-BR)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "objetos",
+  "badge": "essencial",
+  "title": "Objetos e Dicionários",
+  "read": "1 min de leitura",
+  "prose": "<p>Um <strong>objeto</strong> (ou dicionário, em outras linguagens) guarda pares de <strong>chave:\nvalor</strong> - uma forma natural de representar &quot;uma coisa com vários dados&quot;.</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">const pessoa = {\n  nome: &quot;Ana&quot;,\n  idade: 28,\n  cidade: &quot;São Paulo&quot;,\n};\npessoa.nome;      // &quot;Ana&quot;\npessoa[&quot;idade&quot;];  // 28\npessoa.email = &quot;ana@exemplo.com&quot;; // adiciona uma chave nova\ndelete pessoa.cidade;             // remove uma chave\n</code></pre></div>\n<p>Objetos podem ser <strong>aninhados</strong> (um objeto dentro do outro) - útil para\nrepresentar dados do mundo real:</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-js\">const pedido = {\n  id: 123,\n  cliente: { nome: &quot;Ana&quot;, email: &quot;ana@exemplo.com&quot; },\n  itens: [{ produto: &quot;Caderno&quot;, preco: 12.5 }],\n};\n</code></pre></div>\n<p>Objetos são a base do <strong>JSON</strong> (<code>JavaScript Object Notation</code>), que é o formato\nque a internet inteira usa para trocar dados. <code>JSON.stringify(objeto)</code> converte\npara texto; <code>JSON.parse(texto)</code> converte de volta. Sempre que você ouvir\n&quot;API REST&quot; ou &quot;resposta de servidor&quot;, provavelmente é JSON indo e voltando.</p>\n<h2>Experimente</h2>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-javascript\">const usuario = {\n  nome: &quot;Ana&quot;,\n  idade: 28,\n  habilidades: [&quot;JavaScript&quot;, &quot;Python&quot;, &quot;Git&quot;],\n};\n\nconsole.log(&quot;Nome:&quot;, usuario.nome);\nconsole.log(&quot;Habilidades:&quot;, usuario.habilidades.join(&quot;, &quot;));\nconsole.log(&quot;JSON:&quot;, JSON.stringify(usuario));\n</code></pre></div>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objects",
+    "name": "Trabalhando com objetos (MDN PT-BR)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "debug",
+  "badge": "essencial",
+  "title": "Depuração e Leitura de Erros",
+  "read": "1 min de leitura",
+  "prose": "<p>Todo programa tem bugs - errar faz parte. O que separa quem avança de quem\ntrava é saber <strong>ler o erro</strong> e investigar em vez de fugir.</p>\n<p>A primeira reação certa: <strong>ler a mensagem inteira, do topo para baixo</strong>.\nGeralmente ela diz:</p>\n<ul>\n<li><strong>O que</strong> deu errado (ex: <code>&quot;Cannot read properties of undefined&quot;</code>)</li>\n<li><strong>Onde</strong> (arquivo e linha: <code>app.js:42</code>)</li>\n<li><strong>A stack trace</strong> - a sequência de chamadas que levou até ali</li>\n</ul>\n<p>Ferramentas básicas que cobrem 90% dos casos:</p>\n<ul>\n<li><code>console.log(valor)</code> - imprime no terminal. O depurador universal.</li>\n<li><code>console.error(...)</code> e <code>console.warn(...)</code> - variantes para erros e avisos.</li>\n<li><code>console.table(array)</code> - imprime arrays/objetos em formato de tabela.</li>\n<li><strong>Debugger do editor</strong> - colocar um <strong>breakpoint</strong> (bolinha vermelha) e rodar\npasso a passo. Vale aprender quando o <code>console.log</code> parar de bastar.</li>\n</ul>\n<p>Quando empacar, <strong>copie a mensagem de erro e pesquise no Google</strong>. Alguém no\nmundo já teve esse mesmo bug e provavelmente postou a solução. Ler erros em\ninglês é normal - vale a pena se acostumar desde cedo.</p>\n<blockquote>\n<p>Dica: leia o erro em voz alta. &quot;Cannot read properties of undefined, reading\n&#x27;nome&#x27;&quot; - significa que você tentou acessar <code>.nome</code> em algo que está\n<code>undefined</code>. Provavelmente a variável não recebeu o valor que você esperava.</p>\n</blockquote>",
+  "resources": [
+   {
+    "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps/What_went_wrong",
+    "name": "O que deu errado? Solução de problemas em JavaScript (MDN PT-BR)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "git-basico",
+  "badge": "essencial",
+  "title": "Git: add, commit, push",
+  "read": "1 min de leitura",
+  "prose": "<p><strong>Git</strong> é a ferramenta que registra o <strong>histórico</strong> do seu código. Cada vez\nque você &quot;salva uma versão&quot; (<code>commit</code>), o git guarda um ponto de retorno. É\npor isso que todo projeto - dessa trilha, do seu trabalho, de tudo - usa git.</p>\n<p>Os quatro comandos que você usa 90% do tempo:</p>\n<div class=\"code-block\"><button type=\"button\" class=\"copy-btn\" aria-label=\"Copiar código\">copiar</button><pre><code class=\"language-bash\">git init                   # cria um repositório novo na pasta atual\ngit add .                  # marca todos os arquivos alterados para o próximo commit\ngit commit -m &quot;mensagem&quot;   # salva um ponto no histórico\ngit push                   # envia para o GitHub (ou outro servidor)\n</code></pre></div>",
+  "resources": [
+   {
+    "href": "https://git-scm.com/book/pt-br/v2",
+    "name": "Pro Git - livro oficial, traduzido para PT-BR",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   },
+   {
+    "href": "https://skills.github.com/",
+    "name": "GitHub Skills - curso interativo oficial",
+    "tags": [
+     {
+      "free": false,
+      "label": "Curso"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "projeto-final",
+  "badge": "essencial",
+  "title": "Seu Primeiro Projeto",
+  "read": "1 min de leitura",
+  "prose": "<p>Você chegou ao fim da trilha. Agora é hora de <strong>fazer, não só ler</strong>. Escolha\num dos projetos abaixo e construa do zero. Sozinho, no seu ritmo, sem pular\netapas.</p>\n<h2>Sugestões de primeiro projeto</h2>\n<ul>\n<li><strong>Calculadora</strong> - recebe dois números e uma operação, devolve o resultado.\nPrática de input/output, condicionais e funções.</li>\n<li><strong>Jogo de adivinhação</strong> - o computador &quot;pensa&quot; num número de 1 a 100 e você\ntenta adivinhar; ele diz &quot;maior&quot; ou &quot;menor&quot;. Prática de loops, condições e\nnúmeros aleatórios.</li>\n<li><strong>Lista de tarefas (to-do)</strong> - você adiciona, marca como feita e remove\nitens. Prática de arrays, objetos e manipulação de strings.</li>\n<li><strong>Gerador de senhas</strong> - você diz o tamanho e quais tipos de caractere\nincluir; o programa monta uma senha aleatória. Prática de loops e\n<code>Math.random</code>.</li>\n</ul>\n<h2>Critério de &quot;pronto&quot;</h2>\n<ol>\n<li><strong>Funciona</strong> sem travar e sem erros.</li>\n<li>O código está no <strong>GitHub</strong> (aprendeu git, lembra?).</li>\n<li>Tem um <code>README.md</code> curto explicando: o que é, como rodar, o que você\naprendeu fazendo.</li>\n</ol>\n<h2>Compartilhe</h2>\n<p>Quando terminar, <strong>compartilhe</strong>. Poste no LinkedIn, mande para amigos,\ncomente no nosso GitHub em uma issue com a tag <code>meu-projeto</code>. O melhor jeito\nde fixar o que aprendeu é <strong>explicar para alguém</strong> - e quem sabe isso\ninspira outra pessoa a começar.</p>\n<blockquote>\n<p>Próximo passo natural: escolha uma das <strong>trilhas seguintes</strong> (Frontend ou\nBackend) e continue construindo. Você já tem a base.</p>\n</blockquote>",
+  "resources": [
+   {
+    "href": "https://github.com/florinpop17/app-ideas",
+    "name": "App Ideas - lista curada de projetos para praticar",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   },
+   {
+    "href": "https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes",
+    "name": "Como escrever um bom README (GitHub Docs, em inglês)",
+    "tags": [
+     {
+      "free": false,
+      "label": "Doc"
+     },
+     {
+      "free": true,
+      "label": "Grátis"
+     }
+    ]
+   }
+  ]
+ }
+]
