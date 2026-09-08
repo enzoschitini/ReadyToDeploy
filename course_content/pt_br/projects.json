@@ -1,0 +1,38 @@
+{
+  "projects": [
+    {
+      "id": "calculadora-de-gorjeta",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Calculadora de Gorjeta",
+      "description": "Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.",
+      "level": "Iniciante",
+      "duration": "2-3 horas",
+      "new": true,
+      "hot": true,
+      "rating": { "score": 5.0, "count": 4 },
+      "tags": ["javascript", "dom", "html", "css"]
+    },
+    {
+      "id": "api-rest-com-autenticacao",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "API REST com Autenticação",
+      "description": "Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes.",
+      "level": "Intermediário",
+      "duration": "1-2 semanas",
+      "new": true,
+      "hot": false,
+      "tags": ["backend", "api", "autenticacao", "banco-de-dados", "+1"]
+    },
+    {
+      "id": "dashboard-analitico",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Dashboard Analítico",
+      "description": "Um painel com gráficos e métricas em React, com foco em performance e organização de estado.",
+      "level": "Avançado",
+      "duration": "1-2 semanas",
+      "new": true,
+      "hot": false,
+      "tags": ["react", "performance", "dataviz", "typescript"]
+    }
+  ]
+}
