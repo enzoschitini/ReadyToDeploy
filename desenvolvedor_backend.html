@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Calculadora de Gorjeta · Primo Academy</title>
+<title>Desenvolvedor Backend · Primo Academy</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<meta name="description" content="Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser." />
+<meta name="description" content="Da lógica ao backend de produção: JavaScript, TypeScript, SQL e NoSQL, API em Node/Express, Docker e complexidade de algoritmos. Bootcamp de 5 meses com 12 trilhas e 6 projetos." />
 <meta name="theme-color" content="#000000" />
 <meta name="color-scheme" content="dark" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -185,7 +185,7 @@ main{flex:1;}
 .crumbs .current{color:var(--foreground);}
 
 /* ============================================================
-   PAINEL DO PROJETO
+   PAINEL DO BOOTCAMP
    ============================================================ */
 .panel{
   position:relative;margin-top:1.25rem;overflow:hidden;
@@ -199,7 +199,7 @@ main{flex:1;}
 .g-cyan{background:rgba(139,233,253,.1);}
 .g-pink{background:rgba(255,121,198,.1);}
 
-.card-meta{display:flex;align-items:center;gap:.5rem;}
+.card-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
 .badge{
   display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;gap:.25rem;
   white-space:nowrap;border-radius:.375rem;border:1px solid transparent;padding:.125rem .5rem;
@@ -207,23 +207,26 @@ main{flex:1;}
   background:rgba(139,233,253,.15);color:var(--brand-cyan);
 }
 .meta-text{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.meta-right{margin-left:auto;}
 
 .project-title{
   margin-top:.75rem;max-width:48rem;font-family:var(--font-display);font-size:1.875rem;font-weight:900;
   text-transform:uppercase;letter-spacing:-.025em;line-height:1.05;
 }
 @media (min-width:640px){.project-title{font-size:2.25rem;}}
-.project-lead{margin-top:.5rem;max-width:60ch;color:var(--muted-foreground);}
+.project-lead{margin-top:.5rem;max-width:65ch;color:var(--muted-foreground);}
+.project-lead+.project-lead{margin-top:.75rem;}
 
-.tag-row{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.375rem;}
-.tag{
-  display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;
-  white-space:nowrap;border-radius:.375rem;border:1px solid var(--border);padding:.125rem .5rem;
-  font-family:var(--font-mono);font-size:.75rem;font-weight:500;color:var(--foreground);
+/* bloco "// você sai daqui sabendo" */
+.outcome-block{margin-top:1.5rem;max-width:65ch;border-top:1px solid var(--border);padding-top:1.25rem;}
+.outcome-block .lbl{
+  display:block;margin-bottom:.5rem;font-family:var(--font-mono);font-size:.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--brand-cyan);
 }
+.outcome-block p{font-size:.9375rem;color:var(--foreground);line-height:1.6;}
 
-.practice-row,.creator-row{margin-top:1.5rem;position:relative;}
-.practice-row h2,.creator-row h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.practice-row,.creator-row,.roadmap-row{margin-top:1.75rem;position:relative;}
+.practice-row h2,.creator-row h2,.roadmap-row h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
 .pill-list{margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.5rem;}
 .pill-trilha{
   display:inline-flex;align-items:center;border-radius:9999px;border:1px solid var(--border);
@@ -240,30 +243,37 @@ main{flex:1;}
 .creator-handle{display:block;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
 
 /* ============================================================
-   CONTEÚDO (enunciado, requisitos, desafios, dicas)
+   CURRÍCULO (lista numerada de trilhas + projetos)
    ============================================================ */
-.prose-wrap{margin-inline:auto;margin-top:2.5rem;max-width:65ch;}
-.prose-wrap p{font-size:1rem;line-height:1.7;color:var(--muted-foreground);}
-.prose-wrap p+p{margin-top:1rem;}
-.prose-wrap h2{
-  margin-top:2.25rem;font-family:var(--font-display);font-size:1.25rem;font-weight:800;
-  text-transform:uppercase;letter-spacing:-.01em;color:var(--foreground);
-}
-.prose-wrap code{font-family:var(--font-mono);font-size:.875em;color:var(--brand-cyan);}
-.prose-wrap strong{color:var(--foreground);font-weight:700;}
+.kicker{font-family:var(--font-mono);font-size:.875rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.curriculo-wrap{margin-top:2.5rem;}
+.curriculo-lead{margin-top:.5rem;max-width:60ch;color:var(--muted-foreground);}
 
-.check-list{margin-top:1rem;display:flex;flex-direction:column;gap:.625rem;}
-.check-list li{display:flex;align-items:flex-start;gap:.625rem;font-size:.9375rem;color:var(--muted-foreground);line-height:1.6;}
-.check-list .box{
-  flex-shrink:0;margin-top:.1875rem;display:inline-block;width:1rem;height:1rem;
-  border-radius:.25rem;border:1px solid var(--border);
+.curriculo-list{margin-top:1.25rem;display:flex;flex-direction:column;gap:1rem;}
+.curriculo-item{
+  display:flex;align-items:center;gap:1.25rem;
+  border-radius:1rem;border:1px solid var(--border);background:var(--card);
+  padding:1.5rem;transition:border-color .15s;
 }
-.check-list code{font-family:var(--font-mono);font-size:.875em;color:var(--brand-cyan);}
+.curriculo-item:hover{border-color:var(--brand-indigo);}
+.curriculo-num{
+  flex-shrink:0;width:2.5rem;font-family:var(--font-mono);font-size:1.375rem;font-weight:700;
+  color:rgba(154,160,196,.4);line-height:1;
+}
+.curriculo-body{flex:1;min-width:0;}
+.badge-projeto{background:rgba(255,121,198,.15);color:var(--brand-pink);}
+.curriculo-title{
+  display:block;margin-top:.5rem;font-family:var(--font-display);font-size:1.0625rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:-.01em;color:var(--card-foreground);transition:color .15s;
+}
+.curriculo-item:hover .curriculo-title{color:var(--brand-indigo);}
+.curriculo-desc{display:block;margin-top:.375rem;font-size:.875rem;line-height:1.55;color:var(--muted-foreground);}
+.curriculo-arrow{
+  flex-shrink:0;align-self:center;font-size:1.125rem;color:var(--brand-cyan);transition:transform .2s;
+}
+.curriculo-item:hover .curriculo-arrow{transform:translateX(4px);}
 
-.tips-list{margin-top:1rem;display:flex;flex-direction:column;gap:.75rem;padding-left:1.25rem;}
-.tips-list li{position:relative;font-size:.9375rem;color:var(--muted-foreground);line-height:1.6;}
-.tips-list li::before{content:"→";position:absolute;left:-1.25rem;color:var(--brand-indigo);}
-.tips-list code{font-family:var(--font-mono);font-size:.875em;color:var(--brand-cyan);}
+.rating-wrap{margin-top:3rem;}
 
 .rating-panel{margin-top:3rem;border-radius:.75rem;border:1px solid var(--border);background:var(--card);padding:1rem;}
 .rating-kicker{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
@@ -324,8 +334,8 @@ main{flex:1;}
 
     <nav class="main-nav" aria-label="Principal">
       <a href="trilhas.html">Trilhas</a>
-      <a href="bootcamps.html">Bootcamps</a>
-      <a href="projetos.html" aria-current="page" class="is-active">Projetos</a>
+      <a href="bootcamps.html" aria-current="page" class="is-active">Bootcamps</a>
+      <a href="projetos.html">Projetos</a>
       <a href="index.html#contribua">Ranking</a>
     </nav>
 
@@ -344,8 +354,8 @@ main{flex:1;}
     <nav class="container" aria-label="Menu mobile">
       <ul>
         <li><a href="trilhas.html">Trilhas</a></li>
-        <li><a href="bootcamps.html">Bootcamps</a></li>
-        <li><a href="projetos.html" aria-current="page">Projetos</a></li>
+        <li><a href="bootcamps.html" aria-current="page">Bootcamps</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
         <li><a href="index.html#contribua">Ranking</a></li>
       </ul>
     </nav>
@@ -368,36 +378,31 @@ main{flex:1;}
         <ol>
           <li><a href="index.html">Início</a></li>
           <li aria-hidden="true" class="sep">/</li>
-          <li><a href="projetos.html">Projetos</a></li>
+          <li><a href="bootcamps.html">Bootcamps</a></li>
           <li aria-hidden="true" class="sep">/</li>
-          <li><span aria-current="page" class="current">Calculadora de Gorjeta</span></li>
+          <li><span aria-current="page" class="current">Desenvolvedor Backend</span></li>
         </ol>
       </nav>
 
-      <!-- ============================ CABEÇALHO DO PROJETO ============================ -->
+      <!-- ============================ CABEÇALHO DO BOOTCAMP ============================ -->
       <div class="reveal">
         <div class="panel">
           <div class="glow glow-tr g-cyan" aria-hidden="true"></div>
           <div class="glow glow-bl g-pink" aria-hidden="true"></div>
           <div style="position:relative">
             <div class="card-meta">
-              <span class="badge">Iniciante</span>
-              <span class="meta-text">2-3 horas</span>
+              <span class="badge">Intermediário</span>
+              <span class="meta-text">5 meses</span>
+              <span class="meta-text meta-right">12 trilhas · 6 projetos</span>
             </div>
 
-            <h1 class="project-title">Calculadora de Gorjeta</h1>
-            <p class="project-lead">Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.</p>
+            <h1 class="project-title">Desenvolvedor Backend</h1>
+            <p class="project-lead">Da lógica ao backend de produção: a base vem do JavaScript, a forma vem do TypeScript, o dado passa por SQL e NoSQL, a API sai em Node/Express com autenticação, o ambiente sobe com Docker, e a noção de complexidade de algoritmos é o que separa código que vira produto de código que vira legenda.</p>
+            <p class="project-lead">Cinco projetos no caminho, e o último é um encurtador de URLs — você termina com código de verdade rodando.</p>
 
-            <div class="tag-row">
-              <span class="tag">javascript</span><span class="tag">dom</span><span class="tag">html</span><span class="tag">css</span>
-            </div>
-
-            <div class="practice-row">
-              <h2>// pratica as trilhas</h2>
-              <div class="pill-list">
-                <a href="trilhas.html" class="pill-trilha">Frontend</a>
-                <a href="programacao_do_zero.html" class="pill-trilha">Programação do Zero</a>
-              </div>
+            <div class="outcome-block">
+              <span class="lbl">// você sai daqui sabendo</span>
+              <p>Ao terminar, você tipa o código em TypeScript, modela dados em SQL e usa NoSQL a favor (documento e chave-valor), constrói uma API REST em Node/Express com banco, autenticação e cache, e sabe avaliar o custo dos seus algoritmos.</p>
             </div>
 
             <div class="creator-row">
@@ -414,39 +419,198 @@ main{flex:1;}
         </div>
       </div>
 
-      <!-- ============================ ENUNCIADO ============================ -->
+      <!-- ============================ CURRÍCULO ============================ -->
       <div class="reveal" style="animation-delay:80ms">
-        <div class="prose-wrap">
-          <p>Digite o valor da conta, a porcentagem da gorjeta e quantas pessoas: a página mostra quanto cada um paga. É o primeiro projeto que <strong>reage</strong> ao que o usuário faz.</p>
+        <div class="curriculo-wrap">
+          <h2 class="kicker">// currículo</h2>
+          <p class="curriculo-lead">Uma jornada só, do zero até um resultado concreto: trilhas e projetos intercalados, nessa ordem, cada um construindo em cima do anterior.</p>
 
-          <h2>Objetivo</h2>
-          <p>Conectar HTML e JavaScript: ler valores de <code>&lt;input&gt;</code>, fazer uma conta e escrever o resultado de volta na tela. Aqui entram <strong>eventos</strong> e <strong>manipulação do DOM</strong>.</p>
+          <ol class="curriculo-list" aria-label="Currículo do bootcamp, em ordem">
+            <li><a class="curriculo-item" href="programacao_do_zero.html">
+              <span class="curriculo-num" aria-hidden="true">01</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Programação do Zero</span>
+                <span class="curriculo-desc">Base de lógica e JavaScript pra quem começa do zero.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
 
-          <h2>Requisitos</h2>
-          <ul class="check-list">
-            <li><span class="box" aria-hidden="true"></span>Campos para: valor da conta, % de gorjeta e número de pessoas</li>
-            <li><span class="box" aria-hidden="true"></span>Calcular o total (conta + gorjeta) e o valor por pessoa</li>
-            <li><span class="box" aria-hidden="true"></span>Atualizar o resultado ao clicar num botão <strong>ou</strong> ao digitar</li>
-            <li><span class="box" aria-hidden="true"></span>Formatar o resultado como dinheiro (ex.: <code>R$ 12,50</code>)</li>
-            <li><span class="box" aria-hidden="true"></span>Tratar entradas inválidas (número de pessoas = 0, campo vazio)</li>
-          </ul>
+            <li><a class="curriculo-item" href="calculadora_de_gorjeta.html">
+              <span class="curriculo-num" aria-hidden="true">02</span>
+              <span class="curriculo-body">
+                <span class="badge badge-projeto">Projeto</span>
+                <span class="curriculo-title">Primeiro projeto: coloque a lógica em prática</span>
+                <span class="curriculo-desc">Um build pequeno pra fixar variáveis, condicionais e funções logo depois do primeiro contato com código.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
 
-          <h2>Desafios extras</h2>
-          <ul class="check-list">
-            <li><span class="box" aria-hidden="true"></span>Botões de gorjeta rápida (10%, 15%, 20%) além do campo manual</li>
-            <li><span class="box" aria-hidden="true"></span>Salvar a última gorjeta escolhida no <code>localStorage</code></li>
-            <li><span class="box" aria-hidden="true"></span>Botão "limpar" que zera tudo</li>
-          </ul>
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">03</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Terminal para Devs</span>
+                <span class="curriculo-desc">O terminal é onde o backend vive: comandos essenciais em qualquer ambiente unix (local, VPS, container).</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
 
-          <h2>Dicas</h2>
-          <ul class="tips-list">
-            <li>Valores de <code>&lt;input&gt;</code> chegam como <strong>texto</strong>. Converta com <code>Number(...)</code> antes de calcular, e cheque <code>Number.isNaN(...)</code>.</li>
-            <li><code>Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })</code> formata dinheiro pra você.</li>
-            <li>Comece fazendo a conta aparecer no <code>console.log</code>. Só depois jogue na tela.</li>
-          </ul>
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">04</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Git</span>
+                <span class="curriculo-desc">Controle de versão do zero ao avançado — obrigatório em qualquer time e pré-requisito pra deploy e colaboração.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
 
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">05</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Conventional Commits</span>
+                <span class="curriculo-desc">Mensagens de commit que contam uma história: o formato type(escopo): descrição, SemVer automática e changelog — o elo entre o histórico e a release.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">06</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">TypeScript</span>
+                <span class="curriculo-desc">TypeScript logo depois de JavaScript: a mente ainda está fresca sobre a linguagem, e o TS vira a forma padrão de escrever código backend no mercado.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">07</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">SQL e Banco de Dados</span>
+                <span class="curriculo-desc">Modelagem e SQL puro — a fundação de dados antes de qualquer ORM.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="projetos.html">
+              <span class="curriculo-num" aria-hidden="true">08</span>
+              <span class="curriculo-body">
+                <span class="badge badge-projeto">Projeto</span>
+                <span class="curriculo-title">Modelagem de um Banco de Dados</span>
+                <span class="curriculo-desc">Modele o banco de um mini e-commerce e escreva as consultas do negócio em SQL puro.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">09</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">NoSQL: Bancos Não-Relacionais</span>
+                <span class="curriculo-desc">Complemento ao SQL: o que é NoSQL, modelo de documento (MongoDB) e chave-valor (Redis). Como e quando combinar com SQL em sistemas reais.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">10</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Backend</span>
+                <span class="curriculo-desc">HTTP, Node, Express, banco, ORM, autenticação, validação, testes, async profundo, error handling e debugging.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="projetos.html">
+              <span class="curriculo-num" aria-hidden="true">11</span>
+              <span class="curriculo-body">
+                <span class="badge badge-projeto">Projeto</span>
+                <span class="curriculo-title">API REST com Autenticação</span>
+                <span class="curriculo-desc">Construa a API completa: CRUD, banco, validação, login e rotas protegidas.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">12</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Docker Fundamentos</span>
+                <span class="curriculo-desc">Empacote a API em containers: imagens, Dockerfile, volumes e rede — o jeito moderno de rodar backend.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">13</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Docker Compose e Workflows</span>
+                <span class="curriculo-desc">Suba app + banco + cache com um comando e monte o ambiente de dev e produção da sua API.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="projetos.html">
+              <span class="curriculo-num" aria-hidden="true">14</span>
+              <span class="curriculo-body">
+                <span class="badge badge-projeto">Projeto</span>
+                <span class="curriculo-title">Empacote um Serviço com Docker</span>
+                <span class="curriculo-desc">Coloque a sua API num container e suba app + banco com um comando só.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">15</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Complexidade de Algoritmos</span>
+                <span class="curriculo-desc">Pra escrever backend que aguenta escala.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="projetos.html">
+              <span class="curriculo-num" aria-hidden="true">16</span>
+              <span class="curriculo-body">
+                <span class="badge badge-projeto">Projeto</span>
+                <span class="curriculo-title">Busca com Filtros</span>
+                <span class="curriculo-desc">Sinta o custo das operações crescerem com os dados - a teoria de complexidade na prática.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="trilhas.html">
+              <span class="curriculo-num" aria-hidden="true">17</span>
+              <span class="curriculo-body">
+                <span class="badge">Trilha</span>
+                <span class="curriculo-title">Cibersegurança para Desenvolvedores</span>
+                <span class="curriculo-desc">A base de segurança que todo dev backend precisa: dados, redes, autenticação, autorização, vulnerabilidades, OWASP Top 10 e segurança defensiva.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+
+            <li><a class="curriculo-item" href="projetos.html">
+              <span class="curriculo-num" aria-hidden="true">18</span>
+              <span class="curriculo-body">
+                <span class="badge badge-projeto">Projeto</span>
+                <span class="curriculo-title">Projeto final: um encurtador de URLs</span>
+                <span class="curriculo-desc">Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura.</span>
+              </span>
+              <span class="curriculo-arrow" aria-hidden="true">→</span>
+            </a></li>
+          </ol>
+        </div>
+
+        <div class="rating-wrap">
           <div class="rating-panel">
-            <p class="rating-kicker">// avaliação do projeto</p>
+            <p class="rating-kicker">// avaliação do bootcamp</p>
             <div class="rating-panel-inner">
               <span class="rating-score">—</span>
               <span>
@@ -457,7 +621,7 @@ main{flex:1;}
           </div>
 
           <p class="back-row">
-            <a href="projetos.html" class="back-link">← voltar para projetos</a>
+            <a href="bootcamps.html" class="back-link">← voltar para bootcamps</a>
           </p>
         </div>
       </div>
@@ -484,8 +648,8 @@ main{flex:1;}
       <h2>// conteúdo</h2>
       <ul>
         <li><a href="trilhas.html">Trilhas</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
         <li><a href="bootcamps.html">Bootcamps</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
         <li><a href="index.html#contribua">Ranking</a></li>
       </ul>
     </div>
