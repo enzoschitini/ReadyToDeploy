@@ -11,7 +11,7 @@ O projeto é organizado em três grandes áreas, que trabalham em conjunto:
 
 | Área | Função |
 |---|---|
-| `index` (pages) | Estrutura **base** de todas as páginas — o layout/rota de cada tela |
+| `index` (pages) | Estrutura **base** em html de todas as páginas — o layout/rota de cada tela |
 | `course_content` | Conteúdo **educacional** salvo em JSON (bootcamps, módulos, aulas, projetos...) |
 | `application_content` | Conteúdo **fixo da aplicação** (textos de UI, labels etc.), sem ser o conteúdo educacional |
 
@@ -24,14 +24,14 @@ Tanto `pages` quanto `application_content` seguem exatamente a mesma árvore de 
 Pasta `pages`: contém a estrutura base de todas as páginas. Somente o conteúdo vindo do JSON muda de uma página para outra.
 
 ```
-pages
+pages (Pasta com os html)
 ├── bootcamps                  → Listagem dos bootcamps
-│   └── bootcamp                → Página de um bootcamp selecionado
-│       └── modules             → Listagem de módulos (hoje chamados de "trilhas")
-│           └── module          → Página de um módulo (trilha) selecionado
-│               └── lesson      → Página de conteúdo de uma aula do módulo
+├── bootcamp                   → Página de um bootcamp selecionado
+├── modules                    → Listagem de módulos (hoje chamados de "trilhas")
+├── module                     → Página de um módulo (trilha) selecionado
+├── lesson                     → Página de conteúdo de uma aula do módulo
 ├── projects                   → Listagem de todos os projetos
-│   └── project                 → Página de um projeto específico
+├── project                    → Página de um projeto específico
 └── contact                    → Hoje chamada de "Ranking", será a página de contato
 ```
 
