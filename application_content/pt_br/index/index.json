@@ -5,7 +5,8 @@
   },
   "brand": {
     "prefix": "~/",
-    "name": ".primo-academy.sh"
+    "name": ".primo-academy.sh",
+    "ariaLabel": "Primo Academy - início"
   },
   "nav": {
     "trilhas": "Trilhas",
@@ -14,7 +15,9 @@
     "contato": "Ranking",
     "entrar": "Entrar",
     "abrirMenu": "Abrir menu",
-    "fecharMenu": "Fechar menu"
+    "fecharMenu": "Fechar menu",
+    "ariaPrincipal": "Principal",
+    "ariaMobile": "Menu mobile"
   },
   "skipLink": "Pular para o conteúdo",
   "hero": {
@@ -75,7 +78,10 @@
     "verProjeto": "ver projeto →",
     "emAlta": "em alta",
     "novo": "novo",
-    "nos": "nós"
+    "nos": "nós",
+    "emAltaAria": "Conteúdo em alta",
+    "novoAria": "Conteúdo novo",
+    "ratingAriaTemplate": "Avaliação média {nota} de 5, {total} avaliações"
   },
   "idealizador": {
     "kicker": "// idealizador",
@@ -85,6 +91,7 @@
     "handle": "@lucianodiisouza",
     "criadorChip": "criador do projeto",
     "online": "online",
+    "onlineAria": "Online",
     "bio": "Engenheiro de software apaixonado por educação. Criei a Primo Academy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.",
     "skills": ["React Native", "TypeScript", "SwiftUI"],
     "linkSite": "oprimo.dev",
@@ -111,6 +118,8 @@
     "ctaGuiaHref": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md",
     "contributorsLabel": "// quem já construiu isso",
     "contributorsFootnote": "Trilhas, projetos e bootcamps construídos por gente da comunidade. <span class=\"c-fg\">Seu avatar pode ser o próximo.</span>",
+    "avatarsAria": "Contribuidores",
+    "contributorAriaTemplate": "{nome} — {contribuicoes} contribuições",
     "contributors": [
       { "user": "lucianodiisouza", "nome": "Luciano dii Souza", "contribuicoes": 46 },
       { "user": "brunofhorn", "nome": "Bruno Fernandes Horn", "contribuicoes": 9 },

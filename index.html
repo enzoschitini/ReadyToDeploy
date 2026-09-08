@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Primo Academy</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta name="description" id="meta-description" content="" />
 <meta name="theme-color" content="#000000" />
 <meta name="color-scheme" content="dark" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -483,9 +484,9 @@ blockquote.manifesto{
 <!-- ============================ HEADER ============================ -->
 <header class="site-header">
   <div class="container header-inner">
-    <a href="index.html" class="brand" aria-label="Primo Academy - início"><span class="slash">~/</span><span data-i18n="brand.name">.primo-academy.sh</span></a>
+    <a href="index.html" class="brand" id="brand-link"><span class="slash">~/</span><span data-i18n="brand.name">.primo-academy.sh</span></a>
 
-    <nav class="main-nav" aria-label="Principal">
+    <nav class="main-nav" id="main-nav">
       <a href="pages/modules.html" data-i18n="nav.trilhas">Trilhas</a>
       <a href="pages/bootcamps.html" data-i18n="nav.bootcamps">Bootcamps</a>
       <a href="pages/projects.html" data-i18n="nav.projetos">Projetos</a>
@@ -496,7 +497,7 @@ blockquote.manifesto{
       <a href="pages/contact.html" class="btn-sm" data-i18n="nav.entrar">Entrar</a>
     </div>
 
-    <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+    <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-mobile">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
       </svg>
@@ -504,7 +505,7 @@ blockquote.manifesto{
   </div>
 
   <div class="mobile-menu" id="menu-mobile">
-    <nav class="container" aria-label="Menu mobile">
+    <nav class="container" id="mobile-nav">
       <ul>
         <li><a href="pages/modules.html" data-i18n="nav.trilhas">Trilhas</a></li>
         <li><a href="pages/bootcamps.html" data-i18n="nav.bootcamps">Bootcamps</a></li>
@@ -662,7 +663,7 @@ blockquote.manifesto{
                 <div class="avatar">
                   <img id="idealizador-avatar" src="" alt="" width="112" height="112" loading="lazy" />
                 </div>
-                <span class="online-dot" aria-label="Online"><span class="anim-live"></span></span>
+                <span class="online-dot" id="idealizador-online-dot"><span class="anim-live"></span></span>
               </div>
 
               <div class="author-body">
@@ -740,7 +741,7 @@ blockquote.manifesto{
               <div class="contributors">
                 <p class="foot-note" id="contribua-contributors-label"></p>
                 <div class="contributors-row">
-                  <ul class="avatars" aria-label="Contribuidores" id="contribua-avatars"></ul>
+                  <ul class="avatars" id="contribua-avatars"></ul>
                   <p id="contribua-contributors-footnote"></p>
                 </div>
               </div>
@@ -793,14 +794,17 @@ blockquote.manifesto{
   /* ---------- menu mobile ---------- */
   var menuBtn = document.getElementById('menu-btn');
   var menu = document.getElementById('menu-mobile');
+  var menuLabels = { abrir: 'Abrir menu', fechar: 'Fechar menu' };
   menuBtn.addEventListener('click', function () {
     var open = menu.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? menuLabels.fechar : menuLabels.abrir);
   });
   menu.addEventListener('click', function (e) {
     if (e.target.closest('a')) {
       menu.classList.remove('open');
       menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', menuLabels.abrir);
     }
   });
 
@@ -916,12 +920,34 @@ blockquote.manifesto{
     });
   }
 
+  function applyAria(content) {
+    document.getElementById('brand-link').setAttribute('aria-label', content.brand.ariaLabel);
+    document.getElementById('main-nav').setAttribute('aria-label', content.nav.ariaPrincipal);
+    document.getElementById('mobile-nav').setAttribute('aria-label', content.nav.ariaMobile);
+    document.getElementById('menu-btn').setAttribute('aria-label', content.nav.abrirMenu);
+    menuBtn.setAttribute('aria-label', content.nav.abrirMenu);
+    menuLabels.abrir = content.nav.abrirMenu;
+    menuLabels.fechar = content.nav.fecharMenu;
+    document.getElementById('idealizador-online-dot').setAttribute('aria-label', content.idealizador.onlineAria);
+    document.getElementById('contribua-avatars').setAttribute('aria-label', content.contribua.avatarsAria);
+    document.getElementById('meta-description').setAttribute('content', content.meta.description);
+  }
+
+  function fillTemplate(template, values) {
+    return template.replace(/\{(\w+)\}/g, function (_, key) {
+      return values[key] !== undefined ? values[key] : '';
+    });
+  }
+
   function cardMeta(labels, level, count, countLabel, hot, rating) {
     var meta = '<div class="card-meta"><span class="badge">' + level + '</span>' +
       '<span class="meta-text">' + count + ' ' + countLabel + '</span>' +
       '<span class="meta-right">';
-    if (hot) meta += '<span class="pill-hot"><span aria-hidden="true">🔥</span>' + labels.emAlta + '</span>';
-    if (rating) meta += '<span class="rating"><span class="star" aria-hidden="true">★</span><span class="score">' + rating.nota.toFixed(1) + '</span><span class="count" aria-hidden="true">(' + rating.total + ')</span></span>';
+    if (hot) meta += '<span class="pill-hot" aria-label="' + labels.emAltaAria + '"><span aria-hidden="true">🔥</span>' + labels.emAlta + '</span>';
+    if (rating) {
+      var ratingAria = fillTemplate(labels.ratingAriaTemplate, { nota: rating.nota.toFixed(1), total: rating.total });
+      meta += '<span class="rating" aria-label="' + ratingAria + '"><span class="star" aria-hidden="true">★</span><span class="score">' + rating.nota.toFixed(1) + '</span><span class="count" aria-hidden="true">(' + rating.total + ')</span></span>';
+    }
     meta += '</span></div>';
     return meta;
   }
@@ -941,12 +967,15 @@ blockquote.manifesto{
     var grid = document.getElementById('projetos-grid');
     grid.innerHTML = projects.map(function (p) {
       var meta = '<div class="card-meta"><span class="badge">' + p.nivel + '</span>';
-      if (p.novo) meta += '<span class="pill-new">' + labels.novo + '</span>';
+      if (p.novo) meta += '<span class="pill-new" aria-label="' + labels.novoAria + '">' + labels.novo + '</span>';
       meta += '<span class="meta-text">' + p.duracao + '</span>';
       if (p.emAlta || p.avaliacao) {
         meta += '<span class="meta-right">';
-        if (p.emAlta) meta += '<span class="pill-hot"><span aria-hidden="true">🔥</span>' + labels.emAlta + '</span>';
-        if (p.avaliacao) meta += '<span class="rating"><span class="star" aria-hidden="true">★</span><span class="score">' + p.avaliacao.nota.toFixed(1) + '</span><span class="count" aria-hidden="true">(' + p.avaliacao.total + ')</span></span>';
+        if (p.emAlta) meta += '<span class="pill-hot" aria-label="' + labels.emAltaAria + '"><span aria-hidden="true">🔥</span>' + labels.emAlta + '</span>';
+        if (p.avaliacao) {
+          var ratingAria = fillTemplate(labels.ratingAriaTemplate, { nota: p.avaliacao.nota.toFixed(1), total: p.avaliacao.total });
+          meta += '<span class="rating" aria-label="' + ratingAria + '"><span class="star" aria-hidden="true">★</span><span class="score">' + p.avaliacao.nota.toFixed(1) + '</span><span class="count" aria-hidden="true">(' + p.avaliacao.total + ')</span></span>';
+        }
         meta += '</span>';
       }
       meta += '</div>';
@@ -986,7 +1015,8 @@ blockquote.manifesto{
     document.getElementById('contribua-contributors-footnote').innerHTML = d.contributorsFootnote;
 
     document.getElementById('contribua-avatars').innerHTML = d.contributors.map(function (c) {
-      return '<li><a href="https://github.com/' + c.user + '" target="_blank" rel="noopener noreferrer" aria-label="' + c.nome + ' — ' + c.contribuicoes + ' contribuições">' +
+      var aria = fillTemplate(d.contributorAriaTemplate, { nome: c.nome, contribuicoes: c.contribuicoes });
+      return '<li><a href="https://github.com/' + c.user + '" target="_blank" rel="noopener noreferrer" aria-label="' + aria + '">' +
         '<img src="https://github.com/' + c.user + '.png" alt="' + c.nome + '" width="44" height="44" loading="lazy" /></a></li>';
     }).join('');
   }
@@ -1011,7 +1041,7 @@ blockquote.manifesto{
 
   /* ---------- carregamento dos dados ---------- */
   Promise.all([
-    fetch('application_content/pt_br/index/content.json').then(function (r) { return r.json(); }),
+    fetch('application_content/pt_br/index/index.json').then(function (r) { return r.json(); }),
     fetch('course_content/pt_br/modules.json').then(function (r) { return r.json(); }),
     fetch('course_content/pt_br/projects.json').then(function (r) { return r.json(); })
   ]).then(function (results) {
@@ -1022,6 +1052,7 @@ blockquote.manifesto{
     document.title = content.meta.title;
 
     applyContent(content);
+    applyAria(content);
     document.getElementById('hero-portrait-img').src = content.hero.portraitImage;
     document.getElementById('manifesto-paragraph').innerHTML = content.manifesto.paragraph;
 
