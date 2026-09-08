@@ -7,103 +7,111 @@ https://enzoschitini.github.io/ReadyToDeploy/
 
 ## Visão Geral
 
-O projeto é organizado em três grandes áreas, que trabalham em conjunto:
+O projeto é organizado em quatro partes, que trabalham em conjunto:
 
-| Área | Função |
+| Parte | Função |
 |---|---|
-| `index` (pages) | Estrutura **base** em html de todas as páginas — o layout/rota de cada tela |
+| `index.html` (raiz) | Página inicial da aplicação |
+| `pages` | Estrutura **base** em HTML de cada tela — o layout/rota |
 | `course_content` | Conteúdo **educacional** salvo em JSON (bootcamps, módulos, aulas, projetos...) |
 | `application_content` | Conteúdo **fixo da aplicação** (textos de UI, labels etc.), sem ser o conteúdo educacional |
 
-Tanto `pages` quanto `application_content` seguem exatamente a mesma árvore de rotas — a diferença é que uma define a estrutura/layout e a outra guarda os textos daquela estrutura.
+`pages` e `application_content` seguem o **mesmo conjunto de arquivos** (mesmo nome, um `.html` e um `.json` para cada tela) — a diferença é que um define a estrutura/layout e o outro guarda os textos daquela tela. Hoje todas as pastas são **planas** (sem subpastas): não existe aninhamento tipo `bootcamps/bootcamp/modules/...`, cada tela é um arquivo solto nomeado pela própria rota.
+
+> ⚠️ No estado atual, `index.html` e todos os arquivos de `pages`, `application_content` e `course_content` existem como **placeholders vazios** — a estrutura de pastas/arquivos já está definida, mas o conteúdo ainda será preenchido.
 
 ---
 
-## 1. `index` — Raiz do Projeto (Base)
+## 1. `index.html` — Página Inicial
 
-Pasta `pages`: contém a estrutura base de todas as páginas. Somente o conteúdo vindo do JSON muda de uma página para outra.
+Na raiz do projeto, junto com `favicon.svg`. É a home da aplicação, fora da pasta `pages`. Seu conteúdo de texto correspondente fica em `application_content/pt_br/index.json` (não existe um `course_content` associado a ela, pois não é uma tela de curso).
+
+---
+
+## 2. `pages` — Telas da Aplicação (HTML)
+
+Pasta plana: cada arquivo é uma tela/rota da aplicação. Somente o conteúdo vindo do JSON muda de uma página para outra.
 
 ```
-pages (Pasta com os html)
-├── bootcamps                  → Listagem dos bootcamps
-├── bootcamp                   → Página de um bootcamp selecionado
-├── modules                    → Listagem de módulos (hoje chamados de "trilhas")
-├── module                     → Página de um módulo (trilha) selecionado
-├── lesson                     → Página de conteúdo de uma aula do módulo
-├── projects                   → Listagem de todos os projetos
-├── project                    → Página de um projeto específico
-└── contact                    → Hoje chamada de "Ranking", será a página de contato
+pages
+├── bootcamps.html    → Listagem dos bootcamps
+├── bootcamp.html     → Página de um bootcamp selecionado
+├── modules.html      → Listagem de módulos (hoje chamados de "trilhas")
+├── module.html       → Página de um módulo (trilha) selecionado
+├── lesson.html       → Página de conteúdo de uma aula do módulo
+├── projects.html     → Listagem de todos os projetos
+├── project.html      → Página de um projeto específico
+└── contact.html      → Hoje chamada de "Ranking", será a página de contato
 ```
 
-### Detalhamento das rotas
+### Detalhamento das telas
 
-| Rota | Descrição |
+| Tela | Descrição |
 |---|---|
 | `bootcamps` | Lista todos os bootcamps disponíveis |
-| `bootcamps/bootcamp` | Exibe os detalhes de um bootcamp selecionado |
-| `bootcamps/bootcamp/modules` | Lista os módulos ("trilhas") do bootcamp |
-| `bootcamps/bootcamp/modules/module` | Exibe um módulo (trilha) específico |
-| `bootcamps/bootcamp/modules/module/lesson` | Exibe o conteúdo de uma aula do módulo |
+| `bootcamp` | Exibe os detalhes de um bootcamp selecionado |
+| `modules` | Lista os módulos ("trilhas") de um bootcamp |
+| `module` | Exibe um módulo (trilha) específico |
+| `lesson` | Exibe o conteúdo de uma aula do módulo |
 | `projects` | Lista todos os projetos |
-| `projects/project` | Exibe um projeto específico |
+| `project` | Exibe um projeto específico |
 | `contact` | Página de contato *(atualmente chamada de "Ranking" — será substituída)* |
 
 ---
 
-## 2. `course_content` — Conteúdo Educacional (JSON)
+## 3. `course_content` — Conteúdo Educacional (JSON)
 
 Pasta `pt_br`: conteúdos em português, organizados por tipo, cada arquivo com `id` próprio e (quando aplicável) o `id` da entidade "pai".
 
 ```
 course_content
 └── pt_br
-    ├── bootcamps        → id próprio
-    ├── modules          → id próprio + id do bootcamp
-    ├── lessons          → id próprio + id do módulo
-    ├── projects         → id próprio + id do bootcamp
-    ├── presentations    → id próprio + id do módulo  (ainda não utilizado)
-    ├── quiz             → id próprio + id do módulo  (ainda não utilizado)
-    └── research         → id próprio + id do módulo  (ainda não utilizado)
+    ├── bootcamps.json   → id próprio
+    ├── modules.json     → id próprio + id do bootcamp
+    ├── lessons.json     → id próprio + id do módulo
+    └── projects.json    → id próprio + id do bootcamp
 ```
 
 ### Relação entre entidades
 
-| JSON | ID Próprio | Relacionado a (ID) | Status |
-|---|---|---|---|
-| `bootcamps` | id do bootcamp | — | ✅ Em uso |
-| `modules` | id do módulo | id do bootcamp | ✅ Em uso |
-| `lessons` | id da aula | id do módulo | ✅ Em uso |
-| `projects` | id do projeto | id do bootcamp | ✅ Em uso |
-| `presentations` | id da apresentação | id do módulo | ⏳ Não implementado |
-| `quiz` | id do quiz | id do módulo | ⏳ Não implementado |
-| `research` | id da pesquisa | id do módulo | ⏳ Não implementado |
+| JSON | ID Próprio | Relacionado a (ID) |
+|---|---|---|
+| `bootcamps` | id do bootcamp | — |
+| `modules` | id do módulo | id do bootcamp |
+| `lessons` | id da aula | id do módulo |
+| `projects` | id do projeto | id do bootcamp |
+
+> Tipos adicionais como apresentações, quiz e pesquisas (ver `application_reference_design/Estrutura dos Conteúdos.md`) ainda não têm arquivo/pasta próprios em `course_content` — serão adicionados quando forem implementados.
 
 ---
 
-## 3. `application_content` — Conteúdo da Aplicação
+## 4. `application_content` — Conteúdo da Aplicação
 
-Pasta `pt_br`: contém o conteúdo **real/fixo da interface** (não o conteúdo educacional), espelhando a mesma árvore de `pages`.
+Pasta `pt_br`: contém o conteúdo **real/fixo da interface** (não o conteúdo educacional), com um arquivo `.json` para cada tela de `pages`, mais um `index.json` para a página inicial.
 
 ```
 application_content
 └── pt_br
-    └── index
-        ├── bootcamps
-        │   └── bootcamp
-        │       └── modules
-        │           └── module
-        │               └── lesson
-        ├── projects
-        │   └── project
-        └── contact
+    ├── index.json       → textos da página inicial (index.html)
+    ├── bootcamps.json
+    ├── bootcamp.json
+    ├── modules.json
+    ├── module.json
+    ├── lesson.json
+    ├── projects.json
+    ├── project.json
+    └── contact.json
 ```
 
-> Essa estrutura é idêntica à de `pages`, garantindo que cada rota tenha seu conjunto correspondente de textos/labels da aplicação.
+> Cada arquivo aqui corresponde 1:1 a um arquivo de `pages` (mesmo nome), exceto `index.json`, que corresponde ao `index.html` da raiz.
 
 ---
 
 ## Resumo
 
-- **`pages`** define a estrutura/layout das telas.
+- **`index.html`** é a porta de entrada da aplicação.
+- **`pages`** define a estrutura/layout de cada tela (arquivos planos, um por rota).
 - **`course_content`** fornece o conteúdo educacional dinâmico (via JSON, relacionado por IDs).
-- **`application_content`** fornece os textos fixos da interface, seguindo a mesma árvore de `pages`.
+- **`application_content`** fornece os textos fixos da interface, espelhando os arquivos de `pages` (mais `index.json` para a home).
+
+> A pasta `application_reference_design` na raiz **não** faz parte da estrutura da aplicação — é material de referência/mockup usado para planejar o design e os conteúdos.
