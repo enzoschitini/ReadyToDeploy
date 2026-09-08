@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "title": "Primo Academy - Roadmaps de programação em português",
+    "description": "Trilhas de estudo de programação, gratuitas e open source, feitas para o público brasileiro. Aprenda do zero."
+  },
+  "brand": {
+    "prefix": "~/",
+    "name": ".primo-academy.sh"
+  },
+  "nav": {
+    "trilhas": "Trilhas",
+    "bootcamps": "Bootcamps",
+    "projetos": "Projetos",
+    "contato": "Ranking",
+    "entrar": "Entrar",
+    "abrirMenu": "Abrir menu",
+    "fecharMenu": "Fechar menu"
+  },
+  "skipLink": "Pular para o conteúdo",
+  "hero": {
+    "eyebrow": "Grátis · Open source · PT-BR",
+    "liveTag": "no ar",
+    "titleStatic": "Aprenda",
+    "titleRotatingWords": [
+      "PROGRAMAR", "LÓGICA", "HTML", "CSS", "TYPESCRIPT", "FRONTEND", "BACKEND", "ANGULAR",
+      "NEXT.JS", "GIT", "TERMINAL", "DOCKER", "KUBERNETES", "SQL", "NOSQL", "RABBITMQ", "ESTRUTURAS",
+      "BIG-O", "IA", "PROMPTS", "PERFORMANCE", "ACESSIBILIDADE", "SEGURANÇA", "TESTES", "PWA",
+      "REAL-TIME", "SEO", "MOTION"
+    ],
+    "leadBefore": "Do primeiro",
+    "leadAfter": "ao primeiro projeto no ar. Trilhas guiadas em português, no seu ritmo.",
+    "typewriterSnippets": [
+      "console.log(\"olá, dev\")",
+      "print(\"olá, dev\")",
+      "git commit -m \"start\"",
+      "npm run dev"
+    ],
+    "ctaPrimary": "Começar agora →",
+    "ctaSecondary": "Ver no GitHub",
+    "ctaSecondaryHref": "https://github.com/lucianodiisouza/aprenda-community",
+    "portraitImage": "https://aprenda.oprimo.dev/luciano.jpg"
+  },
+  "stats": {
+    "trilhas": "trilhas",
+    "projetos": "projetos",
+    "nos": "nós",
+    "nosCount": 483
+  },
+  "manifesto": {
+    "kicker": "// manifesto",
+    "quoteLine1": "Se Inteligência Artificial veio para ficar ou se ela vai sumir um dia,",
+    "quoteLine2Before": "aprender virou",
+    "quoteLine2Strong": "prioridade[0]",
+    "quoteLine2After": ".",
+    "paragraph": "Roadmaps, trilhas e projetos curados por Luciano dii Souza, <strong class=\"c-fg\">OPrimoDev</strong>: são <strong class=\"c-accent\">12 anos</strong> de Engenharia de Software e experiência em projetos nacionais e internacionais.",
+    "pullQuote": "Numa era com tanto conteúdo, separar o joio do trigo é a única forma de aprender de verdade.",
+    "ctaInline": "Aprenda de graça. Contribua pra que mais gente aprenda.",
+    "footNote": "grátis · open source · PT-BR"
+  },
+  "sections": {
+    "trilhas": {
+      "kicker": "// trilhas",
+      "seeAll": "ver todos",
+      "seeAllHref": "pages/modules.html"
+    },
+    "projetos": {
+      "kicker": "// projetos",
+      "seeAll": "ver todos",
+      "seeAllHref": "pages/projects.html",
+      "subtitle": "Aprender de verdade é construindo. Pratique o que as trilhas ensinam."
+    }
+  },
+  "cardLabels": {
+    "verTrilha": "ver trilha →",
+    "verProjeto": "ver projeto →",
+    "emAlta": "em alta",
+    "novo": "novo",
+    "nos": "nós"
+  },
+  "idealizador": {
+    "kicker": "// idealizador",
+    "avatar": "https://github.com/lucianodiisouza.png?size=200",
+    "avatarAlt": "Foto de PrimoDev",
+    "nome": "PrimoDev",
+    "handle": "@lucianodiisouza",
+    "criadorChip": "criador do projeto",
+    "online": "online",
+    "bio": "Engenheiro de software apaixonado por educação. Criei a Primo Academy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.",
+    "skills": ["React Native", "TypeScript", "SwiftUI"],
+    "linkSite": "oprimo.dev",
+    "linkSiteHref": "https://oprimo.dev",
+    "linkGithub": "GitHub",
+    "linkGithubHref": "https://github.com/lucianodiisouza"
+  },
+  "contribua": {
+    "kicker": "// contribua",
+    "terminalPath": "~/primo-academy",
+    "terminalLines": [
+      { "cmd": "git clone", "arg": "https://github.com/lucianodiisouza/aprenda-community", "isUrl": true },
+      { "cmd": "cd", "arg": "aprenda-community" },
+      { "cmd": "pnpm install" },
+      { "cmd": "pnpm content:new", "comment": "// cria uma nova trilha" }
+    ],
+    "titleBefore": "Faça parte do que vem",
+    "titleStrong": "depois",
+    "titleAfter": ".",
+    "paragraph": "A Primo Academy é open source e vive de contribuição. Toda ajuda conta, seja uma trilha nova, correção de typo ou compartilhamento com quem precisa.",
+    "ctaGithub": "Ver no GitHub →",
+    "ctaGithubHref": "https://github.com/lucianodiisouza/aprenda-community",
+    "ctaGuia": "Guia de contribuição",
+    "ctaGuiaHref": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md",
+    "contributorsLabel": "// quem já construiu isso",
+    "contributorsFootnote": "Trilhas, projetos e bootcamps construídos por gente da comunidade. <span class=\"c-fg\">Seu avatar pode ser o próximo.</span>",
+    "contributors": [
+      { "user": "lucianodiisouza", "nome": "Luciano dii Souza", "contribuicoes": 46 },
+      { "user": "brunofhorn", "nome": "Bruno Fernandes Horn", "contribuicoes": 9 },
+      { "user": "obrenoalvim", "nome": "Breno Alvim", "contribuicoes": 4 },
+      { "user": "rafa-coelho", "nome": "Rafael Coelho", "contribuicoes": 4 },
+      { "user": "ajesus1308", "nome": "Alex Jesus (ojesus_cyber)", "contribuicoes": 2 },
+      { "user": "lucasgab2230", "nome": "Lucas Gabriel Witchemichen", "contribuicoes": 2 },
+      { "user": "theneocarvalho", "nome": "Manoel Carvalho", "contribuicoes": 2 },
+      { "user": "lucaspedruo", "nome": "Lucas Pedro", "contribuicoes": 1 }
+    ]
+  },
+  "footer": {
+    "descricao": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
+    "githubLabel": "github.com/lucianodiisouza/aprenda-community",
+    "githubHref": "https://github.com/lucianodiisouza/aprenda-community",
+    "colConteudo": {
+      "titulo": "// conteúdo",
+      "links": [
+        { "label": "Trilhas", "href": "pages/modules.html" },
+        { "label": "Projetos", "href": "pages/projects.html" },
+        { "label": "Bootcamps", "href": "pages/bootcamps.html" },
+        { "label": "Ranking", "href": "pages/contact.html" }
+      ]
+    },
+    "colProjeto": {
+      "titulo": "// projeto",
+      "links": [
+        { "label": "Código no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community" },
+        { "label": "Como contribuir", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md" },
+        { "label": "Sobre o autor", "href": "https://oprimo.dev" }
+      ]
+    },
+    "bottom": {
+      "licenca": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
+      "criadoPorPrefixo": "criado por",
+      "criadoPorNome": "OPrimoDev",
+      "criadoPorHref": "https://oprimo.dev"
+    }
+  }
+}
