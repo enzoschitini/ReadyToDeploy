@@ -3,29 +3,90 @@ Python do zero ao primeiro deploy. Curso completo para iniciantes que querem col
 
 https://enzoschitini.github.io/ReadyToDeploy/
 
-index - Na raiz do projeto (Base)
-└── pages - Pasta com a estrutura base de todas as máginas (Só vai mudar o conteudo que vem de um json)
-    ├── bootcamps - Listagem dos bootcamps
-    │   └── bootcamp- Quando seleciona um bootcamp
-    │       └── modules - Aquilo que é trilha vai ser módulo é aqui é a listagem deles
-    │           └── module - Quando clica em um módulo (atualmente chamado de trilha)
-    │               └── lesson - Uma página com um determinado conteúdo de um módulo
-    ├── projects - Página que lista todos os projetos
-    │   └── project - O projeto em especifico
-    └── contact - Hoje chamado de Ranking mas vai mudar e vai ser a página onde o usuário entra em contato.
+# Estrutura do Projeto
 
-course_content - Pasta com conteúdos salvos em json
-└── pt_br - Pasta dos conteudos em portugues
-    ├── bootcamps - Json com os bootcamps (cada um vai ter um id)
-    ├── modules - Json com os módulos cada um com um id e um id sendo o id do bootcamp associado
-    ├── lessons - Json com os conteúdos dos modulos cada um com um id e um id sendo o id do módulos associado
-    ├── projects - Json com os projetos cada um com um id e um id sendo o id do bootcamp associado
-    ├── presentations - Json com as apresentações do modulo cada um com um id e um id sendo o id do módulos associado (No momento não vai ter)
-    ├── quiz - Json com os quiz cada um com um id e um id sendo o id do módulos associado (No momento não vai ter)
-    └── research - Json com as pesquisas cada um com um id e um id sendo o id do módulos associado (No momento não vai ter)
+## Visão Geral
 
-application_content - Pasta com o conteudo real da aplicação (Sem ser o conteudo)
-└── pt_br - Pasta da versão em protugues
+O projeto é organizado em três grandes áreas, que trabalham em conjunto:
+
+| Área | Função |
+|---|---|
+| `index` (pages) | Estrutura **base** de todas as páginas — o layout/rota de cada tela |
+| `course_content` | Conteúdo **educacional** salvo em JSON (bootcamps, módulos, aulas, projetos...) |
+| `application_content` | Conteúdo **fixo da aplicação** (textos de UI, labels etc.), sem ser o conteúdo educacional |
+
+Tanto `pages` quanto `application_content` seguem exatamente a mesma árvore de rotas — a diferença é que uma define a estrutura/layout e a outra guarda os textos daquela estrutura.
+
+---
+
+## 1. `index` — Raiz do Projeto (Base)
+
+Pasta `pages`: contém a estrutura base de todas as páginas. Somente o conteúdo vindo do JSON muda de uma página para outra.
+
+```
+pages
+├── bootcamps                  → Listagem dos bootcamps
+│   └── bootcamp                → Página de um bootcamp selecionado
+│       └── modules             → Listagem de módulos (hoje chamados de "trilhas")
+│           └── module          → Página de um módulo (trilha) selecionado
+│               └── lesson      → Página de conteúdo de uma aula do módulo
+├── projects                   → Listagem de todos os projetos
+│   └── project                 → Página de um projeto específico
+└── contact                    → Hoje chamada de "Ranking", será a página de contato
+```
+
+### Detalhamento das rotas
+
+| Rota | Descrição |
+|---|---|
+| `bootcamps` | Lista todos os bootcamps disponíveis |
+| `bootcamps/bootcamp` | Exibe os detalhes de um bootcamp selecionado |
+| `bootcamps/bootcamp/modules` | Lista os módulos ("trilhas") do bootcamp |
+| `bootcamps/bootcamp/modules/module` | Exibe um módulo (trilha) específico |
+| `bootcamps/bootcamp/modules/module/lesson` | Exibe o conteúdo de uma aula do módulo |
+| `projects` | Lista todos os projetos |
+| `projects/project` | Exibe um projeto específico |
+| `contact` | Página de contato *(atualmente chamada de "Ranking" — será substituída)* |
+
+---
+
+## 2. `course_content` — Conteúdo Educacional (JSON)
+
+Pasta `pt_br`: conteúdos em português, organizados por tipo, cada arquivo com `id` próprio e (quando aplicável) o `id` da entidade "pai".
+
+```
+course_content
+└── pt_br
+    ├── bootcamps        → id próprio
+    ├── modules          → id próprio + id do bootcamp
+    ├── lessons          → id próprio + id do módulo
+    ├── projects         → id próprio + id do bootcamp
+    ├── presentations    → id próprio + id do módulo  (ainda não utilizado)
+    ├── quiz             → id próprio + id do módulo  (ainda não utilizado)
+    └── research         → id próprio + id do módulo  (ainda não utilizado)
+```
+
+### Relação entre entidades
+
+| JSON | ID Próprio | Relacionado a (ID) | Status |
+|---|---|---|---|
+| `bootcamps` | id do bootcamp | — | ✅ Em uso |
+| `modules` | id do módulo | id do bootcamp | ✅ Em uso |
+| `lessons` | id da aula | id do módulo | ✅ Em uso |
+| `projects` | id do projeto | id do bootcamp | ✅ Em uso |
+| `presentations` | id da apresentação | id do módulo | ⏳ Não implementado |
+| `quiz` | id do quiz | id do módulo | ⏳ Não implementado |
+| `research` | id da pesquisa | id do módulo | ⏳ Não implementado |
+
+---
+
+## 3. `application_content` — Conteúdo da Aplicação
+
+Pasta `pt_br`: contém o conteúdo **real/fixo da interface** (não o conteúdo educacional), espelhando a mesma árvore de `pages`.
+
+```
+application_content
+└── pt_br
     └── index
         ├── bootcamps
         │   └── bootcamp
@@ -35,3 +96,14 @@ application_content - Pasta com o conteudo real da aplicação (Sem ser o conteu
         ├── projects
         │   └── project
         └── contact
+```
+
+> Essa estrutura é idêntica à de `pages`, garantindo que cada rota tenha seu conjunto correspondente de textos/labels da aplicação.
+
+---
+
+## Resumo
+
+- **`pages`** define a estrutura/layout das telas.
+- **`course_content`** fornece o conteúdo educacional dinâmico (via JSON, relacionado por IDs).
+- **`application_content`** fornece os textos fixos da interface, seguindo a mesma árvore de `pages`.
