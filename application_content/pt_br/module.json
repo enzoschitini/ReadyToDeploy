@@ -1,0 +1,200 @@
+{
+  "page": "module",
+  "lang": "pt-BR",
+  "meta": {
+    "titleFormat": "{lesson} · {module} · Primo Academy",
+    "moduleTitleFormat": "{module} · Primo Academy",
+    "themeColor": "#000000"
+  },
+  "skipLink": "Pular para o conteúdo",
+  "brand": {
+    "href": "../index.html",
+    "ariaLabel": "Primo Academy - início",
+    "slash": "~/",
+    "name": ".primo-academy.sh"
+  },
+  "nav": {
+    "ariaLabel": "Principal",
+    "mobileAriaLabel": "Menu mobile",
+    "openLabel": "Abrir menu",
+    "closeLabel": "Fechar menu",
+    "active": "modules.html",
+    "links": [
+      {
+        "label": "Trilhas",
+        "href": "modules.html"
+      },
+      {
+        "label": "Bootcamps",
+        "href": "bootcamps.html"
+      },
+      {
+        "label": "Projetos",
+        "href": "projects.html"
+      },
+      {
+        "label": "Ranking",
+        "href": "contact.html"
+      }
+    ],
+    "cta": {
+      "label": "Entrar",
+      "href": "contact.html"
+    }
+  },
+  "breadcrumbs": {
+    "ariaLabel": "Navegação estrutural",
+    "separator": "/",
+    "home": {
+      "label": "Início",
+      "href": "../index.html"
+    },
+    "parent": {
+      "label": "Trilhas",
+      "href": "modules.html"
+    }
+  },
+  "aside": {
+    "navAriaLabel": "Aulas da trilha",
+    "mobileNavAriaLabel": "Aulas da trilha (mobile)",
+    "backFormat": "← {module}",
+    "progressAriaLabel": "Progresso na trilha",
+    "progressFormat": "{done}/{total} concluídos",
+    "drawerFormat": "☰ Aulas · {module} · {done}/{total}"
+  },
+  "lesson": {
+    "badgeSrLabel": "Recomendado:",
+    "statusAriaLabel": "Marcar progresso deste nó",
+    "status": [
+      {
+        "value": "learning",
+        "label": "Estudando"
+      },
+      {
+        "value": "done",
+        "label": "Concluído"
+      },
+      {
+        "value": "skipped",
+        "label": "Pular"
+      }
+    ],
+    "font": {
+      "label": "fonte",
+      "decreaseAriaLabel": "Diminuir tamanho da fonte",
+      "resetAriaLabel": "Restaurar tamanho da fonte",
+      "increaseAriaLabel": "Aumentar tamanho da fonte"
+    },
+    "copyLabel": "copiar",
+    "copiedLabel": "copiado!",
+    "resourcesKicker": "// recursos",
+    "pagerAriaLabel": "Navegação entre aulas",
+    "prevLabel": "← anterior",
+    "nextLabel": "próxima →"
+  },
+  "quiz": {
+    "correctVerdict": "Acertou!",
+    "wrongVerdict": "Ainda não.",
+    "rightAnswerLabel": "Resposta certa:",
+    "retryLabel": "Tentar de novo"
+  },
+  "checkpoint": {
+    "states": {
+      "idle": "pendente",
+      "running": "rodando…",
+      "passed": "✓ passou",
+      "failed": "✗ falhou"
+    },
+    "runLabel": "▶ Rodar",
+    "runningLabel": "rodando…",
+    "outputLabel": "saída",
+    "outputHint": "Clique em Rodar para ver o resultado.",
+    "emptyOutput": "(sem saída)",
+    "emptyValue": "(vazia)",
+    "passedTitle": "✓ Passou!",
+    "passedLead": "+10 XP creditados. O nó foi marcado como concluído.",
+    "failedTitle": "Saída diferente da esperada",
+    "expectedFormat": "Esperado: <code>{expected}</code>",
+    "actualFormat": "Saída: <code>{actual}</code>",
+    "failedTip": "Edite o código, clique em <strong>Rodar</strong>, e tente novamente.",
+    "timeoutMessage": "⏱️ Execução excedeu 5s - worker terminado (provável loop infinito)."
+  },
+  "rating": {
+    "kicker": "// avaliação da trilha",
+    "emptyNote": "ainda sem avaliações",
+    "noteFormat": "com base em {count} avaliações",
+    "ariaFormat": "Avaliação média {score} de 5, {count} avaliações"
+  },
+  "backLink": "← voltar para trilhas",
+  "notFound": {
+    "title": "Trilha não encontrada",
+    "lead": "Essa trilha não existe ou ainda não teve o conteúdo publicado.",
+    "backLabel": "← voltar para trilhas"
+  },
+  "footer": {
+    "brand": {
+      "slash": "~/",
+      "name": ".primo-academy.sh"
+    },
+    "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
+    "github": {
+      "label": "github.com/lucianodiisouza/aprenda-community",
+      "href": "https://github.com/lucianodiisouza/aprenda-community"
+    },
+    "columns": [
+      {
+        "title": "// conteúdo",
+        "links": [
+          {
+            "label": "Trilhas",
+            "href": "modules.html"
+          },
+          {
+            "label": "Projetos",
+            "href": "projects.html"
+          },
+          {
+            "label": "Bootcamps",
+            "href": "bootcamps.html"
+          },
+          {
+            "label": "Ranking",
+            "href": "contact.html"
+          }
+        ]
+      },
+      {
+        "title": "// projeto",
+        "links": [
+          {
+            "label": "Código no GitHub",
+            "href": "https://github.com/lucianodiisouza/aprenda-community",
+            "external": true
+          },
+          {
+            "label": "Como contribuir",
+            "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md",
+            "external": true
+          },
+          {
+            "label": "Sobre o autor",
+            "href": "https://oprimo.dev",
+            "external": true
+          }
+        ]
+      }
+    ],
+    "bottom": {
+      "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
+      "credit": {
+        "before": "criado por ",
+        "label": "OPrimoDev",
+        "href": "https://oprimo.dev"
+      }
+    }
+  },
+  "errors": {
+    "loadFailed": "Não foi possível carregar o conteúdo desta página. Abra o site por um servidor HTTP (os arquivos JSON e HTML não carregam via file://).",
+    "lessonFailed": "Não foi possível carregar o conteúdo desta aula."
+  }
+}

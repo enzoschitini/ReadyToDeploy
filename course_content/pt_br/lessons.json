@@ -1,0 +1,398 @@
+{
+  "lessons": [
+    {
+      "id": "logica",
+      "module_id": "programacao-do-zero",
+      "order": 1,
+      "title": "Lógica de Programação",
+      "navTitle": "Pensamento Computacional",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/logica.html",
+      "resources": [
+        {
+          "name": "O que é lógica de programação?",
+          "href": "https://www.youtube.com/results?search_query=logica+de+programacao",
+          "tags": [
+            {
+              "label": "Vídeo",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ambiente",
+      "module_id": "programacao-do-zero",
+      "order": 2,
+      "title": "Configurando o Ambiente",
+      "navTitle": "Configurando o Ambiente",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/ambiente.html",
+      "resources": [
+        {
+          "name": "Configurando o ambiente de desenvolvimento (MDN PT-BR)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Howto/Tools_and_setup/What_software_do_I_need",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Instalando Node.js (página oficial)",
+          "href": "https://nodejs.org/pt-br/download",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Visual Studio Code (editor recomendado)",
+          "href": "https://code.visualstudio.com/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "variaveis",
+      "module_id": "programacao-do-zero",
+      "order": 3,
+      "title": "Variáveis e Tipos",
+      "navTitle": "Variáveis e Tipos",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/variaveis.html",
+      "resources": [
+        {
+          "name": "Variáveis e tipos de dados (artigo)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps/Variables",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operadores",
+      "module_id": "programacao-do-zero",
+      "order": 4,
+      "title": "Operadores e Expressões",
+      "navTitle": "Operadores e Expressões",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/operadores.html",
+      "resources": [
+        {
+          "name": "Expressões e operadores (MDN PT-BR)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_operators",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "condicionais",
+      "module_id": "programacao-do-zero",
+      "order": 5,
+      "title": "Condicionais",
+      "navTitle": "Condicionais",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/condicionais.html",
+      "resources": [
+        {
+          "name": "Tomada de decisão com if/else (artigo)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Building_blocks/conditionals",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loops",
+      "module_id": "programacao-do-zero",
+      "order": 6,
+      "title": "Laços e Iteração",
+      "navTitle": "Laços e Iteração",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/loops.html",
+      "resources": [
+        {
+          "name": "Loops e iteração (MDN PT-BR)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "funcoes",
+      "module_id": "programacao-do-zero",
+      "order": 7,
+      "title": "Funções",
+      "navTitle": "Funções",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/funcoes.html",
+      "resources": [
+        {
+          "name": "Funções - blocos de código reutilizáveis (artigo)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Building_blocks/Functions",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "module_id": "programacao-do-zero",
+      "order": 8,
+      "title": "Strings e Manipulação de Texto",
+      "navTitle": "Strings e Manipulação de Texto",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/strings.html",
+      "resources": [
+        {
+          "name": "String (MDN PT-BR)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arrays",
+      "module_id": "programacao-do-zero",
+      "order": 9,
+      "title": "Listas (Arrays)",
+      "navTitle": "Listas (Arrays)",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/arrays.html",
+      "resources": [
+        {
+          "name": "Array (MDN PT-BR)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objetos",
+      "module_id": "programacao-do-zero",
+      "order": 10,
+      "title": "Objetos e Dicionários",
+      "navTitle": "Objetos e Dicionários",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/objetos.html",
+      "resources": [
+        {
+          "name": "Trabalhando com objetos (MDN PT-BR)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objects",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "debug",
+      "module_id": "programacao-do-zero",
+      "order": 11,
+      "title": "Depuração e Leitura de Erros",
+      "navTitle": "Depuração e Leitura de Erros",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/debug.html",
+      "resources": [
+        {
+          "name": "O que deu errado? Solução de problemas em JavaScript (MDN PT-BR)",
+          "href": "https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps/What_went_wrong",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "git-basico",
+      "module_id": "programacao-do-zero",
+      "order": 12,
+      "title": "Git: add, commit, push",
+      "navTitle": "Git: add, commit, push",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/git-basico.html",
+      "resources": [
+        {
+          "name": "Pro Git - livro oficial, traduzido para PT-BR",
+          "href": "https://git-scm.com/book/pt-br/v2",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "GitHub Skills - curso interativo oficial",
+          "href": "https://skills.github.com/",
+          "tags": [
+            {
+              "label": "Curso",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projeto-final",
+      "module_id": "programacao-do-zero",
+      "order": 13,
+      "title": "Seu Primeiro Projeto",
+      "navTitle": "Seu Primeiro Projeto",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "programacao-do-zero/projeto-final.html",
+      "resources": [
+        {
+          "name": "App Ideas - lista curada de projetos para praticar",
+          "href": "https://github.com/florinpop17/app-ideas",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Como escrever um bom README (GitHub Docs, em inglês)",
+          "href": "https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

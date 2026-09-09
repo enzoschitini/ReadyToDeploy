@@ -1,0 +1,26 @@
+<div class="prose">
+<p><strong>String</strong> é o tipo que guarda <strong>texto</strong> - sempre entre aspas (<code>&quot;olá&quot;</code> ou
+<code>&#x27;olá&#x27;</code>). Você pode juntar, cortar, procurar, trocar - tudo com <strong>métodos</strong> da
+própria string.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-js">const nome = &quot;Primo&quot;;
+nome.toUpperCase();      // &quot;PRIMO&quot;
+nome.toLowerCase();      // &quot;primo&quot;
+nome.length;             // 5
+nome[0];                 // &quot;P&quot; (primeiro caractere)
+&quot;Olá, &quot; + nome + &quot;!&quot;;    // &quot;Olá, Primo!&quot; (concatenação)
+`Olá, ${nome}!`;         // &quot;Olá, Primo!&quot; (template literal - mais legível)
+</code></pre></div>
+<p>Strings são <strong>imutáveis</strong> em quase toda linguagem: <code>nome.toUpperCase()</code> <strong>não</strong>
+muda <code>nome</code>, devolve uma string nova. Para guardar, é preciso
+<code>const novo = nome.toUpperCase();</code>.</p>
+<p>Quando o texto tem aspas dentro, use uma barra invertida para escapar:
+<code>&quot;Ele disse: \&quot;olá\&quot;&quot;</code>. Ou use aspas diferentes: <code>&#x27;Ele disse: &quot;olá&quot;&#x27;</code>.</p>
+<h2>Experimente</h2>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-javascript">const frase = &quot;  aprender programação é divertido  &quot;;
+console.log(&quot;original:&quot;, JSON.stringify(frase));
+console.log(&quot;tamanho:&quot;, frase.length);
+console.log(&quot;sem espaços:&quot;, JSON.stringify(frase.trim()));
+console.log(&quot;maiúsculo:&quot;, frase.toUpperCase());
+console.log(&quot;começa com &#x27;aprender&#x27;?&quot;, frase.trim().startsWith(&quot;aprender&quot;));
+</code></pre></div>
+</div>

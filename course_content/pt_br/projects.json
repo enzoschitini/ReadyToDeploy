@@ -1,0 +1,249 @@
+{
+  "projects": [
+    {
+      "id": "calculadora-de-gorjeta",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Calculadora de Gorjeta",
+      "description": "Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.",
+      "level": "Iniciante",
+      "duration": "2-3 horas",
+      "published": "2026-08-30",
+      "skills": ["javascript", "dom", "html", "css"],
+      "hot": true,
+      "rating": { "score": 5.0, "count": 4 },
+      "detail": {
+        "introHtml": "Digite o valor da conta, a porcentagem da gorjeta e quantas pessoas: a página mostra quanto cada um paga. É o primeiro projeto que <strong>reage</strong> ao que o usuário faz.",
+        "objectiveHtml": "Conectar HTML e JavaScript: ler valores de <code>&lt;input&gt;</code>, fazer uma conta e escrever o resultado de volta na tela. Aqui entram <strong>eventos</strong> e <strong>manipulação do DOM</strong>.",
+        "requirements": [
+          "Campos para: valor da conta, % de gorjeta e número de pessoas",
+          "Calcular o total (conta + gorjeta) e o valor por pessoa",
+          "Atualizar o resultado ao clicar num botão <strong>ou</strong> ao digitar",
+          "Formatar o resultado como dinheiro (ex.: <code>R$ 12,50</code>)",
+          "Tratar entradas inválidas (número de pessoas = 0, campo vazio)"
+        ],
+        "challenges": [
+          "Botões de gorjeta rápida (10%, 15%, 20%) além do campo manual",
+          "Salvar a última gorjeta escolhida no <code>localStorage</code>",
+          "Botão \"limpar\" que zera tudo"
+        ],
+        "tips": [
+          "Valores de <code>&lt;input&gt;</code> chegam como <strong>texto</strong>. Converta com <code>Number(...)</code> antes de calcular, e cheque <code>Number.isNaN(...)</code>.",
+          "<code>Intl.NumberFormat(\"pt-BR\", { style: \"currency\", currency: \"BRL\" })</code> formata dinheiro pra você.",
+          "Comece fazendo a conta aparecer no <code>console.log</code>. Só depois jogue na tela."
+        ],
+        "trilhas": ["programacao-do-zero"],
+        "creator": { "name": "Luciano dii Souza", "github": "lucianodiisouza" }
+      }
+    },
+    {
+      "id": "api-rest-com-autenticacao",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "API REST com Autenticação",
+      "description": "Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes.",
+      "level": "Intermediário",
+      "duration": "1-2 semanas",
+      "published": "2026-08-25",
+      "skills": ["backend", "api", "autenticacao", "banco-de-dados", "testes"]
+    },
+    {
+      "id": "dashboard-analitico",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Dashboard Analítico",
+      "description": "Um painel com gráficos e métricas em React, com foco em performance e organização de estado.",
+      "level": "Avançado",
+      "duration": "1-2 semanas",
+      "published": "2026-08-30",
+      "skills": ["react", "performance", "dataviz", "typescript"]
+    },
+    {
+      "id": "catalogo-de-produtos-react",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Catálogo de Produtos em React",
+      "description": "Construa uma vitrine interativa com cards reutilizáveis, filtros, busca, estados vazios e uma experiência visual gostosa de explorar.",
+      "level": "Iniciante",
+      "duration": "4-6 horas",
+      "published": "2026-08-30",
+      "skills": ["react", "jsx", "componentes", "props", "listas", "renderizacao-condicional", "eventos", "use-state", "acessibilidade"]
+    },
+    {
+      "id": "habit-tracker-react",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Habit Tracker em React",
+      "description": "Crie um rastreador de hábitos com formulário controlado, grade semanal, filtros e estatísticas derivadas.",
+      "level": "Iniciante",
+      "duration": "6-10 horas",
+      "published": "2026-08-30",
+      "skills": ["react", "use-state", "formularios", "formularios-controlados", "estado", "imutabilidade", "estado-derivado", "acessibilidade"]
+    },
+    {
+      "id": "lista-de-tarefas",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Lista de Tarefas",
+      "description": "Um app de to-do que salva suas tarefas mesmo depois de fechar o navegador.",
+      "level": "Iniciante",
+      "duration": "3-5 horas",
+      "published": "2026-08-30",
+      "skills": ["javascript", "dom", "localstorage", "css"]
+    },
+    {
+      "id": "pagina-de-perfil",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Página de Perfil",
+      "description": "Construa sua própria página de perfil (tipo um mini currículo online) só com HTML e CSS.",
+      "level": "Iniciante",
+      "duration": "2-4 horas",
+      "published": "2026-08-30",
+      "skills": ["html", "css", "semantica"]
+    },
+    {
+      "id": "auditoria-de-acessibilidade-web",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Auditoria de Acessibilidade Web",
+      "description": "Escolha um fluxo real ou fictício, corrija barreiras de acessibilidade e entregue um relatório com testes manuais e automatizados.",
+      "level": "Intermediário",
+      "duration": "1 fim de semana",
+      "published": "2026-08-30",
+      "skills": ["acessibilidade", "wcag", "html-semantico", "css", "testes", "aria"]
+    },
+    {
+      "id": "auditoria-seo-aeo-geo",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Auditoria de SEO, AEO e GEO",
+      "description": "Audite e otimize uma página real nas três camadas: SEO técnico, resposta direta (AEO) e citação por IA generativa (GEO).",
+      "level": "Intermediário",
+      "duration": "1 fim de semana",
+      "published": "2026-08-28",
+      "skills": ["seo", "aeo", "geo", "dados-estruturados", "core-web-vitals"]
+    },
+    {
+      "id": "busca-com-filtros",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Busca com Filtros",
+      "description": "Uma lista pesquisável e filtrável, com atenção ao custo das operações conforme os dados crescem.",
+      "level": "Intermediário",
+      "duration": "4-6 horas",
+      "published": "2026-08-30",
+      "skills": ["javascript", "algoritmos", "big-o", "dom"]
+    },
+    {
+      "id": "central-de-notificacoes",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Central de Notificações",
+      "description": "Um serviço que recebe eventos do sistema e decide quem avisa por e-mail, push ou SMS — usando roteamento por topic.",
+      "level": "Intermediário",
+      "duration": "1 semana",
+      "published": "2026-08-26",
+      "skills": ["rabbitmq", "mensageria", "pub-sub", "arquitetura", "backend"]
+    },
+    {
+      "id": "clima-agora",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Clima Agora",
+      "description": "Um app que mostra a previsão do tempo de qualquer cidade consumindo uma API pública.",
+      "level": "Intermediário",
+      "duration": "4-6 horas",
+      "published": "2026-08-30",
+      "skills": ["javascript", "api", "fetch", "async"]
+    },
+    {
+      "id": "servico-com-docker",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Empacote um Serviço com Docker",
+      "description": "Pegue sua API, coloque num container e suba app + banco com um comando só usando Docker Compose — do Dockerfile ao ambiente que roda igual em qualquer máquina.",
+      "level": "Intermediário",
+      "duration": "3-5 dias",
+      "published": "2026-08-25",
+      "skills": ["docker", "containers", "devops", "backend"]
+    },
+    {
+      "id": "fila-de-atendimento",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Fila de Atendimento",
+      "description": "Um sistema de senha de atendimento com prioridade — onde a fila não é uma tabela no banco, é uma fila de verdade.",
+      "level": "Intermediário",
+      "duration": "1 semana",
+      "published": "2026-08-26",
+      "skills": ["rabbitmq", "mensageria", "filas", "api", "backend"]
+    },
+    {
+      "id": "jogo-da-memoria-react",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Jogo da Memória em React",
+      "description": "Construa um jogo da memória com cartas, estado de rodada, pares encontrados, bloqueio de jogadas e feedback visual.",
+      "level": "Intermediário",
+      "duration": "1 fim de semana",
+      "published": "2026-09-03",
+      "skills": ["react", "use-state", "listas", "eventos", "renderizacao-condicional", "use-effect", "use-reducer", "acessibilidade"]
+    },
+    {
+      "id": "kanban-de-missoes-react",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Kanban de Missões em React",
+      "description": "Crie um quadro de missões com colunas, filtros, formulário, reducer e ações explícitas para mover tarefas.",
+      "level": "Intermediário",
+      "duration": "1 fim de semana",
+      "published": "2026-09-03",
+      "skills": ["react", "formularios", "estado", "estado-derivado", "use-reducer", "context", "custom-hooks", "arquitetura", "acessibilidade"]
+    },
+    {
+      "id": "landing-page-responsiva",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Landing Page Responsiva",
+      "description": "Uma página de divulgação de produto que fica perfeita no celular e no desktop, usando Tailwind.",
+      "level": "Intermediário",
+      "duration": "1 fim de semana",
+      "published": "2026-08-30",
+      "skills": ["css", "tailwind", "responsivo", "flexbox", "grid"]
+    },
+    {
+      "id": "modelagem-de-banco",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Modelagem de um Banco de Dados",
+      "description": "Modele o banco de um mini e-commerce e escreva as consultas que respondem perguntas de verdade — só SQL, sem ORM no caminho.",
+      "level": "Intermediário",
+      "duration": "3-5 dias",
+      "published": "2026-08-25",
+      "skills": ["sql", "banco-de-dados", "modelagem", "backend"]
+    },
+    {
+      "id": "pokedex-react",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Pokédex em React",
+      "description": "Construa uma Pokédex que consome API, trata estados assíncronos, organiza favoritos e mostra detalhes em uma arquitetura limpa.",
+      "level": "Intermediário",
+      "duration": "1 fim de semana",
+      "published": "2026-08-30",
+      "skills": ["react", "fetch", "use-effect", "estado-assincrono", "custom-hooks", "context", "use-reducer", "arquitetura", "acessibilidade"]
+    },
+    {
+      "id": "processador-de-planilhas",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Processador de Planilhas",
+      "description": "Upload de CSV grande que responde na hora e processa por trás — com retry, dead letter queue e relatório de erros linha a linha.",
+      "level": "Intermediário",
+      "duration": "1 semana",
+      "published": "2026-08-26",
+      "skills": ["rabbitmq", "mensageria", "workers", "api", "backend"]
+    },
+    {
+      "id": "quiz-react",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Quiz em React",
+      "description": "Um quiz de múltipla escolha em React, com pontuação e tela de resultado.",
+      "level": "Intermediário",
+      "duration": "1 fim de semana",
+      "published": "2026-08-30",
+      "skills": ["react", "hooks", "state", "componentes"]
+    },
+    {
+      "id": "encurtador-de-url",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Encurtador de URL",
+      "description": "Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura.",
+      "level": "Avançado",
+      "duration": "1-2 semanas",
+      "published": "2026-08-30",
+      "skills": ["system-design", "api", "backend", "banco-de-dados"]
+    }
+  ]
+}

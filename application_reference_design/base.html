@@ -471,13 +471,6 @@ blockquote.manifesto{
 .footer-bottom-inner a{font-weight:700;color:var(--brand-pink);transition:color .15s;}
 .footer-bottom-inner a:hover{color:var(--foreground);}
 
-/* aviso de falha ao carregar o conteúdo (JSON) */
-.load-error{
-  display:none;margin-block:1rem;border-radius:.75rem;border:1px solid rgba(255,121,198,.4);
-  background:rgba(255,121,198,.08);padding:1rem;font-family:var(--font-mono);font-size:.875rem;color:var(--brand-pink);
-}
-.load-error.show{display:block;}
-
 /* utilitários de cor */
 .c-accent{color:var(--brand-indigo);}
 .c-cyan{color:var(--brand-cyan);}
@@ -487,17 +480,22 @@ blockquote.manifesto{
 </head>
 
 <body>
-<a href="#conteudo" class="sr-only skip-link" id="skip-link">Pular para o conteúdo</a>
+<a href="#conteudo" class="sr-only skip-link">Pular para o conteúdo</a>
 
 <!-- ============================ HEADER ============================ -->
 <header class="site-header">
   <div class="container header-inner">
-    <a href="index.html" class="brand" id="brand" aria-label="início"></a>
+    <a href="#" class="brand" aria-label="Primo Academy - início"><span class="slash">~/</span>.primo-academy.sh</a>
 
-    <nav class="main-nav" id="main-nav" aria-label="Principal"></nav>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="trilhas.html">Trilhas</a>
+      <a href="bootcamps.html">Bootcamps</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="#contribua">Ranking</a>
+    </nav>
 
     <div class="header-actions">
-      <a href="#" class="btn-sm" id="header-cta"></a>
+      <a href="#contribua" class="btn-sm">Entrar</a>
     </div>
 
     <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
@@ -508,8 +506,13 @@ blockquote.manifesto{
   </div>
 
   <div class="mobile-menu" id="menu-mobile">
-    <nav class="container" id="mobile-nav" aria-label="Menu mobile">
-      <ul id="mobile-nav-list"></ul>
+    <nav class="container" aria-label="Menu mobile">
+      <ul>
+        <li><a href="trilhas.html">Trilhas</a></li>
+        <li><a href="bootcamps.html">Bootcamps</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="#contribua">Ranking</a></li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -527,49 +530,62 @@ blockquote.manifesto{
     </div>
 
     <div class="container hero">
-      <p class="load-error" id="load-error" role="alert"></p>
-
       <!-- ============================ HERO ============================ -->
       <div class="hero-grid">
         <div>
           <div class="eyebrow-row">
-            <p class="eyebrow" id="hero-eyebrow"></p>
+            <p class="eyebrow">Grátis · Open source · PT-BR</p>
             <span class="live-tag">
-              <span class="dot-live"><span class="anim-live"></span><span></span></span><span id="hero-live"></span>
+              <span class="dot-live"><span class="anim-live"></span><span></span></span>no ar
             </span>
           </div>
 
           <h1 class="hero-title">
-            <span class="grad-text anim-gradient" id="hero-title-static"></span>
-            <span class="word grad-text anim-gradient" id="rotating-word"></span>
+            <span class="grad-text anim-gradient">Aprenda</span>
+            <span class="word grad-text anim-gradient" id="rotating-word" aria-label="APRENDA PROGRAMAR">PROGRAMAR</span>
           </h1>
 
           <p class="hero-lead">
-            <span id="hero-lead-before"></span>
-            <code class="type"><span id="type-text"></span><span class="caret anim-caret" aria-hidden="true"></span></code>
-            <span id="hero-lead-after"></span>
+            Do primeiro <code class="type"><span id="type-text"></span><span class="caret anim-caret" aria-hidden="true"></span></code>
+            ao primeiro projeto no ar. Trilhas guiadas em português, no seu ritmo.
           </p>
 
-          <div class="cta-row" id="hero-ctas"></div>
+          <div class="cta-row">
+            <a href="#trilhas" class="btn btn-primary">Começar agora →</a>
+            <a href="https://github.com/lucianodiisouza/aprenda-community" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver no GitHub</a>
+          </div>
         </div>
 
         <div class="hero-portrait" aria-hidden="true">
           <div class="halo-1 anim-blob-halo"></div>
           <div class="halo-2 anim-blob-halo"></div>
           <div class="blob-photo anim-blob">
-            <img id="hero-portrait-img" src="" alt="" loading="eager" decoding="async" />
+            <img src="https://aprenda.oprimo.dev/luciano.jpg" alt="" loading="eager" decoding="async" />
             <div class="veil"></div>
           </div>
         </div>
       </div>
 
       <!-- ============================ STATS ============================ -->
-      <dl class="stats" id="stats"></dl>
+      <dl class="stats">
+        <div>
+          <dt>trilhas</dt>
+          <dd class="c-accent" data-count="41">0</dd>
+        </div>
+        <div>
+          <dt>projetos</dt>
+          <dd class="c-cyan" data-count="22">0</dd>
+        </div>
+        <div>
+          <dt>nós</dt>
+          <dd class="c-pink" data-count="483">0</dd>
+        </div>
+      </dl>
 
       <!-- ============================ MANIFESTO ============================ -->
       <section id="manifesto" class="s-mt-20" aria-labelledby="manifesto-titulo">
         <div class="reveal">
-          <h2 id="manifesto-titulo" class="kicker"></h2>
+          <h2 id="manifesto-titulo" class="kicker">// manifesto</h2>
         </div>
         <div class="reveal" style="animation-delay:80ms">
           <div class="panel">
@@ -581,54 +597,177 @@ blockquote.manifesto{
                 <path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/>
               </svg>
 
-              <blockquote class="manifesto" id="manifesto-quote"></blockquote>
+              <blockquote class="manifesto">
+                Se Inteligência Artificial veio para ficar ou se ela vai sumir um dia, <br />
+                <span class="c-cyan">aprender virou <strong class="c-accent">prioridade[0]</strong>.</span>
+              </blockquote>
 
-              <p class="manifesto-p" id="manifesto-text"></p>
+              <p class="manifesto-p">
+                Roadmaps, trilhas e projetos curados por Luciano dii Souza,
+                <strong class="c-fg" style="font-weight:600">OPrimoDev</strong>: são
+                <strong class="c-accent" style="font-weight:600">12 anos</strong>
+                de Engenharia de Software e experiência em projetos nacionais e internacionais.
+              </p>
 
-              <p class="manifesto-pull" id="manifesto-pull"></p>
+              <p class="manifesto-pull">
+                Numa era com tanto conteúdo, separar o joio do trigo é a única forma de aprender de verdade.
+              </p>
 
               <div class="manifesto-foot">
-                <a href="#trilhas" class="cta-inline" id="manifesto-cta"></a>
-                <span class="foot-note" id="manifesto-note"></span>
+                <a href="#trilhas" class="cta-inline">
+                  Aprenda de graça. Contribua pra que mais gente aprenda.<span class="arrow" aria-hidden="true">→</span>
+                </a>
+                <span class="foot-note">grátis · open source · PT-BR</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ============================ TRILHAS (modules) ============================ -->
+      <!-- ============================ TRILHAS ============================ -->
       <section id="trilhas" class="s-mt-16" aria-labelledby="trilhas-titulo">
         <div class="reveal">
           <div class="sec-head">
-            <h2 id="trilhas-titulo" class="kicker"></h2>
-            <a href="pages/modules.html" class="see-all" id="trilhas-seeall"></a>
+            <h2 id="trilhas-titulo" class="kicker">// trilhas</h2>
+            <a href="trilhas.html" class="see-all">ver todos<span>→</span></a>
           </div>
         </div>
         <div class="reveal" style="animation-delay:80ms">
-          <div class="card-grid stagger" id="trilhas-grid"></div>
+          <div class="card-grid stagger">
+            <a class="card" href="programacao_do_zero.html">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">13 nós</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 4.8 de 5, 31 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">4.8</span><span class="count" aria-hidden="true">(31)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Programação do Zero</h3>
+              <p>Trilha para quem nunca programou: do pensamento computacional ao primeiro projeto real, com uma linguagem à sua escolha.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+
+            <a class="card" href="#trilhas">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="meta-text">15 nós</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 22 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(22)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Backend</h3>
+              <p>Trilha para quem quer construir a parte que roda no servidor: do HTTP e Node.js até uma API completa em Express, com banco de dados, autenticação e deploy.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+
+            <a class="card" href="#trilhas">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">23 nós</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 10 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(10)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Git</h3>
+              <p>Trilha completa de Git - do controle de versão do zero (o que é um commit) até rebase, reflog, bisect e workflows de colaboração. Cobre básico, intermediário e avançado, com prática em cada nível e um projeto final de contribuição open source.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+
+            <a class="card" href="#trilhas">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="meta-text">14 nós</span>
+                <span class="meta-right">
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 10 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(10)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>SQL e Banco de Dados</h3>
+              <p>Trilha de SQL puro, do zero: modelagem, consultas, joins, agregação, índices, transações e segurança. Base sólida para quem vai usar qualquer ORM depois.</p>
+              <span class="card-cta">ver trilha →</span>
+            </a>
+          </div>
         </div>
       </section>
 
-      <!-- ============================ PROJETOS (projects) ============================ -->
+      <!-- ============================ PROJETOS ============================ -->
       <section id="projetos" class="s-mt-16" aria-labelledby="projetos-titulo">
         <div class="reveal">
           <div class="sec-head">
-            <h2 id="projetos-titulo" class="kicker"></h2>
-            <a href="pages/projects.html" class="see-all" id="projetos-seeall"></a>
+            <h2 id="projetos-titulo" class="kicker">// projetos</h2>
+            <a href="projetos.html" class="see-all">ver todos<span>→</span></a>
           </div>
         </div>
         <div class="reveal" style="animation-delay:80ms">
-          <p class="sec-sub" id="projetos-sub"></p>
+          <p class="sec-sub">Aprender de verdade é construindo. Pratique o que as trilhas ensinam.</p>
         </div>
         <div class="reveal" style="animation-delay:160ms">
-          <div class="card-grid stagger" id="projetos-grid"></div>
+          <div class="card-grid stagger">
+            <a class="card" href="calculadora_de_gorjeta.html">
+              <div class="card-meta">
+                <span class="badge">Iniciante</span>
+                <span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">2-3 horas</span>
+                <span class="meta-right">
+                  <span class="pill-hot" aria-label="Conteúdo em alta"><span aria-hidden="true">🔥</span>em alta</span>
+                  <span class="rating" aria-label="Avaliação média 5.0 de 5, 4 avaliações">
+                    <span class="star" aria-hidden="true">★</span><span class="score">5.0</span><span class="count" aria-hidden="true">(4)</span>
+                  </span>
+                </span>
+              </div>
+              <h3>Calculadora de Gorjeta</h3>
+              <p>Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.</p>
+              <div class="tag-row">
+                <span class="tag">javascript</span><span class="tag">dom</span><span class="tag">html</span><span class="tag">css</span>
+              </div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+
+            <a class="card" href="#projetos">
+              <div class="card-meta">
+                <span class="badge">Intermediário</span>
+                <span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">1-2 semanas</span>
+              </div>
+              <h3>API REST com Autenticação</h3>
+              <p>Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes.</p>
+              <div class="tag-row">
+                <span class="tag">backend</span><span class="tag">api</span><span class="tag">autenticacao</span><span class="tag">banco-de-dados</span><span class="tag">+1</span>
+              </div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+
+            <a class="card" href="#projetos">
+              <div class="card-meta">
+                <span class="badge">Avançado</span>
+                <span class="pill-new" aria-label="Conteúdo novo">novo</span>
+                <span class="meta-text">1-2 semanas</span>
+              </div>
+              <h3>Dashboard Analítico</h3>
+              <p>Um painel com gráficos e métricas em React, com foco em performance e organização de estado.</p>
+              <div class="tag-row">
+                <span class="tag">react</span><span class="tag">performance</span><span class="tag">dataviz</span><span class="tag">typescript</span>
+              </div>
+              <span class="card-cta">ver projeto →</span>
+            </a>
+          </div>
         </div>
       </section>
 
       <!-- ============================ IDEALIZADOR ============================ -->
       <section id="idealizador" class="s-mt-20" aria-labelledby="idealizador-titulo">
         <div class="reveal">
-          <h2 id="idealizador-titulo" class="kicker"></h2>
+          <h2 id="idealizador-titulo" class="kicker">// idealizador</h2>
         </div>
         <div class="reveal" style="animation-delay:120ms">
           <div class="author-panel">
@@ -638,15 +777,15 @@ blockquote.manifesto{
             <div class="author-inner">
               <div class="avatar-wrap">
                 <div class="avatar">
-                  <img id="author-avatar" src="" alt="" width="112" height="112" loading="lazy" />
+                  <img src="https://github.com/lucianodiisouza.png?size=200" alt="Foto de PrimoDev" width="112" height="112" loading="lazy" />
                 </div>
-                <span class="online-dot" id="author-online-dot" aria-label="Online"><span class="anim-live"></span></span>
+                <span class="online-dot" aria-label="Online"><span class="anim-live"></span></span>
               </div>
 
               <div class="author-body">
                 <div class="author-name-row">
-                  <h3 id="author-name"></h3>
-                  <span class="handle" id="author-handle"></span>
+                  <h3>PrimoDev</h3>
+                  <span class="handle">@lucianodiisouza</span>
                 </div>
 
                 <div class="chip-row">
@@ -654,18 +793,31 @@ blockquote.manifesto{
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
                       <path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>
-                    </svg><span id="author-chip"></span>
+                    </svg>criador do projeto
                   </span>
                   <span class="chip-online">
-                    <span class="dot-live"><span class="anim-live"></span><span></span></span><span id="author-online"></span>
+                    <span class="dot-live"><span class="anim-live"></span><span></span></span>online
                   </span>
                 </div>
 
-                <p class="author-bio" id="author-bio"></p>
+                <p class="author-bio">Engenheiro de software apaixonado por educação. Criei a Primo Academy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.</p>
 
-                <ul class="skill-list" id="author-skills"></ul>
+                <ul class="skill-list">
+                  <li>React Native</li><li>TypeScript</li><li>SwiftUI</li>
+                </ul>
 
-                <div class="author-links" id="author-links"></div>
+                <div class="author-links">
+                  <a href="https://oprimo.dev" target="_blank" rel="noopener noreferrer" class="link-solid">
+                    oprimo.dev
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                  </a>
+                  <a href="https://github.com/lucianodiisouza" target="_blank" rel="noopener noreferrer" class="link-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                      <path d="M9 18c-4.51 2-5-2-7-2"/>
+                    </svg>GitHub
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -675,7 +827,7 @@ blockquote.manifesto{
       <!-- ============================ CONTRIBUA ============================ -->
       <section id="contribua" class="s-mt-20" aria-labelledby="contribua-titulo">
         <div class="reveal">
-          <h2 id="contribua-titulo" class="kicker"></h2>
+          <h2 id="contribua-titulo" class="kicker">// contribua</h2>
         </div>
         <div class="reveal" style="animation-delay:80ms">
           <div class="panel">
@@ -688,24 +840,45 @@ blockquote.manifesto{
                   <span class="tdot" style="background:#ff5555"></span>
                   <span class="tdot" style="background:#f1fa8c"></span>
                   <span class="tdot" style="background:#7d6cff"></span>
-                  <span class="path" id="terminal-path"></span>
+                  <span class="path">~/primo-academy</span>
                 </div>
-                <div class="terminal-body" id="terminal-body"></div>
+                <div class="terminal-body">
+                  <p><span class="t-prompt">$</span> <span class="c-fg">git clone</span> <span class="t-url">https://github.com/lucianodiisouza/aprenda-community</span></p>
+                  <p><span class="t-prompt">$</span> <span class="c-fg">cd</span> <span class="c-fg">aprenda-community</span></p>
+                  <p><span class="t-prompt">$</span> <span class="c-fg">pnpm install</span></p>
+                  <p>
+                    <span class="t-prompt">$</span> <span class="c-fg">pnpm content:new</span>
+                    <span class="t-comment">// cria uma nova trilha</span>
+                    <span class="caret anim-caret" aria-hidden="true" style="margin-left:.25rem"></span>
+                  </p>
+                </div>
               </div>
 
               <div class="contrib-grid">
                 <div>
-                  <h3 id="contrib-title"></h3>
-                  <p id="contrib-text"></p>
+                  <h3>Faça parte do que vem <span class="c-accent">depois</span>.</h3>
+                  <p>A Primo Academy é open source e vive de contribuição. Toda ajuda conta, seja uma trilha nova, correção de typo ou compartilhamento com quem precisa.</p>
                 </div>
-                <div class="contrib-btns" id="contrib-btns"></div>
+                <div class="contrib-btns">
+                  <a href="https://github.com/lucianodiisouza/aprenda-community" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver no GitHub →</a>
+                  <a href="https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Guia de contribuição</a>
+                </div>
               </div>
 
               <div class="contributors">
-                <p class="foot-note" id="contributors-title"></p>
+                <p class="foot-note">// quem já construiu isso (8)</p>
                 <div class="contributors-row">
-                  <ul class="avatars" id="contributors-avatars" aria-label="Contribuidores"></ul>
-                  <p id="contributors-note"></p>
+                  <ul class="avatars" aria-label="Contribuidores">
+                    <li><a href="https://github.com/lucianodiisouza" target="_blank" rel="noopener noreferrer" aria-label="Luciano dii Souza — 46 contribuições"><img src="https://github.com/lucianodiisouza.png" alt="Luciano dii Souza" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/brunofhorn" target="_blank" rel="noopener noreferrer" aria-label="Bruno Fernandes Horn — 9 contribuições"><img src="https://github.com/brunofhorn.png" alt="Bruno Fernandes Horn" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/obrenoalvim" target="_blank" rel="noopener noreferrer" aria-label="Breno Alvim — 4 contribuições"><img src="https://github.com/obrenoalvim.png" alt="Breno Alvim" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/rafa-coelho" target="_blank" rel="noopener noreferrer" aria-label="Rafael Coelho — 4 contribuições"><img src="https://github.com/rafa-coelho.png" alt="Rafael Coelho" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/ajesus1308" target="_blank" rel="noopener noreferrer" aria-label="Alex Jesus (ojesus_cyber) — 2 contribuições"><img src="https://github.com/ajesus1308.png" alt="Alex Jesus (ojesus_cyber)" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/lucasgab2230" target="_blank" rel="noopener noreferrer" aria-label="Lucas Gabriel Witchemichen — 2 contribuições"><img src="https://github.com/lucasgab2230.png" alt="Lucas Gabriel Witchemichen" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/theneocarvalho" target="_blank" rel="noopener noreferrer" aria-label="Manoel Carvalho — 2 contribuições"><img src="https://github.com/theneocarvalho.png" alt="Manoel Carvalho" width="44" height="44" loading="lazy" /></a></li>
+                    <li><a href="https://github.com/lucaspedruo" target="_blank" rel="noopener noreferrer" aria-label="Lucas Pedro — 1 contribuição"><img src="https://github.com/lucaspedruo.png" alt="Lucas Pedro" width="44" height="44" loading="lazy" /></a></li>
+                  </ul>
+                  <p>Trilhas, projetos e bootcamps construídos por gente da comunidade. <span class="c-fg">Seu avatar pode ser o próximo.</span></p>
                 </div>
               </div>
             </div>
@@ -720,24 +893,41 @@ blockquote.manifesto{
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <p id="footer-brand"></p>
-      <p class="footer-desc" id="footer-desc"></p>
-      <a href="#" rel="noopener noreferrer" target="_blank" class="footer-gh" id="footer-gh">
+      <p><span class="c-accent">~/</span>.primo-academy.sh</p>
+      <p class="footer-desc">Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.</p>
+      <a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank" class="footer-gh">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
           <path d="M9 18c-4.51 2-5-2-7-2"/>
         </svg>
-        <span id="footer-gh-label"></span>
+        <span>github.com/lucianodiisouza/aprenda-community</span>
       </a>
     </div>
 
-    <div id="footer-cols" style="display:contents"></div>
+    <div class="footer-col">
+      <h2>// conteúdo</h2>
+      <ul>
+        <li><a href="trilhas.html">Trilhas</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="bootcamps.html">Bootcamps</a></li>
+        <li><a href="#contribua">Ranking</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2>// projeto</h2>
+      <ul>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community" rel="noopener noreferrer" target="_blank">Código no GitHub</a></li>
+        <li><a href="https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md" rel="noopener noreferrer" target="_blank">Como contribuir</a></li>
+        <li><a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">Sobre o autor</a></li>
+      </ul>
+    </div>
   </div>
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p id="footer-license"></p>
-      <p id="footer-credit"></p>
+      <p>© 2026 · código sob <span class="strong">AGPL-3.0</span> · conteúdo sob <span class="strong">CC BY-SA 4.0</span></p>
+      <p>criado por <a href="https://oprimo.dev" rel="noopener noreferrer" target="_blank">OPrimoDev</a></p>
     </div>
   </div>
 </footer>
@@ -746,394 +936,112 @@ blockquote.manifesto{
 (function () {
   'use strict';
 
-  /* ============================================================
-     Fontes de conteúdo (ver README — estrutura do projeto)
-       application_content → textos fixos da interface
-       course_content      → conteúdo educacional (trilhas, projetos...)
-     ============================================================ */
-  var APP_CONTENT = 'application_content/pt_br/';
-  var COURSE_CONTENT = 'course_content/pt_br/';
-
-  var $ = function (id) { return document.getElementById(id); };
-
-  function esc(value) {
-    return String(value == null ? '' : value)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  function text(id, value) { var el = $(id); if (el) el.textContent = value == null ? '' : value; }
-  function html(id, value) { var el = $(id); if (el) el.innerHTML = value == null ? '' : value; }
-
-  function getJSON(url) {
-    return fetch(url, { cache: 'no-cache' }).then(function (res) {
-      if (!res.ok) throw new Error(url + ' → HTTP ' + res.status);
-      return res.json();
-    });
-  }
-
-  function linkAttrs(item) {
-    return item && item.external ? ' target="_blank" rel="noopener noreferrer"' : '';
-  }
-
-  var ICONS = {
-    external: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>',
-    github: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>'
-  };
-
-  /* ---------- blocos reutilizáveis dos cards ---------- */
-  function pillHot(labels) {
-    return '<span class="pill-hot" aria-label="' + esc(labels.hotAria) + '">' +
-           '<span aria-hidden="true">🔥</span>' + esc(labels.hot) + '</span>';
-  }
-
-  function pillNew(labels) {
-    return '<span class="pill-new" aria-label="' + esc(labels.newAria) + '">' + esc(labels['new']) + '</span>';
-  }
-
-  function rating(value, labels) {
-    if (!value) return '';
-    var score = Number(value.score).toFixed(1);
-    var aria = String(labels.ratingAria || '').replace('{score}', score).replace('{count}', value.count);
-    return '<span class="rating" aria-label="' + esc(aria) + '">' +
-           '<span class="star" aria-hidden="true">★</span>' +
-           '<span class="score">' + esc(score) + '</span>' +
-           '<span class="count" aria-hidden="true">(' + esc(value.count) + ')</span></span>';
-  }
-
-  function metaRight(item, labels) {
-    var inner = (item.hot ? pillHot(labels) : '') + rating(item.rating, labels);
-    return inner ? '<span class="meta-right">' + inner + '</span>' : '';
-  }
-
-  function moduleCard(item, section, labels) {
-    return '<a class="card" href="' + esc(section.itemHref + item.id) + '">' +
-      '<div class="card-meta">' +
-        '<span class="badge">' + esc(item.level) + '</span>' +
-        '<span class="meta-text">' + esc(item.nodes) + ' ' + esc(section.nodesLabel) + '</span>' +
-        metaRight(item, labels) +
-      '</div>' +
-      '<h3>' + esc(item.title) + '</h3>' +
-      '<p>' + esc(item.description) + '</p>' +
-      '<span class="card-cta">' + esc(section.itemCta) + '</span>' +
-    '</a>';
-  }
-
-  /* "novo" = publicado nos últimos `newDays` dias (mesma regra de pages/projects.html) */
-  function isNew(item, section) {
-    var t = Date.parse(item.published);
-    if (isNaN(t)) return false;
-    var age = Date.now() - t;
-    return age >= 0 && age <= 86400000 * (section.newDays || 30);
-  }
-
-  function projectCard(item, section, labels) {
-    var skills = item.skills || [];
-    var shown = skills.slice(0, section.maxTags || skills.length);
-    var rest = skills.length - shown.length;
-    var tags = shown.map(function (skill) {
-      return '<span class="tag">' + esc(skill) + '</span>';
-    }).join('');
-    if (rest > 0) {
-      tags += '<span class="tag">' + esc(String(section.moreTagsFormat || '+{count}').replace('{count}', rest)) + '</span>';
-    }
-    return '<a class="card" href="' + esc(section.itemHref + item.id) + '">' +
-      '<div class="card-meta">' +
-        '<span class="badge">' + esc(item.level) + '</span>' +
-        (isNew(item, section) ? pillNew(labels) : '') +
-        '<span class="meta-text">' + esc(item.duration) + '</span>' +
-        metaRight(item, labels) +
-      '</div>' +
-      '<h3>' + esc(item.title) + '</h3>' +
-      '<p>' + esc(item.description) + '</p>' +
-      (tags ? '<div class="tag-row">' + tags + '</div>' : '') +
-      '<span class="card-cta">' + esc(section.itemCta) + '</span>' +
-    '</a>';
-  }
-
-  function renderCards(containerId, items, section, labels, cardFn) {
-    var list = (items || []).slice(0, section.limit || items.length);
-    if (!list.length) {
-      html(containerId, '<p class="sec-sub">' + esc(section.empty) + '</p>');
-      return;
-    }
-    html(containerId, list.map(function (item) { return cardFn(item, section, labels); }).join(''));
-  }
-
-  /* ============================================================
-     RENDER
-     ============================================================ */
-  function render(c, modules, projects) {
-    /* ---------- meta ---------- */
-    document.title = c.meta.title;
-    var desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', c.meta.description);
-    text('skip-link', c.skipLink);
-
-    /* ---------- header ---------- */
-    var brand = $('brand');
-    brand.href = c.brand.href;
-    brand.setAttribute('aria-label', c.brand.ariaLabel);
-    brand.innerHTML = '<span class="slash">' + esc(c.brand.slash) + '</span>' + esc(c.brand.name);
-
-    var navLinks = c.nav.links.map(function (link) {
-      return '<a href="' + esc(link.href) + '"' + linkAttrs(link) + '>' + esc(link.label) + '</a>';
-    }).join('');
-    html('main-nav', navLinks);
-    $('main-nav').setAttribute('aria-label', c.nav.ariaLabel);
-    html('mobile-nav-list', c.nav.links.map(function (link) {
-      return '<li><a href="' + esc(link.href) + '"' + linkAttrs(link) + '>' + esc(link.label) + '</a></li>';
-    }).join(''));
-    $('mobile-nav').setAttribute('aria-label', c.nav.mobileAriaLabel);
-
-    var headerCta = $('header-cta');
-    headerCta.href = c.nav.cta.href;
-    headerCta.textContent = c.nav.cta.label;
-
-    /* ---------- hero ---------- */
-    text('hero-eyebrow', c.hero.eyebrow);
-    text('hero-live', c.hero.liveTag);
-    text('hero-title-static', c.hero.titleStatic);
-    var word = $('rotating-word');
-    word.textContent = c.hero.rotatingWords[0];
-    word.setAttribute('aria-label', c.hero.titleAriaPrefix + ' ' + c.hero.rotatingWords[0]);
-    text('hero-lead-before', c.hero.leadBefore + ' ');
-    text('hero-lead-after', ' ' + c.hero.leadAfter);
-    html('hero-ctas', c.hero.ctas.map(function (cta) {
-      return '<a href="' + esc(cta.href) + '" class="btn btn-' + esc(cta.variant) + '"' + linkAttrs(cta) + '>' + esc(cta.label) + '</a>';
-    }).join(''));
-    var portrait = $('hero-portrait-img');
-    portrait.src = c.hero.portrait.src;
-    portrait.alt = c.hero.portrait.alt;
-
-    /* ---------- stats ---------- */
-    html('stats', c.stats.map(function (stat) {
-      return '<div><dt>' + esc(stat.label) + '</dt>' +
-             '<dd class="' + esc(stat.tone) + '" data-count="' + esc(stat.value) + '">0</dd></div>';
-    }).join(''));
-
-    /* ---------- manifesto ---------- */
-    text('manifesto-titulo', c.manifesto.kicker);
-    html('manifesto-quote', c.manifesto.quoteHtml);
-    html('manifesto-text', c.manifesto.textHtml);
-    text('manifesto-pull', c.manifesto.pull);
-    var mCta = $('manifesto-cta');
-    mCta.href = c.manifesto.cta.href;
-    mCta.innerHTML = esc(c.manifesto.cta.label) + '<span class="arrow" aria-hidden="true">→</span>';
-    text('manifesto-note', c.manifesto.note);
-
-    /* ---------- trilhas (modules) + projetos ---------- */
-    var secModules = c.sections.modules;
-    text('trilhas-titulo', secModules.kicker);
-    var seeModules = $('trilhas-seeall');
-    seeModules.href = secModules.seeAll.href;
-    seeModules.innerHTML = esc(secModules.seeAll.label) + '<span>→</span>';
-    renderCards('trilhas-grid', modules, secModules, c.labels, moduleCard);
-
-    var secProjects = c.sections.projects;
-    text('projetos-titulo', secProjects.kicker);
-    text('projetos-sub', secProjects.subtitle);
-    var seeProjects = $('projetos-seeall');
-    seeProjects.href = secProjects.seeAll.href;
-    seeProjects.innerHTML = esc(secProjects.seeAll.label) + '<span>→</span>';
-    renderCards('projetos-grid', projects, secProjects, c.labels, projectCard);
-
-    /* ---------- idealizador ---------- */
-    text('idealizador-titulo', c.author.kicker);
-    var avatar = $('author-avatar');
-    avatar.src = c.author.avatar.src;
-    avatar.alt = c.author.avatar.alt;
-    $('author-online-dot').setAttribute('aria-label', c.author.onlineAria);
-    text('author-name', c.author.name);
-    text('author-handle', c.author.handle);
-    text('author-chip', c.author.chip);
-    text('author-online', c.author.onlineLabel);
-    text('author-bio', c.author.bio);
-    html('author-skills', c.author.skills.map(function (skill) {
-      return '<li>' + esc(skill) + '</li>';
-    }).join(''));
-    html('author-links', c.author.links.map(function (link) {
-      var icon = ICONS[link.icon] || '';
-      var body = link.style === 'solid' ? esc(link.label) + icon : icon + esc(link.label);
-      return '<a href="' + esc(link.href) + '" target="_blank" rel="noopener noreferrer" class="link-' +
-             esc(link.style) + '">' + body + '</a>';
-    }).join(''));
-
-    /* ---------- contribua ---------- */
-    text('contribua-titulo', c.contribute.kicker);
-    text('terminal-path', c.contribute.terminal.path);
-    html('terminal-body', c.contribute.terminal.lines.map(function (line) {
-      var arg = '';
-      if (line.arg) {
-        arg = ' <span class="' + (line.argType === 'url' ? 't-url' : 'c-fg') + '">' + esc(line.arg) + '</span>';
-      }
-      var comment = line.comment ? ' <span class="t-comment">' + esc(line.comment) + '</span>' : '';
-      var caret = line.caret ? ' <span class="caret anim-caret" aria-hidden="true" style="margin-left:.25rem"></span>' : '';
-      return '<p><span class="t-prompt">$</span> <span class="c-fg">' + esc(line.cmd) + '</span>' + arg + comment + caret + '</p>';
-    }).join(''));
-    html('contrib-title', c.contribute.titleHtml);
-    text('contrib-text', c.contribute.text);
-    html('contrib-btns', c.contribute.buttons.map(function (btn) {
-      return '<a href="' + esc(btn.href) + '" class="btn btn-' + esc(btn.variant) + '"' + linkAttrs(btn) + '>' + esc(btn.label) + '</a>';
-    }).join(''));
-
-    var contributors = c.contribute.contributors;
-    text('contributors-title', contributors.title);
-    $('contributors-avatars').setAttribute('aria-label', contributors.ariaLabel);
-    html('contributors-avatars', contributors.items.map(function (person) {
-      var label = person.name + ' — ' + person.contributions +
-                  (person.contributions === 1 ? ' contribuição' : ' contribuições');
-      return '<li><a href="https://github.com/' + esc(person.login) + '" target="_blank" rel="noopener noreferrer" aria-label="' + esc(label) + '">' +
-             '<img src="https://github.com/' + esc(person.login) + '.png" alt="' + esc(person.name) + '" width="44" height="44" loading="lazy" /></a></li>';
-    }).join(''));
-    html('contributors-note', contributors.noteHtml);
-
-    /* ---------- footer ---------- */
-    html('footer-brand', '<span class="c-accent">' + esc(c.footer.brand.slash) + '</span>' + esc(c.footer.brand.name));
-    text('footer-desc', c.footer.description);
-    $('footer-gh').href = c.footer.github.href;
-    text('footer-gh-label', c.footer.github.label);
-    html('footer-cols', c.footer.columns.map(function (col) {
-      var links = col.links.map(function (link) {
-        return '<li><a href="' + esc(link.href) + '"' + linkAttrs(link) + '>' + esc(link.label) + '</a></li>';
-      }).join('');
-      return '<div class="footer-col"><h2>' + esc(col.title) + '</h2><ul>' + links + '</ul></div>';
-    }).join(''));
-    html('footer-license', c.footer.bottom.licenseHtml);
-    var credit = c.footer.bottom.credit;
-    html('footer-credit', esc(credit.before) +
-      '<a href="' + esc(credit.href) + '" rel="noopener noreferrer" target="_blank">' + esc(credit.label) + '</a>');
-  }
-
-  /* ============================================================
-     INTERAÇÕES / ANIMAÇÕES
-     ============================================================ */
-  function initInteractions(c) {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* ---------- menu mobile ---------- */
-    var menuBtn = $('menu-btn');
-    var menu = $('menu-mobile');
-    menuBtn.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.setAttribute('aria-label', open ? c.nav.closeLabel : c.nav.openLabel);
-    });
-    menu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        menu.classList.remove('open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    /* ---------- barra de progresso de scroll ---------- */
-    var bar = $('scroll-progress');
-    function updateProgress() {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      var ratio = max > 0 ? window.scrollY / max : 0;
-      bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, ratio)) + ')';
-    }
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('resize', updateProgress);
-    updateProgress();
-
-    /* ---------- reveal ao entrar na viewport ---------- */
-    var reveals = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window && !reduced) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-      reveals.forEach(function (el) { io.observe(el); });
-    } else {
-      reveals.forEach(function (el) { el.style.opacity = '1'; });
-    }
-
-    /* ---------- contadores das estatísticas ---------- */
-    var counters = document.querySelectorAll('.stats dd[data-count]');
-    function runCounter(el) {
-      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-      if (reduced) { el.textContent = String(target); return; }
-      var start = performance.now();
-      var duration = 1200;
-      (function step(now) {
-        var t = Math.min(1, (now - start) / duration);
-        var eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = String(Math.round(target * eased));
-        if (t < 1) requestAnimationFrame(step);
-      })(start);
-    }
-    if ('IntersectionObserver' in window) {
-      var ioc = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { runCounter(entry.target); ioc.unobserve(entry.target); }
-        });
-      }, { threshold: 0.4 });
-      counters.forEach(function (el) { ioc.observe(el); });
-    } else {
-      counters.forEach(runCounter);
-    }
-
-    /* ---------- palavra rotativa do H1 ---------- */
-    var WORDS = c.hero.rotatingWords;
-    var wordEl = $('rotating-word');
-    if (!reduced && WORDS.length > 1) {
-      var wi = 0;
-      setInterval(function () {
-        wi = (wi + 1) % WORDS.length;
-        wordEl.style.opacity = '0';
-        wordEl.style.transition = 'opacity .25s ease-out';
-        setTimeout(function () {
-          wordEl.textContent = WORDS[wi];
-          wordEl.setAttribute('aria-label', c.hero.titleAriaPrefix + ' ' + WORDS[wi]);
-          wordEl.style.opacity = '1';
-        }, 250);
-      }, 2600);
-    }
-
-    /* ---------- typewriter do parágrafo do hero ---------- */
-    var SNIPPETS = c.hero.typeSnippets;
-    var typeEl = $('type-text');
-    if (reduced) {
-      typeEl.textContent = SNIPPETS[0];
-    } else {
-      var si = 0, ci = 0, deleting = false;
-      (function tick() {
-        var full = SNIPPETS[si];
-        ci += deleting ? -1 : 1;
-        typeEl.textContent = full.slice(0, ci);
-        var delay = deleting ? 45 : 85;
-        if (!deleting && ci === full.length) { deleting = true; delay = 1600; }
-        else if (deleting && ci === 0) { deleting = false; si = (si + 1) % SNIPPETS.length; delay = 350; }
-        setTimeout(tick, delay);
-      })();
-    }
-  }
-
-  /* ============================================================
-     BOOT
-     ============================================================ */
-  var empty = function () { return {}; };
-
-  Promise.all([
-    getJSON(APP_CONTENT + 'index.json'),
-    getJSON(COURSE_CONTENT + 'modules.json').catch(empty),
-    getJSON(COURSE_CONTENT + 'projects.json').catch(empty)
-  ]).then(function (data) {
-    var content = data[0];
-    render(content, data[1].modules || [], data[2].projects || []);
-    initInteractions(content);
-  }).catch(function (err) {
-    console.error('[index] falha ao carregar o conteúdo:', err);
-    var box = $('load-error');
-    box.textContent = 'Não foi possível carregar o conteúdo desta página. Abra o site por um servidor HTTP (os arquivos JSON não carregam via file://).';
-    box.classList.add('show');
-    document.querySelectorAll('.reveal').forEach(function (el) { el.style.opacity = '1'; });
+  /* ---------- menu mobile ---------- */
+  var menuBtn = document.getElementById('menu-btn');
+  var menu = document.getElementById('menu-mobile');
+  menuBtn.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
   });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      menu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---------- barra de progresso de scroll ---------- */
+  var bar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var ratio = max > 0 ? window.scrollY / max : 0;
+    bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, ratio)) + ')';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- reveal ao entrar na viewport ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.style.opacity = '1'; });
+  }
+
+  /* ---------- contadores das estatísticas ---------- */
+  var counters = document.querySelectorAll('.stats dd[data-count]');
+  function runCounter(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    if (reduced) { el.textContent = String(target); return; }
+    var start = performance.now();
+    var duration = 1200;
+    (function step(now) {
+      var t = Math.min(1, (now - start) / duration);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = String(Math.round(target * eased));
+      if (t < 1) requestAnimationFrame(step);
+    })(start);
+  }
+  if ('IntersectionObserver' in window) {
+    var ioc = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { runCounter(entry.target); ioc.unobserve(entry.target); }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { ioc.observe(el); });
+  } else {
+    counters.forEach(runCounter);
+  }
+
+  /* ---------- palavra rotativa do H1 (lista original do site) ---------- */
+  var WORDS = ['PROGRAMAR','LÓGICA','HTML','CSS','TYPESCRIPT','FRONTEND','BACKEND','ANGULAR',
+    'NEXT.JS','GIT','TERMINAL','DOCKER','KUBERNETES','SQL','NOSQL','RABBITMQ','ESTRUTURAS',
+    'BIG-O','IA','PROMPTS','PERFORMANCE','ACESSIBILIDADE','SEGURANÇA','TESTES','PWA',
+    'REAL-TIME','SEO','MOTION'];
+  var wordEl = document.getElementById('rotating-word');
+  if (!reduced) {
+    var wi = 0;
+    setInterval(function () {
+      wi = (wi + 1) % WORDS.length;
+      wordEl.style.opacity = '0';
+      wordEl.style.transition = 'opacity .25s ease-out';
+      setTimeout(function () {
+        wordEl.textContent = WORDS[wi];
+        wordEl.setAttribute('aria-label', 'APRENDA ' + WORDS[wi]);
+        wordEl.style.opacity = '1';
+      }, 250);
+    }, 2600);
+  }
+
+  /* ---------- typewriter do parágrafo do hero ---------- */
+  var SNIPPETS = ['console.log("olá, dev")', 'print("olá, dev")', 'git commit -m "start"', 'npm run dev'];
+  var typeEl = document.getElementById('type-text');
+  if (reduced) {
+    typeEl.textContent = SNIPPETS[0];
+  } else {
+    var si = 0, ci = 0, deleting = false;
+    (function tick() {
+      var full = SNIPPETS[si];
+      ci += deleting ? -1 : 1;
+      typeEl.textContent = full.slice(0, ci);
+      var delay = deleting ? 45 : 85;
+      if (!deleting && ci === full.length) { deleting = true; delay = 1600; }
+      else if (deleting && ci === 0) { deleting = false; si = (si + 1) % SNIPPETS.length; delay = 350; }
+      setTimeout(tick, delay);
+    })();
+  }
 })();
 </script>
 </body>
