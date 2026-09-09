@@ -1,0 +1,170 @@
+/* ============================================================
+   Tema claro/escuro — compartilhado por todas as páginas.
+   Carregue este arquivo no <head>, junto com assets/theme.js.
+   As regras usam `html.light` (especificidade maior que `:root`),
+   então funcionam independentemente da ordem em relação ao <style>
+   embutido de cada página.
+   ============================================================ */
+
+:root{
+  color-scheme:dark;
+
+  /* superfícies que dependem do tema */
+  --header-bg:rgba(0,0,0,.8);
+  --header-bg-blur:rgba(0,0,0,.6);
+  --nav-hover-bg:rgba(33,34,44,.6);
+  --hover-border:rgba(248,248,242,.4);
+  --chip-bg:rgba(0,0,0,.6);
+  --chip-fg:rgba(248,248,242,.8);
+  --terminal-bg:#050508;
+  --terminal-bar-bg:#0d0d16;
+  --terminal-bar-border:rgba(255,255,255,.05);
+  --footer-bg:rgba(255,255,255,.02);
+  --veil:linear-gradient(to top right,rgba(0,0,0,.6),transparent 50%,transparent);
+  --grid-opacity:.07;
+  --orb-pink-opacity:.22;
+  --orb-purple-opacity:.24;
+  --orb-cyan-opacity:.14;
+
+  /* níveis de "afundado" usados em quiz, playground, etc. */
+  --sunken-1:rgba(0,0,0,.2);
+  --sunken-2:rgba(0,0,0,.3);
+  --sunken-3:rgba(0,0,0,.4);
+  --sunken-4:rgba(0,0,0,.5);
+
+  --star-empty:rgba(154,160,196,.4);
+  --panel-shadow:0 10px 15px -3px rgba(0,0,0,.5),0 4px 6px -4px rgba(0,0,0,.5);
+  --menu-shadow:0 18px 40px -14px rgba(0,0,0,.55);
+}
+
+/* ------------------------------------------------------------
+   MODO CLARO — tokens
+   ------------------------------------------------------------ */
+html.light{
+  color-scheme:light;
+  --background:#ffffff;
+  --foreground:#14142b;
+  --card:#ffffff;
+  --card-foreground:#14142b;
+  --primary:#6b3fd4;
+  --primary-foreground:#ffffff;
+  --secondary:#f1f0fb;
+  --muted:#f4f4fb;
+  --muted-foreground:#575a7d;
+  --accent:#f1f0fb;
+  --accent-foreground:#14142b;
+  --border:#e3e1f1;
+  --ring:#5b46e0;
+  --destructive:#c62828;
+  --prose-body:#2c2c45;
+
+  --brand-indigo:#5b46e0;
+  --brand-purple:#7c3fd0;
+  --brand-pink:#c9227f;
+  --brand-cyan:#0d7387;
+  --brand-orange:#a85a08;
+  --brand-yellow:#7c6f04;
+
+  --header-bg:rgba(255,255,255,.85);
+  --header-bg-blur:rgba(255,255,255,.7);
+  --nav-hover-bg:rgba(20,20,43,.06);
+  --hover-border:rgba(20,20,43,.32);
+  --chip-bg:rgba(20,20,43,.04);
+  --chip-fg:rgba(20,20,43,.8);
+  --terminal-bg:#f7f7fc;
+  --terminal-bar-bg:#edecf7;
+  --terminal-bar-border:rgba(20,20,43,.08);
+  --footer-bg:rgba(20,20,43,.025);
+  --veil:linear-gradient(to top right,rgba(255,255,255,.55),transparent 50%,transparent);
+  --grid-opacity:.13;
+  --orb-pink-opacity:.13;
+  --orb-purple-opacity:.14;
+  --orb-cyan-opacity:.1;
+
+  --sunken-1:rgba(20,20,43,.03);
+  --sunken-2:rgba(20,20,43,.045);
+  --sunken-3:rgba(20,20,43,.06);
+  --sunken-4:rgba(20,20,43,.075);
+
+  --star-empty:rgba(20,20,43,.22);
+  --panel-shadow:0 10px 15px -3px rgba(20,20,43,.1),0 4px 6px -4px rgba(20,20,43,.08);
+  --menu-shadow:0 18px 40px -14px rgba(20,20,43,.28);
+}
+
+/* ------------------------------------------------------------
+   MODO CLARO — regras que sobrescrevem cores fixas das páginas
+   ------------------------------------------------------------ */
+html.light .site-header{background:var(--header-bg);}
+@supports ((backdrop-filter:blur(8px)) or (-webkit-backdrop-filter:blur(8px))){
+  html.light .site-header{background:var(--header-bg-blur);}
+}
+html.light .main-nav a:hover{background:var(--nav-hover-bg);}
+html.light .menu-btn:hover,
+html.light .footer-gh:hover,
+html.light .link-ghost:hover,
+html.light .status-btn:hover,
+html.light .font-btn:hover:not(:disabled),
+html.light .quiz-opt:hover{border-color:var(--hover-border);}
+html.light .site-footer{background:var(--footer-bg);}
+html.light .hero-grid-lines{opacity:var(--grid-opacity);}
+html.light .orb-pink{opacity:var(--orb-pink-opacity);}
+html.light .orb-purple{opacity:var(--orb-purple-opacity);}
+html.light .orb-cyan{opacity:var(--orb-cyan-opacity);}
+html.light .terminal{background:var(--terminal-bg);}
+html.light .terminal-bar{background:var(--terminal-bar-bg);border-bottom-color:var(--terminal-bar-border);}
+html.light .skill-list li{background:var(--chip-bg);color:var(--chip-fg);}
+html.light .blob-photo .veil{background:var(--veil);}
+html.light .rating-stars{color:var(--star-empty);}
+html.light .rating .count{color:var(--muted-foreground);}
+html.light .topic-panel,
+html.light .topic-menu{box-shadow:var(--panel-shadow);}
+
+/* conteúdo da aula / módulo */
+html.light .prose strong,
+html.light .prose h1,
+html.light .prose h2,
+html.light .prose h3,
+html.light .prose h4{color:var(--foreground);}
+html.light .quiz-opt:hover{background:var(--sunken-2);}
+html.light .quiz-feedback,
+html.light .cp-head,
+html.light .pg-bar,
+html.light .pg-out{background:var(--sunken-3);}
+html.light .cp-challenge{background:var(--sunken-1);}
+html.light .cp-result code{background:var(--sunken-4);}
+
+/* ------------------------------------------------------------
+   SELETOR DE TEMA (injetado por assets/theme.js)
+   ------------------------------------------------------------ */
+.header-right{display:flex;align-items:center;justify-content:flex-end;gap:.5rem;}
+.theme-switch{position:relative;}
+.theme-btn{
+  display:inline-flex;width:2.25rem;height:2.25rem;align-items:center;justify-content:center;
+  border-radius:.375rem;border:1px solid var(--border);background:var(--card);color:var(--foreground);
+  font:inherit;cursor:pointer;transition:border-color .15s,background-color .15s;
+}
+.theme-btn:hover{border-color:var(--hover-border);background:var(--muted);}
+.theme-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(125,108,255,.5);}
+.theme-btn svg{display:block;width:1.125rem;height:1.125rem;}
+.theme-btn span{display:flex;}
+.theme-btn .icon-moon{display:none;}
+html.dark .theme-btn .icon-sun{display:none;}
+html.dark .theme-btn .icon-moon{display:flex;}
+
+.theme-menu{
+  position:absolute;right:0;top:calc(100% + .5rem);z-index:50;display:none;min-width:11rem;
+  border-radius:.5rem;border:1px solid var(--border);background:var(--card);padding:.25rem;
+  box-shadow:var(--menu-shadow);
+}
+.theme-menu.open{display:block;}
+.theme-menu button{
+  display:flex;width:100%;align-items:center;gap:.5rem;border:0;border-radius:.375rem;
+  background:none;cursor:pointer;padding:.5rem .625rem;
+  font-family:var(--font-mono);font-size:.8125rem;
+  color:var(--muted-foreground);text-align:left;transition:color .15s,background-color .15s;
+}
+.theme-menu button:hover{background:var(--nav-hover-bg);color:var(--foreground);}
+.theme-menu button svg{display:block;width:1rem;height:1rem;flex-shrink:0;}
+.theme-menu button .check{margin-left:auto;opacity:0;color:var(--brand-indigo);}
+.theme-menu button[aria-checked="true"]{color:var(--foreground);}
+.theme-menu button[aria-checked="true"] .check{opacity:1;}
