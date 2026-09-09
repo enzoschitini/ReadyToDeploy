@@ -18,9 +18,9 @@ O projeto é organizado em quatro partes, que trabalham em conjunto:
 
 `pages` e `application_content` seguem o **mesmo conjunto de arquivos** (mesmo nome, um `.html` e um `.json` para cada tela) — a diferença é que um define a estrutura/layout e o outro guarda os textos daquela tela. Hoje todas as pastas são **planas** (sem subpastas): não existe aninhamento tipo `bootcamps/bootcamp/modules/...`, cada tela é um arquivo solto nomeado pela própria rota.
 
-> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`) e a **listagem de bootcamps** (`pages/bootcamps.html`) já estão implementadas, com seus JSON correspondentes. Os demais arquivos de `pages` e de conteúdo ainda são **placeholders vazios**.
+> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`) e as listagens de **bootcamps** (`pages/bootcamps.html`), **trilhas** (`pages/modules.html`) e **projetos** (`pages/projects.html`) já estão implementadas, com seus JSON correspondentes. Os demais arquivos de `pages` e de conteúdo ainda são **placeholders vazios**.
 >
-> Na tela de bootcamps os cards ainda **não navegam**: a tela `bootcamp.html` não existe, então cada card é um `<article>` sem link. A única navegação até ela vem do menu do `index.html`.
+> Nessas listagens os cards ainda **não navegam**: as telas de detalhe (`bootcamp.html`, `module.html`, `project.html`) não existem, então cada card é um `<article>` sem link. A única navegação até elas vem do menu do `index.html`.
 
 ### Como o HTML consome os JSON
 
@@ -30,6 +30,8 @@ Cada página busca seu conteúdo com `fetch` no carregamento:
 |---|---|---|
 | `index.html` | `application_content/pt_br/index.json` | `course_content/pt_br/modules.json`, `course_content/pt_br/projects.json` |
 | `pages/bootcamps.html` | `application_content/pt_br/bootcamps.json` | `course_content/pt_br/bootcamps.json` |
+| `pages/modules.html` | `application_content/pt_br/modules.json` | `course_content/pt_br/modules.json` |
+| `pages/projects.html` | `application_content/pt_br/projects.json` | `course_content/pt_br/projects.json` |
 
 Como o conteúdo vem por `fetch`, o site precisa ser aberto por **HTTP** (GitHub Pages ou um servidor local como `python -m http.server`) — abrir o arquivo direto por `file://` bloqueia o carregamento dos JSON e a página mostra um aviso.
 
@@ -93,6 +95,17 @@ course_content
 | `modules` | id do módulo | id do bootcamp |
 | `lessons` | id da aula | id do módulo |
 | `projects` | id do projeto | id do bootcamp |
+
+### Convenções dos campos
+
+Campos que se repetem entre os tipos de conteúdo:
+
+| Campo | Uso |
+|---|---|
+| `level` | Rótulo de exibição (`Iniciante`, `Intermediário`, `Avançado`). As telas normalizam o valor (minúsculas, sem acento) quando precisam dele como chave — ex.: as seções por nível em `projects.html`. |
+| `skills` | Lista de tópicos do item. Alimenta as tags dos cards e o filtro "Tópico" da tela de projetos. |
+| `published` | Data ISO de publicação. O selo "novo" é derivado dela (últimos 30 dias), não gravado no JSON. |
+| `hot` / `rating` | Opcionais; quando ausentes, o card simplesmente não mostra o selo/avaliação. |
 
 > Tipos adicionais como apresentações, quiz e pesquisas (ver `application_reference_design/Estrutura dos Conteúdos.md`) ainda não têm arquivo/pasta próprios em `course_content` — serão adicionados quando forem implementados.
 

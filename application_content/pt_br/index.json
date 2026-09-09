@@ -81,6 +81,9 @@
       "itemHref": "pages/project.html?id=",
       "itemCta": "ver projeto →",
       "limit": 3,
+      "maxTags": 4,
+      "moreTagsFormat": "+{count}",
+      "newDays": 30,
       "empty": "Nenhum projeto publicado ainda."
     }
   },

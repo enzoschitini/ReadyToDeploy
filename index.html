@@ -819,14 +819,28 @@ blockquote.manifesto{
     '</a>';
   }
 
+  /* "novo" = publicado nos últimos `newDays` dias (mesma regra de pages/projects.html) */
+  function isNew(item, section) {
+    var t = Date.parse(item.published);
+    if (isNaN(t)) return false;
+    var age = Date.now() - t;
+    return age >= 0 && age <= 86400000 * (section.newDays || 30);
+  }
+
   function projectCard(item, section, labels) {
-    var tags = (item.tags || []).map(function (tag) {
-      return '<span class="tag">' + esc(tag) + '</span>';
+    var skills = item.skills || [];
+    var shown = skills.slice(0, section.maxTags || skills.length);
+    var rest = skills.length - shown.length;
+    var tags = shown.map(function (skill) {
+      return '<span class="tag">' + esc(skill) + '</span>';
     }).join('');
+    if (rest > 0) {
+      tags += '<span class="tag">' + esc(String(section.moreTagsFormat || '+{count}').replace('{count}', rest)) + '</span>';
+    }
     return '<a class="card" href="' + esc(section.itemHref + item.id) + '">' +
       '<div class="card-meta">' +
         '<span class="badge">' + esc(item.level) + '</span>' +
-        (item['new'] ? pillNew(labels) : '') +
+        (isNew(item, section) ? pillNew(labels) : '') +
         '<span class="meta-text">' + esc(item.duration) + '</span>' +
         metaRight(item, labels) +
       '</div>' +

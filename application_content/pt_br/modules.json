@@ -1,0 +1,113 @@
+{
+  "page": "modules",
+  "lang": "pt-BR",
+  "meta": {
+    "title": "Trilhas · Primo Academy",
+    "description": "Escolha por onde começar. Cada trilha é um caminho de estudo com recursos curados, em português e de graça.",
+    "themeColor": "#000000"
+  },
+  "skipLink": "Pular para o conteúdo",
+  "brand": {
+    "href": "../index.html",
+    "ariaLabel": "Primo Academy - início",
+    "slash": "~/",
+    "name": ".primo-academy.sh"
+  },
+  "nav": {
+    "ariaLabel": "Principal",
+    "mobileAriaLabel": "Menu mobile",
+    "openLabel": "Abrir menu",
+    "closeLabel": "Fechar menu",
+    "active": "modules.html",
+    "links": [
+      { "label": "Trilhas", "href": "modules.html" },
+      { "label": "Bootcamps", "href": "bootcamps.html" },
+      { "label": "Projetos", "href": "projects.html" },
+      { "label": "Ranking", "href": "contact.html" }
+    ],
+    "cta": { "label": "Entrar", "href": "contact.html" }
+  },
+  "breadcrumbs": {
+    "ariaLabel": "Navegação estrutural",
+    "separator": "/",
+    "items": [
+      { "label": "Início", "href": "../index.html" },
+      { "label": "Trilhas" }
+    ]
+  },
+  "header": {
+    "title": "Trilhas",
+    "lead": "Escolha por onde começar. Cada trilha é um caminho de estudo com recursos curados."
+  },
+  "filters": {
+    "search": {
+      "placeholder": "Buscar trilhas por nome, descrição ou tópico…",
+      "ariaLabel": "Buscar trilhas"
+    },
+    "levelLabel": "Nível",
+    "levelGroupAriaLabel": "Filtrar por nível",
+    "levels": [
+      { "value": "iniciante", "label": "Iniciante" },
+      { "value": "intermediario", "label": "Intermediário" },
+      { "value": "avancado", "label": "Avançado" }
+    ],
+    "topic": {
+      "label": "Tópico",
+      "buttonAriaLabel": "Filtrar por tópico",
+      "searchPlaceholder": "Filtrar tópicos…",
+      "searchAriaLabel": "Filtrar tópicos",
+      "listAriaLabel": "Tópicos",
+      "empty": "nenhum tópico"
+    },
+    "countFormat": "{shown} de {total} {noun}",
+    "removeChipAria": "Remover filtro {label}",
+    "clear": "limpar"
+  },
+  "section": {
+    "itemCta": "ver trilha →",
+    "nodesLabel": "nós",
+    "nodesLabelSingular": "nó",
+    "trailLabel": "trilhas",
+    "trailLabelSingular": "trilha",
+    "empty": "Nenhuma trilha publicada ainda.",
+    "emptyFiltered": "Nenhuma trilha encontrada com esses filtros."
+  },
+  "labels": {
+    "hot": "em alta",
+    "hotAria": "Conteúdo em alta",
+    "new": "novo",
+    "newAria": "Conteúdo novo",
+    "ratingAria": "Avaliação média {score} de 5, {count} avaliações"
+  },
+  "footer": {
+    "brand": { "slash": "~/", "name": ".primo-academy.sh" },
+    "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
+    "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
+    "columns": [
+      {
+        "title": "// conteúdo",
+        "links": [
+          { "label": "Trilhas", "href": "modules.html" },
+          { "label": "Projetos", "href": "projects.html" },
+          { "label": "Bootcamps", "href": "bootcamps.html" },
+          { "label": "Ranking", "href": "contact.html" }
+        ]
+      },
+      {
+        "title": "// projeto",
+        "links": [
+          { "label": "Código no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community", "external": true },
+          { "label": "Como contribuir", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Sobre o autor", "href": "https://oprimo.dev", "external": true }
+        ]
+      }
+    ],
+    "bottom": {
+      "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
+      "credit": { "before": "criado por ", "label": "OPrimoDev", "href": "https://oprimo.dev" }
+    }
+  },
+  "errors": {
+    "loadFailed": "Não foi possível carregar o conteúdo desta página. Abra o site por um servidor HTTP (os arquivos JSON não carregam via file://)."
+  }
+}
