@@ -1,0 +1,37 @@
+<div class="prose">
+<p>Um <strong>objeto</strong> (ou dicionário, em outras linguagens) guarda pares de <strong>chave:
+valor</strong> - uma forma natural de representar &quot;uma coisa com vários dados&quot;.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-js">const pessoa = {
+  nome: &quot;Ana&quot;,
+  idade: 28,
+  cidade: &quot;São Paulo&quot;,
+};
+pessoa.nome;      // &quot;Ana&quot;
+pessoa[&quot;idade&quot;];  // 28
+pessoa.email = &quot;ana@exemplo.com&quot;; // adiciona uma chave nova
+delete pessoa.cidade;             // remove uma chave
+</code></pre></div>
+<p>Objetos podem ser <strong>aninhados</strong> (um objeto dentro do outro) - útil para
+representar dados do mundo real:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-js">const pedido = {
+  id: 123,
+  cliente: { nome: &quot;Ana&quot;, email: &quot;ana@exemplo.com&quot; },
+  itens: [{ produto: &quot;Caderno&quot;, preco: 12.5 }],
+};
+</code></pre></div>
+<p>Objetos são a base do <strong>JSON</strong> (<code>JavaScript Object Notation</code>), que é o formato
+que a internet inteira usa para trocar dados. <code>JSON.stringify(objeto)</code> converte
+para texto; <code>JSON.parse(texto)</code> converte de volta. Sempre que você ouvir
+&quot;API REST&quot; ou &quot;resposta de servidor&quot;, provavelmente é JSON indo e voltando.</p>
+<h2>Experimente</h2>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-javascript">const usuario = {
+  nome: &quot;Ana&quot;,
+  idade: 28,
+  habilidades: [&quot;JavaScript&quot;, &quot;Python&quot;, &quot;Git&quot;],
+};
+
+console.log(&quot;Nome:&quot;, usuario.nome);
+console.log(&quot;Habilidades:&quot;, usuario.habilidades.join(&quot;, &quot;));
+console.log(&quot;JSON:&quot;, JSON.stringify(usuario));
+</code></pre></div>
+</div>

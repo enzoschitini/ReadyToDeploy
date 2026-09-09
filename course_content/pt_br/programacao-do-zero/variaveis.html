@@ -1,0 +1,52 @@
+<div class="prose">
+<p>Uma <strong>variável</strong> é como uma caixinha com um nome, onde você guarda um valor para
+usar depois. Por exemplo: guardar a <code>idade</code> de alguém, ou o <code>nome</code> de um produto.</p>
+<p>Os valores têm <strong>tipos</strong> diferentes:</p>
+<ul>
+<li><strong>Texto</strong> (string): <code>&quot;Olá, mundo&quot;</code></li>
+<li><strong>Número</strong>: <code>42</code>, <code>3.14</code></li>
+<li><strong>Booleano</strong> (verdadeiro/falso): <code>true</code>, <code>false</code></li>
+</ul>
+<p>Entender variáveis e tipos é a base para guardar e manipular informação - algo que
+todo programa faz o tempo inteiro.</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-variaveis-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-variaveis-q">Qual dos seguintes é um nome de variável válido em JavaScript?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Não pode começar com número."><input type="radio" name="quiz-variaveis" value="0" /><span class="txt">2nome</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Hífen é interpretado como subtração."><input type="radio" name="quiz-variaveis" value="1" /><span class="txt">meu-nome</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Underscore é aceito - letras, números, _, $."><input type="radio" name="quiz-variaveis" value="2" /><span class="txt">meu_nome</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="let é palavra reservada da linguagem."><input type="radio" name="quiz-variaveis" value="3" /><span class="txt">let</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>
+
+<div class="checkpoint" data-status="idle" data-expected="Ana">
+  <div class="cp-bar">
+    <span class="kicker-cyan">// Checkpoint · +10 XP</span>
+    <span class="cp-state">pendente</span>
+  </div>
+  <p class="cp-challenge">Crie uma variável <code>nome</code> com o valor &#x27;Ana&#x27; e imprima no console.</p>
+  <div class="pg">
+    <div class="pg-bar">
+      <span class="tag">playground · js</span>
+      <button type="button" class="btn-run">▶ Rodar</button>
+    </div>
+    <label class="sr-only" for="pg-variaveis">Editor de código JavaScript</label>
+    <div class="pg-editor">
+      <textarea id="pg-variaveis" spellcheck="false" rows="6">let nome = &#x27;&#x27;;
+console.log(nome);</textarea>
+    </div>
+    <div class="pg-out" aria-live="polite" aria-label="Saída do código">
+      <span class="tag">saída</span>
+      <div class="pg-body"><p class="hint">Clique em Rodar para ver o resultado.</p></div>
+    </div>
+  </div>
+  <div class="cp-result" role="status" aria-live="polite" hidden></div>
+  <iframe class="pg-frame" title="Executor de código isolado (iframe sandbox)"
+          sandbox="allow-scripts" aria-hidden="true"></iframe>
+</div>

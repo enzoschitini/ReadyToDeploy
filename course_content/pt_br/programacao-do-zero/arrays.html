@@ -1,0 +1,32 @@
+<div class="prose">
+<p>Um <strong>array</strong> (ou lista) guarda <strong>vários valores em ordem</strong>, dentro de uma única
+variável. É uma das estruturas mais usadas em qualquer programa.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-js">const notas = [8, 9, 7, 10];
+notas[0];      // 8 (o primeiro!)
+notas.length;  // 4
+notas.push(6); // adiciona 6 no final
+notas.pop();   // remove o último
+notas.includes(9); // true - busca um valor
+</code></pre></div>
+<p>Para <strong>percorrer</strong> todos os itens, o jeito clássico é o <code>for</code>. Mas existem
+métodos que deixam isso mais legível e poderoso:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-js">const dobrados = notas.map(n =&gt; n * 2);
+const maioresQue7 = notas.filter(n =&gt; n &gt; 7);
+const soma = notas.reduce((total, n) =&gt; total + n, 0);
+</code></pre></div>
+<ul>
+<li><code>map</code> - transforma cada item em outro (mesma quantidade de itens).</li>
+<li><code>filter</code> - mantém só os itens que passam no teste.</li>
+<li><code>reduce</code> - combina todos os itens em um único valor.</li>
+</ul>
+<p>Map, filter e reduce são a base da <strong>programação funcional</strong> - não precisa
+virar especialista agora, mas é bom saber que existem. Eles evitam muitos
+<code>for</code> complicados.</p>
+<h2>Experimente</h2>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-javascript">const notas = [8, 9, 7, 10, 6];
+console.log(&quot;notas:&quot;, notas);
+console.log(&quot;maior:&quot;, Math.max(...notas));
+console.log(&quot;média:&quot;, notas.reduce((t, n) =&gt; t + n, 0) / notas.length);
+console.log(&quot;aprovados (&gt;=7):&quot;, notas.filter(n =&gt; n &gt;= 7));
+</code></pre></div>
+</div>

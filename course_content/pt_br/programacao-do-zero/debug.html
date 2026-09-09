@@ -1,0 +1,27 @@
+<div class="prose">
+<p>Todo programa tem bugs - errar faz parte. O que separa quem avança de quem
+trava é saber <strong>ler o erro</strong> e investigar em vez de fugir.</p>
+<p>A primeira reação certa: <strong>ler a mensagem inteira, do topo para baixo</strong>.
+Geralmente ela diz:</p>
+<ul>
+<li><strong>O que</strong> deu errado (ex: <code>&quot;Cannot read properties of undefined&quot;</code>)</li>
+<li><strong>Onde</strong> (arquivo e linha: <code>app.js:42</code>)</li>
+<li><strong>A stack trace</strong> - a sequência de chamadas que levou até ali</li>
+</ul>
+<p>Ferramentas básicas que cobrem 90% dos casos:</p>
+<ul>
+<li><code>console.log(valor)</code> - imprime no terminal. O depurador universal.</li>
+<li><code>console.error(...)</code> e <code>console.warn(...)</code> - variantes para erros e avisos.</li>
+<li><code>console.table(array)</code> - imprime arrays/objetos em formato de tabela.</li>
+<li><strong>Debugger do editor</strong> - colocar um <strong>breakpoint</strong> (bolinha vermelha) e rodar
+passo a passo. Vale aprender quando o <code>console.log</code> parar de bastar.</li>
+</ul>
+<p>Quando empacar, <strong>copie a mensagem de erro e pesquise no Google</strong>. Alguém no
+mundo já teve esse mesmo bug e provavelmente postou a solução. Ler erros em
+inglês é normal - vale a pena se acostumar desde cedo.</p>
+<blockquote>
+<p>Dica: leia o erro em voz alta. &quot;Cannot read properties of undefined, reading
+&#x27;nome&#x27;&quot; - significa que você tentou acessar <code>.nome</code> em algo que está
+<code>undefined</code>. Provavelmente a variável não recebeu o valor que você esperava.</p>
+</blockquote>
+</div>

@@ -510,6 +510,9 @@ h1.page-title{
   var APP_CONTENT = '../application_content/pt_br/';
   var COURSE_CONTENT = '../course_content/pt_br/';
 
+  /* module_id → tem aula publicada em course_content? (preenchido no boot) */
+  var hasLessons = Object.create(null);
+
   var $ = function (id) { return document.getElementById(id); };
 
   function esc(value) {
@@ -572,10 +575,13 @@ h1.page-title{
     return inner ? '<span class="meta-right">' + inner + '</span>' : '';
   }
 
-  /* Card sem link: a tela de uma trilha ainda não existe, então nada navega daqui. */
+  /* Trilha com aulas publicadas vira card clicável; sem aulas, fica sem link. */
   function moduleCard(item, section, labels) {
     var nodesLabel = plural(item.nodes, section.nodesLabelSingular, section.nodesLabel);
-    return '<article class="card">' +
+    var linked = hasLessons[item.id];
+    return (linked
+      ? '<a class="card" href="' + esc(section.itemHref + item.id) + '">'
+      : '<article class="card">') +
       '<div class="card-meta">' +
         '<span class="badge">' + esc(item.level) + '</span>' +
         (item['new'] ? pillNew(labels) : '') +
@@ -585,7 +591,7 @@ h1.page-title{
       '<h3>' + esc(item.title) + '</h3>' +
       '<p>' + esc(item.description) + '</p>' +
       '<span class="card-cta">' + esc(section.itemCta) + '</span>' +
-    '</article>';
+    (linked ? '</a>' : '</article>');
   }
 
   /* ============================================================
@@ -934,10 +940,12 @@ h1.page-title{
 
   Promise.all([
     getJSON(APP_CONTENT + 'modules.json'),
-    getJSON(COURSE_CONTENT + 'modules.json').catch(empty)
+    getJSON(COURSE_CONTENT + 'modules.json').catch(empty),
+    getJSON(COURSE_CONTENT + 'lessons.json').catch(empty)
   ]).then(function (data) {
     var content = data[0];
     var modules = data[1].modules || [];
+    (data[2].lessons || []).forEach(function (lesson) { hasLessons[lesson.module_id] = true; });
     render(content, modules);
     initFilters(content, modules);
     initInteractions(content);
