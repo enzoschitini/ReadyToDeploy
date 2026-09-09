@@ -10,7 +10,30 @@
       "published": "2026-08-30",
       "skills": ["javascript", "dom", "html", "css"],
       "hot": true,
-      "rating": { "score": 5.0, "count": 4 }
+      "rating": { "score": 5.0, "count": 4 },
+      "detail": {
+        "introHtml": "Digite o valor da conta, a porcentagem da gorjeta e quantas pessoas: a página mostra quanto cada um paga. É o primeiro projeto que <strong>reage</strong> ao que o usuário faz.",
+        "objectiveHtml": "Conectar HTML e JavaScript: ler valores de <code>&lt;input&gt;</code>, fazer uma conta e escrever o resultado de volta na tela. Aqui entram <strong>eventos</strong> e <strong>manipulação do DOM</strong>.",
+        "requirements": [
+          "Campos para: valor da conta, % de gorjeta e número de pessoas",
+          "Calcular o total (conta + gorjeta) e o valor por pessoa",
+          "Atualizar o resultado ao clicar num botão <strong>ou</strong> ao digitar",
+          "Formatar o resultado como dinheiro (ex.: <code>R$ 12,50</code>)",
+          "Tratar entradas inválidas (número de pessoas = 0, campo vazio)"
+        ],
+        "challenges": [
+          "Botões de gorjeta rápida (10%, 15%, 20%) além do campo manual",
+          "Salvar a última gorjeta escolhida no <code>localStorage</code>",
+          "Botão \"limpar\" que zera tudo"
+        ],
+        "tips": [
+          "Valores de <code>&lt;input&gt;</code> chegam como <strong>texto</strong>. Converta com <code>Number(...)</code> antes de calcular, e cheque <code>Number.isNaN(...)</code>.",
+          "<code>Intl.NumberFormat(\"pt-BR\", { style: \"currency\", currency: \"BRL\" })</code> formata dinheiro pra você.",
+          "Comece fazendo a conta aparecer no <code>console.log</code>. Só depois jogue na tela."
+        ],
+        "trilhas": ["programacao-do-zero"],
+        "creator": { "name": "Luciano dii Souza", "github": "lucianodiisouza" }
+      }
     },
     {
       "id": "api-rest-com-autenticacao",

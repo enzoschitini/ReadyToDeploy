@@ -576,7 +576,6 @@ h1.page-title{
     return age >= 0 && age <= 86400000 * (section.newDays || 30);
   }
 
-  /* Card sem link: a tela de um projeto ainda não existe, então nada navega daqui. */
   function projectCard(item, section, labels) {
     var skills = item.skills || [];
     var shown = skills.slice(0, section.maxTags || skills.length);
@@ -588,7 +587,7 @@ h1.page-title{
       tags += '<span class="tag">' + esc(fill(section.moreTagsFormat, { count: rest })) + '</span>';
     }
 
-    return '<article class="card">' +
+    return '<a class="card" href="' + esc(section.itemHref + item.id) + '">' +
       '<div class="card-meta">' +
         '<span class="badge">' + esc(item.level) + '</span>' +
         (isNew(item, section) ? pillNew(labels) : '') +
@@ -599,7 +598,7 @@ h1.page-title{
       '<p>' + esc(item.description) + '</p>' +
       (tags ? '<div class="tag-row">' + tags + '</div>' : '') +
       '<span class="card-cta">' + esc(section.itemCta) + '</span>' +
-    '</article>';
+    '</a>';
   }
 
   /* ============================================================

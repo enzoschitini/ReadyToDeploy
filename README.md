@@ -18,9 +18,11 @@ O projeto é organizado em quatro partes, que trabalham em conjunto:
 
 `pages` e `application_content` seguem o **mesmo conjunto de arquivos** (mesmo nome, um `.html` e um `.json` para cada tela) — a diferença é que um define a estrutura/layout e o outro guarda os textos daquela tela. Hoje todas as pastas são **planas** (sem subpastas): não existe aninhamento tipo `bootcamps/bootcamp/modules/...`, cada tela é um arquivo solto nomeado pela própria rota.
 
-> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`) e as listagens de **bootcamps** (`pages/bootcamps.html`), **trilhas** (`pages/modules.html`) e **projetos** (`pages/projects.html`) já estão implementadas, com seus JSON correspondentes. Os demais arquivos de `pages` e de conteúdo ainda são **placeholders vazios**.
+> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`), as listagens de **bootcamps** (`pages/bootcamps.html`), **trilhas** (`pages/modules.html`) e **projetos** (`pages/projects.html`), e a página de **detalhe de um projeto** (`pages/project.html`) já estão implementadas, com seus JSON correspondentes. Os demais arquivos de `pages` e de conteúdo ainda são **placeholders vazios**.
 >
-> Nessas listagens os cards ainda **não navegam**: as telas de detalhe (`bootcamp.html`, `module.html`, `project.html`) não existem, então cada card é um `<article>` sem link. A única navegação até elas vem do menu do `index.html`.
+> Nas listagens os cards ainda **não navegam**: as telas de detalhe de bootcamp e de módulo (`bootcamp.html`, `module.html`) não existem, então esses cards são `<article>` sem link. A única navegação até essas listagens vem do menu do `index.html`.
+>
+> `pages/project.html` já funciona como destino (`pages/project.html?id=<id>`), mas por ora só o projeto `calculadora-de-gorjeta` tem o conteúdo de detalhe completo (ver `detail` em "Convenções dos campos" abaixo) — os outros 21 abrem a mesma página com um cabeçalho básico e sem enunciado/requisitos. O card dele em `pages/projects.html` ainda **não** foi religado para lá, para não fugir do escopo pedido; é um `<a href="pages/project.html?id=calculadora-de-gorjeta">` de uma linha quando quiserem ativar.
 
 ### Como o HTML consome os JSON
 
@@ -32,6 +34,7 @@ Cada página busca seu conteúdo com `fetch` no carregamento:
 | `pages/bootcamps.html` | `application_content/pt_br/bootcamps.json` | `course_content/pt_br/bootcamps.json` |
 | `pages/modules.html` | `application_content/pt_br/modules.json` | `course_content/pt_br/modules.json` |
 | `pages/projects.html` | `application_content/pt_br/projects.json` | `course_content/pt_br/projects.json` |
+| `pages/project.html` | `application_content/pt_br/project.json` | `course_content/pt_br/projects.json` (filtrado pelo `?id=` da URL), `course_content/pt_br/modules.json` (nomes das trilhas praticadas) |
 
 Como o conteúdo vem por `fetch`, o site precisa ser aberto por **HTTP** (GitHub Pages ou um servidor local como `python -m http.server`) — abrir o arquivo direto por `file://` bloqueia o carregamento dos JSON e a página mostra um aviso.
 
@@ -106,6 +109,9 @@ Campos que se repetem entre os tipos de conteúdo:
 | `skills` | Lista de tópicos do item. Alimenta as tags dos cards e o filtro "Tópico" da tela de projetos. |
 | `published` | Data ISO de publicação. O selo "novo" é derivado dela (últimos 30 dias), não gravado no JSON. |
 | `hot` / `rating` | Opcionais; quando ausentes, o card simplesmente não mostra o selo/avaliação. |
+| `detail` | Só existe em itens que já têm página de detalhe própria (hoje, só o projeto `calculadora-de-gorjeta`). Guarda o que a listagem não usa: `introHtml`, `objectiveHtml`, `requirements[]`, `challenges[]`, `tips[]`, `trilhas[]` (ids de módulos praticados) e `creator` (`{ name, github }`). Ausente ou com listas vazias → a seção correspondente da página some, em vez de aparecer em branco. |
+
+Campos (ou itens de lista) cujo nome termina em **`Html`**, ou que estão dentro de `detail.requirements`/`detail.challenges`/`detail.tips`, guardam HTML já pronto (podem ter `<code>`, `<strong>`) e são inseridos com `innerHTML` — o mesmo padrão já usado em `application_content` (`quoteHtml`, `licenseHtml` etc.). Os demais campos são texto puro, inserido com `textContent`.
 
 > Tipos adicionais como apresentações, quiz e pesquisas (ver `application_reference_design/Estrutura dos Conteúdos.md`) ainda não têm arquivo/pasta próprios em `course_content` — serão adicionados quando forem implementados.
 

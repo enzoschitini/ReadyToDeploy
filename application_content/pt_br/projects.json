@@ -62,6 +62,7 @@
   },
   "section": {
     "kickerFormat": "// {level}",
+    "itemHref": "project.html?id=",
     "itemCta": "ver projeto →",
     "maxTags": 4,
     "moreTagsFormat": "+{count}",
