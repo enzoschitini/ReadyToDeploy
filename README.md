@@ -18,7 +18,9 @@ O projeto é organizado em quatro partes, que trabalham em conjunto:
 
 `pages` e `application_content` seguem o **mesmo conjunto de arquivos** (mesmo nome, um `.html` e um `.json` para cada tela) — a diferença é que um define a estrutura/layout e o outro guarda os textos daquela tela. Hoje todas as pastas são **planas** (sem subpastas): não existe aninhamento tipo `bootcamps/bootcamp/modules/...`, cada tela é um arquivo solto nomeado pela própria rota.
 
-> ⚠️ Estado atual da implementação: a **página inicial** (`index.html` + `application_content/pt_br/index.json` + `course_content/pt_br/modules.json` e `projects.json`) já está implementada. Os arquivos de `pages` e os demais JSON ainda são **placeholders vazios**.
+> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`) e a **listagem de bootcamps** (`pages/bootcamps.html`) já estão implementadas, com seus JSON correspondentes. Os demais arquivos de `pages` e de conteúdo ainda são **placeholders vazios**.
+>
+> Na tela de bootcamps os cards ainda **não navegam**: a tela `bootcamp.html` não existe, então cada card é um `<article>` sem link. A única navegação até ela vem do menu do `index.html`.
 
 ### Como o HTML consome os JSON
 
@@ -27,6 +29,7 @@ Cada página busca seu conteúdo com `fetch` no carregamento:
 | Página | Textos da interface | Conteúdo educacional |
 |---|---|---|
 | `index.html` | `application_content/pt_br/index.json` | `course_content/pt_br/modules.json`, `course_content/pt_br/projects.json` |
+| `pages/bootcamps.html` | `application_content/pt_br/bootcamps.json` | `course_content/pt_br/bootcamps.json` |
 
 Como o conteúdo vem por `fetch`, o site precisa ser aberto por **HTTP** (GitHub Pages ou um servidor local como `python -m http.server`) — abrir o arquivo direto por `file://` bloqueia o carregamento dos JSON e a página mostra um aviso.
 
