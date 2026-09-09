@@ -8,21 +8,8 @@
 <meta name="description" content="Trilhas de estudo de programação, gratuitas e open source, feitas para o público brasileiro. Aprenda do zero." />
 <meta name="theme-color" content="#000000" />
 <meta name="color-scheme" content="dark" />
-<script>
-/* aplica o tema salvo antes da primeira pintura (evita flash) */
-(function () {
-  var saved;
-  try { saved = localStorage.getItem('primo-theme'); } catch (e) {}
-  var mode = (saved === 'light' || saved === 'dark' || saved === 'system') ? saved : 'dark';
-  var resolved = mode === 'system'
-    ? (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
-    : mode;
-  var root = document.documentElement;
-  root.classList.remove('dark', 'light');
-  root.classList.add(resolved);
-  root.setAttribute('data-theme-mode', mode);
-})();
-</script>
+<link rel="stylesheet" href="assets/theme.css" />
+<script src="assets/theme.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -60,65 +47,8 @@
   --container:72rem;      /* max-w-6xl */
   --ease-out:cubic-bezier(0,0,.2,1);
 
-  /* superfícies dependentes do tema */
-  --header-bg:rgba(0,0,0,.8);
-  --header-bg-blur:rgba(0,0,0,.6);
-  --nav-hover-bg:rgba(33,34,44,.6);
-  --hover-border:rgba(248,248,242,.4);
-  --chip-bg:rgba(0,0,0,.6);
-  --chip-fg:rgba(248,248,242,.8);
-  --terminal-bg:#050508;
-  --terminal-bar-bg:#0d0d16;
-  --terminal-bar-border:rgba(255,255,255,.05);
-  --footer-bg:rgba(255,255,255,.02);
-  --veil:linear-gradient(to top right,rgba(0,0,0,.6),transparent 50%,transparent);
-  --grid-opacity:.07;
-  --orb-pink-opacity:.22;
-  --orb-purple-opacity:.24;
-  --orb-cyan-opacity:.14;
 }
 
-/* ---------- light mode ---------- */
-html.light{
-  color-scheme:light;
-  --background:#ffffff;
-  --foreground:#14142b;
-  --card:#ffffff;
-  --card-foreground:#14142b;
-  --primary:#6b3fd4;
-  --primary-foreground:#ffffff;
-  --secondary:#f1f0fb;
-  --muted:#f4f4fb;
-  --muted-foreground:#575a7d;
-  --accent:#f1f0fb;
-  --accent-foreground:#14142b;
-  --border:#e3e1f1;
-  --ring:#5b46e0;
-
-  --brand-indigo:#5b46e0;
-  --brand-purple:#7c3fd0;
-  --brand-pink:#c9227f;
-  --brand-cyan:#0d7387;
-  --brand-orange:#a85a08;
-  --brand-yellow:#7c6f04;
-
-  --header-bg:rgba(255,255,255,.85);
-  --header-bg-blur:rgba(255,255,255,.7);
-  --nav-hover-bg:rgba(20,20,43,.06);
-  --hover-border:rgba(20,20,43,.32);
-  --chip-bg:rgba(20,20,43,.04);
-  --chip-fg:rgba(20,20,43,.8);
-  --terminal-bg:#f7f7fc;
-  --terminal-bar-bg:#edecf7;
-  --terminal-bar-border:rgba(20,20,43,.08);
-  --footer-bg:rgba(20,20,43,.025);
-  --veil:linear-gradient(to top right,rgba(255,255,255,.55),transparent 50%,transparent);
-  --grid-opacity:.13;
-  --orb-pink-opacity:.13;
-  --orb-purple-opacity:.14;
-  --orb-cyan-opacity:.1;
-}
-html{color-scheme:dark;}
 
 *,*::before,*::after{box-sizing:border-box;border:0 solid var(--border);}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
@@ -219,39 +149,6 @@ ul,ol{padding:0;list-style:none;}
 }
 .menu-btn:hover{border-color:var(--hover-border);}
 .menu-btn svg{width:1.25rem;height:1.25rem;}
-/* ---------- seletor de tema ---------- */
-.header-right{display:flex;align-items:center;justify-content:flex-end;gap:.5rem;}
-.theme-switch{position:relative;}
-.theme-btn{
-  display:inline-flex;width:2.25rem;height:2.25rem;align-items:center;justify-content:center;
-  border-radius:.375rem;border:1px solid var(--border);background:var(--card);color:var(--foreground);
-  transition:border-color .15s,background-color .15s;
-}
-.theme-btn:hover{border-color:var(--hover-border);background:var(--muted);}
-.theme-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(125,108,255,.5);}
-.theme-btn svg{width:1.125rem;height:1.125rem;}
-.theme-btn span{display:flex;}
-.theme-btn .icon-moon{display:none;}
-html.dark .theme-btn .icon-sun{display:none;}
-html.dark .theme-btn .icon-moon{display:flex;}
-
-.theme-menu{
-  position:absolute;right:0;top:calc(100% + .5rem);z-index:50;display:none;min-width:11rem;
-  border-radius:.5rem;border:1px solid var(--border);background:var(--card);padding:.25rem;
-  box-shadow:0 18px 40px -14px rgba(0,0,0,.55);
-}
-.theme-menu.open{display:block;}
-.theme-menu button{
-  display:flex;width:100%;align-items:center;gap:.5rem;border-radius:.375rem;
-  padding:.5rem .625rem;font-family:var(--font-mono);font-size:.8125rem;
-  color:var(--muted-foreground);text-align:left;transition:color .15s,background-color .15s;
-}
-.theme-menu button:hover{background:var(--nav-hover-bg);color:var(--foreground);}
-.theme-menu button svg{width:1rem;height:1rem;flex-shrink:0;}
-.theme-menu button .check{margin-left:auto;opacity:0;color:var(--brand-indigo);}
-.theme-menu button[aria-checked="true"]{color:var(--foreground);}
-.theme-menu button[aria-checked="true"] .check{opacity:1;}
-
 .mobile-menu{display:none;border-top:1px solid var(--border);background:var(--background);}
 .mobile-menu.open{display:block;}
 .mobile-menu ul{display:flex;flex-direction:column;padding:.5rem 0 1rem;font-family:var(--font-mono);font-size:.875rem;}
@@ -604,18 +501,6 @@ blockquote.manifesto{
     <nav class="main-nav" id="main-nav" aria-label="Principal"></nav>
 
     <div class="header-right">
-      <div class="theme-switch" id="theme-switch">
-        <button type="button" class="theme-btn" id="theme-btn" aria-label="Selecionar tema" aria-haspopup="true" aria-expanded="false" aria-controls="theme-menu">
-          <span class="icon-sun" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
-          <span class="icon-moon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
-        </button>
-        <div class="theme-menu" id="theme-menu" role="menu" aria-label="Tema da página">
-          <button type="button" role="menuitemradio" aria-checked="false" data-theme="light"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><span>Claro</span><svg class="check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg></button>
-          <button type="button" role="menuitemradio" aria-checked="false" data-theme="dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><span>Escuro</span><svg class="check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg></button>
-          <button type="button" role="menuitemradio" aria-checked="false" data-theme="system"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Sistema</span><svg class="check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg></button>
-        </div>
-      </div>
-
       <div class="header-actions">
         <a href="#" class="btn-sm" id="header-cta"></a>
       </div>
@@ -1255,93 +1140,6 @@ blockquote.manifesto{
     box.classList.add('show');
     document.querySelectorAll('.reveal').forEach(function (el) { el.style.opacity = '1'; });
   });
-})();
-</script>
-<script>
-/* ============================ SELETOR DE TEMA ============================ */
-(function () {
-  var STORAGE_KEY = 'primo-theme';
-  var root = document.documentElement;
-  var btn = document.getElementById('theme-btn');
-  var menu = document.getElementById('theme-menu');
-  var wrap = document.getElementById('theme-switch');
-  if (!btn || !menu || !wrap) return;
-
-  var options = Array.prototype.slice.call(menu.querySelectorAll('[data-theme]'));
-  var mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
-
-  function currentMode() {
-    return root.getAttribute('data-theme-mode') || 'dark';
-  }
-
-  function resolve(mode) {
-    if (mode === 'system') return (mql && mql.matches) ? 'light' : 'dark';
-    return mode === 'light' ? 'light' : 'dark';
-  }
-
-  function apply(mode) {
-    var resolved = resolve(mode);
-    root.classList.remove('dark', 'light');
-    root.classList.add(resolved);
-    root.setAttribute('data-theme-mode', mode);
-
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', resolved === 'light' ? '#ffffff' : '#000000');
-    var scheme = document.querySelector('meta[name="color-scheme"]');
-    if (scheme) scheme.setAttribute('content', resolved);
-
-    var label = mode === 'system' ? 'Sistema' : (mode === 'light' ? 'Claro' : 'Escuro');
-    btn.setAttribute('aria-label', 'Selecionar tema (atual: ' + label + ')');
-    btn.setAttribute('title', 'Tema: ' + label);
-
-    options.forEach(function (opt) {
-      opt.setAttribute('aria-checked', opt.getAttribute('data-theme') === mode ? 'true' : 'false');
-    });
-  }
-
-  function openMenu() {
-    menu.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-  }
-
-  function closeMenu() {
-    menu.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
-  }
-
-  btn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (menu.classList.contains('open')) closeMenu(); else openMenu();
-  });
-
-  options.forEach(function (opt) {
-    opt.addEventListener('click', function () {
-      var mode = opt.getAttribute('data-theme');
-      try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
-      apply(mode);
-      closeMenu();
-      btn.focus();
-    });
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!wrap.contains(e.target)) closeMenu();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && menu.classList.contains('open')) {
-      closeMenu();
-      btn.focus();
-    }
-  });
-
-  if (mql && mql.addEventListener) {
-    mql.addEventListener('change', function () {
-      if (currentMode() === 'system') apply('system');
-    });
-  }
-
-  apply(currentMode());
 })();
 </script>
 </body>
