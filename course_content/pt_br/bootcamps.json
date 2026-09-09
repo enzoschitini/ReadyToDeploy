@@ -24,7 +24,30 @@
       "projects": 6,
       "hot": true,
       "new": false,
-      "rating": { "score": 4.8, "count": 19 }
+      "rating": { "score": 4.8, "count": 19 },
+      "detail": {
+        "creator": { "name": "Luciano dii Souza", "github": "lucianodiisouza" },
+        "curriculum": [
+          { "type": "trilha", "id": "programacao-do-zero", "title": "Programação do Zero", "description": "Base de lógica e JavaScript pra quem começa do zero." },
+          { "type": "projeto", "id": "calculadora-de-gorjeta", "title": "Primeiro projeto: coloque a lógica em prática", "description": "Um build pequeno pra fixar variáveis, condicionais e funções logo depois do primeiro contato com código." },
+          { "type": "trilha", "id": "terminal-para-devs", "title": "Terminal para Devs", "description": "O terminal é onde o backend vive: comandos essenciais em qualquer ambiente unix (local, VPS, container)." },
+          { "type": "trilha", "id": "git", "title": "Git", "description": "Controle de versão do zero ao avançado — obrigatório em qualquer time e pré-requisito pra deploy e colaboração." },
+          { "type": "trilha", "id": "conventional-commits", "title": "Conventional Commits", "description": "Mensagens de commit que contam uma história: o formato type(escopo): descrição, SemVer automática e changelog — o elo entre o histórico e a release." },
+          { "type": "trilha", "id": "typescript", "title": "TypeScript", "description": "TypeScript logo depois de JavaScript: a mente ainda está fresca sobre a linguagem, e o TS vira a forma padrão de escrever código backend no mercado." },
+          { "type": "trilha", "id": "sql-e-banco-de-dados", "title": "SQL e Banco de Dados", "description": "Modelagem e SQL puro — a fundação de dados antes de qualquer ORM." },
+          { "type": "projeto", "id": "modelagem-de-banco", "title": "Modelagem de um Banco de Dados", "description": "Modele o banco de um mini e-commerce e escreva as consultas do negócio em SQL puro." },
+          { "type": "trilha", "id": "nosql", "title": "NoSQL: Bancos Não-Relacionais", "description": "Complemento ao SQL: o que é NoSQL, modelo de documento (MongoDB) e chave-valor (Redis). Como e quando combinar com SQL em sistemas reais." },
+          { "type": "trilha", "id": "backend", "title": "Backend", "description": "HTTP, Node, Express, banco, ORM, autenticação, validação, testes, async profundo, error handling e debugging." },
+          { "type": "projeto", "id": "api-rest-com-autenticacao", "title": "API REST com Autenticação", "description": "Construa a API completa: CRUD, banco, validação, login e rotas protegidas." },
+          { "type": "trilha", "id": "docker-fundamentos", "title": "Docker Fundamentos", "description": "Empacote a API em containers: imagens, Dockerfile, volumes e rede — o jeito moderno de rodar backend." },
+          { "type": "trilha", "id": "docker-compose-e-workflows", "title": "Docker Compose e Workflows", "description": "Suba app + banco + cache com um comando e monte o ambiente de dev e produção da sua API." },
+          { "type": "projeto", "id": "servico-com-docker", "title": "Empacote um Serviço com Docker", "description": "Coloque a sua API num container e suba app + banco com um comando só." },
+          { "type": "trilha", "id": "complexidade-de-algoritmos", "title": "Complexidade de Algoritmos", "description": "Pra escrever backend que aguenta escala." },
+          { "type": "projeto", "id": "busca-com-filtros", "title": "Busca com Filtros", "description": "Sinta o custo das operações crescerem com os dados - a teoria de complexidade na prática." },
+          { "type": "trilha", "id": "ciberseguranca-para-desenvolvedores", "title": "Cibersegurança para Desenvolvedores", "description": "A base de segurança que todo dev backend precisa: dados, redes, autenticação, autorização, vulnerabilidades, OWASP Top 10 e segurança defensiva." },
+          { "type": "projeto", "id": "encurtador-de-url", "title": "Projeto final: um encurtador de URLs", "description": "Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura." }
+        ]
+      }
     },
     {
       "id": "desenvolvedor-frontend",

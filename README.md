@@ -18,11 +18,11 @@ O projeto é organizado em quatro partes, que trabalham em conjunto:
 
 `pages` e `application_content` seguem o **mesmo conjunto de arquivos** (mesmo nome, um `.html` e um `.json` para cada tela) — a diferença é que um define a estrutura/layout e o outro guarda os textos daquela tela. Hoje todas as pastas são **planas** (sem subpastas): não existe aninhamento tipo `bootcamps/bootcamp/modules/...`, cada tela é um arquivo solto nomeado pela própria rota.
 
-> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`), as listagens de **bootcamps** (`pages/bootcamps.html`), **trilhas** (`pages/modules.html`) e **projetos** (`pages/projects.html`), e a página de **detalhe de um projeto** (`pages/project.html`) já estão implementadas, com seus JSON correspondentes. Os demais arquivos de `pages` e de conteúdo ainda são **placeholders vazios**.
+> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`), as listagens de **bootcamps** (`pages/bootcamps.html`), **trilhas** (`pages/modules.html`) e **projetos** (`pages/projects.html`), e as páginas de **detalhe de um bootcamp** (`pages/bootcamp.html`) e de **um projeto** (`pages/project.html`) já estão implementadas, com seus JSON correspondentes. `pages/module.html`, `pages/lesson.html` e `pages/contact.html` ainda são **placeholders vazios**.
 >
-> Nas listagens os cards ainda **não navegam**: as telas de detalhe de bootcamp e de módulo (`bootcamp.html`, `module.html`) não existem, então esses cards são `<article>` sem link. A única navegação até essas listagens vem do menu do `index.html`.
+> Os cards de `pages/bootcamps.html` e `pages/projects.html` já navegam de verdade para `bootcamp.html?id=<id>` e `project.html?id=<id>`. Mas nem todo item tem o conteúdo de detalhe completo: só o bootcamp `desenvolvedor-backend` tem `detail.curriculum`/`detail.creator`, e só o projeto `calculadora-de-gorjeta` tem `detail.introHtml`/`requirements`/etc. (ver "Convenções dos campos" abaixo). Os demais bootcamps/projetos abrem a mesma página com cabeçalho, descrição e avaliação, mas sem currículo/enunciado — as seções que dependem do `detail` simplesmente não aparecem em vez de ficarem em branco.
 >
-> `pages/project.html` já funciona como destino (`pages/project.html?id=<id>`), mas por ora só o projeto `calculadora-de-gorjeta` tem o conteúdo de detalhe completo (ver `detail` em "Convenções dos campos" abaixo) — os outros 21 abrem a mesma página com um cabeçalho básico e sem enunciado/requisitos. O card dele em `pages/projects.html` ainda **não** foi religado para lá, para não fugir do escopo pedido; é um `<a href="pages/project.html?id=calculadora-de-gorjeta">` de uma linha quando quiserem ativar.
+> As duas páginas de detalhe leem o item pelo `?id=` da própria URL, não por navegação de estado — abrir a URL direto (ou dar F5 nela) funciona igual. Sem `?id=` ou com um `id` que não existe, mostram um painel "não encontrado" com link de volta pra listagem.
 
 ### Como o HTML consome os JSON
 
@@ -32,6 +32,7 @@ Cada página busca seu conteúdo com `fetch` no carregamento:
 |---|---|---|
 | `index.html` | `application_content/pt_br/index.json` | `course_content/pt_br/modules.json`, `course_content/pt_br/projects.json` |
 | `pages/bootcamps.html` | `application_content/pt_br/bootcamps.json` | `course_content/pt_br/bootcamps.json` |
+| `pages/bootcamp.html` | `application_content/pt_br/bootcamp.json` | `course_content/pt_br/bootcamps.json` (filtrado pelo `?id=` da URL) |
 | `pages/modules.html` | `application_content/pt_br/modules.json` | `course_content/pt_br/modules.json` |
 | `pages/projects.html` | `application_content/pt_br/projects.json` | `course_content/pt_br/projects.json` |
 | `pages/project.html` | `application_content/pt_br/project.json` | `course_content/pt_br/projects.json` (filtrado pelo `?id=` da URL), `course_content/pt_br/modules.json` (nomes das trilhas praticadas) |
@@ -109,7 +110,9 @@ Campos que se repetem entre os tipos de conteúdo:
 | `skills` | Lista de tópicos do item. Alimenta as tags dos cards e o filtro "Tópico" da tela de projetos. |
 | `published` | Data ISO de publicação. O selo "novo" é derivado dela (últimos 30 dias), não gravado no JSON. |
 | `hot` / `rating` | Opcionais; quando ausentes, o card simplesmente não mostra o selo/avaliação. |
-| `detail` | Só existe em itens que já têm página de detalhe própria (hoje, só o projeto `calculadora-de-gorjeta`). Guarda o que a listagem não usa: `introHtml`, `objectiveHtml`, `requirements[]`, `challenges[]`, `tips[]`, `trilhas[]` (ids de módulos praticados) e `creator` (`{ name, github }`). Ausente ou com listas vazias → a seção correspondente da página some, em vez de aparecer em branco. |
+| `detail` | Só existe em itens que já têm página de detalhe própria. Guarda o que a listagem não usa; ausente ou com listas vazias → a seção correspondente da página some, em vez de aparecer em branco. Formato varia por tipo (ver linhas abaixo). |
+| `detail` de **projeto** | Hoje só em `calculadora-de-gorjeta`: `introHtml`, `objectiveHtml`, `requirements[]`, `challenges[]`, `tips[]`, `trilhas[]` (ids de módulos praticados, viram pílulas linkando `module.html?id=`) e `creator` (`{ name, github }`). |
+| `detail` de **bootcamp** | Hoje só em `desenvolvedor-backend`: `creator` (`{ name, github }`) e `curriculum[]` — a jornada em ordem, cada item `{ type: "trilha" \| "projeto", id, title, description }`. `type` decide o badge (Trilha/Projeto) e o link do item: `trilha` → `module.html?id=<id>`, `projeto` → `project.html?id=<id>`. Nem todo `id` de trilha do currículo existe em `modules.json` (ex.: `terminal-para-devs`, `typescript`) — o link já fica pronto pra quando esses módulos forem cadastrados; até lá `module.html` (ainda vazio) não faz nada com ele. |
 
 Campos (ou itens de lista) cujo nome termina em **`Html`**, ou que estão dentro de `detail.requirements`/`detail.challenges`/`detail.tips`, guardam HTML já pronto (podem ter `<code>`, `<strong>`) e são inseridos com `innerHTML` — o mesmo padrão já usado em `application_content` (`quoteHtml`, `licenseHtml` etc.). Os demais campos são texto puro, inserido com `textContent`.
 

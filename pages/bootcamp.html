@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bootcamp · Primo Academy</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<meta name="description" content="" />
+<meta name="theme-color" content="#000000" />
+<meta name="color-scheme" content="dark" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   Design tokens — mesmos de index.html (fundo preto + indigo)
+   ============================================================ */
+:root{
+  --background:#000000;
+  --foreground:#f8f8f2;
+  --card:#0d0d16;
+  --card-foreground:#f8f8f2;
+  --primary:#bd93f9;
+  --primary-foreground:#11121a;
+  --secondary:#1c1c2e;
+  --muted:#15151f;
+  --muted-foreground:#9aa0c4;
+  --accent:#1c1c2e;
+  --accent-foreground:#f8f8f2;
+  --border:#232338;
+  --ring:#7d6cff;
+
+  --brand-indigo:#7d6cff;
+  --brand-purple:#bd93f9;
+  --brand-pink:#ff79c6;
+  --brand-cyan:#8be9fd;
+  --brand-orange:#ffb86c;
+  --brand-yellow:#f1fa8c;
+
+  --font-sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --font-display:"Archivo",system-ui,sans-serif;
+
+  --container:72rem;
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;border:0 solid var(--border);}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:1rem;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{display:block;max-width:100%;height:auto;}
+svg{display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;cursor:pointer;}
+h1,h2,h3,p,ul,ol,dl,dd,blockquote,figure{margin:0;}
+ul,ol{padding:0;list-style:none;}
+[hidden]{display:none!important;}
+
+/* ---------- helpers ---------- */
+.mono{font-family:var(--font-mono);}
+.display{font-family:var(--font-display);}
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:1rem;}
+@media (min-width:640px){.container{padding-inline:1.5rem;}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+.skip-link:focus{
+  position:fixed;left:1rem;top:1rem;z-index:50;width:auto;height:auto;margin:0;clip:auto;
+  overflow:visible;white-space:normal;border-radius:.375rem;background:var(--primary);
+  padding:.5rem 1rem;font-family:var(--font-mono);font-size:.875rem;color:var(--primary-foreground);
+}
+
+/* ---------- keyframes (1:1 com index.html) ---------- */
+@keyframes orb-drift{0%,100%{transform:translate(0) scale(1)}33%{transform:translate(40px,-30px) scale(1.05)}66%{transform:translate(-30px,25px) scale(.97)}}
+@keyframes orb-drift-slow{0%,100%{transform:translate(0) scale(1)}50%{transform:translate(-50px,35px) scale(1.08)}}
+@keyframes reveal-up{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translate(0)}}
+
+.anim-orb{will-change:transform;animation:orb-drift 14s ease-in-out infinite;}
+.anim-orb-slow{will-change:transform;animation:orb-drift-slow 18s ease-in-out infinite;}
+
+.reveal{opacity:0;}
+.reveal.in{animation:reveal-up .7s cubic-bezier(.22,1,.36,1) both;}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  .reveal{opacity:1;}
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:40;
+  border-bottom:1px solid var(--border);
+  background:rgba(0,0,0,.8);
+}
+@supports ((backdrop-filter:blur(8px)) or (-webkit-backdrop-filter:blur(8px))){
+  .site-header{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+}
+.header-inner{display:flex;height:3.5rem;align-items:center;justify-content:space-between;gap:1rem;}
+.brand{font-family:var(--font-mono);font-size:.875rem;font-weight:700;letter-spacing:-.025em;color:var(--foreground);}
+.brand .slash{color:var(--brand-indigo);}
+.main-nav{display:none;align-items:center;gap:.25rem;font-family:var(--font-mono);font-size:.875rem;}
+.main-nav a{border-radius:.375rem;padding:.375rem .75rem;color:var(--muted-foreground);transition:color .15s,background-color .15s;}
+.main-nav a:hover{background:rgba(33,34,44,.6);color:var(--foreground);}
+.main-nav a.is-active{background:var(--muted);color:var(--foreground);}
+.header-actions{display:none;align-items:center;justify-content:flex-end;gap:.75rem;min-width:80px;}
+.btn-sm{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  border-radius:.375rem;height:2.25rem;padding-inline:.75rem;font-size:.875rem;font-weight:600;
+  background:var(--brand-indigo);color:#fff;box-shadow:0 14px 34px -12px rgba(125,108,255,.7);
+  transition:all .15s;
+}
+.btn-sm:hover{filter:brightness(1.1);}
+.menu-btn{
+  display:inline-flex;width:2.25rem;height:2.25rem;align-items:center;justify-content:center;
+  border-radius:.375rem;border:1px solid var(--border);background:var(--card);color:var(--foreground);
+  transition:border-color .15s;
+}
+.menu-btn:hover{border-color:rgba(248,248,242,.4);}
+.menu-btn svg{width:1.25rem;height:1.25rem;}
+.mobile-menu{display:none;border-top:1px solid var(--border);background:var(--background);}
+.mobile-menu.open{display:block;}
+.mobile-menu ul{display:flex;flex-direction:column;padding:.5rem 0 1rem;font-family:var(--font-mono);font-size:.875rem;}
+.mobile-menu a{padding:.625rem .25rem;color:var(--muted-foreground);transition:color .15s;}
+.mobile-menu a:hover{color:var(--foreground);}
+.mobile-menu a[aria-current="page"]{color:var(--foreground);}
+@media (min-width:768px){
+  .main-nav,.header-actions{display:flex;}
+  .menu-btn{display:none;}
+  .mobile-menu,.mobile-menu.open{display:none;}
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.scroll-progress{
+  pointer-events:none;position:fixed;inset-inline:0;top:0;z-index:50;height:2px;
+  transform-origin:left;transform:scaleX(0);transition:transform 80ms linear;
+  background:linear-gradient(to right,var(--brand-indigo),var(--brand-cyan),var(--brand-pink));
+}
+
+/* ============================================================
+   PÁGINA — fundo, breadcrumb
+   ============================================================ */
+main{flex:1;}
+.hero-grid-lines{
+  position:absolute;inset:0;opacity:.07;color:var(--foreground);
+  background-image:linear-gradient(to right,currentColor 1px,transparent 1px),
+                   linear-gradient(to bottom,currentColor 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 30%,transparent 75%);
+  mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 30%,transparent 75%);
+}
+.orb{position:absolute;border-radius:9999px;filter:blur(64px);}
+.orb-pink{right:-6rem;top:-6rem;width:420px;height:420px;opacity:.22;background:radial-gradient(circle,var(--brand-pink) 0%,transparent 70%);}
+.orb-purple{bottom:-8rem;left:-8rem;width:480px;height:480px;opacity:.24;background:radial-gradient(circle,var(--brand-purple) 0%,transparent 70%);}
+
+.page-wrap{position:relative;overflow:hidden;}
+.page-bg{pointer-events:none;position:absolute;inset:0;height:32rem;overflow:hidden;}
+.page-bg .orb-pink{right:-8rem;top:-10rem;width:380px;height:380px;opacity:.16;}
+.page-bg .orb-purple{left:-10rem;top:-6rem;width:420px;height:420px;opacity:.18;bottom:auto;}
+.page-main{position:relative;padding-block:3rem;}
+@media (min-width:640px){.page-main{padding-block:4rem;}}
+
+.crumbs{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.crumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem;}
+.crumbs a{transition:color .15s;}
+.crumbs a:hover{color:var(--foreground);}
+.crumbs .sep{color:var(--brand-purple);}
+.crumbs .current{color:var(--foreground);}
+
+/* ============================================================
+   PAINEL DO BOOTCAMP
+   ============================================================ */
+.panel{
+  position:relative;margin-top:1.25rem;overflow:hidden;
+  border-radius:1rem;border:1px solid var(--border);background:var(--card);padding:1.5rem;
+}
+@media (min-width:640px){.panel{padding:2rem;}}
+@media (min-width:768px){.panel{padding:2.5rem;}}
+.glow{pointer-events:none;position:absolute;width:18rem;height:18rem;border-radius:9999px;filter:blur(64px);}
+.glow-tr{right:-6rem;top:-6rem;}
+.glow-bl{bottom:-6rem;left:-6rem;}
+.g-cyan{background:rgba(139,233,253,.1);}
+.g-pink{background:rgba(255,121,198,.1);}
+
+.card-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
+.badge{
+  display:inline-flex;width:fit-content;flex-shrink:0;align-items:center;justify-content:center;gap:.25rem;
+  white-space:nowrap;border-radius:.375rem;border:1px solid transparent;padding:.125rem .5rem;
+  font-family:var(--font-mono);font-size:.75rem;font-weight:500;
+  background:rgba(139,233,253,.15);color:var(--brand-cyan);
+}
+.meta-text{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+.meta-right{margin-left:auto;}
+
+.project-title{
+  margin-top:.75rem;max-width:48rem;font-family:var(--font-display);font-size:1.875rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:-.025em;line-height:1.05;
+}
+@media (min-width:640px){.project-title{font-size:2.25rem;}}
+.project-lead{margin-top:.5rem;max-width:65ch;color:var(--muted-foreground);}
+
+/* bloco "// você sai daqui sabendo" */
+.outcome-block{margin-top:1.5rem;max-width:65ch;border-top:1px solid var(--border);padding-top:1.25rem;}
+.outcome-block .lbl{
+  display:block;margin-bottom:.5rem;font-family:var(--font-mono);font-size:.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--brand-cyan);
+}
+.outcome-block p{font-size:.9375rem;color:var(--foreground);line-height:1.6;}
+
+.creator-row{margin-top:1.75rem;position:relative;}
+.creator-row h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.creator-link{margin-top:.75rem;display:inline-flex;align-items:center;gap:.625rem;transition:opacity .15s;}
+.creator-link:hover{opacity:.85;}
+.creator-link img{width:2.5rem;height:2.5rem;border-radius:9999px;border:1px solid var(--border);object-fit:cover;background:var(--muted);}
+.creator-name{display:block;font-size:.875rem;font-weight:600;color:var(--foreground);transition:color .15s;}
+.creator-link:hover .creator-name{color:var(--brand-cyan);}
+.creator-handle{display:block;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
+
+/* ============================================================
+   CURRÍCULO (lista numerada de trilhas + projetos)
+   ============================================================ */
+.kicker{font-family:var(--font-mono);font-size:.875rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.curriculo-wrap{margin-top:2.5rem;}
+.curriculo-lead{margin-top:.5rem;max-width:60ch;color:var(--muted-foreground);}
+
+.curriculo-list{margin-top:1.25rem;display:flex;flex-direction:column;gap:1rem;}
+.curriculo-item{
+  display:flex;align-items:center;gap:1.25rem;
+  border-radius:1rem;border:1px solid var(--border);background:var(--card);
+  padding:1.5rem;transition:border-color .15s;
+}
+.curriculo-item:hover{border-color:var(--brand-indigo);}
+.curriculo-num{
+  flex-shrink:0;width:2.5rem;font-family:var(--font-mono);font-size:1.375rem;font-weight:700;
+  color:rgba(154,160,196,.4);line-height:1;
+}
+.curriculo-body{flex:1;min-width:0;}
+.badge-projeto{background:rgba(255,121,198,.15);color:var(--brand-pink);}
+.curriculo-title{
+  display:block;margin-top:.5rem;font-family:var(--font-display);font-size:1.0625rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:-.01em;color:var(--card-foreground);transition:color .15s;
+}
+.curriculo-item:hover .curriculo-title{color:var(--brand-indigo);}
+.curriculo-desc{display:block;margin-top:.375rem;font-size:.875rem;line-height:1.55;color:var(--muted-foreground);}
+.curriculo-arrow{
+  flex-shrink:0;align-self:center;font-size:1.125rem;color:var(--brand-cyan);transition:transform .2s;
+}
+.curriculo-item:hover .curriculo-arrow{transform:translateX(4px);}
+
+.rating-wrap{margin-top:3rem;}
+
+.rating-panel{margin-top:3rem;border-radius:.75rem;border:1px solid var(--border);background:var(--card);padding:1rem;}
+.rating-kicker{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.rating-panel-inner{margin-top:1rem;display:flex;align-items:center;gap:.75rem;}
+.rating-score{font-family:var(--font-display);font-size:1.875rem;font-weight:900;color:var(--foreground);}
+.rating-stars{display:flex;gap:.125rem;font-size:1.125rem;line-height:1;color:rgba(154,160,196,.4);}
+.rating-note{margin-top:.125rem;font-family:var(--font-mono);font-size:11px;color:var(--muted-foreground);}
+
+.back-row{margin-top:2.5rem;max-width:65ch;}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.75rem;color:var(--brand-indigo);transition:color .15s;}
+.back-link:hover{color:var(--brand-cyan);}
+
+/* ============================================================
+   NÃO ENCONTRADO
+   ============================================================ */
+.notfound-panel{
+  margin-top:1.25rem;border-radius:1rem;border:1px dashed var(--border);background:var(--card);
+  padding:3rem 1.5rem;text-align:center;
+}
+.notfound-panel h1{font-family:var(--font-display);font-size:1.5rem;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;}
+.notfound-panel p{margin-top:.5rem;color:var(--muted-foreground);}
+.notfound-panel .back-link{margin-top:1.5rem;justify-content:center;}
+
+/* aviso de falha ao carregar o conteúdo (JSON) */
+.load-error{
+  display:none;margin-block:1rem;border-radius:.75rem;border:1px solid rgba(255,121,198,.4);
+  background:rgba(255,121,198,.08);padding:1rem;font-family:var(--font-mono);font-size:.875rem;color:var(--brand-pink);
+}
+.load-error.show{display:block;}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{margin-top:5rem;border-top:1px solid var(--border);background:rgba(255,255,255,.02);}
+.footer-grid{display:grid;gap:2.5rem;padding-block:3rem;}
+@media (min-width:768px){.footer-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+.footer-brand{grid-column:span 2;}
+.footer-brand>p:first-child{font-family:var(--font-mono);font-size:.875rem;font-weight:700;color:var(--foreground);}
+.footer-desc{margin-top:.75rem;max-width:24rem;font-size:.875rem;color:var(--muted-foreground);}
+.footer-gh{
+  margin-top:1.25rem;display:inline-flex;align-items:center;gap:.5rem;border-radius:.375rem;
+  border:1px solid var(--border);background:var(--card);padding:.375rem .75rem;
+  font-family:var(--font-mono);font-size:.75rem;transition:border-color .15s,background-color .15s;
+}
+.footer-gh:hover{border-color:rgba(248,248,242,.4);background:var(--muted);}
+.footer-gh svg{width:1rem;height:1rem;flex-shrink:0;}
+.footer-col h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
+.footer-col ul{margin-top:.75rem;display:flex;flex-direction:column;gap:.5rem;font-size:.875rem;}
+.footer-col a{color:var(--muted-foreground);transition:color .15s;}
+.footer-col a:hover{color:var(--foreground);}
+.footer-bottom{border-top:1px solid var(--border);}
+.footer-bottom-inner{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:.5rem;
+  padding-block:1.25rem;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);
+}
+@media (min-width:640px){.footer-bottom-inner{flex-direction:row;align-items:center;}}
+.footer-bottom-inner .strong{color:var(--foreground);}
+.footer-bottom-inner a{font-weight:700;color:var(--brand-pink);transition:color .15s;}
+.footer-bottom-inner a:hover{color:var(--foreground);}
+
+/* utilitários de cor */
+.c-accent{color:var(--brand-indigo);}
+.c-cyan{color:var(--brand-cyan);}
+.c-pink{color:var(--brand-pink);}
+.c-fg{color:var(--foreground);}
+</style>
+</head>
+
+<body>
+<a href="#conteudo" class="sr-only skip-link" id="skip-link"></a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="brand" id="brand" aria-label="início"></a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Principal"></nav>
+
+    <div class="header-actions">
+      <a href="#" class="btn-sm" id="header-cta"></a>
+    </div>
+
+    <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="menu-mobile">
+    <nav class="container" id="mobile-nav" aria-label="Menu mobile">
+      <ul id="mobile-nav-list"></ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-wrap">
+    <div class="page-bg" aria-hidden="true">
+      <div class="hero-grid-lines"></div>
+      <div class="orb orb-pink anim-orb"></div>
+      <div class="orb orb-purple anim-orb-slow"></div>
+    </div>
+
+    <div class="container page-main">
+      <p class="load-error" id="load-error" role="alert"></p>
+
+      <!-- ============================ BREADCRUMB ============================ -->
+      <nav class="crumbs" id="crumbs" aria-label="Navegação estrutural">
+        <ol id="crumbs-list"></ol>
+      </nav>
+
+      <!-- ============================ BOOTCAMP ============================ -->
+      <div id="bootcamp-view" hidden>
+        <!-- ---------- cabeçalho do bootcamp ---------- -->
+        <div class="reveal">
+          <div class="panel">
+            <div class="glow glow-tr g-cyan" aria-hidden="true"></div>
+            <div class="glow glow-bl g-pink" aria-hidden="true"></div>
+            <div style="position:relative">
+              <div class="card-meta">
+                <span class="badge" id="bootcamp-badge"></span>
+                <span class="meta-text" id="bootcamp-duration"></span>
+                <span class="meta-text meta-right" id="bootcamp-counts"></span>
+              </div>
+
+              <h1 class="project-title" id="bootcamp-title"></h1>
+              <p class="project-lead" id="bootcamp-lead"></p>
+
+              <div class="outcome-block" id="outcome-block" hidden>
+                <span class="lbl" id="outcome-label"></span>
+                <p id="outcome-body"></p>
+              </div>
+
+              <div class="creator-row" id="creator-row" hidden>
+                <h2 id="creator-label"></h2>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="creator-link" id="creator-link">
+                  <img id="creator-avatar" alt="" width="40" height="40" loading="lazy" />
+                  <span>
+                    <span class="creator-name" id="creator-name"></span>
+                    <span class="creator-handle" id="creator-handle"></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- currículo ---------- -->
+        <div class="reveal" style="animation-delay:80ms">
+          <div class="curriculo-wrap" id="curriculum-block" hidden>
+            <h2 class="kicker" id="curriculum-kicker"></h2>
+            <p class="curriculo-lead" id="curriculum-lead"></p>
+            <ol class="curriculo-list" id="curriculum-list"></ol>
+          </div>
+
+          <div class="rating-wrap">
+            <div class="rating-panel" id="rating-panel">
+              <p class="rating-kicker" id="rating-kicker"></p>
+              <div class="rating-panel-inner">
+                <span class="rating-score" id="rating-score"></span>
+                <span>
+                  <span class="rating-stars" aria-hidden="true">★★★★★</span>
+                  <span class="rating-note" id="rating-note"></span>
+                </span>
+              </div>
+            </div>
+
+            <p class="back-row">
+              <a href="bootcamps.html" class="back-link" id="back-link"></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================ NÃO ENCONTRADO ============================ -->
+      <div class="notfound-panel reveal" id="not-found" hidden>
+        <h1 id="notfound-title"></h1>
+        <p id="notfound-lead"></p>
+        <p><a href="bootcamps.html" class="back-link" id="notfound-back"></a></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p id="footer-brand"></p>
+      <p class="footer-desc" id="footer-desc"></p>
+      <a href="#" rel="noopener noreferrer" target="_blank" class="footer-gh" id="footer-gh">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
+        <span id="footer-gh-label"></span>
+      </a>
+    </div>
+
+    <div id="footer-cols" style="display:contents"></div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p id="footer-license"></p>
+      <p id="footer-credit"></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     Fontes de conteúdo (ver README — estrutura do projeto)
+       application_content → textos fixos da interface
+       course_content      → conteúdo educacional (bootcamps, projetos, trilhas...)
+     Esta página vive em /pages, por isso o ../
+     ============================================================ */
+  var APP_CONTENT = '../application_content/pt_br/';
+  var COURSE_CONTENT = '../course_content/pt_br/';
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function esc(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function text(id, value) { var el = $(id); if (el) el.textContent = value == null ? '' : value; }
+  function html(id, value) { var el = $(id); if (el) el.innerHTML = value == null ? '' : value; }
+
+  function getJSON(url) {
+    return fetch(url, { cache: 'no-cache' }).then(function (res) {
+      if (!res.ok) throw new Error(url + ' → HTTP ' + res.status);
+      return res.json();
+    });
+  }
+
+  function linkAttrs(item) {
+    return item && item.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+  }
+
+  function fill(template, values) {
+    return String(template == null ? '' : template).replace(/\{(\w+)\}/g, function (m, key) {
+      return Object.prototype.hasOwnProperty.call(values, key) ? values[key] : m;
+    });
+  }
+
+  /* Bloco opcional: mostra o container só quando há conteúdo pra ele. */
+  function showBlock(id, has) {
+    var el = $(id);
+    if (el) el.hidden = !has;
+    return has;
+  }
+
+  function pad2(n) { return n < 10 ? '0' + n : String(n); }
+
+  /* ============================================================
+     RENDER — casca (header, footer, breadcrumb estático)
+     ============================================================ */
+  function renderShell(c) {
+    text('skip-link', c.skipLink);
+
+    var brand = $('brand');
+    brand.href = c.brand.href;
+    brand.setAttribute('aria-label', c.brand.ariaLabel);
+    brand.innerHTML = '<span class="slash">' + esc(c.brand.slash) + '</span>' + esc(c.brand.name);
+
+    var active = c.nav.active;
+    html('main-nav', c.nav.links.map(function (link) {
+      var current = link.href === active ? ' aria-current="page" class="is-active"' : '';
+      return '<a href="' + esc(link.href) + '"' + linkAttrs(link) + current + '>' + esc(link.label) + '</a>';
+    }).join(''));
+    $('main-nav').setAttribute('aria-label', c.nav.ariaLabel);
+
+    html('mobile-nav-list', c.nav.links.map(function (link) {
+      var current = link.href === active ? ' aria-current="page"' : '';
+      return '<li><a href="' + esc(link.href) + '"' + linkAttrs(link) + current + '>' + esc(link.label) + '</a></li>';
+    }).join(''));
+    $('mobile-nav').setAttribute('aria-label', c.nav.mobileAriaLabel);
+
+    var headerCta = $('header-cta');
+    headerCta.href = c.nav.cta.href;
+    headerCta.textContent = c.nav.cta.label;
+
+    $('crumbs').setAttribute('aria-label', c.breadcrumbs.ariaLabel);
+
+    /* ---------- footer ---------- */
+    html('footer-brand', '<span class="c-accent">' + esc(c.footer.brand.slash) + '</span>' + esc(c.footer.brand.name));
+    text('footer-desc', c.footer.description);
+    $('footer-gh').href = c.footer.github.href;
+    text('footer-gh-label', c.footer.github.label);
+    html('footer-cols', c.footer.columns.map(function (col) {
+      var links = col.links.map(function (link) {
+        return '<li><a href="' + esc(link.href) + '"' + linkAttrs(link) + '>' + esc(link.label) + '</a></li>';
+      }).join('');
+      return '<div class="footer-col"><h2>' + esc(col.title) + '</h2><ul>' + links + '</ul></div>';
+    }).join(''));
+    html('footer-license', c.footer.bottom.licenseHtml);
+    var credit = c.footer.bottom.credit;
+    html('footer-credit', esc(credit.before) +
+      '<a href="' + esc(credit.href) + '" rel="noopener noreferrer" target="_blank">' + esc(credit.label) + '</a>');
+  }
+
+  function renderCrumbs(crumbs, currentLabel) {
+    var sep = '<li aria-hidden="true" class="sep">' + esc(crumbs.separator) + '</li>';
+    html('crumbs-list',
+      '<li><a href="' + esc(crumbs.home.href) + '">' + esc(crumbs.home.label) + '</a></li>' + sep +
+      '<li><a href="' + esc(crumbs.parent.href) + '">' + esc(crumbs.parent.label) + '</a></li>' + sep +
+      '<li><span aria-current="page" class="current">' + esc(currentLabel) + '</span></li>'
+    );
+  }
+
+  /* ============================================================
+     RENDER — estado "bootcamp não encontrado"
+     ============================================================ */
+  function renderNotFound(c) {
+    document.title = fill(c.meta.titleFormat, { title: c.notFound.title });
+    renderCrumbs(c.breadcrumbs, c.notFound.title);
+    $('bootcamp-view').hidden = true;
+    text('notfound-title', c.notFound.title);
+    text('notfound-lead', c.notFound.lead);
+    text('notfound-back', c.notFound.backLabel);
+    $('not-found').hidden = false;
+  }
+
+  /* ============================================================
+     RENDER — bootcamp encontrado
+     ============================================================ */
+  function renderBootcamp(c, bootcamp) {
+    var p = c.panel, cur = c.curriculum, r = c.rating, detail = bootcamp.detail || {};
+
+    document.title = fill(c.meta.titleFormat, { title: bootcamp.title });
+    var desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', bootcamp.description || '');
+
+    renderCrumbs(c.breadcrumbs, bootcamp.title);
+
+    /* ---------- cabeçalho ---------- */
+    text('bootcamp-badge', bootcamp.level);
+    text('bootcamp-duration', bootcamp.duration);
+    text('bootcamp-counts', fill(p.countsFormat, { modules: bootcamp.modules, projects: bootcamp.projects }));
+    text('bootcamp-title', bootcamp.title);
+    text('bootcamp-lead', bootcamp.description);
+
+    if (showBlock('outcome-block', !!bootcamp.outcome)) {
+      text('outcome-label', p.outcomeLabel);
+      text('outcome-body', bootcamp.outcome);
+    }
+
+    /* ---------- criador ---------- */
+    if (showBlock('creator-row', !!detail.creator)) {
+      var creator = detail.creator;
+      text('creator-label', p.creatorLabel);
+      var link = $('creator-link');
+      link.href = 'https://github.com/' + encodeURIComponent(creator.github);
+      $('creator-avatar').src = 'https://github.com/' + encodeURIComponent(creator.github) + '.png?size=80';
+      text('creator-name', creator.name);
+      text('creator-handle', '@' + creator.github);
+    }
+
+    /* ---------- currículo ---------- */
+    var curriculum = detail.curriculum || [];
+    if (showBlock('curriculum-block', curriculum.length > 0)) {
+      text('curriculum-kicker', cur.kicker);
+      text('curriculum-lead', cur.lead);
+      var list = $('curriculum-list');
+      list.setAttribute('aria-label', cur.ariaLabel);
+      html('curriculum-list', curriculum.map(function (item, i) {
+        var isProject = item.type === 'projeto';
+        var href = (isProject ? cur.projetoHref : cur.trilhaHref) + item.id;
+        var typeLabel = isProject ? cur.projetoLabel : cur.trilhaLabel;
+        return '<li><a class="curriculo-item" href="' + esc(href) + '">' +
+          '<span class="curriculo-num" aria-hidden="true">' + pad2(i + 1) + '</span>' +
+          '<span class="curriculo-body">' +
+            '<span class="badge' + (isProject ? ' badge-projeto' : '') + '">' + esc(typeLabel) + '</span>' +
+            '<span class="curriculo-title">' + esc(item.title) + '</span>' +
+            '<span class="curriculo-desc">' + esc(item.description) + '</span>' +
+          '</span>' +
+          '<span class="curriculo-arrow" aria-hidden="true">→</span>' +
+        '</a></li>';
+      }).join(''));
+    }
+
+    /* ---------- avaliação ---------- */
+    text('rating-kicker', r.kicker);
+    if (bootcamp.rating) {
+      var score = Number(bootcamp.rating.score).toFixed(1);
+      text('rating-score', score);
+      text('rating-note', fill(r.noteFormat, { count: bootcamp.rating.count }));
+      $('rating-panel').setAttribute('aria-label', fill(r.ariaFormat, { score: score, count: bootcamp.rating.count }));
+    } else {
+      text('rating-score', '—');
+      text('rating-note', r.emptyNote);
+      $('rating-panel').removeAttribute('aria-label');
+    }
+
+    text('back-link', c.backLink);
+
+    $('not-found').hidden = true;
+    $('bootcamp-view').hidden = false;
+  }
+
+  /* ============================================================
+     INTERAÇÕES / ANIMAÇÕES
+     ============================================================ */
+  function initInteractions() {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var menuBtn = $('menu-btn');
+    var menu = $('menu-mobile');
+    menuBtn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        menu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    var bar = $('scroll-progress');
+    function updateProgress() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var ratio = max > 0 ? window.scrollY / max : 0;
+      bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, ratio)) + ')';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !reduced) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      reveals.forEach(function (el) { io.observe(el); });
+      setTimeout(function () {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      }, 1500);
+    } else {
+      reveals.forEach(function (el) { el.style.opacity = '1'; });
+    }
+  }
+
+  /* ============================================================
+     BOOT
+     ============================================================ */
+  var empty = function () { return {}; };
+  var id = new URLSearchParams(window.location.search).get('id');
+
+  Promise.all([
+    getJSON(APP_CONTENT + 'bootcamp.json'),
+    getJSON(COURSE_CONTENT + 'bootcamps.json').catch(empty)
+  ]).then(function (data) {
+    var content = data[0];
+    var bootcamps = data[1].bootcamps || [];
+
+    renderShell(content);
+
+    var bootcamp = id ? bootcamps.filter(function (b) { return b.id === id; })[0] : null;
+    if (bootcamp) {
+      renderBootcamp(content, bootcamp);
+    } else {
+      renderNotFound(content);
+    }
+
+    initInteractions();
+  }).catch(function (err) {
+    console.error('[bootcamp] falha ao carregar o conteúdo:', err);
+    var box = $('load-error');
+    box.textContent = 'Não foi possível carregar o conteúdo desta página. Abra o site por um servidor HTTP (os arquivos JSON não carregam via file://).';
+    box.classList.add('show');
+    document.querySelectorAll('.reveal').forEach(function (el) { el.style.opacity = '1'; });
+  });
+})();
+</script>
+</body>
+</html>

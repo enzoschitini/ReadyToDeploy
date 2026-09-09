@@ -441,7 +441,7 @@ h1.page-title{
 
   /* Card sem link: a tela de um bootcamp ainda não existe, então nada navega daqui. */
   function bootcampCard(item, section, labels) {
-    return '<article class="card">' +
+    return '<a class="card" href="' + esc(section.itemHref + item.id) + '">' +
       '<div class="card-meta">' +
         '<span class="badge">' + esc(item.level) + '</span>' +
         (item['new'] ? pillNew(labels) : '') +
@@ -457,7 +457,7 @@ h1.page-title{
         '<span class="meta-text">' + esc(counts(item, section)) + '</span>' +
         '<span class="card-cta">' + esc(section.itemCta) + '</span>' +
       '</div>' +
-    '</article>';
+    '</a>';
   }
 
   /* ============================================================

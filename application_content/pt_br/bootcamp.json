@@ -1,0 +1,92 @@
+{
+  "page": "bootcamp",
+  "lang": "pt-BR",
+  "meta": {
+    "titleFormat": "{title} · Primo Academy",
+    "themeColor": "#000000"
+  },
+  "skipLink": "Pular para o conteúdo",
+  "brand": {
+    "href": "../index.html",
+    "ariaLabel": "Primo Academy - início",
+    "slash": "~/",
+    "name": ".primo-academy.sh"
+  },
+  "nav": {
+    "ariaLabel": "Principal",
+    "mobileAriaLabel": "Menu mobile",
+    "openLabel": "Abrir menu",
+    "closeLabel": "Fechar menu",
+    "active": "bootcamps.html",
+    "links": [
+      { "label": "Trilhas", "href": "modules.html" },
+      { "label": "Bootcamps", "href": "bootcamps.html" },
+      { "label": "Projetos", "href": "projects.html" },
+      { "label": "Ranking", "href": "contact.html" }
+    ],
+    "cta": { "label": "Entrar", "href": "contact.html" }
+  },
+  "breadcrumbs": {
+    "ariaLabel": "Navegação estrutural",
+    "separator": "/",
+    "home": { "label": "Início", "href": "../index.html" },
+    "parent": { "label": "Bootcamps", "href": "bootcamps.html" }
+  },
+  "panel": {
+    "outcomeLabel": "// você sai daqui sabendo",
+    "creatorLabel": "// criado por",
+    "countsFormat": "{modules} trilhas · {projects} projetos"
+  },
+  "curriculum": {
+    "kicker": "// currículo",
+    "lead": "Uma jornada só, do zero até um resultado concreto: trilhas e projetos intercalados, nessa ordem, cada um construindo em cima do anterior.",
+    "ariaLabel": "Currículo do bootcamp, em ordem",
+    "trilhaLabel": "Trilha",
+    "projetoLabel": "Projeto",
+    "trilhaHref": "module.html?id=",
+    "projetoHref": "project.html?id="
+  },
+  "rating": {
+    "kicker": "// avaliação do bootcamp",
+    "emptyNote": "ainda sem avaliações",
+    "noteFormat": "com base em {count} avaliações",
+    "ariaFormat": "Avaliação média {score} de 5, {count} avaliações"
+  },
+  "backLink": "← voltar para bootcamps",
+  "notFound": {
+    "title": "Bootcamp não encontrado",
+    "lead": "Esse bootcamp não existe ou ainda não foi publicado.",
+    "backLabel": "← voltar para bootcamps"
+  },
+  "footer": {
+    "brand": { "slash": "~/", "name": ".primo-academy.sh" },
+    "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
+    "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
+    "columns": [
+      {
+        "title": "// conteúdo",
+        "links": [
+          { "label": "Trilhas", "href": "modules.html" },
+          { "label": "Projetos", "href": "projects.html" },
+          { "label": "Bootcamps", "href": "bootcamps.html" },
+          { "label": "Ranking", "href": "contact.html" }
+        ]
+      },
+      {
+        "title": "// projeto",
+        "links": [
+          { "label": "Código no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community", "external": true },
+          { "label": "Como contribuir", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Sobre o autor", "href": "https://oprimo.dev", "external": true }
+        ]
+      }
+    ],
+    "bottom": {
+      "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
+      "credit": { "before": "criado por ", "label": "OPrimoDev", "href": "https://oprimo.dev" }
+    }
+  },
+  "errors": {
+    "loadFailed": "Não foi possível carregar o conteúdo desta página. Abra o site por um servidor HTTP (os arquivos JSON não carregam via file://)."
+  }
+}

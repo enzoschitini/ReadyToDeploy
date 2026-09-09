@@ -41,6 +41,7 @@
   },
   "section": {
     "outcomeLabel": "// você sai daqui sabendo",
+    "itemHref": "bootcamp.html?id=",
     "itemCta": "ver bootcamp →",
     "countsFormat": "{modules} trilhas · {projects} projetos",
     "empty": "Nenhum bootcamp publicado ainda."
