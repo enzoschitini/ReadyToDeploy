@@ -31,7 +31,7 @@
           "<code>Intl.NumberFormat(\"pt-BR\", { style: \"currency\", currency: \"BRL\" })</code> formata dinheiro pra você.",
           "Comece fazendo a conta aparecer no <code>console.log</code>. Só depois jogue na tela."
         ],
-        "trilhas": ["programacao-do-zero"],
+        "modulos": ["programacao-do-zero"],
         "creator": { "name": "Luciano dii Souza", "github": "lucianodiisouza" }
       }
     },

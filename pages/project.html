@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Projeto · Primo Academy</title>
+<title>Projeto · Ready To Deploy</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <meta name="description" content="" />
 <meta name="theme-color" content="#000000" />
@@ -224,12 +224,12 @@ main{flex:1;}
 .practice-row,.creator-row{margin-top:1.5rem;position:relative;}
 .practice-row h2,.creator-row h2{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
 .pill-list{margin-top:.75rem;display:flex;flex-wrap:wrap;gap:.5rem;}
-.pill-trilha{
+.pill-modulo{
   display:inline-flex;align-items:center;border-radius:9999px;border:1px solid var(--border);
   background:var(--background);padding:.25rem .75rem;font-family:var(--font-mono);font-size:.75rem;
   color:var(--foreground);transition:border-color .15s,color .15s;
 }
-.pill-trilha:hover{border-color:var(--brand-cyan);color:var(--brand-cyan);}
+.pill-modulo:hover{border-color:var(--brand-cyan);color:var(--brand-cyan);}
 
 .creator-link{margin-top:.75rem;display:inline-flex;align-items:center;gap:.625rem;transition:opacity .15s;}
 .creator-link:hover{opacity:.85;}
@@ -500,7 +500,7 @@ main{flex:1;}
   /* ============================================================
      Fontes de conteúdo (ver README — estrutura do projeto)
        application_content → textos fixos da interface
-       course_content      → conteúdo educacional (projetos, trilhas...)
+       course_content      → conteúdo educacional (projetos, módulos...)
      Esta página vive em /pages, por isso o ../
      ============================================================ */
   var APP_CONTENT = '../application_content/pt_br/';
@@ -631,14 +631,14 @@ main{flex:1;}
       return '<span class="tag">' + esc(skill) + '</span>';
     }).join(''));
 
-    /* ---------- trilhas praticadas ---------- */
-    var trilhas = detail.trilhas || [];
-    if (showBlock('practice-row', trilhas.length > 0)) {
+    /* ---------- módulos praticados ---------- */
+    var modulos = detail.modulos || [];
+    if (showBlock('practice-row', modulos.length > 0)) {
       text('practice-label', p.practiceLabel);
-      html('practice-pills', trilhas.map(function (id) {
+      html('practice-pills', modulos.map(function (id) {
         var mod = modulesById[id];
         var label = mod ? mod.title : id;
-        return '<a href="module.html?id=' + esc(id) + '" class="pill-trilha">' + esc(label) + '</a>';
+        return '<a href="module.html?id=' + esc(id) + '" class="pill-modulo">' + esc(label) + '</a>';
       }).join(''));
     }
 

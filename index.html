@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Primo Academy - Roadmaps de programação em português</title>
+<title>Ready To Deploy - Roadmaps de programação em português</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<meta name="description" content="Trilhas de estudo de programação, gratuitas e open source, feitas para o público brasileiro. Aprenda do zero." />
+<meta name="description" content="Módulos de estudo de programação, gratuitos e open source, feitos para o público brasileiro. Aprenda do zero." />
 <meta name="theme-color" content="#000000" />
 <meta name="color-scheme" content="dark" />
 <link rel="stylesheet" href="assets/theme.css" />
@@ -240,7 +240,7 @@ code.type{display:inline-flex;align-items:baseline;white-space:pre-wrap;font-fam
 .halo-2{pointer-events:none;position:absolute;inset:-2rem;opacity:.3;filter:blur(32px);
   background:radial-gradient(circle 220px at 50% 50%,rgba(125,108,255,.18),transparent 70%);}
 .blob-photo{position:relative;height:100%;width:100%;overflow:hidden;}
-.blob-photo img{height:100%;width:100%;object-fit:cover;object-position:center 22%;}
+.blob-photo img{height:100%;width:100%;object-fit:cover;object-position:center 50%;}
 .blob-photo .veil{pointer-events:none;position:absolute;inset:0;
   background:var(--veil);}
 
@@ -594,7 +594,7 @@ blockquote.manifesto{
               <p class="manifesto-pull" id="manifesto-pull"></p>
 
               <div class="manifesto-foot">
-                <a href="#trilhas" class="cta-inline" id="manifesto-cta"></a>
+                <a href="#modulos" class="cta-inline" id="manifesto-cta"></a>
                 <span class="foot-note" id="manifesto-note"></span>
               </div>
             </div>
@@ -602,16 +602,16 @@ blockquote.manifesto{
         </div>
       </section>
 
-      <!-- ============================ TRILHAS (modules) ============================ -->
-      <section id="trilhas" class="s-mt-16" aria-labelledby="trilhas-titulo">
+      <!-- ============================ MÓDULOS (modules) ============================ -->
+      <section id="modulos" class="s-mt-16" aria-labelledby="modulos-titulo">
         <div class="reveal">
           <div class="sec-head">
-            <h2 id="trilhas-titulo" class="kicker"></h2>
-            <a href="pages/modules.html" class="see-all" id="trilhas-seeall"></a>
+            <h2 id="modulos-titulo" class="kicker"></h2>
+            <a href="pages/modules.html" class="see-all" id="modulos-seeall"></a>
           </div>
         </div>
         <div class="reveal" style="animation-delay:80ms">
-          <div class="card-grid stagger" id="trilhas-grid"></div>
+          <div class="card-grid stagger" id="modulos-grid"></div>
         </div>
       </section>
 
@@ -693,7 +693,7 @@ blockquote.manifesto{
                 <div class="terminal-bar">
                   <span class="tdot" style="background:#ff5555"></span>
                   <span class="tdot" style="background:#f1fa8c"></span>
-                  <span class="tdot" style="background:#7d6cff"></span>
+                  <span class="tdot" style="background:#50fa7b"></span>
                   <span class="path" id="terminal-path"></span>
                 </div>
                 <div class="terminal-body" id="terminal-body"></div>
@@ -755,7 +755,7 @@ blockquote.manifesto{
   /* ============================================================
      Fontes de conteúdo (ver README — estrutura do projeto)
        application_content → textos fixos da interface
-       course_content      → conteúdo educacional (trilhas, projetos...)
+       course_content      → conteúdo educacional (módulos, projetos...)
      ============================================================ */
   var APP_CONTENT = 'application_content/pt_br/';
   var COURSE_CONTENT = 'course_content/pt_br/';
@@ -928,13 +928,13 @@ blockquote.manifesto{
     mCta.innerHTML = esc(c.manifesto.cta.label) + '<span class="arrow" aria-hidden="true">→</span>';
     text('manifesto-note', c.manifesto.note);
 
-    /* ---------- trilhas (modules) + projetos ---------- */
+    /* ---------- módulos (modules) + projetos ---------- */
     var secModules = c.sections.modules;
-    text('trilhas-titulo', secModules.kicker);
-    var seeModules = $('trilhas-seeall');
+    text('modulos-titulo', secModules.kicker);
+    var seeModules = $('modulos-seeall');
     seeModules.href = secModules.seeAll.href;
     seeModules.innerHTML = esc(secModules.seeAll.label) + '<span>→</span>';
-    renderCards('trilhas-grid', modules, secModules, c.labels, moduleCard);
+    renderCards('modulos-grid', modules, secModules, c.labels, moduleCard);
 
     var secProjects = c.sections.projects;
     text('projetos-titulo', secProjects.kicker);

@@ -2,15 +2,15 @@
   "page": "bootcamp",
   "lang": "pt-BR",
   "meta": {
-    "titleFormat": "{title} · Primo Academy",
+    "titleFormat": "{title} · Ready To Deploy",
     "themeColor": "#000000"
   },
   "skipLink": "Pular para o conteúdo",
   "brand": {
     "href": "../index.html",
-    "ariaLabel": "Primo Academy - início",
+    "ariaLabel": "Ready To Deploy - início",
     "slash": "~/",
-    "name": ".primo-academy.sh"
+    "name": ".ready-to-deploy.py"
   },
   "nav": {
     "ariaLabel": "Principal",
@@ -19,7 +19,7 @@
     "closeLabel": "Fechar menu",
     "active": "bootcamps.html",
     "links": [
-      { "label": "Trilhas", "href": "modules.html" },
+      { "label": "Módulos", "href": "modules.html" },
       { "label": "Bootcamps", "href": "bootcamps.html" },
       { "label": "Projetos", "href": "projects.html" },
       { "label": "Ranking", "href": "contact.html" }
@@ -35,15 +35,15 @@
   "panel": {
     "outcomeLabel": "// você sai daqui sabendo",
     "creatorLabel": "// criado por",
-    "countsFormat": "{modules} trilhas · {projects} projetos"
+    "countsFormat": "{modules} módulos · {projects} projetos"
   },
   "curriculum": {
     "kicker": "// currículo",
-    "lead": "Uma jornada só, do zero até um resultado concreto: trilhas e projetos intercalados, nessa ordem, cada um construindo em cima do anterior.",
+    "lead": "Uma jornada só, do zero até um resultado concreto: módulos e projetos intercalados, nessa ordem, cada um construindo em cima do anterior.",
     "ariaLabel": "Currículo do bootcamp, em ordem",
-    "trilhaLabel": "Trilha",
+    "moduloLabel": "Módulo",
     "projetoLabel": "Projeto",
-    "trilhaHref": "module.html?id=",
+    "moduloHref": "module.html?id=",
     "projetoHref": "project.html?id="
   },
   "rating": {
@@ -59,14 +59,14 @@
     "backLabel": "← voltar para bootcamps"
   },
   "footer": {
-    "brand": { "slash": "~/", "name": ".primo-academy.sh" },
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
     "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
     "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
     "columns": [
       {
         "title": "// conteúdo",
         "links": [
-          { "label": "Trilhas", "href": "modules.html" },
+          { "label": "Módulos", "href": "modules.html" },
           { "label": "Projetos", "href": "projects.html" },
           { "label": "Bootcamps", "href": "bootcamps.html" },
           { "label": "Ranking", "href": "contact.html" }
@@ -83,7 +83,7 @@
     ],
     "bottom": {
       "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
-      "credit": { "before": "criado por ", "label": "OPrimoDev", "href": "https://oprimo.dev" }
+      "credit": { "before": "criado por ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
     }
   },
   "errors": {

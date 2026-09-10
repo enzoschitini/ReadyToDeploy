@@ -2,16 +2,16 @@
   "page": "index",
   "lang": "pt-BR",
   "meta": {
-    "title": "Primo Academy - Roadmaps de programação em português",
-    "description": "Trilhas de estudo de programação, gratuitas e open source, feitas para o público brasileiro. Aprenda do zero.",
+    "title": "Ready To Deploy - Roadmaps de programação em português",
+    "description": "Módulos de estudo de programação, gratuitos e open source, feitos para o público brasileiro. Aprenda do zero.",
     "themeColor": "#000000"
   },
   "skipLink": "Pular para o conteúdo",
   "brand": {
     "href": "index.html",
-    "ariaLabel": "Primo Academy - início",
+    "ariaLabel": "Ready To Deploy - início",
     "slash": "~/",
-    "name": ".primo-academy.sh"
+    "name": ".ready-to-deploy.py"
   },
   "nav": {
     "ariaLabel": "Principal",
@@ -19,7 +19,7 @@
     "openLabel": "Abrir menu",
     "closeLabel": "Fechar menu",
     "links": [
-      { "label": "Trilhas", "href": "pages/modules.html" },
+      { "label": "Módulos", "href": "pages/modules.html" },
       { "label": "Bootcamps", "href": "pages/bootcamps.html" },
       { "label": "Projetos", "href": "pages/projects.html" },
       { "label": "Ranking", "href": "pages/contact.html" }
@@ -38,7 +38,7 @@
       "TESTES", "PWA", "REAL-TIME", "SEO", "MOTION"
     ],
     "leadBefore": "Do primeiro",
-    "leadAfter": "ao primeiro projeto no ar. Trilhas guiadas em português, no seu ritmo.",
+    "leadAfter": "ao primeiro projeto no ar. Módulos guiados em português, no seu ritmo.",
     "typeSnippets": [
       "console.log(\"olá, dev\")",
       "print(\"olá, dev\")",
@@ -46,37 +46,37 @@
       "npm run dev"
     ],
     "ctas": [
-      { "label": "Começar agora →", "href": "#trilhas", "variant": "primary" },
+      { "label": "Começar agora →", "href": "#modulos", "variant": "primary" },
       { "label": "Ver no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community", "variant": "outline", "external": true }
     ],
-    "portrait": { "src": "https://aprenda.oprimo.dev/luciano.jpg", "alt": "" }
+    "portrait": { "src": "assets/imgs/cover.jpg", "alt": "" }
   },
   "stats": [
-    { "label": "trilhas", "value": 41, "tone": "c-accent" },
+    { "label": "módulos", "value": 41, "tone": "c-accent" },
     { "label": "projetos", "value": 22, "tone": "c-cyan" },
     { "label": "nós", "value": 483, "tone": "c-pink" }
   ],
   "manifesto": {
     "kicker": "// manifesto",
     "quoteHtml": "Se Inteligência Artificial veio para ficar ou se ela vai sumir um dia, <br /><span class=\"c-cyan\">aprender virou <strong class=\"c-accent\">prioridade[0]</strong>.</span>",
-    "textHtml": "Roadmaps, trilhas e projetos curados por Luciano dii Souza, <strong class=\"c-fg\" style=\"font-weight:600\">OPrimoDev</strong>: são <strong class=\"c-accent\" style=\"font-weight:600\">12 anos</strong> de Engenharia de Software e experiência em projetos nacionais e internacionais.",
+    "textHtml": "Roadmaps, módulos e projetos curados por Luciano dii Souza, <strong class=\"c-fg\" style=\"font-weight:600\">OPrimoDev</strong>: são <strong class=\"c-accent\" style=\"font-weight:600\">12 anos</strong> de Engenharia de Software e experiência em projetos nacionais e internacionais.",
     "pull": "Numa era com tanto conteúdo, separar o joio do trigo é a única forma de aprender de verdade.",
-    "cta": { "label": "Aprenda de graça. Contribua pra que mais gente aprenda.", "href": "#trilhas" },
+    "cta": { "label": "Aprenda de graça. Contribua pra que mais gente aprenda.", "href": "#modulos" },
     "note": "grátis · open source · PT-BR"
   },
   "sections": {
     "modules": {
-      "kicker": "// trilhas",
+      "kicker": "// módulos",
       "seeAll": { "label": "ver todos", "href": "pages/modules.html" },
       "itemHref": "pages/module.html?id=",
-      "itemCta": "ver trilha →",
+      "itemCta": "ver módulo →",
       "limit": 4,
       "nodesLabel": "nós",
-      "empty": "Nenhuma trilha publicada ainda."
+      "empty": "Nenhum módulo publicado ainda."
     },
     "projects": {
       "kicker": "// projetos",
-      "subtitle": "Aprender de verdade é construindo. Pratique o que as trilhas ensinam.",
+      "subtitle": "Aprender de verdade é construindo. Pratique o que os módulos ensinam.",
       "seeAll": { "label": "ver todos", "href": "pages/projects.html" },
       "itemHref": "pages/project.html?id=",
       "itemCta": "ver projeto →",
@@ -96,32 +96,32 @@
   },
   "author": {
     "kicker": "// idealizador",
-    "name": "PrimoDev",
-    "handle": "@lucianodiisouza",
-    "avatar": { "src": "https://github.com/lucianodiisouza.png?size=200", "alt": "Foto de PrimoDev" },
-    "onlineAria": "Online",
+    "name": "Enzo Schitini",
+    "handle": "@enzoschitini",
+    "avatar": { "src": "assets/imgs/profile.jpg", "alt": "Foto de Enzo Schitini" },
+    "onlineAria": "Disponível",
     "chip": "criador do projeto",
-    "onlineLabel": "online",
-    "bio": "Engenheiro de software apaixonado por educação. Criei a Primo Academy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.",
-    "skills": ["React Native", "TypeScript", "SwiftUI"],
+    "onlineLabel": "disponível",
+    "bio": "Engenheiro IA e Cientista de dados apaixonado por aprendizado prático. Criei o Ready To Deploy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.",
+    "skills": ["Python", "LangChain", "Machine Learning"],
     "links": [
-      { "label": "oprimo.dev", "href": "https://oprimo.dev", "style": "solid", "icon": "external" },
-      { "label": "GitHub", "href": "https://github.com/lucianodiisouza", "style": "ghost", "icon": "github" }
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/enzoschitini", "style": "solid", "icon": "external" },
+      { "label": "GitHub", "href": "https://github.com/enzoschitini", "style": "ghost", "icon": "github" }
     ]
   },
   "contribute": {
     "kicker": "// contribua",
     "terminal": {
-      "path": "~/primo-academy",
+      "path": "~/ready-to-deploy",
       "lines": [
         { "cmd": "git clone", "arg": "https://github.com/lucianodiisouza/aprenda-community", "argType": "url" },
         { "cmd": "cd", "arg": "aprenda-community" },
         { "cmd": "pnpm install" },
-        { "cmd": "pnpm content:new", "comment": "// cria uma nova trilha", "caret": true }
+        { "cmd": "pnpm content:new", "comment": "// cria um novo módulo", "caret": true }
       ]
     },
     "titleHtml": "Faça parte do que vem <span class=\"c-accent\">depois</span>.",
-    "text": "A Primo Academy é open source e vive de contribuição. Toda ajuda conta, seja uma trilha nova, correção de typo ou compartilhamento com quem precisa.",
+    "text": "A Ready To Deploy é open source e vive de contribuição. Toda ajuda conta, seja um módulo novo, correção de typo ou compartilhamento com quem precisa.",
     "buttons": [
       { "label": "Ver no GitHub →", "href": "https://github.com/lucianodiisouza/aprenda-community", "variant": "primary", "external": true },
       { "label": "Guia de contribuição", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md", "variant": "outline", "external": true }
@@ -129,7 +129,7 @@
     "contributors": {
       "title": "// quem já construiu isso (8)",
       "ariaLabel": "Contribuidores",
-      "noteHtml": "Trilhas, projetos e bootcamps construídos por gente da comunidade. <span class=\"c-fg\">Seu avatar pode ser o próximo.</span>",
+      "noteHtml": "Módulos, projetos e bootcamps construídos por gente da comunidade. <span class=\"c-fg\">Seu avatar pode ser o próximo.</span>",
       "items": [
         { "name": "Luciano dii Souza", "login": "lucianodiisouza", "contributions": 46 },
         { "name": "Bruno Fernandes Horn", "login": "brunofhorn", "contributions": 9 },
@@ -143,14 +143,14 @@
     }
   },
   "footer": {
-    "brand": { "slash": "~/", "name": ".primo-academy.sh" },
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
     "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
     "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
     "columns": [
       {
         "title": "// conteúdo",
         "links": [
-          { "label": "Trilhas", "href": "pages/modules.html" },
+          { "label": "Módulos", "href": "pages/modules.html" },
           { "label": "Projetos", "href": "pages/projects.html" },
           { "label": "Bootcamps", "href": "pages/bootcamps.html" },
           { "label": "Ranking", "href": "pages/contact.html" }
@@ -167,7 +167,7 @@
     ],
     "bottom": {
       "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
-      "credit": { "before": "criado por ", "label": "OPrimoDev", "href": "https://oprimo.dev" }
+      "credit": { "before": "criado por ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
     }
   },
   "errors": {

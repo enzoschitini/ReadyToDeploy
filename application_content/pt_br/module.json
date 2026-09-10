@@ -2,16 +2,16 @@
   "page": "module",
   "lang": "pt-BR",
   "meta": {
-    "titleFormat": "{lesson} · {module} · Primo Academy",
-    "moduleTitleFormat": "{module} · Primo Academy",
+    "titleFormat": "{lesson} · {module} · Ready To Deploy",
+    "moduleTitleFormat": "{module} · Ready To Deploy",
     "themeColor": "#000000"
   },
   "skipLink": "Pular para o conteúdo",
   "brand": {
     "href": "../index.html",
-    "ariaLabel": "Primo Academy - início",
+    "ariaLabel": "Ready To Deploy - início",
     "slash": "~/",
-    "name": ".primo-academy.sh"
+    "name": ".ready-to-deploy.py"
   },
   "nav": {
     "ariaLabel": "Principal",
@@ -21,7 +21,7 @@
     "active": "modules.html",
     "links": [
       {
-        "label": "Trilhas",
+        "label": "Módulos",
         "href": "modules.html"
       },
       {
@@ -50,15 +50,15 @@
       "href": "../index.html"
     },
     "parent": {
-      "label": "Trilhas",
+      "label": "Módulos",
       "href": "modules.html"
     }
   },
   "aside": {
-    "navAriaLabel": "Aulas da trilha",
-    "mobileNavAriaLabel": "Aulas da trilha (mobile)",
+    "navAriaLabel": "Aulas do módulo",
+    "mobileNavAriaLabel": "Aulas do módulo (mobile)",
     "backFormat": "← {module}",
-    "progressAriaLabel": "Progresso na trilha",
+    "progressAriaLabel": "Progresso no módulo",
     "progressFormat": "{done}/{total} concluídos",
     "drawerFormat": "☰ Aulas · {module} · {done}/{total}"
   },
@@ -120,21 +120,21 @@
     "timeoutMessage": "⏱️ Execução excedeu 5s - worker terminado (provável loop infinito)."
   },
   "rating": {
-    "kicker": "// avaliação da trilha",
+    "kicker": "// avaliação do módulo",
     "emptyNote": "ainda sem avaliações",
     "noteFormat": "com base em {count} avaliações",
     "ariaFormat": "Avaliação média {score} de 5, {count} avaliações"
   },
-  "backLink": "← voltar para trilhas",
+  "backLink": "← voltar para módulos",
   "notFound": {
-    "title": "Trilha não encontrada",
-    "lead": "Essa trilha não existe ou ainda não teve o conteúdo publicado.",
-    "backLabel": "← voltar para trilhas"
+    "title": "Módulo não encontrado",
+    "lead": "Esse módulo não existe ou ainda não teve o conteúdo publicado.",
+    "backLabel": "← voltar para módulos"
   },
   "footer": {
     "brand": {
       "slash": "~/",
-      "name": ".primo-academy.sh"
+      "name": ".ready-to-deploy.py"
     },
     "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
     "github": {
@@ -146,7 +146,7 @@
         "title": "// conteúdo",
         "links": [
           {
-            "label": "Trilhas",
+            "label": "Módulos",
             "href": "modules.html"
           },
           {
@@ -188,8 +188,8 @@
       "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
       "credit": {
         "before": "criado por ",
-        "label": "OPrimoDev",
-        "href": "https://oprimo.dev"
+        "label": "Enzo Schitini",
+        "href": "https://www.linkedin.com/in/enzoschitini"
       }
     }
   },
