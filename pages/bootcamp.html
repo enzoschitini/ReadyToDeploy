@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bootcamp · Primo Academy</title>
+<title>Bootcamp · Ready To Deploy</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <meta name="description" content="" />
 <meta name="theme-color" content="#000000" />
@@ -233,7 +233,7 @@ main{flex:1;}
 .creator-handle{display:block;font-family:var(--font-mono);font-size:.75rem;color:var(--muted-foreground);}
 
 /* ============================================================
-   CURRÍCULO (lista numerada de trilhas + projetos)
+   CURRÍCULO (lista numerada de módulos + projetos)
    ============================================================ */
 .kicker{font-family:var(--font-mono);font-size:.875rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
 .curriculo-wrap{margin-top:2.5rem;}
@@ -484,7 +484,7 @@ main{flex:1;}
   /* ============================================================
      Fontes de conteúdo (ver README — estrutura do projeto)
        application_content → textos fixos da interface
-       course_content      → conteúdo educacional (bootcamps, projetos, trilhas...)
+       course_content      → conteúdo educacional (bootcamps, projetos, módulos...)
      Esta página vive em /pages, por isso o ../
      ============================================================ */
   var APP_CONTENT = '../application_content/pt_br/';
@@ -640,8 +640,8 @@ main{flex:1;}
       list.setAttribute('aria-label', cur.ariaLabel);
       html('curriculum-list', curriculum.map(function (item, i) {
         var isProject = item.type === 'projeto';
-        var href = (isProject ? cur.projetoHref : cur.trilhaHref) + item.id;
-        var typeLabel = isProject ? cur.projetoLabel : cur.trilhaLabel;
+        var href = (isProject ? cur.projetoHref : cur.moduloHref) + item.id;
+        var typeLabel = isProject ? cur.projetoLabel : cur.moduloLabel;
         return '<li><a class="curriculo-item" href="' + esc(href) + '">' +
           '<span class="curriculo-num" aria-hidden="true">' + pad2(i + 1) + '</span>' +
           '<span class="curriculo-body">' +

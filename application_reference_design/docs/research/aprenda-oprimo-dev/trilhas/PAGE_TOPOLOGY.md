@@ -8,7 +8,7 @@ Destino: `trilhas.html` (arquivo estático único, seguindo o design system de `
 | # | Seção | Tipo | Modelo de interação |
 |---|-------|------|---------------------|
 | 1 | Skip link `#conteudo` | acessibilidade | foco |
-| 2 | Header sticky (`~/.primo-academy.sh` + nav) | sticky overlay, z-40 | estático + menu mobile (click) |
+| 2 | Header sticky (`~/.ready-to-deploy.py` + nav) | sticky overlay, z-40 | estático + menu mobile (click) |
 | 3 | Breadcrumb `Início / Trilhas` | fluxo | estático |
 | 4 | `<h1>Trilhas</h1>` + lead | fluxo | estático |
 | 5 | **FilterBar** (busca, níveis, dropdown Tópico, contador, chips, limpar) | fluxo | **click + input, client-side** |

@@ -2,16 +2,16 @@
   "page": "projects",
   "lang": "pt-BR",
   "meta": {
-    "title": "Projetos · Primo Academy",
-    "description": "Projetos práticos para treinar o que as trilhas ensinam. Cada um tem objetivo, requisitos e desafios extras.",
+    "title": "Projetos · Ready To Deploy",
+    "description": "Projetos práticos para treinar o que os módulos ensinam. Cada um tem objetivo, requisitos e desafios extras.",
     "themeColor": "#000000"
   },
   "skipLink": "Pular para o conteúdo",
   "brand": {
     "href": "../index.html",
-    "ariaLabel": "Primo Academy - início",
+    "ariaLabel": "Ready To Deploy - início",
     "slash": "~/",
-    "name": ".primo-academy.sh"
+    "name": ".ready-to-deploy.py"
   },
   "nav": {
     "ariaLabel": "Principal",
@@ -20,7 +20,7 @@
     "closeLabel": "Fechar menu",
     "active": "projects.html",
     "links": [
-      { "label": "Trilhas", "href": "modules.html" },
+      { "label": "Módulos", "href": "modules.html" },
       { "label": "Bootcamps", "href": "bootcamps.html" },
       { "label": "Projetos", "href": "projects.html" },
       { "label": "Ranking", "href": "contact.html" }
@@ -37,7 +37,7 @@
   },
   "header": {
     "title": "Projetos",
-    "lead": "Aprender de verdade é construindo. Escolha um projeto do seu nível e pratique o que as trilhas ensinam — cada um tem objetivo, requisitos e desafios extras."
+    "lead": "Aprender de verdade é construindo. Escolha um projeto do seu nível e pratique o que os módulos ensinam — cada um tem objetivo, requisitos e desafios extras."
   },
   "filters": {
     "searchLabel": "Buscar projetos",
@@ -78,14 +78,14 @@
     "ratingAria": "Avaliação média {score} de 5, {count} avaliações"
   },
   "footer": {
-    "brand": { "slash": "~/", "name": ".primo-academy.sh" },
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
     "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
     "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
     "columns": [
       {
         "title": "// conteúdo",
         "links": [
-          { "label": "Trilhas", "href": "modules.html" },
+          { "label": "Módulos", "href": "modules.html" },
           { "label": "Projetos", "href": "projects.html" },
           { "label": "Bootcamps", "href": "bootcamps.html" },
           { "label": "Ranking", "href": "contact.html" }
@@ -102,7 +102,7 @@
     ],
     "bottom": {
       "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
-      "credit": { "before": "criado por ", "label": "OPrimoDev", "href": "https://oprimo.dev" }
+      "credit": { "before": "criado por ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
     }
   },
   "errors": {

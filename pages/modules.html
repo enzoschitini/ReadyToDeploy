@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Trilhas · Primo Academy</title>
+<title>Módulos · Ready To Deploy</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-<meta name="description" content="Escolha por onde começar. Cada trilha é um caminho de estudo com recursos curados, em português e de graça." />
+<meta name="description" content="Escolha por onde começar. Cada módulo é um caminho de estudo com recursos curados, em português e de graça." />
 <meta name="theme-color" content="#000000" />
 <meta name="color-scheme" content="dark" />
 <link rel="stylesheet" href="../assets/theme.css" />
@@ -506,7 +506,7 @@ h1.page-title{
   /* ============================================================
      Fontes de conteúdo (ver README — estrutura do projeto)
        application_content → textos fixos da interface
-       course_content      → conteúdo educacional (bootcamps, trilhas...)
+       course_content      → conteúdo educacional (bootcamps, módulos...)
      Esta página vive em /pages, por isso o ../
      ============================================================ */
   var APP_CONTENT = '../application_content/pt_br/';
@@ -577,7 +577,7 @@ h1.page-title{
     return inner ? '<span class="meta-right">' + inner + '</span>' : '';
   }
 
-  /* Trilha com aulas publicadas vira card clicável; sem aulas, fica sem link. */
+  /* Módulo com aulas publicadas vira card clicável; sem aulas, fica sem link. */
   function moduleCard(item, section, labels) {
     var nodesLabel = plural(item.nodes, section.nodesLabelSingular, section.nodesLabel);
     var linked = hasLessons[item.id];
@@ -597,7 +597,7 @@ h1.page-title{
   }
 
   /* ============================================================
-     TÓPICOS — derivados dos skills das trilhas,
+     TÓPICOS — derivados dos skills dos módulos,
      ordenados por contagem desc e depois pelo nome (pt-BR)
      ============================================================ */
   function collectTopics(modules) {
@@ -690,13 +690,13 @@ h1.page-title{
         '<span class="topic-count">' + esc(topic.count) + '</span></button></li>';
     }).join(''));
 
-    /* ---------- listagem das trilhas ---------- */
+    /* ---------- listagem dos módulos ---------- */
     if (modules.length) {
       html('modules-grid', modules.map(function (item) {
         return moduleCard(item, c.section, c.labels);
       }).join(''));
     } else {
-      /* nenhuma trilha publicada: some com os filtros e mostra o estado vazio */
+      /* nenhum módulo publicado: some com os filtros e mostra o estado vazio */
       $('modules-grid').hidden = true;
       document.querySelector('.filter-bar').hidden = true;
       text('empty-state', c.section.empty);

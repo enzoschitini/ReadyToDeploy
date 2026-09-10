@@ -2,16 +2,16 @@
   "page": "modules",
   "lang": "pt-BR",
   "meta": {
-    "title": "Trilhas · Primo Academy",
-    "description": "Escolha por onde começar. Cada trilha é um caminho de estudo com recursos curados, em português e de graça.",
+    "title": "Módulos · Ready To Deploy",
+    "description": "Escolha por onde começar. Cada módulo é um caminho de estudo com recursos curados, em português e de graça.",
     "themeColor": "#000000"
   },
   "skipLink": "Pular para o conteúdo",
   "brand": {
     "href": "../index.html",
-    "ariaLabel": "Primo Academy - início",
+    "ariaLabel": "Ready To Deploy - início",
     "slash": "~/",
-    "name": ".primo-academy.sh"
+    "name": ".ready-to-deploy.py"
   },
   "nav": {
     "ariaLabel": "Principal",
@@ -21,7 +21,7 @@
     "active": "modules.html",
     "links": [
       {
-        "label": "Trilhas",
+        "label": "Módulos",
         "href": "modules.html"
       },
       {
@@ -51,18 +51,18 @@
         "href": "../index.html"
       },
       {
-        "label": "Trilhas"
+        "label": "Módulos"
       }
     ]
   },
   "header": {
-    "title": "Trilhas",
-    "lead": "Escolha por onde começar. Cada trilha é um caminho de estudo com recursos curados."
+    "title": "Módulos",
+    "lead": "Escolha por onde começar. Cada módulo é um caminho de estudo com recursos curados."
   },
   "filters": {
     "search": {
-      "placeholder": "Buscar trilhas por nome, descrição ou tópico…",
-      "ariaLabel": "Buscar trilhas"
+      "placeholder": "Buscar módulos por nome, descrição ou tópico…",
+      "ariaLabel": "Buscar módulos"
     },
     "levelLabel": "Nível",
     "levelGroupAriaLabel": "Filtrar por nível",
@@ -94,13 +94,13 @@
   },
   "section": {
     "itemHref": "module.html?id=",
-    "itemCta": "ver trilha →",
+    "itemCta": "ver módulo →",
     "nodesLabel": "nós",
     "nodesLabelSingular": "nó",
-    "trailLabel": "trilhas",
-    "trailLabelSingular": "trilha",
-    "empty": "Nenhuma trilha publicada ainda.",
-    "emptyFiltered": "Nenhuma trilha encontrada com esses filtros."
+    "trailLabel": "módulos",
+    "trailLabelSingular": "módulo",
+    "empty": "Nenhum módulo publicado ainda.",
+    "emptyFiltered": "Nenhum módulo encontrado com esses filtros."
   },
   "labels": {
     "hot": "em alta",
@@ -112,7 +112,7 @@
   "footer": {
     "brand": {
       "slash": "~/",
-      "name": ".primo-academy.sh"
+      "name": ".ready-to-deploy.py"
     },
     "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
     "github": {
@@ -124,7 +124,7 @@
         "title": "// conteúdo",
         "links": [
           {
-            "label": "Trilhas",
+            "label": "Módulos",
             "href": "modules.html"
           },
           {
@@ -166,8 +166,8 @@
       "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
       "credit": {
         "before": "criado por ",
-        "label": "OPrimoDev",
-        "href": "https://oprimo.dev"
+        "label": "Enzo Schitini",
+        "href": "https://www.linkedin.com/in/enzoschitini"
       }
     }
   },

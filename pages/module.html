@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Trilha · Primo Academy</title>
+<title>Módulo · Ready To Deploy</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <meta name="description" content="" />
 <meta name="theme-color" content="#000000" />
@@ -149,17 +149,17 @@ ul,ol{padding:0;list-style:none;}
 }
 
 /* ============================================================
-   LAYOUT DA TRILHA
+   LAYOUT DO MÓDULO
    ============================================================ */
 main{flex:1;}
-.trilha-layout{padding-block:2rem;}
+.modulo-layout{padding-block:2rem;}
 @media (min-width:1024px){
-  .trilha-layout{display:grid;grid-template-columns:15rem minmax(0,1fr);gap:2.5rem;align-items:start;}
+  .modulo-layout{display:grid;grid-template-columns:15rem minmax(0,1fr);gap:2.5rem;align-items:start;}
 }
 
 /* ---------- sidebar ---------- */
-.trilha-aside{display:none;}
-@media (min-width:1024px){.trilha-aside{display:block;}}
+.modulo-aside{display:none;}
+@media (min-width:1024px){.modulo-aside{display:block;}}
 .aside-sticky{
   position:sticky;top:4rem;max-height:calc(100vh - 5rem);
   overflow-y:auto;padding-bottom:2rem;padding-right:.5rem;
@@ -196,20 +196,20 @@ main{flex:1;}
 .node-link[data-done="1"] .node-num::after{content:"\2713";}
 
 /* ---------- drawer mobile ---------- */
-.trilha-drawer{margin-bottom:1.5rem;border-radius:.5rem;border:1px solid var(--border);background:rgba(13,13,22,.5);}
-@media (min-width:1024px){.trilha-drawer{display:none;}}
-.trilha-drawer summary{
+.modulo-drawer{margin-bottom:1.5rem;border-radius:.5rem;border:1px solid var(--border);background:rgba(13,13,22,.5);}
+@media (min-width:1024px){.modulo-drawer{display:none;}}
+.modulo-drawer summary{
   cursor:pointer;list-style:none;padding:.75rem 1rem;
   font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;
   letter-spacing:.1em;color:var(--muted-foreground);
 }
-.trilha-drawer summary::-webkit-details-marker{display:none;}
+.modulo-drawer summary::-webkit-details-marker{display:none;}
 .drawer-body{border-top:1px solid var(--border);padding:.75rem;}
 
 /* ============================================================
    ARTIGO
    ============================================================ */
-.trilha-main{min-width:0;}
+.modulo-main{min-width:0;}
 .node-article{max-width:48rem;padding-bottom:3rem;}
 @media (min-width:1024px){.node-article{padding-top:.5rem;}}
 
@@ -470,9 +470,9 @@ h1.node-title{
 .c-pink{color:var(--brand-pink);}
 .c-fg{color:var(--foreground);}
 /* ============================================================
-   ESTADOS DE FALLBACK (trilha inexistente / conteúdo não carregado)
+   ESTADOS DE FALLBACK (módulo inexistente / conteúdo não carregado)
    ============================================================ */
-/* .trilha-layout vira grid no desktop, então o [hidden] do navegador não basta. */
+/* .modulo-layout vira grid no desktop, então o [hidden] do navegador não basta. */
 [hidden]{display:none!important;}
 
 .notfound-panel{
@@ -522,7 +522,7 @@ h1.node-title{
 <main id="conteudo">
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
-  <!-- aviso de falha de carregamento / trilha inexistente -->
+  <!-- aviso de falha de carregamento / módulo inexistente -->
   <div class="container" id="fallback-area">
     <p class="load-error" id="load-error" role="alert"></p>
     <div class="notfound-panel" id="not-found" hidden>
@@ -532,10 +532,10 @@ h1.node-title{
     </div>
   </div>
 
-  <div class="container trilha-layout" id="trilha-layout" hidden>
+  <div class="container modulo-layout" id="modulo-layout" hidden>
 
     <!-- ============================ SIDEBAR ============================ -->
-    <aside class="trilha-aside">
+    <aside class="modulo-aside">
       <div class="aside-sticky">
         <div class="aside-head">
           <a class="back-link" id="aside-back" href="modules.html"></a>
@@ -552,7 +552,7 @@ h1.node-title{
     </aside>
 
     <!-- ============================ DRAWER MOBILE ============================ -->
-    <details class="trilha-drawer" id="trilha-drawer">
+    <details class="modulo-drawer" id="modulo-drawer">
       <summary id="drawer-summary"></summary>
       <div class="drawer-body">
         <nav id="nav-mobile">
@@ -562,7 +562,7 @@ h1.node-title{
     </details>
 
     <!-- ============================ AULA ATIVA ============================ -->
-    <div class="trilha-main" id="trilha-main"></div>
+    <div class="modulo-main" id="modulo-main"></div>
   </div>
 </main>
 
@@ -715,12 +715,12 @@ h1.node-title{
   }
 
   /* ============================================================
-     RENDER — estado "trilha não encontrada"
+     RENDER — estado "módulo não encontrado"
      ============================================================ */
   function renderNotFound() {
     var c = content;
     document.title = fill(c.meta.moduleTitleFormat, { module: c.notFound.title });
-    byId('trilha-layout').hidden = true;
+    byId('modulo-layout').hidden = true;
     text('notfound-title', c.notFound.title);
     text('notfound-lead', c.notFound.lead);
     var back = byId('notfound-back');
@@ -888,12 +888,12 @@ h1.node-title{
 
     document.title = fill(content.meta.titleFormat, { lesson: lesson.title, module: moduleData.title });
 
-    var drawer = byId('trilha-drawer');
+    var drawer = byId('modulo-drawer');
     if (drawer) drawer.open = false;
 
     return loadBody(lesson).then(function (body) {
       if (token !== renderToken) return;   /* uma navegação mais nova já assumiu */
-      var main = byId('trilha-main');
+      var main = byId('modulo-main');
       main.innerHTML = articleHTML(lesson, index, body);
       var article = $('.node-article', main);
 
@@ -1302,7 +1302,7 @@ h1.node-title{
           .sort(function (a, b) { return (a.order || 0) - (b.order || 0); })
       : [];
 
-    /* Sem trilha, ou trilha ainda sem aulas publicadas: mesmo painel de "não encontrada". */
+    /* Sem módulo, ou módulo ainda sem aulas publicadas: mesmo painel de "não encontrado". */
     if (!moduleData || !lessons.length) {
       renderNotFound();
       return;
@@ -1318,7 +1318,7 @@ h1.node-title{
 
     renderAside();
     renderProgress();
-    byId('trilha-layout').hidden = false;
+    byId('modulo-layout').hidden = false;
     byId('not-found').hidden = true;
 
     window.addEventListener('hashchange', function () {

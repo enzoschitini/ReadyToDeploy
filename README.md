@@ -18,9 +18,9 @@ O projeto é organizado em quatro partes, que trabalham em conjunto:
 
 `pages` e `application_content` seguem o **mesmo conjunto de arquivos** (mesmo nome, um `.html` e um `.json` para cada tela) — a diferença é que um define a estrutura/layout e o outro guarda os textos daquela tela. Hoje todas as pastas são **planas** (sem subpastas): não existe aninhamento tipo `bootcamps/bootcamp/modules/...`, cada tela é um arquivo solto nomeado pela própria rota.
 
-> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`), as listagens de **bootcamps** (`pages/bootcamps.html`), **trilhas** (`pages/modules.html`) e **projetos** (`pages/projects.html`), e as páginas de **detalhe de um bootcamp** (`pages/bootcamp.html`), de **um projeto** (`pages/project.html`) e de **uma trilha** (`pages/module.html`) já estão implementadas, com seus JSON correspondentes. `pages/lesson.html` e `pages/contact.html` ainda são **placeholders vazios**.
+> ⚠️ Estado atual da implementação: a **página inicial** (`index.html`), as listagens de **bootcamps** (`pages/bootcamps.html`), **módulos** (`pages/modules.html`) e **projetos** (`pages/projects.html`), e as páginas de **detalhe de um bootcamp** (`pages/bootcamp.html`), de **um projeto** (`pages/project.html`) e de **um módulo** (`pages/module.html`) já estão implementadas, com seus JSON correspondentes. `pages/lesson.html` e `pages/contact.html` ainda são **placeholders vazios**.
 >
-> `pages/module.html` é a tela de estudo de uma trilha: sidebar com todas as aulas, progresso, e o conteúdo da aula ativa. Ela concentra as duas rotas — a trilha vem do `?id=` e a aula do **hash** (`module.html?id=programacao-do-zero#variaveis`) — então `pages/lesson.html` continua sem uso por enquanto. Hoje só a trilha `programacao-do-zero` tem aulas publicadas; em `pages/modules.html` só os cards de trilhas com aula viram link, os outros continuam sem navegação.
+> `pages/module.html` é a tela de estudo de um módulo: sidebar com todas as aulas, progresso, e o conteúdo da aula ativa. Ela concentra as duas rotas — o módulo vem do `?id=` e a aula do **hash** (`module.html?id=programacao-do-zero#variaveis`) — então `pages/lesson.html` continua sem uso por enquanto. Hoje só o módulo `programacao-do-zero` tem aulas publicadas; em `pages/modules.html` só os cards de módulos com aula viram link, os outros continuam sem navegação.
 >
 > Os cards de `pages/bootcamps.html` e `pages/projects.html` já navegam de verdade para `bootcamp.html?id=<id>` e `project.html?id=<id>`. Mas nem todo item tem o conteúdo de detalhe completo: só o bootcamp `desenvolvedor-backend` tem `detail.curriculum`/`detail.creator`, e só o projeto `calculadora-de-gorjeta` tem `detail.introHtml`/`requirements`/etc. (ver "Convenções dos campos" abaixo). Os demais bootcamps/projetos abrem a mesma página com cabeçalho, descrição e avaliação, mas sem currículo/enunciado — as seções que dependem do `detail` simplesmente não aparecem em vez de ficarem em branco.
 >
@@ -37,7 +37,7 @@ Cada página busca seu conteúdo com `fetch` no carregamento:
 | `pages/bootcamp.html` | `application_content/pt_br/bootcamp.json` | `course_content/pt_br/bootcamps.json` (filtrado pelo `?id=` da URL) |
 | `pages/modules.html` | `application_content/pt_br/modules.json` | `course_content/pt_br/modules.json` |
 | `pages/projects.html` | `application_content/pt_br/projects.json` | `course_content/pt_br/projects.json` |
-| `pages/project.html` | `application_content/pt_br/project.json` | `course_content/pt_br/projects.json` (filtrado pelo `?id=` da URL), `course_content/pt_br/modules.json` (nomes das trilhas praticadas) |
+| `pages/project.html` | `application_content/pt_br/project.json` | `course_content/pt_br/projects.json` (filtrado pelo `?id=` da URL), `course_content/pt_br/modules.json` (nomes dos módulos praticados) |
 | `pages/module.html` | `application_content/pt_br/module.json` | `course_content/pt_br/modules.json` (filtrado pelo `?id=` da URL), `course_content/pt_br/lessons.json` (aulas do módulo) e, sob demanda, o `.html` de cada aula |
 
 Como o conteúdo vem por `fetch`, o site precisa ser aberto por **HTTP** (GitHub Pages ou um servidor local como `python -m http.server`) — abrir o arquivo direto por `file://` bloqueia o carregamento dos JSON e a página mostra um aviso.
@@ -58,8 +58,8 @@ Pasta plana: cada arquivo é uma tela/rota da aplicação. Somente o conteúdo v
 pages
 ├── bootcamps.html    → Listagem dos bootcamps
 ├── bootcamp.html     → Página de um bootcamp selecionado
-├── modules.html      → Listagem de módulos (hoje chamados de "trilhas")
-├── module.html       → Página de um módulo (trilha) selecionado
+├── modules.html      → Listagem de módulos
+├── module.html       → Página de um módulo selecionado
 ├── lesson.html       → Página de conteúdo de uma aula do módulo
 ├── projects.html     → Listagem de todos os projetos
 ├── project.html      → Página de um projeto específico
@@ -72,8 +72,8 @@ pages
 |---|---|
 | `bootcamps` | Lista todos os bootcamps disponíveis |
 | `bootcamp` | Exibe os detalhes de um bootcamp selecionado |
-| `modules` | Lista os módulos ("trilhas") de um bootcamp |
-| `module` | Exibe um módulo (trilha) específico |
+| `modules` | Lista os módulos de um bootcamp |
+| `module` | Exibe um módulo específico |
 | `lesson` | Exibe o conteúdo de uma aula do módulo |
 | `projects` | Lista todos os projetos |
 | `project` | Exibe um projeto específico |
@@ -110,7 +110,7 @@ Campos de uma aula em `lessons.json`:
 |---|---|
 | `id` | Id da aula. Vira o **hash** da URL (`module.html?id=<módulo>#<id>`) e a chave do progresso salvo. |
 | `module_id` | Id do módulo dono da aula (`modules.json`). |
-| `order` | Posição na trilha — define a numeração da sidebar e o "anterior/próxima". |
+| `order` | Posição no módulo — define a numeração da sidebar e o "anterior/próxima". |
 | `title` | Título da aula, no `<h1>` e no breadcrumb. |
 | `navTitle` | Título curto na sidebar. Quando ausente, a sidebar usa o `title`. |
 | `badge` | Selo acima do título (ex.: `essencial`). Opcional. |
@@ -157,20 +157,20 @@ Campos que se repetem entre os tipos de conteúdo:
 | `published` | Data ISO de publicação. O selo "novo" é derivado dela (últimos 30 dias), não gravado no JSON. |
 | `hot` / `rating` | Opcionais; quando ausentes, o card simplesmente não mostra o selo/avaliação. |
 | `detail` | Só existe em itens que já têm página de detalhe própria. Guarda o que a listagem não usa; ausente ou com listas vazias → a seção correspondente da página some, em vez de aparecer em branco. Formato varia por tipo (ver linhas abaixo). |
-| `detail` de **projeto** | Hoje só em `calculadora-de-gorjeta`: `introHtml`, `objectiveHtml`, `requirements[]`, `challenges[]`, `tips[]`, `trilhas[]` (ids de módulos praticados, viram pílulas linkando `module.html?id=`) e `creator` (`{ name, github }`). |
-| `detail` de **bootcamp** | Hoje só em `desenvolvedor-backend`: `creator` (`{ name, github }`) e `curriculum[]` — a jornada em ordem, cada item `{ type: "trilha" \| "projeto", id, title, description }`. `type` decide o badge (Trilha/Projeto) e o link do item: `trilha` → `module.html?id=<id>`, `projeto` → `project.html?id=<id>`. Nem todo `id` de trilha do currículo existe em `modules.json` (ex.: `terminal-para-devs`, `typescript`) — o link já fica pronto pra quando esses módulos forem cadastrados; até lá `module.html` abre com o painel "trilha não encontrada". |
+| `detail` de **projeto** | Hoje só em `calculadora-de-gorjeta`: `introHtml`, `objectiveHtml`, `requirements[]`, `challenges[]`, `tips[]`, `modulos[]` (ids de módulos praticados, viram pílulas linkando `module.html?id=`) e `creator` (`{ name, github }`). |
+| `detail` de **bootcamp** | Hoje só em `desenvolvedor-backend`: `creator` (`{ name, github }`) e `curriculum[]` — a jornada em ordem, cada item `{ type: "modulo" \| "projeto", id, title, description }`. `type` decide o badge (Módulo/Projeto) e o link do item: `modulo` → `module.html?id=<id>`, `projeto` → `project.html?id=<id>`. Nem todo `id` de módulo do currículo existe em `modules.json` (ex.: `terminal-para-devs`, `typescript`) — o link já fica pronto pra quando esses módulos forem cadastrados; até lá `module.html` abre com o painel "módulo não encontrado". |
 
 Campos (ou itens de lista) cujo nome termina em **`Html`**, ou que estão dentro de `detail.requirements`/`detail.challenges`/`detail.tips`, guardam HTML já pronto (podem ter `<code>`, `<strong>`) e são inseridos com `innerHTML` — o mesmo padrão já usado em `application_content` (`quoteHtml`, `licenseHtml` etc.). Os demais campos são texto puro, inserido com `textContent`.
 
 > Tipos adicionais como apresentações e pesquisas (ver `application_reference_design/Estrutura dos Conteúdos.md`) ainda não têm arquivo/pasta próprios em `course_content` — serão adicionados quando forem implementados. Quiz e checkpoint já existem, mas como marcação dentro do `.html` da aula, não como tipo de conteúdo separado.
 
-### Publicando uma nova trilha
+### Publicando um novo módulo
 
 1. Adicione o módulo em `course_content/pt_br/modules.json` (com `id`, `bootcamp_id`, `nodes` etc.).
 2. Crie `course_content/pt_br/<id-do-módulo>/` e escreva um `.html` por aula.
 3. Registre cada aula em `course_content/pt_br/lessons.json`, com `module_id`, `order` e `content`.
 
-Nada em `pages` muda: o card na listagem passa a linkar sozinho e `module.html?id=<id>` já serve a trilha.
+Nada em `pages` muda: o card na listagem passa a linkar sozinho e `module.html?id=<id>` já serve o módulo.
 
 ---
 
@@ -185,7 +185,7 @@ application_content
     ├── bootcamps.json
     ├── bootcamp.json
     ├── modules.json
-    ├── module.json     → textos da tela de estudo de uma trilha
+    ├── module.json     → textos da tela de estudo de um módulo
     ├── lesson.json
     ├── projects.json
     ├── project.json

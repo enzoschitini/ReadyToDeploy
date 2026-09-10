@@ -2,15 +2,15 @@
   "page": "project",
   "lang": "pt-BR",
   "meta": {
-    "titleFormat": "{title} · Primo Academy",
+    "titleFormat": "{title} · Ready To Deploy",
     "themeColor": "#000000"
   },
   "skipLink": "Pular para o conteúdo",
   "brand": {
     "href": "../index.html",
-    "ariaLabel": "Primo Academy - início",
+    "ariaLabel": "Ready To Deploy - início",
     "slash": "~/",
-    "name": ".primo-academy.sh"
+    "name": ".ready-to-deploy.py"
   },
   "nav": {
     "ariaLabel": "Principal",
@@ -19,7 +19,7 @@
     "closeLabel": "Fechar menu",
     "active": "projects.html",
     "links": [
-      { "label": "Trilhas", "href": "modules.html" },
+      { "label": "Módulos", "href": "modules.html" },
       { "label": "Bootcamps", "href": "bootcamps.html" },
       { "label": "Projetos", "href": "projects.html" },
       { "label": "Ranking", "href": "contact.html" }
@@ -33,7 +33,7 @@
     "parent": { "label": "Projetos", "href": "projects.html" }
   },
   "panel": {
-    "practiceLabel": "// pratica as trilhas",
+    "practiceLabel": "// pratica os módulos",
     "creatorLabel": "// criado por",
     "objectiveTitle": "Objetivo",
     "requirementsTitle": "Requisitos",
@@ -53,14 +53,14 @@
     "backLabel": "← voltar para projetos"
   },
   "footer": {
-    "brand": { "slash": "~/", "name": ".primo-academy.sh" },
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
     "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
     "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
     "columns": [
       {
         "title": "// conteúdo",
         "links": [
-          { "label": "Trilhas", "href": "modules.html" },
+          { "label": "Módulos", "href": "modules.html" },
           { "label": "Projetos", "href": "projects.html" },
           { "label": "Bootcamps", "href": "bootcamps.html" },
           { "label": "Ranking", "href": "contact.html" }
@@ -77,7 +77,7 @@
     ],
     "bottom": {
       "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
-      "credit": { "before": "criado por ", "label": "OPrimoDev", "href": "https://oprimo.dev" }
+      "credit": { "before": "criado por ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
     }
   },
   "errors": {
