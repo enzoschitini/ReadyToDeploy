@@ -17,3 +17,7 @@ Cada projeto prático vive num cenário fictício **próprio**: uma empresa, um 
 | 03 | Voa Fácil | Companhia aérea (baixo custo) | Check-in, reembolso de voo cancelado, vendas de passagens do dia e programa de milhas. |
 | 04 | Estuda Mais | Plataforma de ensino *online* | Leitura/escrita de CSV de notas, função de pontuação para certificado e contador de aprovados com escopo. |
 | 05 | FreelaBoard | Marketplace de freelancers | Calculadora de repasse com `lambda`, repasses em lote com `map`, filtro de contas e comissão via `reduce`. |
+| 06 | Página Viva | Clube de assinatura de livros | Classe `Livro` com `__str__`, objetos a partir de dados soltos, classe `AcervoCSV` migrando um catálogo antigo e herança com `LivroDigital`. |
+| 07 | CasaNova Mudanças | Startup de mudanças residenciais | Estimativa de caminhões com `math`/`datetime`, módulo de pedidos em CSV, pacote com checklist e consulta de CEP via `requests`. |
+| 08 | RotaCerta | Logística de última milha (entregas) | Checagem de sintaxe com `compile()`, `try`/`except`/`else`/`finally` na pesagem, `PacoteInvalidoError` com `raise ... from` num manifesto CSV e correção de um erro de lógica com `assert`. |
+| 09 | ScriptZen Automação | Consultoria de automação (TI) | Diagnóstico de ambiente com `platform`, script de boas-vindas e de estimativa de tempo lidos via `sys.argv`, e um log de execuções em CSV. |
