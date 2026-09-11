@@ -50,7 +50,7 @@ def validar_estrutura(celulas, erros, avisos):
     _, cabecalho = markdowns[0]
     if not re.match(r"^# Módulo \d{2,} - \S", cabecalho):
         erros.append("A primeira célula deve começar com '# Módulo NN - Tema'.")
-    for trecho in ("#### Curso: Ready To Deploy", "#### Criado por: Enzo Schitini"):
+    for trecho in ("Curso: Ready To Deploy", "Criado por: [Enzo Schitini]"):
         if trecho not in cabecalho:
             erros.append(f"Cabeçalho sem a linha '{trecho}'.")
     if cabecalho.count("---") < 2:
@@ -109,7 +109,16 @@ def validar_codigo(celulas, erros, avisos):
             avisos.append(f"Célula {indice}: contém saídas salvas; o padrão é entregar sem saídas.")
 
     # Monta um script que executa célula por célula e informa qual falhou
-    partes = ["import traceback, sys", "_ns = {'__name__': '__main__'}"]
+    # sys.path.insert(0, cwd): replica o comportamento do Jupyter/Colab, onde a
+    # pasta atual do notebook fica no sys.path — necessário para módulos que o
+    # próprio notebook cria em disco (ex.: "with open('x.py', 'w')...") e depois
+    # importa. Sem isso, o script de validação (que roda de um arquivo temporário
+    # fora dessa pasta) não encontraria esses módulos.
+    partes = [
+        "import os, traceback, sys",
+        "sys.path.insert(0, os.getcwd())",
+        "_ns = {'__name__': '__main__'}",
+    ]
     for indice, texto, _ in codigos:
         if any(linha.lstrip().startswith(("!", "%")) for linha in texto.splitlines()):
             avisos.append(f"Célula {indice}: comando mágico/shell (! ou %) não foi executado na validação.")
