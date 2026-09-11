@@ -13,8 +13,8 @@ O público são **iniciantes que falam português do Brasil**.
 
 - `scripts/construtor_projeto.py`: classe `ProjetoPratico` (estende o `Notebook` de `gerar-modulo-ipynb`) com `cabecalho()`, `exercicio(codigo_inicial, solucao=...)`, `resultado_esperado()`, `dica()`, `separador()` e `salvar()`, e a função `mensagem(nome, cargo, texto)`. **O `salvar()` executa as soluções e confere cada "Resultado esperado"; se algo não bater, ele mostra a diferença e não grava o arquivo.**
 - `scripts/validar_projeto.py`: confere o esqueleto (seções, ordem, missões, extras, checklist) e executa todas as células como o aluno as recebe.
-- `references/exemplo_projeto_modulo_01.py`: **padrão ouro**. Leia antes de gerar, para calibrar tom, tamanho das missões, nível de guia e formato. Não copie o conteúdo.
-- `references/universo_sabor_express.md`: a empresa, os personagens e o diário do que já aconteceu em cada projeto. Leia antes de escrever a história e atualize depois.
+- `references/exemplo_projeto_modulo_01.py`: **padrão ouro**. Leia antes de gerar, para calibrar tom, tamanho das missões, nível de guia e formato — inclusive o formato das mensagens dos personagens. A empresa fictícia desse exemplo (Sabor Express) é só ilustrativa: **não a reaproveite** em um novo projeto.
+- `references/historico_temas.md`: registro dos setores/empresas fictícias já usados em cada projeto, só para evitar repetição entre módulos vizinhos. Consulte antes de escolher o cenário do módulo atual e atualize depois.
 
 As duas skills dependem uma da outra: os scripts daqui importam `construtor_notebook.py` e `validar_notebook.py` de `../gerar-modulo-ipynb/scripts/`. As regras de Markdown e de estilo de código de lá (seções "Estilo do código" e "Detalhes de Markdown no Jupyter/Colab" do `SKILL.md` dela) valem aqui também.
 
@@ -22,11 +22,11 @@ As duas skills dependem uma da outra: os scripts daqui importam `construtor_note
 
 1. **Leia o módulo inteiro** em `content_generation/jupyter_notebooks/module_NN.ipynb` (o módulo já pronto, não o cru de `raw_content/`). Se ele não existir, avise o usuário e sugira gerar o módulo primeiro com a skill `gerar-modulo-ipynb`.
 2. **Faça o inventário do escopo.** Liste as seções, e em cada uma as funções, métodos, operadores e padrões mostrados, e anote os exemplos e motivações do módulo. O escopo permitido é **tudo o que foi ensinado do Módulo 01 até o NN**: dê uma olhada na tabela de Tópicos dos módulos anteriores. Anote também o que ainda **não** foi ensinado (os Tópicos do módulo NN+1 e as dicas de "veremos em módulos futuros"), porque o projeto não pode depender disso.
-3. **Leia as duas referências** (o exemplo e o universo).
-4. **Planeje antes de escrever** (veja "Desenhando as missões"): o capítulo da história, as missões (tema, personagem, conceito, dados) e os extras.
+3. **Leia as duas referências** (o exemplo e o histórico de temas).
+4. **Planeje antes de escrever** (veja "Cenário de cada projeto" e "Desenhando as missões"): o cenário fictício deste módulo (empresa/app, 2 a 4 personagens novos), as missões (tema, personagem, conceito, dados) e os extras.
 5. **Escreva o script de geração** no scratchpad, importando o construtor (modelo abaixo), com uma solução para cada missão e cada extra que tenha resultado esperado.
 6. **Execute o script e depois o validador.** Corrija qualquer divergência do gabarito e qualquer ERRO; avalie os AVISOS até o resultado ser `APROVADO`.
-7. **Atualize o diário** em `references/universo_sabor_express.md` (e a tabela de personagens, se criou algum).
+7. **Atualize** `references/historico_temas.md` com uma linha para o cenário deste módulo.
 8. **Informe ao usuário** (veja "Relatório final").
 
 Destino: `content_generation/jupyter_notebooks/module_NN_projeto_pratico.ipynb`. Se o arquivo já existir, ele pode ter edições manuais do autor: pergunte antes de sobrescrever. Só gere o notebook com as soluções (`caminho_gabarito=` no `salvar()`, ex: `module_NN_projeto_pratico_gabarito.ipynb`) se o usuário pedir.
@@ -72,7 +72,7 @@ python <skill>/scripts/validar_projeto.py content_generation/jupyter_notebooks/m
 Este esqueleto é a identidade dos projetos, e o validador confere todos os itens:
 
 1. **Cabeçalho** via `nb.cabecalho(NN, título, introdução)`: `# 🚀 Projeto Prático — Módulo NN: Título`, um parágrafo de abertura e as linhas de curso e autor.
-2. `## 📖 O contexto`: o capítulo da história (onde o aluno está, o que aconteceu desde o projeto anterior, o que o time precisa hoje), fechando com a dica "não existe só uma forma certa".
+2. `## 📖 O contexto`: a apresentação do cenário (a empresa, o cargo do aluno, o que o time precisa hoje), fechando com a dica "não existe só uma forma certa".
 3. `## 🎯 Objetivo`: lista dos conceitos do módulo que o aluno vai praticar.
 4. `## 🧰 Requisitos`: tabela `Requisito | Detalhe` com Google Colab, conceitos dos módulos necessários, funções/métodos usados e bibliotecas (ou "Nenhuma!").
 5. `## 🗺️ Como o projeto funciona`: tabela `Missão | Tema | Conceito principal` (uma linha por missão, com `1️⃣`, `2️⃣`...) e a lista do que cada missão contém (💬 💻 🔎 💡). Termina com `nb.separador()`.
@@ -109,21 +109,26 @@ Estas regras vêm de erros reais do primeiro projeto. Siga todas:
 
 ## Tom e linguagem
 
-- Segunda pessoa, leve e bem-humorado, sem infantilizar. Os personagens têm personalidade (veja o universo), mas as mensagens são curtas: 2 a 4 frases.
+- Segunda pessoa, leve e bem-humorado, sem infantilizar. Dê a cada personagem uma personalidade rápida (cargo + um traço de jeito de falar), mas as mensagens são curtas: 2 a 4 frases.
 - Vocabulário de trabalho, não de prova: **missão, pedido, entrega, resultado esperado**. Evite "questão", "exercício", "nota", "correto/incorreto", "avaliação" (exceto no nome do checklist).
 - Emojis têm papel fixo (títulos das seções, 💬 🔎 💡 e um por extra); não os espalhe pelo texto.
 - Termos em inglês em itálico (*string*, *login*), código entre crases.
 
-## Continuidade da história
+## Cenário de cada projeto
 
-Por padrão, cada projeto é um **novo capítulo da Sabor Express**: o aluno continua no mesmo emprego, com o mesmo time, e o contexto começa lembrando rapidamente o que aconteceu antes ("Depois de integrar a Cantina da Vó, ..."). Reaproveite personagens e fatos do diário, e dê a cada personagem pedidos da sua área. Se o tema do módulo encaixar melhor em outro cenário, ou se o usuário pedir outra história, tudo bem: registre a decisão no diário.
+Cada módulo tem o **próprio cenário fictício**, independente dos demais: uma empresa, um app ou um contexto novo, com personagens criados só para aquele projeto. **Não reaproveite** a empresa nem os personagens de outro módulo (nem os do `exemplo_projeto_modulo_01.py`) — é isso que mantém os projetos variados em vez de parecerem capítulos da mesma novela.
+
+- Escolha um setor/empresa que combine com o tema do módulo (não precisa ser óbvio: um app de estudos ou uma biblioteca combinam com listas e buscas; um app de hábitos ou treino combina com contadores e sequências) e que seja **diferente do setor dos 2-3 projetos mais recentes** — confira `references/historico_temas.md` antes de decidir.
+- Crie de **2 a 4 personagens fixos**, cada um de uma área diferente da empresa, para variar quem manda a mensagem em cada missão. O aluno é sempre a mesma pessoa (analista júnior recém-contratado ou já no cargo, como fizer sentido), mas o restante do elenco nasce e morre naquele notebook.
+- O contexto (seção "📖 O contexto") não precisa lembrar nenhum projeto anterior — é um novo primeiro contato do aluno com aquela empresa.
+- Se o usuário pedir explicitamente para reaproveitar uma história específica (ex: continuar de outro projeto), siga o pedido dele e registre a decisão em `references/historico_temas.md`.
 
 ## Relatório final ao usuário
 
 Responda de forma breve com:
 
 1. Caminho do arquivo e número de células; confirme que o gabarito bateu e que a validação passou.
-2. O capítulo da história em uma frase e a tabela de missões (missão → conceito do módulo).
+2. O cenário escolhido em uma frase e a tabela de missões (missão → conceito do módulo).
 3. Os extras, em uma linha cada.
 4. Qualquer conceito do módulo que ficou de fora do projeto, e por quê.
 

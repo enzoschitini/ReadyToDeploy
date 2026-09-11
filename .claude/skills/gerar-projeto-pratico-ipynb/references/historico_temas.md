@@ -1,34 +1,19 @@
-# Universo Sabor Express
+# Histórico de temas dos projetos práticos
 
-Os projetos práticos do curso compartilham uma história contínua: o aluno é **Analista de Dados Jr.** na **Sabor Express**, um app de delivery, e cada projeto é um novo capítulo do trabalho dele lá. Mantenha os fatos abaixo coerentes entre módulos. **Depois de gerar um projeto, acrescente uma linha ao "Diário de capítulos"** com o que aconteceu nele e os fatos novos criados (personagens, empresas, números que possam ser citados de novo).
+Cada projeto prático vive num cenário fictício **próprio**: uma empresa, um app ou um contexto diferente a cada módulo, com personagens criados só para aquele notebook. Os projetos **não compartilham** enredo, empresa, nem personagens entre si — a única razão deste arquivo existir é evitar repetir o mesmo setor, o mesmo tipo de empresa ou a mesma "piada" de um projeto para o outro.
 
-## A empresa
+## Como usar
 
-- **Sabor Express**: aplicativo de delivery em crescimento rápido, sede em São Paulo.
-- **Cantina da Vó**: rede de restaurantes comprada pela Sabor Express no Módulo 01. Endereço: Rua das Flores, 245, São Paulo, SP, CEP 01234-000.
+1. **Antes de planejar** um novo projeto, leia a tabela abaixo e escolha um cenário de **setor diferente** dos usados nos 2-3 módulos mais recentes (não precisa ser diferente de *todos* os anteriores, só dos vizinhos).
+2. Escolha um setor que combine com o tema do módulo — não precisa ser óbvio, mas ajuda: um sistema de biblioteca ou estoque combina com listas e buscas; um app de treino ou hábitos combina com contadores e sequências; um painel de suporte técnico combina com decisões condicionais.
+3. **Depois de gerar o projeto**, acrescente uma linha nova à tabela.
 
-## Personagens (o time)
+## Temas já usados
 
-Cada personagem tem uma área, e isso define que tipo de pedido ele faz. Reaproveite-os antes de criar novos; ao criar um novo, registre aqui.
-
-| Nome | Cargo | Costuma pedir | Jeito de falar |
+| Módulo | Cenário / empresa fictícia | Setor | Resumo de 1 linha |
 | --- | --- | --- | --- |
-| Marina | Gerente de Cadastro | Criar e organizar registros (restaurantes, clientes, cardápios) | Acolhedora, "Oii" |
-| Diego | Financeiro | Métricas de vendas, ticket médio, crescimento, relatórios | Animado com números, quer impressionar a diretoria |
-| Paula | Integração de Dados | Limpar, padronizar e converter dados entre sistemas | Prática, direta |
-| Rafa | Operações | Regras de negócio: frete, rotas, acessos, entregadores | Sempre com algo "urgente" |
-| Ana Lívia | CEO | A missão final de integração: painel ou relatório para a diretoria | Elogia o time, pede algo para "amanhã de manhã" |
-
-Personagens secundários (aparecem nos dados, não mandam mensagens):
-
-- **João**: entregador da Cantina da Vó (usuário `joao.entregador`).
-- **Ana Paula dos Santos**: cliente da Cantina da Vó (usuário `ana.paula`, cliente das duas empresas antes da integração).
-- **Carla**: entregadora da Cantina da Vó, de bicicleta (usuário `carla.entregas`).
-- **Bruno**: entregador contratado no Módulo 02, de moto, placa `SPX4F21` (usuário `bruno.rota`).
-
-## Diário de capítulos
-
-| Módulo | Título do projeto | O que aconteceu / fatos novos |
-| --- | --- | --- |
-| 01 | Sabor Express integra a Cantina da Vó | Primeiro dia do aluno. Cadastro da Cantina da Vó, fechamento de caixa de 05/02 a 07/02 (ticket médio do período R$ 64,03), migração de endereço e cadastro de clientes, regra de frete grátis (VIP ou pedido > R$ 60, só na área atendida), login do João negado (senha errada), painel para a CEO. |
-| 02 | A primeira semana cheia da Cantina da Vó | Primeira semana cheia no app. Extrato de sexta corrigido (7 pedidos, total R$ 319,90, ticket médio R$ 45,70, jantar R$ 131,40). Bairros da Cantina: Pinheiros, Vila Mariana, Moema, Centro, Bela Vista; Moema entrou na área da Sabor Express (agora 7 bairros, com Liberdade e Consolação). Cardápio atual: lasanha 42,90, nhoque 38,90, espaguete 35,90, tiramisu 22,00, polenta frita 24,90 (risoto saiu; preço médio R$ 32,92). João trocou a senha para `vo2024` e o acesso foi liberado; Bruno entrou na equipe (3 entregadores). Resumo da semana em dicionário para a CEO. |
+| 01 | PataVet | Clínica veterinária | Ficha de pet, caixa das consultas, unificação de endereço entre unidades e acesso de veterinários. |
+| 02 | Batidas | Streaming de música | Fila de uma playlist, gêneros únicos da semana e cadastro de caixas de som parceiras. |
+| 03 | Voa Fácil | Companhia aérea (baixo custo) | Check-in, reembolso de voo cancelado, vendas de passagens do dia e programa de milhas. |
+| 04 | Estuda Mais | Plataforma de ensino *online* | Leitura/escrita de CSV de notas, função de pontuação para certificado e contador de aprovados com escopo. |
+| 05 | FreelaBoard | Marketplace de freelancers | Calculadora de repasse com `lambda`, repasses em lote com `map`, filtro de contas e comissão via `reduce`. |
