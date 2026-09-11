@@ -64,9 +64,9 @@ A estrutura abaixo é a identidade visual do curso, e todos os módulos precisam
 
 Um parágrafo de visão geral: o que o aluno vai aprender, em que ordem e com quais problemas reais o módulo vai trabalhar, e por que isso importa para o que vem depois.
 
-#### Curso: Ready To Deploy
+Curso: Ready To Deploy
 
-#### Criado por: Enzo Schitini
+Criado por: [Enzo Schitini](https://www.linkedin.com/in/enzoschitini)
 
 ---
 ```
@@ -89,7 +89,9 @@ Um parágrafo de visão geral: o que o aluno vai aprender, em que ordem e com qu
 - Uma célula `---` (use `nb.separador()`) **entre** as seções principais.
 - A tabela de Tópicos deve bater exatamente com as seções `## N.` do notebook, porque o validador confere isso.
 
-**Fim do notebook:** `---`, depois `## Resumo do Módulo` (uma tabela ou lista que consolida o que foi visto) e `## Conteúdo Extra` (links de documentação e aprofundamento, agrupados em `###`). Essas duas seções finais não entram na tabela de Tópicos.
+**Fim do notebook:** `---`, depois `## Resumo do Módulo` (uma tabela ou lista que consolida o que foi visto). Essa seção final não entra na tabela de Tópicos.
+
+Não adicione uma seção `## Conteúdo Extra` (links de documentação e aprofundamento) a menos que o usuário peça explicitamente.
 
 Remova elementos de marca ou autoria do material cru (logos, "Caderno de Aula", nomes de outras escolas ou autores, links pessoais antigos). O cabeçalho do Ready To Deploy os substitui.
 

@@ -27,9 +27,9 @@ nb.md(r"""
 
 Neste primeiro módulo você vai dar os primeiros passos em Python. Começamos conhecendo o **Google Colab**, o ambiente onde vamos escrever e executar nossos códigos, e em seguida entendemos o que são **variáveis** e como o Python armazena informações na memória. A partir daí, exploramos os tipos de dados mais importantes da linguagem — **números**, **strings** (textos) e **booleanos** (valores lógicos) — sempre partindo de problemas reais do dia a dia de uma empresa: calcular o ticket médio de um restaurante, padronizar coordenadas geográficas e validar o login de um usuário. Ao final, você terá a base necessária para todos os módulos seguintes.
 
-#### Curso: Ready To Deploy
+Curso: Ready To Deploy
 
-#### Criado por: Enzo Schitini
+Criado por: [Enzo Schitini](https://www.linkedin.com/in/enzoschitini)
 
 ---
 """)
@@ -1170,7 +1170,7 @@ Como a senha digitada (`andre123`) é diferente da cadastrada (`andre321`), o ac
 nb.separador()
 
 # =====================================================================
-# RESUMO E CONTEÚDO EXTRA
+# RESUMO
 # =====================================================================
 nb.md(r"""
 ## Resumo do Módulo
@@ -1184,33 +1184,6 @@ nb.md(r"""
 | `NoneType` | Ausência de valor | `None` | — |
 
 Funções nativas vistas neste módulo: `print()`, `type()`, `len()`, `round()`, `int()`, `float()`, `complex()`, `str()` e `bool()`.
-""")
-
-nb.md(r"""
-## Conteúdo Extra
-""")
-
-nb.md(r"""
-### Documentação Google Colab
-
-- [Google Colab FAQ](https://research.google.com/colaboratory/faq.html): perguntas mais frequentes sobre o Google Colab.
-""")
-
-nb.md(r"""
-### Documentação Python
-
-- [Tipos nativos](https://docs.python.org/pt-br/3/library/stdtypes.html): documentação oficial dos tipos nativos da linguagem Python;
-- [PEP 8](https://peps.python.org/pep-0008/): guia oficial de estilo para código Python;
-- [Métodos de *string*](https://www.w3schools.com/python/python_ref_string.asp): lista de métodos de *strings* com exemplos.
-""")
-
-nb.md(r"""
-### Outras plataformas de notebooks
-
-- [Jupyter](https://jupyter.org/): projeto original dos notebooks, que pode ser instalado no seu computador;
-- [Vertex AI Workbench](https://cloud.google.com/vertex-ai-notebooks): notebooks gerenciados da Google Cloud Platform (GCP);
-- [Databricks Notebooks](https://www.databricks.com/product/collaborative-notebooks): notebooks colaborativos da Databricks;
-- [Amazon SageMaker](https://aws.amazon.com/pt/sagemaker/): plataforma de notebooks e *machine learning* da Amazon Web Services (AWS).
 """)
 
 
