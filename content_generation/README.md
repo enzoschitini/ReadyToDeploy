@@ -1,0 +1,1 @@
+# Onde são gerados os conteúdos
