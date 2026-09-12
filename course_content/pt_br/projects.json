@@ -1,51 +1,6 @@
 {
   "projects": [
     {
-      "id": "calculadora-de-gorjeta",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Calculadora de Gorjeta",
-      "description": "Uma calculadora que divide a conta e a gorjeta entre as pessoas, com JavaScript no browser.",
-      "level": "Iniciante",
-      "duration": "2-3 horas",
-      "published": "2026-08-30",
-      "skills": ["javascript", "dom", "html", "css"],
-      "hot": true,
-      "rating": { "score": 5.0, "count": 4 },
-      "detail": {
-        "introHtml": "Digite o valor da conta, a porcentagem da gorjeta e quantas pessoas: a página mostra quanto cada um paga. É o primeiro projeto que <strong>reage</strong> ao que o usuário faz.",
-        "objectiveHtml": "Conectar HTML e JavaScript: ler valores de <code>&lt;input&gt;</code>, fazer uma conta e escrever o resultado de volta na tela. Aqui entram <strong>eventos</strong> e <strong>manipulação do DOM</strong>.",
-        "requirements": [
-          "Campos para: valor da conta, % de gorjeta e número de pessoas",
-          "Calcular o total (conta + gorjeta) e o valor por pessoa",
-          "Atualizar o resultado ao clicar num botão <strong>ou</strong> ao digitar",
-          "Formatar o resultado como dinheiro (ex.: <code>R$ 12,50</code>)",
-          "Tratar entradas inválidas (número de pessoas = 0, campo vazio)"
-        ],
-        "challenges": [
-          "Botões de gorjeta rápida (10%, 15%, 20%) além do campo manual",
-          "Salvar a última gorjeta escolhida no <code>localStorage</code>",
-          "Botão \"limpar\" que zera tudo"
-        ],
-        "tips": [
-          "Valores de <code>&lt;input&gt;</code> chegam como <strong>texto</strong>. Converta com <code>Number(...)</code> antes de calcular, e cheque <code>Number.isNaN(...)</code>.",
-          "<code>Intl.NumberFormat(\"pt-BR\", { style: \"currency\", currency: \"BRL\" })</code> formata dinheiro pra você.",
-          "Comece fazendo a conta aparecer no <code>console.log</code>. Só depois jogue na tela."
-        ],
-        "modulos": ["programacao-do-zero"],
-        "creator": { "name": "Luciano dii Souza", "github": "lucianodiisouza" }
-      }
-    },
-    {
-      "id": "api-rest-com-autenticacao",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "API REST com Autenticação",
-      "description": "Uma API de notas com cadastro, login e rotas protegidas — o CRUD completo em Node/Express, com banco, validação e testes.",
-      "level": "Intermediário",
-      "duration": "1-2 semanas",
-      "published": "2026-08-25",
-      "skills": ["backend", "api", "autenticacao", "banco-de-dados", "testes"]
-    },
-    {
       "id": "dashboard-analitico",
       "bootcamp_id": "ready-to-deploy",
       "title": "Dashboard Analítico",
@@ -53,7 +8,12 @@
       "level": "Avançado",
       "duration": "1-2 semanas",
       "published": "2026-08-30",
-      "skills": ["react", "performance", "dataviz", "typescript"]
+      "skills": [
+        "react",
+        "performance",
+        "dataviz",
+        "typescript"
+      ]
     },
     {
       "id": "catalogo-de-produtos-react",
@@ -63,7 +23,17 @@
       "level": "Iniciante",
       "duration": "4-6 horas",
       "published": "2026-08-30",
-      "skills": ["react", "jsx", "componentes", "props", "listas", "renderizacao-condicional", "eventos", "use-state", "acessibilidade"]
+      "skills": [
+        "react",
+        "jsx",
+        "componentes",
+        "props",
+        "listas",
+        "renderizacao-condicional",
+        "eventos",
+        "use-state",
+        "acessibilidade"
+      ]
     },
     {
       "id": "habit-tracker-react",
@@ -73,7 +43,16 @@
       "level": "Iniciante",
       "duration": "6-10 horas",
       "published": "2026-08-30",
-      "skills": ["react", "use-state", "formularios", "formularios-controlados", "estado", "imutabilidade", "estado-derivado", "acessibilidade"]
+      "skills": [
+        "react",
+        "use-state",
+        "formularios",
+        "formularios-controlados",
+        "estado",
+        "imutabilidade",
+        "estado-derivado",
+        "acessibilidade"
+      ]
     },
     {
       "id": "lista-de-tarefas",
@@ -83,7 +62,12 @@
       "level": "Iniciante",
       "duration": "3-5 horas",
       "published": "2026-08-30",
-      "skills": ["javascript", "dom", "localstorage", "css"]
+      "skills": [
+        "javascript",
+        "dom",
+        "localstorage",
+        "css"
+      ]
     },
     {
       "id": "pagina-de-perfil",
@@ -93,7 +77,11 @@
       "level": "Iniciante",
       "duration": "2-4 horas",
       "published": "2026-08-30",
-      "skills": ["html", "css", "semantica"]
+      "skills": [
+        "html",
+        "css",
+        "semantica"
+      ]
     },
     {
       "id": "auditoria-de-acessibilidade-web",
@@ -103,7 +91,14 @@
       "level": "Intermediário",
       "duration": "1 fim de semana",
       "published": "2026-08-30",
-      "skills": ["acessibilidade", "wcag", "html-semantico", "css", "testes", "aria"]
+      "skills": [
+        "acessibilidade",
+        "wcag",
+        "html-semantico",
+        "css",
+        "testes",
+        "aria"
+      ]
     },
     {
       "id": "auditoria-seo-aeo-geo",
@@ -113,17 +108,13 @@
       "level": "Intermediário",
       "duration": "1 fim de semana",
       "published": "2026-08-28",
-      "skills": ["seo", "aeo", "geo", "dados-estruturados", "core-web-vitals"]
-    },
-    {
-      "id": "busca-com-filtros",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Busca com Filtros",
-      "description": "Uma lista pesquisável e filtrável, com atenção ao custo das operações conforme os dados crescem.",
-      "level": "Intermediário",
-      "duration": "4-6 horas",
-      "published": "2026-08-30",
-      "skills": ["javascript", "algoritmos", "big-o", "dom"]
+      "skills": [
+        "seo",
+        "aeo",
+        "geo",
+        "dados-estruturados",
+        "core-web-vitals"
+      ]
     },
     {
       "id": "central-de-notificacoes",
@@ -133,7 +124,13 @@
       "level": "Intermediário",
       "duration": "1 semana",
       "published": "2026-08-26",
-      "skills": ["rabbitmq", "mensageria", "pub-sub", "arquitetura", "backend"]
+      "skills": [
+        "rabbitmq",
+        "mensageria",
+        "pub-sub",
+        "arquitetura",
+        "backend"
+      ]
     },
     {
       "id": "clima-agora",
@@ -143,17 +140,12 @@
       "level": "Intermediário",
       "duration": "4-6 horas",
       "published": "2026-08-30",
-      "skills": ["javascript", "api", "fetch", "async"]
-    },
-    {
-      "id": "servico-com-docker",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Empacote um Serviço com Docker",
-      "description": "Pegue sua API, coloque num container e suba app + banco com um comando só usando Docker Compose — do Dockerfile ao ambiente que roda igual em qualquer máquina.",
-      "level": "Intermediário",
-      "duration": "3-5 dias",
-      "published": "2026-08-25",
-      "skills": ["docker", "containers", "devops", "backend"]
+      "skills": [
+        "javascript",
+        "api",
+        "fetch",
+        "async"
+      ]
     },
     {
       "id": "fila-de-atendimento",
@@ -163,7 +155,13 @@
       "level": "Intermediário",
       "duration": "1 semana",
       "published": "2026-08-26",
-      "skills": ["rabbitmq", "mensageria", "filas", "api", "backend"]
+      "skills": [
+        "rabbitmq",
+        "mensageria",
+        "filas",
+        "api",
+        "backend"
+      ]
     },
     {
       "id": "jogo-da-memoria-react",
@@ -173,7 +171,16 @@
       "level": "Intermediário",
       "duration": "1 fim de semana",
       "published": "2026-09-03",
-      "skills": ["react", "use-state", "listas", "eventos", "renderizacao-condicional", "use-effect", "use-reducer", "acessibilidade"]
+      "skills": [
+        "react",
+        "use-state",
+        "listas",
+        "eventos",
+        "renderizacao-condicional",
+        "use-effect",
+        "use-reducer",
+        "acessibilidade"
+      ]
     },
     {
       "id": "kanban-de-missoes-react",
@@ -183,7 +190,17 @@
       "level": "Intermediário",
       "duration": "1 fim de semana",
       "published": "2026-09-03",
-      "skills": ["react", "formularios", "estado", "estado-derivado", "use-reducer", "context", "custom-hooks", "arquitetura", "acessibilidade"]
+      "skills": [
+        "react",
+        "formularios",
+        "estado",
+        "estado-derivado",
+        "use-reducer",
+        "context",
+        "custom-hooks",
+        "arquitetura",
+        "acessibilidade"
+      ]
     },
     {
       "id": "landing-page-responsiva",
@@ -193,17 +210,13 @@
       "level": "Intermediário",
       "duration": "1 fim de semana",
       "published": "2026-08-30",
-      "skills": ["css", "tailwind", "responsivo", "flexbox", "grid"]
-    },
-    {
-      "id": "modelagem-de-banco",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Modelagem de um Banco de Dados",
-      "description": "Modele o banco de um mini e-commerce e escreva as consultas que respondem perguntas de verdade — só SQL, sem ORM no caminho.",
-      "level": "Intermediário",
-      "duration": "3-5 dias",
-      "published": "2026-08-25",
-      "skills": ["sql", "banco-de-dados", "modelagem", "backend"]
+      "skills": [
+        "css",
+        "tailwind",
+        "responsivo",
+        "flexbox",
+        "grid"
+      ]
     },
     {
       "id": "pokedex-react",
@@ -213,7 +226,17 @@
       "level": "Intermediário",
       "duration": "1 fim de semana",
       "published": "2026-08-30",
-      "skills": ["react", "fetch", "use-effect", "estado-assincrono", "custom-hooks", "context", "use-reducer", "arquitetura", "acessibilidade"]
+      "skills": [
+        "react",
+        "fetch",
+        "use-effect",
+        "estado-assincrono",
+        "custom-hooks",
+        "context",
+        "use-reducer",
+        "arquitetura",
+        "acessibilidade"
+      ]
     },
     {
       "id": "processador-de-planilhas",
@@ -223,7 +246,13 @@
       "level": "Intermediário",
       "duration": "1 semana",
       "published": "2026-08-26",
-      "skills": ["rabbitmq", "mensageria", "workers", "api", "backend"]
+      "skills": [
+        "rabbitmq",
+        "mensageria",
+        "workers",
+        "api",
+        "backend"
+      ]
     },
     {
       "id": "quiz-react",
@@ -233,17 +262,12 @@
       "level": "Intermediário",
       "duration": "1 fim de semana",
       "published": "2026-08-30",
-      "skills": ["react", "hooks", "state", "componentes"]
-    },
-    {
-      "id": "encurtador-de-url",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Encurtador de URL",
-      "description": "Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura.",
-      "level": "Avançado",
-      "duration": "1-2 semanas",
-      "published": "2026-08-30",
-      "skills": ["system-design", "api", "backend", "banco-de-dados"]
+      "skills": [
+        "react",
+        "hooks",
+        "state",
+        "componentes"
+      ]
     },
     {
       "id": "patavet-ficha-digital",
@@ -253,7 +277,14 @@
       "level": "Iniciante",
       "duration": "2-4 horas",
       "published": "2026-09-12",
-      "skills": ["python", "variaveis", "tipos-de-dados", "numeros", "strings", "booleanos"],
+      "skills": [
+        "python",
+        "variaveis",
+        "tipos-de-dados",
+        "numeros",
+        "strings",
+        "booleanos"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>PataVet</strong> é uma clínica veterinária que está abandonando os cadernos de anotação para rodar tudo em código. Você entra como <strong>Analista de Dados Jr.</strong> e, em 5 missões, cadastra pets, fecha o caixa das consultas e organiza o acesso da equipe usando só Python puro.",
@@ -279,8 +310,13 @@
           "Combine <code>.strip()</code> com <code>.title()</code> para arrumar textos digitados torto pelo usuário.",
           "Comece simples: um <code>print()</code> por linha já resolve o painel final, capriche na formatação depois."
         ],
-        "modulos": ["python-variaveis-e-tipos-de-dados"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-variaveis-e-tipos-de-dados"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -291,7 +327,12 @@
       "level": "Iniciante",
       "duration": "2-3 horas",
       "published": "2026-09-12",
-      "skills": ["python", "listas", "conjuntos", "dicionarios"],
+      "skills": [
+        "python",
+        "listas",
+        "conjuntos",
+        "dicionarios"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>Batidas</strong> é um app de streaming de música com playlists bagunçadas, relatórios cheios de gêneros repetidos e um cadastro de caixas de som que ninguém organizou. Você vai guardar várias informações relacionadas de uma vez, do jeito que se faz de verdade: com <strong>listas</strong>, <strong>conjuntos</strong> e <strong>dicionários</strong>.",
@@ -315,8 +356,13 @@
           "Um dicionário por item, adicionado a uma lista com <code>.append()</code>, é o padrão para cadastros estruturados.",
           "Use <code>.get()</code> com valor padrão sempre que a chave não tiver garantia de existir."
         ],
-        "modulos": ["python-estruturas-de-dados"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-estruturas-de-dados"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -327,7 +373,13 @@
       "level": "Iniciante",
       "duration": "3-5 horas",
       "published": "2026-09-12",
-      "skills": ["python", "condicionais", "tratamento-de-erros", "for", "repeticao"],
+      "skills": [
+        "python",
+        "condicionais",
+        "tratamento-de-erros",
+        "for",
+        "repeticao"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>Voa Fácil</strong> roda quase tudo em planilhas manuais, e isso já causou dor de cabeça. Você vai ensinar o sistema a <strong>tomar decisões</strong>, <strong>lidar com erros</strong> e <strong>repetir tarefas</strong> sozinho: check-in, reembolso, vendas do dia e programa de milhas.",
@@ -352,8 +404,13 @@
           "Acúmulo e contagem podem acontecer no mesmo <code>for</code> com um <code>if</code> dentro dele; já o <code>break</code> costuma precisar de um laço separado.",
           "<code>.items()</code> devolve chave e valor ao mesmo tempo — use <code>for chave, valor in dicionario.items():</code>."
         ],
-        "modulos": ["python-fluxo-condicional-e-repeticao"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-fluxo-condicional-e-repeticao"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -364,7 +421,12 @@
       "level": "Intermediário",
       "duration": "3-5 horas",
       "published": "2026-09-12",
-      "skills": ["python", "arquivos", "funcoes", "escopo"],
+      "skills": [
+        "python",
+        "arquivos",
+        "funcoes",
+        "escopo"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>Estuda Mais</strong> calculava tudo \"no olho\", copiando números de planilha em planilha. Você vai automatizar o processamento das notas de uma turma: ler o arquivo que sai do sistema de matrículas, separar alunos que precisam de atenção, calcular pontuações e gerar um relatório para a coordenação.",
@@ -389,8 +451,13 @@
           "Defina a função antes do trecho que a chama, e desempacote tuplas direto na cabeça do <code>for</code> quando fizer sentido.",
           "Sem a palavra-chave <code>global</code> dentro da função, o Python cria uma variável local com o mesmo nome — e a global de fora nunca muda."
         ],
-        "modulos": ["python-arquivos-e-funcoes"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-arquivos-e-funcoes"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -401,7 +468,12 @@
       "level": "Intermediário",
       "duration": "3-5 horas",
       "published": "2026-09-12",
-      "skills": ["python", "programacao-funcional", "lambda", "map-filter-reduce"],
+      "skills": [
+        "python",
+        "programacao-funcional",
+        "lambda",
+        "map-filter-reduce"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>FreelaBoard</strong> conecta freelancers a empresas, e hoje é dia de fechamento: calcular repasses depois da taxa da plataforma, identificar contas que precisam migrar e consolidar os números do mês — tudo processando <strong>listas inteiras</strong> de uma vez, sem laços manuais.",
@@ -426,8 +498,13 @@
           "<code>reduce()</code> não é nativo — sempre importe com <code>from functools import reduce</code>.",
           "<code>filter()</code> e <code>map()</code> retornam iteradores que só podem ser percorridos uma vez; converta para <code>list()</code> quando precisar reaproveitar o resultado."
         ],
-        "modulos": ["python-programacao-funcional"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-programacao-funcional"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -438,7 +515,13 @@
       "level": "Intermediário",
       "duration": "4-6 horas",
       "published": "2026-09-12",
-      "skills": ["python", "poo", "classes", "objetos", "heranca"],
+      "skills": [
+        "python",
+        "poo",
+        "classes",
+        "objetos",
+        "heranca"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>Página Viva</strong> é um clube de assinatura de livros que ainda guarda dados em variáveis soltas espalhadas pelos notebooks da equipe. Você vai organizar tudo isso com <strong>classes</strong> e <strong>objetos</strong>, do cadastro do acervo à linha de e-books.",
@@ -463,8 +546,13 @@
           "Ao sobrescrever <code>__str__</code>, reaproveite <code>super().__str__()</code> em vez de reescrever tudo do zero.",
           "O <code>_</code> no início de um nome de método é só uma convenção — o Python não impede de chamá-lo de fora."
         ],
-        "modulos": ["python-programacao-orientada-a-objetos"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-programacao-orientada-a-objetos"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -475,7 +563,13 @@
       "level": "Intermediário",
       "duration": "4-6 horas",
       "published": "2026-09-12",
-      "skills": ["python", "modulos", "pacotes", "pip", "requests"],
+      "skills": [
+        "python",
+        "modulos",
+        "pacotes",
+        "pip",
+        "requests"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>CasaNova Mudanças</strong> está expandindo, e o time andou copiando e colando os mesmos trechos de código de um notebook para o outro. Você vai organizar essa casa criando <strong>módulos</strong> próprios, empacotando-os e consultando um serviço externo com um <strong>pacote de terceiros</strong>.",
@@ -499,8 +593,13 @@
           "Para importar de dentro de um pacote, use o caminho com ponto: <code>from pacote.modulo import Classe</code>.",
           "<code>requests.get(url).json()</code> converte a resposta de uma API direto em dicionário Python, sem precisar do módulo <code>json</code> na mão."
         ],
-        "modulos": ["python-modulos-e-pacotes"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-modulos-e-pacotes"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -511,7 +610,12 @@
       "level": "Intermediário",
       "duration": "4-6 horas",
       "published": "2026-09-12",
-      "skills": ["python", "excecoes", "tratamento-de-erros", "debugging"],
+      "skills": [
+        "python",
+        "excecoes",
+        "tratamento-de-erros",
+        "debugging"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>RotaCerta</strong> é uma logística de última milha onde scanner com defeito, coluna fora de ordem e campo em branco são o dia a dia — e mais de um processamento já quebrou de madrugada por causa disso. Você vai blindar esse fluxo contra imprevistos, do erro de sintaxe ao erro de lógica.",
@@ -536,8 +640,13 @@
           "O bloco <code>else</code> só roda se nada deu errado no <code>try</code>; o <code>finally</code> roda sempre, mesmo com <code>return</code> no meio.",
           "Buscar uma coluna pelo nome (em vez de por posição fixa) evita que a ordem das colunas quebre o processamento."
         ],
-        "modulos": ["python-tratamento-de-erros"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-tratamento-de-erros"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     },
     {
@@ -548,7 +657,12 @@
       "level": "Intermediário",
       "duration": "3-5 horas",
       "published": "2026-09-12",
-      "skills": ["python", "scripting", "terminal", "sys-argv"],
+      "skills": [
+        "python",
+        "scripting",
+        "terminal",
+        "sys-argv"
+      ],
       "hot": false,
       "detail": {
         "introHtml": "A <strong>ScriptZen Automação</strong> é uma consultoria que automatiza tarefas repetitivas para rodar sozinhas, sem ninguém clicando em \"Executar\". Você vai sair do notebook e criar <strong>scripts de verdade</strong>: conferir o ambiente, ler argumentos de linha de comando e registrar cada execução.",
@@ -573,8 +687,13 @@
           "Cheque <code>len(sys.argv)</code> antes de acessar um índice que pode não existir — isso evita um <code>IndexError</code> feio na tela do usuário.",
           "No seu próprio computador, o comando de verdade é <code>python nome_do_arquivo.py argumento1 argumento2</code>, sem precisar simular nada."
         ],
-        "modulos": ["python-scripting"],
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" }
+        "modulos": [
+          "python-scripting"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
       }
     }
   ]
