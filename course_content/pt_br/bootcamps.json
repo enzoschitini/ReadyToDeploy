@@ -61,6 +61,32 @@
       "hot": false,
       "new": true,
       "rating": { "score": 5.0, "count": 12 }
+    },
+    {
+      "id": "python-na-pratica",
+      "title": "Python na Prática",
+      "description": "Python do absoluto zero: variáveis e tipos, estruturas de dados, condicionais e laços, arquivos e funções, programação funcional, orientação a objetos, módulos e pacotes, tratamento de erros e scripting. Nove módulos, cada um construindo em cima do anterior, até você sair escrevendo scripts Python de verdade.",
+      "outcome": "Ao terminar, você lê e escreve Python com confiança: manipula listas, conjuntos e dicionários, controla o fluxo do programa, lê e escreve arquivos, cria funções e classes, trata erros em tempo de execução e roda seus próprios scripts pelo terminal.",
+      "level": "Iniciante",
+      "duration": "2 meses",
+      "modules": 9,
+      "projects": 0,
+      "hot": false,
+      "new": true,
+      "detail": {
+        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
+        "curriculum": [
+          { "type": "modulo", "id": "python-variaveis-e-tipos-de-dados", "title": "Módulo 1 — Variáveis e Tipos de Dados", "description": "Introdução ao Python: variáveis, números, strings e booleanos.", "disabled": true },
+          { "type": "modulo", "id": "python-estruturas-de-dados", "title": "Módulo 2 — Estruturas de Dados", "description": "Listas, conjuntos e dicionários.", "disabled": true },
+          { "type": "modulo", "id": "python-fluxo-condicional-e-repeticao", "title": "Módulo 3 — Fluxo Condicional & Repetição", "description": "Estruturas condicionais (if/else/elif, try/except/finally) e laço for.", "disabled": true },
+          { "type": "modulo", "id": "python-arquivos-e-funcoes", "title": "Módulo 4 — Arquivos & Funções", "description": "Leitura e escrita de arquivos, criação de funções e escopo de variáveis.", "disabled": true },
+          { "type": "modulo", "id": "python-programacao-funcional", "title": "Módulo 5 — Programação Funcional", "description": "Funções lambda, map, filter e reduce.", "disabled": true },
+          { "type": "modulo", "id": "python-programacao-orientada-a-objetos", "title": "Módulo 6 — Programação Orientada a Objetos", "description": "Classes, objetos e herança.", "disabled": true },
+          { "type": "modulo", "id": "python-modulos-e-pacotes", "title": "Módulo 7 — Módulos & Pacotes", "description": "Importação, criação e instalação de módulos e pacotes.", "disabled": true },
+          { "type": "modulo", "id": "python-tratamento-de-erros", "title": "Módulo 8 — Tratamento de Erros", "description": "Tipos de erros, erros de sintaxe e tratamento em tempo de execução.", "disabled": true },
+          { "type": "modulo", "id": "python-scripting", "title": "Módulo 9 — Scripting", "description": "Instalação do Python, execução via terminal e criação de scripts.", "disabled": true }
+        ]
+      }
     }
   ]
 }
