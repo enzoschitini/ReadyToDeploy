@@ -87,6 +87,32 @@
           { "type": "modulo", "id": "python-scripting", "title": "Módulo 9 — Scripting", "description": "Instalação do Python, execução via terminal e criação de scripts.", "disabled": true }
         ]
       }
+    },
+    {
+      "id": "sql-para-analise-de-dados",
+      "title": "SQL para Análise de Dados",
+      "description": "SQL do zero até análise de dados de verdade: bases relacionais, criação e manipulação de tabelas, seleção e ordenação, filtros e seleção condicional, agregações, múltiplas tabelas e junções, SQL avançado com subqueries e views, fechando com um projeto final de exploração de dados no Kaggle.",
+      "outcome": "Ao terminar, você modela e consulta bases relacionais, escreve SELECTs com filtros, ordenação e agregações, junta múltiplas tabelas (inner/left/right), usa subqueries e views, e conduz uma análise exploratória de dados do início ao storytelling final.",
+      "level": "Intermediário",
+      "duration": "3 meses",
+      "modules": 8,
+      "projects": 1,
+      "hot": false,
+      "new": false,
+      "comingSoon": true,
+      "detail": {
+        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
+        "curriculum": [
+          { "type": "modulo", "id": "sql-base-de-dados-e-linguagem-sql", "title": "Módulo 1 — Base de Dados & Linguagem SQL", "description": "Bases de dados relacionais, introdução ao SQL (DDL/DML) e armazenamento e consulta na nuvem com AWS S3 e Athena.", "disabled": true },
+          { "type": "modulo", "id": "sql-trabalhando-com-tabelas", "title": "Módulo 2 — Trabalhando com Tabelas", "description": "Criando tabelas, alterando e descartando tabelas, inserindo, atualizando e apagando dados.", "disabled": true },
+          { "type": "modulo", "id": "sql-selecionando-e-ordenando", "title": "Módulo 3 — Selecionando & Ordenando", "description": "Restrição de colunas (chaves e restrições), seleção de dados e ordenação e limitação de resultados.", "disabled": true },
+          { "type": "modulo", "id": "sql-filtrando-e-selecao-condicional", "title": "Módulo 4 — Filtrando & Seleção Condicional", "description": "Filtros AND, OR, IN e BETWEEN, filtros LIKE e wildcards, e seleção condicional.", "disabled": true },
+          { "type": "modulo", "id": "sql-agregacoes", "title": "Módulo 5 — Agregações", "description": "Função COUNT e cláusula GROUP BY, funções MIN/MAX/SUM/AVG e cláusula HAVING.", "disabled": true },
+          { "type": "modulo", "id": "sql-trabalhando-com-multiplas-tabelas", "title": "Módulo 6 — Trabalhando com Múltiplas Tabelas", "description": "UNION, junções inner/cross e junções left/right.", "disabled": true },
+          { "type": "modulo", "id": "sql-avancado", "title": "Módulo 7 — SQL Avançado", "description": "Subqueries, agregações por particionamento e views.", "disabled": true },
+          { "type": "modulo", "id": "sql-projeto-final", "title": "Módulo 8 — Projeto Final", "description": "Plataforma Kaggle, exploração e análise de dados (EDA) e storytelling.", "disabled": true }
+        ]
+      }
     }
   ]
 }
