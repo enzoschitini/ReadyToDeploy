@@ -8,7 +8,7 @@
       "navTitle": "Pensamento Computacional",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/logica.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/logica.html",
       "resources": [
         {
           "name": "O que é lógica de programação?",
@@ -34,7 +34,7 @@
       "navTitle": "Configurando o Ambiente",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/ambiente.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/ambiente.html",
       "resources": [
         {
           "name": "Configurando o ambiente de desenvolvimento (MDN PT-BR)",
@@ -88,7 +88,7 @@
       "navTitle": "Variáveis e Tipos",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/variaveis.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/variaveis.html",
       "resources": [
         {
           "name": "Variáveis e tipos de dados (artigo)",
@@ -114,7 +114,7 @@
       "navTitle": "Operadores e Expressões",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/operadores.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/operadores.html",
       "resources": [
         {
           "name": "Expressões e operadores (MDN PT-BR)",
@@ -140,7 +140,7 @@
       "navTitle": "Condicionais",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/condicionais.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/condicionais.html",
       "resources": [
         {
           "name": "Tomada de decisão com if/else (artigo)",
@@ -166,7 +166,7 @@
       "navTitle": "Laços e Iteração",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/loops.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/loops.html",
       "resources": [
         {
           "name": "Loops e iteração (MDN PT-BR)",
@@ -192,7 +192,7 @@
       "navTitle": "Funções",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/funcoes.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/funcoes.html",
       "resources": [
         {
           "name": "Funções - blocos de código reutilizáveis (artigo)",
@@ -218,7 +218,7 @@
       "navTitle": "Strings e Manipulação de Texto",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/strings.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/strings.html",
       "resources": [
         {
           "name": "String (MDN PT-BR)",
@@ -244,7 +244,7 @@
       "navTitle": "Listas (Arrays)",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/arrays.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/arrays.html",
       "resources": [
         {
           "name": "Array (MDN PT-BR)",
@@ -270,7 +270,7 @@
       "navTitle": "Objetos e Dicionários",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/objetos.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/objetos.html",
       "resources": [
         {
           "name": "Trabalhando com objetos (MDN PT-BR)",
@@ -296,7 +296,7 @@
       "navTitle": "Depuração e Leitura de Erros",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/debug.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/debug.html",
       "resources": [
         {
           "name": "O que deu errado? Solução de problemas em JavaScript (MDN PT-BR)",
@@ -322,7 +322,7 @@
       "navTitle": "Git: add, commit, push",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/git-basico.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/git-basico.html",
       "resources": [
         {
           "name": "Pro Git - livro oficial, traduzido para PT-BR",
@@ -362,7 +362,7 @@
       "navTitle": "Seu Primeiro Projeto",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/projeto-final.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/projeto-final.html",
       "resources": [
         {
           "name": "App Ideas - lista curada de projetos para praticar",
@@ -389,6 +389,582 @@
             {
               "label": "Grátis",
               "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-colab",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 1,
+      "title": "Introdução ao Google Colab",
+      "navTitle": "Google Colab",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/colab.html",
+      "resources": [
+        {
+          "name": "Google Colaboratory - página oficial",
+          "href": "https://colab.research.google.com/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Overview of Colaboratory Features (Google, em inglês)",
+          "href": "https://colab.research.google.com/notebooks/basic_features_overview.ipynb",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-variaveis",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 2,
+      "title": "Variáveis",
+      "navTitle": "Variáveis",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/variaveis.html",
+      "resources": [
+        {
+          "name": "PEP 8 - Style Guide for Python Code",
+          "href": "https://peps.python.org/pep-0008/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Tipos internos do Python (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-numeros",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 3,
+      "title": "Números",
+      "navTitle": "Números",
+      "badge": "essencial",
+      "readTime": "8 min de leitura",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/numeros.html",
+      "resources": [
+        {
+          "name": "Tipos numéricos - int, float, complex (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#numeric-types-int-float-complex",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Função round() (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/functions.html#round",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-strings",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 4,
+      "title": "Strings",
+      "navTitle": "Strings",
+      "badge": "essencial",
+      "readTime": "9 min de leitura",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/strings.html",
+      "resources": [
+        {
+          "name": "Text Sequence Type - str (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#text-sequence-type-str",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Métodos de string (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#string-methods",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-booleanos",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 5,
+      "title": "Booleanos",
+      "navTitle": "Booleanos",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/booleanos.html",
+      "resources": [
+        {
+          "name": "Truth Value Testing (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#truth-value-testing",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Boolean Operations - and, or, not (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#boolean-operations-and-or-not",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-listas",
+      "module_id": "python-estruturas-de-dados",
+      "order": 1,
+      "title": "Listas",
+      "navTitle": "Listas",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-estruturas-de-dados/listas.html"
+    },
+    {
+      "id": "python-conjuntos",
+      "module_id": "python-estruturas-de-dados",
+      "order": 2,
+      "title": "Conjuntos",
+      "navTitle": "Conjuntos",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-estruturas-de-dados/conjuntos.html"
+    },
+    {
+      "id": "python-dicionarios",
+      "module_id": "python-estruturas-de-dados",
+      "order": 3,
+      "title": "Dicionários",
+      "navTitle": "Dicionários",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-estruturas-de-dados/dicionarios.html"
+    },
+    {
+      "id": "python-condicionais",
+      "module_id": "python-fluxo-condicional-e-repeticao",
+      "order": 1,
+      "title": "Estrutura Condicional if / elif / else",
+      "navTitle": "Condicionais",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-na-pratica/python-fluxo-condicional-e-repeticao/condicionais.html"
+    },
+    {
+      "id": "python-excecoes",
+      "module_id": "python-fluxo-condicional-e-repeticao",
+      "order": 2,
+      "title": "Tratamento de Exceções com try / except / finally",
+      "navTitle": "Exceções",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-fluxo-condicional-e-repeticao/excecoes.html"
+    },
+    {
+      "id": "python-for",
+      "module_id": "python-fluxo-condicional-e-repeticao",
+      "order": 3,
+      "title": "Estrutura de Repetição for",
+      "navTitle": "Repetição for",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-fluxo-condicional-e-repeticao/for.html"
+    },
+    {
+      "id": "python-leitura-arquivos",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 1,
+      "title": "Leitura de Arquivos",
+      "navTitle": "Leitura de Arquivos",
+      "badge": "essencial",
+      "readTime": "9 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/leitura-de-arquivos.html"
+    },
+    {
+      "id": "python-escrita-arquivos",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 2,
+      "title": "Escrita de Arquivos",
+      "navTitle": "Escrita de Arquivos",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/escrita-de-arquivos.html"
+    },
+    {
+      "id": "python-funcoes",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 3,
+      "title": "Funções",
+      "navTitle": "Funções",
+      "badge": "essencial",
+      "readTime": "12 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/funcoes.html"
+    },
+    {
+      "id": "python-escopo",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 4,
+      "title": "Escopo",
+      "navTitle": "Escopo",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/escopo.html"
+    },
+    {
+      "id": "python-lambda",
+      "module_id": "python-programacao-funcional",
+      "order": 1,
+      "title": "Função lambda",
+      "navTitle": "Lambda",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/lambda.html"
+    },
+    {
+      "id": "python-map",
+      "module_id": "python-programacao-funcional",
+      "order": 2,
+      "title": "Função map",
+      "navTitle": "Map",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/map.html"
+    },
+    {
+      "id": "python-filter",
+      "module_id": "python-programacao-funcional",
+      "order": 3,
+      "title": "Função filter",
+      "navTitle": "Filter",
+      "badge": "essencial",
+      "readTime": "2 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/filter.html"
+    },
+    {
+      "id": "python-reduce",
+      "module_id": "python-programacao-funcional",
+      "order": 4,
+      "title": "Função reduce",
+      "navTitle": "Reduce",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/reduce.html"
+    },
+    {
+      "id": "python-poo-teoria",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 1,
+      "title": "Um pouco de teoria",
+      "navTitle": "Teoria da POO",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/teoria.html"
+    },
+    {
+      "id": "python-classes",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 2,
+      "title": "Classes",
+      "navTitle": "Classes",
+      "badge": "essencial",
+      "readTime": "8 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/classes.html"
+    },
+    {
+      "id": "python-objetos",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 3,
+      "title": "Objetos",
+      "navTitle": "Objetos",
+      "badge": "essencial",
+      "readTime": "13 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/objetos.html"
+    },
+    {
+      "id": "python-heranca",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 4,
+      "title": "Herança",
+      "navTitle": "Herança",
+      "badge": "essencial",
+      "readTime": "7 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/heranca.html"
+    },
+    {
+      "id": "python-import",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 1,
+      "title": "from / import / as",
+      "navTitle": "Import",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/import.html"
+    },
+    {
+      "id": "python-modulos",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 2,
+      "title": "Módulos",
+      "navTitle": "Módulos",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/modulos.html"
+    },
+    {
+      "id": "python-pacotes",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 3,
+      "title": "Pacotes",
+      "navTitle": "Pacotes",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/pacotes.html"
+    },
+    {
+      "id": "python-pip",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 4,
+      "title": "Baixando Pacotes",
+      "navTitle": "PyPI & pip",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/pip.html",
+      "resources": [
+        {
+          "name": "PyPI - Python Package Index",
+          "href": "https://pypi.org/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "requests - documentação",
+          "href": "https://pypi.org/project/requests/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-tipos-de-erros",
+      "module_id": "python-tratamento-de-erros",
+      "order": 1,
+      "title": "Tipos de Erros",
+      "navTitle": "Tipos de Erros",
+      "badge": "essencial",
+      "readTime": "2 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/tipos-de-erros.html"
+    },
+    {
+      "id": "python-erros-sintaxe",
+      "module_id": "python-tratamento-de-erros",
+      "order": 2,
+      "title": "Erros de Sintaxe",
+      "navTitle": "Erros de Sintaxe",
+      "badge": "essencial",
+      "readTime": "7 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/erros-de-sintaxe.html"
+    },
+    {
+      "id": "python-excecoes-runtime",
+      "module_id": "python-tratamento-de-erros",
+      "order": 3,
+      "title": "Erros em Tempo de Execução",
+      "navTitle": "Erros de Execução",
+      "badge": "essencial",
+      "readTime": "19 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/erros-em-tempo-de-execucao.html"
+    },
+    {
+      "id": "python-erros-logica",
+      "module_id": "python-tratamento-de-erros",
+      "order": 4,
+      "title": "Erros de Lógica",
+      "navTitle": "Erros de Lógica",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/erros-de-logica.html"
+    },
+    {
+      "id": "python-instalacao",
+      "module_id": "python-scripting",
+      "order": 1,
+      "title": "Instalando o Python",
+      "navTitle": "Instalando o Python",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-scripting/instalando-o-python.html",
+      "resources": [
+        {
+          "name": "Python - downloads oficiais",
+          "href": "https://www.python.org/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Real Python - guia de instalação",
+          "href": "https://realpython.com/installing-python/",
+          "tags": [
+            {
+              "label": "Tutorial",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-repl",
+      "module_id": "python-scripting",
+      "order": 2,
+      "title": "Executando Código no Terminal",
+      "navTitle": "REPL",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "python-na-pratica/python-scripting/executando-codigo-no-terminal.html"
+    },
+    {
+      "id": "python-scripts",
+      "module_id": "python-scripting",
+      "order": 3,
+      "title": "Criando Arquivos de Script",
+      "navTitle": "Arquivos de Script",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-scripting/criando-arquivos-de-script.html",
+      "resources": [
+        {
+          "name": "Visual Studio Code",
+          "href": "https://code.visualstudio.com/",
+          "tags": [
+            {
+              "label": "IDE",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "PyCharm",
+          "href": "https://www.jetbrains.com/",
+          "tags": [
+            {
+              "label": "IDE",
+              "free": false
             }
           ]
         }

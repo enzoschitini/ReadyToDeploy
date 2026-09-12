@@ -640,17 +640,20 @@ main{flex:1;}
       list.setAttribute('aria-label', cur.ariaLabel);
       html('curriculum-list', curriculum.map(function (item, i) {
         var isProject = item.type === 'projeto';
-        var href = (isProject ? cur.projetoHref : cur.moduloHref) + item.id;
         var typeLabel = isProject ? cur.projetoLabel : cur.moduloLabel;
-        return '<li><a class="curriculo-item" href="' + esc(href) + '">' +
+        var disabled = item.disabled === true;
+        var tag = disabled ? 'div' : 'a';
+        var hrefAttr = disabled ? '' : (' href="' + esc((isProject ? cur.projetoHref : cur.moduloHref) + item.id) + '"');
+        var arrow = disabled ? '' : '<span class="curriculo-arrow" aria-hidden="true">→</span>';
+        return '<li><' + tag + ' class="curriculo-item"' + hrefAttr + '>' +
           '<span class="curriculo-num" aria-hidden="true">' + pad2(i + 1) + '</span>' +
           '<span class="curriculo-body">' +
             '<span class="badge' + (isProject ? ' badge-projeto' : '') + '">' + esc(typeLabel) + '</span>' +
             '<span class="curriculo-title">' + esc(item.title) + '</span>' +
             '<span class="curriculo-desc">' + esc(item.description) + '</span>' +
           '</span>' +
-          '<span class="curriculo-arrow" aria-hidden="true">→</span>' +
-        '</a></li>';
+          arrow +
+        '</' + tag + '></li>';
       }).join(''));
     }
 

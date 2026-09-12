@@ -1,0 +1,89 @@
+<div class="prose">
+<p>À medida que um projeto cresce, é comum acabar com vários módulos relacionados. Um <strong>pacote</strong> é uma pasta que agrupa esses módulos, permitindo organizá-los e importá-los a partir de um caminho só.</p>
+<h2>Motivação</h2>
+<p>Agora você também precisa processar arquivos de texto simples, como o conteúdo de uma notícia. Criamos outra classe para isso, parecida com a <code>ArquivoCSV</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Lê um arquivo de texto e permite extrair uma linha específica
+class ArquivoTXT:
+
+    def __init__(self, caminho_arquivo: str):
+        self.caminho_arquivo = caminho_arquivo
+        self.linhas = self._ler_linhas()
+
+    def _ler_linhas(self):
+        with open(self.caminho_arquivo, mode='r', encoding='utf-8') as arquivo:
+            return arquivo.readlines()
+
+    def extrair_linha(self, numero_linha: int):
+        return self.linhas[numero_linha - 1].strip()
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">conteudo_noticia = '''Ready To Deploy lança módulo sobre organização de código em Python
+O curso ensina a estruturar projetos maiores usando módulos e pacotes, seguindo as boas práticas mais usadas no mercado.
+'''
+
+with open('noticia.txt', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write(conteudo_noticia)
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">arquivo_noticia = ArquivoTXT(caminho_arquivo='noticia.txt')
+
+titulo = arquivo_noticia.extrair_linha(numero_linha=1)
+print(titulo)
+# Ready To Deploy lança módulo sobre organização de código em Python
+</code></pre></div>
+<h2>Definição</h2>
+<p>Um pacote é uma <strong>pasta comum</strong>, com um detalhe: tradicionalmente contém um arquivo <code>__init__.py</code> (pode estar vazio) que sinaliza ao Python que aquela pasta deve ser tratada como um pacote importável.</p>
+<blockquote>
+<p><strong>Dica:</strong> a partir do Python 3.3, o interpretador também reconhece pastas sem <code>__init__.py</code> como pacotes "implícitos" (<em>namespace packages</em>). Ainda assim, incluir o arquivo continua sendo a prática mais comum e mais compatível entre versões.</p>
+</blockquote>
+<p>Vamos criar um pacote chamado <code>arquivo</code> e mover os módulos <code>arquivo_csv.py</code> e <code>arquivo_txt.py</code> para dentro dele.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">import os
+
+os.makedirs('arquivo', exist_ok=True)
+
+# Arquivo vazio que marca a pasta como um pacote
+with open('arquivo/__init__.py', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write('')
+
+print('Pacote "arquivo" criado.')
+# Pacote "arquivo" criado.
+</code></pre></div>
+<p>O pacote fica assim, com os dois módulos reaproveitados da aula anterior:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">arquivo/
+├── __init__.py
+├── arquivo_csv.py   # a classe ArquivoCSV
+└── arquivo_txt.py   # a classe ArquivoTXT
+</code></pre></div>
+<h2>Revisitando a motivação</h2>
+<p>Agora importamos os dois módulos <strong>de dentro do pacote</strong>, usando <code>.</code> para indicar o caminho pasta/módulo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">from arquivo.arquivo_csv import ArquivoCSV
+from arquivo.arquivo_txt import ArquivoTXT
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">arquivo_banco_pacote = ArquivoCSV(caminho_arquivo='banco.csv')
+
+escolaridade = arquivo_banco_pacote.extrair_coluna(indice_coluna=3)
+print(escolaridade)
+# ['primary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'primary']
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">arquivo_noticia_pacote = ArquivoTXT(caminho_arquivo='noticia.txt')
+
+titulo = arquivo_noticia_pacote.extrair_linha(numero_linha=1)
+print(titulo)
+# Ready To Deploy lança módulo sobre organização de código em Python
+</code></pre></div>
+<blockquote>
+<p>O resultado é o mesmo de antes, mas agora os dois módulos estão organizados dentro de uma única pasta — exatamente como bibliotecas reais (Pandas, NumPy...), que são pacotes com dezenas de módulos internos.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-pacotes-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-pacotes-q">O que faz o arquivo <code>__init__.py</code> dentro de uma pasta de pacote?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Cada módulo continua em seu próprio arquivo (`arquivo_csv.py`, `arquivo_txt.py`...); o `__init__.py` pode até ficar vazio."><input type="radio" name="quiz-python-pacotes" value="0" /><span class="txt">Ele contém obrigatoriamente o código de todos os módulos do pacote</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="É essa a função tradicional do `__init__.py` — mesmo vazio, ele marca a pasta como pacote."><input type="radio" name="quiz-python-pacotes" value="1" /><span class="txt">Ele sinaliza ao Python que aquela pasta deve ser tratada como um pacote importável</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Instalar pacotes de terceiros é tarefa do `pip`, não do `__init__.py`."><input type="radio" name="quiz-python-pacotes" value="2" /><span class="txt">Ele instala automaticamente os pacotes de terceiros usados no projeto</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="O `__init__.py` não tem esse comportamento — ele só é executado quando o pacote é importado."><input type="radio" name="quiz-python-pacotes" value="3" /><span class="txt">Ele é executado uma vez por segundo enquanto o programa roda</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

@@ -223,7 +223,7 @@ h1.page-title{
   letter-spacing:.1em;color:var(--brand-pink);
 }
 .pill-new{
-  display:inline-flex;align-items:center;border-radius:9999px;
+  display:inline-flex;align-items:center;gap:.25rem;border-radius:9999px;
   border:1px solid rgba(125,108,255,.4);background:rgba(125,108,255,.1);padding:.125rem .5rem;
   font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;
   letter-spacing:.1em;color:var(--brand-indigo);
@@ -420,6 +420,11 @@ h1.page-title{
     return '<span class="pill-new" aria-label="' + esc(labels.newAria) + '">' + esc(labels['new']) + '</span>';
   }
 
+  function pillComingSoon(labels) {
+    return '<span class="pill-new" aria-label="' + esc(labels.comingSoonAria) + '">' +
+           '<span aria-hidden="true">⏳</span>' + esc(labels.comingSoon) + '</span>';
+  }
+
   function rating(value, labels) {
     if (!value) return '';
     var score = Number(value.score).toFixed(1);
@@ -446,7 +451,7 @@ h1.page-title{
     return '<a class="card" href="' + esc(section.itemHref + item.id) + '">' +
       '<div class="card-meta">' +
         '<span class="badge">' + esc(item.level) + '</span>' +
-        (item['new'] ? pillNew(labels) : '') +
+        (item.comingSoon ? pillComingSoon(labels) : (item['new'] ? pillNew(labels) : '')) +
         '<span class="meta-text">' + esc(item.duration) + '</span>' +
         metaRight(item, labels) +
       '</div>' +

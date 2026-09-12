@@ -1,0 +1,155 @@
+<div class="prose">
+<p>Quando precisamos guardar <strong>várias informações do mesmo tipo de evento</strong> — como as transações de um dia — criar uma variável para cada uma não escala. As <strong>listas</strong> resolvem exatamente esse problema.</p>
+<h2>Motivação</h2>
+<p>O aplicativo do seu banco registra toda a sua movimentação financeira. No final do dia, o app soma todas as transações ao saldo inicial para calcular o <strong>saldo final</strong>. Guardando cada transação em uma variável separada, o código fica assim:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">saldo_inicial_dia_11 = 1000
+
+transacao_1 = 243
+transacao_2 = -798.58
+transacao_3 = 427.12
+transacao_4 = -10.91
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">saldo_final_dia_11 = saldo_inicial_dia_11 + transacao_1 + transacao_2 + transacao_3 + transacao_4
+print(round(saldo_final_dia_11, 2))
+# 860.63
+</code></pre></div>
+<p>Funciona, mas repare no problema: se o dia tivesse 50 transações, seriam 50 variáveis diferentes, e o cálculo do saldo teria 50 termos escritos à mão. <strong>Existe uma forma melhor de armazenar essas transações?</strong></p>
+<h2>Definição</h2>
+<p><strong>Listas</strong> armazenam sequências <strong>ordenadas</strong> e <strong>mutáveis</strong> (podem ser alteradas depois de criadas) de valores, que podem se repetir. São do tipo <code>list</code> e são criadas entre colchetes <code>[]</code>, com os itens separados por vírgula.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">dados_usuario_web = ['André Perez', 'andre.perez', 'andre123', 'andre.perez@gmail.com']
+
+print(dados_usuario_web)
+print(type(dados_usuario_web))
+# ['André Perez', 'andre.perez', 'andre123', 'andre.perez@gmail.com']
+# &lt;class 'list'&gt;
+</code></pre></div>
+<p>Uma lista pode misturar valores de <strong>tipos diferentes</strong> — números, textos, booleanos e até outras listas:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">idade = 20
+saldo_em_conta = 723.15
+usuario_logado = True
+
+dados_usuario_web = ['André Perez', idade, 'andre.perez', 'andre.perez@gmail.com', saldo_em_conta, usuario_logado]
+
+print(dados_usuario_web)
+print(type(dados_usuario_web))
+# ['André Perez', 20, 'andre.perez', 'andre.perez@gmail.com', 723.15, True]
+# &lt;class 'list'&gt;
+</code></pre></div>
+<h2>Operações</h2>
+<p><strong>Concatenação (<code>+</code>)</strong>: junta duas listas em uma só, mantendo a ordem.</p>
+<p><strong>Exemplo:</strong> unindo fabricantes de <em>hardware</em> mobile por região.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">fabricantes_china = ['xiaomi', 'huawei']
+fabricantes_eua = ['apple', 'motorola']
+
+fabricantes_mobile = fabricantes_china + fabricantes_eua
+print(fabricantes_mobile)
+# ['xiaomi', 'huawei', 'apple', 'motorola']
+</code></pre></div>
+<p>**Fatiamento (<em>slicing</em>)**: assim como nas <em>strings</em>, acessamos itens de uma lista pela posição (índice), que começa em <strong>0</strong>. Índices negativos contam a partir do final.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">print(f'Posição 0:  {fabricantes_mobile[0]}')
+print(f'Posição -1: {fabricantes_mobile[-1]}')
+# Posição 0:  xiaomi
+# Posição -1: motorola
+</code></pre></div>
+<p>E também podemos extrair um <strong>intervalo</strong> de itens com <code>lista[inicio:fim]</code> — o item da posição <code>fim</code> não é incluído:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">fabricantes_china = fabricantes_mobile[0:2]
+fabricantes_eua = fabricantes_mobile[2:len(fabricantes_mobile)]
+
+print(f'China: {fabricantes_china}')
+print(f'EUA:   {fabricantes_eua}')
+# China: ['xiaomi', 'huawei']
+# EUA:   ['apple', 'motorola']
+</code></pre></div>
+<p>Diferente das <em>strings</em>, as listas são <strong>mutáveis</strong>: podemos alterar um item existente atribuindo um novo valor à sua posição.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">print(fabricantes_mobile)
+
+fabricantes_mobile[2] = 'nokia'
+print(fabricantes_mobile)
+# ['xiaomi', 'huawei', 'apple', 'motorola']
+# ['xiaomi', 'huawei', 'nokia', 'motorola']
+</code></pre></div>
+<h2>Métodos</h2>
+<p>Os métodos abaixo são os mais usados no dia a dia para adicionar e remover itens de uma lista:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Método</th><th>O que faz</th></tr></thead>
+<tbody>
+<tr><td><code>.append(valor)</code></td><td>Adiciona um item ao <strong>final</strong> da lista</td></tr>
+<tr><td><code>.insert(indice, valor)</code></td><td>Insere um item em uma <strong>posição específica</strong></td></tr>
+<tr><td><code>.remove(valor)</code></td><td>Remove a <strong>primeira ocorrência</strong> de um valor</td></tr>
+<tr><td><code>.pop(indice)</code></td><td>Remove o item de uma posição e <strong>retorna</strong> o valor removido</td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">juros_mensais = [0.05, 0.07, 0.02, 0.04, 0.08]
+print(juros_mensais)
+# [0.05, 0.07, 0.02, 0.04, 0.08]
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># .append(): adiciona ao final
+juros_mensais.append(0.09)
+print(juros_mensais)
+# [0.05, 0.07, 0.02, 0.04, 0.08, 0.09]
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># .insert(): adiciona em uma posição específica, empurrando os demais itens
+juros_mensais.insert(0, 0.10)
+print(juros_mensais)
+# [0.1, 0.05, 0.07, 0.02, 0.04, 0.08, 0.09]
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># .remove(): remove pelo VALOR (a primeira ocorrência)
+juros_mensais.remove(0.10)
+print(juros_mensais)
+# [0.05, 0.07, 0.02, 0.04, 0.08, 0.09]
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># .pop(): remove pelo ÍNDICE e devolve o valor removido
+terceiro_juros = juros_mensais.pop(2)
+print(f'Valor removido: {terceiro_juros}')
+print(juros_mensais)
+# Valor removido: 0.02
+# [0.05, 0.07, 0.04, 0.08, 0.09]
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> <code>.pop()</code> sem argumento remove e retorna o <strong>último</strong> item da lista — útil para simular uma pilha de itens.</p>
+</blockquote>
+<h2>Conversão</h2>
+<p>Alguns tipos podem ser convertidos em lista com a função <code>list()</code>. Uma <em>string</em>, por exemplo, vira uma lista com um item para cada caractere:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">email = 'andre.perez@gmail.com'
+caracteres_email = list(email)
+
+print(email)
+print(caracteres_email)
+# andre.perez@gmail.com
+# ['a', 'n', 'd', 'r', 'e', '.', 'p', 'e', 'r', 'e', 'z', '@', 'g', 'm', 'a', 'i', 'l', '.', 'c', 'o', 'm']
+</code></pre></div>
+<h2>Revisitando a motivação</h2>
+<p>Agora podemos guardar as transações do dia em uma <strong>única lista</strong>, e usar <code>.append()</code> para adicionar cada nova transação:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">transacoes_dia_11 = []
+
+transacoes_dia_11.append(243)
+transacoes_dia_11.append(-798.58)
+transacoes_dia_11.append(427.12)
+transacoes_dia_11.append(-10.91)
+
+print(transacoes_dia_11)
+# [243, -798.58, 427.12, -10.91]
+</code></pre></div>
+<p>E a função nativa <code>sum()</code> soma todos os itens de uma lista numérica de uma vez, sem precisar somar item por item:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">saldo_final_dia_11 = saldo_inicial_dia_11 + sum(transacoes_dia_11)
+print(round(saldo_final_dia_11, 2))
+# 860.63
+</code></pre></div>
+<blockquote>
+<p>Não importa se o dia tem 4 ou 400 transações: o código continua exatamente o mesmo, pois <code>sum()</code> soma todos os itens da lista automaticamente.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-listas-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-listas-q">O que o método <code>.pop(indice)</code> faz com uma lista?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="O `.pop()` sempre devolve o valor removido — não é um método &quot;silencioso&quot;."><input type="radio" name="quiz-python-listas" value="0" /><span class="txt">Remove o item da posição informada e não retorna nada</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="É por isso que dá para guardar o resultado em uma variável, como em `terceiro_juros = lista.pop(2)`."><input type="radio" name="quiz-python-listas" value="1" /><span class="txt">Remove o item da posição informada e retorna o valor removido</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Isso é o que `.remove(valor)` faz — `.pop()` trabalha por índice, não por valor."><input type="radio" name="quiz-python-listas" value="2" /><span class="txt">Remove a primeira ocorrência de um valor</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Quem adiciona em uma posição específica é o `.insert(indice, valor)`."><input type="radio" name="quiz-python-listas" value="3" /><span class="txt">Adiciona um item na posição informada</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

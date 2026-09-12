@@ -1,0 +1,128 @@
+<div class="prose">
+<p>Um erro de lógica não gera nenhuma exceção: o programa roda até o fim e entrega um resultado, só que <strong>errado</strong>. Como o Python não aponta o problema, cabe a nós desconfiar dos resultados e investigar o código.</p>
+<h2>Definição</h2>
+<p>Um <strong>erro de lógica</strong> acontece quando o código faz exatamente o que foi escrito, mas o que foi escrito não é o que queríamos. As causas mais comuns são:</p>
+<ul>
+<li>Fórmulas erradas ou com a ordem das operações trocada (como a média da primeira aula);</li>
+<li>Limites errados em laços e fatias, pulando ou repetindo elementos;</li>
+<li>Condições invertidas (<code>&gt;</code> no lugar de <code>&lt;</code>, <code>and</code> no lugar de <code>or</code>);</li>
+<li>Laços que nunca terminam (<strong>laços infinitos</strong>).</li>
+</ul>
+<p>A principal ferramenta para encontrá-los é a <strong>depuração</strong>: exibir resultados intermediários para descobrir em que ponto o valor calculado deixa de ser o esperado.</p>
+<h2>Limites de coleções</h2>
+<p><strong>Exemplo:</strong> calculando o valor total do carrinho de compras. O resultado esperado é <strong>570,70</strong>: <code>37,65 × 10 + 81,20 × 2 + 15,90 × 2</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_total = 0
+
+for indice in range(1, len(carrinho_compras)):
+    produto = carrinho_compras[indice]
+    valor_total += produto['preco'] * produto['quantidade']
+
+print(f'Valor total: {valor_total:.2f}')
+# Valor total: 194.20
+</code></pre></div>
+<p>O código rodou sem nenhum erro, mas o valor está muito abaixo do esperado. Algo está errado na <strong>lógica</strong>.</p>
+<h2>Depurando com print()</h2>
+<p>A forma mais simples de depurar é colocar um <code>print()</code> dentro do laço para <strong>ver</strong> o que está acontecendo a cada passo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_total = 0
+
+for indice in range(1, len(carrinho_compras)):
+    produto = carrinho_compras[indice]
+    print(f'[depuração] índice {indice}: produto {produto["id"]}')  # print temporário
+    valor_total += produto['preco'] * produto['quantidade']
+
+print(f'Valor total: {valor_total:.2f}')
+# [depuração] índice 1: produto 1203
+# [depuração] índice 2: produto 8921
+# Valor total: 194.20
+</code></pre></div>
+<p>Pronto, o problema apareceu: o laço começa no índice <code>1</code> e <strong>pula o primeiro produto</strong> (índice <code>0</code>, o <code>3184</code>). O <code>range(1, ...)</code> deveria ser <code>range(0, ...)</code>. Melhor ainda: percorrendo a lista diretamente com <code>for produto in carrinho_compras</code>, não há índice para errar:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_total = 0
+
+for produto in carrinho_compras:
+    valor_total += produto['preco'] * produto['quantidade']
+
+print(f'Valor total: {valor_total:.2f}')
+# Valor total: 570.70
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> depois de encontrar o erro, <strong>remova</strong> os <code>print()</code> de depuração, para que não poluam a saída do programa.</p>
+<p><strong>Dica:</strong> para se proteger de erros de lógica, você pode verificar se um resultado faz sentido com <code>assert condição, 'mensagem'</code>. Se a condição for falsa, o Python lança um <code>AssertionError</code> com a mensagem. Se for verdadeira, nada acontece.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">quantidade_de_produtos = len(carrinho_compras)
+produtos_somados = 0
+
+for produto in carrinho_compras:
+    produtos_somados += 1
+
+# Se algum produto tivesse sido pulado, esta linha lançaria um AssertionError
+assert produtos_somados == quantidade_de_produtos, 'Algum produto não foi somado!'
+print('Conferência OK: todos os produtos foram somados.')
+# Conferência OK: todos os produtos foram somados.
+</code></pre></div>
+<h2>Laços infinitos</h2>
+<p>Um tipo especial de erro de lógica é o <strong>laço infinito</strong>: um laço cuja condição de parada nunca é atingida, deixando o programa "preso" para sempre.</p>
+<p>Ele é mais comum com o laço <code>while</code> ("enquanto"), que repete um bloco <strong>enquanto</strong> uma condição for verdadeira. Diferente do <code>for</code>, que percorre uma coleção com fim definido, o <code>while</code> depende de que algo dentro dele <strong>mude a condição</strong> em algum momento.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">tentativa = 1
+
+while tentativa &lt;= 3:
+    print(f'Tentativa de conexão {tentativa}...')
+    tentativa += 1  # sem esta linha, tentativa seria sempre 1 e o laço nunca terminaria
+
+print('Fim das tentativas.')
+# Tentativa de conexão 1...
+# Tentativa de conexão 2...
+# Tentativa de conexão 3...
+# Fim das tentativas.
+</code></pre></div>
+<p>Se a linha <code>tentativa += 1</code> fosse esquecida, a condição <code>tentativa &lt;= 3</code> seria <strong>sempre</strong> verdadeira e o laço rodaria para sempre. Por isso ela é tão importante. Outra forma de garantir a saída é usar o <code>break</code>, visto no Módulo 03, para interromper o laço quando uma condição for atingida:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">contador = 0
+
+while True:          # a condição é sempre verdadeira...
+    contador += 1
+    if contador &gt; 10:
+        break        # ...então o break é a ÚNICA saída do laço
+
+print(f'O laço executou {contador - 1} vezes.')
+# O laço executou 10 vezes.
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> se uma célula ficar executando por muito mais tempo que o esperado, desconfie de um laço infinito. No Colab, interrompa a execução clicando no botão de <strong>parar</strong> ao lado da célula (ou com o atalho <code>Ctrl + M</code> + <code>I</code>). Um laço infinito que acumula dados na memória pode até derrubar a sessão inteira.</p>
+</blockquote>
+<h2>Resumo do Módulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Tipo de erro</th><th>Quando acontece</th><th>Sinal</th><th>Como lidar</th></tr></thead>
+<tbody>
+<tr><td>Sintaxe</td><td>Antes da execução</td><td><code>SyntaxError</code> / <code>IndentationError</code>, nada é executado</td><td>Ler a mensagem (linha e <code>^</code>) e corrigir o código</td></tr>
+<tr><td>Execução</td><td>Durante a execução</td><td>Exceção (<code>ValueError</code>, <code>KeyError</code>...) e <em>traceback</em></td><td>Corrigir, evitar (validar dados, <code>.get()</code>) ou tratar com <code>try/except</code></td></tr>
+<tr><td>Lógica</td><td>Durante a execução</td><td>Nenhum: só o resultado errado</td><td>Conferir resultados, depurar com <code>print()</code> e usar <code>assert</code></td></tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Recurso</th><th>Para que serve</th></tr></thead>
+<tbody>
+<tr><td><code>try</code> / <code>except</code></td><td>Captura e trata uma exceção</td></tr>
+<tr><td><code>else</code></td><td>Executa somente se não houve exceção no <code>try</code></td></tr>
+<tr><td><code>finally</code></td><td>Executa sempre, com ou sem exceção</td></tr>
+<tr><td><code>raise Excecao('mensagem')</code></td><td>Lança uma exceção</td></tr>
+<tr><td><code>raise</code> (sozinho, dentro do <code>except</code>)</td><td>Repassa a exceção atual para quem chamou</td></tr>
+<tr><td><code>raise NovaExcecao(...) from erro</code></td><td>Troca a exceção, preservando a original como causa</td></tr>
+<tr><td><code>class MeuErro(Exception):</code></td><td>Cria uma exceção personalizada</td></tr>
+<tr><td><code>traceback.print_exc()</code></td><td>Exibe o <em>traceback</em> de uma exceção capturada</td></tr>
+<tr><td><code>assert condição, 'mensagem'</code></td><td>Confere se um resultado faz sentido</td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-erros-logica-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-erros-logica-q">Qual é a técnica mais direta para investigar por que um laço está produzindo um resultado numérico menor do que o esperado?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Não há exceção para capturar aqui — o código roda sem erro nenhum, então `try/except` não ajuda a encontrar o problema."><input type="radio" name="quiz-python-erros-logica" value="0" /><span class="txt">Envolver o laço inteiro em um <code>try/except Exception</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Exibir os valores intermediários (como o índice e o item processado) é o que revela, por exemplo, um item sendo pulado por engano."><input type="radio" name="quiz-python-erros-logica" value="1" /><span class="txt">Colocar um <code>print()</code> temporário dentro do laço para ver o que acontece a cada repetição</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Trocar o tipo de laço não resolve um erro de lógica na fórmula ou nos limites — o problema pode continuar existindo do mesmo jeito."><input type="radio" name="quiz-python-erros-logica" value="2" /><span class="txt">Trocar o <code>for</code> por um <code>while</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Um erro de lógica só é encontrado quando alguém desconfia do resultado e investiga — ignorá-lo deixa o problema passar despercebido."><input type="radio" name="quiz-python-erros-logica" value="3" /><span class="txt">Ignorar o resultado e assumir que ele está correto</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

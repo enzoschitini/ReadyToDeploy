@@ -1,0 +1,113 @@
+<div class="prose">
+<p>Um <strong>arquivo de script</strong> é um arquivo de texto com extensão <code>.py</code> contendo várias linhas de código Python, salvas juntas para serem executadas (e reexecutadas) de uma vez, sempre da mesma forma. É o formato usado para automações reais — algo que precisa rodar sozinho, sem um notebook aberto.</p>
+<h2>No Google Colab</h2>
+<p>O Colab não tem um editor de arquivos tradicional, mas você pode criar um arquivo <code>.py</code> diretamente de uma célula com o comando mágico <code>%%writefile nome_do_arquivo.py</code>: tudo o que vier <strong>depois</strong> dessa linha, na mesma célula, é salvo no arquivo.</p>
+<p><strong>Exemplo:</strong> um <em>script</em> que recebe um nome pela linha de comando e imprime uma saudação.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">%%writefile saudacao.py
+import sys
+
+nome = sys.argv[1]
+print(f'Olá, {nome}!')
+# Writing saudacao.py
+</code></pre></div>
+<p>O módulo nativo <code>sys</code> guarda, na lista <code>sys.argv</code>, os <strong>argumentos de linha de comando</strong>: <code>sys.argv[0]</code> é sempre o nome do próprio script, e <code>sys.argv[1]</code>, <code>sys.argv[2]</code>... são os valores extras informados por quem executou o comando.</p>
+<p>Agora executamos o arquivo recém-criado, passando <code>'Maria'</code> como argumento:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-bash">!python saudacao.py Maria
+# Olá, Maria!
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> se o script for executado sem o argumento esperado (<code>!python saudacao.py</code>, sem nome nenhum), <code>sys.argv</code> terá só um item (<code>sys.argv[0]</code>), e tentar acessar <code>sys.argv[1]</code> gera um <code>IndexError</code>. Scripts para uso real costumam validar se os argumentos necessários foram informados antes de usá-los.</p>
+</blockquote>
+<p><strong>Exemplo (mundo real):</strong> um <em>script</em> de automação que consulta uma taxa de juros em um site e registra o resultado, com data e hora, em um arquivo <code>.csv</code> — o tipo de tarefa que normalmente roda sozinha, em um horário programado (ex: todos os dias às 9h).</p>
+<blockquote>
+<p>Este é o <strong>conteúdo</strong> de um arquivo <code>extrair_taxa.py</code>, mostrado aqui só para leitura — ele não é executado por este notebook, pois depende de acesso à internet e de um serviço externo que pode mudar com o tempo. É exatamente esse tipo de tarefa, porém, que faz sentido rodar como <em>script</em>, e não dentro de um notebook.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">import os
+import json
+from datetime import datetime
+
+import requests
+
+URL = 'https://exemplo-api-financeira.com/taxa-cdi'
+ARQUIVO_SAIDA = 'taxa-cdi.csv'
+
+data_e_hora = datetime.now()
+data = data_e_hora.strftime('%Y-%m-%d')
+hora = data_e_hora.strftime('%H:%M:%S')
+
+# Consultando a taxa no site
+try:
+    resposta = requests.get(URL)
+    resposta.raise_for_status()
+except requests.HTTPError:
+    print('Taxa não encontrada, mas o script vai continuar.')
+    taxa_cdi = None
+except Exception as erro:
+    print('Erro de conexão, interrompendo o script.')
+    raise erro
+else:
+    dado = json.loads(resposta.text)
+    taxa_cdi = float(dado['taxa'].replace(',', '.'))
+
+# Criando o arquivo com cabeçalho, caso ainda não exista
+if not os.path.exists(ARQUIVO_SAIDA):
+    with open(file=ARQUIVO_SAIDA, mode='w', encoding='utf8') as arquivo:
+        arquivo.write('data,hora,taxa\n')
+
+# Só registra a linha se a taxa foi obtida com sucesso
+if taxa_cdi is not None:
+    with open(file=ARQUIVO_SAIDA, mode='a', encoding='utf8') as arquivo:
+        arquivo.write(f'{data},{hora},{taxa_cdi}\n')
+    print('Sucesso!')
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> APIs de sites mudam com o tempo (endereço, formato da resposta etc.). Antes de usar uma API externa em um projeto real, sempre confira a documentação oficial e atualizada do serviço.</p>
+</blockquote>
+<h2>Na sua máquina local</h2>
+<p>A dinâmica é a mesma, só muda a ferramenta usada para criar o arquivo:</p>
+<ol>
+<li>Crie o arquivo <code>.py</code> com um editor de texto ou de código;</li>
+<li>Salve o arquivo na pasta onde você abriu o terminal;</li>
+<li>Execute com o mesmo comando usado no Colab, sem o <code>!</code> (que só existe dentro do notebook).</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-bash">python saudacao.py Maria
+</code></pre></div>
+<h2>Ferramentas de desenvolvimento (IDEs)</h2>
+<p>Um bloco de notas simples funciona para escrever <code>.py</code>, mas uma <strong>IDE</strong> (<em>Integrated Development Environment</em>, Ambiente de Desenvolvimento Integrado) torna o trabalho muito mais produtivo: ela destaca erros de sintaxe antes de você executar o código, sugere autocompletar, permite depurar (<em>debug</em>) o código passo a passo e já vem com um terminal embutido.</p>
+<p>As duas opções mais usadas no mercado são:</p>
+<ul>
+<li><strong>Visual Studio Code</strong>, da Microsoft, gratuito e leve — a recomendação mais comum para começar;</li>
+<li><strong>PyCharm</strong>, da JetBrains, mais robusto e focado especificamente em Python, com uma versão gratuita (<em>Community</em>) e uma paga (<em>Professional</em>).</li>
+</ul>
+<blockquote>
+<p><strong>Dica:</strong> o próprio Visual Studio Code tem uma extensão oficial de Jupyter/Colab, que permite abrir e executar notebooks <code>.ipynb</code> (como os deste curso) sem sair do editor.</p>
+</blockquote>
+<h2>Resumo do Módulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Comando</th><th>Onde usar</th><th>O que faz</th></tr></thead>
+<tbody>
+<tr><td><code>python -V</code> / <code>pip -V</code></td><td>Terminal</td><td>Confere as versões instaladas</td></tr>
+<tr><td><code>python</code></td><td>Terminal</td><td>Abre o modo interativo (REPL)</td></tr>
+<tr><td><code>quit()</code> / <code>exit()</code></td><td>Dentro do REPL</td><td>Sai do modo interativo</td></tr>
+<tr><td><code>python arquivo.py</code></td><td>Terminal</td><td>Executa um arquivo de script</td></tr>
+<tr><td><code>python arquivo.py arg1 arg2</code></td><td>Terminal</td><td>Executa um script passando argumentos (<code>sys.argv</code>)</td></tr>
+<tr><td><code>%%writefile arquivo.py</code></td><td>Célula do Colab</td><td>Cria um arquivo a partir do conteúdo da célula</td></tr>
+<tr><td><code>!comando</code></td><td>Célula do Colab</td><td>Executa um comando de terminal dentro do notebook</td></tr>
+</tbody>
+</table></div>
+<p>Módulo nativo visto neste módulo: <code>sys</code> (em especial, a lista <code>sys.argv</code>).</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-scripts-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-scripts-q">O que <code>sys.argv[1]</code> representa ao executar <code>python saudacao.py Maria</code> pelo terminal?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Esse é o valor de `sys.argv[0]` — a posição 0 é sempre o nome do script que está sendo executado."><input type="radio" name="quiz-python-scripts" value="0" /><span class="txt">O nome do próprio script, <code>saudacao.py</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="`sys.argv[1]` é o primeiro valor informado depois do nome do script, exatamente `&#x27;Maria&#x27;` neste exemplo."><input type="radio" name="quiz-python-scripts" value="1" /><span class="txt">O primeiro argumento extra passado na linha de comando, <code>'Maria'</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="O caminho do interpretador não fica em `sys.argv` — essa lista guarda o nome do script e os argumentos informados na chamada."><input type="radio" name="quiz-python-scripts" value="2" /><span class="txt">O caminho completo do interpretador Python</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`sys.argv` é preenchido automaticamente pelos argumentos da linha de comando, sem precisar de `input()`."><input type="radio" name="quiz-python-scripts" value="3" /><span class="txt">Sempre <code>None</code>, a menos que o script use <code>input()</code></span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

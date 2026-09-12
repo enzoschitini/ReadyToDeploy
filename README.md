@@ -1,6 +1,10 @@
 # ReadyToDeploy
 Python do zero ao primeiro deploy. Curso completo para iniciantes que querem colocar código em produção.
 
+python -m http.server 8000
+
+http://localhost:8000/
+
 https://enzoschitini.github.io/ReadyToDeploy/
 
 # Estrutura do Projeto

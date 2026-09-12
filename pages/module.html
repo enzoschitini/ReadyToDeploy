@@ -298,6 +298,17 @@ h1.node-title{
 }
 .prose pre code{font-family:inherit;font-size:inherit;font-weight:400;color:inherit;}
 
+.prose .table-wrap{overflow-x:auto;margin-block:1.71429em;}
+.prose table{width:100%;border-collapse:collapse;font-size:.875em;}
+.prose .table-wrap table{margin-block:0;}
+.prose thead th{
+  border-bottom:2px solid var(--border);padding:.5em .75em;text-align:left;
+  font-family:var(--font-mono);font-size:.75em;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--muted-foreground);white-space:nowrap;
+}
+.prose tbody td{border-bottom:1px solid var(--border);padding:.5em .75em;vertical-align:top;}
+.prose tbody tr:last-child td{border-bottom:0;}
+
 /* bloco de código com botão copiar */
 .code-block{position:relative;}
 .code-block .copy-btn{

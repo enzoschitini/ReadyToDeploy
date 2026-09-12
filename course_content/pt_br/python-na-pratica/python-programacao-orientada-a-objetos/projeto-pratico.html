@@ -1,0 +1,325 @@
+<div class="prose">
+<p>Chegou a hora de sair da teoria e praticar <strong>Programação Orientada a Objetos</strong>! Neste projeto você vai usar o que aprendeu no Módulo 06 — <strong>classes</strong>, <strong>objetos</strong> e <strong>herança</strong> — para resolver, dentro de uma única história, desafios bem parecidos com o que aparece no dia a dia de quem programa em Python.</p>
+<h2>O contexto</h2>
+<p>A <strong>Página Viva</strong> é um clube de assinatura de livros: todo mês, cada assinante recebe um livro físico escolhido por curadoria e ganha acesso a uma biblioteca de e-books. A empresa está crescendo rápido, mas ainda guarda os dados dos livros em variáveis soltas espalhadas pelos notebooks da equipe — e isso já causou mais de uma dor de cabeça.</p>
+<p>Você acabou de ser contratado(a) como <strong>Desenvolvedor(a) Jr.</strong>, e seu primeiro desafio é organizar tudo isso com classes e objetos. O time te chamou no chat interno com os pedidos de hoje, organizados em <strong>missões</strong>.</p>
+<blockquote>
+<p><strong>Dica:</strong> não existe só uma forma "certa" de resolver cada missão. Depois de cada uma você vai encontrar o resultado esperado, mas o caminho até lá é seu. Teste, erre, corrija e tente de novo — é assim que se aprende a programar.</p>
+</blockquote>
+<h2>Objetivo</h2>
+<p>Ao final deste projeto, você terá praticado, dentro de um único cenário conectado:</p>
+<ul>
+<li>Criação de <strong>classes</strong> com <code>__init__</code>, atributos e métodos;</li>
+<li>O método especial <code>__str__</code>, que define como um objeto aparece no <code>print()</code>;</li>
+<li>Criação e manipulação de <strong>objetos</strong>, entendendo que tudo no Python é um objeto;</li>
+<li>Uma classe que lê um arquivo <strong>CSV</strong> e extrai colunas por índice e por nome;</li>
+<li><strong>Herança</strong>, especializando uma classe com <code>super()</code> e sobrescrevendo métodos.</li>
+</ul>
+<h2>Requisitos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Detalhe</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Este notebook aberto e pronto para rodar</td></tr>
+<tr><td>Conceitos necessários</td><td>Módulos 01 a 05 completos + Módulo 06 (classes, objetos e herança)</td></tr>
+<tr><td>Funções, métodos e palavras-chave</td><td><code>class</code>, <code>__init__</code>, <code>self</code>, <code>__str__</code>, <code>super()</code>, <code>type()</code>, <code>isinstance()</code>, <code>issubclass()</code>, <code>open()</code>, <code>.strip()</code>, <code>.split()</code></td></tr>
+<tr><td>Bibliotecas externas</td><td>Nenhuma! Só Python puro, do jeitinho que você aprendeu</td></tr>
+</tbody>
+</table></div>
+<p>Se alguma missão parecer difícil, a dica de cada uma aponta a seção certa do Módulo 06 para revisar.</p>
+<h2>Como o projeto funciona</h2>
+<p>O notebook está dividido em <strong>5 missões</strong>, na ordem em que a Página Viva te chamou:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missão</th><th>Tema</th><th>Conceito principal</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cadastro do acervo</td><td>Classes</td></tr>
+<tr><td>2</td><td>Empréstimos do mês</td><td>Objetos</td></tr>
+<tr><td>3</td><td>Resgatando o catálogo antigo</td><td>Leitura de CSV com uma classe</td></tr>
+<tr><td>4</td><td>Linha de e-books</td><td>Herança</td></tr>
+<tr><td>5</td><td>Painel da assinatura</td><td>Tudo junto!</td></tr>
+</tbody>
+</table></div>
+<p>Em cada missão você vai encontrar: uma mensagem de alguém do time, com o pedido; uma célula de código com os dados já prontos (quando houver) e comentários <code># TODO</code> indicando o que você precisa escrever; o <strong>resultado esperado</strong>, uma prévia do que deve aparecer na tela quando estiver certo; e uma <strong>dica</strong>, para quando bater aquele branco.</p>
+<h2>Missão 1 — Cadastro do acervo</h2>
+<blockquote>
+<p><strong>Tainá (Gerente de Acervo):</strong> "Oii, bem-vindo(a) à equipe! Até agora a gente cadastra cada livro em variáveis soltas, e já bagunçou tudo mais de uma vez. Preciso que você crie uma classe pra representar um livro do nosso acervo, com os dados básicos e duas ações: registrar quando ele é emprestado e quando ele volta."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> criar a classe <code>Livro</code> com:</p>
+<ol>
+<li><code>__init__(self, titulo: str, autor: str, genero: str, paginas: int, disponivel: bool = True)</code>, guardando os 5 atributos recebidos;</li>
+<li><code>emprestar(self) -&gt; None</code>: se <code>disponivel</code> for <code>True</code>, muda para <code>False</code> e imprime <code>'Empréstimo registrado: &lt;titulo&gt;'</code>; senão, imprime <code>'&lt;titulo&gt; já está emprestado.'</code>;</li>
+<li><code>devolver(self) -&gt; None</code>: muda <code>disponivel</code> para <code>True</code> e imprime <code>'Devolução registrada: &lt;titulo&gt;'</code>;</li>
+<li><code>__str__(self) -&gt; str</code>: retorna uma descrição do livro, no formato <code>'&lt;titulo&gt;, de &lt;autor&gt; (&lt;gênero&gt;, &lt;páginas&gt; páginas) - &lt;Disponível ou Emprestado&gt;'</code>.</li>
+</ol>
+<p>Depois, teste a classe com o livro indicado no código.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Missão da Tainá: cadastrar o acervo com uma classe
+# TODO 1: crie a classe Livro com o construtor __init__(self, titulo: str,
+#         autor: str, genero: str, paginas: int, disponivel: bool = True),
+#         guardando os 5 atributos recebidos
+
+# TODO 2: adicione o método emprestar(self) -&gt; None:
+#         - se self.disponivel for True, marque como False e imprima
+#           'Empréstimo registrado: &lt;titulo&gt;'
+#         - senão, imprima '&lt;titulo&gt; já está emprestado.'
+
+# TODO 3: adicione o método devolver(self) -&gt; None:
+#         marque self.disponivel como True e imprima
+#         'Devolução registrada: &lt;titulo&gt;'
+
+# TODO 4: adicione o método especial __str__(self) -&gt; str, retornando por
+#         exemplo:
+#         'Fahrenheit 451, de Ray Bradbury (ficção científica, 256 páginas) - Disponível'
+#         (troque "Disponível" por "Emprestado" quando self.disponivel for False)
+
+
+# Teste sua classe com o livro abaixo
+# TODO 5: crie o objeto livro_teste com titulo='Fahrenheit 451',
+#         autor='Ray Bradbury', genero='ficção científica', paginas=256,
+#         e imprima livro_teste
+# TODO 6: chame livro_teste.emprestar(), imprima livro_teste de novo, e
+#         chame livro_teste.emprestar() outra vez (pra ver a segunda mensagem)
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Fahrenheit 451, de Ray Bradbury (ficção científica, 256 páginas) - Disponível
+Empréstimo registrado: Fahrenheit 451
+Fahrenheit 451, de Ray Bradbury (ficção científica, 256 páginas) - Emprestado
+Fahrenheit 451 já está emprestado.
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> revise as seções 2.3 a 2.5 do Módulo 06 (atributos, métodos e o <code>__str__</code>). Não esqueça de usar <code>self.</code> para acessar os atributos dentro de cada método, e de recriar o objeto sempre que você alterar a classe.</p>
+</blockquote>
+<h2>Missão 2 — Empréstimos do mês</h2>
+<blockquote>
+<p><strong>Otávio (Atendimento ao Assinante):</strong> "A Marcela pediu 'Torto Arado' pelo app. Registra o empréstimo pra mim? E de quebra, me diz quantos títulos ainda estão disponíveis no catálogo desse mês."</p>
+</blockquote>
+<p>Abaixo está o catálogo do mês, ainda em tuplas soltas — cada uma com <code>(titulo, autor, genero, paginas)</code>.</p>
+<p><strong>Sua missão:</strong></p>
+<ol>
+<li>Crie a lista <code>acervo_do_mes</code>, convertendo cada tupla de <code>catalogo_do_mes</code> em um objeto <code>Livro</code> (reaproveitando a classe da Missão 1);</li>
+<li>Percorra <code>acervo_do_mes</code> com um <code>for</code> e imprima cada livro;</li>
+<li>Encontre o objeto cujo <code>titulo</code> seja <code>'Torto Arado'</code> e chame <code>.emprestar()</code> nele;</li>
+<li>Conte quantos livros de <code>acervo_do_mes</code> estão com <code>disponivel</code> igual a <code>True</code>, guardando em <code>quantidade_disponiveis</code>, e imprima o resultado com um rótulo.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Catálogo do mês (ainda em tuplas soltas)
+catalogo_do_mes = [
+    ('Fahrenheit 451', 'Ray Bradbury', 'ficção científica', 256),
+    ('A Hora da Estrela', 'Clarice Lispector', 'romance', 96),
+    ('Torto Arado', 'Itamar Vieira Junior', 'romance', 264),
+    ('Admirável Mundo Novo', 'Aldous Huxley', 'ficção científica', 312),
+]
+
+# TODO 1: crie acervo_do_mes, transformando cada tupla de catalogo_do_mes
+#         em um objeto Livro (reaproveite a classe da Missão 1)
+
+# TODO 2: percorra acervo_do_mes com for e imprima cada livro
+
+
+# TODO 3: encontre o objeto cujo titulo seja 'Torto Arado' e chame .emprestar() nele
+
+
+# TODO 4: conte em quantidade_disponiveis quantos livros de acervo_do_mes
+#         estão com disponivel == True, e imprima com um rótulo
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Fahrenheit 451, de Ray Bradbury (ficção científica, 256 páginas) - Disponível
+A Hora da Estrela, de Clarice Lispector (romance, 96 páginas) - Disponível
+Torto Arado, de Itamar Vieira Junior (romance, 264 páginas) - Disponível
+Admirável Mundo Novo, de Aldous Huxley (ficção científica, 312 páginas) - Disponível
+Empréstimo registrado: Torto Arado
+Livros disponíveis no catálogo do mês: 3
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> olhe como a seção 3.4 do Módulo 06 transformou uma lista de dados soltos em uma lista de objetos <code>Pessoa</code> — aqui é o mesmo padrão, com <code>Livro</code>. Para encontrar 'Torto Arado', um <code>for</code> com um <code>if</code> comparando <code>livro.titulo</code> resolve.</p>
+</blockquote>
+<h2>Missão 3 — Resgatando o catálogo antigo</h2>
+<blockquote>
+<p><strong>Renata (Dados e Migração):</strong> "Antes da Página Viva existir, a gente guardava o catálogo num sistema antigo que só exporta CSV. Preciso migrar esses livros pro nosso banco novo — mas antes, cria uma classe que leia o arquivo e me devolva qualquer coluna que eu precisar. Usa ela pra descobrir quantos livros são de ficção científica e qual a nota média geral do catálogo."</p>
+</blockquote>
+<p>Primeiro, é preciso ter o arquivo <code>catalogo_antigo.csv</code>, exportado do sistema antigo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">conteudo_catalogo_antigo = '''titulo,autor,genero,ano_publicacao,nota_media
+1984,George Orwell,ficção científica,1949,4.7
+Dom Casmurro,Machado de Assis,romance,1899,4.2
+O Hobbit,J.R.R. Tolkien,fantasia,1937,4.6
+Sapiens,Yuval Noah Harari,ensaio,2011,4.5
+A Revolução dos Bichos,George Orwell,fábula,1945,4.4
+O Pequeno Príncipe,Antoine de Saint-Exupéry,fábula,1943,4.9
+Cem Anos de Solidão,Gabriel García Márquez,realismo mágico,1967,4.6
+Vidas Secas,Graciliano Ramos,romance,1938,4.3
+Neuromancer,William Gibson,ficção científica,1984,4.1
+O Alquimista,Paulo Coelho,ficção,1988,4.0'''
+
+with open('catalogo_antigo.csv', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write(conteudo_catalogo_antigo)
+
+print('Arquivo catalogo_antigo.csv criado.')
+</code></pre></div>
+<p><strong>Sua missão:</strong> crie a classe <code>AcervoCSV</code> com:</p>
+<ol>
+<li><code>__init__(self, caminho_arquivo: str)</code>, guardando <code>caminho_arquivo</code> e preenchendo <code>self.conteudo</code> (as linhas do arquivo) e <code>self.colunas</code> (os nomes das colunas);</li>
+<li>um método interno <code>_extrair_conteudo(self)</code>, que lê e retorna as linhas do arquivo;</li>
+<li>um método interno <code>_extrair_nome_colunas(self)</code>, que retorna os nomes das colunas (a primeira linha do arquivo);</li>
+<li><code>extrair_coluna(self, indice_coluna: int)</code>, que retorna os valores de uma coluna a partir da posição;</li>
+<li><code>extrair_coluna_por_nome(self, nome_coluna: str)</code>, que descobre a posição com <code>self.colunas.index()</code> e chama <code>extrair_coluna()</code>.</li>
+</ol>
+<p>Depois, crie o objeto <code>acervo_antigo</code> e use-o para descobrir quantos livros são de <code>'ficção científica'</code> (em <code>quantidade_ficcao_cientifica</code>) e a nota média geral do catálogo (em <code>nota_media_geral</code>, com 2 casas decimais).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Migrando o catálogo antigo
+# TODO 1: crie a classe AcervoCSV com:
+#   - __init__(self, caminho_arquivo: str), guardando caminho_arquivo e
+#     preenchendo self.conteudo e self.colunas
+#   - método interno _extrair_conteudo(self): lê e retorna as linhas do arquivo
+#   - método interno _extrair_nome_colunas(self): retorna os nomes das
+#     colunas (primeira linha do arquivo, separada por vírgula)
+#   - extrair_coluna(self, indice_coluna: int): retorna os valores de uma
+#     coluna, pulando o cabeçalho
+#   - extrair_coluna_por_nome(self, nome_coluna: str): usa
+#     self.colunas.index() e chama extrair_coluna()
+
+# TODO 2: crie o objeto acervo_antigo = AcervoCSV(caminho_arquivo='catalogo_antigo.csv')
+
+# TODO 3: extraia a coluna 'genero' por nome e conte quantos livros são
+#         'ficção científica', guardando em quantidade_ficcao_cientifica
+
+# TODO 4: extraia a coluna 'nota_media' por nome, converta cada valor pra
+#         float e calcule a média em nota_media_geral (2 casas decimais)
+
+# TODO 5: imprima os dois resultados com rótulos
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Livros de ficção científica: 2
+Nota média geral do catálogo: 4.43
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> é a mesma classe <code>ArquivoCSV</code> da seção 3.7 do Módulo 06, só que com outro nome e outros dados. O <code>_</code> no início de <code>_extrair_conteudo</code> e <code>_extrair_nome_colunas</code> é a convenção de método interno vista na mesma seção. Para a nota média, lembre de converter cada valor de <code>str</code> para <code>float</code> antes de somar (seção 3.6, <code>.strip()</code> e <code>.split()</code>).</p>
+</blockquote>
+<h2>Missão 4 — Linha de e-books</h2>
+<blockquote>
+<p><strong>Murilo (Produto Digital):</strong> "Vamos lançar uma linha de e-books! Um e-book é um livro, mas não tem 'exemplar físico' pra emprestar — na prática, um assinante pode abrir ele quantas vezes quiser, sem tirar a disponibilidade de ninguém. Cria uma classe LivroDigital que herda de Livro, ajusta esse comportamento, e também mostra o tamanho do arquivo."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> crie a classe <code>LivroDigital(Livro)</code> com:</p>
+<ol>
+<li><code>__init__(self, titulo: str, autor: str, genero: str, paginas: int, tamanho_mb: float)</code>: chama <code>super().__init__(...)</code> passando <code>titulo</code>, <code>autor</code>, <code>genero</code> e <code>paginas</code>, e cria o atributo extra <code>self.tamanho_mb</code>;</li>
+<li>sobrescreva <code>emprestar(self) -&gt; None</code>: em vez de alterar <code>disponivel</code>, apenas imprima <code>'&lt;titulo&gt; foi aberto para leitura (e-book, sempre disponível).'</code>;</li>
+<li>sobrescreva <code>__str__(self) -&gt; str</code>: reaproveite <code>super().__str__()</code> e acrescente o tamanho, no formato <code>'&lt;descrição herdada&gt;, e-book de &lt;tamanho&gt; MB'</code>.</li>
+</ol>
+<p>Depois, teste com o e-book indicado no código e confirme, com <code>isinstance()</code>, que ele é tanto um <code>LivroDigital</code> quanto um <code>Livro</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Missão do Murilo: a linha de e-books
+# TODO 1: crie a classe LivroDigital(Livro) com o construtor
+#         __init__(self, titulo: str, autor: str, genero: str, paginas: int,
+#         tamanho_mb: float), chamando super().__init__(...) com titulo,
+#         autor, genero e paginas, e criando self.tamanho_mb
+
+# TODO 2: sobrescreva emprestar(self) -&gt; None: em vez de alterar
+#         self.disponivel, apenas imprima
+#         '&lt;titulo&gt; foi aberto para leitura (e-book, sempre disponível).'
+
+# TODO 3: sobrescreva __str__(self) -&gt; str, reaproveitando super().__str__()
+#         e acrescentando ', e-book de &lt;tamanho_mb&gt; MB'
+
+
+# Teste sua classe com o e-book abaixo
+# TODO 4: crie livro_digital_teste com titulo='Neuromancer',
+#         autor='William Gibson', genero='ficção científica', paginas=320,
+#         tamanho_mb=2.4, e imprima
+# TODO 5: chame livro_digital_teste.emprestar() duas vezes e imprima de novo
+# TODO 6: imprima, com rótulos, isinstance(livro_digital_teste, LivroDigital)
+#         e isinstance(livro_digital_teste, Livro)
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Neuromancer, de William Gibson (ficção científica, 320 páginas) - Disponível, e-book de 2.4 MB
+Neuromancer foi aberto para leitura (e-book, sempre disponível).
+Neuromancer foi aberto para leitura (e-book, sempre disponível).
+Neuromancer, de William Gibson (ficção científica, 320 páginas) - Disponível, e-book de 2.4 MB
+É um LivroDigital? True
+É um Livro?        True
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> reveja a seção 4.2 do Módulo 06: sem <code>super().__init__()</code>, os atributos herdados (<code>titulo</code>, <code>autor</code>...) simplesmente não existem no objeto. A sobrescrita do <code>__str__</code> segue o mesmo truque da classe <code>Estudante</code>, na seção 4.4 — reaproveitar <code>super().__str__()</code> em vez de reescrever tudo do zero.</p>
+</blockquote>
+<h2>Missão 5 — Painel da assinatura</h2>
+<blockquote>
+<p><strong>Beatriz (Fundadora):</strong> "Adorei o que vi hoje! Fechando a semana, monta um painel único reunindo o que você descobriu: quantos livros temos no catálogo do mês, quantos ainda estão disponíveis, a nota média do catálogo migrado, e um destaque da nossa nova linha de e-books."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> usando <code>print()</code> e <em>f-strings</em>, monte um painel que reúna em um único bloco de texto, pelo menos:</p>
+<ul>
+<li>Quantos livros tem <code>acervo_do_mes</code> (Missão 2);</li>
+<li>Quantos estão disponíveis, em <code>quantidade_disponiveis</code> (Missão 2);</li>
+<li>A nota média geral do catálogo migrado, <code>nota_media_geral</code> (Missão 3);</li>
+<li>O título e o tamanho do e-book de destaque, <code>livro_digital_teste</code> (Missão 4).</li>
+</ul>
+<p>Capriche na formatação: use <code>'=' * 40</code> (ou o caractere que preferir) para criar linhas separadoras. Aqui <strong>não existe gabarito único</strong> — o painel é seu, deixe com a sua cara!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Painel da assinatura — Página Viva
+# TODO: monte o seu painel reaproveitando as variáveis das Missões 2
+# (acervo_do_mes, quantidade_disponiveis), 3 (nota_media_geral) e
+# 4 (livro_digital_teste). Use print(), f-strings e o operador * para
+# criar os separadores.
+</code></pre></div>
+<p><strong>Exemplo de resultado</strong> (o seu pode — e deve — ficar diferente; essa é só uma ideia de formato):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">========================================
+Página Viva — Painel semanal
+========================================
+Livros no catálogo do mês: 4
+Disponíveis no momento:    3
+Nota média do catálogo migrado: 4.43
+Destaque digital: Neuromancer (2.4 MB)
+========================================
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> se travar na formatação, comece simples: um <code>print()</code> por linha já resolve. Só depois de funcionar é que vale a pena caprichar nos separadores e no alinhamento.</p>
+</blockquote>
+<h2>Desafios extras</h2>
+<p>As missões acima já cobrem tudo o que você precisa do Módulo 06. Os desafios abaixo são <strong>totalmente opcionais</strong> — encare como um "modo difícil" para quem quer espremer um pouco mais os conceitos. Vá na ordem que quiser, ou pule direto para o que mais te chamar atenção.</p>
+<h2>Extra 1 — Um e-book também é um livro?</h2>
+<p>Crie um objeto <code>Livro</code> chamado <code>livro_fisico</code> e um objeto <code>LivroDigital</code> chamado <code>livro_digital</code> (os dados são livres, escolha à vontade). Depois, teste sua intuição sobre herança com <code>isinstance()</code> e <code>issubclass()</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 1: isinstance e issubclass, na prática
+# TODO: crie um objeto Livro chamado livro_fisico (dados livres, à sua escolha)
+# TODO: crie um objeto LivroDigital chamado livro_digital (dados livres)
+# TODO: imprima, com rótulos, isinstance(livro_digital, Livro),
+#       isinstance(livro_fisico, LivroDigital) e issubclass(LivroDigital, Livro)
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">isinstance(livro_digital, Livro)?       True
+isinstance(livro_fisico, LivroDigital)? False
+issubclass(LivroDigital, Livro)?        True
+</code></pre></div>
+<h2>Extra 2 — O Python não te impede...</h2>
+<p>Usando o objeto <code>acervo_antigo</code> (criado na Missão 3), chame diretamente o método "privado" <code>_extrair_nome_colunas()</code>. Funciona? Deveria ser chamado assim no dia a dia?</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 2: o Python não te impede...
+# TODO: usando acervo_antigo (Missão 3), chame diretamente
+# _extrair_nome_colunas() e imprima o resultado. Pense antes de rodar: será
+# que é assim que esse método deveria ser usado?
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">['titulo', 'autor', 'genero', 'ano_publicacao', 'nota_media']
+</code></pre></div>
+<h2>Extra 3 — Livros nota 4.5 ou mais</h2>
+<p>Sem alterar a classe <code>AcervoCSV</code>, reaproveite o objeto <code>acervo_antigo</code> (Missão 3) para descobrir quais livros do catálogo antigo tiveram a nota mais alta.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 3: livros nota 4.5 ou mais
+# TODO: reaproveitando acervo_antigo (Missão 3), extraia as colunas 'titulo'
+# e 'nota_media' (por nome). Monte titulos_bem_avaliados com o título de
+# cada livro cuja nota_media (convertida pra float) seja &gt;= 4.5, e imprima.
+# Dica: use range(len(...)) pra percorrer as duas listas na mesma posição.
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">['1984', 'O Hobbit', 'Sapiens', 'O Pequeno Príncipe', 'Cem Anos de Solidão']
+</code></pre></div>
+<h2>Extra 4 — Sua própria especialização</h2>
+<p>Crie uma nova subclasse de <code>Livro</code> (por exemplo, <code>LivroAudio</code>, com um atributo como <code>duracao_minutos</code>) e um objeto dela. Capriche na sobrescrita do <code>__str__</code> e teste à vontade! Aqui não tem resultado esperado: solte a criatividade!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 4: sua própria especialização
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist de autoavaliação</h2>
+<p>Sem provas, sem notas — só uma conferida rápida para você saber onde está:</p>
+<ul>
+<li>Criei uma classe com <code>__init__</code>, atributos e métodos (Missão 1)</li>
+<li>Usei o método especial <code>__str__</code> para exibir um objeto de forma legível (Missão 1)</li>
+<li>Transformei uma lista de dados soltos em uma lista de objetos e chamei métodos neles (Missão 2)</li>
+<li>Construí uma classe que lê um arquivo CSV e extrai colunas por índice e por nome (Missão 3)</li>
+<li>Especializei uma classe com herança, usando <code>super().__init__()</code> (Missão 4)</li>
+<li>Sobrescrevi um método e o <code>__str__</code> herdados (Missão 4)</li>
+<li>Reaproveitei objetos e variáveis de missões anteriores no painel final (Missão 5)</li>
+<li>Tentei pelo menos um dos desafios extras</li>
+</ul>
+<p>Se a maioria dos itens está marcada, parabéns: você colocou em prática tudo o que a Página Viva (e o Módulo 06) esperavam de você.</p>
+<blockquote>
+<p>Prepare-se, porque no <strong>Módulo 07</strong> a história continua: com as classes <code>Livro</code>, <code>LivroDigital</code> e <code>AcervoCSV</code> prontas, chegou a hora de tirá-las do notebook e organizá-las em <strong>módulos e pacotes</strong> próprios, prontos para serem reaproveitados em qualquer projeto da Página Viva!</p>
+</blockquote>
+</div>

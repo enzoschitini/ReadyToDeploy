@@ -1,0 +1,107 @@
+<div class="prose">
+<p>A maioria dos programas precisa se comportar de forma diferente dependendo da situação: aprovar ou recusar um pagamento, liberar ou bloquear um acesso, aplicar um desconto ou não. Esse comportamento é controlado pelo <strong>fluxo condicional</strong>, e em Python ele é escrito com as palavras-chave <code>if</code>, <code>elif</code> e <code>else</code>.</p>
+<h2>Motivação</h2>
+<p>Você está desenvolvendo o sistema de pagamento com cartão de crédito de um <em>e-commerce</em>. Antes de aprovar a compra, o sistema precisa comparar o código de segurança (CVV) informado pelo cliente com o código cadastrado no banco.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Código digitado pelo cliente e código salvo no cadastro
+codigo_de_seguranca_informado = '291'
+codigo_de_seguranca_cadastro = '010'
+</code></pre></div>
+<p><strong>Como fazemos o programa executar um trecho de código diferente dependendo se os dois códigos são iguais ou não?</strong></p>
+<h2>if / else</h2>
+<p>A estrutura <code>if</code> / <code>else</code> executa um bloco de código <strong>se</strong> uma condição for <code>True</code>, e outro bloco <strong>senão</strong> (quando ela for <code>False</code>):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">if condicao:
+  # executado quando condicao é True
+else:
+  # executado quando condicao é False
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> o Python usa a <strong>indentação</strong> (o recuo no início da linha) para saber o que pertence a cada bloco. Todas as linhas de um mesmo bloco precisam ter o mesmo recuo, ou o código não roda.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">esta_chovendo = False
+
+if esta_chovendo:
+  print('Leve um guarda-chuva')
+else:
+  print('Não precisa de guarda-chuva')
+# Não precisa de guarda-chuva
+</code></pre></div>
+<p>Aplicando ao nosso problema: comparamos os dois códigos com <code>==</code> (visto no Módulo 01) e usamos o resultado como condição.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">if codigo_de_seguranca_informado == codigo_de_seguranca_cadastro:
+  print('Pagamento aprovado')
+else:
+  print('Erro: código de segurança inválido')
+# Erro: código de segurança inválido
+</code></pre></div>
+<h2>Condições compostas com and / or</h2>
+<p>Muitas vezes é preciso avaliar <strong>mais de uma condição</strong> ao mesmo tempo. Para isso, combinamos os operadores lógicos <code>and</code> e <code>or</code> (vistos no Módulo 01) diretamente na condição do <code>if</code>.</p>
+<p><strong>Exemplo:</strong> além do código de segurança, o sistema também exige que a senha informada esteja correta. O pagamento só é aprovado se <strong>ambas</strong> as condições forem verdadeiras.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">codigo_de_seguranca_informado = '852'
+codigo_de_seguranca_cadastro = '852'
+
+senha_informada = '7783'
+senha_cadastro = '7783'
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Os parênteses em cada comparação deixam a condição mais fácil de ler
+if (codigo_de_seguranca_informado == codigo_de_seguranca_cadastro) and (senha_informada == senha_cadastro):
+  print('Pagamento aprovado')
+else:
+  print('Erro: pagamento não autorizado')
+# Pagamento aprovado
+</code></pre></div>
+<blockquote>
+<p>Você também pode encontrar os operadores <code>&amp;</code> (e) e <code>|</code> (ou) em bibliotecas como o <strong>Pandas</strong>. No Python "puro", porém, dentro de um <code>if</code>, a forma recomendada e mais legível é usar <code>and</code> e <code>or</code>.</p>
+</blockquote>
+<h2>if / elif / else</h2>
+<p>Quando existem <strong>mais de duas</strong> possibilidades, usamos <code>elif</code> (abreviação de "<em>else if</em>") para encadear várias condições. O Python testa cada condição <strong>na ordem em que aparece</strong> e executa o bloco da <strong>primeira</strong> que for verdadeira — ignorando todas as demais, mesmo que também sejam verdadeiras.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">if condicao_1:
+  # executado se condicao_1 for True
+elif condicao_2:
+  # executado se condicao_1 for False e condicao_2 for True
+else:
+  # executado se nenhuma das anteriores for True
+</code></pre></div>
+<h2>Revisitando a motivação</h2>
+<p>Agora temos tudo para tratar as <strong>quatro</strong> combinações possíveis entre código de segurança e senha, cada uma com uma mensagem diferente:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Código correto?</th><th>Senha correta?</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>Sim</td><td>Sim</td><td>Pagamento aprovado</td></tr>
+<tr><td>Não</td><td>Sim</td><td>Erro: código de segurança inválido</td></tr>
+<tr><td>Sim</td><td>Não</td><td>Erro: senha inválida</td></tr>
+<tr><td>Não</td><td>Não</td><td>Erro: código de segurança e senha inválidos</td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">codigo_de_seguranca_informado = '802'
+codigo_de_seguranca_cadastro = '852'
+
+senha_informada = '7703'
+senha_cadastro = '7783'
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">if (codigo_de_seguranca_informado == codigo_de_seguranca_cadastro) and (senha_informada == senha_cadastro):
+  print('Pagamento aprovado')
+elif (codigo_de_seguranca_informado != codigo_de_seguranca_cadastro) and (senha_informada == senha_cadastro):
+  print('Erro: código de segurança inválido')
+elif (codigo_de_seguranca_informado == codigo_de_seguranca_cadastro) and (senha_informada != senha_cadastro):
+  print('Erro: senha inválida')
+else:
+  print('Erro: código de segurança e senha inválidos')
+# Erro: código de segurança e senha inválidos
+</code></pre></div>
+<blockquote>
+<p>Experimente alterar os valores de <code>codigo_de_seguranca_informado</code> e <code>senha_informada</code> acima e executar as duas células novamente, para ver as outras três mensagens aparecerem.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-condicionais-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-condicionais-q">Em um <code>if / elif / else</code>, o que o Python faz quando duas condições diferentes são verdadeiras ao mesmo tempo?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Só um bloco é executado por vez — o Python nunca roda dois blocos de um mesmo `if/elif/else`."><input type="radio" name="quiz-python-condicionais" value="0" /><span class="txt">Executa os blocos das duas condições</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="O Python testa cada condição em ordem e para no primeiro `if`/`elif` verdadeiro, ignorando os demais."><input type="radio" name="quiz-python-condicionais" value="1" /><span class="txt">Executa o bloco da primeira condição verdadeira, na ordem em que aparece</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="A ordem que importa é a de cima para baixo, não a de baixo para cima."><input type="radio" name="quiz-python-condicionais" value="2" /><span class="txt">Executa o bloco da última condição verdadeira</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="O Python não considera isso um erro: ele simplesmente usa a primeira condição verdadeira."><input type="radio" name="quiz-python-condicionais" value="3" /><span class="txt">Gera um erro por ambiguidade</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

@@ -1,0 +1,225 @@
+<div class="prose">
+<p>Quinto projeto, quinto cenário! Desta vez você entra numa plataforma de freelancers, e o desafio do dia é processar listas inteiras de dados <strong>sem escrever um <code>for</code> para cada etapa</strong> — usando <code>lambda</code>, <code>map()</code>, <code>filter()</code> e <code>reduce()</code>, o estilo funcional do Módulo 05.</p>
+<h2>O contexto</h2>
+<p>A <strong>FreelaBoard</strong> conecta freelancers a empresas que precisam de projetos pontuais. Você é o(a) novo(a) <strong>Analista de Dados Jr.</strong>, e hoje é dia de fechamento: calcular quanto cada freelancer recebe depois da taxa da plataforma, identificar quem precisa de atenção e consolidar os números do mês — tudo isso processando <strong>listas inteiras</strong> de uma vez, sem laços manuais.</p>
+<p>O time te chamou no chat interno com os pedidos de hoje.</p>
+<blockquote>
+<p><strong>Dica:</strong> não existe só uma forma "certa" de resolver cada missão. Depois de cada uma você vai encontrar o resultado esperado, mas o caminho até lá é seu.</p>
+</blockquote>
+<h2>Objetivo</h2>
+<p>Ao final deste projeto, você terá praticado, dentro de um único cenário conectado:</p>
+<ul>
+<li>Criação de funções anônimas com <strong><code>lambda</code></strong>, inclusive em funções de alta ordem;</li>
+<li>Transformação de coleções inteiras com <strong><code>map()</code></strong>;</li>
+<li>Seleção de itens com <strong><code>filter()</code></strong>;</li>
+<li>Combinação de todos os itens em um único valor com <strong><code>reduce()</code></strong>.</li>
+</ul>
+<h2>Requisitos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Detalhe</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Este notebook aberto e pronto para rodar</td></tr>
+<tr><td>Conceitos necessários</td><td>Módulos 01 a 04 completos + Módulo 05 (lambda, map, filter, reduce)</td></tr>
+<tr><td>Funções</td><td><code>lambda</code>, <code>map()</code>, <code>filter()</code>, <code>reduce()</code> (de <code>functools</code>), <code>list()</code>, <code>round()</code></td></tr>
+<tr><td>Bibliotecas externas</td><td>Só <code>functools</code>, que já vem com o Python</td></tr>
+</tbody>
+</table></div>
+<p>Se alguma missão parecer difícil, a dica aponta a seção certa do Módulo 05 para revisar.</p>
+<h2>Como o projeto funciona</h2>
+<p>O notebook está dividido em <strong>5 missões</strong>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missão</th><th>Tema</th><th>Conceito principal</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Calculadora de repasse</td><td><code>lambda</code></td></tr>
+<tr><td>2</td><td>Repasses do mês, todos de uma vez</td><td><code>map</code></td></tr>
+<tr><td>3</td><td>Contas que precisam migrar</td><td><code>filter</code></td></tr>
+<tr><td>4</td><td>Total repassado no mês</td><td><code>reduce</code></td></tr>
+<tr><td>5</td><td>Comissão dos grandes jobs</td><td>Tudo junto!</td></tr>
+</tbody>
+</table></div>
+<p>Em cada missão: o pedido de alguém do time, os dados prontos com <code># TODO</code>, o resultado esperado e uma dica.</p>
+<h2>Missão 1 — Calculadora de repasse</h2>
+<blockquote>
+<p><strong>Pedro (Growth):</strong> "Oii, bem-vindo(a) à equipe! Preciso de duas coisinhas rápidas: extrair o domínio do e-mail de um freelancer, e uma calculadora de repasse que já venha com a taxa da plataforma embutida — vamos ter planos com taxas diferentes."</p>
+</blockquote>
+<p><strong>Parte A — Domínio do e-mail.</strong> Crie a <code>lambda</code> <code>extrair_dominio_email</code>, que recebe um e-mail e retorna só o domínio (o que vem depois do <code>@</code>). Aplique-a ao e-mail do freelancer de exemplo.</p>
+<p><strong>Parte B — Calculadora de repasse.</strong> Crie a função <code>criar_calculadora_repasse(taxa_plataforma)</code>, que <strong>retorna uma <code>lambda</code></strong> capaz de calcular o repasse líquido de um valor bruto (<code>valor_bruto * (1 - taxa_plataforma)</code>, arredondado em 2 casas). Use-a para criar duas calculadoras — uma para o plano padrão (taxa de 20%) e outra para o plano pro (taxa de 10%) — e aplique as duas ao mesmo job de exemplo.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Parte A: domínio do e-mail
+email_freelancer = 'marina.designer@gmail.com'
+
+# TODO: crie a lambda extrair_dominio_email e aplique a email_freelancer, guardando em dominio_email
+# TODO: imprima dominio_email
+
+
+# Parte B: calculadora de repasse
+valor_bruto_job = 1500.00
+
+# TODO: defina criar_calculadora_repasse(taxa_plataforma), que retorna uma lambda
+# TODO: crie repasse_plano_padrao (taxa 0.20) e repasse_plano_pro (taxa 0.10)
+# TODO: aplique as duas calculadoras a valor_bruto_job e imprima os dois resultados com rótulo
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">gmail.com
+Repasse plano padrão: R$ 1200.00
+Repasse plano pro:    R$ 1350.00
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> a Parte A é igual ao exemplo da seção 1.1 do Módulo 05: <code>email.split(sep='@')[-1]</code>. Para a Parte B, lembre-se de que <code>criar_calculadora_repasse</code> não calcula nada sozinha — ela <strong>retorna</strong> uma <code>lambda</code> que guarda a taxa recebida (uma <em>closure</em>), igual ao exemplo da calculadora de investimento na seção 1.3.</p>
+</blockquote>
+<h2>Missão 2 — Repasses do mês, todos de uma vez</h2>
+<blockquote>
+<p><strong>Sabrina (Operações):</strong> "Tenho os e-mails de vários freelancers e preciso descobrir o domínio de cada um, sem escrever um <code>for</code> pra isso. E também preciso calcular o repasse de vários jobs do mês de uma vez, cada um com sua própria taxa de plataforma."</p>
+</blockquote>
+<p><strong>Parte A — Domínios em lote.</strong> Use <code>map()</code> com a <code>extrair_dominio_email</code> da Missão 1 para extrair o domínio de todos os e-mails de <code>emails_freelancers</code>, convertendo o resultado para <code>list</code>.</p>
+<p><strong>Parte B — Repasses em lote.</strong> Crie a função <code>calcular_repasse(valor_bruto, taxa_plataforma)</code> (com <code>def</code>, arredondando em 2 casas) e use <code>map()</code> com <strong>duas listas</strong> — <code>valores_brutos_jobs</code> e <code>taxas_plataforma</code> — para calcular o repasse de cada job de uma vez.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Parte A: domínios em lote
+emails_freelancers = ['marina.designer@gmail.com', 'joao.dev@outlook.com', 'clara.editor@yahoo.com']
+
+# TODO: use map() com extrair_dominio_email (da Missão 1) e converta para list em dominios_freelancers
+# TODO: imprima dominios_freelancers
+
+
+# Parte B: repasses em lote
+valores_brutos_jobs = [1500.00, 800.00, 2200.00]
+taxas_plataforma = [0.20, 0.20, 0.10]
+
+# TODO: defina calcular_repasse(valor_bruto, taxa_plataforma) com def
+# TODO: use map() com as duas listas e converta para list em repasses_jobs
+# TODO: imprima repasses_jobs
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">['gmail.com', 'outlook.com', 'yahoo.com']
+[1200.0, 640.0, 1980.0]
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> a Parte A é igual ao exemplo dos provedores de e-mail da seção 2.2. Para a Parte B, <code>map()</code> também aceita mais de uma coleção — a função passada precisa de um parâmetro para cada uma, e os itens são combinados posição a posição, como no exemplo dos cenários de investimento da seção 2.3.</p>
+</blockquote>
+<h2>Missão 3 — Contas que precisam migrar</h2>
+<blockquote>
+<p><strong>Igor (Suporte):</strong> "A FreelaBoard vai exigir autenticação em duas etapas para todas as contas do Gmail a partir do mês que vem. Preciso de uma lista só com os e-mails que são do Gmail, pra gente avisar esses freelancers primeiro."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> use <code>filter()</code> para selecionar, dentro de <code>emails_freelancers</code> (da Missão 2), apenas os e-mails que contêm <code>'gmail'</code>, convertendo o resultado para <code>list</code> em <code>freelancers_para_migrar</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Contas que precisam migrar
+# TODO: use filter() para selecionar os e-mails de emails_freelancers que contêm 'gmail'
+# TODO: converta para list em freelancers_para_migrar e imprima
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">['marina.designer@gmail.com']
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> é o mesmo padrão do filtro de e-mails do Gmail na seção 3.2 do Módulo 05: <code>filter()</code> recebe uma função que retorna <code>True</code> ou <code>False</code>, e mantém só os itens aprovados. Como o critério só é usado aqui, pode escrever a <code>lambda</code> direto dentro do <code>filter()</code>.</p>
+</blockquote>
+<h2>Missão 4 — Total repassado no mês</h2>
+<blockquote>
+<p><strong>Cristina (Financeiro):</strong> "Fecha pra mim dois números do mês: o total que repassamos aos freelancers, somando tudo, e qual foi o <strong>maior</strong> repasse individual — sem usar a função <code>max()</code> pronta, quero ver isso calculado na unha com <code>reduce()</code>."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> usando <code>reduce()</code> (não esqueça do <code>from functools import reduce</code>), calcule <code>total_repassado</code> somando todos os itens de <code>repasses_jobs</code> (Missão 2), e <code>maior_repasse</code>, encontrando o maior valor da mesma lista com uma função de comparação — sem usar <code>max()</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Total repassado no mês
+# TODO: importe reduce de functools
+# TODO: calcule total_repassado somando repasses_jobs com reduce()
+# TODO: calcule maior_repasse com reduce() e uma função (ou lambda) que compara dois valores por vez
+# TODO: imprima os dois resultados com rótulo
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Total repassado aos freelancers: R$ 3820.00
+Maior repasse individual:        R$ 1980.00
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> <code>reduce()</code> aplica a função dois itens por vez até sobrar um único valor — igual ao exemplo do maior número da seção 4.2 do Módulo 05. Lembre-se: <code>reduce()</code> não é nativo, precisa vir de <code>from functools import reduce</code>.</p>
+</blockquote>
+<h2>Missão 5 — Comissão dos grandes jobs</h2>
+<blockquote>
+<p><strong>Nicolas (Diretor da FreelaBoard):</strong> "Última do dia! Preciso saber quanto a FreelaBoard reteve de comissão só dos jobs <strong>grandes</strong> do mês (valor bruto acima de R$ 1.000), sem escrever um <code>for</code>. Encadeia <code>filter</code>, <code>map</code> e <code>reduce</code> numa única linha de raciocínio, do jeitinho que vocês aprenderam."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> a partir de <code>jobs_do_mes</code> (uma lista de tuplas <code>(valor_bruto, taxa_plataforma)</code>), encadeie os três passos:</p>
+<ol>
+<li><code>filter()</code> para manter apenas os jobs com <code>valor_bruto</code> maior que R$ 1.000;</li>
+<li><code>map()</code> para calcular a comissão de cada um (<code>valor_bruto * taxa_plataforma</code>, arredondada em 2 casas);</li>
+<li><code>reduce()</code> para somar todas as comissões em <code>comissao_total_jobs_grandes</code>.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Comissão dos grandes jobs
+jobs_do_mes = [
+    (2400.00, 0.20),
+    (650.00, 0.20),
+    (3100.00, 0.10),
+    (900.00, 0.20),
+    (1800.00, 0.10),
+]
+
+# TODO 1: filtre os jobs com valor_bruto &gt; 1000 (job[0] é o valor bruto)
+# TODO 2: calcule a comissão de cada um (job[0] * job[1], arredondada em 2 casas)
+# TODO 3: some tudo com reduce() em comissao_total_jobs_grandes
+# TODO 4: imprima o resultado
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Comissão total dos jobs acima de R$ 1.000: R$ 970.00
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> siga a ordem sugerida — <code>filter</code> primeiro, <code>map</code> depois, <code>reduce</code> por último — igual ao exemplo da seção 4.3 do Módulo 05. Lembre-se de que <code>filter()</code> e <code>map()</code> retornam iteradores que só podem ser percorridos uma vez, então não tente reaproveitar <code>jobs_grandes</code> ou <code>comissoes_grandes</code> depois de usá-los.</p>
+</blockquote>
+<h2>Desafios extras</h2>
+<p>As missões acima já cobrem tudo o que você precisa do Módulo 05. Os desafios abaixo são <strong>totalmente opcionais</strong> — um "modo difícil" para quem quer ir além.</p>
+<h2>Extra 1 — Elegível para saque</h2>
+<p>Escreva a mesma verificação de duas formas: uma <code>lambda</code> verbosa, com <code>if</code>/<code>else</code> embutido, e uma direta, que aproveita que a própria comparação já é um booleano. Um freelancer pode sacar se o saldo disponível for <strong>maior ou igual a R$ 50</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 1: elegível para saque
+saldo_disponivel = 120.0
+
+# TODO: crie elegivel_saque_verboso (com if/else embutido) e elegivel_saque (direta)
+# TODO: aplique as duas a saldo_disponivel e imprima os dois resultados
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">True
+True
+</code></pre></div>
+<h2>Extra 2 — Pontuação de reputação</h2>
+<p>Cada freelancer tem uma nota (0 a 5) e um NPS (0 a 100). Use <code>map()</code> com uma função <code>calcular_reputacao(nota, nps, peso_nota=0.6)</code> — que normaliza a nota para uma escala de 0 a 100 (<code>nota * 20</code>) antes de ponderar — para calcular a reputação de vários freelancers de uma vez.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 2: pontuação de reputação
+notas_freelancers = [4.8, 4.2, 5.0]
+nps_freelancers = [70, 55, 90]
+
+# TODO: defina calcular_reputacao(nota, nps, peso_nota=0.6) -&gt; float (arredondada em 2 casas)
+# TODO: use map() com as duas listas e converta para list em reputacoes_freelancers
+# TODO: imprima reputacoes_freelancers
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">[85.6, 72.4, 96.0]
+</code></pre></div>
+<h2>Extra 3 — Contas do Outlook</h2>
+<p>Da mesma lista <code>emails_freelancers</code>, use <code>filter()</code> para selecionar agora os e-mails do Outlook.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 3: contas do Outlook
+# TODO: use filter() para selecionar os e-mails que contêm 'outlook'
+# TODO: converta para list e imprima
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">['joao.dev@outlook.com']
+</code></pre></div>
+<h2>Extra 4 — Lista de nomes em texto</h2>
+<p><code>reduce()</code> não serve só para números. Use-o para juntar <code>nomes_freelancers</code> em um único texto, separando os nomes por vírgula.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 4: lista de nomes em texto
+nomes_freelancers = ['Marina', 'João', 'Clara']
+
+# TODO: use reduce() para juntar os nomes em uma única string, separados por ', '
+# TODO: imprima o resultado
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Marina, João, Clara
+</code></pre></div>
+<h2>Extra 5 — Seu próprio funil</h2>
+<p>Monte, do seu jeito, um funil combinando <code>map</code>, <code>filter</code> e <code>reduce</code> com os dados que você quiser deste projeto. Aqui não tem resultado esperado: solte a criatividade!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 5: seu funil funcional
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist de autoavaliação</h2>
+<ul>
+<li>Criei uma <code>lambda</code> e uma função de alta ordem que retorna uma <code>lambda</code> (Missão 1)</li>
+<li>Usei <code>map()</code> com uma e com duas coleções ao mesmo tempo (Missão 2)</li>
+<li>Usei <code>filter()</code> para selecionar itens de uma coleção (Missão 3)</li>
+<li>Usei <code>reduce()</code> para somar e para encontrar o maior valor de uma coleção (Missão 4)</li>
+<li>Encadeei <code>filter</code>, <code>map</code> e <code>reduce</code> em um único fluxo (Missão 5)</li>
+<li>Tentei pelo menos um dos desafios extras</li>
+</ul>
+<p>Se a maioria dos itens está marcada, parabéns: você já processa coleções inteiras sem escrever um <code>for</code> para cada etapa.</p>
+<blockquote>
+<p>No <strong>Módulo 06</strong>, a FreelaBoard vai conhecer a <strong>Programação Orientada a Objetos</strong> — classes, objetos e herança para organizar tudo isso de um jeito ainda mais poderoso!</p>
+</blockquote>
+</div>

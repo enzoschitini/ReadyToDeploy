@@ -1,0 +1,337 @@
+<div class="prose">
+<p>Hora de deixar seu código pronto pra produção de verdade! Neste projeto você vai usar o que aprendeu no Módulo 08 — <strong>erros de sintaxe</strong>, <strong>exceções</strong>, <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code>, <code>raise</code>, <strong>exceções personalizadas</strong> e <strong>erros de lógica</strong> — pra blindar um processamento real contra dados que chegam fora do padrão.</p>
+<h2>O contexto</h2>
+<p>A <strong>RotaCerta</strong> é uma <em>startup</em> de logística de última milha: motoristas escaneiam pacotes nos hubs de triagem, e esses dados viram arquivos que alimentam o painel de operações da empresa. O problema é que scanner com defeito, coluna fora de ordem e campo em branco são o dia a dia — e mais de um processamento já quebrou no meio da madrugada por causa disso.</p>
+<p>Você é o(a) novo(a) <strong>Desenvolvedor(a) Jr.</strong>, e sua missão hoje é deixar esse processamento à prova de imprevistos. O time te chamou no chat interno com os pedidos do dia, organizados em <strong>missões</strong>.</p>
+<blockquote>
+<p><strong>Dica:</strong> não existe só uma forma "certa" de resolver cada missão. Depois de cada uma você vai encontrar o resultado esperado, mas o caminho até lá é seu. Teste, erre, corrija e tente de novo — é assim que se aprende a programar.</p>
+</blockquote>
+<h2>Objetivo</h2>
+<p>Ao final deste projeto, você terá praticado, dentro de um único cenário conectado:</p>
+<ul>
+<li>Reconhecer <strong>erros de sintaxe</strong> sem precisar rodar o código, usando <code>compile()</code>;</li>
+<li>Tratar <strong>exceções comuns</strong> com <code>try</code> / <code>except</code> / <code>else</code> / <code>finally</code>;</li>
+<li>Usar a <strong>hierarquia de exceções</strong> para capturar vários tipos de erro relacionados de uma vez;</li>
+<li>Lançar exceções com <code>raise</code>, inclusive <strong>exceções personalizadas</strong>, preservando a causa original com <code>from</code>;</li>
+<li>Encontrar e corrigir um <strong>erro de lógica</strong>, e usar <code>assert</code> para se proteger de erros futuros.</li>
+</ul>
+<h2>Requisitos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Detalhe</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Este notebook aberto e pronto para rodar</td></tr>
+<tr><td>Conceitos necessários</td><td>Módulos 01 a 07 completos + Módulo 08 (sintaxe, exceções e lógica)</td></tr>
+<tr><td>Funções, métodos e palavras-chave</td><td><code>compile()</code>, <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code>, <code>raise</code>, <code>class MeuErro(Exception):</code>, <code>issubclass()</code>, <code>assert</code>, <code>enumerate()</code>, <code>open()</code>, <code>.strip()</code>, <code>.split()</code></td></tr>
+<tr><td>Bibliotecas externas</td><td>Nenhuma! Só Python puro, do jeitinho que você aprendeu</td></tr>
+</tbody>
+</table></div>
+<p>Se alguma missão parecer difícil, a dica de cada uma aponta a seção certa do Módulo 08 para revisar.</p>
+<h2>Como o projeto funciona</h2>
+<p>O notebook está dividido em <strong>5 missões</strong>, na ordem em que a RotaCerta te chamou:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missão</th><th>Tema</th><th>Conceito principal</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Verificação antes de rodar</td><td>Erros de sintaxe</td></tr>
+<tr><td>2</td><td>Pesagem no hub</td><td>Exceções comuns e <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code></td></tr>
+<tr><td>3</td><td>Manifesto do dia</td><td><code>raise</code> e exceções personalizadas</td></tr>
+<tr><td>4</td><td>Conferência de auditoria</td><td>Erros de lógica</td></tr>
+<tr><td>5</td><td>Painel diário</td><td>Tudo junto!</td></tr>
+</tbody>
+</table></div>
+<p>Em cada missão você vai encontrar: uma mensagem de alguém do time, com o pedido; uma célula de código com os dados já prontos e comentários <code># TODO</code> indicando o que você precisa escrever; o <strong>resultado esperado</strong>, uma prévia do que deve aparecer na tela quando estiver certo; e uma <strong>dica</strong>, para quando bater aquele branco.</p>
+<h2>Missão 1 — Verificação antes de rodar</h2>
+<blockquote>
+<p><strong>Yasmin (Engenharia):</strong> "Oii, bem-vindo(a) à equipe! O pessoal da automação me mandou 3 scriptzinhos de alerta ontem à noite. Antes de colocar isso pra rodar no hub, preciso que você confira se algum tem erro de sintaxe — sem executar nenhum deles, só analisando."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> crie a função <code>verificar_script(nome: str, codigo: str) -&gt; bool</code> que usa <code>compile(codigo, nome, 'exec')</code> dentro de um <code>try</code>:</p>
+<ul>
+<li>se der <code>SyntaxError</code>, imprima <code>'&lt;nome&gt;: &lt;tipo do erro&gt; na linha &lt;linha&gt; - &lt;mensagem&gt;'</code> e retorne <code>False</code>;</li>
+<li>senão, imprima <code>'&lt;nome&gt;: nenhum erro de sintaxe encontrado.'</code> e retorne <code>True</code>.</li>
+</ul>
+<p>Depois, percorra <code>scripts_recebidos</code> chamando a função pra cada um e conte, em <code>quantidade_scripts_com_erro</code>, quantos vieram com erro.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Scripts de alerta recebidos da automação
+scripts_recebidos = {
+    'alerta_peso': '''if peso_kg &gt; 30
+    print('Pacote pesado')''',
+    'alerta_atraso': '''if atraso_horas &gt; 24:
+    print('Atraso critico')''',
+    'alerta_reentrega': '''for tentativa in tentativas:
+print(tentativa)''',
+}
+
+# TODO 1: crie verificar_script(nome: str, codigo: str) -&gt; bool, usando
+#         compile(codigo, nome, 'exec') dentro de um try/except SyntaxError
+#         (lembre que compile() só analisa o código, não executa nada)
+
+# TODO 2: percorra scripts_recebidos com um for (use .items()), chamando
+#         verificar_script para cada um
+
+# TODO 3: conte em quantidade_scripts_com_erro quantos scripts vieram com
+#         erro de sintaxe, e imprima o total com um rótulo
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">alerta_peso: SyntaxError na linha 1 - expected ':'
+alerta_atraso: nenhum erro de sintaxe encontrado.
+alerta_reentrega: IndentationError na linha 2 - expected an indented block after 'for' statement on line 1
+Scripts com erro de sintaxe: 2
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> revise a seção 2.2 do Módulo 08, com a função <code>verificar_sintaxe()</code> — aqui é o mesmo padrão, só que devolvendo <code>True</code>/<code>False</code> em vez de só imprimir. Lembre que <code>IndentationError</code> é um tipo de <code>SyntaxError</code>, então o mesmo <code>except</code> captura os dois.</p>
+</blockquote>
+<h2>Missão 2 — Pesagem no hub</h2>
+<blockquote>
+<p><strong>Caio (Operações do Hub):</strong> "As balanças do hub andam soltando leitura torta: às vezes vem um peso que não é número, às vezes a quantidade de itens do pacote vem zerada. Preciso saber o peso por item de cada pacote de hoje, sem que o script pare no primeiro que der problema."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> crie a função <code>calcular_peso_por_item(pacote: dict) -&gt; bool</code>, que tenta <code>float(pacote['peso_kg']) / pacote['itens']</code> dentro de um <code>try</code>:</p>
+<ul>
+<li><code>except ZeroDivisionError</code>: imprima <code>'&lt;código&gt;: quantidade de itens igual a zero.'</code> e retorne <code>False</code>;</li>
+<li><code>except ValueError</code>: imprima <code>"&lt;código&gt;: peso invalido '&lt;peso_kg&gt;'."</code> e retorne <code>False</code>;</li>
+<li><code>else</code>: imprima <code>'&lt;código&gt;: peso por item = &lt;valor&gt; kg'</code> e retorne <code>True</code>;</li>
+<li><code>finally</code>: imprima uma linha separadora (<code>'-' * 30</code>), sempre.</li>
+</ul>
+<p>Depois, percorra <code>pacotes_do_hub</code> chamando a função para cada pacote e conte, em <code>quantidade_pacotes_sem_erro</code>, quantos foram processados sem erro.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Pacotes escaneados no hub hoje
+pacotes_do_hub = [
+    {'codigo': 'BR7241', 'peso_kg': '4.5', 'itens': 3},
+    {'codigo': 'BR9982', 'peso_kg': '2.0', 'itens': 0},
+    {'codigo': 'BR5510', 'peso_kg': 'onze', 'itens': 2},
+    {'codigo': 'BR3387', 'peso_kg': '6.4', 'itens': 4},
+]
+
+# TODO 1: crie calcular_peso_por_item(pacote: dict) -&gt; bool com
+#         try/except ZeroDivisionError/except ValueError/else/finally,
+#         conforme descrito na missão
+
+# TODO 2: percorra pacotes_do_hub chamando a função para cada pacote e
+#         conte em quantidade_pacotes_sem_erro quantos deram certo
+
+# TODO 3: imprima quantidade_pacotes_sem_erro com um rótulo
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">BR7241: peso por item = 1.50 kg
+------------------------------
+BR9982: quantidade de itens igual a zero.
+------------------------------
+BR5510: peso invalido 'onze'.
+------------------------------
+BR3387: peso por item = 1.60 kg
+------------------------------
+Pacotes processados sem erro: 2
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> é o mesmo formato da função <code>consultar_ano()</code> da seção 3.5 do Módulo 08: o <code>try</code> fica enxuto, o <code>else</code> só roda se nada deu errado, e o <code>finally</code> roda sempre — até quando você usa <code>return</code> dentro do <code>try</code> ou do <code>except</code>.</p>
+</blockquote>
+<h2>Missão 3 — Manifesto do dia</h2>
+<blockquote>
+<p><strong>Débora (Dados e Integração):</strong> "O sistema do hub exporta um manifesto CSV todo dia, mas a ordem das colunas muda sem aviso — e de vez em quando chega um peso em branco. Preciso do peso total processado por dia, mas se um arquivo vier com problema, quero uma mensagem clara dizendo o quê e onde, não um traceback genérico."</p>
+</blockquote>
+<p>Primeiro, é preciso ter os três manifestos do dia:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def criar_arquivo(nome_arquivo: str, conteudo: str) -&gt; None:
+    with open(nome_arquivo, mode='w', encoding='utf-8') as arquivo:
+        arquivo.write(conteudo)
+
+
+# Dia 1: formato combinado
+criar_arquivo('hub_dia_01.csv', '''codigo_rastreio,hub_origem,peso_kg,status
+BR7241,Hub SP,4.5,Em transito
+BR9982,Hub SP,2.0,Entregue
+BR5510,Hub RJ,3.2,Em transito
+BR3387,Hub RJ,6.4,Entregue
+BR1120,Hub BH,1.8,Em transito''')
+
+# Dia 2: mesmos dados, mas com peso_kg e hub_origem trocados de posição
+criar_arquivo('hub_dia_02.csv', '''codigo_rastreio,peso_kg,hub_origem,status
+BR7241,4.5,Hub SP,Em transito
+BR9982,2.0,Hub SP,Entregue
+BR5510,3.2,Hub RJ,Em transito
+BR3387,6.4,Hub RJ,Entregue
+BR1120,1.8,Hub BH,Em transito''')
+
+# Dia 3: formato combinado, mas um pacote veio com peso em branco
+criar_arquivo('hub_dia_03.csv', '''codigo_rastreio,hub_origem,peso_kg,status
+BR7241,Hub SP,4.5,Em transito
+BR9982,Hub SP,2.0,Entregue
+BR5510,Hub RJ,,Em transito
+BR3387,Hub RJ,6.4,Entregue''')
+
+print('Manifestos do dia criados.')
+</code></pre></div>
+<p><strong>Sua missão:</strong></p>
+<ol>
+<li>Crie a exceção personalizada <code>PacoteInvalidoError(Exception)</code>;</li>
+<li>Crie <code>somar_pesos(nome_arquivo: str, coluna: str = 'peso_kg') -&gt; float</code>, que lê o cabeçalho, localiza <code>coluna</code> <strong>pelo nome</strong> (<code>list.index()</code>, que lança <code>ValueError</code> se não existir) e soma o valor de cada linha convertido pra <code>float</code>. Em cada <code>except ValueError</code>, lance <code>PacoteInvalidoError</code> com uma mensagem clara, encadeada com <code>from erro</code>: uma para coluna não encontrada, outra dizendo <strong>a linha</strong> e <strong>o valor</strong> inválido (use <code>enumerate(arquivo, start=2)</code>);</li>
+<li>Percorra <code>arquivos_do_hub</code> chamando <code>somar_pesos</code>, tratando <code>PacoteInvalidoError</code> e <code>FileNotFoundError</code>, e guarde cada resultado (ou <code>None</code>, se der erro) em <code>resultado_por_arquivo</code>, indexado pelo nome do arquivo.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Missão da Débora: somar os pesos do manifesto, não importa a ordem das colunas
+arquivos_do_hub = ['hub_dia_01.csv', 'hub_dia_02.csv', 'hub_dia_03.csv']
+
+# TODO 1: crie a exceção PacoteInvalidoError(Exception)
+
+# TODO 2: crie somar_pesos(nome_arquivo: str, coluna: str = 'peso_kg') -&gt; float
+#   - leia o cabeçalho e localize a posição de "coluna" com cabecalho.index()
+#     dentro de um try/except ValueError, relançando como
+#     PacoteInvalidoError(f"Coluna '{coluna}' nao encontrada no cabecalho.") from erro
+#   - percorra as linhas com enumerate(arquivo, start=2), convertendo o valor
+#     da coluna pra float dentro de um try/except ValueError, relançando como
+#     PacoteInvalidoError(f"Linha {numero_linha}: peso invalido '{valor}'.") from erro
+#   - retorne a soma de todos os pesos válidos
+
+# TODO 3: crie resultado_por_arquivo = {} e percorra arquivos_do_hub chamando
+#         somar_pesos dentro de um try/except PacoteInvalidoError/except
+#         FileNotFoundError/else, guardando o total (ou None, se deu erro) em
+#         resultado_por_arquivo[nome_arquivo], e imprimindo cada resultado com
+#         OK ou X
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">OK hub_dia_01.csv: peso total = 17.90 kg
+OK hub_dia_02.csv: peso total = 17.90 kg
+X  hub_dia_03.csv: arquivo rejeitado. Linha 4: peso invalido ''.
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> é a mesma jornada da seção 3.8 do Módulo 08 (a função <code>somar_faturas</code>), só que com pacotes em vez de faturas. Repare que os dias 1 e 2 dão o <strong>mesmo total</strong>, mesmo com as colunas trocadas — é isso que buscar a coluna pelo nome resolve.</p>
+</blockquote>
+<h2>Missão 4 — Conferência de auditoria</h2>
+<blockquote>
+<p><strong>Juliano (Qualidade e Auditoria):</strong> "Uma auditoria encontrou um script antigo que somava o peso do dia usando <code>range(1, len(lista))</code> — e isso pulava o primeiro pacote da lista, silenciosamente, sem nenhum erro na tela! Refaz esse cálculo do jeito certo, e adiciona uma conferência pra garantir que isso nunca mais passe batido."</p>
+</blockquote>
+<p><strong>Sua missão:</strong></p>
+<ol>
+<li>Some o peso de todos os pacotes de <code>pacotes_para_conferencia</code> em <code>peso_total_hoje</code>, percorrendo a lista <strong>diretamente</strong> com <code>for pacote in pacotes_para_conferencia</code> (sem <code>range</code>, pra não correr o risco do mesmo bug);</li>
+<li>Conte quantos pacotes você somou em <code>quantidade_conferida</code>;</li>
+<li>Use <code>assert</code> para garantir que <code>quantidade_conferida</code> é igual a <code>len(pacotes_para_conferencia)</code>, com uma mensagem clara caso algum pacote tenha ficado de fora;</li>
+<li>Imprima <code>peso_total_hoje</code> e uma mensagem de conferência OK.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Pacotes para a conferência de auditoria
+pacotes_para_conferencia = [
+    {'codigo': 'BR7241', 'peso_kg': 4.5},
+    {'codigo': 'BR2290', 'peso_kg': 5.3},
+    {'codigo': 'BR5510', 'peso_kg': 3.2},
+    {'codigo': 'BR3387', 'peso_kg': 6.4},
+    {'codigo': 'BR1120', 'peso_kg': 1.8},
+    {'codigo': 'BR6654', 'peso_kg': 2.6},
+]
+
+# TODO 1: some o peso_kg de todos os pacotes em peso_total_hoje, percorrendo
+#         pacotes_para_conferencia diretamente com for (sem range)
+
+# TODO 2: conte em quantidade_conferida quantos pacotes você somou
+
+# TODO 3: use assert pra garantir que quantidade_conferida ==
+#         len(pacotes_para_conferencia), com uma mensagem clara
+
+# TODO 4: imprima peso_total_hoje e uma mensagem confirmando a conferência
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Peso total processado hoje: 23.80 kg
+Conferencia OK: todos os 6 pacotes foram somados.
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> é exatamente o bug do carrinho de compras da seção 4.2 do Módulo 08: <code>range(1, len(lista))</code> começa em <code>1</code> e pula o índice <code>0</code>. Percorrer com <code>for item in lista</code> elimina o índice — e o <code>assert</code> da seção 4.3 é a rede de segurança pra você descobrir na hora, e não meses depois.</p>
+</blockquote>
+<h2>Missão 5 — Painel diário</h2>
+<blockquote>
+<p><strong>Simone (Diretora de Operações):</strong> "Adorei o que vi hoje! Fechando o dia, monta um painel único reunindo o que você descobriu: quantos scripts de alerta vieram com erro, quantos pacotes do hub processamos sem problema, o peso confirmado do dia 1 e o peso total conferido pela auditoria."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> usando <code>print()</code> e <em>f-strings</em>, monte um painel que reúna em um único bloco de texto, pelo menos:</p>
+<ul>
+<li><code>quantidade_scripts_com_erro</code> (Missão 1);</li>
+<li><code>quantidade_pacotes_sem_erro</code> (Missão 2);</li>
+<li>o peso do dia 1 em <code>resultado_por_arquivo['hub_dia_01.csv']</code> (Missão 3);</li>
+<li><code>peso_total_hoje</code> (Missão 4).</li>
+</ul>
+<p>Capriche na formatação: use <code>'=' * 40</code> (ou o caractere que preferir) para criar linhas separadoras. Aqui <strong>não existe gabarito único</strong> — o painel é seu, deixe com a sua cara!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Painel diário — RotaCerta
+# TODO: monte o seu painel reaproveitando as variáveis das Missões 1
+# (quantidade_scripts_com_erro), 2 (quantidade_pacotes_sem_erro), 3
+# (resultado_por_arquivo) e 4 (peso_total_hoje). Use print(), f-strings e o
+# operador * para criar os separadores.
+</code></pre></div>
+<p><strong>Exemplo de resultado</strong> (o seu pode — e deve — ficar diferente; essa é só uma ideia de formato):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">========================================
+RotaCerta — Painel diário de operações
+========================================
+Scripts de alerta com erro de sintaxe: 2
+Pacotes do hub processados sem erro:   2
+Peso confirmado (dia 01): 17.90 kg
+Peso total conferido pela auditoria: 23.80 kg
+========================================
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> se travar na formatação, comece simples: um <code>print()</code> por linha já resolve. Só depois de funcionar é que vale a pena caprichar nos separadores e no alinhamento.</p>
+</blockquote>
+<h2>Desafios extras</h2>
+<p>As missões acima já cobrem tudo o que você precisa do Módulo 08. Os desafios abaixo são <strong>totalmente opcionais</strong> — encare como um "modo difícil" para quem quer espremer um pouco mais os conceitos. Vá na ordem que quiser, ou pule direto para o que mais te chamar atenção.</p>
+<h2>Extra 1 — Hierarquia na prática</h2>
+<p>Sem rodar nada além de <code>issubclass()</code>, confirme (ou desminta) sua intuição sobre quais exceções são "parentes" de quais.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 1: hierarquia de exceções, na prática
+# TODO: usando issubclass(), imprima com rótulos se:
+# - ZeroDivisionError é subclasse de ArithmeticError
+# - FileNotFoundError é subclasse de OSError
+# - KeyError é subclasse de LookupError
+# - PacoteInvalidoError (Missão 3) é subclasse de Exception
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">ZeroDivisionError e ArithmeticError? True
+FileNotFoundError e OSError?         True
+KeyError e LookupError?              True
+PacoteInvalidoError e Exception?     True
+</code></pre></div>
+<h2>Extra 2 — Um único except para dois tipos de erro</h2>
+<p>Uma lista e um dicionário podem falhar por motivos diferentes ao serem indexados — mas os dois erros têm um ancestral em comum.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 2: um único except para dois tipos de erro
+capacidade_por_hub = {'Hub SP': 500, 'Hub RJ': 320, 'Hub BH': 210}
+posicoes_do_dia = [120, 98, 143]
+
+# TODO: crie buscar_hub(colecao, chave_ou_indice), que tenta
+# colecao[chave_ou_indice] dentro de um try e usa um único
+# except LookupError pra tratar IndexError e KeyError, imprimindo
+# '&lt;tipo do erro&gt;: nao encontrado' e retornando None. Teste com os 4 casos
+# abaixo (2 do dicionário, 2 da lista) e imprima cada retorno.
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">500
+KeyError: nao encontrado
+None
+98
+IndexError: nao encontrado
+None
+</code></pre></div>
+<h2>Extra 3 — Guardando a causa original</h2>
+<p>Troque uma exceção genérica por uma mais clara pro seu domínio, sem perder o rastro do erro original.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 3: guardando a causa original
+pacotes_da_rota = ['BR7241', 'BR9982', 'BR5510']
+
+# TODO: crie obter_pacote(lista, posicao), que tenta lista[posicao] e, se
+# der IndexError, lança PacoteInvalidoError (Missão 3) com a mensagem
+# f'Posicao {posicao} nao existe na lista de pacotes.', encadeada com
+# "from erro". Chame com posicao=10 dentro de um try/except
+# PacoteInvalidoError, e imprima o erro e a causa original
+# (erro.__cause__).
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Erro:  Posicao 10 nao existe na lista de pacotes.
+Causa: IndexError: list index out of range
+</code></pre></div>
+<h2>Extra 4 — Seu próprio validador</h2>
+<p>Crie sua própria exceção personalizada e use <code>raise</code> pra validar alguma regra do seu jeito (por exemplo, um peso máximo permitido por pacote). Aqui não tem resultado esperado: solte a criatividade!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 4: seu próprio validador
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist de autoavaliação</h2>
+<p>Sem provas, sem notas — só uma conferida rápida para você saber onde está:</p>
+<ul>
+<li>Detectei um erro de sintaxe sem executar o código, usando <code>compile()</code> (Missão 1)</li>
+<li>Tratei exceções comuns com <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code> (Missão 2)</li>
+<li>Usei um único <code>except</code> pra capturar exceções que compartilham um ancestral (Extra 2)</li>
+<li>Criei uma exceção personalizada herdando de <code>Exception</code> (Missão 3)</li>
+<li>Usei <code>raise ... from erro</code> pra lançar uma exceção preservando a causa original (Missão 3)</li>
+<li>Encontrei e corrigi um erro de lógica, sem nenhuma mensagem de erro pra me guiar (Missão 4)</li>
+<li>Usei <code>assert</code> pra me proteger de um erro de lógica futuro (Missão 4)</li>
+<li>Reaproveitei variáveis de missões anteriores no painel final (Missão 5)</li>
+<li>Tentei pelo menos um dos desafios extras</li>
+</ul>
+<p>Se a maioria dos itens está marcada, parabéns: seu código já está bem mais perto de aguentar produção de verdade.</p>
+<blockquote>
+<p>Prepare-se, porque no <strong>Módulo 09</strong> a história continua: chegou a hora de tirar esse código do notebook e rodá-lo como um <strong>script de verdade</strong>, direto do terminal da sua própria máquina — inclusive o verificador de scripts que você construiu hoje!</p>
+</blockquote>
+</div>

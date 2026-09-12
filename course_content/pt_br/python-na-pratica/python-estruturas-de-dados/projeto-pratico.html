@@ -1,0 +1,215 @@
+<div class="prose">
+<p>Segundo projeto, segundo dia de trabalho! Agora que você já domina variáveis e tipos básicos, é hora de guardar <strong>várias informações relacionadas</strong> de uma vez, do jeito que se faz de verdade: com <strong>listas</strong>, <strong>conjuntos</strong> e <strong>dicionários</strong>. O cenário de hoje é bem diferente do anterior — bora conhecer a empresa.</p>
+<h2>O contexto</h2>
+<p>A <strong>Batidas</strong> é um aplicativo de streaming de música que está tentando crescer mais rápido que a concorrência. Você acabou de entrar como <strong>Analista de Dados Jr.</strong> no time de conteúdo, e hoje é dia de arrumar a casa: playlists bagunçadas, gêneros repetidos nos relatórios e um cadastro de caixas de som parceiras que ninguém organizou direito.</p>
+<p>Cada pedido de hoje usa uma estrutura de dados diferente do Módulo 02 — e, no fim do dia, tudo se junta em um resumo para a CEO.</p>
+<blockquote>
+<p><strong>Dica:</strong> não existe só uma forma "certa" de resolver cada missão. Depois de cada uma você vai encontrar o resultado esperado, mas o caminho até lá é seu.</p>
+</blockquote>
+<h2>Objetivo</h2>
+<p>Ao final deste projeto, você terá praticado, dentro de um único cenário conectado:</p>
+<ul>
+<li>Criação e manipulação de <strong>listas</strong> (<code>.append()</code>, <code>.insert()</code>, <code>.remove()</code>, <code>.pop()</code>, concatenação);</li>
+<li>Eliminação de repetições com <strong>conjuntos</strong> e conversão entre <code>list</code> e <code>set</code>;</li>
+<li>Organização de dados no formato chave-valor com <strong>dicionários</strong>, incluindo listas de dicionários.</li>
+</ul>
+<h2>Requisitos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Detalhe</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Este notebook aberto e pronto para rodar</td></tr>
+<tr><td>Conceitos necessários</td><td>Módulo 01 completo + Módulo 02 (listas, conjuntos, dicionários)</td></tr>
+<tr><td>Funções e métodos</td><td><code>len()</code>, <code>list()</code>, <code>set()</code>, <code>.append()</code>, <code>.insert()</code>, <code>.remove()</code>, <code>.pop()</code>, <code>.add()</code>, <code>.get()</code>, <code>.update()</code></td></tr>
+<tr><td>Bibliotecas externas</td><td>Nenhuma!</td></tr>
+</tbody>
+</table></div>
+<p>Se alguma missão parecer difícil, a dica aponta a seção certa do Módulo 02 para revisar.</p>
+<h2>Como o projeto funciona</h2>
+<p>O notebook está dividido em <strong>4 missões</strong>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missão</th><th>Tema</th><th>Conceito principal</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Fila da playlist Manhã Indie</td><td>Listas</td></tr>
+<tr><td>2</td><td>Gêneros únicos da semana</td><td>Conjuntos</td></tr>
+<tr><td>3</td><td>Cadastro de caixas de som parceiras</td><td>Dicionários</td></tr>
+<tr><td>4</td><td>Resumo para a CEO</td><td>Tudo junto!</td></tr>
+</tbody>
+</table></div>
+<p>Em cada missão: o pedido de alguém do time, os dados prontos com <code># TODO</code>, o resultado esperado e uma dica.</p>
+<h2>Missão 1 — Fila da playlist Manhã Indie</h2>
+<blockquote>
+<p><strong>Camila (Curadoria):</strong> "Oii, bem-vindo(a) ao time! A playlist "Manhã Indie" precisa de uns ajustes antes de ir ao ar: uma faixa nova no final, uma abertura no início, uma faixa que saiu de catálogo removida, e preciso tirar mais uma pra abrir espaço pra uma exclusiva. Topa arrumar?"</p>
+</blockquote>
+<p><strong>Sua missão:</strong></p>
+<ol>
+<li>Adicionar <code>'Horizonte - Duo Vento'</code> ao <strong>final</strong> da lista com <code>.append()</code>;</li>
+<li>Inserir <code>'Abertura - Rio Norte'</code> na <strong>posição 0</strong> (o início) com <code>.insert()</code>;</li>
+<li>Remover <code>'Café Quente - Rio Norte'</code>, que saiu do catálogo, com <code>.remove()</code>;</li>
+<li>Remover a faixa da <strong>posição 2</strong> com <code>.pop()</code>, guardando o nome removido em <code>faixa_removida</code>, para abrir espaço para a exclusiva;</li>
+<li>Imprimir a lista <code>playlist_manha_indie</code> final e depois <code>faixa_removida</code>.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Playlist Manhã Indie
+playlist_manha_indie = ['Nascer - Camila Tons', 'Café Quente - Rio Norte', 'Primeiro Passo - Alma Verde']
+
+# TODO 1: adicione 'Horizonte - Duo Vento' ao final
+
+
+# TODO 2: insira 'Abertura - Rio Norte' na posição 0
+
+
+# TODO 3: remova 'Café Quente - Rio Norte'
+
+
+# TODO 4: remova a faixa da posição 2 e guarde em faixa_removida
+
+
+# TODO 5: imprima playlist_manha_indie e depois faixa_removida
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">['Abertura - Rio Norte', 'Nascer - Camila Tons', 'Horizonte - Duo Vento']
+Primeiro Passo - Alma Verde
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> siga a ordem dos TODOs à risca: cada método altera a lista, então a posição usada no <code>.pop(2)</code> só remove a faixa certa se os passos anteriores já tiverem sido aplicados. Revise a tabela de métodos da seção 1.4 do Módulo 02 se travar.</p>
+</blockquote>
+<h2>Missão 2 — Gêneros únicos da semana</h2>
+<blockquote>
+<p><strong>Diego (Analytics):</strong> "Preciso montar o relatório de diversidade musical da semana pro board, mas se eu simplesmente juntar as listas de gêneros tocados por dia, os gêneros que se repetem em vários dias vão inflar a contagem. Você consegue me dizer quantos gêneros <strong>diferentes</strong> tocaram na semana inteira?"</p>
+</blockquote>
+<p><strong>Sua missão:</strong> junte as cinco listas de gêneros do dia, elimine as repetições convertendo para <code>set</code>, volte para <code>list</code> e guarde em <code>generos_semana_unicos</code>. Imprima o total de gêneros únicos e depois a lista.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Gêneros tocados em cada dia da semana
+generos_segunda = ['pop', 'indie', 'lofi']
+generos_terca = ['indie', 'rock', 'pop']
+generos_quarta = ['eletronica', 'lofi', 'pop']
+generos_quinta = ['rock', 'mpb', 'indie']
+generos_sexta = ['pop', 'eletronica', 'jazz']
+
+# TODO: junte as 5 listas, remova repetições e guarde em generos_semana_unicos (como list)
+
+
+# TODO: imprima o total de gêneros únicos (len) e depois a lista
+</code></pre></div>
+<p><strong>Resultado esperado</strong> (a lista de gêneros também aparece, mas a ordem pode variar, já que veio de um conjunto):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Total de gêneros únicos: 7
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> o caminho é <code>list(set(lista_1 + lista_2 + ...))</code>, igual ao exemplo das hashtags na seção 2.6 do Módulo 02. Conjuntos não têm ordem, então não se preocupe se a sua lista sair em outra sequência — o que importa é o total.</p>
+</blockquote>
+<h2>Missão 3 — Cadastro de caixas de som parceiras</h2>
+<blockquote>
+<p><strong>Bruno (Infraestrutura):</strong> "A Batidas fechou parceria com fabricantes de caixa de som inteligente, e cada uma precisa de um código de pareamento pra tocar direto do nosso app. Só que uma lista com os nomes não basta — preciso saber o código de <strong>cada</strong> caixa. Você monta esse cadastro pra mim?"</p>
+</blockquote>
+<p><strong>Sua missão:</strong> para cada caixa de som, crie um dicionário com as chaves <code>nome</code> e <code>codigo_pareamento</code>, e adicione cada um à lista <code>dispositivos_pareados</code> com <code>.append()</code>. Cadastre as duas caixas abaixo, nesta ordem, e imprima a lista final.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Nome</th><th>Código de pareamento</th></tr></thead>
+<tbody>
+<tr><td><code>sala-echo</code></td><td><code>BT-8841</code></td></tr>
+<tr><td><code>cozinha-echo</code></td><td><code>BT-2210</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Cadastro de caixas de som parceiras
+dispositivos_pareados = []
+
+# TODO: crie um dicionário para 'sala-echo' (código 'BT-8841') e adicione à lista
+
+
+# TODO: crie um dicionário para 'cozinha-echo' (código 'BT-2210') e adicione à lista
+
+
+# TODO: imprima dispositivos_pareados
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">[{'nome': 'sala-echo', 'codigo_pareamento': 'BT-8841'}, {'nome': 'cozinha-echo', 'codigo_pareamento': 'BT-2210'}]
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> o padrão é exatamente o das redes wi-fi da seção 3.6 do Módulo 02: um dicionário por item, adicionado a uma lista com <code>.append()</code>. Preste atenção na ordem das chaves — <code>nome</code> primeiro, <code>codigo_pareamento</code> depois.</p>
+</blockquote>
+<h2>Missão 4 — Resumo para a CEO</h2>
+<blockquote>
+<p><strong>Fernanda (CEO):</strong> "Adorei o trampo de hoje! Pra eu levar pra reunião de investidores, monta um dicionário resumindo os três números que você descobriu: quantas faixas ficaram na playlist, quantos gêneros únicos tocaram e quantas caixas de som já estão pareadas."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> crie um dicionário <code>resumo_semana</code> com pelo menos as três chaves abaixo (nessa ordem), reaproveitando as variáveis das Missões 1 a 3, e imprima o resultado.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Chave</th><th>Valor</th></tr></thead>
+<tbody>
+<tr><td><code>'faixas_na_playlist_manha'</code></td><td>quantidade de faixas em <code>playlist_manha_indie</code></td></tr>
+<tr><td><code>'generos_unicos_na_semana'</code></td><td>quantidade de gêneros em <code>generos_semana_unicos</code></td></tr>
+<tr><td><code>'dispositivos_pareados'</code></td><td>quantidade de itens em <code>dispositivos_pareados</code></td></tr>
+</tbody>
+</table></div>
+<p>Sinta-se à vontade para acrescentar outras chaves que achar relevantes — <strong>não existe um resumo único certo</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Resumo para a CEO
+# TODO: monte resumo_semana reaproveitando as variáveis das Missões 1 a 3 e imprima
+</code></pre></div>
+<p><strong>Exemplo de resultado</strong> (se você acrescentou outras chaves, seu dicionário deve começar assim e continuar depois):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">{'faixas_na_playlist_manha': 3, 'generos_unicos_na_semana': 7, 'dispositivos_pareados': 2, ...}
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> use <code>len()</code> nas três variáveis das missões anteriores para montar os valores. Se quiser ir além, que tal acrescentar uma chave com o nome do gênero mais tocado, ou o total geral de itens cadastrados hoje?</p>
+</blockquote>
+<h2>Desafios extras</h2>
+<p>As missões acima já cobrem tudo o que você precisa do Módulo 02. Os desafios abaixo são <strong>totalmente opcionais</strong> — um "modo difícil" para quem quer ir além.</p>
+<h2>Extra 1 — Playlist colaborativa</h2>
+<p>Dois DJs residentes mandaram suas seleções para uma playlist especial de fim de semana. Concatene as duas listas na ordem em que aparecem e, com fatiamento, extraia só as <strong>3 primeiras</strong> faixas do resultado, guardando em <code>abertura_playlist_fds</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 1: playlist colaborativa
+selecao_dj_ana = ['Onda - Ana Beats', 'Deriva - Ana Beats']
+selecao_dj_leo = ['Nortada - Leo Waves', 'Maré - Leo Waves', 'Brisa - Leo Waves']
+
+# TODO: crie playlist_fds concatenando as duas listas, nessa ordem
+# TODO: crie abertura_playlist_fds com as 3 primeiras faixas de playlist_fds
+# TODO: imprima as duas
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">['Onda - Ana Beats', 'Deriva - Ana Beats', 'Nortada - Leo Waves', 'Maré - Leo Waves', 'Brisa - Leo Waves']
+['Onda - Ana Beats', 'Deriva - Ana Beats', 'Nortada - Leo Waves']
+</code></pre></div>
+<h2>Extra 2 — Gêneros exclusivos de sexta</h2>
+<p>Usando o operador <code>-</code> entre conjuntos, descubra quais gêneros tocaram <strong>na sexta mas em nenhum outro dia da semana</strong> (Missão 2). Guarde em <code>generos_exclusivos_sexta</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 2: gêneros que só tocaram na sexta
+# TODO: crie generos_exclusivos_sexta (dica: converta as listas de outros dias em sets e junte com |)
+# TODO: imprima o resultado
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">{'jazz'}
+</code></pre></div>
+<h2>Extra 3 — Buscando código com segurança</h2>
+<p>Nem toda caixa de som pareada está na sua lista de favoritas. Use <code>.get()</code> com um valor padrão para buscar o código de pareamento de <code>'quarto-nest'</code> em <code>codigos_favoritos</code> sem gerar <code>KeyError</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 3: buscando com segurança
+codigos_favoritos = {'sala-echo': 'BT-8841', 'cozinha-echo': 'BT-2210'}
+
+# TODO: busque o código de 'quarto-nest' com .get(), usando 'não cadastrado' como padrão
+# TODO: imprima o resultado
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">não cadastrado
+</code></pre></div>
+<h2>Extra 4 — Atualização em lote</h2>
+<p>Chegou uma nova contagem de reproduções para várias faixas ao mesmo tempo. Use <code>.update()</code> para atualizar <code>reproducoes_por_faixa</code> de uma vez, sem reescrever cada chave separadamente.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 4: atualização em lote
+reproducoes_por_faixa = {'Nascer - Camila Tons': 1200, 'Horizonte - Duo Vento': 340}
+novas_contagens = {'Horizonte - Duo Vento': 980, 'Abertura - Rio Norte': 75}
+
+# TODO: atualize reproducoes_por_faixa com novas_contagens usando .update()
+# TODO: imprima o resultado
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">{'Nascer - Camila Tons': 1200, 'Horizonte - Duo Vento': 980, 'Abertura - Rio Norte': 75}
+</code></pre></div>
+<h2>Extra 5 — Artista do mês</h2>
+<p>Monte, do seu jeito, um dicionário composto para o "Artista do mês" da Batidas, com nome, gênero, total de reproduções e uma lista com as 3 faixas mais tocadas dele. Aqui não tem resultado esperado: solte a criatividade!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 5: seu dicionário do artista do mês
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist de autoavaliação</h2>
+<ul>
+<li>Usei <code>.append()</code>, <code>.insert()</code>, <code>.remove()</code> e <code>.pop()</code> para arrumar a playlist (Missão 1)</li>
+<li>Concatenei listas e removi repetições convertendo para <code>set</code> e de volta para <code>list</code> (Missão 2)</li>
+<li>Montei uma lista de dicionários, um por item cadastrado (Missão 3)</li>
+<li>Usei <code>len()</code> para resumir os resultados das missões anteriores em um novo dicionário (Missão 4)</li>
+<li>Tentei pelo menos um dos desafios extras</li>
+</ul>
+<p>Se a maioria dos itens está marcada, parabéns: você já sabe escolher a estrutura de dados certa para cada problema.</p>
+<blockquote>
+<p>No <strong>Módulo 03</strong>, a Batidas vai aprender a fazer o código <strong>tomar decisões</strong> e <strong>repetir tarefas</strong> sozinho — hora de conhecer o fluxo condicional e a repetição!</p>
+</blockquote>
+</div>

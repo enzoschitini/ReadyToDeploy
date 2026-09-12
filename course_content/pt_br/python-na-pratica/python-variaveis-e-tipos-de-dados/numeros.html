@@ -1,0 +1,227 @@
+<div class="prose">
+<p>Os tipos numéricos são a base de qualquer cálculo: preços, quantidades, taxas, métricas de
+negócio. Nesta aula vamos conhecer esses tipos, suas operações e como converter um no outro.</p>
+<h2>Motivação</h2>
+<p>Você precisa calcular o <strong>ticket médio diário</strong> do seu restaurante, ou seja, quanto, em
+média, cada venda rendeu em um dia. A métrica é calculada dividindo o <strong>valor total das
+vendas</strong> do dia pela <strong>quantidade de vendas</strong> do mesmo dia:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">ticket médio = valor total das vendas / quantidade de vendas
+</code></pre></div>
+<p>Esta é a sua planilha:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Dia</th><th>Valor total das vendas (R$)</th><th>Quantidade de vendas</th><th>Ticket médio (R$)</th></tr></thead>
+<tbody>
+<tr><td>19/01</td><td>153.98</td><td>3</td><td>?</td></tr>
+<tr><td>20/01</td><td>337.01</td><td>7</td><td>?</td></tr>
+<tr><td>23/01</td><td>295.33</td><td>5</td><td>?</td></tr>
+</tbody>
+</table></div>
+<p><strong>Como podemos fazer esse cálculo usando Python?</strong></p>
+<h2>Definição</h2>
+<p>Os tipos numéricos armazenam <strong>valores numéricos</strong>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Tipo</th><th>Descrição</th><th>Exemplos</th></tr></thead>
+<tbody>
+<tr><td><code>int</code></td><td>Números inteiros (positivos, negativos ou zero)</td><td><code>10</code>, <code>-37</code>, <code>500</code></td></tr>
+<tr><td><code>float</code></td><td>Números decimais (ponto flutuante)</td><td><code>0.333</code>, <code>10.1</code>, <code>-2.5</code></td></tr>
+<tr><td><code>complex</code></td><td>Números complexos (parte real + parte imaginária <code>j</code>)</td><td><code>1 + 2j</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Conferindo o tipo de cada número
+print(type(37))       # &lt;class 'int'&gt;
+print(type(10.1))     # &lt;class 'float'&gt;
+print(type(1 + 2j))   # &lt;class 'complex'&gt;
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> para números grandes, você pode usar <code>_</code> como separador de milhar. O
+Python ignora o <code>_</code>, mas o código fica bem mais legível.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># O underline serve apenas para facilitar a leitura
+faturamento_anual = 1_500_000
+print(faturamento_anual)  # 1500000
+</code></pre></div>
+<h2>Operações</h2>
+<p>Além das quatro operações fundamentais, o Python oferece operadores mais avançados:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Operador</th><th>Operação</th><th>Exemplo</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td><code>+</code></td><td>Soma</td><td><code>7 + 2</code></td><td><code>9</code></td></tr>
+<tr><td><code>-</code></td><td>Subtração</td><td><code>7 - 2</code></td><td><code>5</code></td></tr>
+<tr><td><code>*</code></td><td>Multiplicação</td><td><code>7 * 2</code></td><td><code>14</code></td></tr>
+<tr><td><code>/</code></td><td>Divisão</td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+<tr><td><code>//</code></td><td>Divisão inteira</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+<tr><td><code>%</code></td><td>Resto da divisão (módulo)</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+<tr><td><code>**</code></td><td>Potência (exponenciação)</td><td><code>7 ** 2</code></td><td><code>49</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Testando todos os operadores aritméticos
+a = 7
+b = 2
+
+print("Soma:           ", a + b)
+print("Subtração:      ", a - b)
+print("Multiplicação:  ", a * b)
+print("Divisão:        ", a / b)
+print("Divisão inteira:", a // b)
+print("Resto:          ", a % b)
+print("Potência:       ", a ** b)
+# Soma:            9
+# Subtração:       5
+# Multiplicação:   14
+# Divisão:         3.5
+# Divisão inteira: 3
+# Resto:           1
+# Potência:        49
+</code></pre></div>
+<p>Repare na diferença entre <code>/</code> e <code>//</code>: a divisão comum <strong>sempre</strong> retorna
+um <code>float</code>, mesmo quando o resultado é exato. Já a divisão inteira descarta a parte decimal e,
+entre dois inteiros, retorna um <code>int</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">dividendo = 3
+divisor = 2
+
+# Divisão comum: resultado sempre float
+resultado_divisao = dividendo / divisor
+print(resultado_divisao)        # 1.5
+print(type(resultado_divisao))  # &lt;class 'float'&gt;
+
+# Divisão inteira: descarta a parte decimal
+resultado_divisao_inteira = dividendo // divisor
+print(resultado_divisao_inteira)        # 1
+print(type(resultado_divisao_inteira))  # &lt;class 'int'&gt;
+</code></pre></div>
+<p>A <strong>ordem de precedência</strong> segue a matemática: primeiro <code>**</code>, depois <code>*</code>,
+<code>/</code>, <code>//</code> e <code>%</code>, e por último <code>+</code> e <code>-</code>. Use
+<strong>parênteses</strong> para deixar a ordem explícita:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Sem parênteses: a multiplicação acontece antes da soma
+print(2 + 3 * 4)    # 14
+
+# Com parênteses: a soma acontece primeiro
+print((2 + 3) * 4)  # 20
+</code></pre></div>
+<p><strong>Exemplo:</strong> carrinho de compras de um e-commerce. Cada vez que o cliente adiciona um item,
+a quantidade aumenta em 1.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># O carrinho começa vazio
+quantidade_itens_carrinho = 0
+
+# Cliente adiciona um item: pegamos o valor atual e somamos 1
+quantidade_itens_carrinho = quantidade_itens_carrinho + 1
+print(quantidade_itens_carrinho)  # 1
+
+# Cliente adiciona mais um item
+quantidade_itens_carrinho = quantidade_itens_carrinho + 1
+print(quantidade_itens_carrinho)  # 2
+</code></pre></div>
+<p>Como esse padrão é muito comum, o Python oferece os <strong>operadores de atribuição composta</strong>,
+que fazem a operação e a atribuição de uma só vez:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Forma curta</th><th>Equivale a</th></tr></thead>
+<tbody>
+<tr><td><code>x += 1</code></td><td><code>x = x + 1</code></td></tr>
+<tr><td><code>x -= 1</code></td><td><code>x = x - 1</code></td></tr>
+<tr><td><code>x *= 2</code></td><td><code>x = x * 2</code></td></tr>
+<tr><td><code>x /= 2</code></td><td><code>x = x / 2</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Mesmo exemplo, agora com o operador +=
+quantidade_itens_carrinho = 0
+
+quantidade_itens_carrinho += 1
+print(quantidade_itens_carrinho)  # 1
+
+quantidade_itens_carrinho += 1
+print(quantidade_itens_carrinho)  # 2
+</code></pre></div>
+<p><strong>Exemplo:</strong> total a pagar por um produto vendido a quilo.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Preço do quilo e quantidade comprada (250 gramas = 0.250 kg)
+preco_por_kg = 47
+quantidade_kg = 0.250
+
+total_a_pagar = preco_por_kg * quantidade_kg
+print(total_a_pagar)  # 11.75
+</code></pre></div>
+<p><strong>Exemplo:</strong> o operador <code>%</code> (resto) é muito usado para verificar se um número é
+<strong>par</strong> - todo número par tem resto <code>0</code> quando dividido por 2.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">numero_pedido = 1024
+
+resto_da_divisao = numero_pedido % 2
+print(resto_da_divisao)  # 0 - indica que o número é par
+</code></pre></div>
+<h2>Conversão</h2>
+<p>Podemos converter os tipos numéricos entre si com as funções nativas <code>int()</code>,
+<code>float()</code> e <code>complex()</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># float -> int: a parte decimal é DESCARTADA (não é arredondamento!)
+print(int(3.9))  # 3
+
+# int -> float
+print(float(10))  # 10.0
+
+# int -> complex
+print(complex(1))  # (1+0j)
+</code></pre></div>
+<p>Se o objetivo for <strong>arredondar</strong>, use a função <code>round()</code>, informando o número e a
+quantidade de casas decimais desejada. Ela é especialmente útil para valores monetários:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_bruto = 51.326666
+
+print(round(valor_bruto))     # 51 - arredonda para o inteiro mais próximo
+print(round(valor_bruto, 2))  # 51.33 - arredonda para 2 casas decimais
+</code></pre></div>
+<h2>Revisitando a motivação</h2>
+<p>Agora temos todas as ferramentas para preencher a planilha do restaurante. Ticket médio do dia
+<strong>19/01</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_vendas_19 = 153.98
+quantidade_vendas_19 = 3
+
+ticket_medio_19 = valor_vendas_19 / quantidade_vendas_19
+print(round(ticket_medio_19, 2))  # 51.33
+</code></pre></div>
+<p>Ticket médio do dia <strong>20/01</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_vendas_20 = 337.01
+quantidade_vendas_20 = 7
+
+ticket_medio_20 = valor_vendas_20 / quantidade_vendas_20
+print(round(ticket_medio_20, 2))  # 48.14
+</code></pre></div>
+<p>Ticket médio do dia <strong>23/01</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_vendas_23 = 295.33
+quantidade_vendas_23 = 5
+
+ticket_medio_23 = valor_vendas_23 / quantidade_vendas_23
+print(round(ticket_medio_23, 2))  # 59.07
+</code></pre></div>
+<p>E o ticket médio do <strong>período inteiro</strong>? Uma primeira ideia seria tirar a média dos três
+tickets diários:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Média simples dos tickets diários
+media_dos_tickets = (ticket_medio_19 + ticket_medio_20 + ticket_medio_23) / 3
+print(round(media_dos_tickets, 2))  # 52.85
+</code></pre></div>
+<p>Porém, essa abordagem dá o <strong>mesmo peso</strong> para todos os dias, mesmo que o dia 20/01 tenha
+tido mais que o dobro de vendas do dia 19/01. O jeito correto é aplicar a própria fórmula do
+ticket médio ao período todo: <strong>somar todos os valores</strong> e dividir pela <strong>soma de todas as
+quantidades</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Totais do período
+valor_total_periodo = valor_vendas_19 + valor_vendas_20 + valor_vendas_23
+quantidade_total_periodo = quantidade_vendas_19 + quantidade_vendas_20 + quantidade_vendas_23
+
+# Ticket médio do período (média ponderada pela quantidade de vendas)
+ticket_medio_periodo = valor_total_periodo / quantidade_total_periodo
+print(round(ticket_medio_periodo, 2))  # 52.42
+</code></pre></div>
+<blockquote>
+<p>Os dois resultados são diferentes! Em análise de dados, entender <strong>o que</strong> uma métrica
+representa é tão importante quanto saber calculá-la.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-numeros-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-numeros-q">Qual é o resultado de <code>7 // 2</code> em Python?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="3.5 é o resultado de 7 / 2 (divisão comum), não de //."><input type="radio" name="quiz-python-numeros" value="0" /><span class="txt">3.5</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="A divisão inteira (//) descarta a parte decimal e retorna 3."><input type="radio" name="quiz-python-numeros" value="1" /><span class="txt">3</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="1 é o resultado de 7 % 2 (resto da divisão), não de //."><input type="radio" name="quiz-python-numeros" value="2" /><span class="txt">1</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="4 seria o resultado se o Python arredondasse - mas // apenas descarta a parte decimal."><input type="radio" name="quiz-python-numeros" value="3" /><span class="txt">4</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

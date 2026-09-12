@@ -1,19 +1,6 @@
 {
   "bootcamps": [
     {
-      "id": "ready-to-deploy",
-      "title": "Ready to Deploy",
-      "description": "Python do zero ao primeiro deploy. Você começa sem nunca ter programado — lógica, terminal e Git — passa por SQL e modelagem de dados, aprende a construir a parte que roda no servidor com uma API de verdade, e termina colocando o projeto no ar. Cada módulo vem com prática, e cada projeto vira código rodando em produção.",
-      "outcome": "Ao terminar, você escreve Python com confiança, versiona tudo no Git, modela e consulta dados em SQL, constrói uma API com banco e autenticação, e faz o deploy do seu projeto — com um portfólio público pra mostrar.",
-      "level": "Iniciante",
-      "duration": "4 meses",
-      "modules": 4,
-      "projects": 3,
-      "hot": true,
-      "new": false,
-      "rating": { "score": 4.9, "count": 27 }
-    },
-    {
       "id": "desenvolvedor-backend",
       "title": "Desenvolvedor Backend",
       "description": "Da lógica ao backend de produção: a base vem do JavaScript, a forma vem do TypeScript, o dado passa por SQL e NoSQL, a API sai em Node/Express com autenticação, o ambiente sobe com Docker, e a noção de complexidade de algoritmos é o que separa código que vira produto de código que vira legenda. Cinco projetos no caminho, e o último é um encurtador de URLs — você termina com código de verdade rodando.",
@@ -50,17 +37,56 @@
       }
     },
     {
-      "id": "desenvolvedor-frontend",
-      "title": "Desenvolvedor Frontend",
-      "description": "Do zero absoluto ao frontend de produção. Você começa sem nunca ter programado — lógica, terminal e Git — passa pela base da web (HTML, CSS, layout responsivo), aprende a construir interfaces de verdade com JavaScript e React, tipa tudo com TypeScript, e então entra no que separa um junior pronto pro mercado: formulários sérios, server state, Next.js, testes, performance, acessibilidade a fundo, segurança e deploy na edge. Sete projetos no caminho e a IA como par de programação desde cedo.",
-      "outcome": "Ao terminar, você constrói e faz deploy de aplicações web completas: interfaces acessíveis e responsivas em React + TypeScript, com formulários validados ponta a ponta, server state gerenciado, renderização no servidor com Next.js, cobertura de testes, orçamento de performance e hardening de segurança — tudo versionado no Git e publicado na edge.",
+      "id": "python-na-pratica",
+      "title": "Python na Prática",
+      "description": "Python do absoluto zero: variáveis e tipos, estruturas de dados, condicionais e laços, arquivos e funções, programação funcional, orientação a objetos, módulos e pacotes, tratamento de erros e scripting. Nove módulos, cada um construindo em cima do anterior, até você sair escrevendo scripts Python de verdade.",
+      "outcome": "Ao terminar, você lê e escreve Python com confiança: manipula listas, conjuntos e dicionários, controla o fluxo do programa, lê e escreve arquivos, cria funções e classes, trata erros em tempo de execução e roda seus próprios scripts pelo terminal.",
       "level": "Iniciante",
-      "duration": "7 meses",
-      "modules": 18,
-      "projects": 7,
+      "duration": "2 meses",
+      "modules": 9,
+      "projects": 0,
       "hot": false,
       "new": true,
-      "rating": { "score": 5.0, "count": 12 }
+      "detail": {
+        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
+        "curriculum": [
+          { "type": "modulo", "id": "python-variaveis-e-tipos-de-dados", "title": "Variáveis e Tipos de Dados", "description": "Introdução ao Python: variáveis, números, strings e booleanos." },
+          { "type": "modulo", "id": "python-estruturas-de-dados", "title": "Estruturas de Dados", "description": "Listas, conjuntos e dicionários." },
+          { "type": "modulo", "id": "python-fluxo-condicional-e-repeticao", "title": "Fluxo Condicional & Repetição", "description": "Estruturas condicionais (if/else/elif, try/except/finally) e laço for." },
+          { "type": "modulo", "id": "python-arquivos-e-funcoes", "title": "Arquivos & Funções", "description": "Leitura e escrita de arquivos, criação de funções e escopo de variáveis." },
+          { "type": "modulo", "id": "python-programacao-funcional", "title": "Programação Funcional", "description": "Funções lambda, map, filter e reduce." },
+          { "type": "modulo", "id": "python-programacao-orientada-a-objetos", "title": "Programação Orientada a Objetos", "description": "Classes, objetos e herança." },
+          { "type": "modulo", "id": "python-modulos-e-pacotes", "title": "Módulos & Pacotes", "description": "Importação, criação e instalação de módulos e pacotes." },
+          { "type": "modulo", "id": "python-tratamento-de-erros", "title": "Tratamento de Erros", "description": "Tipos de erros, erros de sintaxe e tratamento em tempo de execução." },
+          { "type": "modulo", "id": "python-scripting", "title": "Scripting", "description": "Instalação do Python, execução via terminal e criação de scripts." }
+        ]
+      }
+    },
+    {
+      "id": "sql-para-analise-de-dados",
+      "title": "SQL para Análise de Dados",
+      "description": "SQL do zero até análise de dados de verdade: bases relacionais, criação e manipulação de tabelas, seleção e ordenação, filtros e seleção condicional, agregações, múltiplas tabelas e junções, SQL avançado com subqueries e views, fechando com um projeto final de exploração de dados no Kaggle.",
+      "outcome": "Ao terminar, você modela e consulta bases relacionais, escreve SELECTs com filtros, ordenação e agregações, junta múltiplas tabelas (inner/left/right), usa subqueries e views, e conduz uma análise exploratória de dados do início ao storytelling final.",
+      "level": "Intermediário",
+      "duration": "3 meses",
+      "modules": 8,
+      "projects": 1,
+      "hot": false,
+      "new": false,
+      "comingSoon": true,
+      "detail": {
+        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
+        "curriculum": [
+          { "type": "modulo", "id": "sql-base-de-dados-e-linguagem-sql", "title": "Módulo 1 — Base de Dados & Linguagem SQL", "description": "Bases de dados relacionais, introdução ao SQL (DDL/DML) e armazenamento e consulta na nuvem com AWS S3 e Athena.", "disabled": true },
+          { "type": "modulo", "id": "sql-trabalhando-com-tabelas", "title": "Módulo 2 — Trabalhando com Tabelas", "description": "Criando tabelas, alterando e descartando tabelas, inserindo, atualizando e apagando dados.", "disabled": true },
+          { "type": "modulo", "id": "sql-selecionando-e-ordenando", "title": "Módulo 3 — Selecionando & Ordenando", "description": "Restrição de colunas (chaves e restrições), seleção de dados e ordenação e limitação de resultados.", "disabled": true },
+          { "type": "modulo", "id": "sql-filtrando-e-selecao-condicional", "title": "Módulo 4 — Filtrando & Seleção Condicional", "description": "Filtros AND, OR, IN e BETWEEN, filtros LIKE e wildcards, e seleção condicional.", "disabled": true },
+          { "type": "modulo", "id": "sql-agregacoes", "title": "Módulo 5 — Agregações", "description": "Função COUNT e cláusula GROUP BY, funções MIN/MAX/SUM/AVG e cláusula HAVING.", "disabled": true },
+          { "type": "modulo", "id": "sql-trabalhando-com-multiplas-tabelas", "title": "Módulo 6 — Trabalhando com Múltiplas Tabelas", "description": "UNION, junções inner/cross e junções left/right.", "disabled": true },
+          { "type": "modulo", "id": "sql-avancado", "title": "Módulo 7 — SQL Avançado", "description": "Subqueries, agregações por particionamento e views.", "disabled": true },
+          { "type": "modulo", "id": "sql-projeto-final", "title": "Módulo 8 — Projeto Final", "description": "Plataforma Kaggle, exploração e análise de dados (EDA) e storytelling.", "disabled": true }
+        ]
+      }
     }
   ]
 }

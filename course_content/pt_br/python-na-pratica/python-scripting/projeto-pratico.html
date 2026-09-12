@@ -1,0 +1,265 @@
+<div class="prose">
+<p>Chegou a hora de sair da teoria e colocar a mão no código! Neste projeto você vai usar tudo o que aprendeu no Módulo 09 — <strong>verificar o ambiente Python</strong>, o <strong>modo interativo (REPL)</strong> e, principalmente, <strong>criar e executar arquivos de script</strong> com argumentos de linha de comando — para resolver, em uma única história, um desafio bem parecido com o que aparece no dia a dia de quem trabalha com dados.</p>
+<h2>O contexto</h2>
+<p>A <strong>ScriptZen Automação</strong> é uma pequena consultoria de tecnologia contratada por outras empresas para automatizar tarefas repetitivas — o tipo de trabalho que roda sozinho, num servidor, sem ninguém clicando em "Executar". Você acabou de ser contratado(a) como <strong>Analista de Automação Jr.</strong>, e hoje é o seu primeiro dia mexendo com <em>scripts</em> de verdade, e não só notebooks.</p>
+<p>O time te chamou no chat interno com uma lista de tarefas, organizadas em <strong>missões</strong>. Cada missão usa um pedaço do que você aprendeu no Módulo 09 — e, no final do dia, você vai juntar tudo em um painel para apresentar na reunião de operações.</p>
+<blockquote>
+<p><strong>Dica:</strong> não existe só uma forma "certa" de resolver cada missão. Depois de cada uma você vai encontrar o resultado esperado, mas o caminho até lá é seu. Teste, erre, corrija e tente de novo — é assim que se aprende a programar.</p>
+</blockquote>
+<h2>Objetivo</h2>
+<p>Ao final deste projeto, você terá praticado, dentro de um único cenário conectado:</p>
+<ul>
+<li>Conferir a instalação do Python e do PIP com o módulo <code>platform</code>;</li>
+<li>Escrever, salvar e executar arquivos de <strong>script</strong> (<code>.py</code>);</li>
+<li>Ler e validar <strong>argumentos de linha de comando</strong> com <code>sys.argv</code>;</li>
+<li>Combinar o tratamento de erros do Módulo 08 (<code>try/except/else</code>, exceções personalizadas) com a criação de <em>scripts</em> de automação.</li>
+</ul>
+<p>Nada de exercícios soltos e sem contexto: tudo aqui acontece dentro da mesma história, do jeito que aconteceria em um projeto de verdade.</p>
+<h2>Requisitos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Detalhe</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Este notebook aberto e pronto para rodar</td></tr>
+<tr><td>Conceitos do Módulo 01 ao 09</td><td>Arquivos, funções, classes, exceções (<code>try</code>/<code>except</code>/<code>raise</code>) e, claro, <code>sys.argv</code> e a criação de <em>scripts</em></td></tr>
+<tr><td>Módulos e funções usados</td><td><code>platform</code>, <code>sys.argv</code>, <code>open()</code>, <code>os.path.exists()</code>, <code>datetime</code>, <code>exec()</code></td></tr>
+<tr><td>Bibliotecas externas</td><td>Nenhuma! Só Python puro e a biblioteca padrão</td></tr>
+</tbody>
+</table></div>
+<p>Não é necessário nenhum conhecimento além do que foi visto até o Módulo 09. Se alguma missão parecer difícil, a dica de cada uma aponta a seção certa para revisar.</p>
+<blockquote>
+<p>Em um notebook não dá para abrir um terminal de verdade, então sempre que uma missão pedir para "rodar" um script, vamos <strong>simular</strong> a chamada de terminal: definindo <code>sys.argv</code> manualmente com os mesmos valores que você digitaria depois do nome do arquivo, e executando o conteúdo do arquivo com <code>exec()</code> — a mesma função vista na seção 2.1 do Módulo 08. No seu próprio computador, o comando de verdade seria <code>python nome_do_arquivo.py argumento1 argumento2</code>.</p>
+</blockquote>
+<h2>Como o projeto funciona</h2>
+<p>O notebook está dividido em <strong>5 missões</strong>, na ordem em que a ScriptZen te chamou:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missão</th><th>Tema</th><th>Conceito principal</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Conferindo o ambiente</td><td>Instalação e REPL</td></tr>
+<tr><td>2</td><td>Primeiro script de automação</td><td>Scripts e <code>sys.argv</code></td></tr>
+<tr><td>3</td><td>Validando os argumentos</td><td><code>sys.argv</code> + <code>try</code>/<code>except</code>/<code>else</code></td></tr>
+<tr><td>4</td><td>Registro de execuções</td><td>Scripts + arquivos</td></tr>
+<tr><td>5</td><td>Painel de operações</td><td>Tudo junto!</td></tr>
+</tbody>
+</table></div>
+<p>Em cada missão você vai encontrar: uma mensagem de alguém do time, com o pedido; uma célula de código com os dados já prontos e comentários <code># TODO</code> indicando onde você precisa escrever; o <strong>resultado esperado</strong>, uma prévia do que deve aparecer na tela quando estiver certo; e uma <strong>dica</strong>, para quando bater aquele branco.</p>
+<h2>Missão 1 — Conferindo o ambiente</h2>
+<blockquote>
+<p><strong>Igor (Suporte de TI):</strong> "Antes de mais nada, preciso que todo script novo comece checando se o ambiente tá ok: versão do Python correta e sistema operacional identificado. Nada de rodar automação em Python 2 esquecido por aí! E de quebra, testa duas continhas rapidinho, só pra você pegar o jeito de como o modo interativo mostra resultado na hora."</p>
+</blockquote>
+<p><strong>Parte A — Diagnóstico do ambiente.</strong> Usando o módulo <code>platform</code> (seção 1.1 do Módulo 09), crie:</p>
+<ul>
+<li><code>versao_python</code>, com <code>platform.python_version()</code>;</li>
+<li><code>versao_e_python3</code>, um booleano que confirma se a versão instalada é <strong>Python 3</strong> (dica: <code>versao_python.split('.')[0]</code>, comparado com <code>'3'</code>);</li>
+<li><code>sistema_operacional</code>, com <code>platform.system()</code>.</li>
+</ul>
+<p>Imprima <code>versao_e_python3</code> e <code>sistema_operacional</code>, nessa ordem, com rótulos.</p>
+<p><strong>Parte B — Aquecendo pro REPL.</strong> No modo interativo (seção 2.2), cada linha digitada mostra o resultado na hora, sem precisar de <code>print()</code>. Aqui no notebook simulamos isso: crie <code>potencia_teste</code> com <code>2 ** 10</code> e <code>repeticao_teste</code> com <code>'Zen' * 3</code>, e imprima os dois com <code>print()</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Parte A: diagnóstico do ambiente
+# TODO 1: importe platform
+
+
+# TODO 2: crie versao_python, versao_e_python3 e sistema_operacional
+
+
+# TODO 3: imprima versao_e_python3 e sistema_operacional, com rótulos
+
+
+# Parte B: aquecendo pro REPL
+# TODO 4: crie potencia_teste (2 ** 10) e repeticao_teste ('Zen' * 3), e imprima os dois
+</code></pre></div>
+<p><strong>Resultado esperado</strong> (a linha do sistema operacional e a Parte B variam de máquina para máquina):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Rodando em Python 3? True
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> na Parte A, <code>platform.python_version()</code> devolve uma <em>string</em> como <code>'3.12.6'</code> — o <code>.split('.')</code> a quebra em <code>['3', '12', '6']</code>, e o índice <code>[0]</code> pega só o número da versão principal (releia a seção 1.1). Na Parte B, <code>2 ** 10</code> é potenciação (Módulo 01) e <code>'Zen' * 3</code> repete a <em>string</em> três vezes: é exatamente esse tipo de resultado imediato que o REPL mostra, linha a linha, sem <code>print()</code>.</p>
+</blockquote>
+<h2>Missão 2 — Primeiro script de automação</h2>
+<blockquote>
+<p><strong>Sofia (Atendimento a Clientes):</strong> "Toda vez que fechamos um cliente novo, alguém do meu time digita a mesma mensagem de boas-vindas na mão, só trocando o nome e o plano. Dá pra automatizar isso com um script?"</p>
+</blockquote>
+<p><strong>Sua missão:</strong> escreva o código de um script <code>boasvindas.py</code> (igual ao <code>saudacao.py</code> da seção 3.1 do Módulo 09, só que recebendo <strong>dois</strong> argumentos em vez de um) e "execute-o" simulando a chamada <code>python boasvindas.py Marina Premium</code>:</p>
+<ol>
+<li>Numa <em>string</em> chamada <code>codigo_script_boasvindas</code>, escreva um script que importe <code>sys</code>, leia o nome do cliente em <code>sys.argv[1]</code> e o plano em <code>sys.argv[2]</code>, e imprima <code>Olá, &lt;nome&gt;! Seu plano &lt;plano&gt; já está ativo. Bem-vindo(a) à ScriptZen!</code>;</li>
+<li>Grave essa <em>string</em> em um arquivo <code>boasvindas.py</code> com <code>open()</code>;</li>
+<li>Simule a chamada de terminal: monte <code>sys.argv</code> como a lista <code>['boasvindas.py', 'Marina', 'Premium']</code> e execute o arquivo com <code>exec(open('boasvindas.py', encoding='utf-8').read())</code>.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Sofia quer automatizar a mensagem de boas-vindas de clientes novos
+import sys
+
+# TODO 1: escreva, em codigo_script_boasvindas, um script que leia
+# sys.argv[1] (nome do cliente) e sys.argv[2] (plano do cliente) e imprima
+# a mensagem de boas-vindas
+
+
+# TODO 2: grave codigo_script_boasvindas no arquivo boasvindas.py com open()
+
+
+# TODO 3: simule "python boasvindas.py Marina Premium": monte sys.argv com
+# esses três itens e execute o arquivo com exec(open(...).read())
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Ola, Marina! Seu plano Premium ja esta ativo. Bem-vindo(a) a ScriptZen!
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> é praticamente o <code>saudacao.py</code> da seção 3.1, só que com um segundo argumento: <code>sys.argv[0]</code> é sempre o nome do próprio script, <code>sys.argv[1]</code> é o primeiro valor extra e <code>sys.argv[2]</code> é o segundo. No seu computador, sem o notebook no meio, você rodaria só <code>python boasvindas.py Marina Premium</code> direto no terminal, sem precisar mexer em <code>sys.argv</code> manualmente.</p>
+</blockquote>
+<h2>Missão 3 — Validando os argumentos</h2>
+<blockquote>
+<p><strong>Igor (Suporte de TI):</strong> "O pessoal andou rodando o script de estimativa de tempo sem passar os dois números certinhos, e a tela deles enche de traceback assustador. Dá pra fazer o script avisar com uma mensagem amigável em vez de quebrar feio?"</p>
+</blockquote>
+<p><strong>Sua missão:</strong> escreva um script <code>estimar_tempo.py</code> que recebe dois argumentos — a duração de uma execução em minutos e a quantidade de execuções — e calcula o tempo total, mas <strong>sem deixar o programa quebrar</strong> se algo vier errado (seção 3.1 do Módulo 09 + seção 3.5 do Módulo 08):</p>
+<ol>
+<li>Se <code>sys.argv</code> tiver menos de 3 itens (faltou algum argumento), imprima uma mensagem de uso, no formato <code>Uso: python estimar_tempo.py &lt;duracao_por_execucao_min&gt; &lt;quantidade_execucoes&gt;</code>;</li>
+<li>Caso contrário, tente converter os dois argumentos (<code>float</code> e <code>int</code>) dentro de um <code>try</code>; se algum não for um número válido, capture o <code>ValueError</code> e imprima <code>Os dois argumentos precisam ser numeros.</code>;</li>
+<li>Se a conversão der certo, calcule <code>tempo_total_min</code> (duração × quantidade) no bloco <code>else</code> e imprima <code>Tempo total estimado: &lt;valor&gt; minutos</code>, com uma casa decimal.</li>
+</ol>
+<p>Depois, "execute" o script duas vezes: uma com <code>sys.argv = ['estimar_tempo.py', '3.5', '40']</code>, e outra só com <code>sys.argv = ['estimar_tempo.py', '3.5']</code> (faltando a quantidade).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Igor quer que o script avise com clareza quando os argumentos vierem errados
+import sys
+
+# TODO 1: escreva, em codigo_script_estimar_tempo, o script descrito no
+# enunciado (checagem de len(sys.argv), try/except ValueError, else)
+
+
+# TODO 2: grave o script em estimar_tempo.py com open()
+
+
+# TODO 3: simule "python estimar_tempo.py 3.5 40" e execute o arquivo
+
+
+# TODO 4: simule "python estimar_tempo.py 3.5" (sem o segundo argumento) e
+# execute o arquivo de novo
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Tempo total estimado: 140.0 minutos
+Uso: python estimar_tempo.py &lt;duracao_por_execucao_min&gt; &lt;quantidade_execucoes&gt;
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> a checagem <code>len(sys.argv) &lt; 3</code> evita até tentar acessar <code>sys.argv[2]</code> quando ele não existe — lembra do <code>IndexError</code> mencionado na seção 3.1? Aqui a gente se antecipa a ele. O <code>try/except/else</code> é o mesmo padrão da seção 3.5 do Módulo 08: só o código que pode falhar (a conversão) fica no <code>try</code>, e o cálculo que depende dele fica no <code>else</code>, que só roda se a conversão deu certo.</p>
+</blockquote>
+<h2>Missão 4 — Registro de execuções</h2>
+<blockquote>
+<p><strong>Thiago (Financeiro e Operações):</strong> "Preciso conseguir provar pro cliente que os scripts dele realmente rodaram todo santo dia. Cria um jeito de cada execução ficar registrada num arquivo, com data, nome do script e status?"</p>
+</blockquote>
+<p><strong>Sua missão:</strong> monte um pequeno "log" de execuções em <code>registro_execucoes.csv</code>, no estilo do exemplo <code>extrair_taxa.py</code> da seção 3.1 do Módulo 09 (criar o cabeçalho só na primeira vez, depois só acrescentar linhas):</p>
+<ol>
+<li>Se o arquivo <code>registro_execucoes.csv</code> ainda não existir (<code>os.path.exists()</code>), crie-o já com o cabeçalho <code>data,script,status</code>;</li>
+<li>Formate <code>data_execucao</code> (já pronta, como objeto <code>datetime</code>) no formato <code>AAAA-MM-DD</code>, guardando em <code>data_formatada</code>;</li>
+<li>Acrescente (modo <code>'a'</code>) uma linha com <code>data_formatada</code>, <code>nome_script_executado</code> e <code>status_execucao</code>;</li>
+<li>Leia o arquivo de volta e imprima o conteúdo inteiro.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Dados da execução de hoje (dados já prontos)
+import os
+from datetime import datetime as dt
+
+arquivo_log = 'registro_execucoes.csv'
+nome_script_executado = 'estimar_tempo.py'
+status_execucao = 'sucesso'
+data_execucao = dt(2026, 4, 2)
+
+# TODO 1: se arquivo_log não existir, crie-o com o cabeçalho 'data,script,status\n'
+
+
+# TODO 2: crie data_formatada no formato AAAA-MM-DD a partir de data_execucao
+# (dica: data_execucao.year, .month e .day)
+
+
+# TODO 3: acrescente (modo 'a') uma linha com data_formatada, nome_script_executado
+# e status_execucao, separados por vírgula
+
+
+# TODO 4: leia arquivo_log de volta e imprima o conteúdo inteiro
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">data,script,status
+2026-04-02,estimar_tempo.py,sucesso
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> o <code>:02d</code> dentro da <em>f-string</em> preenche o mês e o dia com um zero à esquerda quando necessário (<code>4</code> vira <code>04</code>) — sem ele, <code>2026-4-2</code> ficaria fora do padrão AAAA-MM-DD. E não esqueça: <code>os.path.exists()</code> já apareceu no Extra 2 do Módulo 07, e o modo <code>'a'</code> (acrescentar sem apagar o que já existe) foi visto na aula de escrita de arquivos do Módulo 04.</p>
+</blockquote>
+<h2>Missão 5 — Painel de operações</h2>
+<blockquote>
+<p><strong>Igor (Suporte de TI):</strong> "Adorei o trabalho de hoje! Pra fechar com chave de ouro, monta um painel único juntando tudo que você automatizou — ambiente, mensagem de boas-vindas, estimativa de tempo e o registro de execuções. Vou mostrar isso pra diretoria amanhã de manhã."</p>
+</blockquote>
+<p><strong>Sua missão:</strong> usando <code>print()</code> e <em>f-strings</em>, monte um painel que reúna em um único bloco de texto, pelo menos:</p>
+<ul>
+<li>Se o ambiente está rodando em Python 3 (Missão 1);</li>
+<li>O tempo total estimado calculado na Missão 3 (<code>tempo_total_min</code>, da primeira chamada, com argumentos válidos);</li>
+<li>Quantas linhas tem o arquivo de registro (Missão 4), sem contar o cabeçalho.</li>
+</ul>
+<p>Capriche na formatação: use <code>'-' * 40</code> (ou o caractere que preferir) para criar linhas separadoras. Aqui <strong>não existe gabarito único</strong> — o painel é seu, deixe com a sua cara!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Painel de operações — ScriptZen Automação
+# TODO: monte o seu painel reaproveitando as variáveis das Missões 1 a 4.
+# Use print(), f-strings e o operador * para criar os separadores.
+</code></pre></div>
+<p><strong>Exemplo de resultado</strong> (o seu pode — e deve — ficar diferente; essa é só uma ideia de formato):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">----------------------------------------
+ScriptZen Automação — Painel de operações
+----------------------------------------
+Rodando em Python 3? True
+Tempo total estimado (última automação): 140.0 minutos
+Execuções registradas no log: 1
+----------------------------------------
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> se travar na formatação, comece simples: um <code>print()</code> por linha já resolve. Só depois de funcionar é que vale a pena caprichar nos separadores e no alinhamento.</p>
+</blockquote>
+<h2>Desafios extras</h2>
+<p>As missões acima já cobrem tudo o que você precisa do Módulo 09 — e, com ele, de todo o curso até aqui! Os desafios abaixo são <strong>totalmente opcionais</strong>: encare como um "modo difícil" para quem quer espremer um pouco mais os conceitos. Vá na ordem que quiser, ou pule direto para o que mais te chamar atenção.</p>
+<h2>Extra 1 — O item zero</h2>
+<p><code>sys.argv[0]</code> também existe, e é fácil esquecer dele. Simule a chamada <code>python relatorio.py urgente</code> e imprima <code>sys.argv[0]</code> e <code>sys.argv[1]</code>, com rótulos, para ver a diferença entre os dois.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 1: sys.argv[0] não é o primeiro argumento "de verdade"
+sys.argv = ['relatorio.py', 'urgente']
+
+# TODO: imprima sys.argv[0] e sys.argv[1], com rótulos
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">sys.argv[0]: relatorio.py
+sys.argv[1]: urgente
+</code></pre></div>
+<h2>Extra 2 — Quantidade variável de argumentos</h2>
+<p>Nem todo script recebe um número fixo de argumentos. Simule a chamada <code>python somar.py 10 20 30</code> e some <strong>todos</strong> os argumentos recebidos, sem se preocupar em quantos são (dica: <code>sys.argv[1:]</code> é uma lista fatiada, e cada item ainda é <em>string</em>).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 2: somando uma quantidade qualquer de argumentos
+sys.argv = ['somar.py', '10', '20', '30']
+
+# TODO: crie soma_total somando todos os itens de sys.argv[1:] já convertidos
+# para float, e imprima
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">Soma total: 60.0
+</code></pre></div>
+<h2>Extra 3 — Uma exceção com nome próprio</h2>
+<p>Em vez de só <code>print()</code> a mensagem de uso, que tal lançar uma exceção personalizada (seção 3.7 do Módulo 08) quando faltar argumento? Simule <code>python estimar_tempo.py 3.5</code> (só um argumento) e lance uma <code>ArgumentoFaltandoError</code> com uma mensagem de uso, capturando-a logo em seguida para imprimir.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 3: uma exceção com nome próprio
+sys.argv = ['estimar_tempo.py', '3.5']
+
+class ArgumentoFaltandoError(Exception):
+    '''Lançada quando um script não recebe os argumentos necessários.'''
+
+# TODO: dentro de um try, se len(sys.argv) &lt; 3, lance ArgumentoFaltandoError
+# com uma mensagem de uso; capture-a com except e imprima type(erro).__name__
+# e a mensagem
+</code></pre></div>
+<p><strong>Resultado esperado</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-text">ArgumentoFaltandoError: Uso: python estimar_tempo.py &lt;duracao&gt; &lt;quantidade&gt;
+</code></pre></div>
+<h2>Extra 4 — Seu próprio script</h2>
+<p>Pense em uma tarefa chata do seu dia a dia (renomear um grupo de arquivos, gerar uma lista de compras, sortear quem lava a louça...) e escreva um script <code>.py</code> que resolva ela recebendo pelo menos um argumento com <code>sys.argv</code>. Aqui não tem resultado esperado: solte a criatividade!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Extra 4: seu script de automação
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist de autoavaliação</h2>
+<p>Sem provas, sem notas — só uma conferida rápida para você saber onde está:</p>
+<ul>
+<li>Conferi a versão do Python e o sistema operacional com o módulo <code>platform</code> (Missão 1)</li>
+<li>Escrevi um arquivo de script e o "executei" simulando <code>sys.argv</code> (Missão 2)</li>
+<li>Validei os argumentos recebidos antes de usá-los, combinando <code>sys.argv</code> com <code>try</code>/<code>except</code>/<code>else</code> (Missão 3)</li>
+<li>Criei um script que registra suas próprias execuções em um arquivo (Missão 4)</li>
+<li>Montei o painel final reaproveitando as variáveis das missões anteriores (Missão 5)</li>
+<li>Tentei pelo menos um dos desafios extras</li>
+</ul>
+<p>Se a maioria dos itens está marcada, parabéns: você colocou em prática tudo o que a ScriptZen (e o Módulo 09) esperavam de você.</p>
+<blockquote>
+<p>E não é só isso: com este projeto, você concluiu toda a <strong>base de Python</strong> do Ready To Deploy — de variáveis a <em>scripts</em> de automação! A partir daqui, o curso caminha para bibliotecas construídas sobre tudo o que você aprendeu, como <strong>Pandas</strong> e <strong>NumPy</strong>, para você começar a analisar dados de verdade. Bom trabalho!</p>
+</blockquote>
+</div>

@@ -51,6 +51,8 @@
     "hotAria": "Conteúdo em alta",
     "new": "novo",
     "newAria": "Conteúdo novo",
+    "comingSoon": "em breve",
+    "comingSoonAria": "Em breve",
     "ratingAria": "Avaliação média {score} de 5, {count} avaliações"
   },
   "footer": {
