@@ -50,7 +50,7 @@
       "detail": {
         "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
         "curriculum": [
-          { "type": "modulo", "id": "python-variaveis-e-tipos-de-dados", "title": "Módulo 1 — Variáveis e Tipos de Dados", "description": "Introdução ao Python: variáveis, números, strings e booleanos.", "disabled": true },
+          { "type": "modulo", "id": "python-variaveis-e-tipos-de-dados", "title": "Módulo 1 — Variáveis e Tipos de Dados", "description": "Introdução ao Python: variáveis, números, strings e booleanos." },
           { "type": "modulo", "id": "python-estruturas-de-dados", "title": "Módulo 2 — Estruturas de Dados", "description": "Listas, conjuntos e dicionários.", "disabled": true },
           { "type": "modulo", "id": "python-fluxo-condicional-e-repeticao", "title": "Módulo 3 — Fluxo Condicional & Repetição", "description": "Estruturas condicionais (if/else/elif, try/except/finally) e laço for.", "disabled": true },
           { "type": "modulo", "id": "python-arquivos-e-funcoes", "title": "Módulo 4 — Arquivos & Funções", "description": "Leitura e escrita de arquivos, criação de funções e escopo de variáveis.", "disabled": true },

@@ -393,6 +393,206 @@
           ]
         }
       ]
+    },
+    {
+      "id": "python-colab",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 1,
+      "title": "Introdução ao Google Colab",
+      "navTitle": "Google Colab",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-variaveis-e-tipos-de-dados/colab.html",
+      "resources": [
+        {
+          "name": "Google Colaboratory - página oficial",
+          "href": "https://colab.research.google.com/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Overview of Colaboratory Features (Google, em inglês)",
+          "href": "https://colab.research.google.com/notebooks/basic_features_overview.ipynb",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-variaveis",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 2,
+      "title": "Variáveis",
+      "navTitle": "Variáveis",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-variaveis-e-tipos-de-dados/variaveis.html",
+      "resources": [
+        {
+          "name": "PEP 8 - Style Guide for Python Code",
+          "href": "https://peps.python.org/pep-0008/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Tipos internos do Python (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-numeros",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 3,
+      "title": "Números",
+      "navTitle": "Números",
+      "badge": "essencial",
+      "readTime": "8 min de leitura",
+      "content": "python-variaveis-e-tipos-de-dados/numeros.html",
+      "resources": [
+        {
+          "name": "Tipos numéricos - int, float, complex (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#numeric-types-int-float-complex",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Função round() (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/functions.html#round",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-strings",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 4,
+      "title": "Strings",
+      "navTitle": "Strings",
+      "badge": "essencial",
+      "readTime": "9 min de leitura",
+      "content": "python-variaveis-e-tipos-de-dados/strings.html",
+      "resources": [
+        {
+          "name": "Text Sequence Type - str (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#text-sequence-type-str",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Métodos de string (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#string-methods",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-booleanos",
+      "module_id": "python-variaveis-e-tipos-de-dados",
+      "order": 5,
+      "title": "Booleanos",
+      "navTitle": "Booleanos",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-variaveis-e-tipos-de-dados/booleanos.html",
+      "resources": [
+        {
+          "name": "Truth Value Testing (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#truth-value-testing",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Boolean Operations - and, or, not (documentação oficial, PT-BR)",
+          "href": "https://docs.python.org/pt-br/3/library/stdtypes.html#boolean-operations-and-or-not",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
     }
   ]
 }

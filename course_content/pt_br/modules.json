@@ -43,6 +43,16 @@
       "skills": ["sql", "banco-de-dados", "modelagem", "joins", "indices", "transacoes", "seguranca"],
       "hot": false,
       "rating": { "score": 5.0, "count": 10 }
+    },
+    {
+      "id": "python-variaveis-e-tipos-de-dados",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Módulo 1 — Variáveis e Tipos de Dados",
+      "description": "Primeiro módulo do Python na Prática: Google Colab, variáveis, números, strings e booleanos, sempre partindo de problemas reais do dia a dia.",
+      "level": "Iniciante",
+      "nodes": 5,
+      "skills": ["python", "google-colab", "variaveis", "tipos-de-dados", "numeros", "strings", "booleanos"],
+      "hot": false
     }
   ]
 }
