@@ -1,0 +1,279 @@
+<div class="prose">
+<p>Conforme os programas crescem, os mesmos trechos de código começam a se repetir. As <strong>funções</strong> permitem dar um nome a um bloco de código e executá-lo sempre que precisarmos, com valores diferentes a cada vez. Isso deixa o código mais curto, mais organizado e mais fácil de corrigir.</p>
+<h2>Motivação</h2>
+<p>Você trabalha em uma corretora de investimentos e precisa simular o retorno de aplicações com <strong>juros compostos</strong> em diversos cenários. No regime de juros compostos, a cada ano o rendimento é calculado sobre o valor acumulado até ali: <code>valor no fim do ano = valor no início do ano × (1 + taxa de juros anual)</code>.</p>
+<p>Veja como fica o código para simular apenas <strong>dois</strong> cenários:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Cenário 1
+valor_inicial = 1000.00
+taxa_juros_anual = 0.05
+anos = 10
+
+valor_final = valor_inicial
+for ano in range(anos):
+    valor_final = valor_final * (1 + taxa_juros_anual)
+
+print(f'R$ {valor_inicial:.2f} a {taxa_juros_anual:.0%} ao ano, em {anos} anos: R$ {valor_final:.2f}')
+
+# Cenário 2: exatamente o mesmo código, só mudam os valores
+valor_inicial = 1020.00
+taxa_juros_anual = 0.03
+anos = 10
+
+valor_final = valor_inicial
+for ano in range(anos):
+    valor_final = valor_final * (1 + taxa_juros_anual)
+
+print(f'R$ {valor_inicial:.2f} a {taxa_juros_anual:.0%} ao ano, em {anos} anos: R$ {valor_final:.2f}')
+# R$ 1000.00 a 5% ao ano, em 10 anos: R$ 1628.89
+# R$ 1020.00 a 3% ao ano, em 10 anos: R$ 1370.79
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> na <em>f-string</em>, o formato <code>:.0%</code> multiplica o número por 100 e acrescenta o símbolo de porcentagem: <code>0.05</code> vira <code>5%</code>.</p>
+</blockquote>
+<p>E se fossem 50 cenários? Copiar e colar o mesmo bloco 50 vezes deixaria o código enorme, e um erro no cálculo precisaria ser corrigido em 50 lugares.</p>
+<p><strong>Como podemos reaproveitar esse código e evitar tanta repetição?</strong></p>
+<h2>Definição</h2>
+<p>Uma <strong>função</strong> é um bloco de código com nome, que <strong>só é executado quando é chamado</strong>. Já usamos várias funções prontas do Python, como <code>print()</code>, <code>len()</code> e <code>open()</code>. Agora vamos criar as nossas.</p>
+<p><strong>Definindo</strong> uma função:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def nome_da_funcao(parametro_1, parametro_2):
+    # bloco de código (indentado)
+    return valor_de_retorno
+</code></pre></div>
+<p><strong>Chamando</strong> uma função:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">resultado = nome_da_funcao(argumento_1, argumento_2)
+</code></pre></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Parte</th><th>O que significa</th></tr></thead>
+<tbody>
+<tr><td><code>def</code></td><td>Palavra-chave que inicia a definição de uma função</td></tr>
+<tr><td><code>nome_da_funcao</code></td><td>Nome da função, em <code>snake_case</code> e de preferência com um verbo (<code>calcular_</code>, <code>ler_</code>, <code>exibir_</code>)</td></tr>
+<tr><td><code>(parametro_1, ...)</code></td><td><strong>Parâmetros</strong>: variáveis que recebem os valores enviados na chamada</td></tr>
+<tr><td><code>return</code></td><td>Devolve um resultado para quem chamou a função</td></tr>
+</tbody>
+</table></div>
+<p><strong>Exemplo:</strong> uma função que exibe uma mensagem na tela.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Definir a função NÃO executa o código: apenas o guarda com um nome
+def exibir_mensagem(mensagem):
+    print(mensagem)
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Agora sim, a função é executada (e pode ser chamada quantas vezes quisermos)
+exibir_mensagem('Olá, pessoal! Bem-vindos ao módulo 04.')
+exibir_mensagem('Funções evitam repetição de código.')
+# Olá, pessoal! Bem-vindos ao módulo 04.
+# Funções evitam repetição de código.
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> assim como as variáveis, a função precisa ser <strong>definida antes</strong> de ser chamada. Se você chamar <code>exibir_mensagem()</code> sem ter executado a célula com o <code>def</code>, o Python vai gerar um <code>NameError</code>.</p>
+<p><strong>Dica:</strong> é uma boa prática descrever o que a função faz em uma <em><strong>docstring</strong></em>, um texto entre aspas triplas logo abaixo do <code>def</code>. Ela aparece quando alguém usa <code>help()</code> na função.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def exibir_mensagem(mensagem):
+    '''Exibe a mensagem recebida na tela.'''
+    print(mensagem)
+
+help(exibir_mensagem)
+# Help on function exibir_mensagem in module __main__:
+#
+# exibir_mensagem(mensagem)
+#     Exibe a mensagem recebida na tela.
+</code></pre></div>
+<h2>Parâmetros e argumentos</h2>
+<p><strong>Parâmetros</strong> são as variáveis declaradas entre parênteses no <code>def</code>. <strong>Argumentos</strong> são os valores que enviamos para esses parâmetros no momento da chamada. Uma função pode ter nenhum, um ou vários parâmetros.</p>
+<p><strong>Exemplo:</strong> função <strong>sem parâmetros</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def obter_pi():
+    return 3.14159265359
+
+valor_pi = obter_pi()
+print(valor_pi)
+# 3.14159265359
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> nunca guarde o resultado em uma variável com o <strong>mesmo nome</strong> da função, como <code>obter_pi = obter_pi()</code>. A variável substitui a função, e uma segunda chamada <code>obter_pi()</code> gera um <code>TypeError</code>, porque agora o nome aponta para um <code>float</code>, e não para uma função.</p>
+</blockquote>
+<p><strong>Exemplo:</strong> função <strong>com vários parâmetros</strong>. Os argumentos podem ser passados de duas formas: <strong>posicionais</strong> (na mesma ordem dos parâmetros) ou <strong>nomeados</strong> (informando <code>parametro=valor</code>, quando a ordem não importa e a chamada fica mais legível).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def calcular_total_compra(preco_unitario, quantidade):
+    return preco_unitario * quantidade
+
+# Argumentos posicionais: a ordem importa
+print(calcular_total_compra(12.50, 4))
+
+# Argumentos nomeados: a ordem não importa
+print(calcular_total_compra(quantidade=4, preco_unitario=12.50))
+# 50.0
+# 50.0
+</code></pre></div>
+<p><strong>Exemplo:</strong> parâmetros com <strong>valor padrão</strong>. Se o argumento não for informado na chamada, o parâmetro assume o valor definido no <code>def</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def calcular_preco_final(preco, desconto=0.0):
+    return preco * (1 - desconto)
+
+print(calcular_preco_final(100))                # usa o desconto padrão (0%)
+print(calcular_preco_final(100, desconto=0.15))  # desconto de 15%
+# 100.0
+# 85.0
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> parâmetros com valor padrão devem vir <strong>depois</strong> dos parâmetros obrigatórios. Uma definição como <code>def calcular_preco_final(desconto=0.0, preco):</code> gera um <code>SyntaxError</code>.</p>
+</blockquote>
+<p>Também podemos indicar o <strong>tipo esperado</strong> de cada parâmetro e do retorno, usando as <em><strong>type hints</strong></em> (dicas de tipo): <code>parametro: tipo</code> e <code>-&gt; tipo_do_retorno</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def calcular_preco_final(preco: float, desconto: float = 0.0) -&gt; float:
+    return preco * (1 - desconto)
+
+print(calcular_preco_final(250.0, desconto=0.10))
+# 225.0
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> as <em>type hints</em> servem como documentação e ajudam editores de código a apontar erros, mas o Python <strong>não</strong> as verifica durante a execução. Uma chamada com um tipo diferente do indicado continua funcionando (ou falhando) normalmente.</p>
+</blockquote>
+<h2>Retorno</h2>
+<p>O <code>return</code> devolve um valor para quem chamou a função. Esse valor pode ser guardado numa variável, impresso ou usado em outras contas.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def converter_para_maiusculas(texto: str) -&gt; str:
+    texto_maiusculo = texto.upper()
+    return texto_maiusculo
+
+nome = 'André Perez'
+nome_maiusculo = converter_para_maiusculas(nome)
+
+print(nome)
+print(nome_maiusculo)
+# André Perez
+# ANDRÉ PEREZ
+</code></pre></div>
+<p><strong>Exibir não é o mesmo que retornar.</strong> Uma função sem <code>return</code> devolve automaticamente o valor <code>None</code>. Por isso, o resultado de uma função que apenas usa <code>print()</code> não pode ser aproveitado depois:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def exibir_dobro(numero):
+    print(numero * 2)   # apenas mostra na tela
+
+def calcular_dobro(numero):
+    return numero * 2   # devolve o valor
+
+resultado_exibir = exibir_dobro(5)
+resultado_calcular = calcular_dobro(5)
+
+print(f'exibir_dobro devolveu:  {resultado_exibir}')
+print(f'calcular_dobro devolveu: {resultado_calcular}')
+# 10
+# exibir_dobro devolveu:  None
+# calcular_dobro devolveu: 10
+</code></pre></div>
+<p>O <code>return</code> também <strong>encerra a função</strong> imediatamente: nada do que estiver depois dele no mesmo caminho é executado. Isso permite retornar valores diferentes conforme uma condição.</p>
+<p><strong>Exemplo:</strong> classificando o saldo de um cliente do banco.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def classificar_saldo(saldo: float) -&gt; str:
+    if saldo &lt; 0:
+        return 'negativo'   # a função termina aqui se o saldo for negativo
+    if saldo == 0:
+        return 'zerado'
+    return 'positivo'
+
+print(classificar_saldo(-88))
+print(classificar_saldo(0))
+print(classificar_saldo(1787))
+# negativo
+# zerado
+# positivo
+</code></pre></div>
+<p>Uma função pode <strong>retornar mais de um valor</strong>, separando-os por vírgula. Na verdade, o Python junta os valores em uma <strong>tupla</strong>, que podemos "desempacotar" em várias variáveis na chamada.</p>
+<p><strong>Exemplo:</strong> separando o usuário e o provedor de um e-mail.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def extrair_usuario_e_provedor(email: str) -&gt; tuple[str, str]:
+    partes = email.split('@')
+    usuario = partes[0]
+    provedor = partes[1]
+    return usuario, provedor
+
+usuario, provedor = extrair_usuario_e_provedor('andre.perez@gmail.com')
+
+print(usuario)
+print(provedor)
+# andre.perez
+# gmail.com
+</code></pre></div>
+<h2>Tratando erros dentro de funções</h2>
+<p>Funções que lidam com arquivos podem falhar por vários motivos: pasta inexistente, falta de permissão, dados em formato inesperado. Com <code>try/except</code>, a função pode tratar o erro e <strong>informar</strong> a quem chamou se a operação deu certo.</p>
+<p><strong>Exemplo:</strong> uma função reutilizável para gravar um arquivo CSV de uma coluna, que retorna <code>True</code> em caso de sucesso e <code>False</code> em caso de erro.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def escrever_arquivo_csv(nome_arquivo: str, cabecalho: str, valores: list) -&gt; bool:
+    '''Grava um CSV de uma coluna. Retorna True se deu certo e False se houve erro.'''
+    try:
+        with open(nome_arquivo, mode='w', encoding='utf-8') as arquivo:
+            arquivo.write(f'{cabecalho}\n')
+            for valor in valores:
+                arquivo.write(f'{valor}\n')
+    except Exception as erro:
+        print(f'Não foi possível gravar o arquivo: {erro}')
+        return False
+
+    return True
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Chamada correta: valores é uma lista
+gravou = escrever_arquivo_csv('idades_funcao.csv', 'idade', [30, 33, 35, 30, 59])
+print(f'Gravou com sucesso? {gravou}')
+# Gravou com sucesso? True
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Chamada com erro: 10 não é uma lista, então o for dentro da função falha
+gravou = escrever_arquivo_csv('idades_funcao_erro.csv', 'idade', 10)
+print(f'Gravou com sucesso? {gravou}')
+# Não foi possível gravar o arquivo: 'int' object is not iterable
+# Gravou com sucesso? False
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> repare que o programa <strong>não travou</strong> no segundo caso. O erro foi tratado dentro da função, e o valor <code>False</code> permite que o restante do código decida o que fazer.</p>
+</blockquote>
+<h2>Revisitando a motivação</h2>
+<p>Agora podemos colocar o cálculo dos juros compostos em uma função. Repare que ela apenas <strong>calcula e retorna</strong> o valor. Exibir o resultado fica por conta de quem a chama, o que deixa a função mais fácil de reaproveitar.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def calcular_juros_compostos(valor_inicial: float, taxa_juros_anual: float, anos: int) -&gt; float:
+    '''Retorna o valor final de um investimento com juros compostos anuais.'''
+    valor_final = valor_inicial
+    for _ in range(anos):  # "_" indica que a variável do laço não é usada
+        valor_final = valor_final * (1 + taxa_juros_anual)
+    return valor_final
+</code></pre></div>
+<p>Os mesmos dois cenários de antes, agora com uma linha cada:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">valor_final_1 = calcular_juros_compostos(valor_inicial=1000.00, taxa_juros_anual=0.05, anos=10)
+valor_final_2 = calcular_juros_compostos(valor_inicial=1020.00, taxa_juros_anual=0.03, anos=10)
+
+print(f'Cenário 1: R$ {valor_final_1:.2f}')
+print(f'Cenário 2: R$ {valor_final_2:.2f}')
+# Cenário 1: R$ 1628.89
+# Cenário 2: R$ 1370.79
+</code></pre></div>
+<p>E simular vários cenários passa a ser trivial. <strong>Exemplo:</strong> comparando diferentes taxas para o mesmo valor inicial.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">taxas_simuladas = [0.03, 0.05, 0.08, 0.10]
+
+for taxa in taxas_simuladas:
+    valor_final = calcular_juros_compostos(valor_inicial=1000.00, taxa_juros_anual=taxa, anos=10)
+    print(f'Taxa de {taxa:.0%} ao ano: R$ {valor_final:.2f}')
+# Taxa de 3% ao ano: R$ 1343.92
+# Taxa de 5% ao ano: R$ 1628.89
+# Taxa de 8% ao ano: R$ 2158.92
+# Taxa de 10% ao ano: R$ 2593.74
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> os juros compostos também têm uma fórmula direta, <code>valor final = valor inicial × (1 + taxa) ^ anos</code>, que em Python fica <code>valor_inicial * (1 + taxa_juros_anual) ** anos</code>. Como o cálculo está isolado em uma função, poderíamos trocar o laço pela fórmula <strong>sem mudar nenhuma chamada</strong>. Essa é outra grande vantagem das funções.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Conferindo: a fórmula direta dá o mesmo resultado que o laço
+print(round(1000.00 * (1 + 0.05) ** 10, 2))
+print(round(calcular_juros_compostos(1000.00, 0.05, 10), 2))
+# 1628.89
+# 1628.89
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> o <code>round()</code> do Python usa o <strong>arredondamento bancário</strong>: quando o número está exatamente no meio (<code>.5</code>), ele arredonda para o número <strong>par</strong> mais próximo. Por isso <code>round(2.5)</code> resulta em <code>2</code>, e não <code>3</code>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">print(round(10 / 4))  # 2.5 -&gt; 2 (o par mais próximo)
+print(round(3.5))     # 3.5 -&gt; 4 (o par mais próximo)
+print(round(2.6))     # 2.6 -&gt; 3 (não está no meio: arredonda normalmente)
+# 2
+# 4
+# 3
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-funcoes-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-funcoes-q">Uma função é definida sem <code>return</code>. O que a chamada dessa função devolve?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Uma função sem `return` é perfeitamente válida em Python; ela apenas não devolve um valor útil."><input type="radio" name="quiz-python-funcoes" value="0" /><span class="txt">Um erro de sintaxe</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Sem `return` explícito, o Python devolve `None` automaticamente ao fim da função."><input type="radio" name="quiz-python-funcoes" value="1" /><span class="txt">O valor <code>None</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Diferente de outras linguagens, o Python não devolve automaticamente o último valor calculado — é preciso usar `return`."><input type="radio" name="quiz-python-funcoes" value="2" /><span class="txt">O último valor calculado dentro da função</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="O retorno padrão de uma função sem `return` é `None`, não uma tupla vazia."><input type="radio" name="quiz-python-funcoes" value="3" /><span class="txt">Uma tupla vazia</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

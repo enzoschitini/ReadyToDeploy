@@ -1,0 +1,54 @@
+<div class="prose">
+<p>Enquanto <code>map()</code> transforma todos os itens, às vezes queremos apenas <strong>selecionar</strong> alguns deles. Para isso existe <code>filter()</code>.</p>
+<h2>Definição</h2>
+<p>A função <code>filter()</code> aplica uma função <strong>lógica</strong> (que retorna <code>True</code> ou <code>False</code>) a todos os elementos de uma coleção, e retorna <strong>apenas</strong> os elementos para os quais o resultado foi <code>True</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">variavel = filter(funcao_logica, colecao)
+</code></pre></div>
+<p>Assim como <code>map()</code>, o retorno de <code>filter()</code> também é um <strong>iterador</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">numeros = [1, 2, 3, 4, 5, 6]
+
+numeros_pares = filter(lambda num: num % 2 == 0, numeros)
+print(list(numeros_pares))
+# [2, 4, 6]
+</code></pre></div>
+<h2>Substituindo laços por filter</h2>
+<p><strong>Exemplo:</strong> selecionando apenas os e-mails de um provedor específico. De novo, comparando a forma imperativa com a funcional.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">emails = ['andre.perez@gmail.com', 'andre.perez@live.com', 'andre.perez@yahoo.com']
+eh_do_gmail = lambda email: 'gmail' in email
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Forma imperativa
+emails_gmail = []
+for email in emails:
+    if eh_do_gmail(email):
+        emails_gmail.append(email)
+
+print(emails_gmail)
+# ['andre.perez@gmail.com']
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Forma funcional, equivalente
+emails_gmail = list(filter(eh_do_gmail, emails))
+print(emails_gmail)
+# ['andre.perez@gmail.com']
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> o critério do filtro raramente é reaproveitado em outro lugar do código — por isso, é muito comum escrevê-lo diretamente como uma <code>lambda</code>, sem nomeá-lo antes.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">emails_gmail = list(filter(lambda email: 'gmail' in email, emails))
+print(emails_gmail)
+# ['andre.perez@gmail.com']
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-filter-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-filter-q">O que diferencia <code>filter()</code> de <code>map()</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="É o contrário: `map()` transforma todos os itens, e `filter()` seleciona apenas os que atendem a uma condição."><input type="radio" name="quiz-python-filter" value="0" /><span class="txt"><code>filter()</code> transforma todos os itens; <code>map()</code> seleciona apenas alguns</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="`filter()` usa uma função lógica como critério de seleção; `map()` aplica uma transformação a cada item, sem descartar nenhum."><input type="radio" name="quiz-python-filter" value="1" /><span class="txt"><code>filter()</code> mantém apenas os itens em que a função dá <code>True</code>; <code>map()</code> transforma cada item e mantém todos</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Ambos retornam um iterador — é preciso usar `list()` para ver ou reaproveitar o resultado como lista."><input type="radio" name="quiz-python-filter" value="2" /><span class="txt">Os dois retornam sempre uma lista, nunca um iterador</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Passar uma `lambda` como critério é justamente o uso mais comum de `filter()`."><input type="radio" name="quiz-python-filter" value="3" /><span class="txt"><code>filter()</code> não pode receber uma <code>lambda</code> como argumento</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

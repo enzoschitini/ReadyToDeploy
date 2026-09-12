@@ -1,0 +1,114 @@
+<div class="prose">
+<p>Listas guardam itens repetidos e na ordem em que foram inseridos. Mas, às vezes, o que importa não é a ordem nem a repetição — é só saber <strong>quais valores diferentes</strong> existem. Para isso usamos os <strong>conjuntos</strong>.</p>
+<h2>Motivação</h2>
+<p>Você trabalha como analista de mídias sociais e precisa descobrir <strong>todas as hashtags diferentes</strong> que entraram nos <em>trending topics</em> de uma rede social durante a semana. Você já tem as hashtags de cada dia, em listas separadas:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">hashtags_segunda = ['#tiago', '#joao', '#bbb']
+hashtags_terca = ['#sarah', '#bbb', '#fiuk']
+hashtags_quarta = ['#gil', '#thelma', '#lourdes']
+hashtags_quinta = ['#rafa', '#fora', '#danilo']
+hashtags_sexta = ['#juliete', '#arthur', '#bbb']
+</code></pre></div>
+<p>Se simplesmente concatenarmos as listas da semana, a hashtag <code>#bbb</code> (que apareceu em três dias diferentes) vai se repetir no resultado:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">hashtags_semana = hashtags_segunda + hashtags_terca + hashtags_quarta + hashtags_quinta + hashtags_sexta
+
+print(hashtags_semana)
+print(f'Total: {len(hashtags_semana)}')
+# ['#tiago', '#joao', '#bbb', '#sarah', '#bbb', '#fiuk', '#gil', '#thelma', '#lourdes', '#rafa', '#fora', '#danilo', '#juliete', '#arthur', '#bbb']
+# Total: 15
+</code></pre></div>
+<p>Repare que o total (15) não representa a quantidade de hashtags <strong>diferentes</strong> — <code>#bbb</code> foi contada três vezes. <strong>Como eliminamos as repetições?</strong></p>
+<h2>Definição</h2>
+<p><strong>Conjuntos</strong> armazenam sequências <strong>desordenadas</strong> de valores, <strong>sem repetição</strong>. São do tipo <code>set</code> e são criados entre chaves <code>{}</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">frutas = {'banana', 'maca', 'uva', 'uva'}
+
+print(frutas)
+print(type(frutas))
+# {'uva', 'maca', 'banana'}
+# &lt;class 'set'&gt;
+</code></pre></div>
+<p>Repare que <code>'uva'</code> foi escrita duas vezes, mas aparece <strong>uma única vez</strong> no conjunto. Como conjuntos não têm ordem, a sequência exibida pode variar a cada execução.</p>
+<blockquote>
+<p><strong>Atenção:</strong> por não terem ordem, conjuntos <strong>não podem ser acessados por índice</strong> (<code>frutas[0]</code> gera um erro <code>TypeError</code>).</p>
+</blockquote>
+<h2>Operações</h2>
+<p><strong>Diferença (<code>-</code>)</strong>: retorna os itens que estão no primeiro conjunto, mas <strong>não</strong> estão no segundo.</p>
+<p><strong>Exemplo:</strong> países do norte da Europa que não são escandinavos.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">norte_europa = {'reino unido', 'suecia', 'russia', 'noruega', 'dinamarca'}
+escandinavia = {'noruega', 'dinamarca', 'suecia'}
+
+norte_europa_nao_escandinavo = norte_europa - escandinavia
+print(norte_europa_nao_escandinavo)
+# {'reino unido', 'russia'}
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># A ordem dos operandos importa: aqui buscamos o oposto
+escandinavo_nao_norte_europa = escandinavia - norte_europa
+print(escandinavo_nao_norte_europa)  # set() vazio: todo país escandinavo está no norte da Europa
+# set()
+</code></pre></div>
+<blockquote>
+<p>O Python também oferece <code>|</code> (união, todos os itens dos dois conjuntos) e <code>&amp;</code> (interseção, apenas os itens presentes em ambos). Aqui, diferente dos booleanos, <code>|</code> e <code>&amp;</code> <strong>são</strong> a forma correta de usar com conjuntos.</p>
+</blockquote>
+<h2>Métodos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Método</th><th>O que faz</th></tr></thead>
+<tbody>
+<tr><td><code>.add(valor)</code></td><td>Adiciona um item ao conjunto</td></tr>
+<tr><td><code>.remove(valor)</code></td><td>Remove um item do conjunto</td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">cursos_disponiveis = {'Exatas', 'Humanas', 'Biológicas'}
+print(cursos_disponiveis)
+# {'Exatas', 'Humanas', 'Biológicas'}
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># .add(): adiciona um item (se já existir, o conjunto não muda)
+cursos_disponiveis.add('Saúde')
+print(cursos_disponiveis)
+# {'Saúde', 'Exatas', 'Humanas', 'Biológicas'}
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># .remove(): remove um item existente
+cursos_disponiveis.remove('Saúde')
+print(cursos_disponiveis)
+# {'Exatas', 'Humanas', 'Biológicas'}
+</code></pre></div>
+<h2>Conversão</h2>
+<p>É muito comum converter uma <strong>lista em conjunto</strong> (para eliminar repetições) e, em seguida, o <strong>conjunto de volta em lista</strong> (para poder usar índices e métodos de lista novamente).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">times_paulistas = ['São Paulo', 'Palmeiras', 'Corinthians', 'Santos']
+
+# list -&gt; set: elimina eventuais repetições
+times_sem_repeticao = set(times_paulistas)
+print(times_sem_repeticao)
+print(type(times_sem_repeticao))
+# {'Corinthians', 'Santos', 'São Paulo', 'Palmeiras'}
+# &lt;class 'set'&gt;
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># set -&gt; list: para voltar a usar índices e métodos de lista
+times_lista = list(times_sem_repeticao)
+print(times_lista)
+print(type(times_lista))
+# ['Corinthians', 'Santos', 'São Paulo', 'Palmeiras']
+# &lt;class 'list'&gt;
+</code></pre></div>
+<h2>Revisitando a motivação</h2>
+<p>Combinando as duas conversões, resolvemos o problema das hashtags em uma única linha: juntamos as listas, convertemos para <code>set</code> (removendo repetições) e voltamos para <code>list</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">hashtags_semana_unicas = list(set(hashtags_segunda + hashtags_terca + hashtags_quarta + hashtags_quinta + hashtags_sexta))
+
+print(hashtags_semana_unicas)
+print(f'Total de hashtags únicas: {len(hashtags_semana_unicas)}')
+# ['#sarah', '#bbb', '#thelma', '#fora', '#danilo', '#juliete', '#arthur', '#tiago', '#gil', '#joao', '#fiuk', '#lourdes', '#rafa']
+# Total de hashtags únicas: 13
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-conjuntos-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-conjuntos-q">Por que <code>frutas[0]</code> gera um erro em um conjunto (<code>set</code>)?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Um conjunto pode ter vários itens — só não têm posição definida."><input type="radio" name="quiz-python-conjuntos" value="0" /><span class="txt">Porque conjuntos não têm itens</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Sem ordem definida, não faz sentido perguntar &quot;qual é o item da posição 0&quot;."><input type="radio" name="quiz-python-conjuntos" value="1" /><span class="txt">Porque conjuntos não têm ordem, então não existe acesso por índice</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Conjuntos são mutáveis: dá para usar `.add()` e `.remove()` neles."><input type="radio" name="quiz-python-conjuntos" value="2" /><span class="txt">Porque conjuntos são imutáveis</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Índices — positivos ou negativos — simplesmente não existem em conjuntos."><input type="radio" name="quiz-python-conjuntos" value="3" /><span class="txt">Porque o Python só aceita índices negativos em conjuntos</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

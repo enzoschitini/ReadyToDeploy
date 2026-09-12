@@ -593,6 +593,146 @@
           ]
         }
       ]
+    },
+    {
+      "id": "python-listas",
+      "module_id": "python-estruturas-de-dados",
+      "order": 1,
+      "title": "Listas",
+      "navTitle": "Listas",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-estruturas-de-dados/listas.html"
+    },
+    {
+      "id": "python-conjuntos",
+      "module_id": "python-estruturas-de-dados",
+      "order": 2,
+      "title": "Conjuntos",
+      "navTitle": "Conjuntos",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-estruturas-de-dados/conjuntos.html"
+    },
+    {
+      "id": "python-dicionarios",
+      "module_id": "python-estruturas-de-dados",
+      "order": 3,
+      "title": "Dicionários",
+      "navTitle": "Dicionários",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-estruturas-de-dados/dicionarios.html"
+    },
+    {
+      "id": "python-condicionais",
+      "module_id": "python-fluxo-condicional-e-repeticao",
+      "order": 1,
+      "title": "Estrutura Condicional if / elif / else",
+      "navTitle": "Condicionais",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-na-pratica/python-fluxo-condicional-e-repeticao/condicionais.html"
+    },
+    {
+      "id": "python-excecoes",
+      "module_id": "python-fluxo-condicional-e-repeticao",
+      "order": 2,
+      "title": "Tratamento de Exceções com try / except / finally",
+      "navTitle": "Exceções",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-fluxo-condicional-e-repeticao/excecoes.html"
+    },
+    {
+      "id": "python-for",
+      "module_id": "python-fluxo-condicional-e-repeticao",
+      "order": 3,
+      "title": "Estrutura de Repetição for",
+      "navTitle": "Repetição for",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-fluxo-condicional-e-repeticao/for.html"
+    },
+    {
+      "id": "python-leitura-arquivos",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 1,
+      "title": "Leitura de Arquivos",
+      "navTitle": "Leitura de Arquivos",
+      "badge": "essencial",
+      "readTime": "9 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/leitura-de-arquivos.html"
+    },
+    {
+      "id": "python-escrita-arquivos",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 2,
+      "title": "Escrita de Arquivos",
+      "navTitle": "Escrita de Arquivos",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/escrita-de-arquivos.html"
+    },
+    {
+      "id": "python-funcoes",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 3,
+      "title": "Funções",
+      "navTitle": "Funções",
+      "badge": "essencial",
+      "readTime": "12 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/funcoes.html"
+    },
+    {
+      "id": "python-escopo",
+      "module_id": "python-arquivos-e-funcoes",
+      "order": 4,
+      "title": "Escopo",
+      "navTitle": "Escopo",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-arquivos-e-funcoes/escopo.html"
+    },
+    {
+      "id": "python-lambda",
+      "module_id": "python-programacao-funcional",
+      "order": 1,
+      "title": "Função lambda",
+      "navTitle": "Lambda",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/lambda.html"
+    },
+    {
+      "id": "python-map",
+      "module_id": "python-programacao-funcional",
+      "order": 2,
+      "title": "Função map",
+      "navTitle": "Map",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/map.html"
+    },
+    {
+      "id": "python-filter",
+      "module_id": "python-programacao-funcional",
+      "order": 3,
+      "title": "Função filter",
+      "navTitle": "Filter",
+      "badge": "essencial",
+      "readTime": "2 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/filter.html"
+    },
+    {
+      "id": "python-reduce",
+      "module_id": "python-programacao-funcional",
+      "order": 4,
+      "title": "Função reduce",
+      "navTitle": "Reduce",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-programacao-funcional/reduce.html"
     }
   ]
 }

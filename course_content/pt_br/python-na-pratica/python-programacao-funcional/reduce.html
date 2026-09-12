@@ -1,0 +1,110 @@
+<div class="prose">
+<p><code>map()</code> transforma e <code>filter()</code> seleciona, mas ambos ainda retornam uma <strong>coleção</strong>. Quando o objetivo é condensar tudo em um <strong>único valor</strong> — uma soma, o maior item, uma concatenação — usamos <code>reduce()</code>.</p>
+<h2>Definição</h2>
+<p>A função <code>reduce()</code> aplica uma função a todos os elementos de uma coleção, <strong>dois a dois</strong>, acumulando o resultado, até restar <strong>um único valor</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">variavel = reduce(funcao, colecao)
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> diferente de <code>map()</code> e <code>filter()</code>, <code>reduce()</code> não é uma função nativa do Python — desde o Python 3 ela precisa ser importada do módulo <code>functools</code>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">from functools import reduce
+
+numeros = [1, 2, 3, 4]
+
+soma = reduce(lambda acumulado, atual: acumulado + atual, numeros)
+print(soma)
+# 10
+</code></pre></div>
+<h2>Funções de alta ordem com reduce</h2>
+<p><strong>Exemplo:</strong> encontrando o maior número de uma lista, sem usar a função pronta <code>max()</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def maior_entre(primeiro: int, segundo: int) -&gt; int:
+    return primeiro if primeiro &gt;= segundo else segundo
+
+print(maior_entre(11, 4))
+# 11
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">from random import random
+
+# Lista com 100 números inteiros aleatórios entre 0 e 100
+# (list comprehension: veremos essa sintaxe em detalhe em um módulo futuro)
+numeros = [round(100 * random()) for _ in range(100)]
+print(numeros[:10], '...')  # mostrando só os 10 primeiros
+# [47, 21, 4, 15, 42, 56, 60, 35, 71, 84] ...
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># reduce aplica maior_entre() aos dois primeiros números, depois ao
+# resultado com o terceiro, depois ao resultado com o quarto, e assim
+# por diante, até sobrar só o maior de todos
+maior_numero = reduce(maior_entre, numeros)
+print(maior_numero)
+# 100
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># A mesma lógica, com a função escrita como lambda
+maior_numero = reduce(lambda primeiro, segundo: primeiro if primeiro &gt;= segundo else segundo, numeros)
+print(maior_numero)
+# 100
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> para encontrar o maior valor de uma coleção, o Python já tem a função nativa <code>max()</code> — muito mais direta que <code>reduce()</code> para esse caso específico. O exemplo acima tem fins didáticos: <code>reduce()</code> realmente se destaca quando a lógica de combinação é <strong>personalizada</strong> e não existe uma função pronta para ela.</p>
+</blockquote>
+<h2>Combinando map, filter e reduce</h2>
+<p>Como <code>map()</code>, <code>filter()</code> e <code>reduce()</code> seguem o mesmo padrão (função + coleção), eles podem ser <strong>encadeados</strong>: a saída de um vira a entrada do próximo.</p>
+<p><strong>Exemplo:</strong> somando o quadrado apenas dos números originalmente ímpares.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">from random import random
+
+numeros = [round(100 * random()) for _ in range(100)]
+print(numeros[:10], '...')
+# [50, 3, 65, 46, 43, 99, 40, 69, 84, 98] ...
+</code></pre></div>
+<p><strong>Passo 1:</strong> elevar cada número ao quadrado (<code>map</code>).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">numeros_ao_quadrado = map(lambda numero: numero ** 2, numeros)
+</code></pre></div>
+<p><strong>Passo 2:</strong> manter apenas os quadrados de números ímpares — o quadrado de um número ímpar também é ímpar (<code>filter</code>).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">quadrados_impares = filter(lambda numero: numero % 2 != 0, numeros_ao_quadrado)
+</code></pre></div>
+<p><strong>Passo 3:</strong> somar tudo em um único valor (<code>reduce</code>).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">soma_quadrados_impares = reduce(lambda acumulado, atual: acumulado + atual, quadrados_impares)
+print(soma_quadrados_impares)
+# 190475
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> <code>map</code> e <code>filter</code> retornam iteradores que só podem ser percorridos <strong>uma vez</strong>. Por isso, o exemplo abaixo recomeça a partir da lista <code>numeros</code> original — reaproveitar <code>numeros_ao_quadrado</code> ou <code>quadrados_impares</code> aqui não funcionaria, pois ambos já foram consumidos no passo 3 acima.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">soma_quadrados_impares = reduce(
+    lambda acumulado, atual: acumulado + atual,
+    filter(
+        lambda numero: numero % 2 != 0,
+        map(lambda numero: numero ** 2, numeros),
+    ),
+)
+print(soma_quadrados_impares)
+# 190475
+</code></pre></div>
+<blockquote>
+<p>Embora o encadeamento acima funcione em uma única linha, ele fica difícil de ler. No dia a dia, prefira o formato passo a passo (como fizemos antes) sempre que a linha ficar longa demais — código funcional não precisa ser compacto para ser bom.</p>
+</blockquote>
+<h2>Resumo do Módulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Ferramenta</th><th>O que faz</th><th>Retorna</th><th>Exemplo</th></tr></thead>
+<tbody>
+<tr><td><code>lambda</code></td><td>Cria uma função anônima de uma expressão só</td><td>Função</td><td><code>lambda x: x ** 2</code></td></tr>
+<tr><td><code>map(f, colecao)</code></td><td>Transforma cada item da coleção</td><td>Iterador</td><td><code>map(lambda x: x * 2, numeros)</code></td></tr>
+<tr><td><code>filter(f, colecao)</code></td><td>Mantém apenas os itens em que <code>f</code> retorna <code>True</code></td><td>Iterador</td><td><code>filter(lambda x: x &gt; 0, numeros)</code></td></tr>
+<tr><td><code>reduce(f, colecao)</code></td><td>Combina todos os itens em um único valor (requer <code>from functools import reduce</code>)</td><td>Valor único</td><td><code>reduce(lambda a, b: a + b, numeros)</code></td></tr>
+</tbody>
+</table></div>
+<p>Funções nativas e de alta ordem vistas neste módulo: <code>lambda</code>, <code>map()</code>, <code>filter()</code>, <code>reduce()</code> (de <code>functools</code>), <code>list()</code>, <code>max()</code>.</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-reduce-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-reduce-q">Por que é preciso escrever <code>from functools import reduce</code> antes de usar <code>reduce()</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="`reduce()` existe e funciona normalmente no Python 3 — ela só não está mais disponível como função nativa, como `map()` e `filter()`."><input type="radio" name="quiz-python-reduce" value="0" /><span class="txt">Porque <code>reduce()</code> não existe mais no Python 3</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Diferente de `map()` e `filter()`, que são nativas, `reduce()` precisa ser importada explicitamente do módulo `functools`."><input type="radio" name="quiz-python-reduce" value="1" /><span class="txt">Porque, desde o Python 3, <code>reduce()</code> não é mais uma função nativa e mora no módulo <code>functools</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`reduce()` funciona igual em qualquer ambiente Python, incluindo notebooks — a única exigência é o `import`."><input type="radio" name="quiz-python-reduce" value="2" /><span class="txt">Porque <code>reduce()</code> só funciona dentro de arquivos, não em notebooks</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`functools` não substitui `map()`/`filter()`; ele só fornece `reduce()` e outras ferramentas complementares."><input type="radio" name="quiz-python-reduce" value="3" /><span class="txt">Porque <code>functools</code> substitui completamente o <code>map()</code> e o <code>filter()</code></span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

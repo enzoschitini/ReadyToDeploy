@@ -1,0 +1,148 @@
+<div class="prose">
+<p>Com funções, surge uma pergunta importante: uma variável criada dentro de uma função existe fora dela? E o contrário? O <strong>escopo</strong> define <strong>onde</strong> uma variável pode ser acessada e <strong>por quanto tempo</strong> ela existe. Entender isso evita erros difíceis de encontrar.</p>
+<h2>Definição</h2>
+<p>O <strong>escopo</strong> de uma variável é a região do código em que ela é visível. Em Python, os dois escopos mais importantes são:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Escopo</th><th>Onde a variável é criada</th><th>Onde pode ser usada</th><th>Quanto tempo existe</th></tr></thead>
+<tbody>
+<tr><td><strong>Local</strong></td><td>Dentro de uma função (incluindo os parâmetros)</td><td>Apenas dentro daquela função</td><td>Enquanto a função está sendo executada</td></tr>
+<tr><td><strong>Global</strong></td><td>Fora de qualquer função (no "corpo" do notebook)</td><td>Em qualquer lugar, inclusive dentro das funções (para leitura)</td><td>Até o programa (ou a sessão) terminar</td></tr>
+</tbody>
+</table></div>
+<h2>Escopo local</h2>
+<p>Variáveis criadas dentro de uma função são <strong>locais</strong>: elas nascem quando a função é chamada e são descartadas quando ela termina.</p>
+<p><strong>Exemplo:</strong> somando os valores de uma lista.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def somar_lista(numeros: list) -&gt; int:
+    total = 0  # variável local: só existe dentro da função
+    for numero in numeros:
+        total = total + numero
+    return total
+
+soma = somar_lista([2, 4, 6, 8])
+print(soma)
+# 20
+</code></pre></div>
+<p>Fora da função, a variável <code>total</code> <strong>não existe</strong>. Tentar usá-la gera um erro:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># print(total)    # NameError: name 'total' is not defined
+
+# O resultado chega aqui fora pelo return, guardado na variável soma
+print(soma)
+# 20
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> o Python já tem a função nativa <code>sum()</code>, que faz exatamente o que a <code>somar_lista()</code> faz. Criamos a nossa apenas para entender o escopo, mas no dia a dia prefira as funções nativas.</p>
+</blockquote>
+<h2>Escopo global</h2>
+<p>Variáveis criadas fora das funções são <strong>globais</strong> e podem ser <strong>lidas</strong> dentro de qualquer função:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">taxa_administracao = 0.02  # variável global
+
+def calcular_valor_liquido(valor_bruto: float) -&gt; float:
+    # A função consegue LER a variável global
+    return valor_bruto * (1 - taxa_administracao)
+
+print(calcular_valor_liquido(1000))
+# 980.0
+</code></pre></div>
+<p>Mas atenção: se a função <strong>atribuir</strong> um valor a uma variável com o mesmo nome, o Python cria uma <strong>nova variável local</strong>, e a global continua intacta:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">def simular_taxa_maior(valor_bruto: float) -&gt; float:
+    taxa_administracao = 0.10  # cria uma variável LOCAL com o mesmo nome
+    return valor_bruto * (1 - taxa_administracao)
+
+print(simular_taxa_maior(1000))  # usa a taxa local (10%)
+print(taxa_administracao)        # a global continua 0.02
+# 900.0
+# 0.02
+</code></pre></div>
+<p>Para <strong>alterar</strong> uma variável global dentro de uma função, é preciso declará-la com a palavra-chave <code>global</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">contador_simulacoes = 0
+
+def registrar_simulacao():
+    # contador_simulacoes += 1  # sem "global": UnboundLocalError
+    global contador_simulacoes
+    contador_simulacoes += 1
+
+registrar_simulacao()
+registrar_simulacao()
+print(contador_simulacoes)
+# 2
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> usar <code>global</code> torna o código difícil de entender e testar, porque a função passa a depender de algo "escondido" fora dela. Prefira o caminho mais claro: <strong>receber os dados por parâmetros e devolver o resultado com <code>return</code></strong>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># Mesmo resultado, sem global: a função recebe o valor e devolve o novo
+def incrementar(contador: int) -&gt; int:
+    return contador + 1
+
+contador = 0
+contador = incrementar(contador)
+contador = incrementar(contador)
+print(contador)
+# 2
+</code></pre></div>
+<h2>Estruturas condicionais e de repetição</h2>
+<p>Diferente de outras linguagens, em Python o <code>if</code> e o <code>for</code> <strong>não criam um escopo próprio</strong>. Uma variável criada dentro deles continua existindo depois que o bloco termina.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">saldo = 1787
+
+if saldo &gt; 0:
+    situacao = 'positivo'  # criada dentro do if...
+else:
+    situacao = 'negativo'
+
+print(situacao)  # ...mas acessível fora dele
+# positivo
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">for indice in range(3):
+    ultimo_processado = indice
+
+# Depois do laço, as duas variáveis continuam existindo com o último valor
+print(indice)
+print(ultimo_processado)
+# 2
+# 2
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> uma variável criada em um bloco que <strong>não foi executado</strong> simplesmente não existe. Se no exemplo acima só o <code>if</code> definisse <code>situacao</code> (sem o <code>else</code>) e o saldo fosse negativo, o <code>print(situacao)</code> geraria um <code>NameError</code>. Por isso, garanta que a variável receba um valor em todos os caminhos possíveis, ou crie-a com um valor inicial antes do <code>if</code>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">saldo = -88
+
+# Valor inicial definido antes do if: a variável sempre existe
+situacao = 'não negativo'
+if saldo &lt; 0:
+    situacao = 'negativo'
+
+print(situacao)
+# negativo
+</code></pre></div>
+<h2>Resumo do Módulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Conceito</th><th>Para que serve</th><th>Exemplo</th></tr></thead>
+<tbody>
+<tr><td><code>with open(...) as arquivo:</code></td><td>Abre um arquivo e o fecha automaticamente ao fim do bloco</td><td><code>with open('banco.csv', mode='r', encoding='utf-8') as arquivo:</code></td></tr>
+<tr><td><code>.read()</code></td><td>Lê o arquivo inteiro como uma <em>string</em></td><td><code>conteudo = arquivo.read()</code></td></tr>
+<tr><td><code>.readline()</code></td><td>Lê a próxima linha</td><td><code>cabecalho = arquivo.readline()</code></td></tr>
+<tr><td><code>for linha in arquivo:</code></td><td>Percorre o arquivo linha a linha</td><td><code>for linha in arquivo: ...</code></td></tr>
+<tr><td><code>.readlines()</code></td><td>Lê todas as linhas em uma lista</td><td><code>linhas = arquivo.readlines()</code></td></tr>
+<tr><td><code>.write()</code></td><td>Escreve uma <em>string</em> (sem quebra de linha automática)</td><td><code>arquivo.write(f'{idade}\n')</code></td></tr>
+<tr><td>Modos <code>'r'</code>, <code>'w'</code>, <code>'a'</code>, <code>'x'</code></td><td>Leitura, escrita (apaga), acréscimo e criação exclusiva</td><td><code>open('idades.csv', mode='a')</code></td></tr>
+<tr><td><code>def</code></td><td>Define uma função</td><td><code>def calcular_dobro(numero):</code></td></tr>
+<tr><td>Parâmetro com valor padrão</td><td>Torna o argumento opcional</td><td><code>def calcular_preco_final(preco, desconto=0.0):</code></td></tr>
+<tr><td><code>return</code></td><td>Devolve um resultado e encerra a função</td><td><code>return numero * 2</code></td></tr>
+<tr><td>Escopo local</td><td>Variável criada na função só existe dentro dela</td><td><code>total</code> em <code>somar_lista()</code></td></tr>
+<tr><td>Escopo global</td><td>Variável criada fora das funções pode ser lida em qualquer lugar</td><td><code>taxa_administracao</code></td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-escopo-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-escopo-q">Uma função tem <code>taxa = 0.10</code> dentro dela, e uma variável global com o mesmo nome <code>taxa = 0.02</code> existe fora. Ao chamar a função, o que acontece com a variável global?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Atribuir um valor a `taxa` dentro da função cria uma variável LOCAL com o mesmo nome — a global só seria alterada com `global taxa`."><input type="radio" name="quiz-python-escopo" value="0" /><span class="txt">Ela é alterada para 0.10</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Sem a palavra-chave `global`, a atribuição dentro da função cria uma variável local separada, e a global não é tocada."><input type="radio" name="quiz-python-escopo" value="1" /><span class="txt">Ela continua com o valor 0.02, intacta</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Ter uma variável local e uma global com o mesmo nome não gera erro — o Python simplesmente trata como coisas separadas."><input type="radio" name="quiz-python-escopo" value="2" /><span class="txt">O Python gera um erro por nomes duplicados</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="A variável global continua existindo normalmente fora da função, com seu valor original."><input type="radio" name="quiz-python-escopo" value="3" /><span class="txt">A variável global é apagada</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

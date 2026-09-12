@@ -1,0 +1,123 @@
+<div class="prose">
+<p>Tão importante quanto ler dados é <strong>guardar resultados</strong>: um relatório, uma lista filtrada, um arquivo para outro sistema. Nesta aula vamos criar arquivos, sobrescrevê-los e acrescentar conteúdo a eles.</p>
+<h2>Modos de abertura</h2>
+<p>O parâmetro <code>mode</code> do <code>open()</code> define o que podemos fazer com o arquivo:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Modo</th><th>Nome</th><th>Se o arquivo existe...</th><th>Se o arquivo não existe...</th></tr></thead>
+<tbody>
+<tr><td><code>'r'</code></td><td>Leitura (<em>read</em>)</td><td>Abre para leitura</td><td>Gera <code>FileNotFoundError</code></td></tr>
+<tr><td><code>'w'</code></td><td>Escrita (<em>write</em>)</td><td><strong>Apaga todo o conteúdo</strong> e escreve do zero</td><td>Cria o arquivo</td></tr>
+<tr><td><code>'a'</code></td><td>Acréscimo (<em>append</em>)</td><td>Escreve <strong>no final</strong>, mantendo o conteúdo</td><td>Cria o arquivo</td></tr>
+<tr><td><code>'x'</code></td><td>Criação exclusiva</td><td>Gera <code>FileExistsError</code></td><td>Cria o arquivo</td></tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Atenção:</strong> o modo <code>'w'</code> apaga o arquivo sem pedir confirmação. Se o objetivo é adicionar conteúdo, use <code>'a'</code>. Se quer ter certeza de não sobrescrever nada, use <code>'x'</code>.</p>
+</blockquote>
+<h2>Escrevendo com write()</h2>
+<p>O método <code>.write()</code> escreve uma <em>string</em> no arquivo. Ele <strong>não</strong> adiciona a quebra de linha automaticamente, então precisamos incluir o <code>\n</code> no final de cada linha.</p>
+<p><strong>Exemplo:</strong> salvando as idades extraídas na aula anterior em um novo arquivo, <code>idades.csv</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">with open('idades.csv', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write('idade\n')  # cabeçalho
+
+    for idade in idades:
+        # write() só aceita str: convertemos o número e acrescentamos a quebra de linha
+        arquivo.write(f'{idade}\n')
+
+print('Arquivo idades.csv gravado!')
+# Arquivo idades.csv gravado!
+</code></pre></div>
+<p>Vamos ler o arquivo de volta para conferir o que foi gravado:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">with open('idades.csv', mode='r', encoding='utf-8') as arquivo:
+    print(arquivo.read())
+# idade
+# 30
+# 33
+# 35
+# 30
+# 59
+# 35
+# 36
+# 39
+# 41
+# 43
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> passar um número direto para o <code>.write()</code>, como <code>arquivo.write(30)</code>, gera um <code>TypeError</code>. Converta com <code>str()</code> ou use uma <em>f-string</em>, como fizemos acima.</p>
+</blockquote>
+<h2>Acrescentando conteúdo com o modo 'a'</h2>
+<p><strong>Exemplo:</strong> dois novos clientes foram cadastrados e precisamos incluir suas idades no final do arquivo, sem perder as que já estão lá.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">novas_idades = [25, 48]
+
+# Modo 'a': o conteúdo existente é mantido e o novo vai para o final
+with open('idades.csv', mode='a', encoding='utf-8') as arquivo:
+    for idade in novas_idades:
+        arquivo.write(f'{idade}\n')
+
+with open('idades.csv', mode='r', encoding='utf-8') as arquivo:
+    print(arquivo.read())
+# idade
+# 30
+# 33
+# 35
+# 30
+# 59
+# 35
+# 36
+# 39
+# 41
+# 43
+# 25
+# 48
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> se você executar a célula acima mais de uma vez, as idades <code>25</code> e <code>48</code> serão acrescentadas de novo a cada execução. Para voltar ao estado inicial, execute novamente a célula que usa o modo <code>'w'</code>, que recria o arquivo do zero.</p>
+</blockquote>
+<h2>Lendo de um arquivo e escrevendo em outro</h2>
+<p>É muito comum ler um arquivo, processar as linhas e gravar o resultado em outro. Um único <code>with</code> pode abrir os dois arquivos, separados por vírgula.</p>
+<p><strong>Exemplo:</strong> copiando o <code>banco.csv</code> para um arquivo com outra extensão, <code>banco.txt</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as leitura, \
+     open('banco.txt', mode='w', encoding='utf-8') as escrita:
+    for linha in leitura:
+        escrita.write(linha)  # a linha já termina com \n
+
+print('Cópia concluída!')
+# Cópia concluída!
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> a extensão (<code>.csv</code>, <code>.txt</code>) é só parte do nome do arquivo e serve para indicar aos programas como abri-lo. O conteúdo dos dois arquivos é exatamente o mesmo texto.</p>
+</blockquote>
+<p><strong>Exemplo:</strong> o gerente de crédito pediu um arquivo só com os clientes que têm <strong>empréstimo pessoal</strong> (coluna <code>loan</code>, a 8ª coluna, com valor <code>yes</code>).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as leitura, \
+     open('clientes_com_emprestimo.csv', mode='w', encoding='utf-8') as escrita:
+    # O cabeçalho é copiado como está
+    escrita.write(leitura.readline())
+
+    for linha in leitura:
+        colunas = linha.strip().split(',')
+        tem_emprestimo = colunas[7] == 'yes'  # índice 7 = 8ª coluna (loan)
+        if tem_emprestimo:
+            escrita.write(linha)
+
+with open('clientes_com_emprestimo.csv', mode='r', encoding='utf-8') as arquivo:
+    print(arquivo.read())
+# age,job,marital,education,default,balance,housing,loan
+# 33,services,married,secondary,no,4789,yes,yes
+# 30,management,married,tertiary,no,1476,yes,yes
+# 43,services,married,primary,no,-88,yes,yes
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-escrita-arquivos-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-escrita-arquivos-q">Qual a diferença entre abrir um arquivo existente com <code>mode='w'</code> e com <code>mode='a'</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="É o oposto: `&#x27;w&#x27;` (write) apaga o conteúdo existente; `&#x27;a&#x27;` (append) preserva e acrescenta no final."><input type="radio" name="quiz-python-escrita-arquivos" value="0" /><span class="txt"><code>'w'</code> acrescenta conteúdo no final; <code>'a'</code> apaga tudo e escreve do zero</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Por isso `&#x27;w&#x27;` exige cuidado: reabrir um arquivo com `&#x27;w&#x27;` descarta tudo que já estava nele."><input type="radio" name="quiz-python-escrita-arquivos" value="1" /><span class="txt"><code>'w'</code> apaga todo o conteúdo e escreve do zero; <code>'a'</code> mantém o conteúdo e acrescenta no final</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Eles se comportam de forma bem diferente diante de um arquivo que já existe."><input type="radio" name="quiz-python-escrita-arquivos" value="2" /><span class="txt">Os dois modos têm exatamente o mesmo comportamento</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Ambos os modos criam o arquivo automaticamente se ele ainda não existir."><input type="radio" name="quiz-python-escrita-arquivos" value="3" /><span class="txt"><code>'w'</code> só funciona para arquivos novos; <code>'a'</code> só funciona para arquivos existentes</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

@@ -53,6 +53,46 @@
       "nodes": 5,
       "skills": ["python", "google-colab", "variaveis", "tipos-de-dados", "numeros", "strings", "booleanos"],
       "hot": false
+    },
+    {
+      "id": "python-estruturas-de-dados",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 2 — Estruturas de Dados",
+      "description": "Segundo módulo do Python na Prática: listas, conjuntos e dicionários, partindo de problemas reais como extrato bancário, hashtags únicas e cadastro de redes wi-fi.",
+      "level": "Iniciante",
+      "nodes": 3,
+      "skills": ["python", "listas", "conjuntos", "dicionarios", "estruturas-de-dados"],
+      "hot": false
+    },
+    {
+      "id": "python-fluxo-condicional-e-repeticao",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 3 — Fluxo Condicional & Repetição",
+      "description": "Terceiro módulo do Python na Prática: if/elif/else, tratamento de exceções com try/except/finally e a estrutura de repetição for, aplicados a pagamento com cartão, divisão de conta e análise de vendas.",
+      "level": "Iniciante",
+      "nodes": 3,
+      "skills": ["python", "condicionais", "excecoes", "for", "loops"],
+      "hot": false
+    },
+    {
+      "id": "python-arquivos-e-funcoes",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 4 — Arquivos & Funções",
+      "description": "Quarto módulo do Python na Prática: leitura e escrita de arquivos, funções (parâmetros, retorno e tratamento de erros) e escopo de variáveis, aplicados a uma base de clientes e a uma simulação de juros compostos.",
+      "level": "Iniciante",
+      "nodes": 4,
+      "skills": ["python", "arquivos", "funcoes", "escopo"],
+      "hot": false
+    },
+    {
+      "id": "python-programacao-funcional",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 5 — Programação Funcional",
+      "description": "Quinto módulo do Python na Prática: funções lambda, funções de alta ordem e as ferramentas map, filter e reduce, aplicadas a uma calculadora de juros compostos e ao processamento de listas de e-mails e números.",
+      "level": "Intermediário",
+      "nodes": 4,
+      "skills": ["python", "lambda", "map", "filter", "reduce", "programacao-funcional"],
+      "hot": false
     }
   ]
 }
