@@ -1,42 +1,6 @@
 {
   "bootcamps": [
     {
-      "id": "desenvolvedor-backend",
-      "title": "Desenvolvedor Backend",
-      "description": "Da lógica ao backend de produção: a base vem do JavaScript, a forma vem do TypeScript, o dado passa por SQL e NoSQL, a API sai em Node/Express com autenticação, o ambiente sobe com Docker, e a noção de complexidade de algoritmos é o que separa código que vira produto de código que vira legenda. Cinco projetos no caminho, e o último é um encurtador de URLs — você termina com código de verdade rodando.",
-      "outcome": "Ao terminar, você tipa o código em TypeScript, modela dados em SQL e usa NoSQL a favor (documento e chave-valor), constrói uma API REST em Node/Express com banco, autenticação e cache, e sabe avaliar o custo dos seus algoritmos.",
-      "level": "Intermediário",
-      "duration": "5 meses",
-      "modules": 12,
-      "projects": 6,
-      "hot": true,
-      "new": false,
-      "rating": { "score": 4.8, "count": 19 },
-      "detail": {
-        "creator": { "name": "Luciano dii Souza", "github": "lucianodiisouza" },
-        "curriculum": [
-          { "type": "modulo", "id": "programacao-do-zero", "title": "Programação do Zero", "description": "Base de lógica e JavaScript pra quem começa do zero." },
-          { "type": "projeto", "id": "calculadora-de-gorjeta", "title": "Primeiro projeto: coloque a lógica em prática", "description": "Um build pequeno pra fixar variáveis, condicionais e funções logo depois do primeiro contato com código." },
-          { "type": "modulo", "id": "terminal-para-devs", "title": "Terminal para Devs", "description": "O terminal é onde o backend vive: comandos essenciais em qualquer ambiente unix (local, VPS, container)." },
-          { "type": "modulo", "id": "git", "title": "Git", "description": "Controle de versão do zero ao avançado — obrigatório em qualquer time e pré-requisito pra deploy e colaboração." },
-          { "type": "modulo", "id": "conventional-commits", "title": "Conventional Commits", "description": "Mensagens de commit que contam uma história: o formato type(escopo): descrição, SemVer automática e changelog — o elo entre o histórico e a release." },
-          { "type": "modulo", "id": "typescript", "title": "TypeScript", "description": "TypeScript logo depois de JavaScript: a mente ainda está fresca sobre a linguagem, e o TS vira a forma padrão de escrever código backend no mercado." },
-          { "type": "modulo", "id": "sql-e-banco-de-dados", "title": "SQL e Banco de Dados", "description": "Modelagem e SQL puro — a fundação de dados antes de qualquer ORM." },
-          { "type": "projeto", "id": "modelagem-de-banco", "title": "Modelagem de um Banco de Dados", "description": "Modele o banco de um mini e-commerce e escreva as consultas do negócio em SQL puro." },
-          { "type": "modulo", "id": "nosql", "title": "NoSQL: Bancos Não-Relacionais", "description": "Complemento ao SQL: o que é NoSQL, modelo de documento (MongoDB) e chave-valor (Redis). Como e quando combinar com SQL em sistemas reais." },
-          { "type": "modulo", "id": "backend", "title": "Backend", "description": "HTTP, Node, Express, banco, ORM, autenticação, validação, testes, async profundo, error handling e debugging." },
-          { "type": "projeto", "id": "api-rest-com-autenticacao", "title": "API REST com Autenticação", "description": "Construa a API completa: CRUD, banco, validação, login e rotas protegidas." },
-          { "type": "modulo", "id": "docker-fundamentos", "title": "Docker Fundamentos", "description": "Empacote a API em containers: imagens, Dockerfile, volumes e rede — o jeito moderno de rodar backend." },
-          { "type": "modulo", "id": "docker-compose-e-workflows", "title": "Docker Compose e Workflows", "description": "Suba app + banco + cache com um comando e monte o ambiente de dev e produção da sua API." },
-          { "type": "projeto", "id": "servico-com-docker", "title": "Empacote um Serviço com Docker", "description": "Coloque a sua API num container e suba app + banco com um comando só." },
-          { "type": "modulo", "id": "complexidade-de-algoritmos", "title": "Complexidade de Algoritmos", "description": "Pra escrever backend que aguenta escala." },
-          { "type": "projeto", "id": "busca-com-filtros", "title": "Busca com Filtros", "description": "Sinta o custo das operações crescerem com os dados - a teoria de complexidade na prática." },
-          { "type": "modulo", "id": "ciberseguranca-para-desenvolvedores", "title": "Cibersegurança para Desenvolvedores", "description": "A base de segurança que todo dev backend precisa: dados, redes, autenticação, autorização, vulnerabilidades, OWASP Top 10 e segurança defensiva." },
-          { "type": "projeto", "id": "encurtador-de-url", "title": "Projeto final: um encurtador de URLs", "description": "Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura." }
-        ]
-      }
-    },
-    {
       "id": "python-na-pratica",
       "title": "Python na Prática",
       "description": "Python do absoluto zero: variáveis e tipos, estruturas de dados, condicionais e laços, arquivos e funções, programação funcional, orientação a objetos, módulos e pacotes, tratamento de erros e scripting. Nove módulos, cada um construindo em cima do anterior, até você sair escrevendo scripts Python de verdade.",
@@ -44,21 +8,123 @@
       "level": "Iniciante",
       "duration": "2 meses",
       "modules": 9,
-      "projects": 0,
+      "projects": 9,
       "hot": false,
       "new": true,
       "detail": {
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        },
         "curriculum": [
-          { "type": "modulo", "id": "python-variaveis-e-tipos-de-dados", "title": "Variáveis e Tipos de Dados", "description": "Introdução ao Python: variáveis, números, strings e booleanos." },
-          { "type": "modulo", "id": "python-estruturas-de-dados", "title": "Estruturas de Dados", "description": "Listas, conjuntos e dicionários." },
-          { "type": "modulo", "id": "python-fluxo-condicional-e-repeticao", "title": "Fluxo Condicional & Repetição", "description": "Estruturas condicionais (if/else/elif, try/except/finally) e laço for." },
-          { "type": "modulo", "id": "python-arquivos-e-funcoes", "title": "Arquivos & Funções", "description": "Leitura e escrita de arquivos, criação de funções e escopo de variáveis." },
-          { "type": "modulo", "id": "python-programacao-funcional", "title": "Programação Funcional", "description": "Funções lambda, map, filter e reduce." },
-          { "type": "modulo", "id": "python-programacao-orientada-a-objetos", "title": "Programação Orientada a Objetos", "description": "Classes, objetos e herança." },
-          { "type": "modulo", "id": "python-modulos-e-pacotes", "title": "Módulos & Pacotes", "description": "Importação, criação e instalação de módulos e pacotes." },
-          { "type": "modulo", "id": "python-tratamento-de-erros", "title": "Tratamento de Erros", "description": "Tipos de erros, erros de sintaxe e tratamento em tempo de execução." },
-          { "type": "modulo", "id": "python-scripting", "title": "Scripting", "description": "Instalação do Python, execução via terminal e criação de scripts." }
+          {
+            "type": "modulo",
+            "id": "python-variaveis-e-tipos-de-dados",
+            "title": "Variáveis e Tipos de Dados",
+            "description": "Introdução ao Python: variáveis, números, strings e booleanos."
+          },
+          {
+            "type": "projeto",
+            "id": "patavet-ficha-digital",
+            "title": "PataVet digitaliza a clínica",
+            "description": "Cadastre pets, feche o caixa das consultas e monte um painel com variáveis, números, strings e booleanos."
+          },
+          {
+            "type": "modulo",
+            "id": "python-estruturas-de-dados",
+            "title": "Estruturas de Dados",
+            "description": "Listas, conjuntos e dicionários."
+          },
+          {
+            "type": "projeto",
+            "id": "batidas-organiza-playlists",
+            "title": "Batidas organiza suas playlists",
+            "description": "Arrume playlists, elimine gêneros repetidos e cadastre dispositivos com listas, conjuntos e dicionários."
+          },
+          {
+            "type": "modulo",
+            "id": "python-fluxo-condicional-e-repeticao",
+            "title": "Fluxo Condicional & Repetição",
+            "description": "Estruturas condicionais (if/else/elif, try/except/finally) e laço for."
+          },
+          {
+            "type": "projeto",
+            "id": "voa-facil-decide-e-repete",
+            "title": "Voa Fácil decide e repete sozinha",
+            "description": "Automatize decisões de uma companhia aérea com condicionais, tratamento de erros e laços."
+          },
+          {
+            "type": "modulo",
+            "id": "python-arquivos-e-funcoes",
+            "title": "Arquivos & Funções",
+            "description": "Leitura e escrita de arquivos, criação de funções e escopo de variáveis."
+          },
+          {
+            "type": "projeto",
+            "id": "estuda-mais-notas-e-relatorios",
+            "title": "Estuda Mais organiza notas e relatórios",
+            "description": "Leia arquivos de matrícula, filtre alunos e gere relatórios com funções reutilizáveis."
+          },
+          {
+            "type": "modulo",
+            "id": "python-programacao-funcional",
+            "title": "Programação Funcional",
+            "description": "Funções lambda, map, filter e reduce."
+          },
+          {
+            "type": "projeto",
+            "id": "freelaboard-repasses-do-mes",
+            "title": "FreelaBoard processa os repasses do mês",
+            "description": "Calcule repasses e feche o total do mês sem for, usando lambda, map, filter e reduce."
+          },
+          {
+            "type": "modulo",
+            "id": "python-programacao-orientada-a-objetos",
+            "title": "Programação Orientada a Objetos",
+            "description": "Classes, objetos e herança."
+          },
+          {
+            "type": "projeto",
+            "id": "pagina-viva-acervo-com-classes",
+            "title": "Página Viva organiza o acervo com classes e objetos",
+            "description": "Modele um acervo de livros com classes, objetos, herança e leitura de CSV."
+          },
+          {
+            "type": "modulo",
+            "id": "python-modulos-e-pacotes",
+            "title": "Módulos & Pacotes",
+            "description": "Importação, criação e instalação de módulos e pacotes."
+          },
+          {
+            "type": "projeto",
+            "id": "casanova-modulos-e-pacotes",
+            "title": "CasaNova organiza o código da expansão",
+            "description": "Organize o código em módulos e pacotes próprios e consulte uma API com um pacote de terceiros."
+          },
+          {
+            "type": "modulo",
+            "id": "python-tratamento-de-erros",
+            "title": "Tratamento de Erros",
+            "description": "Tipos de erros, erros de sintaxe e tratamento em tempo de execução."
+          },
+          {
+            "type": "projeto",
+            "id": "rotacerta-blindagem-contra-erros",
+            "title": "RotaCerta blinda o processamento de pacotes contra erros",
+            "description": "Trate exceções, crie exceções personalizadas e corrija um erro de lógica."
+          },
+          {
+            "type": "modulo",
+            "id": "python-scripting",
+            "title": "Scripting",
+            "description": "Instalação do Python, execução via terminal e criação de scripts."
+          },
+          {
+            "type": "projeto",
+            "id": "scriptzen-automacao-com-scripts",
+            "title": "ScriptZen automatiza o dia a dia",
+            "description": "Escreva e execute scripts Python de verdade, validando argumentos de linha de comando."
+          }
         ]
       }
     },
@@ -75,16 +141,67 @@
       "new": false,
       "comingSoon": true,
       "detail": {
-        "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        },
         "curriculum": [
-          { "type": "modulo", "id": "sql-base-de-dados-e-linguagem-sql", "title": "Módulo 1 — Base de Dados & Linguagem SQL", "description": "Bases de dados relacionais, introdução ao SQL (DDL/DML) e armazenamento e consulta na nuvem com AWS S3 e Athena.", "disabled": true },
-          { "type": "modulo", "id": "sql-trabalhando-com-tabelas", "title": "Módulo 2 — Trabalhando com Tabelas", "description": "Criando tabelas, alterando e descartando tabelas, inserindo, atualizando e apagando dados.", "disabled": true },
-          { "type": "modulo", "id": "sql-selecionando-e-ordenando", "title": "Módulo 3 — Selecionando & Ordenando", "description": "Restrição de colunas (chaves e restrições), seleção de dados e ordenação e limitação de resultados.", "disabled": true },
-          { "type": "modulo", "id": "sql-filtrando-e-selecao-condicional", "title": "Módulo 4 — Filtrando & Seleção Condicional", "description": "Filtros AND, OR, IN e BETWEEN, filtros LIKE e wildcards, e seleção condicional.", "disabled": true },
-          { "type": "modulo", "id": "sql-agregacoes", "title": "Módulo 5 — Agregações", "description": "Função COUNT e cláusula GROUP BY, funções MIN/MAX/SUM/AVG e cláusula HAVING.", "disabled": true },
-          { "type": "modulo", "id": "sql-trabalhando-com-multiplas-tabelas", "title": "Módulo 6 — Trabalhando com Múltiplas Tabelas", "description": "UNION, junções inner/cross e junções left/right.", "disabled": true },
-          { "type": "modulo", "id": "sql-avancado", "title": "Módulo 7 — SQL Avançado", "description": "Subqueries, agregações por particionamento e views.", "disabled": true },
-          { "type": "modulo", "id": "sql-projeto-final", "title": "Módulo 8 — Projeto Final", "description": "Plataforma Kaggle, exploração e análise de dados (EDA) e storytelling.", "disabled": true }
+          {
+            "type": "modulo",
+            "id": "sql-base-de-dados-e-linguagem-sql",
+            "title": "Base de Dados & Linguagem SQL",
+            "description": "Bases de dados relacionais, introdução ao SQL (DDL/DML) e armazenamento e consulta na nuvem com AWS S3 e Athena.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-trabalhando-com-tabelas",
+            "title": "Trabalhando com Tabelas",
+            "description": "Criando tabelas, alterando e descartando tabelas, inserindo, atualizando e apagando dados.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-selecionando-e-ordenando",
+            "title": "Selecionando & Ordenando",
+            "description": "Restrição de colunas (chaves e restrições), seleção de dados e ordenação e limitação de resultados.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-filtrando-e-selecao-condicional",
+            "title": "Filtrando & Seleção Condicional",
+            "description": "Filtros AND, OR, IN e BETWEEN, filtros LIKE e wildcards, e seleção condicional.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-agregacoes",
+            "title": "Agregações",
+            "description": "Função COUNT e cláusula GROUP BY, funções MIN/MAX/SUM/AVG e cláusula HAVING.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-trabalhando-com-multiplas-tabelas",
+            "title": "Trabalhando com Múltiplas Tabelas",
+            "description": "UNION, junções inner/cross e junções left/right.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-avancado",
+            "title": "SQL Avançado",
+            "description": "Subqueries, agregações por particionamento e views.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-projeto-final",
+            "title": "Projeto Final",
+            "description": "Plataforma Kaggle, exploração e análise de dados (EDA) e storytelling.",
+            "disabled": true
+          }
         ]
       }
     }

@@ -1,57 +1,21 @@
 {
   "modules": [
     {
-      "id": "programacao-do-zero",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Programação do Zero",
-      "description": "Módulo para quem nunca programou: do pensamento computacional ao primeiro projeto real, com uma linguagem à sua escolha.",
-      "level": "Iniciante",
-      "nodes": 13,
-      "skills": ["logica", "fundamentos", "algoritmos", "terminal", "python", "variaveis", "loops", "funcoes"],
-      "hot": true,
-      "rating": { "score": 4.8, "count": 31 }
-    },
-    {
-      "id": "backend",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Backend",
-      "description": "Módulo para quem quer construir a parte que roda no servidor: do HTTP e Node.js até uma API completa em Express, com banco de dados, autenticação e deploy.",
-      "level": "Intermediário",
-      "nodes": 15,
-      "skills": ["backend", "http", "node", "express", "api", "banco-de-dados", "autenticacao", "deploy"],
-      "hot": true,
-      "rating": { "score": 5.0, "count": 22 }
-    },
-    {
-      "id": "git",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Git",
-      "description": "Módulo completo de Git - do controle de versão do zero (o que é um commit) até rebase, reflog, bisect e workflows de colaboração. Cobre básico, intermediário e avançado, com prática em cada nível e um projeto final de contribuição open source.",
-      "level": "Iniciante",
-      "nodes": 23,
-      "skills": ["git", "github", "controle-de-versao", "colaboracao", "rebase", "open-source", "terminal"],
-      "hot": true,
-      "rating": { "score": 5.0, "count": 10 }
-    },
-    {
-      "id": "sql-e-banco-de-dados",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "SQL e Banco de Dados",
-      "description": "Módulo de SQL puro, do zero: modelagem, consultas, joins, agregação, índices, transações e segurança. Base sólida para quem vai usar qualquer ORM depois.",
-      "level": "Iniciante",
-      "nodes": 14,
-      "skills": ["sql", "banco-de-dados", "modelagem", "joins", "indices", "transacoes", "seguranca"],
-      "hot": false,
-      "rating": { "score": 5.0, "count": 10 }
-    },
-    {
       "id": "python-variaveis-e-tipos-de-dados",
       "bootcamp_id": "ready-to-deploy",
       "title": "Variáveis e Tipos de Dados",
       "description": "Primeiro módulo do Python na Prática: Google Colab, variáveis, números, strings e booleanos, sempre partindo de problemas reais do dia a dia.",
       "level": "Iniciante",
       "nodes": 5,
-      "skills": ["python", "google-colab", "variaveis", "tipos-de-dados", "numeros", "strings", "booleanos"],
+      "skills": [
+        "python",
+        "google-colab",
+        "variaveis",
+        "tipos-de-dados",
+        "numeros",
+        "strings",
+        "booleanos"
+      ],
       "hot": false
     },
     {
@@ -61,7 +25,13 @@
       "description": "Segundo módulo do Python na Prática: listas, conjuntos e dicionários, partindo de problemas reais como extrato bancário, hashtags únicas e cadastro de redes wi-fi.",
       "level": "Iniciante",
       "nodes": 3,
-      "skills": ["python", "listas", "conjuntos", "dicionarios", "estruturas-de-dados"],
+      "skills": [
+        "python",
+        "listas",
+        "conjuntos",
+        "dicionarios",
+        "estruturas-de-dados"
+      ],
       "hot": false
     },
     {
@@ -71,7 +41,13 @@
       "description": "Terceiro módulo do Python na Prática: if/elif/else, tratamento de exceções com try/except/finally e a estrutura de repetição for, aplicados a pagamento com cartão, divisão de conta e análise de vendas.",
       "level": "Iniciante",
       "nodes": 3,
-      "skills": ["python", "condicionais", "excecoes", "for", "loops"],
+      "skills": [
+        "python",
+        "condicionais",
+        "excecoes",
+        "for",
+        "loops"
+      ],
       "hot": false
     },
     {
@@ -81,7 +57,12 @@
       "description": "Quarto módulo do Python na Prática: leitura e escrita de arquivos, funções (parâmetros, retorno e tratamento de erros) e escopo de variáveis, aplicados a uma base de clientes e a uma simulação de juros compostos.",
       "level": "Iniciante",
       "nodes": 4,
-      "skills": ["python", "arquivos", "funcoes", "escopo"],
+      "skills": [
+        "python",
+        "arquivos",
+        "funcoes",
+        "escopo"
+      ],
       "hot": false
     },
     {
@@ -91,7 +72,14 @@
       "description": "Quinto módulo do Python na Prática: funções lambda, funções de alta ordem e as ferramentas map, filter e reduce, aplicadas a uma calculadora de juros compostos e ao processamento de listas de e-mails e números.",
       "level": "Intermediário",
       "nodes": 4,
-      "skills": ["python", "lambda", "map", "filter", "reduce", "programacao-funcional"],
+      "skills": [
+        "python",
+        "lambda",
+        "map",
+        "filter",
+        "reduce",
+        "programacao-funcional"
+      ],
       "hot": false
     },
     {
@@ -101,7 +89,13 @@
       "description": "Sexto módulo do Python na Prática: paradigmas de programação, classes, objetos e herança, construindo uma classe de cadastro de clientes e uma classe para ler arquivos CSV.",
       "level": "Intermediário",
       "nodes": 4,
-      "skills": ["python", "poo", "classes", "objetos", "heranca"],
+      "skills": [
+        "python",
+        "poo",
+        "classes",
+        "objetos",
+        "heranca"
+      ],
       "hot": false
     },
     {
@@ -111,7 +105,13 @@
       "description": "Sétimo módulo do Python na Prática: import/from/as, criação de módulos e pacotes próprios, e instalação de pacotes de terceiros com pip e PyPI, aplicados a uma consulta HTTP com o pacote requests.",
       "level": "Intermediário",
       "nodes": 4,
-      "skills": ["python", "modulos", "pacotes", "pip", "pypi"],
+      "skills": [
+        "python",
+        "modulos",
+        "pacotes",
+        "pip",
+        "pypi"
+      ],
       "hot": false
     },
     {
@@ -121,7 +121,13 @@
       "description": "Oitavo módulo do Python na Prática: os três tipos de erro em Python (sintaxe, execução e lógica), traceback, hierarquia de exceções, try/except/else/finally, raise e exceções personalizadas, aplicados a um processamento de faturas.",
       "level": "Intermediário",
       "nodes": 4,
-      "skills": ["python", "excecoes", "try-except", "depuracao", "tratamento-de-erros"],
+      "skills": [
+        "python",
+        "excecoes",
+        "try-except",
+        "depuracao",
+        "tratamento-de-erros"
+      ],
       "hot": false
     },
     {
@@ -131,7 +137,13 @@
       "description": "Nono e último módulo do Python na Prática: instalar o Python fora do Colab, usar o modo interativo (REPL) e criar, salvar e executar arquivos de script .py, incluindo argumentos de linha de comando.",
       "level": "Intermediário",
       "nodes": 3,
-      "skills": ["python", "scripting", "terminal", "repl", "sys-argv"],
+      "skills": [
+        "python",
+        "scripting",
+        "terminal",
+        "repl",
+        "sys-argv"
+      ],
       "hot": false
     }
   ]
