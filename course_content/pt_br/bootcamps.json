@@ -1,19 +1,6 @@
 {
   "bootcamps": [
     {
-      "id": "ready-to-deploy",
-      "title": "Ready to Deploy",
-      "description": "Python do zero ao primeiro deploy. Você começa sem nunca ter programado — lógica, terminal e Git — passa por SQL e modelagem de dados, aprende a construir a parte que roda no servidor com uma API de verdade, e termina colocando o projeto no ar. Cada módulo vem com prática, e cada projeto vira código rodando em produção.",
-      "outcome": "Ao terminar, você escreve Python com confiança, versiona tudo no Git, modela e consulta dados em SQL, constrói uma API com banco e autenticação, e faz o deploy do seu projeto — com um portfólio público pra mostrar.",
-      "level": "Iniciante",
-      "duration": "4 meses",
-      "modules": 4,
-      "projects": 3,
-      "hot": true,
-      "new": false,
-      "rating": { "score": 4.9, "count": 27 }
-    },
-    {
       "id": "desenvolvedor-backend",
       "title": "Desenvolvedor Backend",
       "description": "Da lógica ao backend de produção: a base vem do JavaScript, a forma vem do TypeScript, o dado passa por SQL e NoSQL, a API sai em Node/Express com autenticação, o ambiente sobe com Docker, e a noção de complexidade de algoritmos é o que separa código que vira produto de código que vira legenda. Cinco projetos no caminho, e o último é um encurtador de URLs — você termina com código de verdade rodando.",
@@ -48,19 +35,6 @@
           { "type": "projeto", "id": "encurtador-de-url", "title": "Projeto final: um encurtador de URLs", "description": "Um serviço estilo bit.ly: recebe uma URL longa, devolve uma curta e redireciona — do zero, pensando na arquitetura." }
         ]
       }
-    },
-    {
-      "id": "desenvolvedor-frontend",
-      "title": "Desenvolvedor Frontend",
-      "description": "Do zero absoluto ao frontend de produção. Você começa sem nunca ter programado — lógica, terminal e Git — passa pela base da web (HTML, CSS, layout responsivo), aprende a construir interfaces de verdade com JavaScript e React, tipa tudo com TypeScript, e então entra no que separa um junior pronto pro mercado: formulários sérios, server state, Next.js, testes, performance, acessibilidade a fundo, segurança e deploy na edge. Sete projetos no caminho e a IA como par de programação desde cedo.",
-      "outcome": "Ao terminar, você constrói e faz deploy de aplicações web completas: interfaces acessíveis e responsivas em React + TypeScript, com formulários validados ponta a ponta, server state gerenciado, renderização no servidor com Next.js, cobertura de testes, orçamento de performance e hardening de segurança — tudo versionado no Git e publicado na edge.",
-      "level": "Iniciante",
-      "duration": "7 meses",
-      "modules": 18,
-      "projects": 7,
-      "hot": false,
-      "new": true,
-      "rating": { "score": 5.0, "count": 12 }
     },
     {
       "id": "python-na-pratica",
