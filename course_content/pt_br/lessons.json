@@ -8,7 +8,7 @@
       "navTitle": "Pensamento Computacional",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/logica.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/logica.html",
       "resources": [
         {
           "name": "O que é lógica de programação?",
@@ -34,7 +34,7 @@
       "navTitle": "Configurando o Ambiente",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/ambiente.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/ambiente.html",
       "resources": [
         {
           "name": "Configurando o ambiente de desenvolvimento (MDN PT-BR)",
@@ -88,7 +88,7 @@
       "navTitle": "Variáveis e Tipos",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/variaveis.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/variaveis.html",
       "resources": [
         {
           "name": "Variáveis e tipos de dados (artigo)",
@@ -114,7 +114,7 @@
       "navTitle": "Operadores e Expressões",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/operadores.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/operadores.html",
       "resources": [
         {
           "name": "Expressões e operadores (MDN PT-BR)",
@@ -140,7 +140,7 @@
       "navTitle": "Condicionais",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/condicionais.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/condicionais.html",
       "resources": [
         {
           "name": "Tomada de decisão com if/else (artigo)",
@@ -166,7 +166,7 @@
       "navTitle": "Laços e Iteração",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/loops.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/loops.html",
       "resources": [
         {
           "name": "Loops e iteração (MDN PT-BR)",
@@ -192,7 +192,7 @@
       "navTitle": "Funções",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/funcoes.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/funcoes.html",
       "resources": [
         {
           "name": "Funções - blocos de código reutilizáveis (artigo)",
@@ -218,7 +218,7 @@
       "navTitle": "Strings e Manipulação de Texto",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/strings.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/strings.html",
       "resources": [
         {
           "name": "String (MDN PT-BR)",
@@ -244,7 +244,7 @@
       "navTitle": "Listas (Arrays)",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/arrays.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/arrays.html",
       "resources": [
         {
           "name": "Array (MDN PT-BR)",
@@ -270,7 +270,7 @@
       "navTitle": "Objetos e Dicionários",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/objetos.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/objetos.html",
       "resources": [
         {
           "name": "Trabalhando com objetos (MDN PT-BR)",
@@ -296,7 +296,7 @@
       "navTitle": "Depuração e Leitura de Erros",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/debug.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/debug.html",
       "resources": [
         {
           "name": "O que deu errado? Solução de problemas em JavaScript (MDN PT-BR)",
@@ -322,7 +322,7 @@
       "navTitle": "Git: add, commit, push",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/git-basico.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/git-basico.html",
       "resources": [
         {
           "name": "Pro Git - livro oficial, traduzido para PT-BR",
@@ -362,7 +362,7 @@
       "navTitle": "Seu Primeiro Projeto",
       "badge": "essencial",
       "readTime": "1 min de leitura",
-      "content": "programacao-do-zero/projeto-final.html",
+      "content": "desenvolvedor-backend/programacao-do-zero/projeto-final.html",
       "resources": [
         {
           "name": "App Ideas - lista curada de projetos para praticar",
@@ -402,7 +402,7 @@
       "navTitle": "Google Colab",
       "badge": "essencial",
       "readTime": "3 min de leitura",
-      "content": "python-variaveis-e-tipos-de-dados/colab.html",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/colab.html",
       "resources": [
         {
           "name": "Google Colaboratory - página oficial",
@@ -442,7 +442,7 @@
       "navTitle": "Variáveis",
       "badge": "essencial",
       "readTime": "4 min de leitura",
-      "content": "python-variaveis-e-tipos-de-dados/variaveis.html",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/variaveis.html",
       "resources": [
         {
           "name": "PEP 8 - Style Guide for Python Code",
@@ -482,7 +482,7 @@
       "navTitle": "Números",
       "badge": "essencial",
       "readTime": "8 min de leitura",
-      "content": "python-variaveis-e-tipos-de-dados/numeros.html",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/numeros.html",
       "resources": [
         {
           "name": "Tipos numéricos - int, float, complex (documentação oficial, PT-BR)",
@@ -522,7 +522,7 @@
       "navTitle": "Strings",
       "badge": "essencial",
       "readTime": "9 min de leitura",
-      "content": "python-variaveis-e-tipos-de-dados/strings.html",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/strings.html",
       "resources": [
         {
           "name": "Text Sequence Type - str (documentação oficial, PT-BR)",
@@ -562,7 +562,7 @@
       "navTitle": "Booleanos",
       "badge": "essencial",
       "readTime": "5 min de leitura",
-      "content": "python-variaveis-e-tipos-de-dados/booleanos.html",
+      "content": "python-na-pratica/python-variaveis-e-tipos-de-dados/booleanos.html",
       "resources": [
         {
           "name": "Truth Value Testing (documentação oficial, PT-BR)",
