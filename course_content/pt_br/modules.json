@@ -47,7 +47,7 @@
     {
       "id": "python-variaveis-e-tipos-de-dados",
       "bootcamp_id": "ready-to-deploy",
-      "title": "Módulo 1 — Variáveis e Tipos de Dados",
+      "title": "Variáveis e Tipos de Dados",
       "description": "Primeiro módulo do Python na Prática: Google Colab, variáveis, números, strings e booleanos, sempre partindo de problemas reais do dia a dia.",
       "level": "Iniciante",
       "nodes": 5,
@@ -57,7 +57,7 @@
     {
       "id": "python-estruturas-de-dados",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 2 — Estruturas de Dados",
+      "title": "Estruturas de Dados",
       "description": "Segundo módulo do Python na Prática: listas, conjuntos e dicionários, partindo de problemas reais como extrato bancário, hashtags únicas e cadastro de redes wi-fi.",
       "level": "Iniciante",
       "nodes": 3,
@@ -67,7 +67,7 @@
     {
       "id": "python-fluxo-condicional-e-repeticao",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 3 — Fluxo Condicional & Repetição",
+      "title": "Fluxo Condicional & Repetição",
       "description": "Terceiro módulo do Python na Prática: if/elif/else, tratamento de exceções com try/except/finally e a estrutura de repetição for, aplicados a pagamento com cartão, divisão de conta e análise de vendas.",
       "level": "Iniciante",
       "nodes": 3,
@@ -77,7 +77,7 @@
     {
       "id": "python-arquivos-e-funcoes",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 4 — Arquivos & Funções",
+      "title": "Arquivos & Funções",
       "description": "Quarto módulo do Python na Prática: leitura e escrita de arquivos, funções (parâmetros, retorno e tratamento de erros) e escopo de variáveis, aplicados a uma base de clientes e a uma simulação de juros compostos.",
       "level": "Iniciante",
       "nodes": 4,
@@ -87,7 +87,7 @@
     {
       "id": "python-programacao-funcional",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 5 — Programação Funcional",
+      "title": "Programação Funcional",
       "description": "Quinto módulo do Python na Prática: funções lambda, funções de alta ordem e as ferramentas map, filter e reduce, aplicadas a uma calculadora de juros compostos e ao processamento de listas de e-mails e números.",
       "level": "Intermediário",
       "nodes": 4,
@@ -97,7 +97,7 @@
     {
       "id": "python-programacao-orientada-a-objetos",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 6 — Programação Orientada a Objetos",
+      "title": "Programação Orientada a Objetos",
       "description": "Sexto módulo do Python na Prática: paradigmas de programação, classes, objetos e herança, construindo uma classe de cadastro de clientes e uma classe para ler arquivos CSV.",
       "level": "Intermediário",
       "nodes": 4,
@@ -107,7 +107,7 @@
     {
       "id": "python-modulos-e-pacotes",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 7 — Módulos & Pacotes",
+      "title": "Módulos & Pacotes",
       "description": "Sétimo módulo do Python na Prática: import/from/as, criação de módulos e pacotes próprios, e instalação de pacotes de terceiros com pip e PyPI, aplicados a uma consulta HTTP com o pacote requests.",
       "level": "Intermediário",
       "nodes": 4,
@@ -117,7 +117,7 @@
     {
       "id": "python-tratamento-de-erros",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 8 — Tratamento de Erros",
+      "title": "Tratamento de Erros",
       "description": "Oitavo módulo do Python na Prática: os três tipos de erro em Python (sintaxe, execução e lógica), traceback, hierarquia de exceções, try/except/else/finally, raise e exceções personalizadas, aplicados a um processamento de faturas.",
       "level": "Intermediário",
       "nodes": 4,
@@ -127,7 +127,7 @@
     {
       "id": "python-scripting",
       "bootcamp_id": "python-na-pratica",
-      "title": "Módulo 9 — Scripting",
+      "title": "Scripting",
       "description": "Nono e último módulo do Python na Prática: instalar o Python fora do Colab, usar o modo interativo (REPL) e criar, salvar e executar arquivos de script .py, incluindo argumentos de linha de comando.",
       "level": "Intermediário",
       "nodes": 3,
