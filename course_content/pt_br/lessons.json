@@ -733,6 +733,242 @@
       "badge": "essencial",
       "readTime": "4 min de leitura",
       "content": "python-na-pratica/python-programacao-funcional/reduce.html"
+    },
+    {
+      "id": "python-poo-teoria",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 1,
+      "title": "Um pouco de teoria",
+      "navTitle": "Teoria da POO",
+      "badge": "essencial",
+      "readTime": "5 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/teoria.html"
+    },
+    {
+      "id": "python-classes",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 2,
+      "title": "Classes",
+      "navTitle": "Classes",
+      "badge": "essencial",
+      "readTime": "8 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/classes.html"
+    },
+    {
+      "id": "python-objetos",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 3,
+      "title": "Objetos",
+      "navTitle": "Objetos",
+      "badge": "essencial",
+      "readTime": "13 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/objetos.html"
+    },
+    {
+      "id": "python-heranca",
+      "module_id": "python-programacao-orientada-a-objetos",
+      "order": 4,
+      "title": "Herança",
+      "navTitle": "Herança",
+      "badge": "essencial",
+      "readTime": "7 min de leitura",
+      "content": "python-na-pratica/python-programacao-orientada-a-objetos/heranca.html"
+    },
+    {
+      "id": "python-import",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 1,
+      "title": "from / import / as",
+      "navTitle": "Import",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/import.html"
+    },
+    {
+      "id": "python-modulos",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 2,
+      "title": "Módulos",
+      "navTitle": "Módulos",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/modulos.html"
+    },
+    {
+      "id": "python-pacotes",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 3,
+      "title": "Pacotes",
+      "navTitle": "Pacotes",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/pacotes.html"
+    },
+    {
+      "id": "python-pip",
+      "module_id": "python-modulos-e-pacotes",
+      "order": 4,
+      "title": "Baixando Pacotes",
+      "navTitle": "PyPI & pip",
+      "badge": "essencial",
+      "readTime": "4 min de leitura",
+      "content": "python-na-pratica/python-modulos-e-pacotes/pip.html",
+      "resources": [
+        {
+          "name": "PyPI - Python Package Index",
+          "href": "https://pypi.org/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "requests - documentação",
+          "href": "https://pypi.org/project/requests/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-tipos-de-erros",
+      "module_id": "python-tratamento-de-erros",
+      "order": 1,
+      "title": "Tipos de Erros",
+      "navTitle": "Tipos de Erros",
+      "badge": "essencial",
+      "readTime": "2 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/tipos-de-erros.html"
+    },
+    {
+      "id": "python-erros-sintaxe",
+      "module_id": "python-tratamento-de-erros",
+      "order": 2,
+      "title": "Erros de Sintaxe",
+      "navTitle": "Erros de Sintaxe",
+      "badge": "essencial",
+      "readTime": "7 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/erros-de-sintaxe.html"
+    },
+    {
+      "id": "python-excecoes-runtime",
+      "module_id": "python-tratamento-de-erros",
+      "order": 3,
+      "title": "Erros em Tempo de Execução",
+      "navTitle": "Erros de Execução",
+      "badge": "essencial",
+      "readTime": "19 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/erros-em-tempo-de-execucao.html"
+    },
+    {
+      "id": "python-erros-logica",
+      "module_id": "python-tratamento-de-erros",
+      "order": 4,
+      "title": "Erros de Lógica",
+      "navTitle": "Erros de Lógica",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-tratamento-de-erros/erros-de-logica.html"
+    },
+    {
+      "id": "python-instalacao",
+      "module_id": "python-scripting",
+      "order": 1,
+      "title": "Instalando o Python",
+      "navTitle": "Instalando o Python",
+      "badge": "essencial",
+      "readTime": "3 min de leitura",
+      "content": "python-na-pratica/python-scripting/instalando-o-python.html",
+      "resources": [
+        {
+          "name": "Python - downloads oficiais",
+          "href": "https://www.python.org/",
+          "tags": [
+            {
+              "label": "Doc",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "Real Python - guia de instalação",
+          "href": "https://realpython.com/installing-python/",
+          "tags": [
+            {
+              "label": "Tutorial",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python-repl",
+      "module_id": "python-scripting",
+      "order": 2,
+      "title": "Executando Código no Terminal",
+      "navTitle": "REPL",
+      "badge": "essencial",
+      "readTime": "1 min de leitura",
+      "content": "python-na-pratica/python-scripting/executando-codigo-no-terminal.html"
+    },
+    {
+      "id": "python-scripts",
+      "module_id": "python-scripting",
+      "order": 3,
+      "title": "Criando Arquivos de Script",
+      "navTitle": "Arquivos de Script",
+      "badge": "essencial",
+      "readTime": "6 min de leitura",
+      "content": "python-na-pratica/python-scripting/criando-arquivos-de-script.html",
+      "resources": [
+        {
+          "name": "Visual Studio Code",
+          "href": "https://code.visualstudio.com/",
+          "tags": [
+            {
+              "label": "IDE",
+              "free": false
+            },
+            {
+              "label": "Grátis",
+              "free": true
+            }
+          ]
+        },
+        {
+          "name": "PyCharm",
+          "href": "https://www.jetbrains.com/",
+          "tags": [
+            {
+              "label": "IDE",
+              "free": false
+            }
+          ]
+        }
+      ]
     }
   ]
 }

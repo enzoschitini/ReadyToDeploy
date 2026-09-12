@@ -1,0 +1,100 @@
+<div class="prose">
+<p>Além da biblioteca padrão e dos módulos que você mesmo escreve, existe um universo de pacotes criados pela comunidade Python para praticamente qualquer tarefa.</p>
+<h2>PyPI</h2>
+<p>O <strong>PyPI</strong> (<em>Python Package Index</em>, pypi.org) é o repositório oficial de pacotes Python. Nele você encontra bibliotecas para análise de dados, automação, desenvolvimento web, inteligência artificial e muito mais — cada uma com sua página, suas versões e sua documentação.</p>
+<h2>pip</h2>
+<p>O <strong>pip</strong> é a ferramenta oficial para instalar pacotes do PyPI direto do terminal (no Colab, em uma célula com <code>!</code> na frente, que executa um comando do sistema em vez de Python).</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
+<tbody>
+<tr><td><code>pip install &lt;pacote&gt;</code></td><td>Instala a versão mais recente do pacote</td></tr>
+<tr><td><code>pip install &lt;pacote&gt;==&lt;versão&gt;</code></td><td>Instala uma versão específica</td></tr>
+<tr><td><code>pip freeze</code></td><td>Lista todos os pacotes instalados e suas versões</td></tr>
+<tr><td><code>pip uninstall &lt;pacote&gt;</code></td><td>Remove um pacote instalado</td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-bash">!pip install requests==2.32.3
+# Successfully installed requests-2.32.3
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> fixar a versão (<code>==2.32.3</code>) evita que uma atualização futura do pacote quebre um código que já estava funcionando — uma boa prática em projetos reais.</p>
+</blockquote>
+<p>O comando <code>pip freeze</code> lista todos os pacotes instalados no ambiente, um por linha, junto com a versão exata de cada um — útil para documentar (ou reproduzir) as dependências de um projeto.</p>
+<h2>requests</h2>
+<p>O pacote <code>requests</code> facilita fazer requisições ao protocolo web <strong>HTTP</strong>, usado por praticamente todo serviço na internet.</p>
+<p><strong>Exemplo:</strong> você está automatizando o preenchimento de um cadastro e, a partir do CEP informado pelo cliente, precisa descobrir a rua, o bairro e a cidade. O ViaCEP é um serviço público e gratuito para esse tipo de consulta.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">import requests
+
+resposta = requests.get('https://viacep.com.br/ws/01310930/json/')
+print(f'Status code: {resposta.status_code}')
+# Status code: 200
+</code></pre></div>
+<p>Um <code>status_code</code> igual a <code>200</code> indica que a requisição foi bem-sucedida. O conteúdo retornado vem como texto, no formato <strong>JSON</strong> — um formato muito usado para troca de dados entre sistemas:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">print(resposta.text)
+# {
+#   "cep": "01310-930",
+#   "logradouro": "Avenida Paulista",
+#   "complemento": "2100",
+#   "unidade": "Banco Safra S.A",
+#   "bairro": "Bela Vista",
+#   "localidade": "São Paulo",
+#   "uf": "SP",
+#   "estado": "São Paulo",
+#   "regiao": "Sudeste",
+#   "ibge": "3550308",
+#   "gia": "1004",
+#   "ddd": "11",
+#   "siafi": "7107"
+# }
+</code></pre></div>
+<p>O módulo <code>json</code>, também da biblioteca padrão, converte esse texto em um dicionário Python com <code>json.loads()</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">import json
+
+endereco = json.loads(resposta.text)
+print(endereco)
+# {'cep': '01310-930', 'logradouro': 'Avenida Paulista', 'complemento': '2100', 'unidade': 'Banco Safra S.A', 'bairro': 'Bela Vista', 'localidade': 'São Paulo', 'uf': 'SP', 'estado': 'São Paulo', 'regiao': 'Sudeste', 'ibge': '3550308', 'gia': '1004', 'ddd': '11', 'siafi': '7107'}
+</code></pre></div>
+<blockquote>
+<p>O próprio <code>requests</code> já oferece um atalho para isso, sem precisar importar <code>json</code> manualmente: <code>resposta.json()</code>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">endereco = resposta.json()
+
+print(f"Rua: {endereco['logradouro']}")
+print(f"Bairro: {endereco['bairro']}")
+print(f"Cidade: {endereco['localidade']} - {endereco['uf']}")
+# Rua: Avenida Paulista
+# Bairro: Bela Vista
+# Cidade: São Paulo - SP
+</code></pre></div>
+<blockquote>
+<p>Praticamente todo pacote que conecta a uma API (redes sociais, bancos, sistemas de pagamento, o próprio ChatGPT...) segue essa mesma lógica: uma requisição HTTP que retorna dados em JSON.</p>
+</blockquote>
+<h2>Resumo do Módulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Conceito</th><th>O que é</th><th>Sintaxe</th></tr></thead>
+<tbody>
+<tr><td>Importar um módulo inteiro</td><td>Traz todo o conteúdo, acessado com prefixo</td><td><code>import modulo</code></td></tr>
+<tr><td>Importar nomes específicos</td><td>Traz só o que foi pedido, sem prefixo</td><td><code>from modulo import nome</code></td></tr>
+<tr><td>Apelidar na importação</td><td>Renomeia o módulo ou o nome importado</td><td><code>import modulo as apelido</code></td></tr>
+<tr><td>Módulo</td><td>Um arquivo <code>.py</code> com código reutilizável</td><td><code>arquivo_csv.py</code></td></tr>
+<tr><td>Pacote</td><td>Uma pasta com módulos relacionados e um <code>__init__.py</code></td><td><code>arquivo/arquivo_csv.py</code></td></tr>
+<tr><td>PyPI</td><td>Repositório oficial de pacotes de terceiros</td><td>pypi.org</td></tr>
+<tr><td>pip</td><td>Ferramenta para instalar, listar e remover pacotes</td><td><code>pip install</code>, <code>pip freeze</code>, <code>pip uninstall</code></td></tr>
+</tbody>
+</table></div>
+<p>Pacotes vistos neste módulo: <code>random</code>, <code>math</code>, <code>time</code>, <code>datetime</code>, <code>os</code>, <code>json</code> (biblioteca padrão) e <code>requests</code> (de terceiros, via PyPI).</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-pip-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-pip-q">Por que fixar a versão de um pacote (<code>pip install requests==2.32.3</code>) é uma boa prática?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="`pip install requests` (sem versão) funciona normalmente — a fixação de versão é sobre estabilidade, não sobre a instalação em si."><input type="radio" name="quiz-python-pip" value="0" /><span class="txt">Porque pacotes sem versão fixada não podem ser importados</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Uma nova versão de um pacote pode mudar comportamentos ou remover funcionalidades; fixar a versão mantém o projeto previsível."><input type="radio" name="quiz-python-pip" value="1" /><span class="txt">Porque isso evita que uma atualização futura do pacote quebre um código que já funcionava</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="O PyPI aceita instalação com ou sem versão específica — a versão mais recente é o padrão quando nada é fixado."><input type="radio" name="quiz-python-pip" value="2" /><span class="txt">Porque o PyPI só aceita pacotes com versão fixada</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Fixar a versão não tem relação com velocidade de instalação — é uma questão de estabilidade e reprodutibilidade do projeto."><input type="radio" name="quiz-python-pip" value="3" /><span class="txt">Porque isso torna a instalação mais rápida</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

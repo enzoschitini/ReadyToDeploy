@@ -93,6 +93,46 @@
       "nodes": 4,
       "skills": ["python", "lambda", "map", "filter", "reduce", "programacao-funcional"],
       "hot": false
+    },
+    {
+      "id": "python-programacao-orientada-a-objetos",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 6 — Programação Orientada a Objetos",
+      "description": "Sexto módulo do Python na Prática: paradigmas de programação, classes, objetos e herança, construindo uma classe de cadastro de clientes e uma classe para ler arquivos CSV.",
+      "level": "Intermediário",
+      "nodes": 4,
+      "skills": ["python", "poo", "classes", "objetos", "heranca"],
+      "hot": false
+    },
+    {
+      "id": "python-modulos-e-pacotes",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 7 — Módulos & Pacotes",
+      "description": "Sétimo módulo do Python na Prática: import/from/as, criação de módulos e pacotes próprios, e instalação de pacotes de terceiros com pip e PyPI, aplicados a uma consulta HTTP com o pacote requests.",
+      "level": "Intermediário",
+      "nodes": 4,
+      "skills": ["python", "modulos", "pacotes", "pip", "pypi"],
+      "hot": false
+    },
+    {
+      "id": "python-tratamento-de-erros",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 8 — Tratamento de Erros",
+      "description": "Oitavo módulo do Python na Prática: os três tipos de erro em Python (sintaxe, execução e lógica), traceback, hierarquia de exceções, try/except/else/finally, raise e exceções personalizadas, aplicados a um processamento de faturas.",
+      "level": "Intermediário",
+      "nodes": 4,
+      "skills": ["python", "excecoes", "try-except", "depuracao", "tratamento-de-erros"],
+      "hot": false
+    },
+    {
+      "id": "python-scripting",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Módulo 9 — Scripting",
+      "description": "Nono e último módulo do Python na Prática: instalar o Python fora do Colab, usar o modo interativo (REPL) e criar, salvar e executar arquivos de script .py, incluindo argumentos de linha de comando.",
+      "level": "Intermediário",
+      "nodes": 3,
+      "skills": ["python", "scripting", "terminal", "repl", "sys-argv"],
+      "hot": false
     }
   ]
 }

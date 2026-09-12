@@ -1,0 +1,158 @@
+<div class="prose">
+<p>Todo estudante é uma pessoa, mas nem toda pessoa é um estudante. A <strong>herança</strong> permite que a classe <code>Estudante</code> reaproveite tudo o que a classe <code>Pessoa</code> já tem, sem copiar código, e acrescente apenas o que é específico de um estudante.</p>
+<h2>Definição</h2>
+<p>A herança cria uma <strong>especialização</strong> de uma classe. A classe original é chamada de <strong>classe mãe</strong> (ou superclasse), e a nova, de <strong>classe filha</strong> (ou subclasse). A classe filha herda todos os atributos e métodos da mãe. A estrutura geral é:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">class ClasseMae:
+
+    def __init__(self, parametros):
+        ...
+
+class ClasseFilha(ClasseMae):
+
+    def __init__(self, parametros):
+        super().__init__(parametros_da_mae)
+        self.atributo_3 = ...
+        self.atributo_4 = ...
+
+    def metodo_3(self, parametros):
+        ...
+</code></pre></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Elemento</th><th>O que faz</th></tr></thead>
+<tbody>
+<tr><td><code>class ClasseFilha(ClasseMae):</code></td><td>O nome da classe mãe entre parênteses indica a herança</td></tr>
+<tr><td><code>super()</code></td><td>Dá acesso aos métodos da classe mãe</td></tr>
+<tr><td><code>super().__init__(...)</code></td><td>Executa o construtor da mãe, que cria os atributos herdados</td></tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Dica:</strong> uma boa forma de saber se a herança faz sentido é a pergunta <strong>"é um?"</strong>: um estudante <strong>é uma</strong> pessoa? Sim, então <code>Estudante</code> pode herdar de <code>Pessoa</code>.</p>
+</blockquote>
+<h2>Criando a classe Estudante</h2>
+<p>Vamos reaproveitar a classe <code>Pessoa</code> da aula anterior. Todo estudante estuda em uma universidade, então primeiro criamos a classe <code>Universidade</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">class Universidade:
+
+    def __init__(self, nome: str):
+        self.nome = nome
+</code></pre></div>
+<p>Agora especializamos a classe <code>Pessoa</code> na classe <code>Estudante</code>. O construtor recebe os dados de uma pessoa <strong>mais</strong> a universidade, repassa os dados de pessoa para o construtor da mãe com <code>super()</code> e cria o único atributo novo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">class Estudante(Pessoa):
+
+    def __init__(self, nome: str, idade: int, documento: str, universidade: Universidade):
+        # A classe mãe (Pessoa) cria os atributos nome, idade e documento
+        super().__init__(nome=nome, idade=idade, documento=documento)
+        # Atributo exclusivo de Estudante
+        self.universidade = universidade
+</code></pre></div>
+<blockquote>
+<p><strong>Atenção:</strong> o <code>super().__init__()</code> é obrigatório quando a classe filha tem o próprio <code>__init__</code>. Sem ele, o construtor da mãe <strong>não é executado</strong>, e os atributos <code>nome</code>, <code>idade</code> e <code>documento</code> simplesmente não existem no objeto, gerando um <code>AttributeError</code> na primeira vez em que forem usados.</p>
+</blockquote>
+<p>Repare em outro detalhe: o atributo <code>universidade</code> guarda um <strong>objeto</strong> da classe <code>Universidade</code>. Isso é diferente de herança:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Relação</th><th>Pergunta</th><th>Exemplo</th><th>Como aparece no código</th></tr></thead>
+<tbody>
+<tr><td>Herança</td><td>"é um?"</td><td>Um estudante <strong>é uma</strong> pessoa</td><td><code>class Estudante(Pessoa):</code></td></tr>
+<tr><td>Composição</td><td>"tem um?"</td><td>Um estudante <strong>tem uma</strong> universidade</td><td><code>self.universidade = universidade</code></td></tr>
+</tbody>
+</table></div>
+<h2>Manipulação</h2>
+<p>Criamos os objetos da mesma forma que antes. Primeiro a universidade, depois o estudante, que recebe o objeto da universidade como parâmetro:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">usp = Universidade(nome='Universidade de São Paulo')
+andre_estudante = Estudante(nome='Andre Perez', idade=30, documento='123', universidade=usp)
+</code></pre></div>
+<p>A classe <code>Estudante</code> não define <code>__str__</code>, <code>falar()</code> nem <code>dormir()</code>, mas o objeto consegue usar todos eles, porque foram <strong>herdados</strong> de <code>Pessoa</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># __str__ herdado de Pessoa
+print(andre_estudante)
+
+# Métodos herdados de Pessoa
+andre_estudante.falar(texto='Tenho prova amanhã!')
+andre_estudante.dormir(horas=2)
+# Andre Perez, 30 anos, documento: 123
+# Andre Perez diz: Tenho prova amanhã!
+# Andre Perez está dormindo... 1h de 2h
+# Andre Perez está dormindo... 2h de 2h
+</code></pre></div>
+<p>Para acessar um atributo de um objeto que está <strong>dentro</strong> de outro, encadeamos os pontos:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python"># andre_estudante.universidade é um objeto Universidade; .nome é o atributo dele
+print(andre_estudante.universidade.nome)
+# Universidade de São Paulo
+</code></pre></div>
+<p>Um estudante é, ao mesmo tempo, um <code>Estudante</code> <strong>e</strong> uma <code>Pessoa</code>. O <code>isinstance()</code> confirma isso, e o <code>issubclass()</code> verifica a relação entre as classes:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">print(isinstance(andre_estudante, Estudante))
+print(isinstance(andre_estudante, Pessoa))  # True: todo Estudante é uma Pessoa
+print(isinstance(andre, Estudante))         # False: nem toda Pessoa é um Estudante
+
+print(issubclass(Estudante, Pessoa))
+# True
+# True
+# False
+# True
+</code></pre></div>
+<h2>Novos métodos e sobrescrita</h2>
+<p>Além de herdar, a classe filha pode:</p>
+<ul>
+<li><strong>Acrescentar</strong> métodos que só fazem sentido para ela (ex: <code>estudar()</code>);</li>
+<li><strong>Sobrescrever</strong> (<em>override</em>) um método herdado, definindo outra versão com o mesmo nome. Quando o método é chamado, o Python usa a versão da classe filha.</li>
+</ul>
+<p>Vamos melhorar o <code>Estudante</code>: o <code>__str__</code> herdado não menciona a universidade. Na nova versão, aproveitamos o texto da mãe com <code>super().__str__()</code> e acrescentamos o que falta:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">class Estudante(Pessoa):
+
+    def __init__(self, nome: str, idade: int, documento: str, universidade: Universidade):
+        super().__init__(nome=nome, idade=idade, documento=documento)
+        self.universidade = universidade
+
+    def estudar(self, materia: str) -&gt; None:
+        # Método novo, exclusivo de Estudante
+        print(f'{self.nome} está estudando {materia} na {self.universidade.nome}')
+
+    def __str__(self) -&gt; str:
+        # Sobrescrita: reaproveita o texto da Pessoa e acrescenta a universidade
+        return f'{super().__str__()}, estudante da {self.universidade.nome}'
+</code></pre></div>
+<p>Como a classe foi redefinida, recriamos o objeto (lembre-se do aviso da aula anterior):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copiar código">copiar</button><pre><code class="language-python">andre_estudante = Estudante(nome='Andre Perez', idade=30, documento='123', universidade=usp)
+
+print(andre_estudante)  # usa o __str__ de Estudante
+print(andre)            # continua usando o __str__ de Pessoa
+
+andre_estudante.estudar(materia='Programação Orientada a Objetos')
+# Andre Perez, 30 anos, documento: 123, estudante da Universidade de São Paulo
+# Andre Perez, 30 anos, documento: 123
+# Andre Perez está estudando Programação Orientada a Objetos na Universidade de São Paulo
+</code></pre></div>
+<blockquote>
+<p><strong>Dica:</strong> com herança, uma melhoria feita na classe mãe chega automaticamente a todas as classes filhas. Se amanhã a <code>Pessoa</code> ganhar um método <code>apresentar()</code>, todo <code>Estudante</code> passa a tê-lo também, sem nenhuma linha a mais.</p>
+</blockquote>
+<h2>Resumo do Módulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Conceito</th><th>O que é</th><th>Sintaxe</th></tr></thead>
+<tbody>
+<tr><td>Classe</td><td>Receita para criar objetos</td><td><code>class Pessoa:</code></td></tr>
+<tr><td>Construtor</td><td>Método executado ao criar o objeto; define os atributos</td><td><code>def __init__(self, nome):</code></td></tr>
+<tr><td><code>self</code></td><td>Referência ao próprio objeto dentro dos métodos</td><td><code>self.nome = nome</code></td></tr>
+<tr><td>Atributo</td><td>Característica do objeto</td><td><code>andre.nome</code></td></tr>
+<tr><td>Método</td><td>Ação do objeto</td><td><code>andre.falar(texto='Olá')</code></td></tr>
+<tr><td><code>__str__</code></td><td>Método especial que define o texto exibido pelo <code>print()</code></td><td><code>def __str__(self) -&gt; str:</code></td></tr>
+<tr><td>Objeto</td><td>Instância concreta de uma classe</td><td><code>andre = Pessoa(nome='Andre', idade=30)</code></td></tr>
+<tr><td>Método interno</td><td>Convenção para métodos de uso interno da classe</td><td><code>def _extrair_conteudo(self):</code></td></tr>
+<tr><td>Herança</td><td>Classe filha que especializa uma classe mãe ("é um")</td><td><code>class Estudante(Pessoa):</code></td></tr>
+<tr><td><code>super()</code></td><td>Acesso aos métodos da classe mãe</td><td><code>super().__init__(nome=nome)</code></td></tr>
+<tr><td>Sobrescrita</td><td>Nova versão de um método herdado</td><td>redefinir <code>__str__</code> na classe filha</td></tr>
+</tbody>
+</table></div>
+<p>Funções nativas vistas neste módulo: <code>type()</code>, <code>isinstance()</code>, <code>issubclass()</code>, <code>open()</code> e <code>sum()</code>.</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-heranca-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-heranca-q">O que acontece se a classe <code>Estudante(Pessoa)</code> definir <code>__init__</code> mas esquecer de chamar <code>super().__init__(...)</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Escolha uma alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Quando a classe filha define seu próprio `__init__`, o da mãe só roda se for chamado explicitamente com `super().__init__(...)`."><input type="radio" name="quiz-python-heranca" value="0" /><span class="txt">Nada muda: o Python chama o <code>__init__</code> da mãe automaticamente de qualquer forma</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Sem o `super().__init__()`, o construtor da mãe nunca executa, então atributos como `nome` e `idade` simplesmente não são criados."><input type="radio" name="quiz-python-heranca" value="1" /><span class="txt">Os atributos definidos no <code>__init__</code> da mãe não existem no objeto, gerando AttributeError ao tentar usá-los</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Esse é um erro de execução (AttributeError ao acessar o atributo ausente), não um erro de sintaxe detectado antes de rodar."><input type="radio" name="quiz-python-heranca" value="2" /><span class="txt">O programa recusa a rodar e aponta um SyntaxError antes mesmo de criar o objeto</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Os métodos continuam herdados normalmente; o problema é específico dos atributos que o `__init__` da mãe criaria."><input type="radio" name="quiz-python-heranca" value="3" /><span class="txt">A classe filha deixa de herdar os métodos da mãe</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>
