@@ -44,21 +44,30 @@
       "level": "Iniciante",
       "duration": "2 meses",
       "modules": 9,
-      "projects": 0,
+      "projects": 9,
       "hot": false,
       "new": true,
       "detail": {
         "creator": { "name": "Enzo Schitini", "github": "enzoschitini" },
         "curriculum": [
           { "type": "modulo", "id": "python-variaveis-e-tipos-de-dados", "title": "Variáveis e Tipos de Dados", "description": "Introdução ao Python: variáveis, números, strings e booleanos." },
+          { "type": "projeto", "id": "patavet-ficha-digital", "title": "PataVet digitaliza a clínica", "description": "Cadastre pets, feche o caixa das consultas e monte um painel com variáveis, números, strings e booleanos." },
           { "type": "modulo", "id": "python-estruturas-de-dados", "title": "Estruturas de Dados", "description": "Listas, conjuntos e dicionários." },
+          { "type": "projeto", "id": "batidas-organiza-playlists", "title": "Batidas organiza suas playlists", "description": "Arrume playlists, elimine gêneros repetidos e cadastre dispositivos com listas, conjuntos e dicionários." },
           { "type": "modulo", "id": "python-fluxo-condicional-e-repeticao", "title": "Fluxo Condicional & Repetição", "description": "Estruturas condicionais (if/else/elif, try/except/finally) e laço for." },
+          { "type": "projeto", "id": "voa-facil-decide-e-repete", "title": "Voa Fácil decide e repete sozinha", "description": "Automatize decisões de uma companhia aérea com condicionais, tratamento de erros e laços." },
           { "type": "modulo", "id": "python-arquivos-e-funcoes", "title": "Arquivos & Funções", "description": "Leitura e escrita de arquivos, criação de funções e escopo de variáveis." },
+          { "type": "projeto", "id": "estuda-mais-notas-e-relatorios", "title": "Estuda Mais organiza notas e relatórios", "description": "Leia arquivos de matrícula, filtre alunos e gere relatórios com funções reutilizáveis." },
           { "type": "modulo", "id": "python-programacao-funcional", "title": "Programação Funcional", "description": "Funções lambda, map, filter e reduce." },
+          { "type": "projeto", "id": "freelaboard-repasses-do-mes", "title": "FreelaBoard processa os repasses do mês", "description": "Calcule repasses e feche o total do mês sem for, usando lambda, map, filter e reduce." },
           { "type": "modulo", "id": "python-programacao-orientada-a-objetos", "title": "Programação Orientada a Objetos", "description": "Classes, objetos e herança." },
+          { "type": "projeto", "id": "pagina-viva-acervo-com-classes", "title": "Página Viva organiza o acervo com classes e objetos", "description": "Modele um acervo de livros com classes, objetos, herança e leitura de CSV." },
           { "type": "modulo", "id": "python-modulos-e-pacotes", "title": "Módulos & Pacotes", "description": "Importação, criação e instalação de módulos e pacotes." },
+          { "type": "projeto", "id": "casanova-modulos-e-pacotes", "title": "CasaNova organiza o código da expansão", "description": "Organize o código em módulos e pacotes próprios e consulte uma API com um pacote de terceiros." },
           { "type": "modulo", "id": "python-tratamento-de-erros", "title": "Tratamento de Erros", "description": "Tipos de erros, erros de sintaxe e tratamento em tempo de execução." },
-          { "type": "modulo", "id": "python-scripting", "title": "Scripting", "description": "Instalação do Python, execução via terminal e criação de scripts." }
+          { "type": "projeto", "id": "rotacerta-blindagem-contra-erros", "title": "RotaCerta blinda o processamento de pacotes contra erros", "description": "Trate exceções, crie exceções personalizadas e corrija um erro de lógica." },
+          { "type": "modulo", "id": "python-scripting", "title": "Scripting", "description": "Instalação do Python, execução via terminal e criação de scripts." },
+          { "type": "projeto", "id": "scriptzen-automacao-com-scripts", "title": "ScriptZen automatiza o dia a dia", "description": "Escreva e execute scripts Python de verdade, validando argumentos de linha de comando." }
         ]
       }
     },
