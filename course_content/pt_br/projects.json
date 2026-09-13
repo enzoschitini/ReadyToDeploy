@@ -1,275 +1,6 @@
 {
   "projects": [
     {
-      "id": "dashboard-analitico",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Dashboard Analítico",
-      "description": "Um painel com gráficos e métricas em React, com foco em performance e organização de estado.",
-      "level": "Avançado",
-      "duration": "1-2 semanas",
-      "published": "2026-08-30",
-      "skills": [
-        "react",
-        "performance",
-        "dataviz",
-        "typescript"
-      ]
-    },
-    {
-      "id": "catalogo-de-produtos-react",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Catálogo de Produtos em React",
-      "description": "Construa uma vitrine interativa com cards reutilizáveis, filtros, busca, estados vazios e uma experiência visual gostosa de explorar.",
-      "level": "Iniciante",
-      "duration": "4-6 horas",
-      "published": "2026-08-30",
-      "skills": [
-        "react",
-        "jsx",
-        "componentes",
-        "props",
-        "listas",
-        "renderizacao-condicional",
-        "eventos",
-        "use-state",
-        "acessibilidade"
-      ]
-    },
-    {
-      "id": "habit-tracker-react",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Habit Tracker em React",
-      "description": "Crie um rastreador de hábitos com formulário controlado, grade semanal, filtros e estatísticas derivadas.",
-      "level": "Iniciante",
-      "duration": "6-10 horas",
-      "published": "2026-08-30",
-      "skills": [
-        "react",
-        "use-state",
-        "formularios",
-        "formularios-controlados",
-        "estado",
-        "imutabilidade",
-        "estado-derivado",
-        "acessibilidade"
-      ]
-    },
-    {
-      "id": "lista-de-tarefas",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Lista de Tarefas",
-      "description": "Um app de to-do que salva suas tarefas mesmo depois de fechar o navegador.",
-      "level": "Iniciante",
-      "duration": "3-5 horas",
-      "published": "2026-08-30",
-      "skills": [
-        "javascript",
-        "dom",
-        "localstorage",
-        "css"
-      ]
-    },
-    {
-      "id": "pagina-de-perfil",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Página de Perfil",
-      "description": "Construa sua própria página de perfil (tipo um mini currículo online) só com HTML e CSS.",
-      "level": "Iniciante",
-      "duration": "2-4 horas",
-      "published": "2026-08-30",
-      "skills": [
-        "html",
-        "css",
-        "semantica"
-      ]
-    },
-    {
-      "id": "auditoria-de-acessibilidade-web",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Auditoria de Acessibilidade Web",
-      "description": "Escolha um fluxo real ou fictício, corrija barreiras de acessibilidade e entregue um relatório com testes manuais e automatizados.",
-      "level": "Intermediário",
-      "duration": "1 fim de semana",
-      "published": "2026-08-30",
-      "skills": [
-        "acessibilidade",
-        "wcag",
-        "html-semantico",
-        "css",
-        "testes",
-        "aria"
-      ]
-    },
-    {
-      "id": "auditoria-seo-aeo-geo",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Auditoria de SEO, AEO e GEO",
-      "description": "Audite e otimize uma página real nas três camadas: SEO técnico, resposta direta (AEO) e citação por IA generativa (GEO).",
-      "level": "Intermediário",
-      "duration": "1 fim de semana",
-      "published": "2026-08-28",
-      "skills": [
-        "seo",
-        "aeo",
-        "geo",
-        "dados-estruturados",
-        "core-web-vitals"
-      ]
-    },
-    {
-      "id": "central-de-notificacoes",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Central de Notificações",
-      "description": "Um serviço que recebe eventos do sistema e decide quem avisa por e-mail, push ou SMS — usando roteamento por topic.",
-      "level": "Intermediário",
-      "duration": "1 semana",
-      "published": "2026-08-26",
-      "skills": [
-        "rabbitmq",
-        "mensageria",
-        "pub-sub",
-        "arquitetura",
-        "backend"
-      ]
-    },
-    {
-      "id": "clima-agora",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Clima Agora",
-      "description": "Um app que mostra a previsão do tempo de qualquer cidade consumindo uma API pública.",
-      "level": "Intermediário",
-      "duration": "4-6 horas",
-      "published": "2026-08-30",
-      "skills": [
-        "javascript",
-        "api",
-        "fetch",
-        "async"
-      ]
-    },
-    {
-      "id": "fila-de-atendimento",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Fila de Atendimento",
-      "description": "Um sistema de senha de atendimento com prioridade — onde a fila não é uma tabela no banco, é uma fila de verdade.",
-      "level": "Intermediário",
-      "duration": "1 semana",
-      "published": "2026-08-26",
-      "skills": [
-        "rabbitmq",
-        "mensageria",
-        "filas",
-        "api",
-        "backend"
-      ]
-    },
-    {
-      "id": "jogo-da-memoria-react",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Jogo da Memória em React",
-      "description": "Construa um jogo da memória com cartas, estado de rodada, pares encontrados, bloqueio de jogadas e feedback visual.",
-      "level": "Intermediário",
-      "duration": "1 fim de semana",
-      "published": "2026-09-03",
-      "skills": [
-        "react",
-        "use-state",
-        "listas",
-        "eventos",
-        "renderizacao-condicional",
-        "use-effect",
-        "use-reducer",
-        "acessibilidade"
-      ]
-    },
-    {
-      "id": "kanban-de-missoes-react",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Kanban de Missões em React",
-      "description": "Crie um quadro de missões com colunas, filtros, formulário, reducer e ações explícitas para mover tarefas.",
-      "level": "Intermediário",
-      "duration": "1 fim de semana",
-      "published": "2026-09-03",
-      "skills": [
-        "react",
-        "formularios",
-        "estado",
-        "estado-derivado",
-        "use-reducer",
-        "context",
-        "custom-hooks",
-        "arquitetura",
-        "acessibilidade"
-      ]
-    },
-    {
-      "id": "landing-page-responsiva",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Landing Page Responsiva",
-      "description": "Uma página de divulgação de produto que fica perfeita no celular e no desktop, usando Tailwind.",
-      "level": "Intermediário",
-      "duration": "1 fim de semana",
-      "published": "2026-08-30",
-      "skills": [
-        "css",
-        "tailwind",
-        "responsivo",
-        "flexbox",
-        "grid"
-      ]
-    },
-    {
-      "id": "pokedex-react",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Pokédex em React",
-      "description": "Construa uma Pokédex que consome API, trata estados assíncronos, organiza favoritos e mostra detalhes em uma arquitetura limpa.",
-      "level": "Intermediário",
-      "duration": "1 fim de semana",
-      "published": "2026-08-30",
-      "skills": [
-        "react",
-        "fetch",
-        "use-effect",
-        "estado-assincrono",
-        "custom-hooks",
-        "context",
-        "use-reducer",
-        "arquitetura",
-        "acessibilidade"
-      ]
-    },
-    {
-      "id": "processador-de-planilhas",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Processador de Planilhas",
-      "description": "Upload de CSV grande que responde na hora e processa por trás — com retry, dead letter queue e relatório de erros linha a linha.",
-      "level": "Intermediário",
-      "duration": "1 semana",
-      "published": "2026-08-26",
-      "skills": [
-        "rabbitmq",
-        "mensageria",
-        "workers",
-        "api",
-        "backend"
-      ]
-    },
-    {
-      "id": "quiz-react",
-      "bootcamp_id": "ready-to-deploy",
-      "title": "Quiz em React",
-      "description": "Um quiz de múltipla escolha em React, com pontuação e tela de resultado.",
-      "level": "Intermediário",
-      "duration": "1 fim de semana",
-      "published": "2026-08-30",
-      "skills": [
-        "react",
-        "hooks",
-        "state",
-        "componentes"
-      ]
-    },
-    {
       "id": "patavet-ficha-digital",
       "bootcamp_id": "python-na-pratica",
       "title": "PataVet digitaliza a clínica",
@@ -286,6 +17,10 @@
         "booleanos"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.5,
+        "count": 8
+      },
       "detail": {
         "introHtml": "A <strong>PataVet</strong> é uma clínica veterinária que está abandonando os cadernos de anotação para rodar tudo em código. Você entra como <strong>Analista de Dados Jr.</strong> e, em 5 missões, cadastra pets, fecha o caixa das consultas e organiza o acesso da equipe usando só Python puro.",
         "objectiveHtml": "Praticar, dentro de um único cenário conectado: criação e nomenclatura de <strong>variáveis</strong>, operações e conversões com <code>int</code> e <code>float</code>, manipulação de <strong>strings</strong> (concatenação, f-strings, fatiamento e métodos) e tomada de decisão com <strong>booleanos</strong>.",
@@ -334,6 +69,10 @@
         "dicionarios"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.5,
+        "count": 14
+      },
       "detail": {
         "introHtml": "A <strong>Batidas</strong> é um app de streaming de música com playlists bagunçadas, relatórios cheios de gêneros repetidos e um cadastro de caixas de som que ninguém organizou. Você vai guardar várias informações relacionadas de uma vez, do jeito que se faz de verdade: com <strong>listas</strong>, <strong>conjuntos</strong> e <strong>dicionários</strong>.",
         "objectiveHtml": "Praticar a criação e manipulação de <strong>listas</strong> (<code>.append()</code>, <code>.insert()</code>, <code>.remove()</code>, <code>.pop()</code>), a eliminação de repetições com <strong>conjuntos</strong>, e a organização de dados em <strong>dicionários</strong>, incluindo listas de dicionários.",
@@ -381,6 +120,10 @@
         "repeticao"
       ],
       "hot": false,
+      "rating": {
+        "score": 5,
+        "count": 10
+      },
       "detail": {
         "introHtml": "A <strong>Voa Fácil</strong> roda quase tudo em planilhas manuais, e isso já causou dor de cabeça. Você vai ensinar o sistema a <strong>tomar decisões</strong>, <strong>lidar com erros</strong> e <strong>repetir tarefas</strong> sozinho: check-in, reembolso, vendas do dia e programa de milhas.",
         "objectiveHtml": "Praticar tomada de decisão com <code>if</code>/<code>elif</code>/<code>else</code>, tratamento de erros com <code>try</code>/<code>except</code>/<code>finally</code>, repetição com <code>for</code> (sobre listas, <code>range()</code> e dicionários) e controle de laço com <code>break</code> e <code>continue</code>.",
@@ -428,6 +171,10 @@
         "escopo"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.3,
+        "count": 10
+      },
       "detail": {
         "introHtml": "A <strong>Estuda Mais</strong> calculava tudo \"no olho\", copiando números de planilha em planilha. Você vai automatizar o processamento das notas de uma turma: ler o arquivo que sai do sistema de matrículas, separar alunos que precisam de atenção, calcular pontuações e gerar um relatório para a coordenação.",
         "objectiveHtml": "Praticar <strong>leitura de arquivos</strong> com <code>with</code>/<code>open()</code>, <strong>escrita de arquivos</strong> (inclusive filtrando dados de um arquivo para outro), criação de <strong>funções</strong> com parâmetros e valor padrão, e a diferença entre variáveis <strong>locais e globais</strong>.",
@@ -475,6 +222,10 @@
         "map-filter-reduce"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.6,
+        "count": 12
+      },
       "detail": {
         "introHtml": "A <strong>FreelaBoard</strong> conecta freelancers a empresas, e hoje é dia de fechamento: calcular repasses depois da taxa da plataforma, identificar contas que precisam migrar e consolidar os números do mês — tudo processando <strong>listas inteiras</strong> de uma vez, sem laços manuais.",
         "objectiveHtml": "Praticar a criação de funções anônimas com <code>lambda</code> (inclusive em funções de alta ordem), a transformação de coleções com <code>map()</code>, a seleção de itens com <code>filter()</code> e a combinação de todos os itens em um único valor com <code>reduce()</code>.",
@@ -523,6 +274,10 @@
         "heranca"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.8,
+        "count": 13
+      },
       "detail": {
         "introHtml": "A <strong>Página Viva</strong> é um clube de assinatura de livros que ainda guarda dados em variáveis soltas espalhadas pelos notebooks da equipe. Você vai organizar tudo isso com <strong>classes</strong> e <strong>objetos</strong>, do cadastro do acervo à linha de e-books.",
         "objectiveHtml": "Praticar a criação de <strong>classes</strong> com <code>__init__</code>, atributos e métodos, o método especial <code>__str__</code>, a manipulação de <strong>objetos</strong>, uma classe que lê um CSV e extrai colunas por índice e por nome, e <strong>herança</strong> com <code>super()</code> e sobrescrita de métodos.",
@@ -571,6 +326,10 @@
         "requests"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.8,
+        "count": 8
+      },
       "detail": {
         "introHtml": "A <strong>CasaNova Mudanças</strong> está expandindo, e o time andou copiando e colando os mesmos trechos de código de um notebook para o outro. Você vai organizar essa casa criando <strong>módulos</strong> próprios, empacotando-os e consultando um serviço externo com um <strong>pacote de terceiros</strong>.",
         "objectiveHtml": "Praticar importação com <code>import</code>, <code>from ... import</code> e <code>from ... import as</code>, criação de um <strong>módulo</strong> (.py) com uma classe reutilizável, organização de módulos dentro de um <strong>pacote</strong> (pasta com <code>__init__.py</code>), e instalação e uso de um pacote de terceiros (<code>requests</code>).",
@@ -617,6 +376,10 @@
         "debugging"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.8,
+        "count": 12
+      },
       "detail": {
         "introHtml": "A <strong>RotaCerta</strong> é uma logística de última milha onde scanner com defeito, coluna fora de ordem e campo em branco são o dia a dia — e mais de um processamento já quebrou de madrugada por causa disso. Você vai blindar esse fluxo contra imprevistos, do erro de sintaxe ao erro de lógica.",
         "objectiveHtml": "Praticar o reconhecimento de <strong>erros de sintaxe</strong> sem executar o código (<code>compile()</code>), o tratamento de <strong>exceções comuns</strong> com <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code>, o uso da hierarquia de exceções, o lançamento de <strong>exceções personalizadas</strong> com <code>raise ... from</code>, e a correção de um <strong>erro de lógica</strong> protegido por <code>assert</code>.",
@@ -664,6 +427,10 @@
         "sys-argv"
       ],
       "hot": false,
+      "rating": {
+        "score": 4.9,
+        "count": 8
+      },
       "detail": {
         "introHtml": "A <strong>ScriptZen Automação</strong> é uma consultoria que automatiza tarefas repetitivas para rodar sozinhas, sem ninguém clicando em \"Executar\". Você vai sair do notebook e criar <strong>scripts de verdade</strong>: conferir o ambiente, ler argumentos de linha de comando e registrar cada execução.",
         "objectiveHtml": "Praticar a conferência da instalação do Python com o módulo <code>platform</code>, a criação e execução de arquivos de <strong>script</strong> (.py), a leitura e validação de <strong>argumentos de linha de comando</strong> com <code>sys.argv</code>, e a combinação disso com o tratamento de erros visto no módulo anterior.",

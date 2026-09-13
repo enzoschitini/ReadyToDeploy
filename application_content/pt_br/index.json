@@ -58,8 +58,8 @@
   ],
   "manifesto": {
     "kicker": "// manifesto",
-    "quoteHtml": "Se Inteligência Artificial veio para ficar ou se ela vai sumir um dia, <br /><span class=\"c-cyan\">aprender virou <strong class=\"c-accent\">prioridade[0]</strong>.</span>",
-    "textHtml": "Roadmaps, módulos e projetos curados por Luciano dii Souza, <strong class=\"c-fg\" style=\"font-weight:600\">OPrimoDev</strong>: são <strong class=\"c-accent\" style=\"font-weight:600\">12 anos</strong> de Engenharia de Software e experiência em projetos nacionais e internacionais.",
+    "quoteHtml": "Seja qual for o futuro da tecnologia, <br /><span class=\"c-cyan\">aprender fazendo virou <strong class=\"c-accent\">prioridade[0]</strong>.</span>",
+    "textHtml": "Roadmaps, módulos e projetos feitos <strong class=\"c-fg\" style=\"font-weight:600\">por dev pra dev</strong>, testados na prática e liberados <strong class=\"c-accent\" style=\"font-weight:600\">sem paywall</strong>: assim, a comunidade constrói pra quem vem depois.",
     "pull": "Numa era com tanto conteúdo, separar o joio do trigo é a única forma de aprender de verdade.",
     "cta": { "label": "Aprenda de graça. Contribua pra que mais gente aprenda.", "href": "#modulos" },
     "note": "grátis · open source · PT-BR"
@@ -80,7 +80,8 @@
       "seeAll": { "label": "ver todos", "href": "pages/projects.html" },
       "itemHref": "pages/project.html?id=",
       "itemCta": "ver projeto →",
-      "limit": 3,
+      "limit": 4,
+      "bootcampIds": ["python-na-pratica"],
       "maxTags": 4,
       "moreTagsFormat": "+{count}",
       "newDays": 30,

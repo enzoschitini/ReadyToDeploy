@@ -942,7 +942,10 @@ blockquote.manifesto{
     var seeProjects = $('projetos-seeall');
     seeProjects.href = secProjects.seeAll.href;
     seeProjects.innerHTML = esc(secProjects.seeAll.label) + '<span>→</span>';
-    renderCards('projetos-grid', projects, secProjects, c.labels, projectCard);
+    var visibleProjects = secProjects.bootcampIds
+      ? (projects || []).filter(function (p) { return secProjects.bootcampIds.indexOf(p.bootcamp_id) !== -1; })
+      : projects;
+    renderCards('projetos-grid', visibleProjects, secProjects, c.labels, projectCard);
 
     /* ---------- idealizador ---------- */
     text('idealizador-titulo', c.author.kicker);
