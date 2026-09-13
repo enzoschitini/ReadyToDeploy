@@ -47,7 +47,7 @@
     ],
     "ctas": [
       { "label": "Começar agora →", "href": "#modulos", "variant": "primary" },
-      { "label": "Ver no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community", "variant": "outline", "external": true }
+      { "label": "Ver no GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "variant": "outline", "external": true }
     ],
     "portrait": { "src": "assets/imgs/cover.jpg", "alt": "" }
   },
@@ -114,7 +114,7 @@
     "terminal": {
       "path": "~/ready-to-deploy",
       "lines": [
-        { "cmd": "git clone", "arg": "https://github.com/lucianodiisouza/aprenda-community", "argType": "url" },
+        { "cmd": "git clone", "arg": "https://github.com/enzoschitini/ready-to-deploy", "argType": "url" },
         { "cmd": "cd", "arg": "aprenda-community" },
         { "cmd": "pnpm install" },
         { "cmd": "pnpm content:new", "comment": "// cria um novo módulo", "caret": true }
@@ -123,8 +123,8 @@
     "titleHtml": "Faça parte do que vem <span class=\"c-accent\">depois</span>.",
     "text": "A Ready To Deploy é open source e vive de contribuição. Toda ajuda conta, seja um módulo novo, correção de typo ou compartilhamento com quem precisa.",
     "buttons": [
-      { "label": "Ver no GitHub →", "href": "https://github.com/lucianodiisouza/aprenda-community", "variant": "primary", "external": true },
-      { "label": "Guia de contribuição", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md", "variant": "outline", "external": true }
+      { "label": "Ver no GitHub →", "href": "https://github.com/enzoschitini/ready-to-deploy", "variant": "primary", "external": true },
+      { "label": "Guia de contribuição", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "variant": "outline", "external": true }
     ],
     "contributors": {
       "title": "// quem já construiu isso (8)",
@@ -144,8 +144,8 @@
   },
   "footer": {
     "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
-    "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
-    "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
+    "description": "Roadmaps de programação em português, gratuitos e open source. Feito com muita dedicação.",
+    "github": { "label": "github.com/enzoschitini/ready-to-deploy", "href": "https://github.com/enzoschitini/ready-to-deploy" },
     "columns": [
       {
         "title": "// conteúdo",
@@ -159,8 +159,8 @@
       {
         "title": "// projeto",
         "links": [
-          { "label": "Código no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community", "external": true },
-          { "label": "Como contribuir", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Código no GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
+          { "label": "Como contribuir", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
           { "label": "Sobre o autor", "href": "https://oprimo.dev", "external": true }
         ]
       }
