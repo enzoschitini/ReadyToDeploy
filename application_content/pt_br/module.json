@@ -33,7 +33,7 @@
         "href": "projects.html"
       },
       {
-        "label": "Ranking",
+        "label": "Mentoria",
         "href": "contact.html"
       }
     ],
@@ -136,10 +136,10 @@
       "slash": "~/",
       "name": ".ready-to-deploy.py"
     },
-    "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
+    "description": "Roadmaps de programação em português, gratuitos e open source. Feito com muita dedicação.",
     "github": {
-      "label": "github.com/lucianodiisouza/aprenda-community",
-      "href": "https://github.com/lucianodiisouza/aprenda-community"
+      "label": "github.com/enzoschitini/ready-to-deploy",
+      "href": "https://github.com/enzoschitini/ready-to-deploy"
     },
     "columns": [
       {
@@ -158,7 +158,7 @@
             "href": "bootcamps.html"
           },
           {
-            "label": "Ranking",
+            "label": "Mentoria",
             "href": "contact.html"
           }
         ]
@@ -168,17 +168,17 @@
         "links": [
           {
             "label": "Código no GitHub",
-            "href": "https://github.com/lucianodiisouza/aprenda-community",
+            "href": "https://github.com/enzoschitini/ready-to-deploy",
             "external": true
           },
           {
             "label": "Como contribuir",
-            "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md",
+            "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md",
             "external": true
           },
           {
             "label": "Sobre o autor",
-            "href": "https://oprimo.dev",
+            "href": "https://www.linkedin.com/in/enzoschitini",
             "external": true
           }
         ]

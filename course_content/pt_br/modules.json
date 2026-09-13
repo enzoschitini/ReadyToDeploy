@@ -16,7 +16,8 @@
         "strings",
         "booleanos"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.9, "count": 9 }
     },
     {
       "id": "python-estruturas-de-dados",
@@ -32,7 +33,8 @@
         "dicionarios",
         "estruturas-de-dados"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.5, "count": 8 }
     },
     {
       "id": "python-fluxo-condicional-e-repeticao",
@@ -48,7 +50,8 @@
         "for",
         "loops"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.7, "count": 10 }
     },
     {
       "id": "python-arquivos-e-funcoes",
@@ -63,7 +66,8 @@
         "funcoes",
         "escopo"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 5.0, "count": 8 }
     },
     {
       "id": "python-programacao-funcional",
@@ -80,7 +84,8 @@
         "reduce",
         "programacao-funcional"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.4, "count": 12 }
     },
     {
       "id": "python-programacao-orientada-a-objetos",
@@ -96,7 +101,8 @@
         "objetos",
         "heranca"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.5, "count": 8 }
     },
     {
       "id": "python-modulos-e-pacotes",
@@ -112,7 +118,8 @@
         "pip",
         "pypi"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.3, "count": 11 }
     },
     {
       "id": "python-tratamento-de-erros",
@@ -128,7 +135,8 @@
         "depuracao",
         "tratamento-de-erros"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.8, "count": 8 }
     },
     {
       "id": "python-scripting",
@@ -144,7 +152,8 @@
         "repl",
         "sys-argv"
       ],
-      "hot": false
+      "hot": false,
+      "rating": { "score": 4.4, "count": 10 }
     }
   ]
 }

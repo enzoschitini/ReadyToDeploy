@@ -22,7 +22,7 @@
       { "label": "Módulos", "href": "pages/modules.html" },
       { "label": "Bootcamps", "href": "pages/bootcamps.html" },
       { "label": "Projetos", "href": "pages/projects.html" },
-      { "label": "Ranking", "href": "pages/contact.html" }
+      { "label": "Mentoria", "href": "pages/contact.html" }
     ],
     "cta": { "label": "Entrar", "href": "pages/contact.html" }
   },
@@ -47,7 +47,7 @@
     ],
     "ctas": [
       { "label": "Começar agora →", "href": "#modulos", "variant": "primary" },
-      { "label": "Ver no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community", "variant": "outline", "external": true }
+      { "label": "Ver no GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "variant": "outline", "external": true }
     ],
     "portrait": { "src": "assets/imgs/cover.jpg", "alt": "" }
   },
@@ -58,8 +58,8 @@
   ],
   "manifesto": {
     "kicker": "// manifesto",
-    "quoteHtml": "Se Inteligência Artificial veio para ficar ou se ela vai sumir um dia, <br /><span class=\"c-cyan\">aprender virou <strong class=\"c-accent\">prioridade[0]</strong>.</span>",
-    "textHtml": "Roadmaps, módulos e projetos curados por Luciano dii Souza, <strong class=\"c-fg\" style=\"font-weight:600\">OPrimoDev</strong>: são <strong class=\"c-accent\" style=\"font-weight:600\">12 anos</strong> de Engenharia de Software e experiência em projetos nacionais e internacionais.",
+    "quoteHtml": "Seja qual for o futuro da tecnologia, <br /><span class=\"c-cyan\">aprender fazendo virou <strong class=\"c-accent\">prioridade[0]</strong>.</span>",
+    "textHtml": "Roadmaps, módulos e projetos feitos <strong class=\"c-fg\" style=\"font-weight:600\">por dev pra dev</strong>, testados na prática e liberados <strong class=\"c-accent\" style=\"font-weight:600\">sem paywall</strong>: assim, a comunidade constrói pra quem vem depois.",
     "pull": "Numa era com tanto conteúdo, separar o joio do trigo é a única forma de aprender de verdade.",
     "cta": { "label": "Aprenda de graça. Contribua pra que mais gente aprenda.", "href": "#modulos" },
     "note": "grátis · open source · PT-BR"
@@ -80,7 +80,8 @@
       "seeAll": { "label": "ver todos", "href": "pages/projects.html" },
       "itemHref": "pages/project.html?id=",
       "itemCta": "ver projeto →",
-      "limit": 3,
+      "limit": 4,
+      "bootcampIds": ["python-na-pratica"],
       "maxTags": 4,
       "moreTagsFormat": "+{count}",
       "newDays": 30,
@@ -102,7 +103,7 @@
     "onlineAria": "Disponível",
     "chip": "criador do projeto",
     "onlineLabel": "disponível",
-    "bio": "Engenheiro IA e Cientista de dados apaixonado por aprendizado prático. Criei o Ready To Deploy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.",
+    "bio": "Engenheiro de IA e Cientista de dados apaixonado por aprendizado prático. Criei o Ready To Deploy pra presentear a comunidade brasileira de devs com: conteúdo de qualidade, em português, sem paywall.",
     "skills": ["Python", "LangChain", "Machine Learning"],
     "links": [
       { "label": "LinkedIn", "href": "https://www.linkedin.com/in/enzoschitini", "style": "solid", "icon": "external" },
@@ -114,17 +115,17 @@
     "terminal": {
       "path": "~/ready-to-deploy",
       "lines": [
-        { "cmd": "git clone", "arg": "https://github.com/lucianodiisouza/aprenda-community", "argType": "url" },
-        { "cmd": "cd", "arg": "aprenda-community" },
-        { "cmd": "pnpm install" },
-        { "cmd": "pnpm content:new", "comment": "// cria um novo módulo", "caret": true }
+        { "cmd": "git clone", "arg": "https://github.com/enzoschitini/ready-to-deploy", "argType": "url" },
+        { "cmd": "cd", "arg": "ready-to-deploy" },
+        { "cmd": "python -m http.server 8000" },
+        { "cmd": "code content_generation", "comment": "// cria um novo módulo", "caret": true }
       ]
     },
     "titleHtml": "Faça parte do que vem <span class=\"c-accent\">depois</span>.",
     "text": "A Ready To Deploy é open source e vive de contribuição. Toda ajuda conta, seja um módulo novo, correção de typo ou compartilhamento com quem precisa.",
     "buttons": [
-      { "label": "Ver no GitHub →", "href": "https://github.com/lucianodiisouza/aprenda-community", "variant": "primary", "external": true },
-      { "label": "Guia de contribuição", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md", "variant": "outline", "external": true }
+      { "label": "Ver no GitHub →", "href": "https://github.com/enzoschitini/ready-to-deploy", "variant": "primary", "external": true },
+      { "label": "Guia de contribuição", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "variant": "outline", "external": true }
     ],
     "contributors": {
       "title": "// quem já construiu isso (8)",
@@ -144,8 +145,8 @@
   },
   "footer": {
     "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
-    "description": "Roadmaps de programação em português, gratuitos e open source. Feito de forma colaborativa pela comunidade.",
-    "github": { "label": "github.com/lucianodiisouza/aprenda-community", "href": "https://github.com/lucianodiisouza/aprenda-community" },
+    "description": "Roadmaps de programação em português, gratuitos e open source. Feito com muita dedicação.",
+    "github": { "label": "github.com/enzoschitini/ready-to-deploy", "href": "https://github.com/enzoschitini/ready-to-deploy" },
     "columns": [
       {
         "title": "// conteúdo",
@@ -153,15 +154,15 @@
           { "label": "Módulos", "href": "pages/modules.html" },
           { "label": "Projetos", "href": "pages/projects.html" },
           { "label": "Bootcamps", "href": "pages/bootcamps.html" },
-          { "label": "Ranking", "href": "pages/contact.html" }
+          { "label": "Mentoria", "href": "pages/contact.html" }
         ]
       },
       {
         "title": "// projeto",
         "links": [
-          { "label": "Código no GitHub", "href": "https://github.com/lucianodiisouza/aprenda-community", "external": true },
-          { "label": "Como contribuir", "href": "https://github.com/lucianodiisouza/aprenda-community/blob/main/CONTRIBUTING.md", "external": true },
-          { "label": "Sobre o autor", "href": "https://oprimo.dev", "external": true }
+          { "label": "Código no GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
+          { "label": "Como contribuir", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Sobre o autor", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
         ]
       }
     ],
