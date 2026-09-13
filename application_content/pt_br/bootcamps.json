@@ -23,7 +23,7 @@
       { "label": "Módulos", "href": "modules.html" },
       { "label": "Bootcamps", "href": "bootcamps.html" },
       { "label": "Projetos", "href": "projects.html" },
-      { "label": "Ranking", "href": "contact.html" }
+      { "label": "Mentoria", "href": "contact.html" }
     ],
     "cta": { "label": "Entrar", "href": "contact.html" }
   },
@@ -66,7 +66,7 @@
           { "label": "Módulos", "href": "modules.html" },
           { "label": "Projetos", "href": "projects.html" },
           { "label": "Bootcamps", "href": "bootcamps.html" },
-          { "label": "Ranking", "href": "contact.html" }
+          { "label": "Mentoria", "href": "contact.html" }
         ]
       },
       {
@@ -74,7 +74,7 @@
         "links": [
           { "label": "Código no GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
           { "label": "Como contribuir", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
-          { "label": "Sobre o autor", "href": "https://oprimo.dev", "external": true }
+          { "label": "Sobre o autor", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
         ]
       }
     ],

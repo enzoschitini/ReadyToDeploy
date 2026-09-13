@@ -67,7 +67,7 @@ pages
 ├── lesson.html       → Página de conteúdo de uma aula do módulo
 ├── projects.html     → Listagem de todos os projetos
 ├── project.html      → Página de um projeto específico
-└── contact.html      → Hoje chamada de "Ranking", será a página de contato
+└── contact.html      → Hoje chamada de "Mentoria", será a página de contato
 ```
 
 ### Detalhamento das telas
@@ -81,7 +81,7 @@ pages
 | `lesson` | Exibe o conteúdo de uma aula do módulo |
 | `projects` | Lista todos os projetos |
 | `project` | Exibe um projeto específico |
-| `contact` | Página de contato *(atualmente chamada de "Ranking" — será substituída)* |
+| `contact` | Página de contato *(atualmente chamada de "Mentoria" — será substituída)* |
 
 ---
 

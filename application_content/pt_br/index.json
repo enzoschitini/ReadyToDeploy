@@ -22,7 +22,7 @@
       { "label": "Módulos", "href": "pages/modules.html" },
       { "label": "Bootcamps", "href": "pages/bootcamps.html" },
       { "label": "Projetos", "href": "pages/projects.html" },
-      { "label": "Ranking", "href": "pages/contact.html" }
+      { "label": "Mentoria", "href": "pages/contact.html" }
     ],
     "cta": { "label": "Entrar", "href": "pages/contact.html" }
   },
@@ -102,7 +102,7 @@
     "onlineAria": "Disponível",
     "chip": "criador do projeto",
     "onlineLabel": "disponível",
-    "bio": "Engenheiro IA e Cientista de dados apaixonado por aprendizado prático. Criei o Ready To Deploy pra devolver à comunidade brasileira o que ela me deu: conteúdo de qualidade, em português, sem paywall.",
+    "bio": "Engenheiro de IA e Cientista de dados apaixonado por aprendizado prático. Criei o Ready To Deploy pra presentear a comunidade brasileira de devs com: conteúdo de qualidade, em português, sem paywall.",
     "skills": ["Python", "LangChain", "Machine Learning"],
     "links": [
       { "label": "LinkedIn", "href": "https://www.linkedin.com/in/enzoschitini", "style": "solid", "icon": "external" },
@@ -115,9 +115,9 @@
       "path": "~/ready-to-deploy",
       "lines": [
         { "cmd": "git clone", "arg": "https://github.com/enzoschitini/ready-to-deploy", "argType": "url" },
-        { "cmd": "cd", "arg": "aprenda-community" },
-        { "cmd": "pnpm install" },
-        { "cmd": "pnpm content:new", "comment": "// cria um novo módulo", "caret": true }
+        { "cmd": "cd", "arg": "ready-to-deploy" },
+        { "cmd": "python -m http.server 8000" },
+        { "cmd": "code content_generation", "comment": "// cria um novo módulo", "caret": true }
       ]
     },
     "titleHtml": "Faça parte do que vem <span class=\"c-accent\">depois</span>.",
@@ -153,7 +153,7 @@
           { "label": "Módulos", "href": "pages/modules.html" },
           { "label": "Projetos", "href": "pages/projects.html" },
           { "label": "Bootcamps", "href": "pages/bootcamps.html" },
-          { "label": "Ranking", "href": "pages/contact.html" }
+          { "label": "Mentoria", "href": "pages/contact.html" }
         ]
       },
       {
@@ -161,7 +161,7 @@
         "links": [
           { "label": "Código no GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
           { "label": "Como contribuir", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
-          { "label": "Sobre o autor", "href": "https://oprimo.dev", "external": true }
+          { "label": "Sobre o autor", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
         ]
       }
     ],

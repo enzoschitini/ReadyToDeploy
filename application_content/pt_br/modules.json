@@ -33,7 +33,7 @@
         "href": "projects.html"
       },
       {
-        "label": "Ranking",
+        "label": "Mentoria",
         "href": "contact.html"
       }
     ],
@@ -136,7 +136,7 @@
             "href": "bootcamps.html"
           },
           {
-            "label": "Ranking",
+            "label": "Mentoria",
             "href": "contact.html"
           }
         ]
@@ -156,7 +156,7 @@
           },
           {
             "label": "Sobre o autor",
-            "href": "https://oprimo.dev",
+            "href": "https://www.linkedin.com/in/enzoschitini",
             "external": true
           }
         ]
