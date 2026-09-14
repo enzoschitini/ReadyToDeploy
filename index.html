@@ -191,10 +191,9 @@ main{flex:1;}
 
 .hero{position:relative;padding-block:4rem;}
 @media (min-width:640px){.hero{padding-block:6rem;}}
-.hero-grid{display:grid;align-items:center;gap:2.5rem;}
-@media (min-width:1024px){.hero-grid{grid-template-columns:1.2fr .8fr;gap:2rem;}}
+.hero-grid{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:48rem;margin-inline:auto;}
 
-.eyebrow-row{display:flex;align-items:center;gap:.75rem;}
+.eyebrow-row{display:flex;align-items:center;justify-content:center;gap:.75rem;}
 .eyebrow{font-family:var(--font-mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--brand-cyan);}
 .live-tag{display:none;align-items:center;gap:.375rem;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
 @media (min-width:640px){.live-tag{display:inline-flex;}}
@@ -216,12 +215,12 @@ h1.hero-title{
 }
 .hero-title .word{grid-row-start:2;white-space:nowrap;}
 
-.hero-lead{margin-top:1.25rem;max-width:28rem;font-size:1rem;color:var(--muted-foreground);}
+.hero-lead{margin-top:1.25rem;max-width:32rem;margin-inline:auto;font-size:1rem;color:var(--muted-foreground);}
 @media (min-width:640px){.hero-lead{font-size:1.125rem;}}
 code.type{display:inline-flex;align-items:baseline;white-space:pre-wrap;font-family:var(--font-mono);color:var(--brand-indigo);}
 .caret{margin-left:1px;display:inline-block;height:1em;width:.55em;transform:translateY(2px);background:var(--brand-indigo);}
 
-.cta-row{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.75rem;}
+.cta-row{margin-top:2rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
   border-radius:.375rem;height:2.75rem;padding-inline:1.5rem;font-size:1rem;
@@ -232,27 +231,6 @@ code.type{display:inline-flex;align-items:baseline;white-space:pre-wrap;font-fam
 .btn-primary:hover{filter:brightness(1.1);}
 .btn-outline{border:1px solid var(--border);background:transparent;font-weight:500;}
 .btn-outline:hover{background:var(--accent);color:var(--accent-foreground);}
-
-/* blob portrait */
-.hero-portrait{position:relative;margin-inline:auto;display:none;width:100%;max-width:420px;aspect-ratio:3/4;}
-@media (min-width:1024px){.hero-portrait{display:block;}}
-.halo-1{pointer-events:none;position:absolute;inset:-4rem;opacity:.45;filter:blur(48px);
-  background:radial-gradient(circle 320px at 50% 50%,rgba(189,147,249,.55),transparent 70%);}
-.halo-2{pointer-events:none;position:absolute;inset:-2rem;opacity:.3;filter:blur(32px);
-  background:radial-gradient(circle 220px at 50% 50%,rgba(125,108,255,.18),transparent 70%);}
-.blob-photo{position:relative;height:100%;width:100%;overflow:hidden;}
-.blob-photo img{height:100%;width:100%;object-fit:cover;object-position:center 50%;}
-.blob-photo .veil{pointer-events:none;position:absolute;inset:0;
-  background:var(--veil);}
-
-/* stats */
-.stats{
-  margin-top:2.5rem;display:grid;max-width:28rem;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-block:1.25rem;
-}
-.stats dt{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);}
-.stats dd{margin:.25rem 0 0;font-family:var(--font-display);font-size:1.5rem;font-weight:900;}
-@media (min-width:640px){.stats dd{font-size:1.875rem;}}
 
 /* ============================================================
    SEÇÕES
@@ -569,40 +547,26 @@ blockquote.manifesto{
 
       <!-- ============================ HERO ============================ -->
       <div class="hero-grid">
-        <div>
-          <div class="eyebrow-row">
-            <p class="eyebrow" id="hero-eyebrow"></p>
-            <span class="live-tag">
-              <span class="dot-live"><span class="anim-live"></span><span></span></span><span id="hero-live"></span>
-            </span>
-          </div>
-
-          <h1 class="hero-title">
-            <span class="grad-text anim-gradient" id="hero-title-static"></span>
-            <span class="word grad-text anim-gradient" id="rotating-word"></span>
-          </h1>
-
-          <p class="hero-lead">
-            <span id="hero-lead-before"></span>
-            <code class="type"><span id="type-text"></span><span class="caret anim-caret" aria-hidden="true"></span></code>
-            <span id="hero-lead-after"></span>
-          </p>
-
-          <div class="cta-row" id="hero-ctas"></div>
+        <div class="eyebrow-row">
+          <p class="eyebrow" id="hero-eyebrow"></p>
+          <span class="live-tag">
+            <span class="dot-live"><span class="anim-live"></span><span></span></span><span id="hero-live"></span>
+          </span>
         </div>
 
-        <div class="hero-portrait" aria-hidden="true">
-          <div class="halo-1 anim-blob-halo"></div>
-          <div class="halo-2 anim-blob-halo"></div>
-          <div class="blob-photo anim-blob">
-            <img id="hero-portrait-img" src="" alt="" loading="eager" decoding="async" />
-            <div class="veil"></div>
-          </div>
-        </div>
+        <h1 class="hero-title">
+          <span class="grad-text anim-gradient" id="hero-title-static"></span>
+          <span class="word grad-text anim-gradient" id="rotating-word"></span>
+        </h1>
+
+        <p class="hero-lead">
+          <span id="hero-lead-before"></span>
+          <code class="type"><span id="type-text"></span><span class="caret anim-caret" aria-hidden="true"></span></code>
+          <span id="hero-lead-after"></span>
+        </p>
+
+        <div class="cta-row" id="hero-ctas"></div>
       </div>
-
-      <!-- ============================ STATS ============================ -->
-      <dl class="stats" id="stats"></dl>
 
       <!-- ============================ MANIFESTO ============================ -->
       <section id="manifesto" class="s-mt-20" aria-labelledby="manifesto-titulo">
@@ -958,16 +922,6 @@ blockquote.manifesto{
     html('hero-ctas', c.hero.ctas.map(function (cta) {
       return '<a href="' + esc(cta.href) + '" class="btn btn-' + esc(cta.variant) + '"' + linkAttrs(cta) + '>' + esc(cta.label) + '</a>';
     }).join(''));
-    var portrait = $('hero-portrait-img');
-    portrait.src = c.hero.portrait.src;
-    portrait.alt = c.hero.portrait.alt;
-
-    /* ---------- stats ---------- */
-    html('stats', c.stats.map(function (stat) {
-      return '<div><dt>' + esc(stat.label) + '</dt>' +
-             '<dd class="' + esc(stat.tone) + '" data-count="' + esc(stat.value) + '">0</dd></div>';
-    }).join(''));
-
     /* ---------- manifesto ---------- */
     text('manifesto-titulo', c.manifesto.kicker);
     html('manifesto-quote', c.manifesto.quoteHtml);
@@ -1151,31 +1105,6 @@ blockquote.manifesto{
       reveals.forEach(function (el) { io.observe(el); });
     } else {
       reveals.forEach(function (el) { el.style.opacity = '1'; });
-    }
-
-    /* ---------- contadores das estatísticas ---------- */
-    var counters = document.querySelectorAll('.stats dd[data-count]');
-    function runCounter(el) {
-      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-      if (reduced) { el.textContent = String(target); return; }
-      var start = performance.now();
-      var duration = 1200;
-      (function step(now) {
-        var t = Math.min(1, (now - start) / duration);
-        var eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = String(Math.round(target * eased));
-        if (t < 1) requestAnimationFrame(step);
-      })(start);
-    }
-    if ('IntersectionObserver' in window) {
-      var ioc = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { runCounter(entry.target); ioc.unobserve(entry.target); }
-        });
-      }, { threshold: 0.4 });
-      counters.forEach(function (el) { ioc.observe(el); });
-    } else {
-      counters.forEach(runCounter);
     }
 
     /* ---------- palavra rotativa do H1 ---------- */
