@@ -218,7 +218,7 @@ h1.hero-title{
 
 .hero-lead{margin-top:1.25rem;max-width:32rem;margin-inline:auto;font-size:1rem;color:var(--muted-foreground);}
 @media (min-width:640px){.hero-lead{font-size:1.125rem;}}
-code.type{display:inline-flex;align-items:baseline;white-space:pre-wrap;font-family:var(--font-mono);color:var(--brand-indigo);}
+code.type{display:inline-flex;flex-shrink:0;align-items:baseline;white-space:nowrap;font-family:var(--font-mono);color:var(--brand-indigo);}
 .caret{margin-left:1px;display:inline-block;height:1em;width:.55em;transform:translateY(2px);background:var(--brand-indigo);}
 
 .cta-row{margin-top:2rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;}
@@ -1132,6 +1132,10 @@ blockquote.manifesto{
     /* ---------- typewriter do parágrafo do hero ---------- */
     var SNIPPETS = c.hero.typeSnippets;
     var typeEl = $('type-text');
+    /* reserva a largura do maior snippet (fonte monoespaçada, "ch" acompanha o
+       tamanho da fonte) pra digitar/apagar não empurrar o resto do layout */
+    var maxLen = SNIPPETS.reduce(function (max, s) { return Math.max(max, s.length); }, 0);
+    typeEl.parentElement.style.width = (maxLen + 1) + 'ch';
     if (reduced) {
       typeEl.textContent = SNIPPETS[0];
     } else {
