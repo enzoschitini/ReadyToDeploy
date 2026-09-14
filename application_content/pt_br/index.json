@@ -32,18 +32,12 @@
     "titleStatic": "Aprenda",
     "titleAriaPrefix": "APRENDA",
     "rotatingWords": [
-      "PROGRAMAR", "LÓGICA", "HTML", "CSS", "TYPESCRIPT", "FRONTEND", "BACKEND", "ANGULAR",
-      "NEXT.JS", "GIT", "TERMINAL", "DOCKER", "KUBERNETES", "SQL", "NOSQL", "RABBITMQ",
-      "ESTRUTURAS", "BIG-O", "IA", "PROMPTS", "PERFORMANCE", "ACESSIBILIDADE", "SEGURANÇA",
-      "TESTES", "PWA", "REAL-TIME", "SEO", "MOTION"
+      "PROGRAMAR"
     ],
     "leadBefore": "Do primeiro",
     "leadAfter": "ao primeiro projeto no ar. Módulos guiados em português, no seu ritmo.",
     "typeSnippets": [
-      "console.log(\"olá, dev\")",
-      "print(\"olá, dev\")",
-      "git commit -m \"start\"",
-      "npm run dev"
+      "print(\"olá, dev\")"
     ],
     "ctas": [
       { "label": "Começar agora →", "href": "#modulos", "variant": "primary" },
