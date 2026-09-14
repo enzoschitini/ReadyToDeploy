@@ -6,23 +6,45 @@
      <script src="assets/theme.js"></script>
      <script src="assets/lang.js"></script>
 
-   A primeira parte roda de imediato: calcula o idioma salvo,
-   expõe `window.PRIMO_LANG` (usado pelo script de cada página pra
-   montar APP_CONTENT/COURSE_CONTENT) e aplica <html lang> antes da
-   primeira pintura (sem flash). A segunda parte espera o DOM e
-   injeta o botão dentro do header, ao lado do seletor de tema.
+   Idioma na URL (pra compartilhar link já num idioma):
+     ?lang=it     ou     ?lang=pt_br
+   Se presente e válido, tem prioridade sobre o localStorage e o
+   grava como novo padrão. Se ausente, a página sincroniza a URL
+   sozinha (replaceState, sem reload) pra refletir o idioma ativo —
+   assim qualquer link copiado da barra de endereço já vem com
+   ?lang= correto, mesmo sem o usuário ter clicado no seletor.
+
+   A primeira parte roda de imediato: calcula o idioma (URL >
+   localStorage > padrão), expõe `window.PRIMO_LANG` (usado pelo
+   script de cada página pra montar APP_CONTENT/COURSE_CONTENT) e
+   aplica <html lang> antes da primeira pintura (sem flash). A
+   segunda parte espera o DOM e injeta o botão dentro do header, ao
+   lado do seletor de tema.
    ============================================================ */
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'primo-lang';
+  var URL_PARAM = 'lang';
   var LANGS = {
     pt_br: { label: 'Português', short: 'PT', flag: '🇧🇷', htmlLang: 'pt-BR' },
     it: { label: 'Italiano', short: 'IT', flag: '🇮🇹', htmlLang: 'it-IT' }
   };
   var DEFAULT_LANG = 'pt_br';
 
+  function readUrlLang() {
+    try {
+      var v = new URLSearchParams(window.location.search).get(URL_PARAM);
+      return LANGS[v] ? v : null;
+    } catch (e) { return null; }
+  }
+
   function readLang() {
+    var fromUrl = readUrlLang();
+    if (fromUrl) {
+      try { localStorage.setItem(STORAGE_KEY, fromUrl); } catch (e) {}
+      return fromUrl;
+    }
     var saved;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
     return LANGS[saved] ? saved : DEFAULT_LANG;
@@ -33,6 +55,15 @@
   /* --- 1. expõe o idioma escolhido e aplica antes da primeira pintura --- */
   window.PRIMO_LANG = LANG;
   document.documentElement.lang = LANGS[LANG].htmlLang;
+
+  /* mantém a URL sincronizada com o idioma ativo, sem navegar/recarregar */
+  try {
+    var syncUrl = new URL(window.location.href);
+    if (syncUrl.searchParams.get(URL_PARAM) !== LANG) {
+      syncUrl.searchParams.set(URL_PARAM, LANG);
+      window.history.replaceState(window.history.state, '', syncUrl.toString());
+    }
+  } catch (e) {}
 
   /* --- 2. monta o seletor quando o DOM estiver pronto --- */
   var CHECK_ICON = '<svg class="check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>';
@@ -97,7 +128,9 @@
         close();
         if (code === LANG) return;
         try { localStorage.setItem(STORAGE_KEY, code); } catch (e) {}
-        window.location.reload();
+        var url = new URL(window.location.href);
+        url.searchParams.set(URL_PARAM, code);
+        window.location.href = url.toString();
       });
     });
 
@@ -112,10 +145,13 @@
       }
     });
 
-    /* outra aba trocou o idioma */
-    window.addEventListener('storage', function (e) {
-      if (e.key === STORAGE_KEY) window.location.reload();
-    });
+    /* Sem listener de 'storage' aqui de propósito: cada aba fica com o
+       idioma que tinha ao carregar (via URL ou localStorage). Reagir a
+       mudanças de outra aba recarregando a página cria loop infinito
+       quando duas abas têm ?lang= diferentes — cada reload força de
+       volta o valor da própria URL no localStorage, o que dispara a
+       outra aba, que faz o mesmo de volta. Se quiser aplicar um idioma
+       diferente numa aba já aberta, troque pelo seletor nela mesma. */
   }
 
   if (document.readyState === 'loading') {

@@ -127,19 +127,21 @@
       { "label": "Ver no GitHub →", "href": "https://github.com/enzoschitini/ready-to-deploy", "variant": "primary", "external": true },
       { "label": "Guia de contribuição", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "variant": "outline", "external": true }
     ],
-    "contributors": {
-      "title": "// quem já construiu isso (8)",
-      "ariaLabel": "Contribuidores",
-      "noteHtml": "Módulos, projetos e bootcamps construídos por gente da comunidade. <span class=\"c-fg\">Seu avatar pode ser o próximo.</span>",
+    "channels": {
+      "title": "// canais que valem a pena seguir",
+      "ariaLabel": "Canais do YouTube",
+      "modalTitle": "Referências da comunidade",
+      "modalCta": "Ver no YouTube",
+      "noteHtml": "Alguns perfis para seguir, embora haja muitos mais. <span class=\"c-fg\">Seu avatar pode ser o próximo.</span>",
       "items": [
-        { "name": "Luciano dii Souza", "login": "lucianodiisouza", "contributions": 46 },
-        { "name": "Bruno Fernandes Horn", "login": "brunofhorn", "contributions": 9 },
-        { "name": "Breno Alvim", "login": "obrenoalvim", "contributions": 4 },
-        { "name": "Rafael Coelho", "login": "rafa-coelho", "contributions": 4 },
-        { "name": "Alex Jesus (ojesus_cyber)", "login": "ajesus1308", "contributions": 2 },
-        { "name": "Lucas Gabriel Witchemichen", "login": "lucasgab2230", "contributions": 2 },
-        { "name": "Manoel Carvalho", "login": "theneocarvalho", "contributions": 2 },
-        { "name": "Lucas Pedro", "login": "lucaspedruo", "contributions": 1 }
+        { "name": "Filipe Deschamps", "image": "Filipe Deschamps.jpg", "subscribers": "818 mil inscritos", "videos": "515 vídeos", "description": "Ex-CTO da Pagar.me; ensina programação (JavaScript, Node.js, clean code) e produtividade, mantém o curso.dev e o TabNews.", "url": "https://www.youtube.com/@filipedeschamps" },
+        { "name": "Gustavo Guanabara (Curso em Vídeo)", "image": "Gustavo Guanabara.jpg", "subscribers": "2,77 milhões de inscritos", "videos": "1.833 vídeos", "description": "Um dos maiores canais educacionais gratuitos do Brasil, com cursos completos de HTML, CSS, Python, PHP, Java e mais.", "url": "https://www.youtube.com/@cursoemvideo" },
+        { "name": "Código Fonte TV", "image": "Código Fonte TV.jpg", "subscribers": "774 mil inscritos", "videos": "1.085 vídeos", "description": "Canal de Gabriel Fróes e Vanessa Weber, com vídeos descontraídos e didáticos sobre programação desde 2016.", "url": "https://www.youtube.com/@codigofontetv" },
+        { "name": "Fabio Akita", "image": "Fabio Akita.jpg", "subscribers": "567 mil inscritos", "videos": "151 vídeos", "description": "Canal \"Akitando\", de um programador com 20+ anos de experiência (fundador da Codeminer 42); discute linguagens, boas práticas, IA e o futuro da profissão.", "url": "https://www.youtube.com/@Akitando" },
+        { "name": "Asimov Academy", "image": "Asimov Academy.jpg", "subscribers": "181 mil inscritos", "videos": "314 vídeos", "description": "A maior escola de Python do Brasil; vídeos e cursos sobre Python, ciência de dados, automações e IA.", "url": "https://www.youtube.com/@AsimovAcademy" },
+        { "name": "Jerry Strazzeri", "image": "Jerry Strazzeri.jpg", "subscribers": "106 mil inscritos", "videos": "240 vídeos", "description": "Cientista de dados com passagens por Google, Meta e TikTok; conteúdo sobre ciência de dados, marketing analytics e carreira.", "url": "https://www.youtube.com/@jerryst" },
+        { "name": "Eduardo Mendes", "image": "Eduardo Mendes.jpg", "subscribers": "67 mil inscritos", "videos": "493 vídeos", "description": "Criador da série \"Live de Python\", com transmissões ao vivo tirando dúvidas sobre Python e desenvolvimento de software.", "url": "https://www.youtube.com/@Dunossauro" },
+        { "name": "Téo Me Why", "image": "Téo Me Why.jpg", "subscribers": "57,9 mil inscritos", "videos": "792 vídeos", "description": "Canal do estatístico Téo Calvo, com lives diárias e cursos gratuitos sobre dados, Python, SQL, estatística e machine learning.", "url": "https://www.youtube.com/@teomewhy" }
       ]
     }
   },
