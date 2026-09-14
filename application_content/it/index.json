@@ -32,18 +32,12 @@
     "titleStatic": "Impara",
     "titleAriaPrefix": "IMPARA",
     "rotatingWords": [
-      "PROGRAMMARE", "LOGICA", "HTML", "CSS", "TYPESCRIPT", "FRONTEND", "BACKEND", "ANGULAR",
-      "NEXT.JS", "GIT", "TERMINALE", "DOCKER", "KUBERNETES", "SQL", "NOSQL", "RABBITMQ",
-      "STRUTTURE DATI", "BIG-O", "IA", "PROMPT", "PERFORMANCE", "ACCESSIBILITÀ", "SICUREZZA",
-      "TEST", "PWA", "REAL-TIME", "SEO", "MOTION"
+      "PROGRAMMARE"
     ],
     "leadBefore": "Dal primo",
     "leadAfter": "al primo progetto online. Moduli guidati in italiano, al tuo ritmo.",
     "typeSnippets": [
-      "console.log(\"ciao, dev\")",
-      "print(\"ciao, dev\")",
-      "git commit -m \"start\"",
-      "npm run dev"
+      "print(\"ciao, dev\")"
     ],
     "ctas": [
       { "label": "Inizia ora →", "href": "#modulos", "variant": "primary" },
