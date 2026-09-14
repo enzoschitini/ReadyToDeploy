@@ -1,0 +1,92 @@
+{
+  "page": "bootcamp",
+  "lang": "it-IT",
+  "meta": {
+    "titleFormat": "{title} · Ready To Deploy",
+    "themeColor": "#000000"
+  },
+  "skipLink": "Vai al contenuto",
+  "brand": {
+    "href": "../index.html",
+    "ariaLabel": "Ready To Deploy - home",
+    "slash": "~/",
+    "name": ".ready-to-deploy.py"
+  },
+  "nav": {
+    "ariaLabel": "Principale",
+    "mobileAriaLabel": "Menu mobile",
+    "openLabel": "Apri menu",
+    "closeLabel": "Chiudi menu",
+    "active": "bootcamps.html",
+    "links": [
+      { "label": "Moduli", "href": "modules.html" },
+      { "label": "Bootcamp", "href": "bootcamps.html" },
+      { "label": "Progetti", "href": "projects.html" },
+      { "label": "Mentoring", "href": "contact.html" }
+    ],
+    "cta": { "label": "Accedi", "href": "contact.html" }
+  },
+  "breadcrumbs": {
+    "ariaLabel": "Navigazione struttura",
+    "separator": "/",
+    "home": { "label": "Home", "href": "../index.html" },
+    "parent": { "label": "Bootcamp", "href": "bootcamps.html" }
+  },
+  "panel": {
+    "outcomeLabel": "// uscirai da qui sapendo",
+    "creatorLabel": "// creato da",
+    "countsFormat": "{modules} moduli · {projects} progetti"
+  },
+  "curriculum": {
+    "kicker": "// programma",
+    "lead": "Un unico percorso, da zero a un risultato concreto: moduli e progetti alternati, in quest'ordine, ognuno costruito sul precedente.",
+    "ariaLabel": "Programma del bootcamp, in ordine",
+    "moduloLabel": "Modulo",
+    "projetoLabel": "Progetto",
+    "moduloHref": "module.html?id=",
+    "projetoHref": "project.html?id="
+  },
+  "rating": {
+    "kicker": "// valutazione del bootcamp",
+    "emptyNote": "ancora senza valutazioni",
+    "noteFormat": "basato su {count} valutazioni",
+    "ariaFormat": "Valutazione media {score} su 5, {count} valutazioni"
+  },
+  "backLink": "← torna ai bootcamp",
+  "notFound": {
+    "title": "Bootcamp non trovato",
+    "lead": "Questo bootcamp non esiste o non è ancora stato pubblicato.",
+    "backLabel": "← torna ai bootcamp"
+  },
+  "footer": {
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
+    "description": "Roadmap di programmazione in italiano, gratuite e open source. Fatto con molta dedizione.",
+    "github": { "label": "github.com/enzoschitini/ready-to-deploy", "href": "https://github.com/enzoschitini/ready-to-deploy" },
+    "columns": [
+      {
+        "title": "// contenuti",
+        "links": [
+          { "label": "Moduli", "href": "modules.html" },
+          { "label": "Progetti", "href": "projects.html" },
+          { "label": "Bootcamp", "href": "bootcamps.html" },
+          { "label": "Mentoring", "href": "contact.html" }
+        ]
+      },
+      {
+        "title": "// progetto",
+        "links": [
+          { "label": "Codice su GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
+          { "label": "Come contribuire", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Chi è l'autore", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+        ]
+      }
+    ],
+    "bottom": {
+      "licenseHtml": "© 2026 · codice sotto <span class=\"strong\">AGPL-3.0</span> · contenuti sotto <span class=\"strong\">CC BY-SA 4.0</span>",
+      "credit": { "before": "creato da ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
+    }
+  },
+  "errors": {
+    "loadFailed": "Non è stato possibile caricare il contenuto di questa pagina. Apri il sito tramite un server HTTP (i file JSON non si caricano via file://)."
+  }
+}

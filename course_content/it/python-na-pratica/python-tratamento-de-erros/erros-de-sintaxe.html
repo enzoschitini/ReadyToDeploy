@@ -1,0 +1,153 @@
+<div class="prose">
+<p>La <strong>sintassi</strong> è l'insieme delle regole di scrittura di un linguaggio, come la grammatica di una lingua. Quando una regola viene infranta, Python non riesce nemmeno a capire cosa deve fare, e per questo <strong>non esegue nulla</strong>.</p>
+<h2>Definizione</h2>
+<p>Prima di eseguire una cella, Python legge <strong>tutto</strong> il suo codice per comprenderlo. Se trova un errore di sintassi in questa lettura, genera un <code>SyntaxError</code> e <strong>nessuna riga viene eseguita</strong>, nemmeno quelle che vengono prima dell'errore.</p>
+<p>Per vedere questo accadere senza bloccare il notebook, useremo due funzioni native che ricevono un codice conservato in una <em>string</em>: <code>exec(codigo)</code> esegue il codice, e <code>compile(codigo, nome, 'exec')</code> si limita ad <strong>analizzare</strong> il codice, senza eseguirlo. Servono solo per questa dimostrazione — nel lavoro quotidiano scrivi il codice direttamente nella cella.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">carrinho_compras = [
+    {'id': 3184, 'preco': 37.65, 'quantidade': 10},
+    {'id': 1203, 'preco': 81.20, 'quantidade': 2},
+    {'id': 8921, 'preco': 15.90, 'quantidade': 2},
+]
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># O print está ANTES do erro de sintaxe (falta ':' no for)...
+codigo_com_erro = '''print('Esta mensagem vem antes do erro')
+for produto in carrinho_compras
+    print(produto)
+'''
+
+try:
+    exec(codigo_com_erro)
+except SyntaxError as erro:
+    # ...e mesmo assim ele não é exibido: nada foi executado
+    print(f'{type(erro).__name__}: {erro.msg} (linha {erro.lineno})')
+# SyntaxError: expected ':' (linha 2)
+</code></pre></div>
+<p>Nota che il messaggio <code>'Esta mensagem vem antes do erro'</code> <strong>non è apparso</strong>. Tieni a mente questa differenza: vedremo nella prossima lezione che, con gli errori di esecuzione, le righe precedenti all'errore vengono eseguite normalmente.</p>
+<h2>Errori di sintassi comuni</h2>
+<p>Per testare vari esempi, creiamo una funzione che analizza un codice e mostra l'errore di sintassi, indicando la riga e la posizione con una freccia (<code>^</code>), come fa Python stesso:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def verificar_sintaxe(codigo: str) -&gt; None:
+    '''Analisa o código (sem executá-lo) e exibe o erro de sintaxe, se houver.'''
+    codigo = codigo.strip('\n')  # ignora linhas em branco no início e no fim
+    try:
+        compile(codigo, '&lt;exemplo&gt;', 'exec')
+    except SyntaxError as erro:
+        linha_com_erro = codigo.splitlines()[erro.lineno - 1]
+        print(f'{type(erro).__name__} na linha {erro.lineno}: {erro.msg}')
+        print(f'    {linha_com_erro}')
+        if erro.offset:
+            print('    ' + ' ' * (erro.offset - 1) + '^')
+    else:
+        print('Nenhum erro de sintaxe encontrado.')
+</code></pre></div>
+<p><strong>Esempio:</strong> dimenticare i due punti (<code>:</code>) alla fine di un <code>for</code>, <code>if</code>, <code>elif</code>, <code>else</code> o <code>def</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
+for produto in carrinho_compras
+    print(produto)
+''')
+# SyntaxError na linha 1: expected ':'
+#     for produto in carrinho_compras
+#                                    ^
+</code></pre></div>
+<p><strong>Esempio:</strong> mettere una condizione nell'<code>else</code>. L'<code>else</code> significa "in tutti gli altri casi", quindi <strong>non</strong> riceve mai una condizione. Per testare un'altra condizione, usa <code>elif</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
+for produto in carrinho_compras:
+    if produto['id'] == 3184:
+        print('Produto 3184')
+    else produto['id'] == 1203:
+        print('Produto 1203')
+''')
+# SyntaxError na linha 4: expected ':'
+#         else produto['id'] == 1203:
+#              ^
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Forma correta: elif para a segunda condição
+for produto in carrinho_compras:
+    if produto['id'] == 3184:
+        print('Produto 3184')
+    elif produto['id'] == 1203:
+        print('Produto 1203')
+# Produto 3184
+# Produto 1203
+</code></pre></div>
+<p><strong>Esempio:</strong> indentazione scorretta. In Python, gli spazi all'inizio della riga definiscono quali righe appartengono a un blocco. Questo errore ha addirittura un nome proprio: <code>IndentationError</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
+for produto in carrinho_compras:
+print(produto)
+''')
+# IndentationError na linha 2: expected an indented block after 'for' statement on line 1
+#     print(produto)
+#     ^
+</code></pre></div>
+<p><strong>Esempio:</strong> dimenticare di chiudere parentesi, quadre o virgolette.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
+print('Total de produtos:', len(carrinho_compras)
+''')
+# SyntaxError na linha 1: '(' was never closed
+#     print('Total de produtos:', len(carrinho_compras)
+#          ^
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
+mensagem = 'Bem-vindo ao Ready To Deploy
+''')
+# SyntaxError na linha 1: unterminated string literal (detected at line 1)
+#     mensagem = 'Bem-vindo ao Ready To Deploy
+#                ^
+</code></pre></div>
+<p><strong>Esempio:</strong> usare <code>=</code> (assegnazione) dove dovrebbe essere <code>==</code> (confronto).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
+if len(carrinho_compras) = 3:
+    print('Carrinho com 3 produtos')
+''')
+# SyntaxError na linha 1: cannot assign to function call here. Maybe you meant '==' instead of '='?
+#     if len(carrinho_compras) = 3:
+#        ^
+</code></pre></div>
+<p><strong>Esempio:</strong> usare <code>return</code> fuori da una funzione. Il <code>return</code> ha senso solo dentro un <code>def</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
+idade = 19
+if idade &gt; 18:
+    return True
+''')
+# SyntaxError na linha 3: 'return' outside function
+#         return True
+#         ^
+</code></pre></div>
+<p>Riassumendo i casi più frequenti:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Errore</th><th>Esempio sbagliato</th><th>Correzione</th></tr></thead>
+<tbody>
+<tr><td>Mancano i due punti</td><td><code>for produto in carrinho</code></td><td><code>for produto in carrinho:</code></td></tr>
+<tr><td>Condizione nell'<code>else</code></td><td><code>else preco &gt; 10:</code></td><td><code>elif preco &gt; 10:</code></td></tr>
+<tr><td>Indentazione scorretta</td><td>blocco del <code>for</code> senza rientro</td><td>rientrare il blocco con 4 spazi</td></tr>
+<tr><td>Parentesi o virgolette senza chiusura</td><td><code>print('Olá'</code></td><td><code>print('Olá')</code></td></tr>
+<tr><td><code>=</code> al posto di <code>==</code></td><td><code>if total = 3:</code></td><td><code>if total == 3:</code></td></tr>
+<tr><td><code>return</code> fuori da una funzione</td><td><code>return True</code> sciolto nel codice</td><td>usare <code>return</code> solo dentro un <code>def</code></td></tr>
+</tbody>
+</table></div>
+<h2>Come correggere</h2>
+<p>Gli errori di sintassi <strong>non possono essere gestiti</strong> con <code>try/except</code> dentro la stessa cella: dato che Python non riesce nemmeno a leggere il codice, il <code>try</code> non arriva mai a essere eseguito. L'unica via d'uscita è <strong>correggere il codice</strong>. Per farlo, leggi con attenzione il messaggio di errore:</p>
+<ol>
+<li><strong>Tipo di errore:</strong> <code>SyntaxError</code> o <code>IndentationError</code>;</li>
+<li><strong>Riga:</strong> dove Python ha rilevato il problema;</li>
+<li><strong>Freccia <code>^</code>:</strong> la posizione approssimativa dell'errore nella riga;</li>
+<li><strong>Descrizione:</strong> nelle versioni più recenti di Python è piuttosto specifica, come <code>expected ':'</code> ("attesi i due punti <code>:</code>").</li>
+</ol>
+<blockquote>
+<p><strong>Suggerimento:</strong> Python indica il punto in cui <strong>ha rilevato</strong> l'errore, che non sempre è dove esso <strong>si trova</strong>. Una parentesi dimenticata in una riga viene spesso segnalata solo nella riga successiva. Se la riga indicata sembra corretta, controlla anche la riga sopra.</p>
+<p><strong>Suggerimento:</strong> editor come Colab e VS Code sottolineano in rosso buona parte degli errori di sintassi mentre digiti. Presta attenzione a questi avvisi prima di eseguire la cella.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-erros-sintaxe-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-erros-sintaxe-q">Perché un <code>try/except</code> dentro la stessa cella non riesce a catturare un errore di sintassi in quella cella?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="`SyntaxError` è un'eccezione normale, catturabile — il problema è il momento in cui accade, non il tipo."><input type="radio" name="quiz-python-erros-sintaxe" value="0" /><span class="txt">Perché <code>SyntaxError</code> non è un'eccezione vera e propria</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Dato che l'errore di sintassi impedisce persino la lettura del codice, lo stesso `try` non arriva mai a essere eseguito — non c'è alcuna esecuzione."><input type="radio" name="quiz-python-erros-sintaxe" value="1" /><span class="txt">Perché Python deve leggere e comprendere tutto il codice prima di eseguirne qualsiasi parte, incluso il try</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`try/except` funziona con qualsiasi eccezione, incluso `SyntaxError` — solo non dentro la stessa cella che contiene l'errore."><input type="radio" name="quiz-python-erros-sintaxe" value="2" /><span class="txt">Perché <code>try/except</code> funziona solo con <code>ValueError</code> e <code>TypeError</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Gli errori di sintassi accadono in qualsiasi codice Python, notebook incluso — è esattamente ciò che abbiamo visto negli esempi di questa lezione."><input type="radio" name="quiz-python-erros-sintaxe" value="3" /><span class="txt">Perché gli errori di sintassi accadono solo in file <code>.py</code>, mai nei notebook</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

@@ -1,0 +1,76 @@
+<div class="prose">
+<p>Con <code>lambda</code> già padroneggiata, possiamo combinarla con funzioni che operano su <strong>intere collezioni</strong> in una volta sola. La prima di queste è <code>map()</code>, che trasforma ogni elemento di una collezione.</p>
+<h2>Definizione</h2>
+<p>La funzione <code>map()</code> applica una funzione a <strong>tutti</strong> gli elementi di una collezione (<code>list</code>, <code>dict</code> ecc.) e restituisce <strong>tutti</strong> gli elementi già trasformati:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">variavel = map(funcao, colecao)
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numeros = [1, 2, 3]
+
+numeros_ao_cubo = map(lambda num: num ** 3, numeros)
+print(numeros_ao_cubo)
+# &lt;map object at 0x000002E53187AC50&gt;
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> <code>map()</code> non restituisce una <code>list</code>, ma un <strong>iteratore</strong> — per questo <code>print()</code> mostra solo l'indirizzo dell'oggetto in memoria, e non i valori. Per vedere o usare i risultati, converti con <code>list()</code>. Inoltre, un iteratore può essere <strong>percorso solo una volta</strong>: dopo essere stato convertito (o usato in un ciclo), resta "vuoto".</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(list(numeros_ao_cubo))
+# [1, 8, 27]
+</code></pre></div>
+<h2>Sostituendo i cicli con map</h2>
+<p><strong>Esempio:</strong> estraendo il provider di più e-mail. Prima, la forma imperativa, con un ciclo <code>for</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">emails = ['andre.perez@gmail.com', 'andre.perez@live.com', 'andre.perez@yahoo.com']
+extrair_provedor_email = lambda email: email.split(sep='@')[-1]
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Forma imperativa: construímos a lista manualmente, item a item
+provedores = []
+for email in emails:
+    provedor = extrair_provedor_email(email)
+    provedores.append(provedor)
+
+print(provedores)
+# ['gmail.com', 'live.com', 'yahoo.com']
+</code></pre></div>
+<p>Ora, lo stesso compito in stile funzionale, con <code>map()</code> — senza ciclo, senza lista vuota da riempire:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">provedores = list(map(extrair_provedor_email, emails))
+print(provedores)
+# ['gmail.com', 'live.com', 'yahoo.com']
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> quando la funzione è usata in un solo punto, non c'è bisogno di nominarla — possiamo passare la <code>lambda</code> direttamente come argomento di <code>map()</code>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">provedores = list(map(lambda email: email.split(sep='@')[-1], emails))
+print(provedores)
+# ['gmail.com', 'live.com', 'yahoo.com']
+</code></pre></div>
+<h2>map con più parametri</h2>
+<p><code>map()</code> accetta anche <strong>più di una collezione</strong>: in questo caso, la funzione passata deve ricevere un parametro per ogni collezione, e gli elementi vengono combinati posizione per posizione (il 1° elemento di ogni lista, poi il 2°, e così via).</p>
+<p><strong>Esempio:</strong> calcolando il rendimento di più scenari di investimento in una sola volta.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcular_retorno_investimento(valor_inicial: float, taxa_juros: float, anos: int) -&gt; float:
+    valor_final = valor_inicial
+    for _ in range(anos):
+        valor_final = valor_final * (1 + taxa_juros)
+    return round(valor_final, 2)
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valores_iniciais = [1000, 1000, 1000]
+taxas_juros = [0.05, 0.10, 0.15]
+anos = [10, 10, 10]
+
+cenarios = list(map(calcular_retorno_investimento, valores_iniciais, taxas_juros, anos))
+print(cenarios)
+# [1628.89, 2593.74, 4045.56]
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-map-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-map-q">Cosa restituisce <code>list(map(lambda x: x * 2, [1, 2, 3]))</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Questo è ciò che appare se stampi il `map()` direttamente, senza convertirlo con `list()` — qui il `list()` converte già l'iteratore."><input type="radio" name="quiz-python-map" value="0" /><span class="txt"><code>&lt;map object at 0x...&gt;</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="`map()` applica la lambda a ogni elemento (raddoppiando ciascuno), e `list()` converte l'iteratore risultante in una lista concreta."><input type="radio" name="quiz-python-map" value="1" /><span class="txt"><code>[2, 4, 6]</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="La lista originale non è il valore di ritorno: `map()` trasforma ogni elemento secondo la funzione passata, qui moltiplicando per 2."><input type="radio" name="quiz-python-map" value="2" /><span class="txt"><code>[1, 2, 3]</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`map()` è fatta apposta per essere combinata con `lambda` — è uno degli usi più comuni di essa."><input type="radio" name="quiz-python-map" value="3" /><span class="txt">Un errore, perché <code>map()</code> non accetta <code>lambda</code></span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

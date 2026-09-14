@@ -1,0 +1,55 @@
+<div class="prose">
+<p>Per eseguire uno <em>script</em> fuori da Colab — sul tuo computer, o su un server — devi avere Python (e il <strong>PIP</strong>, il suo gestore di pacchetti) installati sulla macchina che eseguirà il codice.</p>
+<h2>Su Google Colab</h2>
+<p>Python e PIP <strong>sono già installati</strong> sulla macchina virtuale che Colab ti mette a disposizione — non è necessario installare nulla.</p>
+<p><strong>Esempio:</strong> verifica della versione di Python dallo stesso Python, con il modulo nativo <code>platform</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import platform
+
+print(platform.python_version())
+# 3.12.6
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(platform.system())
+# Linux
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> la macchina virtuale di Colab esegue <strong>Linux</strong>, quindi il risultato del codice sopra sarà normalmente <code>Linux</code> — anche se il tuo computer è Windows o macOS. È un ambiente completamente separato dal tuo computer.</p>
+</blockquote>
+<p>Oltre a eseguire codice Python in una cella, Colab permette di eseguire <strong>comandi da terminale</strong>: basta anteporre un <code>!</code> al comando.</p>
+<p><strong>Esempio:</strong> verifica delle versioni di Python e PIP direttamente dal terminale di Colab.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">!python -V
+# Python 3.12.6
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">!pip -V
+# pip 24.2 from .../site-packages/pip (python 3.12)
+</code></pre></div>
+<blockquote>
+<p>Il <code>!</code> non è Python: dice a Colab "esegui questo come un comando da terminale (Bash)", e non come codice Python. Per questo queste ultime due celle non vengono eseguite dal verificatore automatico di questo corso — funzionano solo dentro un notebook reale, come Colab.</p>
+</blockquote>
+<h2>Sulla tua macchina locale</h2>
+<p>Prima di installare, verifica se Python non è già installato. Apri il terminale (Windows: <code>cmd</code> o <code>PowerShell</code>; macOS/Linux: <code>terminal</code>) ed esegui:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">python -V
+pip -V
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> su Windows, il comando di solito è <code>python</code>. Su macOS e Linux, è comune che sia <code>python3</code> (il nome <code>python</code> da solo potrebbe non esistere, o puntare a una vecchia installazione di Python 2). Se <code>python -V</code> non funziona, prova <code>python3 -V</code>.</p>
+</blockquote>
+<p>Se i comandi non vengono riconosciuti, Python non è installato. Vai sul sito ufficiale di Python, scarica l'installer per il tuo sistema operativo e segui le istruzioni (vedi il link delle risorse alla fine di questa lezione).</p>
+<blockquote>
+<p><strong>Attenzione (Windows):</strong> durante l'installazione, seleziona l'opzione <strong>"Add Python to PATH"</strong>. Senza di essa, il terminale non riconoscerà il comando <code>python</code>, anche con Python già installato — uno degli errori di configurazione più comuni tra i principianti.</p>
+</blockquote>
+<p>Dopo l'installazione, chiudi e riapri il terminale, ed esegui di nuovo <code>python -V</code> per confermare.</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-instalacao-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-instalacao-q">Perché è importante selezionare l'opzione "Add Python to PATH" quando si installa Python su Windows?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="L'opzione PATH non influisce sulle prestazioni — influisce solo sulla capacità del terminale di trovare il comando `python`."><input type="radio" name="quiz-python-instalacao" value="0" /><span class="txt">Perché, senza di essa, Python funziona più lentamente</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Senza aggiungere Python al PATH, il sistema operativo non sa dove trovare l'eseguibile quando digiti `python` nel terminale."><input type="radio" name="quiz-python-instalacao" value="1" /><span class="txt">Perché, senza di essa, il terminale non riconosce il comando <code>python</code>, anche con Python già installato</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il PIP di solito è già incluso nell'installazione standard di Python, indipendentemente da questa specifica opzione PATH."><input type="radio" name="quiz-python-instalacao" value="2" /><span class="txt">Perché questa opzione installa automaticamente il PIP</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Colab viene già fornito con Python e PIP pronti — questa configurazione del PATH è rilevante per l'installazione sulla macchina locale, non su Colab."><input type="radio" name="quiz-python-instalacao" value="3" /><span class="txt">Perché è richiesta solo su Google Colab</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

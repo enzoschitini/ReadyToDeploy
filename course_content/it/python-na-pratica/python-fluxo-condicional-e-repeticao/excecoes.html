@@ -1,0 +1,131 @@
+<div class="prose">
+<p>Anche un codice senza errori di battitura può fallire <strong>durante l'esecuzione</strong>, a causa di situazioni impreviste: una divisione per zero, un dato nel formato sbagliato, una posizione che non esiste in una lista. Questi errori di esecuzione sono chiamati <strong>eccezioni</strong>, e Python permette di gestirle affinché il programma non venga interrotto.</p>
+<h2>Motivazione</h2>
+<p>Stai calcolando quanto ogni persona deve pagare in un conto al ristorante, dividendo il valore totale per la quantità di persone. Solo che questo numero di persone arriva da un modulo compilato da un'altra persona, e a volte arriva sbagliato — incluso come zero.</p>
+<p>Se eseguiamo la divisione direttamente, Python interrompe il programma:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
+quantidade_de_pessoas = 0
+
+valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
+# ZeroDivisionError: float division by zero
+</code></pre></div>
+<p><strong>Come evitiamo che il programma si blocchi quando accade questo?</strong></p>
+<h2>Tipi comuni di eccezione</h2>
+<p>Ogni tipo di errore ha un nome proprio, il che aiuta a gestirlo in modo specifico:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Eccezione</th><th>Si verifica quando...</th><th>Esempio</th></tr></thead>
+<tbody>
+<tr><td><code>ZeroDivisionError</code></td><td>una divisione ha divisore uguale a zero</td><td><code>10 / 0</code></td></tr>
+<tr><td><code>TypeError</code></td><td>un'operazione combina tipi incompatibili</td><td><code>'Idade: ' + 19</code></td></tr>
+<tr><td><code>ValueError</code></td><td>un valore non può essere convertito nel tipo richiesto</td><td><code>int('abc')</code></td></tr>
+<tr><td><code>IndexError</code></td><td>una posizione non esiste in una lista</td><td><code>lista[10]</code> (lista con 3 elementi)</td></tr>
+<tr><td><code>KeyError</code></td><td>una chiave non esiste in un dizionario</td><td><code>dicionario['chave_inexistente']</code></td></tr>
+<tr><td><code>NameError</code></td><td>una variabile usata non è stata definita</td><td><code>print(variavel_que_nao_existe)</code></td></tr>
+</tbody>
+</table></div>
+<h2>try / except</h2>
+<p>La struttura <code>try</code> / <code>except</code> esegue un blocco di codice e, <strong>se</strong> si verifica un'eccezione, esegue un altro blocco al suo posto — senza interrompere il programma.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
+  # código que pode falhar
+except TipoDoErro:
+  # executado somente se essa exceção ocorrer
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
+quantidade_de_pessoas = 0
+
+try:
+  valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
+  print(f'Cada pessoa paga R$ {valor_por_pessoa:.2f}')
+except ZeroDivisionError:
+  print('Erro: a quantidade de pessoas precisa ser maior que zero.')
+# Erro: a quantidade de pessoas precisa ser maior que zero.
+</code></pre></div>
+<p>Con una quantità di persone valida, il <code>try</code> viene eseguito normalmente e l'<code>except</code> non viene nemmeno valutato:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
+quantidade_de_pessoas = 2
+
+try:
+  valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
+  print(f'Cada pessoa paga R$ {valor_por_pessoa:.2f}')
+except ZeroDivisionError:
+  print('Erro: a quantidade de pessoas precisa ser maior que zero.')
+# Cada pessoa paga R$ 66.42
+</code></pre></div>
+<h2>Catturare i dettagli dell'eccezione e gestire più tipi</h2>
+<p>Possiamo catturare l'eccezione in una variabile (convenzione: <code>except ... as exc</code>) per ispezionarne il messaggio, e possiamo anche gestire <strong>più tipi di eccezione diversi</strong> nello stesso <code>try</code>, ognuno con il proprio <code>except</code>.</p>
+<p><strong>Esempio:</strong> cercare una posizione che non esiste in una lista di anni.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anos_com_vendas = [2019, 2020, 2021]
+
+try:
+  ano_mais_recente = anos_com_vendas[5]
+  print(ano_mais_recente)
+except IndexError as exc:
+  print(f'Erro: posição inválida. A lista tem apenas {len(anos_com_vendas)} anos.')
+  print(f'Mensagem original do Python: {exc}')
+# Erro: posição inválida. A lista tem apenas 3 anos.
+# Mensagem original do Python: list index out of range
+</code></pre></div>
+<p><strong>Esempio:</strong> convertire un testo proveniente da un modulo in numero, gestendo prima l'errore specifico e un errore generico alla fine.</p>
+<blockquote>
+<p><strong>Attenzione:</strong> l'ordine conta. Python testa i blocchi <code>except</code> nell'ordine in cui appaiono, quindi metti sempre gli errori <strong>più specifici prima</strong> e un <code>except Exception</code> <strong>per ultimo</strong>, come una rete di sicurezza.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">dado_de_entrada = 'não é um número'
+
+try:
+  valor_convertido = int(dado_de_entrada)
+  print(valor_convertido)
+except ValueError:
+  print('Erro: não foi possível converter o texto para número.')
+except Exception as exc:
+  print(f'Erro inesperado: {exc}')
+# Erro: não foi possível converter o texto para número.
+</code></pre></div>
+<h2>try / except / finally</h2>
+<p>Il blocco <code>finally</code> viene eseguito <strong>sempre</strong>, sia che si sia verificata un'eccezione o no. È utile per azioni che devono avvenire indipendentemente dal risultato, come confermare che un processo è terminato.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome_cliente = 'André'
+idade_cliente = 19
+
+try:
+  # idade_cliente é int; o + não junta str com int (TypeError)
+  apresentacao = 'Cliente: ' + nome_cliente + ', idade: ' + idade_cliente
+except TypeError:
+  apresentacao = 'Cliente: ' + nome_cliente + ', idade: ' + str(idade_cliente)
+finally:
+  print(apresentacao)
+  print('Cadastro processado.')
+# Cliente: André, idade: 19
+# Cadastro processado.
+</code></pre></div>
+<h2>Rivisitando la motivazione</h2>
+<p>Rendiamo il calcolo del valore a persona più realistico: la quantità di persone arriva come <strong>testo</strong> dal modulo, quindi può fallire in due modi diversi — un testo che non è un numero (<code>ValueError</code>) o il numero zero (<code>ZeroDivisionError</code>). Gestiamo entrambi, e usiamo il <code>finally</code> per avvisare che il calcolo è terminato.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
+quantidade_de_pessoas_texto = '0'  # veio como texto de um formulário
+
+try:
+  quantidade_de_pessoas = int(quantidade_de_pessoas_texto)
+  valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
+  print(f'Cada pessoa paga R$ {valor_por_pessoa:.2f}')
+except ValueError:
+  print('Erro: a quantidade de pessoas precisa ser um número.')
+except ZeroDivisionError:
+  print('Erro: a quantidade de pessoas precisa ser maior que zero.')
+finally:
+  print('Cálculo finalizado.')
+# Erro: a quantidade de pessoas precisa ser maior que zero.
+# Cálculo finalizado.
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-excecoes-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-excecoes-q">Perché il blocco <code>finally</code> è utile per confermare che un processo è terminato?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="È il contrario: il `finally` viene eseguito anche quando NON si verifica nessuna eccezione."><input type="radio" name="quiz-python-excecoes" value="0" /><span class="txt">Perché viene eseguito solo quando si verifica un'eccezione</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Indipendentemente dal fatto che il `try` sia andato bene o sia caduto in un `except`, il `finally` viene sempre eseguito alla fine."><input type="radio" name="quiz-python-excecoes" value="1" /><span class="txt">Perché viene sempre eseguito, si sia verificata un'eccezione o no</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Chi gestisce un tipo di errore sconosciuto è un `except Exception`, non il `finally`."><input type="radio" name="quiz-python-excecoes" value="2" /><span class="txt">Perché sostituisce l'<code>except</code> quando il tipo di errore non è conosciuto</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il `finally` non previene errori - garantisce solo che un tratto di codice venga eseguito alla fine, con o senza errore."><input type="radio" name="quiz-python-excecoes" value="3" /><span class="txt">Perché impedisce che qualsiasi eccezione accada</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

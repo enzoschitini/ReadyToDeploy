@@ -1,0 +1,86 @@
+<div class="prose">
+<p><strong>Google Colab</strong> (<em>Colaboratory</em>) è uno strumento gratuito di Google che permette di
+scrivere ed eseguire codice Python direttamente nel browser, senza installare nulla sul computer. È
+basato su <strong>Jupyter Notebook</strong>, il formato di quaderno interattivo più usato nel mercato dei
+dati e della data science.</p>
+<h2>Strumento web</h2>
+<p>Essendo uno strumento <strong>100% web</strong>, tutto ciò che serve è un browser e un
+account Google:</p>
+<ol>
+<li>Crea (o usa) un account Google;</li>
+<li>Accedi a Colab all'indirizzo <code>colab.research.google.com</code>;</li>
+<li>Clicca su <strong>File &gt; Nuovo notebook</strong> per creare il tuo primo quaderno.</li>
+</ol>
+<blockquote>
+<p><strong>Suggerimento:</strong> i notebook creati vengono salvati automaticamente nel tuo Google Drive, nella cartella
+<strong>Colab Notebooks</strong>.</p>
+</blockquote>
+<h2>Ambiente autogestito</h2>
+<p>Diciamo che Colab è <strong>autogestito</strong> perché è Google stesso a occuparsi di tutta
+l'infrastruttura per te:</p>
+<ul>
+<li>Quando ti connetti, Google <strong>fornisce una macchina virtuale</strong> (un computer nel cloud) esclusiva
+per la tua sessione;</li>
+<li>Questa macchina è <strong>temporanea</strong>: nel piano gratuito dura al massimo circa <strong>12
+ore</strong> e può essere disconnessa prima per inattività;</li>
+<li>Quando la sessione termina, <strong>le variabili e i file temporanei vengono persi</strong> - il
+notebook (testo e codice) resta salvato, ma sarà necessario eseguire di nuovo le celle.</li>
+</ul>
+<h2>Notebook e celle</h2>
+<p>Un <strong>notebook</strong> (quaderno) è un documento web composto da una sequenza di blocchi chiamati
+<strong>celle</strong>. Ne esistono due tipi:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Tipo di cella</th><th>A cosa serve</th><th>Cosa succede eseguendola</th></tr></thead>
+<tbody>
+<tr><td><strong>Testo</strong></td><td>Spiegazioni, titoli, elenchi e tabelle</td><td>Il testo viene formattato e mostrato</td></tr>
+<tr><td><strong>Codice</strong></td><td>Istruzioni in Python</td><td>Il codice viene eseguito e il risultato appare subito sotto</td></tr>
+</tbody>
+</table></div>
+<p>Alcune scorciatoie utili in Colab:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Scorciatoia</th><th>Azione</th></tr></thead>
+<tbody>
+<tr><td><code>Shift + Enter</code></td><td>Esegue la cella e passa alla successiva</td></tr>
+<tr><td><code>Ctrl + Enter</code></td><td>Esegue la cella e rimane su di essa</td></tr>
+<tr><td><code>Ctrl + M</code> poi <code>B</code></td><td>Crea una nuova cella sotto</td></tr>
+<tr><td><code>Ctrl + M</code> poi <code>M</code></td><td>Converte la cella in testo</td></tr>
+<tr><td><code>Ctrl + M</code> poi <code>Y</code></td><td>Converte la cella in codice</td></tr>
+</tbody>
+</table></div>
+<p>Passiamo al nostro primo codice! La funzione <code>print()</code> mostra a schermo ciò che si trova tra le
+parentesi:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Il nostro primo programma: mostrare un messaggio a schermo
+print("Ciao, mondo!")
+# Ciao, mondo!
+</code></pre></div>
+<p>Un dettaglio importante: tutte le celle di un notebook <strong>condividono lo stesso stato</strong>. In
+altre parole, qualcosa creato in una cella resta disponibile nelle altre - purché la cella in cui è stato creato
+sia stata <strong>eseguita prima</strong>. Guarda cosa succede eseguendo queste due celle, in
+questo ordine:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Cella 1 - creando un messaggio
+mensagem_boas_vindas = "Benvenuto su Ready To Deploy!"
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Cella 2 - usando il messaggio creato nella cella precedente
+print(mensagem_boas_vindas)
+# Benvenuto su Ready To Deploy!
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> conta l'ordine di esecuzione, non la posizione nella pagina. Se esegui la
+seconda cella senza aver eseguito la prima, Python segnalerà un errore (<code>NameError</code>), perché
+la variabile non esiste ancora.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-colab-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-colab-q">Cosa succede se esegui una cella che usa una variabile creata in un'altra cella non ancora eseguita?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Python non inventa valori per nomi che non esistono."><input type="radio" name="quiz-python-colab" value="0" /><span class="txt">Python usa il valore 0 di default</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="La variabile non esiste ancora in memoria, quindi Python non la trova."><input type="radio" name="quiz-python-colab" value="1" /><span class="txt">Python genera un errore NameError</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Colab non esegue mai altre celle da solo - l'ordine è sempre manuale."><input type="radio" name="quiz-python-colab" value="2" /><span class="txt">Colab esegue automaticamente la cella precedente</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Senza la variabile in memoria, Python non può continuare - si interrompe con un errore."><input type="radio" name="quiz-python-colab" value="3" /><span class="txt">Non succede nulla, il valore resta vuoto</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

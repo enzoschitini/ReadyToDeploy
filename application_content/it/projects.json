@@ -1,0 +1,111 @@
+{
+  "page": "projects",
+  "lang": "it-IT",
+  "meta": {
+    "title": "Progetti · Ready To Deploy",
+    "description": "Progetti pratici per allenare ciò che i moduli insegnano. Ognuno ha obiettivo, requisiti e sfide extra.",
+    "themeColor": "#000000"
+  },
+  "skipLink": "Vai al contenuto",
+  "brand": {
+    "href": "../index.html",
+    "ariaLabel": "Ready To Deploy - home",
+    "slash": "~/",
+    "name": ".ready-to-deploy.py"
+  },
+  "nav": {
+    "ariaLabel": "Principale",
+    "mobileAriaLabel": "Menu mobile",
+    "openLabel": "Apri menu",
+    "closeLabel": "Chiudi menu",
+    "active": "projects.html",
+    "links": [
+      { "label": "Moduli", "href": "modules.html" },
+      { "label": "Bootcamp", "href": "bootcamps.html" },
+      { "label": "Progetti", "href": "projects.html" },
+      { "label": "Mentoring", "href": "contact.html" }
+    ],
+    "cta": { "label": "Accedi", "href": "contact.html" }
+  },
+  "breadcrumbs": {
+    "ariaLabel": "Navigazione struttura",
+    "separator": "/",
+    "items": [
+      { "label": "Home", "href": "../index.html" },
+      { "label": "Progetti" }
+    ]
+  },
+  "header": {
+    "title": "Progetti",
+    "lead": "Imparare davvero significa costruire. Scegli un progetto del tuo livello e metti in pratica ciò che i moduli insegnano — ognuno ha obiettivo, requisiti e sfide extra."
+  },
+  "filters": {
+    "searchLabel": "Cerca progetti",
+    "searchPlaceholder": "Cerca progetti per nome, descrizione o argomento…",
+    "levelLabel": "Livello",
+    "levels": [
+      { "id": "principiante", "label": "Principiante" },
+      { "id": "intermedio", "label": "Intermedio" },
+      { "id": "avanzato", "label": "Avanzato" }
+    ],
+    "topic": {
+      "label": "Argomento",
+      "searchLabel": "Filtra argomenti",
+      "searchPlaceholder": "Filtra argomenti…",
+      "empty": "nessun argomento"
+    },
+    "countFormat": "{visible} di {total} {noun}",
+    "noun": "progetto",
+    "nounPlural": "progetti",
+    "removeChipAria": "Rimuovi filtro {label}",
+    "clear": "pulisci"
+  },
+  "section": {
+    "kickerFormat": "// {level}",
+    "itemHref": "project.html?id=",
+    "itemCta": "vedi progetto →",
+    "maxTags": 4,
+    "moreTagsFormat": "+{count}",
+    "newDays": 30,
+    "empty": "Nessun progetto trovato con questi filtri.",
+    "noContent": "Nessun progetto ancora pubblicato."
+  },
+  "labels": {
+    "hot": "in tendenza",
+    "hotAria": "Contenuto in tendenza",
+    "new": "nuovo",
+    "newAria": "Contenuto nuovo",
+    "ratingAria": "Valutazione media {score} su 5, {count} valutazioni"
+  },
+  "footer": {
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
+    "description": "Roadmap di programmazione in italiano, gratuite e open source. Fatto con molta dedizione.",
+    "github": { "label": "github.com/enzoschitini/ready-to-deploy", "href": "https://github.com/enzoschitini/ready-to-deploy" },
+    "columns": [
+      {
+        "title": "// contenuti",
+        "links": [
+          { "label": "Moduli", "href": "modules.html" },
+          { "label": "Progetti", "href": "projects.html" },
+          { "label": "Bootcamp", "href": "bootcamps.html" },
+          { "label": "Mentoring", "href": "contact.html" }
+        ]
+      },
+      {
+        "title": "// progetto",
+        "links": [
+          { "label": "Codice su GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
+          { "label": "Come contribuire", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Chi è l'autore", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+        ]
+      }
+    ],
+    "bottom": {
+      "licenseHtml": "© 2026 · codice sotto <span class=\"strong\">AGPL-3.0</span> · contenuti sotto <span class=\"strong\">CC BY-SA 4.0</span>",
+      "credit": { "before": "creato da ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
+    }
+  },
+  "errors": {
+    "loadFailed": "Non è stato possibile caricare il contenuto di questa pagina. Apri il sito tramite un server HTTP (i file JSON non si caricano via file://)."
+  }
+}

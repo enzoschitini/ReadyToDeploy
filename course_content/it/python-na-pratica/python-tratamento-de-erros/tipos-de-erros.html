@@ -1,0 +1,57 @@
+<div class="prose">
+<p>Prima di imparare a gestire un errore, è necessario sapere <strong>di che tipo</strong> è. Ogni tipo appare in un momento diverso e richiede una strategia diversa per essere risolto.</p>
+<h2>Definizione</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Tipo</th><th>Quando accade</th><th>Python avvisa?</th><th>Esempio</th><th>Come risolvere</th></tr></thead>
+<tbody>
+<tr><td><strong>Sintassi</strong></td><td>Prima dell'esecuzione, quando Python legge il codice</td><td>Sì, con <code>SyntaxError</code>, e <strong>nessuna riga</strong> viene eseguita</td><td>Dimenticare i due punti (<code>:</code>) di un <code>if</code></td><td>Correggere il codice</td></tr>
+<tr><td><strong>Esecuzione</strong> (eccezione)</td><td>Durante l'esecuzione, in una riga specifica</td><td>Sì, con un'eccezione (<code>ZeroDivisionError</code>, <code>ValueError</code>...), e il programma si ferma <strong>a quella riga</strong></td><td>Dividere per zero</td><td>Correggere il codice o <strong>gestire</strong> l'eccezione con <code>try/except</code></td></tr>
+<tr><td><strong>Logica</strong></td><td>Durante l'esecuzione</td><td><strong>No</strong>: il programma va avanti fino alla fine</td><td>Calcolare una media con la formula sbagliata</td><td>Verificare i risultati e <strong>fare debug</strong> del codice</td></tr>
+</tbody>
+</table></div>
+<p><strong>Errore di sintassi:</strong> il codice è scritto in un modo che Python non capisce. Per questo la riga sotto è commentata: se venisse eseguita, l'intera cella fallirebbe ancora prima di iniziare.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">idade = 19
+
+# if idade &gt;= 18    # SyntaxError: faltam os dois-pontos no final
+if idade &gt;= 18:     # forma correta
+    print('Maior de idade')
+# Maior de idade
+</code></pre></div>
+<p><strong>Errore in tempo di esecuzione:</strong> il codice è scritto correttamente, ma un'operazione è impossibile con i valori ricevuti. Qui usiamo <code>try/except</code>, visto nel Modulo 03, per mostrare l'errore senza bloccare il notebook.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
+    print(1 / 0)
+except ZeroDivisionError as erro:
+    # type(erro).__name__ mostra o nome da exceção
+    print(f'{type(erro).__name__}: {erro}')
+# ZeroDivisionError: division by zero
+</code></pre></div>
+<p><strong>Errore di logica:</strong> il codice funziona senza nessun messaggio, ma il risultato è sbagliato. Qual è la media tra 8 e 10?</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nota_1 = 8
+nota_2 = 10
+
+media = nota_1 + nota_2 / 2      # a divisão acontece antes da soma: 8 + 5
+print(media)
+
+media = (nota_1 + nota_2) / 2    # os parênteses garantem a ordem correta
+print(media)
+# 13.0
+# 9.0
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> l'errore di logica è il più pericoloso dei tre, proprio perché Python non protesta. Un report con un numero sbagliato può passare inosservato e portare a decisioni sbagliate.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-tipos-de-erros-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-tipos-de-erros-q">Perché un errore di logica è considerato il più pericoloso dei tre tipi di errore?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="È l'errore di sintassi che impedisce l'esecuzione; l'errore di logica esegue l'intero programma senza bloccarsi."><input type="radio" name="quiz-python-tipos-de-erros" value="0" /><span class="txt">Perché impedisce al codice di funzionare</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Senza un messaggio di errore, un risultato sbagliato può passare inosservato ed essere usato in decisioni reali."><input type="radio" name="quiz-python-tipos-de-erros" value="1" /><span class="txt">Perché Python non avvisa di nulla — il programma va avanti fino alla fine e restituisce un risultato sbagliato</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Chi interrompe l'esecuzione a metà è l'errore in tempo di esecuzione (l'eccezione), non l'errore di logica."><input type="radio" name="quiz-python-tipos-de-erros" value="2" /><span class="txt">Perché blocca sempre il programma a metà esecuzione</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Un errore di logica può accadere in un programma di qualsiasi dimensione, persino in un calcolo di due righe."><input type="radio" name="quiz-python-tipos-de-erros" value="3" /><span class="txt">Perché accade solo in programmi molto grandi</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

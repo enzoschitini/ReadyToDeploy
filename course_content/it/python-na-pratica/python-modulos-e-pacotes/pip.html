@@ -1,0 +1,100 @@
+<div class="prose">
+<p>Oltre alla libreria standard e ai moduli che scrivi tu stesso, esiste un universo di pacchetti creati dalla comunità Python per praticamente qualsiasi compito.</p>
+<h2>PyPI</h2>
+<p>Il <strong>PyPI</strong> (<em>Python Package Index</em>, pypi.org) è il repository ufficiale di pacchetti Python. Al suo interno trovi librerie per analisi dati, automazione, sviluppo web, intelligenza artificiale e molto altro — ognuna con la propria pagina, le proprie versioni e la propria documentazione.</p>
+<h2>pip</h2>
+<p>Il <strong>pip</strong> è lo strumento ufficiale per installare pacchetti dal PyPI direttamente dal terminale (su Colab, in una cella con <code>!</code> davanti, che esegue un comando di sistema invece di Python).</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Comando</th><th>Cosa fa</th></tr></thead>
+<tbody>
+<tr><td><code>pip install &lt;pacote&gt;</code></td><td>Installa la versione più recente del pacchetto</td></tr>
+<tr><td><code>pip install &lt;pacote&gt;==&lt;versão&gt;</code></td><td>Installa una versione specifica</td></tr>
+<tr><td><code>pip freeze</code></td><td>Elenca tutti i pacchetti installati e le loro versioni</td></tr>
+<tr><td><code>pip uninstall &lt;pacote&gt;</code></td><td>Rimuove un pacchetto installato</td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">!pip install requests==2.32.3
+# Successfully installed requests-2.32.3
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> fissare la versione (<code>==2.32.3</code>) evita che un futuro aggiornamento del pacchetto rompa un codice che già funzionava — una buona pratica nei progetti reali.</p>
+</blockquote>
+<p>Il comando <code>pip freeze</code> elenca tutti i pacchetti installati nell'ambiente, uno per riga, insieme alla versione esatta di ciascuno — utile per documentare (o riprodurre) le dipendenze di un progetto.</p>
+<h2>requests</h2>
+<p>Il pacchetto <code>requests</code> facilita le richieste al protocollo web <strong>HTTP</strong>, usato praticamente da ogni servizio su internet.</p>
+<p><strong>Esempio:</strong> stai automatizzando la compilazione di una registrazione e, a partire dal CAP indicato dal cliente, devi scoprire la via, il quartiere e la città. Il ViaCEP è un servizio pubblico e gratuito per questo tipo di ricerca.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import requests
+
+resposta = requests.get('https://viacep.com.br/ws/01310930/json/')
+print(f'Status code: {resposta.status_code}')
+# Status code: 200
+</code></pre></div>
+<p>Uno <code>status_code</code> pari a <code>200</code> indica che la richiesta è andata a buon fine. Il contenuto restituito arriva come testo, nel formato <strong>JSON</strong> — un formato molto usato per lo scambio di dati tra sistemi:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(resposta.text)
+# {
+#   "cep": "01310-930",
+#   "logradouro": "Avenida Paulista",
+#   "complemento": "2100",
+#   "unidade": "Banco Safra S.A",
+#   "bairro": "Bela Vista",
+#   "localidade": "São Paulo",
+#   "uf": "SP",
+#   "estado": "São Paulo",
+#   "regiao": "Sudeste",
+#   "ibge": "3550308",
+#   "gia": "1004",
+#   "ddd": "11",
+#   "siafi": "7107"
+# }
+</code></pre></div>
+<p>Il modulo <code>json</code>, anch'esso della libreria standard, converte questo testo in un dizionario Python con <code>json.loads()</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import json
+
+endereco = json.loads(resposta.text)
+print(endereco)
+# {'cep': '01310-930', 'logradouro': 'Avenida Paulista', 'complemento': '2100', 'unidade': 'Banco Safra S.A', 'bairro': 'Bela Vista', 'localidade': 'São Paulo', 'uf': 'SP', 'estado': 'São Paulo', 'regiao': 'Sudeste', 'ibge': '3550308', 'gia': '1004', 'ddd': '11', 'siafi': '7107'}
+</code></pre></div>
+<blockquote>
+<p>Lo stesso <code>requests</code> offre già una scorciatoia per questo, senza dover importare manualmente <code>json</code>: <code>resposta.json()</code>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">endereco = resposta.json()
+
+print(f"Rua: {endereco['logradouro']}")
+print(f"Bairro: {endereco['bairro']}")
+print(f"Cidade: {endereco['localidade']} - {endereco['uf']}")
+# Rua: Avenida Paulista
+# Bairro: Bela Vista
+# Cidade: São Paulo - SP
+</code></pre></div>
+<blockquote>
+<p>Praticamente ogni pacchetto che si connette a un'API (social network, banche, sistemi di pagamento, lo stesso ChatGPT...) segue questa stessa logica: una richiesta HTTP che restituisce dati in JSON.</p>
+</blockquote>
+<h2>Riepilogo del Modulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Concetto</th><th>Cos'è</th><th>Sintassi</th></tr></thead>
+<tbody>
+<tr><td>Importare un modulo intero</td><td>Porta tutto il contenuto, accessibile con prefisso</td><td><code>import modulo</code></td></tr>
+<tr><td>Importare nomi specifici</td><td>Porta solo ciò che è stato richiesto, senza prefisso</td><td><code>from modulo import nome</code></td></tr>
+<tr><td>Assegnare un alias all'importazione</td><td>Rinomina il modulo o il nome importato</td><td><code>import modulo as apelido</code></td></tr>
+<tr><td>Modulo</td><td>Un file <code>.py</code> con codice riutilizzabile</td><td><code>arquivo_csv.py</code></td></tr>
+<tr><td>Pacchetto</td><td>Una cartella con moduli correlati e un <code>__init__.py</code></td><td><code>arquivo/arquivo_csv.py</code></td></tr>
+<tr><td>PyPI</td><td>Repository ufficiale di pacchetti di terzi</td><td>pypi.org</td></tr>
+<tr><td>pip</td><td>Strumento per installare, elencare e rimuovere pacchetti</td><td><code>pip install</code>, <code>pip freeze</code>, <code>pip uninstall</code></td></tr>
+</tbody>
+</table></div>
+<p>Pacchetti visti in questo modulo: <code>random</code>, <code>math</code>, <code>time</code>, <code>datetime</code>, <code>os</code>, <code>json</code> (libreria standard) e <code>requests</code> (di terzi, via PyPI).</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-pip-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-pip-q">Perché fissare la versione di un pacchetto (<code>pip install requests==2.32.3</code>) è una buona pratica?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="`pip install requests` (senza versione) funziona normalmente — fissare la versione riguarda la stabilità, non l'installazione in sé."><input type="radio" name="quiz-python-pip" value="0" /><span class="txt">Perché i pacchetti senza versione fissata non possono essere importati</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Una nuova versione di un pacchetto può cambiare comportamenti o rimuovere funzionalità; fissare la versione mantiene il progetto prevedibile."><input type="radio" name="quiz-python-pip" value="1" /><span class="txt">Perché evita che un futuro aggiornamento del pacchetto rompa un codice che già funzionava</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il PyPI accetta l'installazione con o senza versione specifica — la versione più recente è il default quando nulla è fissato."><input type="radio" name="quiz-python-pip" value="2" /><span class="txt">Perché il PyPI accetta solo pacchetti con versione fissata</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Fissare la versione non ha relazione con la velocità di installazione — è una questione di stabilità e riproducibilità del progetto."><input type="radio" name="quiz-python-pip" value="3" /><span class="txt">Perché rende l'installazione più veloce</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

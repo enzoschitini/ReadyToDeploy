@@ -1,0 +1,159 @@
+{
+  "modules": [
+    {
+      "id": "python-variaveis-e-tipos-de-dados",
+      "bootcamp_id": "ready-to-deploy",
+      "title": "Variabili e Tipi di Dato",
+      "description": "Primo modulo di Python nella Pratica: Google Colab, variabili, numeri, stringhe e booleani, partendo sempre da problemi reali del quotidiano.",
+      "level": "Principiante",
+      "nodes": 5,
+      "skills": [
+        "python",
+        "google-colab",
+        "variabili",
+        "tipi-di-dato",
+        "numeri",
+        "strings",
+        "booleani"
+      ],
+      "hot": false,
+      "rating": { "score": 4.9, "count": 9 }
+    },
+    {
+      "id": "python-estruturas-de-dados",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Strutture Dati",
+      "description": "Secondo modulo di Python nella Pratica: liste, insiemi e dizionari, partendo da problemi reali come estratto conto, hashtag univoci e registro di reti wi-fi.",
+      "level": "Principiante",
+      "nodes": 3,
+      "skills": [
+        "python",
+        "liste",
+        "insiemi",
+        "dizionari",
+        "strutture-dati"
+      ],
+      "hot": false,
+      "rating": { "score": 4.5, "count": 8 }
+    },
+    {
+      "id": "python-fluxo-condicional-e-repeticao",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Flusso Condizionale & Ripetizione",
+      "description": "Terzo modulo di Python nella Pratica: if/elif/else, gestione delle eccezioni con try/except/finally e la struttura di ripetizione for, applicati a pagamento con carta, divisione del conto e analisi delle vendite.",
+      "level": "Principiante",
+      "nodes": 3,
+      "skills": [
+        "python",
+        "condizionali",
+        "eccezioni",
+        "for",
+        "loop"
+      ],
+      "hot": false,
+      "rating": { "score": 4.7, "count": 10 }
+    },
+    {
+      "id": "python-arquivos-e-funcoes",
+      "bootcamp_id": "python-na-pratica",
+      "title": "File & Funzioni",
+      "description": "Quarto modulo di Python nella Pratica: lettura e scrittura di file, funzioni (parametri, valore di ritorno e gestione degli errori) e scope delle variabili, applicati a una base clienti e a una simulazione di interesse composto.",
+      "level": "Principiante",
+      "nodes": 4,
+      "skills": [
+        "python",
+        "file",
+        "funzioni",
+        "scope"
+      ],
+      "hot": false,
+      "rating": { "score": 5.0, "count": 8 }
+    },
+    {
+      "id": "python-programacao-funcional",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Programmazione Funzionale",
+      "description": "Quinto modulo di Python nella Pratica: funzioni lambda, funzioni di ordine superiore e gli strumenti map, filter e reduce, applicati a una calcolatrice di interesse composto e all'elaborazione di liste di e-mail e numeri.",
+      "level": "Intermedio",
+      "nodes": 4,
+      "skills": [
+        "python",
+        "lambda",
+        "map",
+        "filter",
+        "reduce",
+        "programmazione-funzionale"
+      ],
+      "hot": false,
+      "rating": { "score": 4.4, "count": 12 }
+    },
+    {
+      "id": "python-programacao-orientada-a-objetos",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Programmazione Orientata agli Oggetti",
+      "description": "Sesto modulo di Python nella Pratica: paradigmi di programmazione, classi, oggetti ed ereditarietà, costruendo una classe per l'anagrafica clienti e una classe per leggere file CSV.",
+      "level": "Intermedio",
+      "nodes": 4,
+      "skills": [
+        "python",
+        "poo",
+        "classi",
+        "oggetti",
+        "ereditarieta"
+      ],
+      "hot": false,
+      "rating": { "score": 4.5, "count": 8 }
+    },
+    {
+      "id": "python-modulos-e-pacotes",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Moduli & Pacchetti",
+      "description": "Settimo modulo di Python nella Pratica: import/from/as, creazione di moduli e pacchetti propri, e installazione di pacchetti di terze parti con pip e PyPI, applicati a una richiesta HTTP con il pacchetto requests.",
+      "level": "Intermedio",
+      "nodes": 4,
+      "skills": [
+        "python",
+        "moduli",
+        "pacchetti",
+        "pip",
+        "pypi"
+      ],
+      "hot": false,
+      "rating": { "score": 4.3, "count": 11 }
+    },
+    {
+      "id": "python-tratamento-de-erros",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Gestione degli Errori",
+      "description": "Ottavo modulo di Python nella Pratica: i tre tipi di errore in Python (sintassi, esecuzione e logica), traceback, gerarchia delle eccezioni, try/except/else/finally, raise ed eccezioni personalizzate, applicati all'elaborazione di fatture.",
+      "level": "Intermedio",
+      "nodes": 4,
+      "skills": [
+        "python",
+        "eccezioni",
+        "try-except",
+        "debug",
+        "gestione-errori"
+      ],
+      "hot": false,
+      "rating": { "score": 4.8, "count": 8 }
+    },
+    {
+      "id": "python-scripting",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Scripting",
+      "description": "Nono e ultimo modulo di Python nella Pratica: installare Python al di fuori di Colab, usare la modalità interattiva (REPL) e creare, salvare ed eseguire file di script .py, inclusi gli argomenti da riga di comando.",
+      "level": "Intermedio",
+      "nodes": 3,
+      "skills": [
+        "python",
+        "scripting",
+        "terminale",
+        "repl",
+        "sys-argv"
+      ],
+      "hot": false,
+      "rating": { "score": 4.4, "count": 10 }
+    }
+  ]
+}

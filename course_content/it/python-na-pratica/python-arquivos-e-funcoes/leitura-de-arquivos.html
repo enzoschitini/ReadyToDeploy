@@ -1,0 +1,186 @@
+<div class="prose">
+<p>Nella vita reale, i dati raramente vengono digitati a mano nel codice: arrivano in <strong>file</strong> esportati da sistemi, foglio di calcolo o database. Saper aprire e leggere un file è il primo passo di qualsiasi analisi di dati.</p>
+<h2>Motivazione</h2>
+<p>Lavori nel team dati di una banca e hai ricevuto il file <code>banco.csv</code>, con informazioni su alcuni clienti. Il primo compito è semplice: <strong>scoprire l'età media dei clienti</strong>.</p>
+<p>Un file <strong>CSV</strong> (<em>Comma-Separated Values</em>, o "valori separati da virgola") è un file di testo in cui ogni riga rappresenta un record e le colonne sono separate da virgole. La prima riga, chiamata <strong>intestazione</strong>, riporta il nome delle colonne. Nel nostro file, sono in inglese:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Colonna</th><th>Significato</th></tr></thead>
+<tbody>
+<tr><td><code>age</code></td><td>Età</td></tr>
+<tr><td><code>job</code></td><td>Professione</td></tr>
+<tr><td><code>marital</code></td><td>Stato civile</td></tr>
+<tr><td><code>education</code></td><td>Istruzione</td></tr>
+<tr><td><code>default</code></td><td>È inadempiente?</td></tr>
+<tr><td><code>balance</code></td><td>Saldo sul conto</td></tr>
+<tr><td><code>housing</code></td><td>Ha un mutuo per la casa?</td></tr>
+<tr><td><code>loan</code></td><td>Ha un prestito personale?</td></tr>
+</tbody>
+</table></div>
+<p><strong>Come possiamo portare il contenuto di questo file dentro Python e calcolare l'età media?</strong></p>
+<h2>Preparando il file di esempio</h2>
+<p>Prima di iniziare, dobbiamo far esistere il file <code>banco.csv</code> nella cartella in cui il notebook è in esecuzione. La cella sotto crea questo file (usando esattamente quello che impareremo nella prossima lezione, sulla scrittura di file):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Conteúdo do arquivo: um cliente por linha, colunas separadas por vírgula
+conteudo_banco = '''age,job,marital,education,default,balance,housing,loan
+30,unemployed,married,primary,no,1787,no,no
+33,services,married,secondary,no,4789,yes,yes
+35,management,single,tertiary,no,1350,yes,no
+30,management,married,tertiary,no,1476,yes,yes
+59,blue-collar,married,secondary,no,0,yes,no
+35,management,single,tertiary,no,747,no,no
+36,self-employed,married,tertiary,no,307,yes,no
+39,technician,married,secondary,no,147,yes,no
+41,entrepreneur,married,tertiary,no,221,yes,no
+43,services,married,primary,no,-88,yes,yes
+'''
+
+# Criando o arquivo banco.csv (veremos como isso funciona na próxima aula)
+with open('banco.csv', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write(conteudo_banco)
+
+print('Arquivo banco.csv criado!')
+# Arquivo banco.csv criado!
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> in Google Colab, clicca sull'icona della <strong>cartella</strong> nella barra laterale sinistra per vedere i file della sessione. Il <code>banco.csv</code> apparirà lì, e puoi anche scaricarlo. Ricorda che questi file sono <strong>temporanei</strong> e scompaiono quando la sessione termina.</p>
+<p><strong>Suggerimento:</strong> puoi trovare notebook che creano file con il comando <code>%%writefile nome_do_arquivo</code> all'inizio della cella. Non è Python: è un "comando magico" di Jupyter/Colab. Qui usiamo Python puro perché il codice funzioni in qualsiasi ambiente.</p>
+</blockquote>
+<h2>Aprendo file con with e open()</h2>
+<p>Per lavorare con un file, prima dobbiamo <strong>aprirlo</strong>. In Python, facciamo questo con la funzione nativa <code>open()</code>, quasi sempre accompagnata dalla parola chiave <code>with</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('caminho/do/arquivo', mode='modo', encoding='utf-8') as apelido:
+    # bloco de código que usa o arquivo (indentado)
+</code></pre></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Parte</th><th>Cosa significa</th></tr></thead>
+<tbody>
+<tr><td><code>'caminho/do/arquivo'</code></td><td>Nome (o percorso) del file. Senza cartella, Python cerca nella cartella corrente.</td></tr>
+<tr><td><code>mode</code></td><td>Modalità di apertura. <code>'r'</code> (<em>read</em>) è lettura ed è il predefinito. Vedremo gli altri di seguito.</td></tr>
+<tr><td><code>encoding</code></td><td>Codifica del testo. Usa <code>'utf-8'</code> perché accenti e cediglia funzionino correttamente.</td></tr>
+<tr><td><code>as apelido</code></td><td>Nome della variabile che rappresenta il file aperto dentro il blocco.</td></tr>
+</tbody>
+</table></div>
+<p>Il <code>with</code> garantisce che il file venga <strong>chiuso automaticamente</strong> alla fine del blocco, anche se si verifica un errore nel mezzo. Un file lasciato aperto per dimenticanza può rimanere bloccato, consumare memoria o addirittura perdere dati non ancora registrati.</p>
+<blockquote>
+<p><strong>Attenzione:</strong> se il file non esiste, <code>open()</code> in modalità lettura genera un errore <code>FileNotFoundError</code>. Possiamo gestire questa situazione con il <code>try/except</code> che abbiamo visto nel modulo precedente:</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Tentando abrir um arquivo que não existe
+try:
+    with open('arquivo_que_nao_existe.csv', mode='r', encoding='utf-8') as arquivo:
+        print(arquivo.read())
+except FileNotFoundError:
+    print('Arquivo não encontrado. Confira o nome e a pasta.')
+# Arquivo não encontrado. Confira o nome e a pasta.
+</code></pre></div>
+<h2>Leggere tutto con read()</h2>
+<p>Il metodo <code>.read()</code> legge <strong>tutto il contenuto</strong> del file in una sola volta e lo restituisce come un'unica <em>string</em>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as arquivo:
+    conteudo = arquivo.read()
+
+# Fora do bloco, o arquivo já foi fechado, mas o texto lido continua na variável
+print(conteudo)
+print(type(conteudo))
+# age,job,marital,education,default,balance,housing,loan
+# 30,unemployed,married,primary,no,1787,no,no
+# 33,services,married,secondary,no,4789,yes,yes
+# ... (demais linhas)
+# &lt;class 'str'&gt;
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> in modalità <code>'r'</code> il file può essere solo letto. Qualsiasi tentativo di scriverci genera un errore, il che protegge il file originale da modifiche accidentali.</p>
+</blockquote>
+<h2>Leggere riga per riga</h2>
+<p>Il <code>.read()</code> è pratico, ma carica l'intero file in memoria. Per file grandi (centinaia di <em>megabyte</em> o più), l'ideale è leggere <strong>una riga alla volta</strong>. Python offre tre modi:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Modo</th><th>Cosa restituisce</th><th>Quando usarlo</th></tr></thead>
+<tbody>
+<tr><td><code>arquivo.readline()</code></td><td>La <strong>riga successiva</strong> del file, come <em>string</em></td><td>Per leggere una riga specifica, come l'intestazione</td></tr>
+<tr><td><code>for linha in arquivo:</code></td><td>Una riga a ogni ripetizione del ciclo</td><td>Per scorrere l'intero file senza caricarlo tutto in memoria</td></tr>
+<tr><td><code>arquivo.readlines()</code></td><td>Una <strong>lista</strong> con tutte le righe</td><td>File piccoli, quando servono le righe in una lista</td></tr>
+</tbody>
+</table></div>
+<p><strong>Esempio:</strong> il <code>.readline()</code> legge una riga e "avanza" nel file, quindi la chiamata successiva restituisce già la riga successiva.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as arquivo:
+    cabecalho = arquivo.readline()        # 1ª linha: o cabeçalho
+    primeiro_cliente = arquivo.readline()  # 2ª linha: o primeiro cliente
+
+print(cabecalho)
+print(primeiro_cliente)
+# age,job,marital,education,default,balance,housing,loan
+#
+# 30,unemployed,married,primary,no,1787,no,no
+#
+</code></pre></div>
+<p>Nota che è apparsa una <strong>riga vuota</strong> dopo ogni testo. Ciò accade perché ogni riga letta termina con il carattere invisibile <code>\n</code> (interruzione di riga), e il <code>print()</code> aggiunge un'altra interruzione. La funzione <code>repr()</code> mostra la <em>string</em> "grezza", con questi caratteri visibili:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># repr() revela os caracteres invisíveis, como o \n no final da linha
+print(repr(cabecalho))
+
+# .strip() remove espaços e quebras de linha do início e do fim
+print(repr(cabecalho.strip()))
+# 'age,job,marital,education,default,balance,housing,loan\n'
+# 'age,job,marital,education,default,balance,housing,loan'
+</code></pre></div>
+<p><strong>Esempio:</strong> scorrendo l'intero file con <code>for</code>, che è il modo più semplice ed efficiente di leggere riga per riga.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as arquivo:
+    for linha in arquivo:
+        # .strip() evita a linha em branco extra entre os registros
+        print(linha.strip())
+# age,job,marital,education,default,balance,housing,loan
+# 30,unemployed,married,primary,no,1787,no,no
+# ... (demais linhas, uma por vez)
+</code></pre></div>
+<p><strong>Esempio:</strong> il <code>.readlines()</code> restituisce tutte le righe in una lista, ciascuna ancora con il <code>\n</code> alla fine.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as arquivo:
+    linhas = arquivo.readlines()
+
+print(len(linhas))  # cabeçalho + 10 clientes
+print(linhas[:3])   # as três primeiras linhas
+# 11
+# ['age,job,marital,education,default,balance,housing,loan\n', '30,unemployed,married,primary,no,1787,no,no\n', '33,services,married,secondary,no,4789,yes,yes\n']
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> quando il file arriva alla fine, il <code>.readline()</code> restituisce una <em>string</em> <strong>vuota</strong> (<code>''</code>), non <code>None</code>. Puoi trovare codici che usano un ciclo <code>while</code> con <code>.readline()</code> per leggere il file, interrompendosi quando la <em>string</em> arriva vuota. Il <code>for linha in arquivo</code> fa esattamente la stessa cosa, con meno codice e meno possibilità di errore.</p>
+</blockquote>
+<h2>Rivisitando la motivazione</h2>
+<p>Ora possiamo calcolare l'età media dei clienti. Il piano è:</p>
+<ol>
+<li>Leggere e scartare l'intestazione con <code>.readline()</code>;</li>
+<li>Scorrere le righe rimanenti con <code>for</code>;</li>
+<li>In ogni riga, rimuovere il <code>\n</code> con <code>.strip()</code> e separare le colonne con <code>.split(',')</code>;</li>
+<li>Prendere la prima colonna (l'età), convertirla in <code>int</code> e salvarla in una lista.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">idades = []
+
+with open('banco.csv', mode='r', encoding='utf-8') as arquivo:
+    arquivo.readline()  # descarta o cabeçalho
+
+    for linha in arquivo:
+        colunas = linha.strip().split(',')  # '30,unemployed,...' -&gt; ['30', 'unemployed', ...]
+        idade = int(colunas[0])             # a idade é a 1ª coluna e vem como texto
+        idades.append(idade)
+
+print(idades)
+# [30, 33, 35, 30, 59, 35, 36, 39, 41, 43]
+</code></pre></div>
+<p>Con le età in una lista, la media è la somma divisa per la quantità:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">idade_media = sum(idades) / len(idades)
+print(f'Idade média dos clientes: {idade_media:.1f} anos')
+# Idade média dos clientes: 38.1 anos
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> tutto ciò che viene letto da un file di testo arriva come <code>str</code>, anche se sembra un numero. Senza <code>int()</code>, la lista avrebbe <code>'30'</code>, <code>'33'</code> e così via, e il <code>sum()</code> genererebbe un errore.</p>
+<p><strong>Suggerimento:</strong> separare le colonne con <code>.split(',')</code> funziona bene per file semplici, ma fallisce quando un valore contiene una virgola (per esempio, <code>"São Paulo, SP"</code>). Per questi casi esistono il modulo <code>csv</code> di Python e la libreria <strong>Pandas</strong>, che vedremo in moduli futuri.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-leitura-arquivos-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-leitura-arquivos-q">Perché scorrere un file grande con <code>for linha in arquivo:</code> è di solito preferibile rispetto a usare <code>.read()</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="`.read()` funziona con qualsiasi file di testo, incluso CSV — il problema non è il formato."><input type="radio" name="quiz-python-leitura-arquivos" value="0" /><span class="txt">Perché <code>.read()</code> non funziona con file CSV</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Per i file grandi, questo evita di consumare molta memoria in una volta, a differenza di `.read()`, che carica tutto."><input type="radio" name="quiz-python-leitura-arquivos" value="1" /><span class="txt">Perché <code>for linha in arquivo:</code> legge una riga alla volta, senza caricare l'intero file in memoria</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`.read()` gestisce bene file con più righe — semplicemente carica tutto in una volta, il che può essere costoso."><input type="radio" name="quiz-python-leitura-arquivos" value="2" /><span class="txt">Perché <code>.read()</code> genera sempre un errore in file con più di una riga</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="C'è differenza nell'uso della memoria, specialmente evidente in file grandi."><input type="radio" name="quiz-python-leitura-arquivos" value="3" /><span class="txt">Non c'è nessuna differenza tra i due modi</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

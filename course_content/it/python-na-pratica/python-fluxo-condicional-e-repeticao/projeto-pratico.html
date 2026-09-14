@@ -1,0 +1,231 @@
+<div class="prose">
+<p>Terzo progetto, terza azienda! Questa volta ti imbarchi (letteralmente) in una compagnia aerea low cost, e insegnerai al suo sistema a <strong>prendere decisioni</strong>, <strong>gestire errori</strong> e <strong>ripetere compiti</strong> da solo — i tre pilastri del Modulo 03.</p>
+<h2>Il contesto</h2>
+<p>La <strong>Voa Fácil</strong> è una compagnia aerea low cost che gestisce praticamente tutto con fogli di calcolo manuali — e questo ha già causato più di un mal di testa. Sei il/la nuovo/a <strong>Analista Dati Jr.</strong>, assunto/a per automatizzare le decisioni quotidiane: consentire o meno un imbarco, dividere un rimborso senza bloccare il sistema, ed elaborare le vendite e il programma miglia del giorno.</p>
+<p>Il team ti ha contattato nella chat interna con le richieste di oggi.</p>
+<blockquote>
+<p><strong>Suggerimento:</strong> non esiste un solo modo "corretto" di risolvere ogni missione. Dopo ciascuna troverai il risultato atteso, ma il percorso per arrivarci è tuo.</p>
+</blockquote>
+<h2>Obiettivo</h2>
+<p>Al termine di questo progetto, avrai praticato, all'interno di un unico scenario connesso:</p>
+<ul>
+<li>Presa di decisioni con <strong><code>if</code> / <code>elif</code> / <code>else</code></strong>;</li>
+<li>Gestione degli errori di esecuzione con <strong><code>try</code> / <code>except</code> / <code>finally</code></strong>;</li>
+<li>Ripetizione con <strong><code>for</code></strong>, su liste, <code>range()</code> e dizionari;</li>
+<li>Controllo del ciclo con <strong><code>break</code></strong> e <strong><code>continue</code></strong>.</li>
+</ul>
+<h2>Requisiti</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Dettaglio</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Questo notebook aperto e pronto per l'esecuzione</td></tr>
+<tr><td>Concetti necessari</td><td>Moduli 01 e 02 completi + Modulo 03 (condizionale, eccezioni, ripetizione)</td></tr>
+<tr><td>Funzioni e parole chiave</td><td><code>if</code>, <code>elif</code>, <code>else</code>, <code>try</code>, <code>except</code>, <code>finally</code>, <code>for</code>, <code>range()</code>, <code>.items()</code>, <code>break</code>, <code>continue</code></td></tr>
+<tr><td>Librerie esterne</td><td>Nessuna!</td></tr>
+</tbody>
+</table></div>
+<p>Se qualche missione dovesse sembrare difficile, il suggerimento indica la sezione giusta del Modulo 03 da rivedere.</p>
+<h2>Come funziona il progetto</h2>
+<p>Il notebook è diviso in <strong>5 missioni</strong>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missione</th><th>Tema</th><th>Concetto principale</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Banco del check-in</td><td><code>if</code> / <code>elif</code> / <code>else</code></td></tr>
+<tr><td>2</td><td>Rimborso del volo cancellato</td><td><code>try</code> / <code>except</code> / <code>finally</code></td></tr>
+<tr><td>3</td><td>Vendite di biglietti del giorno</td><td><code>for</code> su lista</td></tr>
+<tr><td>4</td><td>Programma miglia</td><td><code>for</code> su dizionario, <code>continue</code></td></tr>
+<tr><td>5</td><td>Pannello operativo</td><td>Tutto insieme!</td></tr>
+</tbody>
+</table></div>
+<p>In ogni missione: la richiesta di qualcuno del team, i dati pronti con <code># TODO</code>, il risultato atteso e un suggerimento.</p>
+<h2>Missione 1 — Banco del check-in</h2>
+<blockquote>
+<p><strong>Bianca (Assistenza):</strong> "Ciao, benvenuto/a nel team! Al banco del check-in, il sistema deve confrontare il codice della prenotazione e il codice fiscale forniti dal passeggero con i dati del sistema, e mostrare un messaggio diverso per ogni combinazione possibile. Puoi montarmi questa logica?"</p>
+</blockquote>
+<p><strong>La tua missione:</strong> usando <code>if</code> / <code>elif</code> / <code>else</code>, gestisci le <strong>quattro</strong> combinazioni possibili tra codice di prenotazione e codice fiscale, ciascuna con un messaggio:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Codice corretto?</th><th>Codice fiscale corretto?</th><th>Messaggio</th></tr></thead>
+<tbody>
+<tr><td>Sì</td><td>Sì</td><td><code>Embarque liberado</code></td></tr>
+<tr><td>No</td><td>Sì</td><td><code>Erro: código de reserva inválido</code></td></tr>
+<tr><td>Sì</td><td>No</td><td><code>Erro: CPF não confere</code></td></tr>
+<tr><td>No</td><td>No</td><td><code>Erro: código de reserva e CPF inválidos</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dados informados no balcão vs. dados do sistema
+codigo_reserva_informado = 'VF482'
+codigo_reserva_sistema = 'VF821'
+
+cpf_informado = '123.456.789-00'
+cpf_sistema = '123.456.789-00'
+
+# TODO: escreva o if / elif / elif / else com as quatro combinações da tabela
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Erro: código de reserva inválido
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> Python testa le condizioni <code>elif</code> nell'ordine in cui appaiono e si ferma alla prima vera — l'ordine dei test deve coprire le quattro righe della tabella senza sovrapporsi. Rivedi la sezione 1.5 del Modulo 03 se ti blocchi.</p>
+</blockquote>
+<h2>Missione 2 — Rimborso del volo cancellato</h2>
+<blockquote>
+<p><strong>Rogério (Finanza):</strong> "Il volo VF238 è stato cancellato, e devo dividere il valore totale del rimborso tra i passeggeri. Il problema è che la quantità di passeggeri arriva da un modulo come testo, e a volte arriva sbagliata — persino come zero. Ho bisogno che il calcolo non blocchi il sistema quando succede."</p>
+</blockquote>
+<p><strong>La tua missione:</strong> calcola <code>valor_por_passageiro</code> dividendo <code>valor_reembolso_total</code> per la quantità di passeggeri (convertita in <code>int</code>). Gestisci i due errori possibili — testo che non è un numero (<code>ValueError</code>) e quantità uguale a zero (<code>ZeroDivisionError</code>) — ciascuno con il proprio messaggio, e usa <code>finally</code> per avvisare che il calcolo è terminato.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Reembolso do voo cancelado VF238
+valor_reembolso_total = 5820.40
+quantidade_passageiros_texto = '0'  # veio como texto de um formulário
+
+# TODO: escreva o try / except ValueError / except ZeroDivisionError / finally
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Erro: a quantidade de passageiros precisa ser maior que zero.
+Cálculo finalizado.
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> metti l'<code>except ValueError</code> prima dell'<code>except ZeroDivisionError</code> (o nell'ordine che preferisci, dato che sono errori diversi) e non dimenticare il <code>finally</code> alla fine, fuori dai due <code>except</code>. Rivedi la sezione 2.6 del Modulo 03.</p>
+</blockquote>
+<h2>Missione 3 — Vendite di biglietti del giorno</h2>
+<blockquote>
+<p><strong>Patrícia (Operazioni):</strong> "Ho bisogno di due numeri dalle vendite di oggi: il totale venduto e quante vendite hanno superato R$ 400. E, se puoi, avvisami qual è stata la <strong>prima</strong> vendita che ha superato R$ 900 — voglio saperlo il prima possibile se raggiungiamo questo traguardo."</p>
+</blockquote>
+<p><strong>La tua missione:</strong></p>
+<ol>
+<li>Con un unico <code>for</code>, accumula il totale venduto in <code>total_vendido_hoje</code> e conta in <code>quantidade_vendas_acima_400</code> quante vendite hanno superato R$ 400;</li>
+<li>In un secondo <code>for</code>, usa <code>break</code> per trovare la <strong>prima</strong> vendita superiore a R$ 900 e salvarla in <code>primeira_venda_acima_900</code>;</li>
+<li>Stampa i tre risultati, con etichette.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Vendas de passagens de hoje
+vendas_passagens_hoje = [385, 920, 410, 275, 860, 305, 150]
+
+# TODO 1: total_vendido_hoje e quantidade_vendas_acima_400 (um único for)
+
+
+# TODO 2: primeira_venda_acima_900, usando for + break
+
+
+# TODO 3: imprima os três resultados com rótulos
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Total vendido hoje: R$ 3305.00
+Vendas acima de R$ 400: 3
+Primeira venda acima de R$ 900: 920
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> l'accumulo del totale e il conteggio possono avvenire nello stesso <code>for</code>, con un <code>if</code> al suo interno — proprio come l'esempio delle vendite del negozio nella sezione 3.6. Il <code>break</code> del passo 2 invece ha bisogno di un <code>for</code> separato, perché interrompe il ciclo non appena trova il primo valore.</p>
+</blockquote>
+<h2>Missione 4 — Programma miglia</h2>
+<blockquote>
+<p><strong>Vanessa (Fidelizzazione):</strong> "Il nostro programma miglia ha un account di test (documento <code>000.000.000-00</code>) che si è mescolato con i passeggeri reali e sta gonfiando i numeri. Ho bisogno che tu elabori il registro <strong>ignorando</strong> questo account di test, e mi dica quanti passeggeri hanno già raggiunto il tier Oro (10.000 miglia o più)."</p>
+</blockquote>
+<p><strong>La tua missione:</strong> percorri <code>milhas_por_passageiro</code> con <code>.items()</code>. Usa <code>continue</code> per <strong>saltare</strong> il documento <code>'000.000.000-00'</code> (non stampare la sua riga e non contarlo). Per gli altri, stampa il documento e le miglia, e conta in <code>quantidade_passageiros_ouro</code> quanti hanno <strong>10.000 miglia o più</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Milhas acumuladas por passageiro
+milhas_por_passageiro = {
+    '111.111.111-11': 12500,
+    '222.222.222-22': 3200,
+    '000.000.000-00': 99999,  # conta de teste: não deve ser processada
+    '333.333.333-33': 8700,
+    '444.444.444-44': 15400,
+}
+
+# TODO: percorra milhas_por_passageiro com .items(), pulando a conta de teste com continue
+# TODO: imprima cada documento e suas milhas, e conte quantidade_passageiros_ouro (&gt;= 10000)
+# TODO: ao final, imprima quantidade_passageiros_ouro
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Passageiro 111.111.111-11: 12500 milhas
+Passageiro 222.222.222-22: 3200 milhas
+Passageiro 333.333.333-33: 8700 milhas
+Passageiro 444.444.444-44: 15400 milhas
+Passageiros no tier Ouro: 2
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> <code>.items()</code> restituisce la chiave e il valore ogni volta — usa <code>for documento, milhas in ...items():</code>, come nell'esempio dello score di credito della sezione 3.4. Il <code>continue</code> deve venire subito dopo l'<code>if</code> che identifica l'account di test, prima di qualsiasi <code>print()</code>.</p>
+</blockquote>
+<h2>Missione 5 — Pannello operativo</h2>
+<blockquote>
+<p><strong>Leonardo (Direttore Operazioni):</strong> "Ottimo lavoro oggi! Chiudi la giornata con un unico pannello che riunisca il check-in, il rimborso, le vendite e il programma miglia. Lo rivedrò prima della riunione di domani."</p>
+</blockquote>
+<p><strong>La tua missione:</strong> usando <code>print()</code> e <em>f-string</em>, monta un pannello che riunisca, almeno:</p>
+<ul>
+<li>Lo stato del check-in di esempio (Missione 1);</li>
+<li>Se il calcolo del rimborso ha dato errore o no, e il messaggio finale (Missione 2);</li>
+<li>Il totale venduto oggi (Missione 3);</li>
+<li>Quanti passeggeri sono nel tier Oro (Missione 4).</li>
+</ul>
+<p>Qui <strong>non esiste un unico gabarito</strong> — il pannello è tuo!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Painel de operações — Voa Fácil
+# TODO: monte o seu painel reaproveitando as variáveis das Missões 1 a 4.
+</code></pre></div>
+<p><strong>Esempio di risultato</strong> (il tuo può — e deve — risultare diverso; questa è solo un'idea di formato):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">----------------------------------------
+Painel de operações — Voa Fácil
+----------------------------------------
+Total vendido hoje: R$ 3305.00
+Passageiros no tier Ouro: 2
+----------------------------------------
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> se ti blocchi con la formattazione, comincia in modo semplice: un <code>print()</code> per riga risolve già il problema. Puoi riutilizzare qualsiasi variabile creata nelle missioni precedenti, non solo quelle citate sopra.</p>
+</blockquote>
+<h2>Sfide extra</h2>
+<p>Le missioni sopra già coprono tutto ciò che ti serve del Modulo 03. Le sfide sottostanti sono <strong>completamente opzionali</strong> — una "modalità difficile" per chi vuole andare oltre.</p>
+<h2>Extra 1 — Sconto di gruppo</h2>
+<p>La Voa Fácil offre sconti per gruppi: 15% per 10 passeggeri o più, 10% per 5 o più, 5% per 2 o più, e nessuno sconto per chi viaggia da solo. E se il gruppo avesse <strong>esattamente</strong> 10 persone? Pensa all'ordine delle condizioni prima di testare.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 1: desconto por grupo
+quantidade_passageiros_grupo = 10
+
+# TODO: crie percentual_desconto_grupo com if/elif/else e imprima
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Desconto do grupo: 15%
+</code></pre></div>
+<h2>Extra 2 — Posto inesistente</h2>
+<p>Il sistema ha provato a prenotare un posto che non esiste nella lista dei posti disponibili del volo. Cattura l'<code>IndexError</code> e mostra un messaggio amichevole, indicando quanti posti esistono davvero.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 2: assento inexistente
+assentos_disponiveis = ['12A', '12B', '14C']
+indice_assento_desejado = 5
+
+# TODO: use try/except IndexError para buscar assentos_disponiveis[indice_assento_desejado]
+# Se der erro, imprima: Erro: só há N assentos disponíveis. (troque N pela quantidade real)
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Erro: só há 3 assentos disponíveis.
+</code></pre></div>
+<h2>Extra 3 — Bonus di fedeltà</h2>
+<p>Nei primi 5 anni di un passeggero nel programma miglia, il bonus annuale cresce di R$ 500 ogni anno (anno 1: 500, anno 2: 1000, e così via). Usa <code>for</code> con <code>range()</code> per costruire la lista <code>bonus_por_ano</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 3: bônus de fidelidade
+# TODO: crie bonus_por_ano com um for sobre range(1, 6) e imprima a lista
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">[500, 1000, 1500, 2000, 2500]
+</code></pre></div>
+<h2>Extra 4 — Prima prenotazione cancellata</h2>
+<p>Percorri <code>status_reservas_hoje</code> e, usando <code>break</code>, fermati non appena trovi la <strong>prima</strong> prenotazione <code>'cancelada'</code>, indicando la sua posizione nella lista.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 4: primeira reserva cancelada
+status_reservas_hoje = ['confirmada', 'confirmada', 'cancelada', 'confirmada', 'cancelada']
+
+# TODO: use for + range(len(...)) + break para encontrar a posição da primeira 'cancelada'
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Primeira cancelada na posição 2
+</code></pre></div>
+<h2>Extra 5 — Mini-report del giorno</h2>
+<p>Monta, a modo tuo, un mini-report del giorno della Voa Fácil, combinando <code>if</code>, <code>for</code> e qualsiasi cosa tu voglia dalle missioni precedenti. Qui non c'è un risultato atteso: lascia libera la creatività!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 5: seu mini-relatório
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist di autovalutazione</h2>
+<ul>
+<li>Ho gestito le quattro combinazioni del check-in con <code>if</code> / <code>elif</code> / <code>else</code> (Missione 1)</li>
+<li>Ho gestito <code>ValueError</code> e <code>ZeroDivisionError</code> con <code>try</code> / <code>except</code> / <code>finally</code> (Missione 2)</li>
+<li>Ho accumulato un totale e un conteggio nello stesso <code>for</code>, e ho usato <code>break</code> per fermare un ciclo (Missione 3)</li>
+<li>Ho percorso un dizionario con <code>.items()</code> e ho usato <code>continue</code> per saltare un elemento (Missione 4)</li>
+<li>Ho montato il pannello finale riutilizzando le missioni precedenti (Missione 5)</li>
+<li>Ho provato almeno una delle sfide extra</li>
+</ul>
+<p>Se la maggior parte delle voci è segnata, congratulazioni: il tuo codice ora decide e ripete da solo.</p>
+<blockquote>
+<p>Nel <strong>Modulo 04</strong>, la Voa Fácil imparerà a lavorare con <strong>file</strong> veri e a organizzare il codice in <strong>funzioni</strong> riutilizzabili!</p>
+</blockquote>
+</div>

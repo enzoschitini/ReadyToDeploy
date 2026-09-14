@@ -1,0 +1,123 @@
+<div class="prose">
+<p>Importante quanto leggere dati è <strong>salvare risultati</strong>: un report, una lista filtrata, un file per un altro sistema. In questa lezione creeremo file, li sovrascriveremo e aggiungeremo contenuto a essi.</p>
+<h2>Modalità di apertura</h2>
+<p>Il parametro <code>mode</code> di <code>open()</code> definisce cosa possiamo fare con il file:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Modalità</th><th>Nome</th><th>Se il file esiste...</th><th>Se il file non esiste...</th></tr></thead>
+<tbody>
+<tr><td><code>'r'</code></td><td>Lettura (<em>read</em>)</td><td>Apre in lettura</td><td>Genera <code>FileNotFoundError</code></td></tr>
+<tr><td><code>'w'</code></td><td>Scrittura (<em>write</em>)</td><td><strong>Cancella tutto il contenuto</strong> e scrive da zero</td><td>Crea il file</td></tr>
+<tr><td><code>'a'</code></td><td>Aggiunta (<em>append</em>)</td><td>Scrive <strong>alla fine</strong>, mantenendo il contenuto</td><td>Crea il file</td></tr>
+<tr><td><code>'x'</code></td><td>Creazione esclusiva</td><td>Genera <code>FileExistsError</code></td><td>Crea il file</td></tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Attenzione:</strong> la modalità <code>'w'</code> cancella il file senza chiedere confermazione. Se l'obiettivo è aggiungere contenuto, usa <code>'a'</code>. Se vuoi essere certo di non sovrascrivere nulla, usa <code>'x'</code>.</p>
+</blockquote>
+<h2>Scrivere con write()</h2>
+<p>Il metodo <code>.write()</code> scrive una <em>string</em> nel file. <strong>Non</strong> aggiunge automaticamente l'interruzione di riga, quindi dobbiamo includere <code>\n</code> alla fine di ogni riga.</p>
+<p><strong>Esempio:</strong> salvando le età estratte nella lezione precedente in un nuovo file, <code>idades.csv</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('idades.csv', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write('idade\n')  # cabeçalho
+
+    for idade in idades:
+        # write() só aceita str: convertemos o número e acrescentamos a quebra de linha
+        arquivo.write(f'{idade}\n')
+
+print('Arquivo idades.csv gravado!')
+# Arquivo idades.csv gravado!
+</code></pre></div>
+<p>Leggiamo il file per verificare cosa è stato registrato:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('idades.csv', mode='r', encoding='utf-8') as arquivo:
+    print(arquivo.read())
+# idade
+# 30
+# 33
+# 35
+# 30
+# 59
+# 35
+# 36
+# 39
+# 41
+# 43
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> passare un numero direttamente a <code>.write()</code>, come <code>arquivo.write(30)</code>, genera un <code>TypeError</code>. Converti con <code>str()</code> oppure usa una <em>f-string</em>, come abbiamo fatto sopra.</p>
+</blockquote>
+<h2>Aggiungere contenuto con la modalità 'a'</h2>
+<p><strong>Esempio:</strong> due nuovi clienti sono stati registrati e dobbiamo includere le loro età alla fine del file, senza perdere quelle già presenti.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">novas_idades = [25, 48]
+
+# Modo 'a': o conteúdo existente é mantido e o novo vai para o final
+with open('idades.csv', mode='a', encoding='utf-8') as arquivo:
+    for idade in novas_idades:
+        arquivo.write(f'{idade}\n')
+
+with open('idades.csv', mode='r', encoding='utf-8') as arquivo:
+    print(arquivo.read())
+# idade
+# 30
+# 33
+# 35
+# 30
+# 59
+# 35
+# 36
+# 39
+# 41
+# 43
+# 25
+# 48
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> se esegui la cella sopra più di una volta, le età <code>25</code> e <code>48</code> verranno aggiunte di nuovo a ogni esecuzione. Per tornare allo stato iniziale, esegui di nuovo la cella che usa la modalità <code>'w'</code>, che ricrea il file da zero.</p>
+</blockquote>
+<h2>Leggere da un file e scrivere in un altro</h2>
+<p>È molto comune leggere un file, elaborare le righe e registrare il risultato in un altro. Un unico <code>with</code> può aprire entrambi i file, separati da virgola.</p>
+<p><strong>Esempio:</strong> copiando <code>banco.csv</code> in un file con un'altra estensione, <code>banco.txt</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as leitura, \
+     open('banco.txt', mode='w', encoding='utf-8') as escrita:
+    for linha in leitura:
+        escrita.write(linha)  # a linha já termina com \n
+
+print('Cópia concluída!')
+# Cópia concluída!
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> l'estensione (<code>.csv</code>, <code>.txt</code>) è solo parte del nome del file e serve a indicare ai programmi come aprirlo. Il contenuto dei due file è esattamente lo stesso testo.</p>
+</blockquote>
+<p><strong>Esempio:</strong> il gestore del credito ha chiesto un file solo con i clienti che hanno un <strong>prestito personale</strong> (colonna <code>loan</code>, l'8ª colonna, con valore <code>yes</code>).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as leitura, \
+     open('clientes_com_emprestimo.csv', mode='w', encoding='utf-8') as escrita:
+    # O cabeçalho é copiado como está
+    escrita.write(leitura.readline())
+
+    for linha in leitura:
+        colunas = linha.strip().split(',')
+        tem_emprestimo = colunas[7] == 'yes'  # índice 7 = 8ª coluna (loan)
+        if tem_emprestimo:
+            escrita.write(linha)
+
+with open('clientes_com_emprestimo.csv', mode='r', encoding='utf-8') as arquivo:
+    print(arquivo.read())
+# age,job,marital,education,default,balance,housing,loan
+# 33,services,married,secondary,no,4789,yes,yes
+# 30,management,married,tertiary,no,1476,yes,yes
+# 43,services,married,primary,no,-88,yes,yes
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-escrita-arquivos-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-escrita-arquivos-q">Qual è la differenza tra aprire un file esistente con <code>mode='w'</code> e con <code>mode='a'</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="È il contrario: `&#x27;w&#x27;` (write) cancella il contenuto esistente; `&#x27;a&#x27;` (append) preserva e aggiunge alla fine."><input type="radio" name="quiz-python-escrita-arquivos" value="0" /><span class="txt"><code>'w'</code> aggiunge contenuto alla fine; <code>'a'</code> cancella tutto e scrive da zero</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Per questo `&#x27;w&#x27;` richiede attenzione: riaprire un file con `&#x27;w&#x27;` scarta tutto ciò che c'era già."><input type="radio" name="quiz-python-escrita-arquivos" value="1" /><span class="txt"><code>'w'</code> cancella tutto il contenuto e scrive da zero; <code>'a'</code> mantiene il contenuto e aggiunge alla fine</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Si comportano in modo molto diverso davanti a un file già esistente."><input type="radio" name="quiz-python-escrita-arquivos" value="2" /><span class="txt">I due modi hanno esattamente lo stesso comportamento</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Entrambe le modalità creano il file automaticamente se non esiste ancora."><input type="radio" name="quiz-python-escrita-arquivos" value="3" /><span class="txt"><code>'w'</code> funziona solo per file nuovi; <code>'a'</code> funziona solo per file esistenti</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

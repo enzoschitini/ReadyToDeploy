@@ -1,0 +1,170 @@
+<div class="prose">
+<p>Le classi sono il punto di partenza dell'orientamento agli oggetti: è in esse che definiamo quali dati e quali comportamenti avrà un tipo di elemento. In questa lezione costruiremo, passo dopo passo, la classe <code>Pessoa</code>.</p>
+<h2>Motivazione</h2>
+<p>Lavori nel sistema di registrazione di una banca e devi conservare i dati di vari clienti. Con quanto visto finora, un'opzione sarebbe usare variabili sciolte:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Cada informação de cada cliente em uma variável diferente
+nome_cliente_1 = 'Andre Perez'
+idade_cliente_1 = 30
+
+nome_cliente_2 = 'Maria Perez'
+idade_cliente_2 = 56
+
+print(f'{nome_cliente_1}, {idade_cliente_1} anos')
+print(f'{nome_cliente_2}, {idade_cliente_2} anos')
+# Andre Perez, 30 anos
+# Maria Perez, 56 anos
+</code></pre></div>
+<p>Con 2 clienti funziona. Ma con 2 mila? E quando ogni cliente avrà 15 informazioni? E se ogni regola del sistema (fare gli auguri di compleanno, validare il documento, mostrare i dati) dovesse ricevere tutte queste variabili come parametro? Il codice diventa ripetitivo e facile da rompere.</p>
+<p><strong>Come possiamo raggruppare i dati di un cliente e le azioni che hanno senso per lui in un'unica struttura?</strong></p>
+<h2>Definizione</h2>
+<p>Una <strong>classe</strong> è una ricetta per la creazione di oggetti. La struttura generale è:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class NomeDaClasse:
+
+    def __init__(self, parametros):
+        self.atributo_1 = ...
+        self.atributo_2 = ...
+
+    def metodo_1(self, parametros):
+        ...
+
+    def metodo_2(self, parametros):
+        ...
+</code></pre></div>
+<p>Alcuni punti importanti di questa struttura:</p>
+<ul>
+<li>La parola riservata <code>class</code> inizia la definizione della classe;</li>
+<li>Per convenzione (PEP 8), i nomi di classe usano il <strong>PascalCase</strong>: ogni parola inizia con lettera maiuscola e non c'è <code>_</code> (es.: <code>Pessoa</code>, <code>ContaBancaria</code>, <code>ArquivoCSV</code>). Variabili e funzioni restano in <code>snake_case</code>;</li>
+<li>Tutto ciò che appartiene alla classe resta <strong>indentato</strong> al suo interno (4 spazi).</li>
+</ul>
+<p>Creiamo la versione più semplice possibile della classe <code>Pessoa</code>. La parola <code>pass</code> indica un blocco vuoto: la classe esiste, ma non fa ancora nulla.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Pessoa:
+    pass
+
+
+print(Pessoa)
+# &lt;class '__main__.Pessoa'&gt;
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> in codici più vecchi troverai <code>class Pessoa(object):</code>. In Python 3, ogni classe eredita già da <code>object</code> automaticamente (vedremo l'eredità nell'ultima lezione), quindi <code>class Pessoa:</code> è equivalente ed è la forma raccomandata oggi.</p>
+</blockquote>
+<h2>Attributi</h2>
+<p>Gli <strong>attributi</strong> rappresentano le <strong>caratteristiche</strong> della classe. Vengono creati dentro un metodo speciale chiamato <strong><code>__init__</code></strong> (da <em>initialize</em>, "inizializzare"), che Python esegue automaticamente ogni volta che viene creato un nuovo oggetto. È conosciuto come il <strong>costruttore</strong> della classe.</p>
+<p>Due dettagli che spesso confondono all'inizio:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Elemento</th><th>Cos'è</th></tr></thead>
+<tbody>
+<tr><td><code>self</code></td><td>Un riferimento all'<strong>oggetto stesso</strong> che viene creato. Ogni metodo della classe riceve <code>self</code> come primo parametro</td></tr>
+<tr><td><code>self.nome = nome</code></td><td>Crea l'attributo <code>nome</code> <strong>nell'oggetto</strong> e vi conserva il valore ricevuto nel parametro <code>nome</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Pessoa:
+
+    def __init__(self, nome: str, idade: int, documento: str):
+        # Cada self.atributo fica guardado dentro do objeto
+        self.nome = nome
+        self.idade = idade
+        self.documento = documento
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> le annotazioni <code>: str</code> e <code>: int</code> sono <strong>indicazioni di tipo</strong> (<em>type hints</em>). Documentano che tipo di valore ogni parametro si aspetta e aiutano l'editor a segnalare errori, ma Python <strong>non le impone</strong>: sono solo documentazione.</p>
+</blockquote>
+<p>Come nelle funzioni, i parametri di <code>__init__</code> possono avere <strong>valori predefiniti</strong>. Non tutte le persone forniscono il documento nella registrazione, quindi lo lasceremo opzionale, con valore <code>None</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Pessoa:
+
+    def __init__(self, nome: str, idade: int, documento: str = None):
+        self.nome = nome
+        self.idade = idade
+        self.documento = documento  # None quando não for informado
+</code></pre></div>
+<h2>Metodi</h2>
+<p>I <strong>metodi</strong> rappresentano le <strong>azioni</strong> della classe. Sono funzioni definite <strong>dentro</strong> la classe e, per questo, ricevono sempre <code>self</code> come primo parametro. È tramite <code>self</code> che un metodo accede (e altera) gli attributi dell'oggetto stesso.</p>
+<p>In questa versione, <code>Pessoa</code> guadagna tre azioni:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Metodo</th><th>Cosa fa</th></tr></thead>
+<tbody>
+<tr><td><code>dormir(horas)</code></td><td>Mostra il progresso del sonno, ora per ora</td></tr>
+<tr><td><code>falar(texto)</code></td><td>Mostra una frase della persona</td></tr>
+<tr><td><code>fazer_aniversario()</code></td><td><strong>Altera</strong> l'attributo <code>idade</code>, sommando 1</td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Pessoa:
+
+    def __init__(self, nome: str, idade: int, documento: str = None):
+        self.nome = nome
+        self.idade = idade
+        self.documento = documento
+
+    def dormir(self, horas: int) -&gt; None:
+        # self.nome: o método acessa um atributo do próprio objeto
+        for hora in range(1, horas + 1):
+            print(f'{self.nome} está dormindo... {hora}h de {horas}h')
+
+    def falar(self, texto: str) -&gt; None:
+        print(f'{self.nome} diz: {texto}')
+
+    def fazer_aniversario(self) -&gt; None:
+        # Um método também pode ALTERAR o estado do objeto
+        self.idade += 1
+        print(f'Parabéns, {self.nome}! Agora você tem {self.idade} anos.')
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> l'annotazione <code>-&gt; None</code> indica che il metodo <strong>non restituisce</strong> alcun valore (mostra solo qualcosa o altera l'oggetto). Un metodo che restituisce un testo sarebbe annotato con <code>-&gt; str</code>.</p>
+</blockquote>
+<h2>Il metodo speciale __str__</h2>
+<p>I metodi il cui nome inizia e termina con due <em>underscore</em> (come <code>__init__</code>) sono <strong>metodi speciali</strong> (chiamati anche <em>dunder methods</em>, da <em>double underscore</em>). Python li chiama automaticamente in situazioni specifiche.</p>
+<p>Uno dei più utili è <strong><code>__str__</code></strong>, chiamato quando l'oggetto viene convertito in testo, per esempio dentro un <code>print()</code>. Guarda cosa succede quando stampiamo un oggetto della classe attuale, che <strong>non ha ancora</strong> <code>__str__</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Sem __str__, o Python mostra apenas a classe e o endereço de memória do objeto
+pessoa_teste = Pessoa(nome='Andre Perez', idade=30)
+print(pessoa_teste)
+# &lt;__main__.Pessoa object at 0x0000028E2A2A7740&gt;
+</code></pre></div>
+<p>Poco utile, vero? Aggiungiamo <code>__str__</code> alla classe. Deve <strong>restituire</strong> (e non stampare) una <em>stringa</em> che descriva l'oggetto. Questa è la versione finale della classe <code>Pessoa</code>, che useremo nel resto del modulo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Pessoa:
+
+    def __init__(self, nome: str, idade: int, documento: str = None):
+        self.nome = nome
+        self.idade = idade
+        self.documento = documento
+
+    def dormir(self, horas: int) -&gt; None:
+        for hora in range(1, horas + 1):
+            print(f'{self.nome} está dormindo... {hora}h de {horas}h')
+
+    def falar(self, texto: str) -&gt; None:
+        print(f'{self.nome} diz: {texto}')
+
+    def fazer_aniversario(self) -&gt; None:
+        self.idade += 1
+        print(f'Parabéns, {self.nome}! Agora você tem {self.idade} anos.')
+
+    def __str__(self) -&gt; str:
+        # Evita exibir "None" quando o documento não foi informado
+        if self.documento is None:
+            documento_exibido = 'não informado'
+        else:
+            documento_exibido = self.documento
+        return f'{self.nome}, {self.idade} anos, documento: {documento_exibido}'
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Agora o print() usa o __str__ e exibe uma descrição legível
+pessoa_teste = Pessoa(nome='Andre Perez', idade=30)
+print(pessoa_teste)
+# Andre Perez, 30 anos, documento: não informado
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> ogni volta che modifichi una classe, è necessario <strong>eseguire di nuovo</strong> la cella che la definisce <strong>e</strong> ricreare gli oggetti. Gli oggetti creati prima continuano a seguire la versione precedente della classe.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-classes-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-classes-q">A cosa serve il metodo speciale <code>__str__</code> in una classe?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Chi crea gli attributi quando l'oggetto viene costruito è `__init__`, non `__str__`."><input type="radio" name="quiz-python-classes" value="0" /><span class="txt">Per creare gli attributi dell'oggetto quando viene costruito</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Python chiama `__str__` automaticamente per convertire l'oggetto in testo, come dentro un `print()`."><input type="radio" name="quiz-python-classes" value="1" /><span class="txt">Per definire il testo che appare quando l'oggetto viene stampato con <code>print()</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`__str__` non blocca il `print()` — definisce solo QUALE testo verrà mostrato."><input type="radio" name="quiz-python-classes" value="2" /><span class="txt">Per impedire che l'oggetto venga stampato</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`__str__` restituisce una *stringa*, non una lista — la conversione che controlla è verso il testo."><input type="radio" name="quiz-python-classes" value="3" /><span class="txt">Per trasformare l'oggetto in una lista</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

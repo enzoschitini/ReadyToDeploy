@@ -1,0 +1,113 @@
+<div class="prose">
+<p>Un <strong>file di script</strong> è un file di testo con estensione <code>.py</code> contenente diverse righe di codice Python, salvate insieme per essere eseguite (e rieseguite) in una sola volta, sempre nello stesso modo. È il formato usato per le automazioni reali — qualcosa che deve funzionare da solo, senza un notebook aperto.</p>
+<h2>Su Google Colab</h2>
+<p>Colab non ha un editor di file tradizionale, ma puoi creare un file <code>.py</code> direttamente da una cella con il comando magico <code>%%writefile nome_do_arquivo.py</code>: tutto ciò che viene <strong>dopo</strong> questa riga, nella stessa cella, viene salvato nel file.</p>
+<p><strong>Esempio:</strong> uno <em>script</em> che riceve un nome dalla riga di comando e stampa un saluto.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">%%writefile saudacao.py
+import sys
+
+nome = sys.argv[1]
+print(f'Olá, {nome}!')
+# Writing saudacao.py
+</code></pre></div>
+<p>Il modulo nativo <code>sys</code> conserva, nella lista <code>sys.argv</code>, gli <strong>argomenti della riga di comando</strong>: <code>sys.argv[0]</code> è sempre il nome dello script stesso, e <code>sys.argv[1]</code>, <code>sys.argv[2]</code>... sono i valori extra forniti da chi ha eseguito il comando.</p>
+<p>Ora eseguiamo il file appena creato, passando <code>'Maria'</code> come argomento:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">!python saudacao.py Maria
+# Olá, Maria!
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> se lo script viene eseguito senza l'argomento previsto (<code>!python saudacao.py</code>, senza nessun nome), <code>sys.argv</code> avrà solo un elemento (<code>sys.argv[0]</code>), e tentare di accedere a <code>sys.argv[1]</code> genera un <code>IndexError</code>. Gli script per uso reale di solito verificano se gli argomenti necessari sono stati forniti prima di usarli.</p>
+</blockquote>
+<p><strong>Esempio (mondo reale):</strong> uno <em>script</em> di automazione che consulta un tasso di interesse su un sito e registra il risultato, con data e ora, in un file <code>.csv</code> — il tipo di compito che normalmente funziona da solo, a un orario programmato (es: tutti i giorni alle 9).</p>
+<blockquote>
+<p>Questo è il <strong>contenuto</strong> di un file <code>extrair_taxa.py</code>, mostrato qui solo per lettura — non viene eseguito da questo notebook, poiché dipende dall'accesso a internet e da un servizio esterno che può cambiare col tempo. È esattamente questo tipo di compito, però, che ha senso eseguire come <em>script</em>, e non dentro un notebook.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import os
+import json
+from datetime import datetime
+
+import requests
+
+URL = 'https://exemplo-api-financeira.com/taxa-cdi'
+ARQUIVO_SAIDA = 'taxa-cdi.csv'
+
+data_e_hora = datetime.now()
+data = data_e_hora.strftime('%Y-%m-%d')
+hora = data_e_hora.strftime('%H:%M:%S')
+
+# Consultando a taxa no site
+try:
+    resposta = requests.get(URL)
+    resposta.raise_for_status()
+except requests.HTTPError:
+    print('Taxa não encontrada, mas o script vai continuar.')
+    taxa_cdi = None
+except Exception as erro:
+    print('Erro de conexão, interrompendo o script.')
+    raise erro
+else:
+    dado = json.loads(resposta.text)
+    taxa_cdi = float(dado['taxa'].replace(',', '.'))
+
+# Criando o arquivo com cabeçalho, caso ainda não exista
+if not os.path.exists(ARQUIVO_SAIDA):
+    with open(file=ARQUIVO_SAIDA, mode='w', encoding='utf8') as arquivo:
+        arquivo.write('data,hora,taxa\n')
+
+# Só registra a linha se a taxa foi obtida com sucesso
+if taxa_cdi is not None:
+    with open(file=ARQUIVO_SAIDA, mode='a', encoding='utf8') as arquivo:
+        arquivo.write(f'{data},{hora},{taxa_cdi}\n')
+    print('Sucesso!')
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> le API dei siti cambiano col tempo (indirizzo, formato della risposta ecc.). Prima di usare un'API esterna in un progetto reale, controlla sempre la documentazione ufficiale e aggiornata del servizio.</p>
+</blockquote>
+<h2>Sulla tua macchina locale</h2>
+<p>La dinamica è la stessa, cambia solo lo strumento usato per creare il file:</p>
+<ol>
+<li>Crea il file <code>.py</code> con un editor di testo o di codice;</li>
+<li>Salva il file nella cartella dove hai aperto il terminale;</li>
+<li>Esegui con lo stesso comando usato in Colab, senza il <code>!</code> (che esiste solo dentro il notebook).</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">python saudacao.py Maria
+</code></pre></div>
+<h2>Strumenti di sviluppo (IDE)</h2>
+<p>Un semplice blocco note funziona per scrivere <code>.py</code>, ma una <strong>IDE</strong> (<em>Integrated Development Environment</em>, Ambiente di Sviluppo Integrato) rende il lavoro molto più produttivo: evidenzia errori di sintassi prima che tu esegua il codice, suggerisce l'autocompletamento, permette di fare debug del codice passo dopo passo e viene già con un terminale integrato.</p>
+<p>Le due opzioni più usate nel mercato sono:</p>
+<ul>
+<li><strong>Visual Studio Code</strong>, di Microsoft, gratuito e leggero — la raccomandazione più comune per iniziare;</li>
+<li><strong>PyCharm</strong>, di JetBrains, più robusto e focalizzato specificamente su Python, con una versione gratuita (<em>Community</em>) e una a pagamento (<em>Professional</em>).</li>
+</ul>
+<blockquote>
+<p><strong>Suggerimento:</strong> lo stesso Visual Studio Code ha un'estensione ufficiale di Jupyter/Colab, che permette di aprire ed eseguire notebook <code>.ipynb</code> (come quelli di questo corso) senza uscire dall'editor.</p>
+</blockquote>
+<h2>Riepilogo del Modulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Comando</th><th>Dove usarlo</th><th>Cosa fa</th></tr></thead>
+<tbody>
+<tr><td><code>python -V</code> / <code>pip -V</code></td><td>Terminale</td><td>Verifica le versioni installate</td></tr>
+<tr><td><code>python</code></td><td>Terminale</td><td>Apre la modalità interattiva (REPL)</td></tr>
+<tr><td><code>quit()</code> / <code>exit()</code></td><td>Dentro il REPL</td><td>Esce dalla modalità interattiva</td></tr>
+<tr><td><code>python arquivo.py</code></td><td>Terminale</td><td>Esegue un file di script</td></tr>
+<tr><td><code>python arquivo.py arg1 arg2</code></td><td>Terminale</td><td>Esegue uno script passando argomenti (<code>sys.argv</code>)</td></tr>
+<tr><td><code>%%writefile arquivo.py</code></td><td>Cella di Colab</td><td>Crea un file a partire dal contenuto della cella</td></tr>
+<tr><td><code>!comando</code></td><td>Cella di Colab</td><td>Esegue un comando da terminale dentro il notebook</td></tr>
+</tbody>
+</table></div>
+<p>Modulo nativo visto in questo modulo: <code>sys</code> (in particolare, la lista <code>sys.argv</code>).</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-scripts-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-scripts-q">Cosa rappresenta <code>sys.argv[1]</code> quando si esegue <code>python saudacao.py Maria</code> dal terminale?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Questo è il valore di `sys.argv[0]` — la posizione 0 è sempre il nome dello script in esecuzione."><input type="radio" name="quiz-python-scripts" value="0" /><span class="txt">Il nome dello script stesso, <code>saudacao.py</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="`sys.argv[1]` è il primo valore fornito dopo il nome dello script, esattamente `&#x27;Maria&#x27;` in questo esempio."><input type="radio" name="quiz-python-scripts" value="1" /><span class="txt">Il primo argomento extra passato sulla riga di comando, <code>'Maria'</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il percorso dell'interprete non si trova in `sys.argv` — questa lista conserva il nome dello script e gli argomenti forniti nella chiamata."><input type="radio" name="quiz-python-scripts" value="2" /><span class="txt">Il percorso completo dell'interprete Python</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`sys.argv` viene popolato automaticamente dagli argomenti della riga di comando, senza bisogno di `input()`."><input type="radio" name="quiz-python-scripts" value="3" /><span class="txt">Sempre <code>None</code>, a meno che lo script usi <code>input()</code></span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>
