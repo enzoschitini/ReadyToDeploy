@@ -127,19 +127,21 @@
       { "label": "Vedi su GitHub →", "href": "https://github.com/enzoschitini/ready-to-deploy", "variant": "primary", "external": true },
       { "label": "Guida ai contributi", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "variant": "outline", "external": true }
     ],
-    "contributors": {
-      "title": "// chi ha già costruito questo (8)",
-      "ariaLabel": "Contributori",
-      "noteHtml": "Moduli, progetti e bootcamp costruiti da persone della community. <span class=\"c-fg\">Il tuo avatar potrebbe essere il prossimo.</span>",
+    "channels": {
+      "title": "// canali che vale la pena seguire",
+      "ariaLabel": "Canali YouTube",
+      "modalTitle": "Riferimenti della community",
+      "modalCta": "Guarda su YouTube",
+      "noteHtml": "Alcuni profili da seguire, anche se ce ne sono molti altri. <span class=\"c-fg\">Il tuo avatar potrebbe essere il prossimo.</span>",
       "items": [
-        { "name": "Luciano dii Souza", "login": "lucianodiisouza", "contributions": 46 },
-        { "name": "Bruno Fernandes Horn", "login": "brunofhorn", "contributions": 9 },
-        { "name": "Breno Alvim", "login": "obrenoalvim", "contributions": 4 },
-        { "name": "Rafael Coelho", "login": "rafa-coelho", "contributions": 4 },
-        { "name": "Alex Jesus (ojesus_cyber)", "login": "ajesus1308", "contributions": 2 },
-        { "name": "Lucas Gabriel Witchemichen", "login": "lucasgab2230", "contributions": 2 },
-        { "name": "Manoel Carvalho", "login": "theneocarvalho", "contributions": 2 },
-        { "name": "Lucas Pedro", "login": "lucaspedruo", "contributions": 1 }
+        { "name": "Prof. Andrea Pollini", "image": "Prof. Andrea Pollini.jpg", "subscribers": "~20,5K iscritti", "videos": "612 video", "description": "Canale didattico dedicato alla programmazione: tutorial completi su Python, JavaScript, C, Rust, Docker/MongoDB e AI. Motto: \"Imparare è un processo infinito e divertente\".", "url": "https://www.youtube.com/@ProfAndreaPollini" },
+        { "name": "Francesco Ciulla", "image": "Francesco Ciulla.jpg", "subscribers": "343K iscritti", "videos": "238 video", "description": "Focalizzato su Rust, web development, DevOps e AI per sviluppatori: tutorial, interviste podcast e live coding per costruire software più veloce e sicuro.", "url": "https://www.youtube.com/@francescociulla" },
+        { "name": "Codemotion", "image": "Codemotion.jpg", "subscribers": "11,2K iscritti", "videos": "1,7K video", "description": "Canale ufficiale della piattaforma/community tech Codemotion: talk, interviste e registrazioni delle conferenze (es. Codemotion Madrid). Slogan: \"We code the future. Together.\"", "url": "https://www.youtube.com/@Codemotionworld" },
+        { "name": "DevelopersLife", "image": "DevelopersLife.jpg", "subscribers": "2,92K iscritti", "videos": "246 video", "description": "Condotto da Mich, parla della vita e carriera degli sviluppatori software: istruzione, carriera e crescita professionale, 3 volte a settimana.", "url": "https://www.youtube.com/@DevelopersLifeChannel" },
+        { "name": "Datapizza", "image": "Datapizza.jpg", "subscribers": "36K iscritti", "videos": "427 video", "description": "Azienda italiana di AI che promuove Datapizza AI, framework open-source per sistemi multi-agente e soluzioni RAG \"100% Open Source, 100% Made in Italy\".", "url": "https://www.youtube.com/@datapizza" },
+        { "name": "PitoneProgrammatore", "image": "PitoneProgrammatore.jpg", "subscribers": "205K iscritti", "videos": "236 video", "description": "Tutorial di programmazione uniti a esperimenti folli (es. progetti Arduino/hardware). Slogan: \"Programmiamo TUTTO!\"", "url": "https://www.youtube.com/@PitoneProgrammatoreOfficial" },
+        { "name": "Piero Savastano", "image": "Piero Savastano.jpg", "subscribers": "19,8K iscritti", "videos": "337 video", "description": "Contenuti su intelligenza artificiale resi accessibili a tutti (\"AI for the rest of us\"): come usarla, agenti AI, riflessioni etiche/filosofiche sull'AI.", "url": "https://www.youtube.com/@PieroSavastano" },
+        { "name": "Python Italia", "image": "Python Italia.jpg", "subscribers": "4,8K iscritti", "videos": "~1K video", "description": "Canale ufficiale della community Python italiana, con le registrazioni di PyCon Italia (talk, lightning talks, keynote).", "url": "https://www.youtube.com/@PythonItalia" }
       ]
     }
   },
