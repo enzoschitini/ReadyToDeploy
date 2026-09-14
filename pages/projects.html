@@ -10,6 +10,7 @@
 <meta name="color-scheme" content="dark" />
 <link rel="stylesheet" href="../assets/theme.css" />
 <script src="../assets/theme.js"></script>
+<script src="../assets/lang.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -509,8 +510,9 @@ h1.page-title{
        course_content      → conteúdo educacional (projetos, módulos...)
      Esta página vive em /pages, por isso o ../
      ============================================================ */
-  var APP_CONTENT = '../application_content/pt_br/';
-  var COURSE_CONTENT = '../course_content/pt_br/';
+  var LANG = window.PRIMO_LANG || 'pt_br';
+  var APP_CONTENT = '../application_content/' + LANG + '/';
+  var COURSE_CONTENT = '../course_content/' + LANG + '/';
 
   var $ = function (id) { return document.getElementById(id); };
 
@@ -608,6 +610,7 @@ h1.page-title{
      ============================================================ */
   function renderShell(c) {
     /* ---------- meta ---------- */
+    if (c.lang) document.documentElement.lang = c.lang;
     document.title = c.meta.title;
     var desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute('content', c.meta.description);

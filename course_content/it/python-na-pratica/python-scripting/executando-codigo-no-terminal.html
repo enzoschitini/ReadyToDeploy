@@ -1,0 +1,33 @@
+<div class="prose">
+<p>Oltre a eseguire un intero file di script, Python ha una <strong>modalità interattiva</strong>, chiamata <strong>REPL</strong> (<em>Read-Eval-Print Loop</em>): digiti una riga di codice, Python la esegue e mostra il risultato all'istante, una riga alla volta.</p>
+<h2>Su Google Colab</h2>
+<p>Ogni cella di codice di Colab funziona già come un REPL: scrivi un'istruzione, la esegui (<code>Shift + Enter</code>) e vedi il risultato immediatamente, senza dover eseguire un intero file <code>.py</code>. È per questo che Colab è così comodo per imparare e testare codice velocemente.</p>
+<h2>Sulla tua macchina locale</h2>
+<p>Per aprire il REPL di Python sul tuo computer:</p>
+<ol>
+<li>Crea una cartella per i file del corso (suggerimento);</li>
+<li>Apri il terminale <strong>dentro questa cartella</strong> (su Windows, <code>Shift + tasto destro</code> sulla cartella; su macOS/Linux, tasto destro e "Apri terminale qui");</li>
+<li>Esegui il comando <code>python</code>.</li>
+</ol>
+<p>Il terminale passa al <em>prompt</em> <code>&gt;&gt;&gt;</code>, indicando che sei dentro Python. Da qui in avanti, ogni riga digitata viene eseguita all'istante:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">&gt;&gt;&gt; print("Olá, mundo!")
+Olá, mundo!
+&gt;&gt;&gt; 2 + 2
+4
+</code></pre></div>
+<p>Per uscire dal REPL, digita <code>quit()</code> (o <code>exit()</code>) e premi <code>Enter</code>, oppure chiudi il terminale.</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-repl-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-repl-q">Perché una cella di codice di Google Colab viene paragonata al REPL di Python?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="È il contrario: sia il REPL che la cella di Colab eseguono il codice all'istante, senza dover salvare un file `.py`."><input type="radio" name="quiz-python-repl" value="0" /><span class="txt">Perché entrambi richiedono di salvare un file <code>.py</code> prima di eseguirlo</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Questo è il comportamento caratteristico del REPL (Read-Eval-Print Loop), ed è esattamente così che si comporta una cella di Colab."><input type="radio" name="quiz-python-repl" value="1" /><span class="txt">Perché entrambi eseguono il codice immediatamente e mostrano il risultato all'istante, senza eseguire un intero script</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il REPL locale funziona completamente offline; il confronto non ha relazione con la necessità di internet."><input type="radio" name="quiz-python-repl" value="2" /><span class="txt">Perché entrambi funzionano solo con connessione a internet</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Eseguire a un orario programmato è caratteristica degli script di automazione, non della modalità interattiva REPL."><input type="radio" name="quiz-python-repl" value="3" /><span class="txt">Perché entrambi vengono eseguiti automaticamente ogni giorno a un orario programmato</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

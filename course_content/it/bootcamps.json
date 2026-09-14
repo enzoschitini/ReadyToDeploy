@@ -1,0 +1,210 @@
+{
+  "bootcamps": [
+    {
+      "id": "python-na-pratica",
+      "title": "Python nella Pratica",
+      "description": "Python da zero assoluto: variabili e tipi, strutture dati, condizionali e cicli, file e funzioni, programmazione funzionale, programmazione orientata agli oggetti, moduli e pacchetti, gestione degli errori e scripting. Nove moduli, ognuno costruito sul precedente, finché non scriverai script Python veri e propri.",
+      "outcome": "Alla fine, leggerai e scriverai Python con sicurezza: gestirai liste, insiemi e dizionari, controllerai il flusso del programma, leggerai e scriverai file, creerai funzioni e classi, gestirai errori a runtime ed eseguirai i tuoi script dal terminale.",
+      "level": "Principiante",
+      "duration": "2 mesi",
+      "modules": 9,
+      "projects": 9,
+      "hot": false,
+      "new": true,
+      "rating": { "score": 4.6, "count": 23 },
+      "detail": {
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        },
+        "curriculum": [
+          {
+            "type": "modulo",
+            "id": "python-variaveis-e-tipos-de-dados",
+            "title": "Variabili e Tipi di Dato",
+            "description": "Introduzione a Python: variabili, numeri, stringhe e booleani."
+          },
+          {
+            "type": "projeto",
+            "id": "patavet-ficha-digital",
+            "title": "PataVet digitalizza la clinica",
+            "description": "Registra gli animali, chiudi la cassa delle visite e crea un pannello con variabili, numeri, stringhe e booleani."
+          },
+          {
+            "type": "modulo",
+            "id": "python-estruturas-de-dados",
+            "title": "Strutture Dati",
+            "description": "Liste, insiemi e dizionari."
+          },
+          {
+            "type": "projeto",
+            "id": "batidas-organiza-playlists",
+            "title": "Batidas organizza le tue playlist",
+            "description": "Riordina playlist, elimina generi ripetuti e registra dispositivi con liste, insiemi e dizionari."
+          },
+          {
+            "type": "modulo",
+            "id": "python-fluxo-condicional-e-repeticao",
+            "title": "Flusso Condizionale & Ripetizione",
+            "description": "Strutture condizionali (if/else/elif, try/except/finally) e ciclo for."
+          },
+          {
+            "type": "projeto",
+            "id": "voa-facil-decide-e-repete",
+            "title": "Voa Fácil decide e ripete da sola",
+            "description": "Automatizza le decisioni di una compagnia aerea con condizionali, gestione degli errori e cicli."
+          },
+          {
+            "type": "modulo",
+            "id": "python-arquivos-e-funcoes",
+            "title": "File & Funzioni",
+            "description": "Lettura e scrittura di file, creazione di funzioni e scope delle variabili."
+          },
+          {
+            "type": "projeto",
+            "id": "estuda-mais-notas-e-relatorios",
+            "title": "Estuda Mais organizza voti e report",
+            "description": "Leggi file di iscrizione, filtra gli studenti e genera report con funzioni riutilizzabili."
+          },
+          {
+            "type": "modulo",
+            "id": "python-programacao-funcional",
+            "title": "Programmazione Funzionale",
+            "description": "Funzioni lambda, map, filter e reduce."
+          },
+          {
+            "type": "projeto",
+            "id": "freelaboard-repasses-do-mes",
+            "title": "FreelaBoard elabora i pagamenti del mese",
+            "description": "Calcola i pagamenti e chiudi il totale del mese senza for, usando lambda, map, filter e reduce."
+          },
+          {
+            "type": "modulo",
+            "id": "python-programacao-orientada-a-objetos",
+            "title": "Programmazione Orientata agli Oggetti",
+            "description": "Classi, oggetti ed ereditarietà."
+          },
+          {
+            "type": "projeto",
+            "id": "pagina-viva-acervo-com-classes",
+            "title": "Página Viva organizza il catalogo con classi e oggetti",
+            "description": "Modella un catalogo di libri con classi, oggetti, ereditarietà e lettura di CSV."
+          },
+          {
+            "type": "modulo",
+            "id": "python-modulos-e-pacotes",
+            "title": "Moduli & Pacchetti",
+            "description": "Importazione, creazione e installazione di moduli e pacchetti."
+          },
+          {
+            "type": "projeto",
+            "id": "casanova-modulos-e-pacotes",
+            "title": "CasaNova organizza il codice dell'espansione",
+            "description": "Organizza il codice in moduli e pacchetti propri e consulta un'API con un pacchetto di terze parti."
+          },
+          {
+            "type": "modulo",
+            "id": "python-tratamento-de-erros",
+            "title": "Gestione degli Errori",
+            "description": "Tipi di errori, errori di sintassi e gestione a runtime."
+          },
+          {
+            "type": "projeto",
+            "id": "rotacerta-blindagem-contra-erros",
+            "title": "RotaCerta blinda l'elaborazione dei pacchi contro gli errori",
+            "description": "Gestisci eccezioni, crea eccezioni personalizzate e correggi un errore di logica."
+          },
+          {
+            "type": "modulo",
+            "id": "python-scripting",
+            "title": "Scripting",
+            "description": "Installazione di Python, esecuzione da terminale e creazione di script."
+          },
+          {
+            "type": "projeto",
+            "id": "scriptzen-automacao-com-scripts",
+            "title": "ScriptZen automatizza il quotidiano",
+            "description": "Scrivi ed esegui script Python veri e propri, validando gli argomenti da riga di comando."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sql-para-analise-de-dados",
+      "title": "SQL per l'Analisi dei Dati",
+      "description": "SQL da zero fino all'analisi dei dati vera e propria: basi relazionali, creazione e manipolazione di tabelle, selezione e ordinamento, filtri e selezione condizionale, aggregazioni, tabelle multiple e join, SQL avanzato con subquery e view, chiudendo con un progetto finale di esplorazione dati su Kaggle.",
+      "outcome": "Alla fine, modellerai e interrogherai basi relazionali, scriverai SELECT con filtri, ordinamento e aggregazioni, unirai più tabelle (inner/left/right), userai subquery e view, e condurrai un'analisi esplorativa dei dati dall'inizio allo storytelling finale.",
+      "level": "Intermedio",
+      "duration": "3 mesi",
+      "modules": 8,
+      "projects": 1,
+      "hot": false,
+      "new": false,
+      "comingSoon": true,
+      "detail": {
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        },
+        "curriculum": [
+          {
+            "type": "modulo",
+            "id": "sql-base-de-dados-e-linguagem-sql",
+            "title": "Basi di Dati & Linguaggio SQL",
+            "description": "Basi di dati relazionali, introduzione a SQL (DDL/DML) e archiviazione e interrogazione nel cloud con AWS S3 e Athena.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-trabalhando-com-tabelas",
+            "title": "Lavorare con le Tabelle",
+            "description": "Creazione di tabelle, modifica ed eliminazione di tabelle, inserimento, aggiornamento ed eliminazione di dati.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-selecionando-e-ordenando",
+            "title": "Selezionare & Ordinare",
+            "description": "Restrizione delle colonne (chiavi e vincoli), selezione dei dati e ordinamento e limitazione dei risultati.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-filtrando-e-selecao-condicional",
+            "title": "Filtrare & Selezione Condizionale",
+            "description": "Filtri AND, OR, IN e BETWEEN, filtri LIKE e wildcard, e selezione condizionale.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-agregacoes",
+            "title": "Aggregazioni",
+            "description": "Funzione COUNT e clausola GROUP BY, funzioni MIN/MAX/SUM/AVG e clausola HAVING.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-trabalhando-com-multiplas-tabelas",
+            "title": "Lavorare con Tabelle Multiple",
+            "description": "UNION, join inner/cross e join left/right.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-avancado",
+            "title": "SQL Avanzato",
+            "description": "Subquery, aggregazioni per partizionamento e view.",
+            "disabled": true
+          },
+          {
+            "type": "modulo",
+            "id": "sql-projeto-final",
+            "title": "Progetto Finale",
+            "description": "Piattaforma Kaggle, esplorazione e analisi dei dati (EDA) e storytelling.",
+            "disabled": true
+          }
+        ]
+      }
+    }
+  ]
+}

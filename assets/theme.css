@@ -168,3 +168,35 @@ html.dark .theme-btn .icon-moon{display:flex;}
 .theme-menu button .check{margin-left:auto;opacity:0;color:var(--brand-indigo);}
 .theme-menu button[aria-checked="true"]{color:var(--foreground);}
 .theme-menu button[aria-checked="true"] .check{opacity:1;}
+
+/* ------------------------------------------------------------
+   SELETOR DE IDIOMA (injetado por assets/lang.js)
+   ------------------------------------------------------------ */
+.lang-switch{position:relative;}
+.lang-btn{
+  display:inline-flex;align-items:center;gap:.375rem;height:2.25rem;padding-inline:.625rem;
+  border-radius:.375rem;border:1px solid var(--border);background:var(--card);color:var(--foreground);
+  font:inherit;font-family:var(--font-mono);font-size:.75rem;font-weight:600;letter-spacing:.02em;
+  cursor:pointer;transition:border-color .15s,background-color .15s;
+}
+.lang-btn:hover{border-color:var(--hover-border);background:var(--muted);}
+.lang-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(125,108,255,.5);}
+.lang-btn .flag{line-height:1;font-size:1rem;}
+.lang-menu{
+  position:absolute;right:0;top:calc(100% + .5rem);z-index:50;display:none;min-width:9.5rem;
+  border-radius:.5rem;border:1px solid var(--border);background:var(--card);padding:.25rem;
+  box-shadow:var(--menu-shadow);
+}
+.lang-menu.open{display:block;}
+.lang-menu button{
+  display:flex;width:100%;align-items:center;gap:.5rem;border:0;border-radius:.375rem;
+  background:none;cursor:pointer;padding:.5rem .625rem;
+  font-family:var(--font-mono);font-size:.8125rem;
+  color:var(--muted-foreground);text-align:left;transition:color .15s,background-color .15s;
+}
+.lang-menu button:hover{background:var(--nav-hover-bg);color:var(--foreground);}
+.lang-menu button .flag{font-size:1rem;line-height:1;}
+.lang-menu button .check{margin-left:auto;opacity:0;color:var(--brand-indigo);}
+.lang-menu button .check svg{display:block;width:.875rem;height:.875rem;}
+.lang-menu button[aria-checked="true"]{color:var(--foreground);}
+.lang-menu button[aria-checked="true"] .check{opacity:1;}

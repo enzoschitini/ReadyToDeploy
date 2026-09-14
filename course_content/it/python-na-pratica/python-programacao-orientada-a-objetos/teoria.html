@@ -1,0 +1,93 @@
+<div class="prose">
+<p>Prima di scrivere codice, vale la pena capire l'idea dietro l'orientamento agli oggetti. In questa lezione vedremo dove la POO si colloca tra gli stili di programmazione e conosceremo i tre concetti che sostengono il resto del modulo: <strong>classe</strong>, <strong>oggetto</strong> e <strong>eredità</strong>.</p>
+<h2>Paradigmi di programmazione</h2>
+<p>Un <strong>paradigma di programmazione</strong> è uno <strong>stile</strong> di organizzare e scrivere codice. I tre più conosciuti sono:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Paradigma</th><th>Idea centrale</th><th>Domanda a cui il codice risponde</th></tr></thead>
+<tbody>
+<tr><td><strong>Imperativo</strong></td><td>Una sequenza di istruzioni che alterano variabili passo dopo passo</td><td>"Come fare?"</td></tr>
+<tr><td><strong>Funzionale</strong></td><td>Composizione di funzioni che ricevono valori e restituiscono risultati, senza alterare dati esterni</td><td>"Cosa calcolare?"</td></tr>
+<tr><td><strong>Orientato agli oggetti</strong></td><td>Dati e comportamenti raggruppati in <strong>oggetti</strong>, che rappresentano elementi del problema</td><td>"Chi fa cosa?"</td></tr>
+</tbody>
+</table></div>
+<p>Python è un linguaggio <strong>multiparadigma</strong>: permette di usare i tre stili, anche mescolati nello stesso programma. Per confrontare, vediamo lo stesso problema risolto nei tre stili: calcolare il totale di un carrello della spesa.</p>
+<p><strong>Stile imperativo:</strong> percorriamo i prezzi e accumuliamo il totale in una variabile.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">precos_carrinho = [49.90, 15.00, 120.50]
+
+# Passo a passo: a variável total_imperativo é alterada a cada volta do laço
+total_imperativo = 0
+for preco in precos_carrinho:
+    total_imperativo += preco
+
+print(f'Total (imperativo): {total_imperativo:.2f}')
+# Total (imperativo): 185.40
+</code></pre></div>
+<p><strong>Stile funzionale:</strong> descriviamo il risultato combinando funzioni, senza alterare nessuna variabile lungo il percorso.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># sum() recebe a lista e devolve o total, sem modificar nada
+total_funcional = sum(precos_carrinho)
+
+print(f'Total (funcional): {total_funcional:.2f}')
+# Total (funcional): 185.40
+</code></pre></div>
+<p><strong>Stile orientato agli oggetti:</strong> creiamo un "carrello" che conserva i propri elementi e sa calcolare il proprio totale. Non preoccuparti della sintassi ora: è esattamente ciò che impareremo in questo modulo.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Carrinho:
+
+    def __init__(self):
+        self.precos = []
+
+    def adicionar(self, preco: float) -&gt; None:
+        self.precos.append(preco)
+
+    def total(self) -&gt; float:
+        return sum(self.precos)
+
+
+# O carrinho guarda os dados E as ações que fazem sentido para ele
+meu_carrinho = Carrinho()
+meu_carrinho.adicionar(49.90)
+meu_carrinho.adicionar(15.00)
+meu_carrinho.adicionar(120.50)
+
+print(f'Total (orientado a objetos): {meu_carrinho.total():.2f}')
+# Total (orientado a objetos): 185.40
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> nessun paradigma è "migliore" in tutti i casi. Per un calcolo semplice, una riga come <code>sum(precos_carrinho)</code> risolve. L'orientamento agli oggetti brilla quando il sistema cresce e comincia ad avere molti elementi (clienti, prodotti, ordini), ognuno con i propri dati e le proprie regole.</p>
+</blockquote>
+<h2>Classe</h2>
+<p>Una <strong>classe</strong> è la rappresentazione di un elemento, reale o astratto, e funziona come una <strong>ricetta</strong> (o uno stampo) per creare oggetti. Definisce:</p>
+<ul>
+<li>quali <strong>caratteristiche</strong> ha ogni elemento di quel tipo (gli <strong>attributi</strong>);</li>
+<li>quali <strong>azioni</strong> può compiere (i <strong>metodi</strong>).</li>
+</ul>
+<p><strong>Esempio:</strong> la classe <code>Pessoa</code> definisce che ogni persona ha nome, età e documento, e che ogni persona può parlare e dormire.</p>
+<h2>Oggetto</h2>
+<p>Un <strong>oggetto</strong> è un'<strong>istanza</strong> di una classe, cioè qualcosa di concreto creato a partire dalla ricetta. La classe descrive; l'oggetto esiste e ha valori propri.</p>
+<p><strong>Esempio:</strong> André, di 30 anni, è un'istanza della classe <code>Pessoa</code>. Maria, di 56 anni, è un'altra istanza della stessa classe. Entrambi seguono la stessa ricetta, ma ognuno ha i propri dati.</p>
+<p>Pensa alla pianta di una casa: la pianta è la <strong>classe</strong>, e ogni casa costruita a partire da essa è un <strong>oggetto</strong>. Con un'unica pianta, costruiamo quante case vogliamo, e ognuna può avere un colore diverso.</p>
+<h2>Eredità</h2>
+<p>L'<strong>eredità</strong> è un modo di <strong>specializzare</strong> una classe: creiamo una nuova classe che sfrutta tutto ciò che un'altra già ha e aggiunge ciò che le è specifico.</p>
+<p><strong>Esempio:</strong> uno studente è un tipo speciale di persona. Ha nome, età e documento (come qualsiasi persona), ma studia anche in un'università.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Concetto</th><th>Analogia</th><th>Esempio</th></tr></thead>
+<tbody>
+<tr><td>Classe</td><td>La ricetta o la pianta</td><td><code>Pessoa</code></td></tr>
+<tr><td>Oggetto</td><td>Il piatto pronto o la casa costruita</td><td>André, Maria, Pedro</td></tr>
+<tr><td>Eredità</td><td>Una variazione della ricetta</td><td><code>Estudante</code> è una <code>Pessoa</code></td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-poo-teoria-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-poo-teoria-q">Quale domanda il paradigma orientato agli oggetti cerca di rispondere su un problema?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Questa è la domanda centrale del paradigma imperativo, focalizzato sulla sequenza di istruzioni."><input type="radio" name="quiz-python-poo-teoria" value="0" /><span class="txt">"Come fare?"</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Questa è la domanda del paradigma funzionale, che descrive il risultato combinando funzioni."><input type="radio" name="quiz-python-poo-teoria" value="1" /><span class="txt">"Cosa calcolare?"</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="L'orientamento agli oggetti organizza il codice intorno a &quot;chi&quot; (gli oggetti) compie &quot;cosa&quot; (i metodi)."><input type="radio" name="quiz-python-poo-teoria" value="2" /><span class="txt">"Chi fa cosa?"</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Nessuno dei tre paradigmi presentati ha questa domanda come idea centrale."><input type="radio" name="quiz-python-poo-teoria" value="3" /><span class="txt">"Quando eseguire?"</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

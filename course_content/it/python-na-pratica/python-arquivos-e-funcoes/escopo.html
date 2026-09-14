@@ -1,0 +1,148 @@
+<div class="prose">
+<p>Con le funzioni, nasce una domanda importante: una variabile creata dentro di una funzione esiste anche fuori di essa? E il contrario? Lo <strong>scope</strong> (ambito) definisce <strong>dove</strong> una variabile può essere accessibile e <strong>per quanto tempo</strong> esiste. Capire questo evita errori difficili da individuare.</p>
+<h2>Definizione</h2>
+<p>Lo <strong>scope</strong> di una variabile è la regione del codice in cui essa è visibile. In Python, i due scope più importanti sono:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Scope</th><th>Dove la variabile viene creata</th><th>Dove può essere usata</th><th>Per quanto tempo esiste</th></tr></thead>
+<tbody>
+<tr><td><strong>Locale</strong></td><td>Dentro di una funzione (inclusi i parametri)</td><td>Solo dentro quella funzione</td><td>Mentre la funzione viene eseguita</td></tr>
+<tr><td><strong>Globale</strong></td><td>Fuori da qualsiasi funzione (nel "corpo" del notebook)</td><td>Ovunque, anche dentro le funzioni (per la lettura)</td><td>Finché il programma (o la sessione) termina</td></tr>
+</tbody>
+</table></div>
+<h2>Scope locale</h2>
+<p>Le variabili create dentro una funzione sono <strong>locali</strong>: nascono quando la funzione viene chiamata e vengono scartate quando essa termina.</p>
+<p><strong>Esempio:</strong> sommando i valori di una lista.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def somar_lista(numeros: list) -&gt; int:
+    total = 0  # variável local: só existe dentro da função
+    for numero in numeros:
+        total = total + numero
+    return total
+
+soma = somar_lista([2, 4, 6, 8])
+print(soma)
+# 20
+</code></pre></div>
+<p>Fuori dalla funzione, la variabile <code>total</code> <strong>non esiste</strong>. Provare a usarla genera un errore:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># print(total)    # NameError: name 'total' is not defined
+
+# O resultado chega aqui fora pelo return, guardado na variável soma
+print(soma)
+# 20
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> Python ha già la funzione nativa <code>sum()</code>, che fa esattamente ciò che fa <code>somar_lista()</code>. Abbiamo creato la nostra solo per capire lo scope, ma nella pratica quotidiana preferisci le funzioni native.</p>
+</blockquote>
+<h2>Scope globale</h2>
+<p>Le variabili create fuori dalle funzioni sono <strong>globali</strong> e possono essere <strong>lette</strong> dentro qualsiasi funzione:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">taxa_administracao = 0.02  # variável global
+
+def calcular_valor_liquido(valor_bruto: float) -&gt; float:
+    # A função consegue LER a variável global
+    return valor_bruto * (1 - taxa_administracao)
+
+print(calcular_valor_liquido(1000))
+# 980.0
+</code></pre></div>
+<p>Ma attenzione: se la funzione <strong>assegna</strong> un valore a una variabile con lo stesso nome, Python crea una <strong>nuova variabile locale</strong>, e la globale resta intatta:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def simular_taxa_maior(valor_bruto: float) -&gt; float:
+    taxa_administracao = 0.10  # cria uma variável LOCAL com o mesmo nome
+    return valor_bruto * (1 - taxa_administracao)
+
+print(simular_taxa_maior(1000))  # usa a taxa local (10%)
+print(taxa_administracao)        # a global continua 0.02
+# 900.0
+# 0.02
+</code></pre></div>
+<p>Per <strong>modificare</strong> una variabile globale dentro una funzione, occorre dichiararla con la parola chiave <code>global</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">contador_simulacoes = 0
+
+def registrar_simulacao():
+    # contador_simulacoes += 1  # sem "global": UnboundLocalError
+    global contador_simulacoes
+    contador_simulacoes += 1
+
+registrar_simulacao()
+registrar_simulacao()
+print(contador_simulacoes)
+# 2
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> usare <code>global</code> rende il codice difficile da capire e da testare, perché la funzione dipende da qualcosa "nascosto" al di fuori di essa. Preferisci il percorso più chiaro: <strong>ricevere i dati tramite parametri e restituire il risultato con <code>return</code></strong>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Mesmo resultado, sem global: a função recebe o valor e devolve o novo
+def incrementar(contador: int) -&gt; int:
+    return contador + 1
+
+contador = 0
+contador = incrementar(contador)
+contador = incrementar(contador)
+print(contador)
+# 2
+</code></pre></div>
+<h2>Strutture condizionali e di ripetizione</h2>
+<p>A differenza di altri linguaggi, in Python <code>if</code> e <code>for</code> <strong>non creano un proprio scope</strong>. Una variabile creata al loro interno continua a esistere dopo che il blocco termina.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">saldo = 1787
+
+if saldo &gt; 0:
+    situacao = 'positivo'  # criada dentro do if...
+else:
+    situacao = 'negativo'
+
+print(situacao)  # ...mas acessível fora dele
+# positivo
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for indice in range(3):
+    ultimo_processado = indice
+
+# Depois do laço, as duas variáveis continuam existindo com o último valor
+print(indice)
+print(ultimo_processado)
+# 2
+# 2
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> una variabile creata in un blocco che <strong>non è stato eseguito</strong> semplicemente non esiste. Se nell'esempio sopra solo l'<code>if</code> definisse <code>situacao</code> (senza l'<code>else</code>) e il saldo fosse negativo, <code>print(situacao)</code> genererebbe un <code>NameError</code>. Perciò, assicurati che la variabile riceva un valore in tutti i percorsi possibili, oppure creala con un valore iniziale prima dell'<code>if</code>.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">saldo = -88
+
+# Valor inicial definido antes do if: a variável sempre existe
+situacao = 'não negativo'
+if saldo &lt; 0:
+    situacao = 'negativo'
+
+print(situacao)
+# negativo
+</code></pre></div>
+<h2>Riepilogo del Modulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Concetto</th><th>A cosa serve</th><th>Esempio</th></tr></thead>
+<tbody>
+<tr><td><code>with open(...) as arquivo:</code></td><td>Apre un file e lo chiude automaticamente alla fine del blocco</td><td><code>with open('banco.csv', mode='r', encoding='utf-8') as arquivo:</code></td></tr>
+<tr><td><code>.read()</code></td><td>Legge l'intero file come una <em>string</em></td><td><code>conteudo = arquivo.read()</code></td></tr>
+<tr><td><code>.readline()</code></td><td>Legge la riga successiva</td><td><code>cabecalho = arquivo.readline()</code></td></tr>
+<tr><td><code>for linha in arquivo:</code></td><td>Scorre il file riga per riga</td><td><code>for linha in arquivo: ...</code></td></tr>
+<tr><td><code>.readlines()</code></td><td>Legge tutte le righe in una lista</td><td><code>linhas = arquivo.readlines()</code></td></tr>
+<tr><td><code>.write()</code></td><td>Scrive una <em>string</em> (senza interruzione di riga automatica)</td><td><code>arquivo.write(f'{idade}\n')</code></td></tr>
+<tr><td>Modalità <code>'r'</code>, <code>'w'</code>, <code>'a'</code>, <code>'x'</code></td><td>Lettura, scrittura (cancella), aggiunta e creazione esclusiva</td><td><code>open('idades.csv', mode='a')</code></td></tr>
+<tr><td><code>def</code></td><td>Definisce una funzione</td><td><code>def calcular_dobro(numero):</code></td></tr>
+<tr><td>Parametro con valore predefinito</td><td>Rende l'argomento opzionale</td><td><code>def calcular_preco_final(preco, desconto=0.0):</code></td></tr>
+<tr><td><code>return</code></td><td>Restituisce un risultato e termina la funzione</td><td><code>return numero * 2</code></td></tr>
+<tr><td>Scope locale</td><td>La variabile creata nella funzione esiste solo al suo interno</td><td><code>total</code> in <code>somar_lista()</code></td></tr>
+<tr><td>Scope globale</td><td>La variabile creata fuori dalle funzioni può essere letta ovunque</td><td><code>taxa_administracao</code></td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-escopo-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-escopo-q">Una funzione ha <code>taxa = 0.10</code> al suo interno, e una variabile globale con lo stesso nome <code>taxa = 0.02</code> esiste fuori. Chiamando la funzione, cosa succede alla variabile globale?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Assegnare un valore a `taxa` dentro la funzione crea una variabile LOCALE con lo stesso nome — la globale verrebbe modificata solo con `global taxa`."><input type="radio" name="quiz-python-escopo" value="0" /><span class="txt">Viene modificata a 0.10</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Senza la parola chiave `global`, l'assegnazione dentro la funzione crea una variabile locale separata, e la globale non viene toccata."><input type="radio" name="quiz-python-escopo" value="1" /><span class="txt">Continua con il valore 0.02, intatta</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Avere una variabile locale e una globale con lo stesso nome non genera errore — Python le tratta semplicemente come cose separate."><input type="radio" name="quiz-python-escopo" value="2" /><span class="txt">Python genera un errore per nomi duplicati</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="La variabile globale continua a esistere normalmente fuori dalla funzione, con il suo valore originale."><input type="radio" name="quiz-python-escopo" value="3" /><span class="txt">La variabile globale viene cancellata</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

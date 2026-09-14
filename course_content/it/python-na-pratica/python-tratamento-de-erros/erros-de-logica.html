@@ -1,0 +1,128 @@
+<div class="prose">
+<p>Un errore di logica non genera nessuna eccezione: il programma va avanti fino alla fine e restituisce un risultato, solo che <strong>sbagliato</strong>. Poiché Python non segnala il problema, sta a noi diffidare dei risultati e investigare il codice.</p>
+<h2>Definizione</h2>
+<p>Un <strong>errore di logica</strong> accade quando il codice fa esattamente ciò che è stato scritto, ma ciò che è stato scritto non è ciò che volevamo. Le cause più comuni sono:</p>
+<ul>
+<li>Formule sbagliate o con l'ordine delle operazioni scambiato (come la media della prima lezione);</li>
+<li>Limiti sbagliati in cicli e sezioni (slice), saltando o ripetendo elementi;</li>
+<li>Condizioni invertite (<code>&gt;</code> al posto di <code>&lt;</code>, <code>and</code> al posto di <code>or</code>);</li>
+<li>Cicli che non finiscono mai (<strong>cicli infiniti</strong>).</li>
+</ul>
+<p>Lo strumento principale per trovarli è il <strong>debug</strong>: mostrare risultati intermedi per scoprire in quale punto il valore calcolato smette di essere quello atteso.</p>
+<h2>Limiti delle collezioni</h2>
+<p><strong>Esempio:</strong> calcolando il valore totale del carrello della spesa. Il risultato atteso è <strong>570,70</strong>: <code>37,65 × 10 + 81,20 × 2 + 15,90 × 2</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_total = 0
+
+for indice in range(1, len(carrinho_compras)):
+    produto = carrinho_compras[indice]
+    valor_total += produto['preco'] * produto['quantidade']
+
+print(f'Valor total: {valor_total:.2f}')
+# Valor total: 194.20
+</code></pre></div>
+<p>Il codice ha funzionato senza nessun errore, ma il valore è molto più basso di quello atteso. Qualcosa è sbagliato nella <strong>logica</strong>.</p>
+<h2>Debug con print()</h2>
+<p>Il modo più semplice per fare debug è mettere una <code>print()</code> dentro il ciclo per <strong>vedere</strong> cosa succede a ogni passo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_total = 0
+
+for indice in range(1, len(carrinho_compras)):
+    produto = carrinho_compras[indice]
+    print(f'[depuração] índice {indice}: produto {produto["id"]}')  # print temporário
+    valor_total += produto['preco'] * produto['quantidade']
+
+print(f'Valor total: {valor_total:.2f}')
+# [depuração] índice 1: produto 1203
+# [depuração] índice 2: produto 8921
+# Valor total: 194.20
+</code></pre></div>
+<p>Ecco, il problema è apparso: il ciclo inizia all'indice <code>1</code> e <strong>salta il primo prodotto</strong> (indice <code>0</code>, l'<code>3184</code>). Il <code>range(1, ...)</code> avrebbe dovuto essere <code>range(0, ...)</code>. Ancora meglio: percorrendo la lista direttamente con <code>for produto in carrinho_compras</code>, non c'è alcun indice da sbagliare:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_total = 0
+
+for produto in carrinho_compras:
+    valor_total += produto['preco'] * produto['quantidade']
+
+print(f'Valor total: {valor_total:.2f}')
+# Valor total: 570.70
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> dopo aver trovato l'errore, <strong>rimuovi</strong> le <code>print()</code> di debug, così non riempiono l'output del programma.</p>
+<p><strong>Suggerimento:</strong> per proteggerti dagli errori di logica, puoi verificare se un risultato ha senso con <code>assert condição, 'mensagem'</code>. Se la condizione è falsa, Python lancia un <code>AssertionError</code> con il messaggio. Se è vera, non succede nulla.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">quantidade_de_produtos = len(carrinho_compras)
+produtos_somados = 0
+
+for produto in carrinho_compras:
+    produtos_somados += 1
+
+# Se algum produto tivesse sido pulado, esta linha lançaria um AssertionError
+assert produtos_somados == quantidade_de_produtos, 'Algum produto não foi somado!'
+print('Conferência OK: todos os produtos foram somados.')
+# Conferência OK: todos os produtos foram somados.
+</code></pre></div>
+<h2>Cicli infiniti</h2>
+<p>Un tipo speciale di errore di logica è il <strong>ciclo infinito</strong>: un ciclo la cui condizione di arresto non viene mai raggiunta, lasciando il programma "bloccato" per sempre.</p>
+<p>È più comune con il ciclo <code>while</code> ("finché"), che ripete un blocco <strong>finché</strong> una condizione è vera. A differenza del <code>for</code>, che percorre una collezione con fine definita, il <code>while</code> dipende dal fatto che qualcosa al suo interno <strong>cambi la condizione</strong> a un certo punto.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">tentativa = 1
+
+while tentativa &lt;= 3:
+    print(f'Tentativa de conexão {tentativa}...')
+    tentativa += 1  # sem esta linha, tentativa seria sempre 1 e o laço nunca terminaria
+
+print('Fim das tentativas.')
+# Tentativa de conexão 1...
+# Tentativa de conexão 2...
+# Tentativa de conexão 3...
+# Fim das tentativas.
+</code></pre></div>
+<p>Se la riga <code>tentativa += 1</code> fosse stata dimenticata, la condizione <code>tentativa &lt;= 3</code> sarebbe <strong>sempre</strong> vera e il ciclo girerebbe per sempre. Per questo è così importante. Un altro modo per garantire l'uscita è usare il <code>break</code>, visto nel Modulo 03, per interrompere il ciclo quando una condizione viene raggiunta:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">contador = 0
+
+while True:          # a condição é sempre verdadeira...
+    contador += 1
+    if contador &gt; 10:
+        break        # ...então o break é a ÚNICA saída do laço
+
+print(f'O laço executou {contador - 1} vezes.')
+# O laço executou 10 vezes.
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> se una cella continua a eseguire molto più a lungo del previsto, sospetta un ciclo infinito. In Colab, interrompi l'esecuzione cliccando sul pulsante di <strong>stop</strong> accanto alla cella (o con la scorciatoia <code>Ctrl + M</code> + <code>I</code>). Un ciclo infinito che accumula dati in memoria può persino far crashare l'intera sessione.</p>
+</blockquote>
+<h2>Riepilogo del Modulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Tipo di errore</th><th>Quando accade</th><th>Segnale</th><th>Come gestirlo</th></tr></thead>
+<tbody>
+<tr><td>Sintassi</td><td>Prima dell'esecuzione</td><td><code>SyntaxError</code> / <code>IndentationError</code>, nulla viene eseguito</td><td>Leggere il messaggio (riga e <code>^</code>) e correggere il codice</td></tr>
+<tr><td>Esecuzione</td><td>Durante l'esecuzione</td><td>Eccezione (<code>ValueError</code>, <code>KeyError</code>...) e <em>traceback</em></td><td>Correggere, evitare (validare dati, <code>.get()</code>) o gestire con <code>try/except</code></td></tr>
+<tr><td>Logica</td><td>Durante l'esecuzione</td><td>Nessuno: solo il risultato sbagliato</td><td>Verificare i risultati, fare debug con <code>print()</code> e usare <code>assert</code></td></tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Risorsa</th><th>A cosa serve</th></tr></thead>
+<tbody>
+<tr><td><code>try</code> / <code>except</code></td><td>Cattura e gestisce un'eccezione</td></tr>
+<tr><td><code>else</code></td><td>Esegue solo se non c'è stata eccezione nel <code>try</code></td></tr>
+<tr><td><code>finally</code></td><td>Esegue sempre, con o senza eccezione</td></tr>
+<tr><td><code>raise Excecao('mensagem')</code></td><td>Lancia un'eccezione</td></tr>
+<tr><td><code>raise</code> (da solo, dentro l'<code>except</code>)</td><td>Ripassa l'eccezione attuale a chi ha chiamato</td></tr>
+<tr><td><code>raise NovaExcecao(...) from erro</code></td><td>Sostituisce l'eccezione, preservando l'originale come causa</td></tr>
+<tr><td><code>class MeuErro(Exception):</code></td><td>Crea un'eccezione personalizzata</td></tr>
+<tr><td><code>traceback.print_exc()</code></td><td>Mostra il <em>traceback</em> di un'eccezione catturata</td></tr>
+<tr><td><code>assert condição, 'mensagem'</code></td><td>Verifica se un risultato ha senso</td></tr>
+</tbody>
+</table></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-erros-logica-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-erros-logica-q">Qual è la tecnica più diretta per investigare perché un ciclo sta producendo un risultato numerico inferiore a quello atteso?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Qui non c'è nessuna eccezione da catturare — il codice funziona senza alcun errore, quindi `try/except` non aiuta a trovare il problema."><input type="radio" name="quiz-python-erros-logica" value="0" /><span class="txt">Racchiudere l'intero ciclo in un <code>try/except Exception</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Mostrare i valori intermedi (come l'indice e l'elemento elaborato) è ciò che rivela, per esempio, un elemento saltato per sbaglio."><input type="radio" name="quiz-python-erros-logica" value="1" /><span class="txt">Mettere una <code>print()</code> temporanea dentro il ciclo per vedere cosa succede a ogni ripetizione</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Cambiare il tipo di ciclo non risolve un errore di logica nella formula o nei limiti — il problema può continuare a esistere allo stesso modo."><input type="radio" name="quiz-python-erros-logica" value="2" /><span class="txt">Sostituire il <code>for</code> con un <code>while</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Un errore di logica si trova solo quando qualcuno diffida del risultato e indaga — ignorarlo lascia passare il problema inosservato."><input type="radio" name="quiz-python-erros-logica" value="3" /><span class="txt">Ignorare il risultato e assumere che sia corretto</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

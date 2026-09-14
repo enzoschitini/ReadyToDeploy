@@ -1,0 +1,467 @@
+{
+  "projects": [
+    {
+      "id": "patavet-ficha-digital",
+      "bootcamp_id": "python-na-pratica",
+      "title": "PataVet digitalizza la clinica",
+      "description": "Aiuta una clinica veterinaria a lasciare i quaderni di appunti: registra gli animali, chiudi la cassa delle visite e crea un pannello usando variabili, numeri, stringhe e booleani.",
+      "level": "Principiante",
+      "duration": "2-4 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "variabili",
+        "tipi-di-dato",
+        "numeri",
+        "strings",
+        "booleani"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.5,
+        "count": 8
+      },
+      "detail": {
+        "introHtml": "La <strong>PataVet</strong> è una clinica veterinaria che sta abbandonando i quaderni di appunti per gestire tutto tramite codice. Entri come <strong>Analista Dati Jr.</strong> e, in 5 missioni, registri gli animali, chiudi la cassa delle visite e organizzi l'accesso del team usando solo Python puro.",
+        "objectiveHtml": "Esercitarsi, all'interno di un unico scenario collegato, con: creazione e denominazione di <strong>variabili</strong>, operazioni e conversioni con <code>int</code> e <code>float</code>, manipolazione di <strong>stringhe</strong> (concatenazione, f-string, slicing e metodi) e prese di decisione con i <strong>booleani</strong>.",
+        "requirements": [
+          "Creare le variabili della scheda di un animale e confermare i tipi con <code>type()</code>",
+          "Calcolare lo scontrino medio giornaliero e del periodo delle visite, con <code>round()</code>",
+          "Separare un indirizzo arrivato come testo unico (<code>.split(';')</code>) in variabili distinte",
+          "Pulire e formattare il nome di un proprietario con <code>.strip()</code> e <code>.title()</code>",
+          "Combinare confronti con <code>and</code>/<code>or</code> per abilitare il rimborso gratuito e l'accesso al sistema",
+          "Creare un pannello finale in testo riutilizzando le variabili delle missioni precedenti"
+        ],
+        "challenges": [
+          "Estrarre lo sconto da un codice convenzione facendo lo slicing della stringa",
+          "Scoprire se il numero di una scheda di visita è pari o dispari con <code>%</code>",
+          "Confrontare scontrini medi per trovare il giorno di maggior movimento",
+          "Usare <code>bool()</code> per verificare se una valutazione esiste (anche con <code>None</code>)",
+          "Creare un libretto di vaccinazione tutto decorato con f-string"
+        ],
+        "tips": [
+          "I nomi delle variabili seguono lo standard <code>snake_case</code>.",
+          "Per calcolare una media dell'intero periodo, somma tutti i valori e tutte le quantità prima di dividere — non fare la media delle medie.",
+          "Combina <code>.strip()</code> con <code>.title()</code> per sistemare testi digitati male dall'utente.",
+          "Inizia semplice: un <code>print()</code> per riga risolve già il pannello finale, cura la formattazione dopo."
+        ],
+        "modulos": [
+          "python-variaveis-e-tipos-de-dados"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "batidas-organiza-playlists",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Batidas organizza le tue playlist",
+      "description": "Riordina playlist disordinate, elimina generi ripetuti e registra le casse audio partner usando liste, insiemi e dizionari.",
+      "level": "Principiante",
+      "duration": "2-3 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "liste",
+        "insiemi",
+        "dizionari"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.5,
+        "count": 14
+      },
+      "detail": {
+        "introHtml": "<strong>Batidas</strong> è un'app di streaming musicale con playlist disordinate, report pieni di generi ripetuti e un registro di casse audio che nessuno ha mai organizzato. Salverai diverse informazioni collegate tutte insieme, come si fa davvero: con <strong>liste</strong>, <strong>insiemi</strong> e <strong>dizionari</strong>.",
+        "objectiveHtml": "Esercitarsi nella creazione e manipolazione di <strong>liste</strong> (<code>.append()</code>, <code>.insert()</code>, <code>.remove()</code>, <code>.pop()</code>), nell'eliminazione dei duplicati con gli <strong>insiemi</strong>, e nell'organizzazione dei dati in <strong>dizionari</strong>, incluse liste di dizionari.",
+        "requirements": [
+          "Modificare una playlist con <code>.append()</code>, <code>.insert()</code>, <code>.remove()</code> e <code>.pop()</code>",
+          "Unire più liste di generi musicali ed eliminare i duplicati convertendo in <code>set</code>",
+          "Creare un registro dispositivi come lista di dizionari",
+          "Riassumere i numeri del giorno in un nuovo dizionario riutilizzando <code>len()</code> dei passaggi precedenti"
+        ],
+        "challenges": [
+          "Concatenare le playlist di due DJ e fare lo slicing dell'apertura del set",
+          "Scoprire i generi esclusivi di un giorno con l'operatore <code>-</code> tra insiemi",
+          "Cercare un valore in un dizionario con <code>.get()</code> e un valore predefinito sicuro, senza <code>KeyError</code>",
+          "Aggiornare più chiavi di un dizionario in una volta con <code>.update()</code>",
+          "Creare un dizionario composto per l'\"artista del mese\""
+        ],
+        "tips": [
+          "Segui l'ordine dei metodi con attenzione: ogni <code>.append()</code>/<code>.remove()</code>/<code>.pop()</code> modifica la lista per il passaggio successivo.",
+          "Il modo per rimuovere i duplicati è <code>list(set(lista_1 + lista_2 + ...))</code> — gli insiemi non hanno un ordine garantito.",
+          "Un dizionario per elemento, aggiunto a una lista con <code>.append()</code>, è lo standard per i registri strutturati.",
+          "Usa <code>.get()</code> con un valore predefinito ogni volta che la chiave non è garantita esistere."
+        ],
+        "modulos": [
+          "python-estruturas-de-dados"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "voa-facil-decide-e-repete",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Voa Fácil decide e ripete da sola",
+      "description": "Automatizza le decisioni di una compagnia aerea low-cost: sblocca l'imbarco, gestisci errori di rimborso ed elabora vendite e miglia con condizionali, eccezioni e cicli.",
+      "level": "Principiante",
+      "duration": "3-5 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "condizionali",
+        "gestione-errori",
+        "for",
+        "ripetizione"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 5,
+        "count": 10
+      },
+      "detail": {
+        "introHtml": "La <strong>Voa Fácil</strong> gestisce quasi tutto su fogli di calcolo manuali, e questo ha già causato problemi. Insegnerai al sistema a <strong>prendere decisioni</strong>, <strong>gestire errori</strong> e <strong>ripetere compiti</strong> da solo: check-in, rimborso, vendite del giorno e programma miglia.",
+        "objectiveHtml": "Esercitarsi nel prendere decisioni con <code>if</code>/<code>elif</code>/<code>else</code>, nella gestione degli errori con <code>try</code>/<code>except</code>/<code>finally</code>, nella ripetizione con <code>for</code> (su liste, <code>range()</code> e dizionari) e nel controllo del ciclo con <code>break</code> e <code>continue</code>.",
+        "requirements": [
+          "Gestire le quattro combinazioni possibili di un check-in con <code>if</code>/<code>elif</code>/<code>else</code>",
+          "Dividere un rimborso tra passeggeri gestendo <code>ValueError</code> e <code>ZeroDivisionError</code> con <code>try</code>/<code>except</code>/<code>finally</code>",
+          "Accumulare un totale e un conteggio in un unico <code>for</code>, e usare <code>break</code> per trovare il primo valore sopra un limite",
+          "Scorrere un dizionario con <code>.items()</code>, usando <code>continue</code> per ignorare un record di test",
+          "Creare un pannello finale riunendo check-in, rimborso, vendite e miglia"
+        ],
+        "challenges": [
+          "Calcolare uno sconto in base alla dimensione del gruppo con diverse fasce di <code>elif</code>",
+          "Catturare un <code>IndexError</code> tentando di prenotare un posto inesistente",
+          "Creare una lista di bonus annuali con <code>for</code> e <code>range()</code>",
+          "Usare <code>break</code> per trovare la posizione della prima prenotazione cancellata",
+          "Creare un mini-report del giorno combinando <code>if</code> e <code>for</code>"
+        ],
+        "tips": [
+          "Python valuta le condizioni <code>elif</code> nell'ordine in cui compaiono e si ferma alla prima vera — organizza i test per coprire tutti i casi senza sovrapposizioni.",
+          "Metti ogni <code>except</code> prima del <code>finally</code>, che viene sempre eseguito per ultimo, dentro o fuori dal blocco.",
+          "Accumulo e conteggio possono avvenire nello stesso <code>for</code> con un <code>if</code> al suo interno; il <code>break</code>, invece, di solito richiede un ciclo separato.",
+          "<code>.items()</code> restituisce chiave e valore insieme — usa <code>for chiave, valore in dizionario.items():</code>."
+        ],
+        "modulos": [
+          "python-fluxo-condicional-e-repeticao"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "estuda-mais-notas-e-relatorios",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Estuda Mais organizza voti e report",
+      "description": "Leggi file di iscrizione reali, filtra gli studenti che hanno bisogno di attenzione e genera report con funzioni riutilizzabili, parametri e scope delle variabili.",
+      "level": "Intermedio",
+      "duration": "3-5 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "file",
+        "funzioni",
+        "scope"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.3,
+        "count": 10
+      },
+      "detail": {
+        "introHtml": "La <strong>Estuda Mais</strong> calcolava tutto \"a occhio\", copiando numeri da un foglio di calcolo all'altro. Automatizzerai l'elaborazione dei voti di una classe: leggere il file esportato dal sistema di iscrizioni, separare gli studenti che hanno bisogno di attenzione, calcolare i punteggi e generare un report per la coordinazione.",
+        "objectiveHtml": "Esercitarsi nella <strong>lettura di file</strong> con <code>with</code>/<code>open()</code>, nella <strong>scrittura di file</strong> (anche filtrando dati da un file a un altro), nella creazione di <strong>funzioni</strong> con parametri e valore predefinito, e nella differenza tra variabili <strong>locali e globali</strong>.",
+        "requirements": [
+          "Leggere un file CSV riga per riga, scartando l'intestazione, e calcolare un voto medio",
+          "Filtrare righe da un file a un altro (studenti critici), copiando l'intestazione",
+          "Creare una funzione con parametro a valore predefinito per calcolare un punteggio ponderato",
+          "Usare <code>global</code> per incrementare un contatore di promossi dall'interno di una funzione",
+          "Scrivere una funzione che salva un report su file e restituisce <code>True</code>/<code>False</code> in base al successo"
+        ],
+        "challenges": [
+          "Gestire la lettura di un file inesistente con <code>FileNotFoundError</code>",
+          "Aggiungere una nuova riga a un CSV esistente senza cancellare il contenuto, usando la modalità <code>'a'</code>",
+          "Contare quanti studenti sono iscritti a un corso specifico",
+          "Garantire che una variabile esista sempre dandole un valore iniziale prima dell'<code>if</code>",
+          "Scrivere una tua funzione che decide se uno studente è pronto per il certificato"
+        ],
+        "tips": [
+          "Usa <code>.readline()</code> per scartare l'intestazione prima di scorrere il resto del file con <code>for</code>.",
+          "Un unico <code>with</code> può aprire due file allo stesso tempo — uno in lettura, l'altro in scrittura.",
+          "Definisci la funzione prima del punto in cui viene chiamata, e spacchetta le tuple direttamente nell'intestazione del <code>for</code> quando ha senso.",
+          "Senza la parola chiave <code>global</code> dentro la funzione, Python crea una variabile locale con lo stesso nome — e quella globale fuori non cambia mai."
+        ],
+        "modulos": [
+          "python-arquivos-e-funcoes"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "freelaboard-repasses-do-mes",
+      "bootcamp_id": "python-na-pratica",
+      "title": "FreelaBoard elabora i pagamenti del mese",
+      "description": "Calcola i pagamenti dei freelancer, filtra i conti da migrare e chiudi il totale del mese senza scrivere un for per ogni passaggio, usando lambda, map, filter e reduce.",
+      "level": "Intermedio",
+      "duration": "3-5 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "programmazione-funzionale",
+        "lambda",
+        "map-filter-reduce"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.6,
+        "count": 12
+      },
+      "detail": {
+        "introHtml": "<strong>FreelaBoard</strong> collega freelancer alle aziende, e oggi è giorno di chiusura: calcolare i pagamenti dopo la commissione della piattaforma, individuare i conti che devono migrare e consolidare i numeri del mese — tutto elaborando <strong>intere liste</strong> in una volta, senza cicli manuali.",
+        "objectiveHtml": "Esercitarsi nella creazione di funzioni anonime con <code>lambda</code> (anche in funzioni di ordine superiore), nella trasformazione di collezioni con <code>map()</code>, nella selezione di elementi con <code>filter()</code> e nella combinazione di tutti gli elementi in un unico valore con <code>reduce()</code>.",
+        "requirements": [
+          "Creare una <code>lambda</code> che estrae il dominio di un'email",
+          "Creare una funzione che restituisce un'altra <code>lambda</code> (una calcolatrice di pagamento con commissione incorporata)",
+          "Usare <code>map()</code> con una e con due collezioni contemporaneamente, per elaborare email e pagamenti in batch",
+          "Usare <code>filter()</code> per selezionare i conti che devono migrare",
+          "Usare <code>reduce()</code> per sommare valori e per trovare il pagamento più alto senza usare <code>max()</code>",
+          "Concatenare <code>filter</code>, <code>map</code> e <code>reduce</code> in un unico flusso per calcolare la commissione dei grandi lavori"
+        ],
+        "challenges": [
+          "Scrivere lo stesso controllo in due modi: una lambda prolissa con if/else incorporato e una diretta",
+          "Calcolare un punteggio di reputazione normalizzando i voti prima di ponderarli con <code>map()</code>",
+          "Filtrare email di un provider specifico con <code>filter()</code>",
+          "Usare <code>reduce()</code> per unire una lista di nomi in un unico testo"
+        ],
+        "tips": [
+          "Una funzione di ordine superiore non calcola nulla da sola — restituisce una <code>lambda</code> che conserva i dati ricevuti (una closure).",
+          "<code>map()</code> accetta anche più di una collezione: la funzione passata ha bisogno di un parametro per ciascuna.",
+          "<code>reduce()</code> non è nativa — importala sempre con <code>from functools import reduce</code>.",
+          "<code>filter()</code> e <code>map()</code> restituiscono iteratori che possono essere scorsi una sola volta; converti in <code>list()</code> quando devi riutilizzare il risultato."
+        ],
+        "modulos": [
+          "python-programacao-funcional"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "pagina-viva-acervo-com-classes",
+      "bootcamp_id": "python-na-pratica",
+      "title": "Página Viva organizza il catalogo con classi e oggetti",
+      "description": "Modella il catalogo di un club di abbonamento a libri con classi, oggetti, ereditarietà e una classe propria per leggere cataloghi in CSV.",
+      "level": "Intermedio",
+      "duration": "4-6 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "poo",
+        "classi",
+        "oggetti",
+        "ereditarieta"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.8,
+        "count": 13
+      },
+      "detail": {
+        "introHtml": "<strong>Página Viva</strong> è un club di abbonamento a libri che conserva ancora i dati in variabili sparse nei notebook del team. Organizzerai tutto questo con <strong>classi</strong> e <strong>oggetti</strong>, dal registro del catalogo alla linea di e-book.",
+        "objectiveHtml": "Esercitarsi nella creazione di <strong>classi</strong> con <code>__init__</code>, attributi e metodi, nel metodo speciale <code>__str__</code>, nella manipolazione di <strong>oggetti</strong>, in una classe che legge un CSV ed estrae colonne per indice e per nome, e nell'<strong>ereditarietà</strong> con <code>super()</code> e l'override dei metodi.",
+        "requirements": [
+          "Creare una classe <code>Livro</code> con attributi, metodi di prestito/restituzione e <code>__str__</code>",
+          "Trasformare una lista di tuple sparse in una lista di oggetti e chiamarne i metodi",
+          "Costruire una classe che legge un file CSV ed estrae colonne per indice e per nome",
+          "Specializzare la classe con l'ereditarietà (<code>LivroDigital(Livro)</code>), usando <code>super().__init__()</code>",
+          "Sovrascrivere un metodo e il <code>__str__</code> ereditati",
+          "Creare un pannello finale riutilizzando gli oggetti delle missioni precedenti"
+        ],
+        "challenges": [
+          "Testare <code>isinstance()</code> e <code>issubclass()</code> tra la classe base e la sottoclasse",
+          "Chiamare direttamente un metodo \"privato\" (con <code>_</code>) e riflettere se dovrebbe essere usato così",
+          "Filtrare elementi di un catalogo per voto, riutilizzando una classe già pronta",
+          "Creare una tua sottoclasse specializzata con un attributo extra"
+        ],
+        "tips": [
+          "Usa <code>self.</code> per accedere agli attributi dentro ogni metodo, e ricrea l'oggetto ogni volta che modifichi la classe.",
+          "Senza <code>super().__init__()</code>, gli attributi ereditati semplicemente non esistono nel nuovo oggetto.",
+          "Quando sovrascrivi <code>__str__</code>, riutilizza <code>super().__str__()</code> invece di riscrivere tutto da zero.",
+          "Il <code>_</code> all'inizio di un nome di metodo è solo una convenzione — Python non impedisce di chiamarlo dall'esterno."
+        ],
+        "modulos": [
+          "python-programacao-orientada-a-objetos"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "casanova-modulos-e-pacotes",
+      "bootcamp_id": "python-na-pratica",
+      "title": "CasaNova organizza il codice dell'espansione",
+      "description": "Organizza il codice di una startup di traslochi in moduli e pacchetti propri, e consulta un servizio esterno con un pacchetto di terze parti.",
+      "level": "Intermedio",
+      "duration": "4-6 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "moduli",
+        "pacchetti",
+        "pip",
+        "requests"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.8,
+        "count": 8
+      },
+      "detail": {
+        "introHtml": "<strong>CasaNova Traslochi</strong> si sta espandendo, e il team ha continuato a copiare e incollare gli stessi pezzi di codice da un notebook all'altro. Metterai ordine creando <strong>moduli</strong> propri, impacchettandoli e consultando un servizio esterno con un <strong>pacchetto di terze parti</strong>.",
+        "objectiveHtml": "Esercitarsi con l'importazione tramite <code>import</code>, <code>from ... import</code> e <code>from ... import as</code>, la creazione di un <strong>modulo</strong> (.py) con una classe riutilizzabile, l'organizzazione di moduli dentro un <strong>pacchetto</strong> (cartella con <code>__init__.py</code>), e l'installazione e l'uso di un pacchetto di terze parti (<code>requests</code>).",
+        "requirements": [
+          "Importare un modulo intero e una classe specifica con un alias (<code>as</code>)",
+          "Creare il primo modulo proprio (.py) e importarne una classe in un altro notebook",
+          "Organizzare moduli correlati dentro un pacchetto con <code>__init__.py</code>",
+          "Installare e importare un pacchetto di terze parti, effettuando una richiesta HTTP reale con <code>requests</code>",
+          "Creare un pannello finale riunendo stima, ordini, checklist e indirizzo consultato"
+        ],
+        "challenges": [
+          "Confermare con <code>is</code> che due alias dello stesso modulo puntano allo stesso oggetto",
+          "Verificare con <code>os.path.exists()</code> se la struttura di un pacchetto è corretta",
+          "Gestire il caso di un CAP non valido che risponde 200 ma con una chiave di errore",
+          "Creare un tuo modulo di utilità con una funzione di benvenuto"
+        ],
+        "tips": [
+          "Salva il codice di un modulo in un vero file <code>.py</code> con <code>open()</code> prima di importarlo.",
+          "Un pacchetto è solo una cartella con un <code>__init__.py</code> dentro — anche vuoto, conta comunque.",
+          "Per importare da dentro un pacchetto, usa il percorso con il punto: <code>from pacchetto.modulo import Classe</code>.",
+          "<code>requests.get(url).json()</code> converte la risposta di un'API direttamente in un dizionario Python, senza bisogno del modulo <code>json</code> a mano."
+        ],
+        "modulos": [
+          "python-modulos-e-pacotes"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "rotacerta-blindagem-contra-erros",
+      "bootcamp_id": "python-na-pratica",
+      "title": "RotaCerta blinda l'elaborazione dei pacchi contro gli errori",
+      "description": "Rendi l'elaborazione di una logistica dell'ultimo miglio pronta per la produzione: individua errori di sintassi, gestisci eccezioni comuni, crea eccezioni personalizzate e correggi un bug di logica.",
+      "level": "Intermedio",
+      "duration": "4-6 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "eccezioni",
+        "gestione-errori",
+        "debug"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.8,
+        "count": 12
+      },
+      "detail": {
+        "introHtml": "<strong>RotaCerta</strong> è una logistica dell'ultimo miglio dove scanner difettosi, colonne fuori ordine e campi vuoti sono all'ordine del giorno — e più di un'elaborazione si è già bloccata nel cuore della notte per questo motivo. Blinderai questo flusso contro gli imprevisti, dall'errore di sintassi all'errore di logica.",
+        "objectiveHtml": "Esercitarsi nel riconoscimento di <strong>errori di sintassi</strong> senza eseguire il codice (<code>compile()</code>), nella gestione di <strong>eccezioni comuni</strong> con <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code>, nell'uso della gerarchia delle eccezioni, nel sollevare <strong>eccezioni personalizzate</strong> con <code>raise ... from</code>, e nella correzione di un <strong>errore di logica</strong> protetto da <code>assert</code>.",
+        "requirements": [
+          "Individuare errori di sintassi negli script ricevuti, senza eseguirli, usando <code>compile()</code>",
+          "Gestire più eccezioni (<code>ZeroDivisionError</code>, <code>ValueError</code>) con <code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code>",
+          "Creare un'eccezione personalizzata e rilanciare errori con <code>raise ... from</code>, preservando la causa originale",
+          "Trovare e correggere un errore di logica che saltava il primo elemento di una lista",
+          "Usare <code>assert</code> come rete di sicurezza contro lo stesso bug in futuro",
+          "Creare un pannello finale riunendo i risultati di tutte le missioni"
+        ],
+        "challenges": [
+          "Confermare con <code>issubclass()</code> la gerarchia tra diverse eccezioni native",
+          "Catturare due tipi di errore diversi con un unico <code>except</code> che condivide un antenato comune",
+          "Sostituire un'eccezione generica con una personalizzata senza perdere la traccia dell'errore originale (<code>__cause__</code>)",
+          "Creare il tuo validatore con un'eccezione personalizzata"
+        ],
+        "tips": [
+          "<code>compile(codice, nome, 'exec')</code> analizza soltanto il codice, senza mai eseguirlo — ideale per controllare la sintassi in sicurezza.",
+          "<code>IndentationError</code> è un tipo di <code>SyntaxError</code>, e lo stesso <code>except</code> cattura entrambi.",
+          "Il blocco <code>else</code> viene eseguito solo se nel <code>try</code> non è andato storto nulla; il <code>finally</code> viene eseguito sempre, anche con un <code>return</code> nel mezzo.",
+          "Cercare una colonna per nome (invece che per posizione fissa) evita che l'ordine delle colonne rompa l'elaborazione."
+        ],
+        "modulos": [
+          "python-tratamento-de-erros"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    },
+    {
+      "id": "scriptzen-automacao-com-scripts",
+      "bootcamp_id": "python-na-pratica",
+      "title": "ScriptZen automatizza il quotidiano",
+      "description": "Scrivi ed esegui veri script Python dal terminale: valida gli argomenti da riga di comando e registra le esecuzioni su file.",
+      "level": "Intermedio",
+      "duration": "3-5 ore",
+      "published": "2026-09-12",
+      "skills": [
+        "python",
+        "scripting",
+        "terminale",
+        "sys-argv"
+      ],
+      "hot": false,
+      "rating": {
+        "score": 4.9,
+        "count": 8
+      },
+      "detail": {
+        "introHtml": "<strong>ScriptZen Automazione</strong> è una consulenza che automatizza compiti ripetitivi perché girino da soli, senza che nessuno clicchi su \"Esegui\". Uscirai dal notebook e creerai <strong>veri script</strong>: verificare l'ambiente, leggere argomenti da riga di comando e registrare ogni esecuzione.",
+        "objectiveHtml": "Esercitarsi nella verifica dell'installazione di Python con il modulo <code>platform</code>, nella creazione ed esecuzione di file di <strong>script</strong> (.py), nella lettura e validazione di <strong>argomenti da riga di comando</strong> con <code>sys.argv</code>, e nella combinazione di tutto questo con la gestione degli errori vista nel modulo precedente.",
+        "requirements": [
+          "Verificare la versione di Python e il sistema operativo con il modulo <code>platform</code>",
+          "Scrivere un file di script che legge argomenti con <code>sys.argv</code> ed eseguirlo simulando la chiamata da terminale",
+          "Validare gli argomenti ricevuti prima di usarli, avvisando con un messaggio d'uso quando ne manca qualcuno",
+          "Combinare <code>sys.argv</code> con <code>try</code>/<code>except</code>/<code>else</code> per non far bloccare lo script con dati errati",
+          "Creare uno script che registra ogni esecuzione (data, nome e stato) in un file di log",
+          "Creare un pannello finale riunendo ambiente, messaggio di benvenuto, stima del tempo e il registro delle esecuzioni"
+        ],
+        "challenges": [
+          "Distinguere <code>sys.argv[0]</code> (il nome dello script stesso) dagli argomenti veri e propri",
+          "Sommare una quantità variabile di argomenti, senza sapere in anticipo quanti arriveranno",
+          "Sollevare un'eccezione personalizzata quando manca un argomento, invece di limitarsi a stampare un messaggio",
+          "Scrivere un tuo script di automazione per un compito noioso del quotidiano"
+        ],
+        "tips": [
+          "<code>platform.python_version()</code> restituisce una stringa come <code>'3.12.6'</code> — usa <code>.split('.')[0]</code> per ottenere solo la versione principale.",
+          "<code>sys.argv[0]</code> è sempre il nome dello script; gli argomenti veri e propri iniziano da <code>sys.argv[1]</code>.",
+          "Controlla <code>len(sys.argv)</code> prima di accedere a un indice che potrebbe non esistere — questo evita un brutto <code>IndexError</code> a video per l'utente.",
+          "Sul tuo computer, il comando reale è <code>python nome_del_file.py argomento1 argomento2</code>, senza bisogno di simulare nulla."
+        ],
+        "modulos": [
+          "python-scripting"
+        ],
+        "creator": {
+          "name": "Enzo Schitini",
+          "github": "enzoschitini"
+        }
+      }
+    }
+  ]
+}

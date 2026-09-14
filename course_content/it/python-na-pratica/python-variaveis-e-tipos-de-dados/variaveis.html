@@ -1,0 +1,140 @@
+<div class="prose">
+<p>I programmi hanno bisogno di conservare informazioni per usarle in seguito: il nome di un cliente, il prezzo di un
+prodotto, il saldo di un conto. In Python, facciamo questo con le <strong>variabili</strong>.</p>
+<h2>Definizione</h2>
+<p>Una <strong>variabile</strong> è un nome che punta a un valore memorizzato nella <strong>memoria RAM</strong> del
+dispositivo in uso. Questa memorizzazione è <strong>volatile</strong>: quando il programma termina (o la sessione
+di Colab viene chiusa), i valori vengono cancellati.</p>
+<p>Pensa a una variabile come a un'<strong>etichetta attaccata su una scatola</strong>: l'etichetta è il nome, e il
+contenuto della scatola è il valore. La sintassi per creare una variabile è:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome_da_variavel = valor
+</code></pre></div>
+<blockquote>
+<p>Il segno <code>=</code> in Python significa <strong>assegnazione</strong> ("memorizza questo valore in questo nome"), e non
+uguaglianza matematica.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Criando (atribuindo) uma variável
+idade = 30
+print(idade)  # 30
+
+# Reatribuindo: o valor antigo é descartado e substituído pelo novo
+idade = 27
+print(idade)  # 27
+
+# Variáveis também podem guardar textos
+nome = "André"
+print(nome)  # André
+</code></pre></div>
+<h2>Regole e buone pratiche di denominazione</h2>
+<p>I nomi delle variabili seguono alcune <strong>regole obbligatorie</strong>:</p>
+<ul>
+<li>Devono iniziare con una <strong>lettera</strong> o underscore (<code>_</code>) - mai con un numero;</li>
+<li>Possono contenere solo lettere, numeri e <code>_</code> (senza spazi, trattini o simboli);</li>
+<li>Python <strong>distingue maiuscole e minuscole</strong>: <code>cidade</code> e <code>Cidade</code> sono
+variabili diverse;</li>
+<li>Non possono essere <strong>parole riservate</strong> del linguaggio, come <code>if</code>, <code>for</code>,
+<code>True</code>, <code>class</code> ecc.</li>
+</ul>
+<p>E anche una <strong>convenzione</strong> molto importante: in Python usiamo lo standard <strong>snake_case</strong>
+(parole in minuscolo separate da <code>_</code>), secondo la guida di stile ufficiale del linguaggio, la
+PEP 8.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>✅ Valido e consigliato</th><th>❌ Non valido o sconsigliato</th></tr></thead>
+<tbody>
+<tr><td><code>valor_total</code></td><td><code>valor total</code> (spazio - non valido)</td></tr>
+<tr><td><code>quantidade_itens</code></td><td><code>2_quantidade</code> (inizia con un numero - non valido)</td></tr>
+<tr><td><code>nome_cliente</code></td><td><code>nome-cliente</code> (trattino - non valido)</td></tr>
+<tr><td><code>taxa_juros</code></td><td><code>x</code>, <code>abc</code>, <code>var1</code> (validi, ma non dicono nulla sul dato)</td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># ✅ Nomes descritivos deixam o código fácil de entender
+valor_total_compra = 150.90
+quantidade_de_itens = 3
+
+# Python é case sensitive: estas são DUAS variáveis diferentes
+cidade = "São Paulo"
+Cidade = "Rio de Janeiro"
+
+print(cidade)  # São Paulo
+print(Cidade)  # Rio de Janeiro
+</code></pre></div>
+<h2>Tipi nativi</h2>
+<p>Ogni valore in Python ha un <strong>tipo</strong>, che definisce cosa rappresenta e quali operazioni
+possiamo fare con esso. I tipi nativi più basilari sono:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Categoria</th><th>Tipo</th><th>Esempio</th></tr></thead>
+<tbody>
+<tr><td>Numerico</td><td><code>int</code> (intero)</td><td><code>42</code></td></tr>
+<tr><td>Numerico</td><td><code>float</code> (decimale)</td><td><code>3.14</code></td></tr>
+<tr><td>Numerico</td><td><code>complex</code> (complesso)</td><td><code>1 + 2j</code></td></tr>
+<tr><td>Testo</td><td><code>str</code> (stringa)</td><td><code>"Ciao"</code></td></tr>
+<tr><td>Logico</td><td><code>bool</code> (booleano)</td><td><code>True</code></td></tr>
+<tr><td>Vuoto</td><td><code>NoneType</code></td><td><code>None</code></td></tr>
+</tbody>
+</table></div>
+<p>Per scoprire il tipo di qualsiasi valore o variabile, usiamo la funzione nativa <code>type()</code>.</p>
+<p><strong>Tipi numerici:</strong> interi (<code>int</code>) e decimali (<code>float</code>).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># int: números inteiros
+preco = 1000
+print(preco)       # 1000
+print(type(preco)) # &lt;class 'int'&gt;
+
+# float: números decimais (atenção: use PONTO, e não vírgula)
+taxa_de_juros = 0.05
+print(taxa_de_juros)       # 0.05
+print(type(taxa_de_juros)) # &lt;class 'float'&gt;
+</code></pre></div>
+<p><strong>Tipo testo:</strong> stringhe (<code>str</code>), sempre tra virgolette singole o doppie.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># str: textos podem usar aspas duplas...
+primeiro_nome = "André"
+print(primeiro_nome)       # André
+print(type(primeiro_nome)) # &lt;class 'str'&gt;
+
+# ...ou aspas simples, o resultado é o mesmo
+pais = 'Brasil'
+print(pais)       # Brasil
+print(type(pais)) # &lt;class 'str'&gt;
+</code></pre></div>
+<p><strong>Tipo logico:</strong> booleani (<code>bool</code>), che possono assumere solo <code>True</code> o
+<code>False</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># bool: note a primeira letra MAIÚSCULA em True e False
+usuario_maior_de_idade = True
+print(usuario_maior_de_idade)       # True
+print(type(usuario_maior_de_idade)) # &lt;class 'bool'&gt;
+</code></pre></div>
+<p><strong>Tipo vuoto:</strong> <code>NoneType</code>, il cui unico valore è <code>None</code> e rappresenta l'
+<strong>assenza di valore</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># None: útil para indicar que um dado não existe ou ainda não foi informado
+telefone_fixo = None
+print(telefone_fixo)       # None
+print(type(telefone_fixo)) # &lt;class 'NoneType'&gt;
+</code></pre></div>
+<p>Python ha una <strong>tipizzazione dinamica</strong>: non serve dichiarare il tipo della variabile, perché viene
+scoperto automaticamente a partire dal valore. Questo significa anche che una stessa variabile può
+arrivare a contenere un valore di un altro tipo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># O tipo é definido pelo valor, não pela variável
+dado = 10
+print(type(dado)) # &lt;class 'int'&gt;
+
+dado = "dez"
+print(type(dado)) # &lt;class 'str'&gt;
+</code></pre></div>
+<blockquote>
+<p>Anche se possibile, cambiare il tipo di una variabile nel corso del codice tende a generare confusione.
+Preferisci mantenere ogni variabile con un unico tipo.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-variaveis-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-variaveis-q">Quale delle opzioni seguenti è un nome di variabile valido in Python?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="I nomi di variabile non possono iniziare con un numero."><input type="radio" name="quiz-python-variaveis" value="0" /><span class="txt">2_quantidade</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il trattino non è consentito; Python lo interpreterebbe come una sottrazione."><input type="radio" name="quiz-python-variaveis" value="1" /><span class="txt">nome-cliente</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Inizia con una lettera, usa solo lettere minuscole e underscore: segue lo standard snake_case."><input type="radio" name="quiz-python-variaveis" value="2" /><span class="txt">valor_total</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="if è una parola riservata del linguaggio."><input type="radio" name="quiz-python-variaveis" value="3" /><span class="txt">if</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

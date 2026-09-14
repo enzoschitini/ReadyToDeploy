@@ -1,0 +1,99 @@
+<div class="prose">
+<p>Il primo passo della programmazione funzionale è riuscire a creare funzioni piccole e usa e getta senza tutto il cerimoniale di un <code>def</code>. È per questo che esiste la funzione <strong><code>lambda</code></strong>.</p>
+<h2>Definizione</h2>
+<p>Una <strong>funzione <code>lambda</code></strong> è una funzione <strong>anonima</strong> (senza nome), scritta in un'unica riga, contenente solo <strong>un'espressione</strong> — non può avere cicli, <code>print()</code> o istruzioni multiple. La sua sintassi è:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">variavel = lambda parametros: expressao
+</code></pre></div>
+<p>L'<code>expressao</code> è automaticamente il valore di ritorno, senza bisogno della parola <code>return</code>.</p>
+<p><strong>Esempio:</strong> estraendo il provider di un'e-mail.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">extrair_provedor_email = lambda email: email.split(sep='@')[-1]
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">email = 'andre.perez@gmail.com'
+print(email)
+
+provedor_email = extrair_provedor_email(email)
+print(provedor_email)
+# andre.perez@gmail.com
+# gmail.com
+</code></pre></div>
+<h2>Buone pratiche</h2>
+<p>Poiché una <code>lambda</code> può contenere solo un'espressione, è comune usare l'<strong>operatore ternario</strong> (<code>valor_se_verdadeiro if condicao else valor_se_falso</code>) per incorporare una decisione semplice.</p>
+<p><strong>Esempio:</strong> verificando se un numero è pari.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Funciona, mas o if/else é redundante: a comparação já é um booleano
+numero_e_par_verboso = lambda numero: True if numero % 2 == 0 else False
+
+# Forma direta e mais idiomática: basta retornar a própria comparação
+numero_e_par = lambda numero: numero % 2 == 0
+
+print(numero_e_par_verboso(4))
+print(numero_e_par(4))
+# True
+# True
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for numero in range(10):
+    if numero_e_par(numero):
+        print(f'O número {numero} é par!')
+# O número 0 é par!
+# O número 2 é par!
+# O número 4 é par!
+# O número 6 é par!
+# O número 8 é par!
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> essendo limitata a un'espressione, <code>lambda</code> non sostituisce <code>def</code> in ogni situazione. Usa <code>lambda</code> per logiche brevi e, soprattutto, passate direttamente come argomento di un'altra funzione (come vedremo in <code>map</code>, <code>filter</code> e <code>reduce</code>). Per una logica con più righe o che necessita di un nome proprio nel codice, preferisci <code>def</code> — la PEP 8 raccomanda anzi di non assegnare una <code>lambda</code> a una variabile quando un <code>def</code> renderebbe il codice più chiaro.</p>
+</blockquote>
+<h2>Funzioni di ordine superiore</h2>
+<p>Una <strong>funzione di ordine superiore</strong> è una funzione che <strong>riceve un'altra funzione come parametro</strong> oppure che <strong>restituisce una funzione</strong>. Combinare questo con <code>lambda</code> è molto potente: una funzione può "fabbricare" altre funzioni su misura.</p>
+<p><strong>Esempio:</strong> una calcolatrice di rendimento d'investimento, in cui il tasso di interesse è già incorporato nella funzione generata.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def criar_calculadora_retorno(taxa_juros: float):
+    # A lambda retornada "lembra" do valor de taxa_juros mesmo depois
+    # que criar_calculadora_retorno() já terminou de executar — isso é
+    # chamado de closure.
+    return lambda investimento: investimento * (1 + taxa_juros)
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">retorno_5_porcento = criar_calculadora_retorno(taxa_juros=0.05)
+retorno_10_porcento = criar_calculadora_retorno(taxa_juros=0.10)
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Cada calculadora já "sabe" sua própria taxa de juros
+valor_final = retorno_5_porcento(investimento=1000)
+print(round(valor_final, 2))
+
+valor_final = retorno_10_porcento(investimento=1000)
+print(round(valor_final, 2))
+# 1050.0
+# 1100.0
+</code></pre></div>
+<p>Poiché le calcolatrici restituiscono un valore, possiamo <strong>concatenarle in un ciclo</strong> per simulare l'interesse composto nel corso di vari anni:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anos = 10
+valor_final = 1000
+
+for _ in range(anos):
+    valor_final = retorno_5_porcento(investimento=valor_final)
+
+print(round(valor_final, 2))
+# 1628.89
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anos = 10
+valor_final = 1000
+
+for _ in range(anos):
+    valor_final = retorno_10_porcento(investimento=valor_final)
+
+print(round(valor_final, 2))
+# 2593.74
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-lambda-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-lambda-q">Perché <code>criar_calculadora_retorno(taxa_juros=0.05)</code> riesce a restituire una funzione che "ricorda" il tasso del 5%, anche dopo aver terminato l'esecuzione?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="`taxa_juros` continua a essere un parametro locale — Python non la trasforma in globale."><input type="radio" name="quiz-python-lambda" value="0" /><span class="txt">Perché <code>taxa_juros</code> diventa automaticamente una variabile globale</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Questo comportamento — una funzione interna che &quot;ricorda&quot; le variabili dell'ambito in cui è nata — si chiama closure."><input type="radio" name="quiz-python-lambda" value="1" /><span class="txt">Perché è una closure: la lambda restituita conserva il valore dell'ambiente in cui è stata creata</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="La funzione esterna ha già terminato l'esecuzione; non viene richiamata a ogni uso della lambda."><input type="radio" name="quiz-python-lambda" value="2" /><span class="txt">Perché Python ricalcola <code>criar_calculadora_retorno</code> a ogni chiamata della lambda</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="È un comportamento previsto e molto usato nella programmazione funzionale, non un effetto collaterale strano."><input type="radio" name="quiz-python-lambda" value="3" /><span class="txt">Non dovrebbe funzionare; è un comportamento inaspettato di Python</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

@@ -1,0 +1,196 @@
+<div class="prose">
+<p>Ogni programma deve prendere decisioni: concedere o bloccare un accesso, approvare o rifiutare un
+pagamento, mostrare o nascondere un messaggio. Dietro tutte queste decisioni ci sono i
+<strong>booleani</strong>.</p>
+<h2>Motivazione</h2>
+<p>Nei siti web (social network, e-commerce, sistemi aziendali ecc.) è comune l'uso di sistemi
+di controllo degli accessi, il famoso <strong>login</strong>. In generale, l'utente fornisce due dati:
+<code>usuario</code> e <code>senha</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dati digitati dall'utente nella schermata di login
+usuario = 'andre.perez'
+senha = 'andre123'
+</code></pre></div>
+<p>Dal lato del server, il backend del sito ha memorizzati i dati forniti al momento della
+registrazione: <code>usuario_cadastro</code> e <code>senha_cadastro</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dati salvati al momento della registrazione
+usuario_cadastro = 'andre.perez'
+senha_cadastro = 'andre321'
+</code></pre></div>
+<p><strong>Come confrontiamo <code>usuario</code> con <code>usuario_cadastro</code> e <code>senha</code> con
+<code>senha_cadastro</code> per decidere se l'accesso deve essere concesso o bloccato?</strong></p>
+<h2>Definizione</h2>
+<p>I booleani memorizzano <strong>valori logici</strong> e possono assumere solo due valori:
+<code>True</code> (vero) o <code>False</code> (falso). Sono del tipo <code>bool</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verdadeiro = True
+falso = False
+
+print(verdadeiro)       # True
+print(falso)            # False
+print(type(verdadeiro)) # &lt;class 'bool'&gt;
+</code></pre></div>
+<p>In pratica, raramente scriviamo <code>True</code> o <code>False</code> direttamente: i booleani
+sono di solito il <strong>risultato di confronti</strong>. Gli operatori di confronto sono:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Operatore</th><th>Significato</th><th>Esempio</th><th>Risultato</th></tr></thead>
+<tbody>
+<tr><td><code>&gt;</code></td><td>Maggiore di</td><td><code>5 &gt; 3</code></td><td><code>True</code></td></tr>
+<tr><td><code>&lt;</code></td><td>Minore di</td><td><code>5 &lt; 3</code></td><td><code>False</code></td></tr>
+<tr><td><code>==</code></td><td>Uguale a</td><td><code>5 == 5</code></td><td><code>True</code></td></tr>
+<tr><td><code>!=</code></td><td>Diverso da</td><td><code>5 != 5</code></td><td><code>False</code></td></tr>
+<tr><td><code>&gt;=</code></td><td>Maggiore o uguale a</td><td><code>5 &gt;= 5</code></td><td><code>True</code></td></tr>
+<tr><td><code>&lt;=</code></td><td>Minore o uguale a</td><td><code>3 &lt;= 5</code></td><td><code>True</code></td></tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Non confondere <code>=</code> (assegnazione: memorizza un valore) con <code>==</code> (confronto: verifica se
+due valori sono uguali).</p>
+</blockquote>
+<p><strong>Esempio:</strong> bancomat. Il prelievo può essere effettuato solo se il valore è minore o uguale al
+saldo.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">saldo_em_conta = 200
+valor_do_saque = 100
+
+pode_realizar_saque = valor_do_saque &lt;= saldo_em_conta
+print(pode_realizar_saque)  # True
+</code></pre></div>
+<p><strong>Esempio:</strong> carta di credito. Il pagamento viene approvato solo se il codice di sicurezza
+fornito è uguale a quello registrato.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">codigo_seguranca_informado = '852'
+codigo_seguranca_cadastro = '010'
+
+pode_efetuar_pagamento = codigo_seguranca_informado == codigo_seguranca_cadastro
+print(pode_efetuar_pagamento)  # False
+</code></pre></div>
+<p><strong>Esempio:</strong> il confronto tra stringhe è <strong>sensibile a maiuscole e minuscole</strong>. Per
+confrontare ignorando questa differenza, standardizza i testi prima:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">email_digitado = 'Andre.Perez@Gmail.com'
+email_cadastro = 'andre.perez@gmail.com'
+
+print(email_digitado == email_cadastro)                  # False: lettere diverse
+print(email_digitado.lower() == email_cadastro.lower())  # True: entrambi in minuscolo
+</code></pre></div>
+<h2>Operatori logici</h2>
+<p>Gli operatori logici permettono di <strong>combinare</strong> valori booleani:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Operatore</th><th>Significato</th><th>Restituisce <code>True</code> quando...</th></tr></thead>
+<tbody>
+<tr><td><code>and</code></td><td>E</td><td><strong>entrambi</strong> i valori sono <code>True</code></td></tr>
+<tr><td><code>or</code></td><td>O</td><td><strong>almeno uno</strong> dei valori è <code>True</code></td></tr>
+<tr><td><code>not</code></td><td>NO</td><td>il valore è <code>False</code> (inverte il risultato)</td></tr>
+</tbody>
+</table></div>
+<p>L'insieme dei risultati possibili è riassunto nella cosiddetta <strong>tabella di verità</strong>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>A</th><th>B</th><th>A <code>and</code> B</th><th>A <code>or</code> B</th><th><code>not</code> A</th></tr></thead>
+<tbody>
+<tr><td><code>True</code></td><td><code>True</code></td><td><code>True</code></td><td><code>True</code></td><td><code>False</code></td></tr>
+<tr><td><code>True</code></td><td><code>False</code></td><td><code>False</code></td><td><code>True</code></td><td><code>False</code></td></tr>
+<tr><td><code>False</code></td><td><code>True</code></td><td><code>False</code></td><td><code>True</code></td><td><code>True</code></td></tr>
+<tr><td><code>False</code></td><td><code>False</code></td><td><code>False</code></td><td><code>False</code></td><td><code>True</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Tabella di verità dell'operatore and (e)
+print(True and True)    # True
+print(True and False)   # False
+print(False and True)   # False
+print(False and False)  # False
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Tabella di verità dell'operatore or (o)
+print(True or True)    # True
+print(True or False)   # True
+print(False or True)   # True
+print(False or False)  # False
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Tabella di verità dell'operatore not (no)
+print(not True)   # False
+print(not False)  # True
+</code></pre></div>
+<p><strong>Esempio:</strong> spedizione gratuita. Un negozio offre spedizione gratuita ai clienti VIP <strong>oppure</strong>
+per acquisti superiori a R$ 200,00 - a patto che l'indirizzo <strong>non</strong> sia internazionale.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">cliente_vip = False
+valor_compra = 250.00
+endereco_internacional = False
+
+compra_acima_do_minimo = valor_compra &gt; 200
+tem_frete_gratis = (cliente_vip or compra_acima_do_minimo) and not endereco_internacional
+
+print(tem_frete_gratis)  # True
+</code></pre></div>
+<blockquote>
+<p>Puoi trovare anche gli operatori <code>&amp;</code> (e) e <code>|</code> (o) in alcuni codici -
+funzionano con i booleani e sono molto usati in librerie come Pandas. Nel Python "puro",
+però, la forma raccomandata e più leggibile è usare <code>and</code>, <code>or</code> e <code>not</code>.</p>
+</blockquote>
+<h2>Conversione</h2>
+<p>Possiamo convertire qualsiasi valore in booleano con la funzione nativa <code>bool()</code>. La regola è
+semplice: valori che rappresentano <strong>"vuoto" o "zero"</strong> diventano <code>False</code>; tutto il resto
+diventa <code>True</code>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Valore</th><th><code>bool(valore)</code></th></tr></thead>
+<tbody>
+<tr><td><code>0</code> e <code>0.0</code></td><td><code>False</code></td></tr>
+<tr><td><code>""</code> (stringa vuota)</td><td><code>False</code></td></tr>
+<tr><td><code>None</code></td><td><code>False</code></td></tr>
+<tr><td>Qualsiasi altro numero (es: <code>19</code>, <code>-3.5</code>)</td><td><code>True</code></td></tr>
+<tr><td>Qualsiasi stringa non vuota (es: <code>'O-'</code>, <code>' '</code>)</td><td><code>True</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">idade = 19
+tipo_sanguineo = 'O-'
+quantidade_filhos = 0
+telefone_fixo = None
+telefone_comercial = ''
+
+print(bool(idade))               # True  - número diferente de zero
+print(bool(tipo_sanguineo))      # True  - string com conteúdo
+print(bool(quantidade_filhos))   # False - zero
+print(bool(telefone_fixo))       # False - None
+print(bool(telefone_comercial))  # False - string vazia
+</code></pre></div>
+<h2>Rivisitando la motivazione</h2>
+<p>Ora possiamo risolvere il problema del login. <strong>Passo 1:</strong> confrontare i dati forniti
+dall'utente con i dati della registrazione:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">usuario_correto = usuario == usuario_cadastro
+senha_correta = senha == senha_cadastro
+
+print(f'Usuário correto? {usuario_correto}')  # Usuário correto? True
+print(f'Senha correta?   {senha_correta}')    # Senha correta?   False
+</code></pre></div>
+<p><strong>Passo 2:</strong> decidere se l'accesso deve essere concesso. Per questo, <strong>entrambe le</strong>
+condizioni devono essere vere, quindi usiamo l'operatore <code>and</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">conceder_acesso = usuario_correto and senha_correta
+print(f'Acesso concedido? {conceder_acesso}')  # Acesso concedido? False
+</code></pre></div>
+<p>Poiché la password digitata (<code>andre123</code>) è diversa da quella registrata (<code>andre321</code>), l'accesso
+è stato <strong>bloccato</strong>. Prova a modificare il valore della variabile <code>senha</code> all'inizio e
+ripetere il ragionamento!</p>
+<h2>Riepilogo del modulo</h2>
+<p>Abbiamo chiuso la base dei tipi di dati di Python. Ecco il riepilogo di ciò che abbiamo visto:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Tipo</th><th>Cosa memorizza</th><th>Esempio</th><th>Operazioni principali</th></tr></thead>
+<tbody>
+<tr><td><code>int</code></td><td>Numeri interi</td><td><code>42</code></td><td><code>+ - * / // % **</code></td></tr>
+<tr><td><code>float</code></td><td>Numeri decimali</td><td><code>3.14</code></td><td><code>+ - * / // % **</code>, <code>round()</code></td></tr>
+<tr><td><code>str</code></td><td>Testi</td><td><code>'Python'</code></td><td><code>+</code>, <code>*</code>, f-string, slicing, metodi</td></tr>
+<tr><td><code>bool</code></td><td>Valori logici</td><td><code>True</code></td><td>Confronti, <code>and</code>, <code>or</code>, <code>not</code></td></tr>
+<tr><td><code>NoneType</code></td><td>Assenza di valore</td><td><code>None</code></td><td>-</td></tr>
+</tbody>
+</table></div>
+<p>Funzioni native viste in questo modulo: <code>print()</code>, <code>type()</code>, <code>len()</code>,
+<code>round()</code>, <code>int()</code>, <code>float()</code>, <code>complex()</code>, <code>str()</code> e
+<code>bool()</code>.</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-booleanos-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-booleanos-q">Qual è il risultato di <code>bool('')</code> in Python?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Una stringa vuota è esattamente il caso che diventa False."><input type="radio" name="quiz-python-booleanos" value="0" /><span class="txt">True</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Le stringhe vuote rappresentano 'assenza di contenuto', quindi bool('') è False."><input type="radio" name="quiz-python-booleanos" value="1" /><span class="txt">False</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="bool() restituisce sempre True o False, mai None."><input type="radio" name="quiz-python-booleanos" value="2" /><span class="txt">None</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="bool('') non genera errori - le stringhe vuote sono un caso previsto dalla conversione."><input type="radio" name="quiz-python-booleanos" value="3" /><span class="txt">Genera un errore (TypeError)</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

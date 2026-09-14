@@ -1,0 +1,112 @@
+<div class="prose">
+<p>Un <strong>modulo</strong> è semplicemente un file <code>.py</code> contenente codice Python — funzioni, classi, variabili — pronto per essere riutilizzato. I moduli importati nella lezione precedente fanno parte della libreria standard di Python; in questa lezione creerai il tuo.</p>
+<h2>Motivazione</h2>
+<p>Hai scritto una classe che sa leggere un file CSV ed estrarre una qualsiasi delle sue colonne. È utile e ne avrai bisogno in vari notebook diversi — non ha senso copiare e incollare lo stesso codice ogni volta.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Lê um arquivo CSV e permite extrair colunas específicas
+class ArquivoCSV:
+
+    def __init__(self, caminho_arquivo: str):
+        self.caminho_arquivo = caminho_arquivo
+        self.linhas = self._ler_linhas()
+        self.colunas = self._extrair_nomes_colunas()
+
+    def _ler_linhas(self):
+        with open(self.caminho_arquivo, mode='r', encoding='utf-8') as arquivo:
+            return arquivo.readlines()
+
+    def _extrair_nomes_colunas(self):
+        return self.linhas[0].strip().split(',')
+
+    def extrair_coluna(self, indice_coluna: int):
+        valores = []
+        for linha in self.linhas[1:]:  # [1:] pula a linha de cabeçalho
+            valores.append(linha.strip().split(',')[indice_coluna])
+        return valores
+</code></pre></div>
+<p>Un file <code>banco.csv</code> per testare la classe:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">conteudo_banco_csv = '''age,job,marital,education,default,balance,housing,loan
+30,unemployed,married,primary,no,1787,no,no
+33,services,married,secondary,no,4789,yes,yes
+35,management,single,tertiary,no,1350,yes,no
+30,management,married,tertiary,no,1476,yes,yes
+59,blue-collar,married,secondary,no,0,yes,no
+35,management,single,tertiary,no,747,no,no
+36,self-employed,married,tertiary,no,307,yes,no
+39,technician,married,secondary,no,147,yes,no
+41,entrepreneur,married,tertiary,no,221,yes,no
+43,services,married,primary,no,-88,yes,yes
+'''
+
+with open('banco.csv', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write(conteudo_banco_csv)
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> in Google Colab, il comando magico <code>%%writefile nome_do_arquivo</code> fa esattamente la stessa cosa in un'unica cella. Qui usiamo <code>open()</code> perché funziona in qualsiasi ambiente Python, non solo su Colab.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">arquivo_banco = ArquivoCSV(caminho_arquivo='banco.csv')
+
+escolaridade = arquivo_banco.extrair_coluna(indice_coluna=3)
+print(escolaridade)
+# ['primary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'primary']
+</code></pre></div>
+<h2>Definizione</h2>
+<p>Un modulo proprio viene creato esattamente come il file di dati sopra: scriviamo il codice in un file <code>.py</code>. Python trova questo file automaticamente quando è nella stessa cartella del notebook — basta importarlo per nome, senza l'estensione.</p>
+<blockquote>
+<p><strong>Attenzione:</strong> nella pratica quotidiana, scriverai <code>arquivo_csv.py</code> direttamente in un editor di codice, con la classe <code>ArquivoCSV</code> della sezione precedente al suo interno — e non lo genererai da un'altra cella, come facciamo qui solo per far sì che il notebook riesca a creare il modulo da solo.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Conteúdo do arquivo arquivo_csv.py:
+
+# Lê um arquivo CSV e permite extrair colunas específicas
+class ArquivoCSV:
+
+    def __init__(self, caminho_arquivo: str):
+        self.caminho_arquivo = caminho_arquivo
+        self.linhas = self._ler_linhas()
+        self.colunas = self._extrair_nomes_colunas()
+
+    def _ler_linhas(self):
+        with open(self.caminho_arquivo, mode='r', encoding='utf-8') as arquivo:
+            return arquivo.readlines()
+
+    def _extrair_nomes_colunas(self):
+        return self.linhas[0].strip().split(',')
+
+    def extrair_coluna(self, indice_coluna: int):
+        valores = []
+        for linha in self.linhas[1:]:
+            valores.append(linha.strip().split(',')[indice_coluna])
+        return valores
+</code></pre></div>
+<h2>Rivisitando la motivazione</h2>
+<p>Ora importiamo la classe <strong>dal modulo</strong> che abbiamo appena creato, invece di averla definita direttamente nel notebook:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">from arquivo_csv import ArquivoCSV
+
+arquivo_banco_modulo = ArquivoCSV(caminho_arquivo='banco.csv')
+
+escolaridade = arquivo_banco_modulo.extrair_coluna(indice_coluna=3)
+print(escolaridade)
+# ['primary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'primary']
+</code></pre></div>
+<p>Il risultato è identico a quello di prima — la differenza è che questa classe ora può essere riutilizzata in <strong>qualsiasi</strong> notebook che si trovi nella stessa cartella, basta importarla.</p>
+<p>Rimangono accessibili solo i nomi che esistono realmente dentro il modulo. Provare a usare un metodo mai definito genera un <code>AttributeError</code> (visto nel Modulo 03):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
+    soma = arquivo_banco_modulo._somar_saldos(coluna='balance')
+except AttributeError as exc:
+    print(f'Erro: {exc}')
+# Erro: 'ArquivoCSV' object has no attribute '_somar_saldos'
+</code></pre></div>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-modulos-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-modulos-q">Cosa occorre fare per riutilizzare una classe definita in <code>arquivo_csv.py</code> dentro un altro notebook, nella stessa cartella?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Copiare e incollare è esattamente ciò che i moduli evitano — l'obiettivo è riutilizzare senza duplicare codice."><input type="radio" name="quiz-python-modulos" value="0" /><span class="txt">Copiare e incollare il codice della classe nel nuovo notebook</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Basta che il file `arquivo_csv.py` sia nella stessa cartella perché qualsiasi notebook possa importare la classe al suo interno."><input type="radio" name="quiz-python-modulos" value="1" /><span class="txt">Importare la classe dal modulo, con <code>from arquivo_csv import NomeDaClasse</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Un modulo Python è un file `.py`, non un notebook — non serve (né è corretto) cambiare l'estensione."><input type="radio" name="quiz-python-modulos" value="2" /><span class="txt">Rinominare il file <code>arquivo_csv.py</code> in <code>arquivo_csv.ipynb</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Ciò che conta è che il file `.py` esista nella cartella; non serve eseguire il notebook dove la classe è stata scritta originariamente."><input type="radio" name="quiz-python-modulos" value="3" /><span class="txt">Eseguire il notebook originale prima di aprire il nuovo</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

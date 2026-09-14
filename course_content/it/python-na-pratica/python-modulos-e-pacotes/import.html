@@ -1,0 +1,89 @@
+<div class="prose">
+<p>Python viene con una <strong>libreria standard</strong> enorme — la cosiddetta filosofia "<em>batterie incluse</em>" — piena di moduli pronti per compiti comuni. Per usare uno qualsiasi di essi, occorre prima <strong>importarlo</strong>.</p>
+<h2>import</h2>
+<p>Il modo più semplice è <code>import nome_do_modulo</code>, che porta il modulo <strong>intero</strong>. Poi, ogni funzione o variabile al suo interno si accede con <code>nome_do_modulo.nome_do_item</code>.</p>
+<p><strong>Esempio:</strong> il modulo <code>random</code>, per generare valori e scelte casuali.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import random
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">opcoes = ['pedra', 'papel', 'tesoura']
+
+escolha_do_computador = random.choice(opcoes)
+print(escolha_do_computador)
+# tesoura
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numero_aleatorio = random.random()  # float aleatório no intervalo [0, 1)
+print(numero_aleatorio)
+# 0.5191044337047542
+</code></pre></div>
+<p><strong>Esempio:</strong> il modulo <code>math</code>, con funzioni e costanti matematiche.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import math
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">potencia = math.pow(10, 3)
+print(potencia)
+# 1000.0
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># math.ceil() sempre arredonda PARA CIMA, diferente do round() visto no Módulo 01
+numero_arredondado = math.ceil(10.1)
+print(numero_arredondado)
+# 11
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(math.pi)
+# 3.141592653589793
+</code></pre></div>
+<h2>from / import</h2>
+<p>Quando serve solo uno o alcuni elementi specifici di un modulo, importiamo esattamente questi nomi con <code>from modulo import nome</code>. Il vantaggio è usare il nome direttamente, senza il prefisso del modulo.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">from modulo import nome
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> solo ciò che è stato esplicitamente importato diventa disponibile. Se il modulo <code>time</code> ha le funzioni <code>time()</code> e <code>sleep()</code>, ma importiamo solo <code>time</code>, provare a usare <code>sleep()</code> genera un <code>NameError</code> (visto nel Modulo 03) — semplicemente non esiste nel notebook.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">from time import time
+
+# 'time' foi importado e funciona
+print(time())  # segundos desde 01/01/1970 (a "época Unix")
+
+# sleep(1)  # NameError: name 'sleep' is not defined (sleep não foi importado)
+# 1789135666.9954908
+</code></pre></div>
+<p>Per importare più di un nome dallo stesso modulo, li separiamo con la virgola:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">from time import time, sleep
+
+instante_inicial = time()
+sleep(1)  # pausa a execução do programa por 1 segundo
+instante_final = time()
+
+print(f'Tempo decorrido: {instante_final - instante_inicial:.2f} segundos')
+# Tempo decorrido: 1.00 segundos
+</code></pre></div>
+<h2>from / import / as</h2>
+<p>Possiamo dare un alias (rinominare) a un modulo o a un elemento importato con <code>as</code>. È utile per accorciare nomi lunghi o evitare conflitti con altri nomi già usati nel codice.</p>
+<p><strong>Esempio:</strong> la classe <code>datetime</code>, che risiede dentro il modulo dello stesso nome, <code>datetime</code> — con l'alias <code>dt</code> per non confondere i due.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">from datetime import datetime as dt
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(dt.now())
+# 2026-09-11 11:07:48.102980
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(dt.now().day)
+# 11
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(dt.now().year)
+# 2026
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> alias brevi e consolidati nel mercato — come <code>import pandas as pd</code> e <code>import numpy as np</code> — sono una convenzione che vedrai in praticamente ogni codice di analisi dati in Python, inclusi i prossimi moduli di questo corso.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-import-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-import-q">Dopo <code>from time import time</code>, perché <code>sleep(1)</code> genera un <code>NameError</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Il modulo `time` ha sì una funzione `sleep()` — il problema è che non è stata importata."><input type="radio" name="quiz-python-import" value="0" /><span class="txt">Perché il modulo <code>time</code> non ha la funzione <code>sleep()</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="`from time import time` porta solo il nome `time`; `sleep` continua a non esistere finché non viene importato anch'esso."><input type="radio" name="quiz-python-import" value="1" /><span class="txt">Perché solo i nomi esplicitamente importati diventano disponibili nel notebook</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="È il contrario: `from modulo import nome` porta solo il nome richiesto, a differenza di `import modulo`, che porta tutto."><input type="radio" name="quiz-python-import" value="2" /><span class="txt">Perché <code>from / import</code> porta sempre il modulo intero, come <code>import</code></span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="`sleep()` non richiede `as` per funzionare — deve solo essere importata, con o senza alias."><input type="radio" name="quiz-python-import" value="3" /><span class="txt">Perché <code>sleep()</code> richiede la parola chiave <code>as</code></span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

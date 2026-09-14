@@ -1,0 +1,290 @@
+<div class="prose">
+<p>È arrivato il momento di uscire dalla teoria e metterci le mani sul codice! In questo progetto userai tutto ciò che hai imparato nel Modulo 01 — <strong>variabili</strong>, <strong>numeri</strong>, <em><strong>stringhe</strong></em> e <strong>booleani</strong> — per risolvere, in un'unica storia, una sfida molto simile a quella che appare nella quotidianità di chi lavora con i dati.</p>
+<h2>Il contesto</h2>
+<p>La <strong>PataVet</strong> è una clinica veterinaria di quartiere che sta crescendo rapidamente e ha deciso di abbandonare definitivamente i quaderni di appunti: tutta la routine — registrazione degli animali, cassa delle visite, accesso dei veterinari al sistema — passerà a funzionare tramite codice. Sei stato/a appena assunto/a come <strong>Analista Dati Jr.</strong> per gestire questa digitalizzazione.</p>
+<p>Il tuo primo giorno inizia ora. Il team ti ha contattato nella chat interna con una lista di compiti, organizzati in <strong>missioni</strong>. Ogni missione usa una parte di ciò che hai imparato nel Modulo 01 — e, alla fine della giornata, metterai tutto insieme in un pannello da presentare al direttore della clinica.</p>
+<blockquote>
+<p><strong>Suggerimento:</strong> non esiste un solo modo "corretto" di risolvere ogni missione. Dopo ciascuna troverai il risultato atteso, ma il percorso per arrivarci è tuo. Prova, sbaglia, correggi e riprova — è così che si imparano a programmare.</p>
+</blockquote>
+<h2>Obiettivo</h2>
+<p>Al termine di questo progetto, avrai praticato, all'interno di un unico scenario connesso:</p>
+<ul>
+<li>Creazione e denominazione di <strong>variabili</strong>;</li>
+<li>Operazioni e conversioni con <strong>numeri</strong> (<code>int</code> e <code>float</code>);</li>
+<li>Manipolazione di <em><strong>stringhe</strong></em> (concatenazione, <em>f-string</em>, slicing e metodi);</li>
+<li>Presa di decisioni con <strong>booleani</strong> (confronti e operatori logici).</li>
+</ul>
+<p>Niente esercizi isolati e senza contesto: tutto qui avviene all'interno della stessa storia, così come accadrebbe in un progetto reale.</p>
+<h2>Requisiti</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Dettaglio</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Questo notebook aperto e pronto per l'esecuzione (la sezione 1 del Modulo 01 ricorda le scorciatoie)</td></tr>
+<tr><td>Concetti del Modulo 01</td><td>Variabili, numeri, <em>stringhe</em> e booleani</td></tr>
+<tr><td>Funzioni native</td><td><code>print()</code>, <code>type()</code>, <code>round()</code>, <code>int()</code></td></tr>
+<tr><td>Librerie esterne</td><td>Nessuna! Solo Python puro, proprio come hai imparato</td></tr>
+</tbody>
+</table></div>
+<p>Non è necessaria alcuna conoscenza oltre a quanto visto nel Modulo 01. Se qualche missione dovesse sembrare difficile, il suggerimento di ciascuna indica la sezione giusta da rivedere.</p>
+<h2>Come funziona il progetto</h2>
+<p>Il notebook è diviso in <strong>5 missioni</strong>, nell'ordine in cui la PataVet ti ha contattato:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missione</th><th>Tema</th><th>Concetto principale</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Scheda dell'animale</td><td>Variabili e tipi</td></tr>
+<tr><td>2</td><td>Chiusura di cassa delle visite</td><td>Numeri</td></tr>
+<tr><td>3</td><td>Unificazione della registrazione tra sedi</td><td><em>Stringhe</em></td></tr>
+<tr><td>4</td><td>Centrale di accesso e benefici</td><td>Booleani</td></tr>
+<tr><td>5</td><td>Pannello per il direttore</td><td>Tutto insieme!</td></tr>
+</tbody>
+</table></div>
+<p>In ogni missione troverai: un messaggio da parte di qualcuno del team, con la richiesta; una cella di codice con i dati già pronti e commenti <code># TODO</code> che indicano dove devi scrivere; il <strong>risultato atteso</strong>, un'anteprima di ciò che deve apparire sullo schermo quando è corretto; e un <strong>suggerimento</strong>, per quando ti blocchi.</p>
+<h2>Missione 1 — Scheda dell'animale</h2>
+<blockquote>
+<p><strong>Renata (Reception):</strong> "Ciao, benvenuto/a nel team! Il primo animale registrato nel nuovo sistema sarà quello del signor Roberto, Toby. Puoi creare le variabili con i suoi dati di base, per favore?"</p>
+</blockquote>
+<p><strong>La tua missione:</strong> creare le 5 variabili sottostanti (scegli tu i valori, ma rispetta il tipo richiesto) e poi stampare il tipo di ciascuna con <code>type()</code>, solo per confermare che sia tutto corretto.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Variabile</th><th>Tipo atteso</th><th>Esempio di valore</th></tr></thead>
+<tbody>
+<tr><td><code>nome_pet</code></td><td><code>str</code></td><td><code>'Toby'</code></td></tr>
+<tr><td><code>especie</code></td><td><code>str</code></td><td><code>'Cachorro'</code></td></tr>
+<tr><td><code>idade_meses</code></td><td><code>int</code></td><td><code>14</code></td></tr>
+<tr><td><code>peso_kg</code></td><td><code>float</code></td><td><code>8.4</code></td></tr>
+<tr><td><code>vacinado</code></td><td><code>bool</code></td><td><code>True</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Ficha do pet Toby
+# TODO: crie as 5 variáveis pedidas pela Renata
+# nome_pet = ...
+# especie = ...
+# idade_meses = ...
+# peso_kg = ...
+# vacinado = ...
+
+
+# TODO: imprima o tipo de cada variável, uma por linha, usando type()
+</code></pre></div>
+<p><strong>Risultato atteso</strong> (i valori possono variare, ma i tipi devono essere questi, in questo ordine):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">&lt;class 'str'&gt;
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;
+&lt;class 'bool'&gt;
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> rivedi la sezione 2.3 (Tipi nativi) del Modulo 01 se hai dubbi su quale tipo usare in ciascun caso. E non dimenticare: i nomi delle variabili seguono lo standard <code>snake_case</code>.</p>
+</blockquote>
+<h2>Missione 2 — Chiusura di cassa delle visite</h2>
+<blockquote>
+<p><strong>Marcelo (Finanza):</strong> "Ho chiuso qui i primi tre giorni di visite già nel nuovo sistema. Mi serve lo scontrino medio di ogni giorno e lo scontrino medio dell'intero periodo per la riunione di domani. Ah, e il martedì è cresciuto molto rispetto al lunedì? Farebbe colpo sul Dr. Otávio."</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead><tr><th>Giorno</th><th>Valore totale delle visite (R$)</th><th>Quantità di visite</th></tr></thead>
+<tbody>
+<tr><td>Lunedì</td><td>980.00</td><td>7</td></tr>
+<tr><td>Martedì</td><td>1240.50</td><td>9</td></tr>
+<tr><td>Mercoledì</td><td>705.30</td><td>5</td></tr>
+</tbody>
+</table></div>
+<p><strong>La tua missione:</strong></p>
+<ol>
+<li>Calcolare lo scontrino medio di ogni giorno, arrotondato a 2 cifre decimali, nelle variabili <code>ticket_medio_segunda</code>, <code>ticket_medio_terca</code> e <code>ticket_medio_quarta</code>;</li>
+<li>Calcolare lo <strong>scontrino medio dell'intero periodo</strong> in <code>ticket_medio_periodo</code> — ricorda la differenza tra fare la media semplice dei tre scontrini e applicare la formula al totale del periodo (Modulo 01, sezione 3.5);</li>
+<li>Calcolare in <code>crescimento_terca_percentual</code> quante <strong>percento</strong> le visite del martedì sono cresciute rispetto a quelle del lunedì;</li>
+<li>Stampare tutto con etichette, come nel risultato atteso.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Consultas dos três primeiros dias no sistema novo
+valor_consultas_segunda = 980.00
+quantidade_consultas_segunda = 7
+
+valor_consultas_terca = 1240.50
+quantidade_consultas_terca = 9
+
+valor_consultas_quarta = 705.30
+quantidade_consultas_quarta = 5
+
+# TODO 1: ticket_medio_segunda, ticket_medio_terca e ticket_medio_quarta
+
+
+# TODO 2: ticket_medio_periodo
+# (some todos os valores, some todas as quantidades e só depois divida)
+
+
+# TODO 3: crescimento_terca_percentual
+# (fórmula: (valor_novo - valor_antigo) / valor_antigo * 100)
+
+
+# TODO 4: imprima os resultados com rótulos
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Ticket médio segunda: 140.00
+Ticket médio terça:   137.83
+Ticket médio quarta:  141.06
+Ticket médio período: 139.32
+Crescimento de terça em relação à segunda: 26.58%
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> usa <code>round()</code> per arrotondare e una <em>f-string</em> con <code>:.2f</code> per formattare l'output. Se il tuo scontrino medio del periodo è risultato diverso, verifica di non aver fatto la media semplice dei tre scontrini invece di applicare la formula al totale del periodo — rileggi la sezione 3.5.</p>
+</blockquote>
+<h2>Missione 3 — Unificazione della registrazione tra sedi</h2>
+<blockquote>
+<p><strong>Juliana (Integrazione Dati):</strong> "La PataVet ha appena aperto una seconda sede, e il sistema di lì conserva l'indirizzo tutto insieme, in un unico testo separato da punto e virgola. Qui noi conserviamo ogni pezzo in una variabile. Riesci a convertirlo per me? Ho anche ricevuto la registrazione di un tutore digitata tutta storta — sistemala anche tu, per favore."</p>
+</blockquote>
+<p><strong>Parte A — Indirizzo.</strong> Nel sistema della nuova sede, l'indirizzo è memorizzato in <code>endereco_antigo</code>, con quattro pezzi separati da <code>;</code>: <strong>via</strong>, <strong>città</strong>, <strong>stato</strong> e <strong>CAP</strong>. Separali nelle variabili <code>rua</code>, <code>cidade_clinica</code>, <code>estado</code> e <code>cep</code> e stampa ognuna.</p>
+<p><strong>Parte B — Registrazione del tutore.</strong> Un tutore ha digitato il proprio nome con spazi in eccesso e lettere disordinate. Salva in <code>nome_tutor</code> il nome senza gli spazi alle estremità e con la prima lettera di ogni parola maiuscola, e stampalo.</p>
+<p><strong>Parte C — Messaggio di benvenuto.</strong> Con una <em>f-string</em>, costruisci <code>mensagem_boas_vindas</code> combinando <code>nome_tutor</code>, <code>nome_pet</code> (dalla Missione 1) e <code>cidade_clinica</code>, in questo formato, e stampalo: <code>Bem-vindo(a) à PataVet, &lt;nome do tutor&gt;! Cadastramos &lt;nome do pet&gt; na nossa unidade de &lt;cidade&gt;.</code></p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Parte A: separando o endereço da nova unidade em 4 variáveis
+endereco_antigo = 'Rua dos Ipês, 120;Campinas;SP;13070-000'
+
+# TODO: crie rua, cidade_clinica, estado e cep e imprima cada uma
+
+
+# Parte B: limpando o cadastro de um tutor
+nome_digitado = '   ricardo NUNES gomes   '
+
+# TODO: crie nome_tutor, já limpo e formatado, e imprima
+
+
+# Parte C: mensagem de boas-vindas
+# TODO: monte mensagem_boas_vindas com uma f-string e imprima
+</code></pre></div>
+<p><strong>Risultato atteso</strong> (Parti A e B; il messaggio della Parte C dipende dal nome che hai scelto nella Missione 1):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Rua dos Ipês, 120
+Campinas
+SP
+13070-000
+Ricardo Nunes Gomes
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> per la Parte A, ricorda <code>.split(';')</code> che ha separato <code>latitude</code> e <code>longitude</code> nella sezione 4.6 del Modulo 01 — qui è lo stesso trucco, solo che spacchetta in 4 variabili invece di 2. Per la Parte B, combina <code>.strip()</code> con <code>.title()</code>, come nell'esempio del nome digitato dall'utente (sezione 4.4).</p>
+</blockquote>
+<h2>Missione 4 — Centrale di accesso e benefici</h2>
+<blockquote>
+<p><strong>Fernando (Operazioni):</strong> "Due cose urgenti: prima, devo sapere se un tutore specifico ha diritto a una visita di controllo gratuita. Seconda, Juliana, una delle veterinarie, sta cercando di entrare nel nuovo sistema con l'utente e la password di sempre, e ho bisogno che il codice mi dica se l'accesso deve essere consentito."</p>
+</blockquote>
+<p><strong>Parte A — Visita di controllo gratuita.</strong> La regola della PataVet è: il tutore ha diritto a una visita di controllo gratuita se è un <strong>cliente VIP</strong> <em>oppure</em> se ha già speso <strong>più di R$ 500,00</strong> nella cronologia — ma solo se la sua sede <strong>partecipa alla promozione</strong>. Crea <code>tem_retorno_gratuito</code> combinando i dati della cella con confronti, <code>and</code> e <code>or</code>.</p>
+<p><strong>Parte B — Accesso della veterinaria.</strong> Confronta l'utente e la password che Juliana ha digitato con quelli registrati, salvando i risultati in <code>usuario_correto</code> e <code>senha_correta</code>. Poi crea <code>acesso_liberado</code>, che può essere <code>True</code> solo se <strong>entrambi</strong> i confronti sono veri.</p>
+<p>Alla fine, stampa i quattro risultati con etichette.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Parte A: o tutor tem direito a retorno gratuito?
+cliente_vip = False
+valor_gasto_historico = 612.40
+unidade_participante = True
+
+# TODO: crie tem_retorno_gratuito
+
+
+# Parte B: o acesso da veterinária deve ser liberado?
+usuario_digitado = 'juliana.vet'
+senha_digitada = 'pata2024'
+
+usuario_cadastro = 'juliana.vet'
+senha_cadastro = 'pata2023'
+
+# TODO: crie usuario_correto, senha_correta e acesso_liberado
+
+
+# TODO: imprima os quatro resultados com rótulos
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Retorno gratuito? True
+Usuário correto?  True
+Senha correta?    False
+Acesso liberado?  False
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> Juliana ha digitato <code>pata2024</code>, ma la password registrata è <code>pata2023</code> — probabilmente si è confusa con l'anno. Cogliere questo tipo di dettaglio è esattamente il ruolo di un sistema di <em>login</em>. Se il tuo risultato è risultato diverso, rivedi la sezione 5.3 (operatori logici) e l'esempio della spedizione gratuita, subito dopo la tabella di verità.</p>
+</blockquote>
+<h2>Missione 5 — Pannello per il direttore</h2>
+<blockquote>
+<p><strong>Dr. Otávio (Direttore della clinica):</strong> "Mi è piaciuto il lavoro di oggi! Per chiudere la giornata in bellezza, monta un unico pannello che riunisca tutto quello che hai scoperto — registrazione, cassa, integrazione e accesso. Lo mostrerò alla riunione di domani mattina."</p>
+</blockquote>
+<p><strong>La tua missione:</strong> usando <code>print()</code> e <em>f-string</em>, monta un pannello che riunisca in un unico blocco di testo, almeno:</p>
+<ul>
+<li>Il nome e la specie dell'animale (Missione 1);</li>
+<li>Lo scontrino medio del periodo (Missione 2);</li>
+<li>Il messaggio di benvenuto (Missione 3);</li>
+<li>Se il tutore di esempio ha diritto alla visita gratuita e se l'accesso della veterinaria è stato consentito (Missione 4).</li>
+</ul>
+<p>Metti cura nella formattazione: usa <code>'-' * 40</code> (o il carattere che preferisci) per creare linee separatrici. Qui <strong>non esiste un unico gabarito</strong> — il pannello è tuo, personalizzalo!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Painel para o diretor — PataVet
+# TODO: monte o seu painel reaproveitando as variáveis das Missões 1 a 4.
+# Use print(), f-strings e o operador * para criar os separadores.
+</code></pre></div>
+<p><strong>Esempio di risultato</strong> (il tuo può — e deve — risultare diverso; questa è solo un'idea di formato):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">----------------------------------------
+Toby — Cachorro
+----------------------------------------
+Ticket médio do período: R$ 139.32
+Bem-vindo(a) à PataVet, Ricardo Nunes Gomes! Cadastramos Toby na nossa unidade de Campinas.
+Retorno gratuito no cadastro de exemplo? True
+Acesso da veterinária liberado?          False
+----------------------------------------
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> se ti blocchi con la formattazione, comincia in modo semplice: un <code>print()</code> per riga risolve già il problema. Solo dopo che funziona vale la pena curare i separatori e l'allineamento.</p>
+</blockquote>
+<h2>Sfide extra</h2>
+<p>Le missioni sopra già coprono tutto ciò che ti serve del Modulo 01. Le sfide sottostanti sono <strong>completamente opzionali</strong> — considerale come una "modalità difficile" per chi vuole spremere un po' di più i concetti. Procedi nell'ordine che preferisci, o salta direttamente a quella che ti attira più.</p>
+<h2>Extra 1 — Convenzione con sconto</h2>
+<p>La PataVet ha stretto una partnership con alcune assicurazioni per animali. Ogni codice di convenzione conserva lo sconto (in %) negli <strong>ultimi due caratteri</strong>. Estrai lo sconto dal codice tagliando la <em>stringa</em>, convertilo in <code>int</code> e applicalo a <code>valor_consulta</code>, arrotondando a 2 cifre decimali.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 1: convênio com desconto
+codigo_convenio = 'PETPLAN15'
+valor_consulta = 180.00
+
+# TODO: crie desconto_percentual (int) e valor_com_desconto, e imprima os dois
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Desconto: 15%
+Valor com desconto: R$ 153.00
+</code></pre></div>
+<h2>Extra 2 — Scheda pari o dispari</h2>
+<p>La reception separa le schede di assistenza in file pari e dispari, guardando il numero della scheda. Usa l'operatore <code>%</code> per calcolare <code>resto_da_divisao</code> del numero della scheda per 2 e, con un confronto, crea <code>ficha_par</code> (ricorda l'esempio del numero dell'ordine nella sezione 3.3).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 2: ficha par ou ímpar
+numero_ficha = 4831
+
+# TODO: crie resto_da_divisao e ficha_par, e imprima os dois
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Resto da divisão por 2: 1
+Ficha par? False
+</code></pre></div>
+<h2>Extra 3 — Giorno record</h2>
+<p>Senza nessuna struttura nuova — solo confronti e operatori logici — scopri se il <strong>martedì</strong> ha avuto lo scontrino medio più alto dei tre giorni, cioè se <code>ticket_medio_terca</code> è stato maggiore di <code>ticket_medio_segunda</code> <strong>e</strong> maggiore di <code>ticket_medio_quarta</code> (variabili della Missione 2).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 3: a terça-feira foi o dia de maior ticket médio?
+# TODO: crie terca_foi_o_melhor_dia e imprima o resultado
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">A terça teve o maior ticket médio? False
+</code></pre></div>
+<h2>Extra 4 — Il tutore ha valutato la visita?</h2>
+<p>Alcune visite non hanno ancora una valutazione, e il sistema lo memorizza come <code>None</code>. Usa <code>bool()</code> per creare <code>tutor_avaliou</code>. Poi, cambia il voto in <code>5</code> e riesegui. E se il voto fosse <code>0</code>? Pensa al risultato prima di testarlo (la tabella della sezione 5.4 ha la risposta).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 4: o tutor avaliou a consulta?
+nota_avaliacao = None
+
+# TODO: crie tutor_avaliou usando bool() e imprima
+</code></pre></div>
+<p><strong>Risultato atteso</strong> (con <code>nota_avaliacao = None</code>):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Tutor avaliou? False
+</code></pre></div>
+<h2>Extra 5 — Tessera di vaccinazione elegante</h2>
+<p>Monta una tessera di vaccinazione decorata per l'animale di esempio, con intestazione, dati e stato. Combina la ripetizione di caratteri (<code>*</code>), <em>f-string</em> e metodi come <code>.upper()</code> e <code>.title()</code>. Qui non c'è un risultato atteso: lascia libera la creatività!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 5: sua carteirinha estilosa
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist di autovalutazione</h2>
+<p>Senza verifiche, senza voti — solo un rapido controllo per capire dove sei arrivato/a:</p>
+<ul>
+<li>Ho creato le 5 variabili della Missione 1 e confermato i tipi con <code>type()</code></li>
+<li>Ho calcolato gli scontrini medi giornalieri e quello del periodo, senza cadere nella trappola della media semplice (Missione 2)</li>
+<li>Ho separato l'indirizzo della nuova sede in 4 variabili con <code>.split(';')</code> (Missione 3)</li>
+<li>Ho pulito il nome del tutore con <code>.strip()</code> e <code>.title()</code> e ho costruito il messaggio con una <em>f-string</em> (Missione 3)</li>
+<li>Ho combinato confronti con <code>and</code> e <code>or</code> per decidere la visita gratuita e l'accesso della veterinaria (Missione 4)</li>
+<li>Ho montato il pannello finale riutilizzando le variabili delle missioni precedenti (Missione 5)</li>
+<li>Ho provato almeno una delle sfide extra</li>
+</ul>
+<p>Se la maggior parte delle voci è segnata, congratulazioni: hai messo in pratica tutto ciò che la PataVet (e il Modulo 01) si aspettavano da te.</p>
+<blockquote>
+<p>Preparati, perché nel <strong>Modulo 02</strong> la storia continua: la PataVet non smette di crescere, e conservare ogni visita in una variabile separata non basterà più. È ora di conoscere <strong>liste</strong>, <strong>insiemi</strong> e <strong>dizionari</strong>!</p>
+</blockquote>
+</div>

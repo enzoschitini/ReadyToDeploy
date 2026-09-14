@@ -1,0 +1,263 @@
+<div class="prose">
+<p>È arrivato il momento di uscire dalla teoria e mettere le mani sul codice! In questo progetto userai tutto ciò che hai imparato nel Modulo 07 — <strong>import / from / as</strong>, <strong>moduli</strong>, <strong>pacchetti</strong> e <strong>pacchetti di terzi</strong> (PyPI, pip e <code>requests</code>) — per risolvere, in un'unica storia, una sfida molto simile a quella che appare nella pratica quotidiana di chi lavora con i dati.</p>
+<h2>Il contesto</h2>
+<p><strong>CasaNova Mudanças</strong> è una startup di traslochi residenziali che sta espandendosi in nuove città. Il team tecnologico è piccolo, e tutti hanno finito per copiare e incollare gli stessi pezzi di codice da un notebook all'altro — il disordine sta già dando fastidio. Sei appena stato/a assunto/a come <strong>Analista Dati Jr.</strong> e la tua prima missione è aiutare a mettere ordine in questa casa (letteralmente).</p>
+<p>Il team ti ha contattato in chat interna con una lista di compiti per oggi, organizzati in <strong>missioni</strong>. Ogni missione usa una parte di ciò che hai imparato nel Modulo 07 — e, alla fine della giornata, metterai tutto insieme in un pannello da presentare alla riunione di espansione.</p>
+<blockquote>
+<p><strong>Suggerimento:</strong> non esiste un solo modo "giusto" per risolvere ogni missione. Dopo ognuna troverai il risultato atteso, ma il percorso per arrivarci è tuo. Prova, sbaglia, correggi e riprova — è così che si impara a programmare.</p>
+</blockquote>
+<h2>Obiettivo</h2>
+<p>Alla fine di questo progetto, avrai praticato, all'interno di un unico scenario collegato:</p>
+<ul>
+<li>Importazione di moduli con <code>import</code>, <code>from ... import</code> e <code>from ... import as</code>;</li>
+<li>Creazione del tuo <strong>modulo</strong> (<code>.py</code>) con una classe riutilizzabile;</li>
+<li>Organizzazione di moduli correlati dentro un <strong>pacchetto</strong> (cartella con <code>__init__.py</code>);</li>
+<li>Installazione e uso di un <strong>pacchetto di terzi</strong> (<code>requests</code>) per consultare un servizio su internet.</li>
+</ul>
+<p>Niente esercizi isolati e senza contesto: tutto qui avviene all'interno della stessa storia, così come accadrebbe in un progetto vero.</p>
+<h2>Requisiti</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Requisito</th><th>Dettaglio</th></tr></thead>
+<tbody>
+<tr><td>Google Colab</td><td>Questo notebook aperto e pronto per essere eseguito</td></tr>
+<tr><td>Concetti dal Modulo 01 al 07</td><td>Variabili, <em>string</em>, liste, <code>if</code>, <code>for</code>, funzioni, file, classi/oggetti, moduli e pacchetti</td></tr>
+<tr><td>Funzioni e moduli usati</td><td><code>open()</code>, <code>os.makedirs()</code>, <code>os.path.exists()</code>, <code>math.ceil()</code>, <code>datetime</code>, <code>import requests</code></td></tr>
+<tr><td>Librerie esterne</td><td><code>requests</code> (via <code>pip install requests</code>)</td></tr>
+</tbody>
+</table></div>
+<p>Non è necessaria alcuna conoscenza oltre a quella vista fino al Modulo 07. Se qualche missione sembra difficile, il suggerimento di ciascuna indica la sezione giusta da rivedere.</p>
+<h2>Come funziona il progetto</h2>
+<p>Il notebook è diviso in <strong>5 missioni</strong>, nell'ordine in cui CasaNova ti ha contattato:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Missione</th><th>Tema</th><th>Concetto principale</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Stima del trasloco</td><td><code>import</code> / <code>from import</code> / <code>as</code></td></tr>
+<tr><td>2</td><td>Modulo degli ordini</td><td>Moduli</td></tr>
+<tr><td>3</td><td>Impacchettare la checklist</td><td>Pacchetti</td></tr>
+<tr><td>4</td><td>Verificare il CAP del nuovo cliente</td><td>Pacchetti di terzi (pip + requests)</td></tr>
+<tr><td>5</td><td>Pannello di espansione</td><td>Tutto insieme!</td></tr>
+</tbody>
+</table></div>
+<p>In ogni missione troverai: un messaggio di qualcuno del team, con la richiesta; una cella di codice con i dati già pronti e commenti <code># TODO</code> che indicano dove devi scrivere; il <strong>risultato atteso</strong>, un'anteprima di ciò che deve apparire a schermo quando è corretto; e un <strong>suggerimento</strong>, per quando ti blocchi.</p>
+<h2>Missione 1 — Stima del trasloco</h2>
+<blockquote>
+<p><strong>Larissa (Coordinatrice Operazioni):</strong> "Ciao, benvenuto/a nel team! Devo sapere quanti camion serviranno per il trasloco di un nuovo cliente, e voglio anche registrare la data programmata, con giorno, mese e anno separati, da incollare direttamente nel cronoprogramma."</p>
+</blockquote>
+<p><strong>La tua missione:</strong></p>
+<ol>
+<li>Importa il modulo <code>math</code> (con <code>import math</code>) e usa <code>math.ceil()</code> per calcolare quanti camion sono necessari, salvando il risultato in <code>caminhoes_necessarios</code> — ogni camion trasporta fino a <code>capacidade_caminhao_m3</code> metri cubi, e nessun trasloco viaggia su un camion "spezzato a metà", quindi qualsiasi resto richiede un camion intero in più;</li>
+<li>Importa la classe <code>datetime</code> con l'alias <code>dt</code> (con <code>from datetime import datetime as dt</code>) e crea <code>data_mudanca</code> con il giorno, il mese e l'anno indicati da Larissa;</li>
+<li>Stampa i due risultati con etichette, nel formato del risultato atteso.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dados da mudança do cliente novo
+volume_mudanca_m3 = 18.5
+capacidade_caminhao_m3 = 7
+
+dia_agendado = 16
+mes_agendado = 3
+ano_agendado = 2026
+
+# TODO 1: importe math e crie caminhoes_necessarios
+
+
+# TODO 2: importe datetime como dt e crie data_mudanca com dt(ano, mes, dia)
+
+
+# TODO 3: imprima os dois resultados com rótulos, usando data_mudanca.day,
+# data_mudanca.month e data_mudanca.year
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Caminhões necessários: 3
+Data da mudança: 16/3/2026
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> <code>math.ceil()</code> arrotonda sempre PER ECCESSO — rileggi la sezione 1.1 del Modulo 07 se <code>18.5 / 7</code> ti confonde, perché <code>round()</code> sbaglierebbe questo calcolo (arrotonderebbe per difetto, e resterebbe un mobile a terra sul camion). Per la data, la sezione 1.3 mostra lo stesso <code>from datetime import datetime as dt</code> — qui basta sostituire <code>dt.now()</code> con <code>dt(ano, mes, dia)</code> per una data specifica.</p>
+</blockquote>
+<h2>Missione 2 — Modulo degli ordini</h2>
+<blockquote>
+<p><strong>Fernanda (IT e Infrastruttura):</strong> "Abbiamo già incollato lo stesso codice di lettura CSV in circa quattro notebook diversi, e ogni volta che serve correggere qualcosa, è una correzione in ogni posto. Puoi creare un modulo per questo, per favore? Così importiamo da un solo posto."</p>
+</blockquote>
+<p><strong>La tua missione:</strong> basandoti sugli ordini di trasloco della settimana (già salvati in <code>mudancas.csv</code>), crea il modulo <code>pedidos.py</code> con una classe <code>ArquivoPedidos</code> (uguale alla <code>ArquivoCSV</code> della sezione 2.2 del Modulo 07) e poi importa questa classe per estrarre la colonna <code>bairro_destino</code> (indice 2) di tutti gli ordini, salvando il risultato in <code>bairros_destino</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Pedidos de mudança da semana (dados já prontos)
+conteudo_mudancas_csv = '''cliente,bairro_origem,bairro_destino,volume_m3,valor_frete
+Fernanda Reis,Pinheiros,Vila Mariana,12.0,890.00
+Carlos Aguiar,Moema,Perdizes,8.5,620.00
+Juliana Nogueira,Tatuape,Ipiranga,22.0,1450.00
+Marcos Vidal,Liberdade,Bela Vista,5.0,410.00
+Patricia Lima,Santana,Butanta,15.5,980.00
+'''
+
+with open('mudancas.csv', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write(conteudo_mudancas_csv)
+
+# TODO 1: escreva, numa string chamada codigo_modulo_pedidos, o código de uma
+# classe ArquivoPedidos (igual à ArquivoCSV da seção 2.2) e grave essa string
+# em um arquivo pedidos.py com open()
+
+
+# TODO 2: importe ArquivoPedidos de pedidos.py, crie um objeto para
+# 'mudancas.csv' e extraia a coluna 'bairro_destino' (índice 2) em
+# bairros_destino, e imprima
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">['Vila Mariana', 'Perdizes', 'Ipiranga', 'Bela Vista', 'Butanta']
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> è letteralmente la <code>ArquivoCSV</code> della sezione 2.2 — cambia solo il nome della classe, per rendere chiaro che ora vive nel contesto di CasaNova. L'importante è registrare il codice in un vero file <code>pedidos.py</code> con <code>open()</code> e poi importare <code>ArquivoPedidos</code> <strong>da esso</strong>, con <code>from pedidos import ArquivoPedidos</code>.</p>
+</blockquote>
+<h2>Missione 3 — Impacchettare la checklist</h2>
+<blockquote>
+<p><strong>Bruno (Assistenza Clienti):</strong> "Ho saputo che Fernanda ti ha chiesto un modulo per leggere gli ordini. Anch'io ho una checklist del giorno del trasloco salvata in un .txt che devo leggere di tanto in tanto — si può organizzare i due codici insieme, in un'unica cartella, visto che entrambi i team lo useranno ogni settimana?"</p>
+</blockquote>
+<p><strong>La tua missione:</strong></p>
+<ol>
+<li>Crea il pacchetto <code>mudanca</code> (una cartella con un <code>__init__.py</code> vuoto al suo interno);</li>
+<li>Registra, dentro il pacchetto, il modulo <code>arquivo_pedidos.py</code> (riutilizzando <code>codigo_modulo_pedidos</code> della Missione 2) e un nuovo modulo <code>checklist.py</code>, con una classe <code>ArquivoChecklist</code> (uguale alla <code>ArquivoTXT</code> della sezione 3.1) che abbia un metodo <code>extrair_linha(numero_linha)</code>;</li>
+<li>Importa <code>ArquivoChecklist</code> <strong>dall'interno del pacchetto</strong> ed estrai il 3° passo della checklist del giorno (<code>numero_linha=3</code>) nella variabile <code>terceiro_passo</code>, e stampala.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Checklist do dia da mudança (dados já prontos)
+conteudo_checklist_txt = '''Confirmar endereco de destino com o cliente
+Embalar itens frageis com plastico bolha
+Conferir lista de itens antes de carregar o caminhao
+Registrar horario de saida no sistema
+Enviar foto do caminhao carregado para o cliente
+'''
+
+with open('checklist.txt', mode='w', encoding='utf-8') as arquivo:
+    arquivo.write(conteudo_checklist_txt)
+
+# TODO 1: crie o pacote 'mudanca' (pasta + __init__.py vazio) com os.makedirs()
+
+
+# TODO 2: dentro do pacote, grave arquivo_pedidos.py (reaproveitando
+# codigo_modulo_pedidos da Missão 2) e checklist.py com uma classe
+# ArquivoChecklist (igual à ArquivoTXT da seção 3.1)
+
+
+# TODO 3: importe ArquivoChecklist de mudanca.checklist, extraia o 3º passo
+# (numero_linha=3) em terceiro_passo, e imprima
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Conferir lista de itens antes de carregar o caminhao
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> crea prima la cartella con <code>os.makedirs('mudanca', exist_ok=True)</code>, poi registra i tre file al suo interno — <code>mudanca/__init__.py</code>, <code>mudanca/arquivo_pedidos.py</code> e <code>mudanca/checklist.py</code> — come abbiamo fatto con il pacchetto <code>arquivo</code> nella sezione 3.2. Per importare, usa il percorso con il punto: <code>from mudanca.checklist import ArquivoChecklist</code>.</p>
+</blockquote>
+<h2>Missione 4 — Verificare il CAP del nuovo cliente</h2>
+<blockquote>
+<p><strong>Rodrigo (Espansione di Mercato):</strong> "Abbiamo chiuso un nuovo cliente in una città che non serviamo ancora bene. Prima di confermare il trasloco, devo sapere il quartiere e la città esatti a partire dal CAP che mi ha dato — e anche confermare se un CAP digitato male si può notare automaticamente."</p>
+</blockquote>
+<p>Il pacchetto <code>requests</code> è già stato installato nell'ambiente con <code>pip install requests</code> (sezione 4.2 del Modulo 07). Permette di consultare servizi su internet, come il ViaCEP, direttamente in Python.</p>
+<p><strong>La tua missione:</strong></p>
+<ol>
+<li>Importa <code>requests</code>;</li>
+<li>Fai una richiesta <code>GET</code> a <code>f'https://viacep.com.br/ws/{cep_cliente}/json/'</code> e salva il risultato in <code>resposta_cep</code>;</li>
+<li>Converti la risposta in dizionario con <code>.json()</code> in <code>endereco_cliente</code> e stampa la via, il quartiere e la città/stato, con etichette.</li>
+</ol>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># CEP informado pelo cliente novo
+cep_cliente = '20040020'
+
+# TODO 1: importe requests
+
+
+# TODO 2: faça um GET para f'https://viacep.com.br/ws/{cep_cliente}/json/'
+# e guarde em resposta_cep
+
+
+# TODO 3: converta a resposta em endereco_cliente com .json() e imprima a
+# rua, o bairro e a cidade/UF, com rótulos
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Rua: Praça Pio X
+Bairro: Centro
+Cidade: Rio de Janeiro - RJ
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> è esattamente l'esempio della sezione 4.3, cambiando solo il CAP: <code>requests.get()</code> effettua la chiamata, e <code>.json()</code> converte la risposta in un dizionario Python, senza dover importare manualmente il modulo <code>json</code>. Se lo <code>status_code</code> risultasse diverso da <code>200</code>, qualcosa è andato storto nella connessione — ma con un CAP valido questo non dovrebbe succedere.</p>
+</blockquote>
+<h2>Missione 5 — Pannello di espansione</h2>
+<blockquote>
+<p><strong>Larissa (Coordinatrice Operazioni):</strong> "Adorato il lavoro di oggi! Per chiudere in bellezza, monta un pannello unico mettendo insieme tutto ciò che hai scoperto — stima del trasloco, ordini organizzati, checklist e l'indirizzo del nuovo cliente. Lo mostrerò alla direzione domani mattina."</p>
+</blockquote>
+<p><strong>La tua missione:</strong> usando <code>print()</code> e <em>f-string</em>, monta un pannello che riunisca in un unico blocco di testo, almeno:</p>
+<ul>
+<li>I camion necessari e la data del trasloco (Missione 1);</li>
+<li>Quanti ordini esistono in <code>bairros_destino</code> (Missione 2), usando <code>len()</code>;</li>
+<li>Il terzo passo della checklist (Missione 3);</li>
+<li>La via e la città del nuovo cliente (Missione 4).</li>
+</ul>
+<p>Curati la formattazione: usa <code>'-' * 40</code> (o il carattere che preferisci) per creare righe separatrici. Qui <strong>non esiste una soluzione unica</strong> — il pannello è tuo, personalizzalo!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Painel de expansão — CasaNova Mudanças
+# TODO: monte o seu painel reaproveitando as variáveis das Missões 1 a 4.
+# Use print(), f-strings e o operador * para criar os separadores.
+</code></pre></div>
+<p><strong>Esempio di risultato</strong> (il tuo può — e deve — risultare diverso; è solo un'idea di formato):</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">----------------------------------------
+CasaNova Mudanças — Painel de expansão
+----------------------------------------
+Caminhões necessários: 3
+Data da mudança: 16/3/2026
+Pedidos da semana: 5
+Checklist — 3º passo: Conferir lista de itens antes de carregar o caminhao
+Cliente novo em: Praça Pio X, Rio de Janeiro
+----------------------------------------
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> se ti blocchi con la formattazione, inizia in modo semplice: un <code>print()</code> per riga risolve già il problema. Solo dopo che funziona vale la pena curare i separatori e l'allineamento.</p>
+</blockquote>
+<h2>Sfide extra</h2>
+<p>Le missioni sopra coprono già tutto ciò che ti serve del Modulo 07. Le sfide sotto sono <strong>totalmente opzionali</strong> — considerale una "modalità difficile" per chi vuole spremere un po' di più i concetti. Vai nell'ordine che preferisci, o salta direttamente a quella che ti interessa di più.</p>
+<h2>Extra 1 — Un modulo, due alias</h2>
+<p>Quando importi lo stesso modulo due volte, anche con alias diversi, Python non carica il file due volte — riutilizza lo <strong>stesso oggetto</strong> già caricato in memoria. Conferma questo confrontando i due alias sotto con l'operatore <code>is</code> (visto nel Modulo 03).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 1: um módulo, dois apelidos
+import math as calculo_a
+import math as calculo_b
+
+# TODO: crie modulos_sao_o_mesmo_objeto comparando calculo_a e calculo_b com
+# 'is', e imprima
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Mesmo objeto? True
+</code></pre></div>
+<h2>Extra 2 — Pacchetto vero?</h2>
+<p>Prima di fidarti di un pacchetto, vale la pena verificare se è strutturato nel modo giusto. Usa <code>os.path.exists()</code> per controllare se il file <code>mudanca/__init__.py</code>, creato nella Missione 3, esiste davvero.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 2: pacote de verdade?
+import os
+
+# TODO: crie pacote_valido checando com os.path.exists() se 'mudanca/__init__.py'
+# existe, e imprima
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Pacote válido? True
+</code></pre></div>
+<h2>Extra 3 — CAP non valido</h2>
+<p>Non ogni CAP consultato esiste davvero. Il ViaCEP non restituisce un errore di connessione in questo caso — risponde normalmente (<code>status_code</code> 200), solo che con una chiave <code>'erro'</code> nel dizionario. E se il tuo codice non verificasse questo prima di provare a leggere <code>endereco['logradouro']</code>? Pensa alla conseguenza prima di testare.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 3: CEP inválido
+cep_invalido = '99999999'
+
+# TODO: consulte f'https://viacep.com.br/ws/{cep_invalido}/json/', converta
+# a resposta para resultado_invalido e imprima se a chave 'erro' está presente
+</code></pre></div>
+<p><strong>Risultato atteso</strong>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">CEP inválido retornou erro? True
+</code></pre></div>
+<h2>Extra 4 — Il tuo modulo utilitario</h2>
+<p>Crea un modulo <code>saudacao.py</code> con una funzione <code>boas_vindas(nome_cliente)</code> che restituisca un messaggio di benvenuto di CasaNova, e importala per salutare un cliente a tua scelta. Qui non c'è un risultato atteso: dai sfogo alla creatività!</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 4: seu módulo utilitário
+# TODO: capriche!
+</code></pre></div>
+<h2>Checklist di autovalutazione</h2>
+<p>Niente verifiche, niente voti — solo un controllo rapido per capire a che punto sei:</p>
+<ul>
+<li>Ho importato un modulo intero con <code>import</code>, e una classe specifica con <code>from ... import ... as ...</code> (Missione 1)</li>
+<li>Ho creato il mio primo modulo proprio (<code>pedidos.py</code>) e ne ho importato una classe (Missione 2)</li>
+<li>Ho organizzato moduli correlati dentro un pacchetto con <code>__init__.py</code> (Missione 3)</li>
+<li>Ho importato un pacchetto di terzi e ho fatto una richiesta HTTP con <code>requests</code> (Missione 4)</li>
+<li>Ho montato il pannello finale riutilizzando le variabili delle missioni precedenti (Missione 5)</li>
+<li>Ho provato almeno una delle sfide extra</li>
+</ul>
+<p>Se la maggior parte degli elementi è spuntata, congratulazioni: hai messo in pratica tutto ciò che CasaNova (e il Modulo 07) si aspettavano da te.</p>
+<blockquote>
+<p>Preparati, perché nel <strong>Modulo 08</strong> la storia continua: per quanto organizzato sia il codice, gli errori accadono — e nel prossimo modulo imparerai a riconoscere, capire e gestire gli errori del tuo programma, con il <strong>Trattamento degli Errori</strong> fino alla fine!</p>
+</blockquote>
+</div>

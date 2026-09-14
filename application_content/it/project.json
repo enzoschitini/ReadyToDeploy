@@ -1,0 +1,86 @@
+{
+  "page": "project",
+  "lang": "it-IT",
+  "meta": {
+    "titleFormat": "{title} · Ready To Deploy",
+    "themeColor": "#000000"
+  },
+  "skipLink": "Vai al contenuto",
+  "brand": {
+    "href": "../index.html",
+    "ariaLabel": "Ready To Deploy - home",
+    "slash": "~/",
+    "name": ".ready-to-deploy.py"
+  },
+  "nav": {
+    "ariaLabel": "Principale",
+    "mobileAriaLabel": "Menu mobile",
+    "openLabel": "Apri menu",
+    "closeLabel": "Chiudi menu",
+    "active": "projects.html",
+    "links": [
+      { "label": "Moduli", "href": "modules.html" },
+      { "label": "Bootcamp", "href": "bootcamps.html" },
+      { "label": "Progetti", "href": "projects.html" },
+      { "label": "Mentoring", "href": "contact.html" }
+    ],
+    "cta": { "label": "Accedi", "href": "contact.html" }
+  },
+  "breadcrumbs": {
+    "ariaLabel": "Navigazione struttura",
+    "separator": "/",
+    "home": { "label": "Home", "href": "../index.html" },
+    "parent": { "label": "Progetti", "href": "projects.html" }
+  },
+  "panel": {
+    "practiceLabel": "// mette in pratica i moduli",
+    "creatorLabel": "// creato da",
+    "objectiveTitle": "Obiettivo",
+    "requirementsTitle": "Requisiti",
+    "challengesTitle": "Sfide extra",
+    "tipsTitle": "Suggerimenti"
+  },
+  "rating": {
+    "kicker": "// valutazione del progetto",
+    "emptyNote": "ancora senza valutazioni",
+    "noteFormat": "basato su {count} valutazioni",
+    "ariaFormat": "Valutazione media {score} su 5, {count} valutazioni"
+  },
+  "backLink": "← torna ai progetti",
+  "notFound": {
+    "title": "Progetto non trovato",
+    "lead": "Questo progetto non esiste o non è ancora stato pubblicato.",
+    "backLabel": "← torna ai progetti"
+  },
+  "footer": {
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
+    "description": "Roadmap di programmazione in italiano, gratuite e open source. Fatto con molta dedizione.",
+    "github": { "label": "github.com/enzoschitini/ready-to-deploy", "href": "https://github.com/enzoschitini/ready-to-deploy" },
+    "columns": [
+      {
+        "title": "// contenuti",
+        "links": [
+          { "label": "Moduli", "href": "modules.html" },
+          { "label": "Progetti", "href": "projects.html" },
+          { "label": "Bootcamp", "href": "bootcamps.html" },
+          { "label": "Mentoring", "href": "contact.html" }
+        ]
+      },
+      {
+        "title": "// progetto",
+        "links": [
+          { "label": "Codice su GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
+          { "label": "Come contribuire", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Chi è l'autore", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+        ]
+      }
+    ],
+    "bottom": {
+      "licenseHtml": "© 2026 · codice sotto <span class=\"strong\">AGPL-3.0</span> · contenuti sotto <span class=\"strong\">CC BY-SA 4.0</span>",
+      "credit": { "before": "creato da ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
+    }
+  },
+  "errors": {
+    "loadFailed": "Non è stato possibile caricare il contenuto di questa pagina. Apri il sito tramite un server HTTP (i file JSON non si caricano via file://)."
+  }
+}

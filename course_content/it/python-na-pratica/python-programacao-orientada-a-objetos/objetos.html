@@ -1,0 +1,324 @@
+<div class="prose">
+<p>Una classe da sola è solo una ricetta: chi effettivamente conserva dati ed esegue azioni sono gli <strong>oggetti</strong>. In questa lezione creeremo oggetti, accederemo e altereremo i loro attributi, chiameremo i loro metodi e applicheremo tutto questo in un esempio reale di lettura di file.</p>
+<h2>Definizione</h2>
+<p>Un <strong>oggetto</strong> è un'<strong>istanza</strong> di una classe. Per crearlo, "chiamiamo" la classe come se fosse una funzione, passando i parametri di <code>__init__</code> (senza <code>self</code>, che Python riempie da solo). Successivamente, usiamo il <strong>punto</strong> (<code>.</code>) per accedere ad attributi e metodi:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">objeto = NomeDaClasse(parametros)
+
+objeto.atributo    # acessa uma característica
+objeto.metodo()    # executa uma ação
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Três objetos criados a partir da mesma classe, cada um com seus próprios dados
+andre = Pessoa(nome='Andre Perez', idade=30, documento='123')
+maria = Pessoa(nome='Maria Perez', idade=56, documento='456')
+pedro = Pessoa(nome='Pedro Perez', idade=8)  # sem documento: usa o valor padrão None
+
+print(andre)
+print(maria)
+print(pedro)
+# Andre Perez, 30 anos, documento: 123
+# Maria Perez, 56 anos, documento: 456
+# Pedro Perez, 8 anos, documento: não informado
+</code></pre></div>
+<p>Possiamo confermare a quale classe appartiene un oggetto con <code>type()</code> o, più comunemente nella pratica quotidiana, con <code>isinstance()</code>, che risponde con un booleano:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(type(andre))
+print(isinstance(andre, Pessoa))
+print(isinstance('Andre Perez', Pessoa))  # uma string não é uma Pessoa
+# &lt;class '__main__.Pessoa'&gt;
+# True
+# False
+</code></pre></div>
+<h2>Manipolando gli attributi</h2>
+<p>Un attributo funziona come una variabile che "vive" dentro l'oggetto: possiamo <strong>leggere</strong> il valore, usarlo in calcoli e funzioni e anche <strong>alterarlo</strong>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Lendo atributos
+print(andre.nome)
+print(andre.idade)
+# Andre Perez
+# 30
+</code></pre></div>
+<p><strong>Esempio:</strong> usando un attributo come argomento di una funzione comune.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def maior_de_idade(idade: int) -&gt; bool:
+    return idade &gt;= 18
+
+
+# Passamos apenas o atributo idade de cada objeto para a função
+for pessoa in [andre, maria, pedro]:
+    if maior_de_idade(idade=pessoa.idade):
+        print(f'{pessoa.nome} é maior de idade')
+    else:
+        print(f'{pessoa.nome} é menor de idade')
+# Andre Perez é maior de idade
+# Maria Perez é maior de idade
+# Pedro Perez é menor de idade
+</code></pre></div>
+<p><strong>Esempio:</strong> consultando il punteggio di credito di un cliente a partire dal documento. Il documento dell'oggetto serve da chiave per cercare il valore in un dizionario:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Score de crédito de cada cliente, indexado pelo número do documento
+score_credito = {'123': 750, '456': 812, '789': 327}
+
+score_andre = score_credito[andre.documento]
+print(f'Score de {andre.nome}: {score_andre}')
+# Score de Andre Perez: 750
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> <code>pedro</code> è stato creato senza documento (<code>None</code>), quindi <code>score_credito[pedro.documento]</code> genererebbe un <code>KeyError</code>. Con il metodo <code>.get()</code> del dizionario, possiamo definire un valore predefinito per quando la chiave non esiste.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># score_pedro = score_credito[pedro.documento]           # KeyError: None
+score_pedro = score_credito.get(pedro.documento, 'sem score')  # valor padrão
+
+print(f'Score de {pedro.nome}: {score_pedro}')
+# Score de Pedro Perez: sem score
+</code></pre></div>
+<p>Possiamo anche <strong>alterare</strong> un attributo direttamente, con un'assegnazione comune. Il cambiamento vale solo per quell'oggetto:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Pedro trouxe o documento: atualizamos só o objeto pedro
+pedro.documento = '789'
+
+print(pedro)
+print(andre)  # andre não foi afetado
+# Pedro Perez, 8 anos, documento: 789
+# Andre Perez, 30 anos, documento: 123
+</code></pre></div>
+<h2>Chiamando metodi</h2>
+<p>I metodi vengono chiamati con la sintassi <code>objeto.metodo(argumentos)</code>. Nota che <strong>non</strong> passiamo <code>self</code>: Python capisce che <code>self</code> è l'oggetto che viene prima del punto.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># O self dentro de dormir() é o próprio andre
+andre.dormir(horas=3)
+# Andre Perez está dormindo... 1h de 3h
+# Andre Perez está dormindo... 2h de 3h
+# Andre Perez está dormindo... 3h de 3h
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">andre.falar(texto='Olá, pessoal!')
+maria.falar(texto='Bom dia!')
+# Andre Perez diz: Olá, pessoal!
+# Maria Perez diz: Bom dia!
+</code></pre></div>
+<p>Il metodo <code>fazer_aniversario()</code> altera lo stato dell'oggetto. Osserva l'età prima e dopo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(maria)
+
+maria.fazer_aniversario()
+
+print(maria)
+# Maria Perez, 56 anos, documento: 456
+# Parabéns, Maria Perez! Agora você tem 57 anos.
+# Maria Perez, 57 anos, documento: 456
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> per eseguire un metodo è obbligatorio usare le parentesi. Scrivere <code>maria.fazer_aniversario</code> (senza <code>()</code>) non genera errore, ma non <strong>esegue</strong> nulla: fa solo riferimento al metodo.</p>
+</blockquote>
+<h2>Rivisitando la motivazione</h2>
+<p>Ricordi la registrazione dei clienti della lezione precedente? Con la classe <code>Pessoa</code>, ogni cliente diventa <strong>un unico oggetto</strong> che porta con sé i propri dati e le proprie azioni. Conservando gli oggetti in una lista, registrare 3 o 3 mila clienti richiede lo stesso codice:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">clientes = [
+    Pessoa(nome='Andre Perez', idade=30, documento='123'),
+    Pessoa(nome='Maria Perez', idade=56, documento='456'),
+    Pessoa(nome='Pedro Perez', idade=8),
+]
+
+# Uma única regra aplicada a todos os clientes
+for cliente in clientes:
+    print(cliente)
+# Andre Perez, 30 anos, documento: 123
+# Maria Perez, 56 anos, documento: 456
+# Pedro Perez, 8 anos, documento: não informado
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Virada de ano: todos os clientes fazem aniversário
+for cliente in clientes:
+    cliente.fazer_aniversario()
+# Parabéns, Andre Perez! Agora você tem 31 anos.
+# Parabéns, Maria Perez! Agora você tem 57 anos.
+# Parabéns, Pedro Perez! Agora você tem 9 anos.
+</code></pre></div>
+<p>Nessuna variabile sciolta, nessuna funzione che riceve decine di parametri: ogni oggetto sa gestire i propri dati.</p>
+<h2>Tutto in Python è un oggetto</h2>
+<p>Usi oggetti fin dal primo modulo, forse senza accorgertene. Numeri, testi, liste, dizionari e persino funzioni sono oggetti di qualche classe nativa di Python. La funzione <code>type()</code> mostra la classe di ciascuno:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">tipos = [
+    type(10),
+    type(1.1),
+    type('Ready To Deploy'),
+    type(True),
+    type(None),
+    type([1, 2, 3]),
+    type({1, 2, 3}),
+    type({'janeiro': 1}),
+    type(lambda x: x),
+]
+
+for tipo in tipos:
+    print(tipo)
+# &lt;class 'int'&gt;
+# &lt;class 'float'&gt;
+# &lt;class 'str'&gt;
+# &lt;class 'bool'&gt;
+# &lt;class 'NoneType'&gt;
+# &lt;class 'list'&gt;
+# &lt;class 'set'&gt;
+# &lt;class 'dict'&gt;
+# &lt;class 'function'&gt;
+</code></pre></div>
+<p>Nota il <code>&lt;class '...'&gt;</code> in ogni riga: <code>int</code>, <code>str</code>, <code>list</code> e gli altri sono <strong>classi</strong>. Per questo hanno metodi, che chiamiamo esattamente come abbiamo fatto con <code>Pessoa</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># nome é um objeto da classe str, e upper() é um método dessa classe
+nome = 'Andre Perez'
+print(nome.upper())
+# ANDRE PEREZ
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># juros é um objeto da classe list, e pop() é um método dessa classe
+juros = [0.02, 0.07, 0.15]
+
+juro_removido = juros.pop(1)  # remove e retorna o item da posição 1
+print(juro_removido)
+print(juros)
+# 0.07
+# [0.02, 0.15]
+</code></pre></div>
+<h2>Revisione: strip() e split()</h2>
+<p>Nel prossimo esempio leggeremo un file CSV riga per riga. Per questo, due metodi delle <em>string</em> saranno fondamentali:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Metodo</th><th>Cosa fa</th><th>Esempio</th><th>Risultato</th></tr></thead>
+<tbody>
+<tr><td><code>.strip()</code></td><td>Rimuove spazi e interruzioni di riga (<code>\n</code>) dall'inizio e dalla fine</td><td><code>' banana \n'.strip()</code></td><td><code>'banana'</code></td></tr>
+<tr><td><code>.strip(caracteres)</code></td><td>Rimuove i caratteri indicati dall'inizio e dalla fine</td><td><code>'..banana..'.strip('.')</code></td><td><code>'banana'</code></td></tr>
+<tr><td><code>.split(separador)</code></td><td>Divide il testo in una <strong>lista</strong> a ogni separatore</td><td><code>'a,b,c'.split(',')</code></td><td><code>['a', 'b', 'c']</code></td></tr>
+</tbody>
+</table></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># strip() sem argumentos: remove espaços e quebras de linha das pontas
+fruta = ' banana \n'
+print(fruta.strip())
+# banana
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># strip(caracteres): remove QUALQUER um dos caracteres informados, só nas pontas
+fruta = ',,,,,rrttgg.....banana....rrr'
+print(fruta.strip(',.grt'))
+# banana
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Combinando os dois: primeiro limpamos as pontas, depois dividimos
+frase = ' O gato pulou sobre o muro '
+palavras = frase.strip().split()  # sem argumento, split() divide nos espaços
+print(palavras)
+# ['O', 'gato', 'pulou', 'sobre', 'o', 'muro']
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Uma linha típica de arquivo CSV: valores separados por vírgula e um \n no final
+linha_csv = '30,unemployed,married,primary\n'
+valores = linha_csv.strip().split(',')
+print(valores)
+# ['30', 'unemployed', 'married', 'primary']
+</code></pre></div>
+<h2>Esempio pratico: classe ArquivoCSV</h2>
+<p>I file <strong>CSV</strong> (<em>Comma-Separated Values</em>) sono tabelle in formato testo: ogni riga è un record e i valori sono separati da virgola. La prima riga di solito porta il nome delle colonne.</p>
+<p>Creeremo una classe che legge un CSV con dati di clienti di una banca e permette di estrarre qualsiasi colonna. Prima creiamo il file <code>banco.csv</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">conteudo_csv = '''age,job,marital,education,default,balance,housing,loan
+30,unemployed,married,primary,no,1787,no,no
+33,services,married,secondary,no,4789,yes,yes
+35,management,single,tertiary,no,1350,yes,no
+30,management,married,tertiary,no,1476,yes,yes
+59,blue-collar,married,secondary,no,0,yes,no
+35,management,single,tertiary,no,747,no,no
+36,self-employed,married,tertiary,no,307,yes,no
+39,technician,married,secondary,no,147,yes,no
+41,entrepreneur,married,tertiary,no,221,yes,no
+43,services,married,primary,no,-88,yes,yes'''
+
+# Gravando o texto em um arquivo no ambiente atual
+with open('banco.csv', mode='w', encoding='utf8') as arquivo:
+    arquivo.write(conteudo_csv)
+</code></pre></div>
+<blockquote>
+<p><strong>Suggerimento:</strong> in Colab troverai anche il comando magico <code>%%writefile banco.csv</code> sulla prima riga di una cella, che salva il contenuto della cella in un file. Qui usiamo <code>open()</code> perché funziona in qualsiasi ambiente Python.</p>
+</blockquote>
+<p>Ora, la classe. Avrà due tipi di metodo:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Metodo</th><th>Tipo</th><th>Cosa fa</th></tr></thead>
+<tbody>
+<tr><td><code>_extrair_conteudo()</code></td><td>Interno</td><td>Legge il file e restituisce la lista delle righe</td></tr>
+<tr><td><code>_extrair_nome_colunas()</code></td><td>Interno</td><td>Restituisce i nomi delle colonne (la prima riga)</td></tr>
+<tr><td><code>extrair_coluna(indice_coluna)</code></td><td>Pubblico</td><td>Restituisce i valori di una colonna a partire dalla sua posizione</td></tr>
+<tr><td><code>extrair_coluna_por_nome(nome_coluna)</code></td><td>Pubblico</td><td>Restituisce i valori di una colonna a partire dal suo nome</td></tr>
+</tbody>
+</table></div>
+<p>Il <code>_</code> all'inizio del nome è una <strong>convenzione</strong> di Python per indicare che un metodo è <strong>a uso interno</strong> della classe: esiste per aiutare gli altri metodi, e non per essere chiamato dall'esterno.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class ArquivoCSV:
+
+    def __init__(self, caminho_arquivo: str):
+        self.caminho_arquivo = caminho_arquivo
+        # O próprio construtor já lê o arquivo e descobre as colunas
+        self.conteudo = self._extrair_conteudo()
+        self.colunas = self._extrair_nome_colunas()
+
+    def _extrair_conteudo(self) -&gt; list:
+        with open(self.caminho_arquivo, mode='r', encoding='utf8') as arquivo:
+            return arquivo.readlines()
+
+    def _extrair_nome_colunas(self) -&gt; list:
+        # A primeira linha do arquivo é o cabeçalho
+        return self.conteudo[0].strip().split(',')
+
+    def extrair_coluna(self, indice_coluna: int) -&gt; list:
+        coluna = []
+        # [1:] pula a primeira linha, pois o cabeçalho não é um dado
+        for linha in self.conteudo[1:]:
+            valores_linha = linha.strip().split(',')
+            coluna.append(valores_linha[indice_coluna])
+        return coluna
+
+    def extrair_coluna_por_nome(self, nome_coluna: str) -&gt; list:
+        # Um método pode chamar outro método do mesmo objeto via self
+        indice_coluna = self.colunas.index(nome_coluna)
+        return self.extrair_coluna(indice_coluna=indice_coluna)
+</code></pre></div>
+<p>Alla creazione dell'oggetto, <code>__init__</code> legge già il file e popola gli attributi <code>conteudo</code> e <code>colunas</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">arquivo_banco = ArquivoCSV(caminho_arquivo='banco.csv')
+
+print(arquivo_banco.colunas)
+# ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan']
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Cada item do atributo conteudo é uma linha do arquivo (repare no \n no final)
+print(arquivo_banco.conteudo[:3])
+# ['age,job,marital,education,default,balance,housing,loan\n', '30,unemployed,married,primary,no,1787,no,no\n', '33,services,married,secondary,no,4789,yes,yes\n']
+</code></pre></div>
+<p><strong>Esempio:</strong> estraendo la colonna <code>job</code> (professione), che è nella posizione <code>1</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">profissoes = arquivo_banco.extrair_coluna(indice_coluna=1)
+print(profissoes)
+# ['unemployed', 'services', 'management', 'management', 'blue-collar', 'management', 'self-employed', 'technician', 'entrepreneur', 'services']
+</code></pre></div>
+<p><strong>Esempio:</strong> estraendo la colonna <code>education</code> (istruzione), che è nella posizione <code>3</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">escolaridades = arquivo_banco.extrair_coluna(indice_coluna=3)
+print(escolaridades)
+# ['primary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'tertiary', 'secondary', 'tertiary', 'primary']
+</code></pre></div>
+<p><strong>Esempio:</strong> ricordare a memoria la posizione di ogni colonna è faticoso e facile da sbagliare. Con <code>extrair_coluna_por_nome()</code>, basta indicare il nome:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">estados_civis = arquivo_banco.extrair_coluna_por_nome(nome_coluna='marital')
+print(estados_civis)
+
+# O resultado é uma lista comum, então podemos usar os métodos de lista
+print(f"Clientes casados: {estados_civis.count('married')}")
+# ['married', 'married', 'single', 'married', 'married', 'single', 'married', 'married', 'married', 'married']
+# Clientes casados: 8
+</code></pre></div>
+<p><strong>Esempio:</strong> i valori letti da un file di testo sono sempre <em>string</em>. Per fare calcoli, convertiamo ogni valore. Qui calcoliamo il saldo medio (<code>balance</code>) dei clienti:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">saldos_texto = arquivo_banco.extrair_coluna_por_nome(nome_coluna='balance')
+
+# Convertendo cada saldo de str para int
+saldos = []
+for saldo in saldos_texto:
+    saldos.append(int(saldo))
+
+saldo_medio = sum(saldos) / len(saldos)
+print(f'Saldo médio: {saldo_medio:.2f}')
+# Saldo médio: 1073.60
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> Python <strong>non impedisce</strong> di chiamare <code>arquivo_banco._extrair_conteudo()</code> dall'esterno della classe, ma questo va contro la convenzione del <code>_</code>. I metodi interni possono cambiare o smettere di esistere in versioni future della classe; usa sempre gli attributi e i metodi pubblici.</p>
+</blockquote>
+<blockquote>
+<p><strong>Suggerimento:</strong> questa classe è ottima per capire l'orientamento agli oggetti, ma nella pratica esistono strumenti pronti per leggere i CSV, come il modulo nativo <code>csv</code> e la libreria <strong>Pandas</strong>, che vedremo in moduli futuri. Entrambe sono costruite proprio con classi e oggetti.</p>
+</blockquote>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-objetos-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-objetos-q">Perché la convenzione di prefissare un metodo con <code>_</code> (come <code>_extrair_conteudo</code>) è importante?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="Python non blocca questa chiamata — il `_` è solo una convenzione, non una restrizione del linguaggio."><input type="radio" name="quiz-python-objetos" value="0" /><span class="txt">Perché Python impedisce fisicamente che il metodo venga chiamato dall'esterno della classe</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="È un accordo tra programmatori: i metodi interni servono da supporto ai metodi pubblici e non hanno garanzia di stabilità."><input type="radio" name="quiz-python-objetos" value="1" /><span class="txt">Perché segnala che il metodo è a uso interno e può cambiare senza preavviso in versioni future</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il `_` non ha alcun effetto sulle prestazioni — è puramente una convenzione di denominazione."><input type="radio" name="quiz-python-objetos" value="2" /><span class="txt">Perché i metodi con <code>_</code> sono automaticamente più veloci</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Qualsiasi metodo, con o senza `_`, può leggere e alterare attributi tramite `self`."><input type="radio" name="quiz-python-objetos" value="3" /><span class="txt">Perché solo i metodi con <code>_</code> possono alterare gli attributi dell'oggetto</span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>

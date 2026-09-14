@@ -132,17 +132,17 @@ course_content/it/python-na-pratica/
 
 ---
 
-## 5. Atenção: isso sozinho **não é suficiente** — 2 ajustes de código pequenos
+## 5. Atenção: isso sozinho **não é suficiente** — pequenos ajustes de código
 
-Duplicar os arquivos acima traduz o **conteúdo**, mas 3 coisas ficam hoje fixas na casca HTML (fora do JSON) e nunca são reescritas por JS. Não é trabalho de tradução de arquivo — é preciso um ajuste pequeno no `.html`/JS de cada página pra elas realmente virarem italiano quando o seletor trocar de idioma:
+Duplicar os arquivos acima traduz o **conteúdo**, mas há detalhes de código que também precisam de atenção pra tudo realmente virar italiano quando o seletor trocar de idioma. Status atualizado depois de implementar o seletor em `index.html`:
 
-1. **`<html lang="pt-BR">`** — hardcoded em `index.html` e nos 6 arquivos com conteúdo dentro de `pages/` (`bootcamps.html`, `bootcamp.html`, `modules.html`, `module.html`, `projects.html`, `project.html`). Nunca é alterado via JS (confirmado — não há nenhuma ocorrência de `documentElement.lang` no projeto). Precisa de algo como `document.documentElement.lang = content.lang;` (o campo `lang` já existe em todo `application_content/*.json`, ex.: `"lang": "pt-BR"` → sugerido `"lang": "it-IT"`).
+1. **`<html lang="pt-BR">`** — era hardcoded e nunca alterado via JS. ✅ **Já corrigido em `index.html`**: `render()` agora faz `document.documentElement.lang = c.lang` (o campo já existia em todo `application_content/*.json`), e um script no `<head>` aplica o idioma salvo antes da primeira pintura, igual ao padrão do `assets/theme.js`. **Ainda falta replicar isso nos 6 arquivos de `pages/`** (`bootcamps.html`, `bootcamp.html`, `modules.html`, `module.html`, `projects.html`, `project.html`) quando o seletor for levado pra lá.
 
-2. **`<title>` e `<meta name="description">` nas 4 páginas "estáticas"** (`index.html`, `bootcamps.html`, `modules.html`, `projects.html`). A boa notícia: o JSON **já tem** os campos certos (`meta.title`, `meta.description`) — são idênticos ao texto hardcoded no HTML — só faltam ~3 linhas de JS aplicando isso no load, do mesmo jeito que já acontece em `bootcamp.html`/`project.html`/`module.html` (que fazem `document.title = fill(content.meta.titleFormat, …)` e reescrevem a tag `<meta>` dinamicamente, porque o título varia por item).
+2. **`<title>` e `<meta name="description">`** — na verdade **já eram dinâmicos** em todas as páginas (correção a este documento: a suposição inicial estava errada). Todo `.html` já faz `document.title = c.meta.title` (ou `fill(c.meta.titleFormat, …)` nas páginas de detalhe) e reescreve a tag `<meta name="description">` no load. Ou seja, assim que `application_content/it/*.json` existe, esses dois campos já saem certos automaticamente — nenhum ajuste extra necessário.
 
-3. **`assets/theme.js`** — o seletor de tema (claro/escuro/sistema) tem textos fixos em português direto no JS, fora de qualquer JSON: `LABELS = { light: 'Claro', dark: 'Escuro', system: 'Sistema' }`, `'Selecionar tema (atual: …)'`, `'Tema: …'`, `'Tema da página'` (linhas 46-92 do arquivo). Esse componente é compartilhado por todas as páginas — se o seletor de idioma for construído no mesmo estilo (bem provável, já que é o padrão do projeto), essas strings também precisam de uma versão italiana, mas vivem em código JS, não em um arquivo de conteúdo a ser gerado.
+3. **`assets/theme.js`** — o seletor de tema (claro/escuro/sistema) tem textos fixos em português direto no JS, fora de qualquer JSON: `LABELS = { light: 'Claro', dark: 'Escuro', system: 'Sistema' }`, `'Selecionar tema (atual: …)'`, `'Tema: …'`, `'Tema da página'` (linhas 46-92 do arquivo). Ainda não traduzido — o seletor de idioma implementado em `index.html` foi feito à parte, sem mexer nesse arquivo compartilhado.
 
-> Nenhum desses 3 pontos exige criar arquivo novo — é ajuste de ~10-15 linhas de JS no total. Mas sem eles a aba do navegador, o SEO e o seletor de tema continuam em português mesmo depois de todo `course_content/it` e `application_content/it` estarem prontos.
+> Status: `index.html` já resolve os itens 1 e 2 sozinho. O que falta é levar o mesmo seletor (e o mesmo `documentElement.lang`) para as páginas em `pages/`, e traduzir os textos fixos de `assets/theme.js` quando fizer sentido.
 
 ---
 
@@ -187,24 +187,35 @@ Isso afeta 2 pares de arquivo:
 ## 7. Checklist final
 
 **`application_content/it/`**
-- [ ] `index.json`
-- [ ] `bootcamps.json`
-- [ ] `bootcamp.json`
-- [ ] `modules.json` — atenção à seção 6.1
-- [ ] `module.json`
-- [ ] `projects.json` — atenção à seção 6.1
-- [ ] `project.json`
+- [x] `index.json`
+- [x] `bootcamps.json`
+- [x] `bootcamp.json`
+- [x] `modules.json` — níveis traduzidos como `principiante`/`intermedio`/`avanzato`, consistente com `course_content/it/modules.json`
+- [x] `module.json`
+- [x] `projects.json` — níveis traduzidos como `principiante`/`intermedio`/`avanzato`, consistente com `course_content/it/projects.json`
+- [x] `project.json`
 - [ ] ~~`lesson.json`~~ — fora do escopo (vazio)
 - [ ] ~~`contact.json`~~ — fora do escopo (vazio)
 
 **`course_content/it/`**
-- [ ] `bootcamps.json`
-- [ ] `modules.json` — atenção à seção 6.1
-- [ ] `projects.json` (29 KB, o maior arquivo) — atenção à seção 6.1
-- [ ] `lessons.json`
-- [ ] 43 arquivos `.html` em `python-na-pratica/**` (lista completa na seção 3.2)
+- [x] `bootcamps.json`
+- [x] `modules.json`
+- [x] `projects.json` (29 KB, o maior arquivo)
+- [x] `lessons.json`
+- [x] 43 arquivos `.html` em `python-na-pratica/**` — estrutura de pastas conferida 1:1 contra `pt_br`, código Python 100% preservado, tags HTML balanceadas
 
-**Ajustes de código (não são arquivo novo, seção 5)**
-- [ ] `document.documentElement.lang` dinâmico em `index.html` + 6 páginas de `pages/`
-- [ ] `document.title` / `<meta description>` dinâmicos em `index.html`, `bootcamps.html`, `modules.html`, `projects.html`
-- [ ] Versão italiana dos labels fixos de `assets/theme.js`
+**Seletor de idioma**
+- [x] Implementado em `index.html`: botão 🇧🇷/🇮🇹 no header, `localStorage` (`primo-lang`), troca `APP_CONTENT`/`COURSE_CONTENT` e recarrega a página
+- [x] `document.documentElement.lang` dinâmico em `index.html` (via `render()` + script antecipado no `<head>`)
+- [x] `document.title` / `<meta description>` — já eram dinâmicos em todas as páginas, nenhum ajuste necessário
+
+**Seletor de idioma — agora em todas as páginas**
+- [x] Extraído para `assets/lang.js` (compartilhado, mesmo padrão de `assets/theme.js`) e CSS movido para `assets/theme.css`
+- [x] Incluído em `index.html` + as 6 páginas de `pages/` (`bootcamps`, `bootcamp`, `modules`, `module`, `projects`, `project`)
+- [x] `document.documentElement.lang` dinâmico em todas elas (via `renderShell`/`render` de cada página + aplicação antecipada em `lang.js`)
+- [x] Sintaxe JS de todas as páginas validada com `node --check`
+
+**Ainda pendente**
+- [ ] Traduzir os labels fixos de `assets/theme.js` (seletor de tema: "Claro"/"Escuro"/"Sistema"), caso quisermos o seletor de tema também em italiano
+- [ ] Revisão humana da tradução das 43 aulas (feita por agentes automatizados seguindo as diretrizes da seção 6 — vale uma passada de revisão antes de publicar)
+- [ ] `pages/lesson.html` e `pages/contact.html` continuam fora do escopo (vazios, sem implementação nem em pt_br)
