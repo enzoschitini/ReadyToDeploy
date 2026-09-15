@@ -24,7 +24,28 @@
       { "label": "Progetti", "href": "pages/projects.html" },
       { "label": "Mentoring", "href": "pages/contact.html" }
     ],
-    "cta": { "label": "Accedi", "href": "pages/contact.html" }
+    "cta": { "label": "Assumi", "href": "pages/contact.html" }
+  },
+  "contractModal": {
+    "closeLabel": "Chiudi",
+    "avatarAlt": "Foto profilo",
+    "kicker": "Mentoring",
+    "subtitle": "Porta il mentoring di programmazione e IA nella tua istituzione.",
+    "linkedinHref": "https://www.linkedin.com/in/enzoschitini",
+    "cards": [
+      {
+        "title": "Contattami ora",
+        "description": "Clicca qui per scrivermi direttamente su LinkedIn.",
+        "href": "https://www.linkedin.com/in/enzoschitini",
+        "external": true
+      },
+      {
+        "title": "Capire meglio",
+        "description": "Clicca qui per capire meglio il programma di mentoring prima di contattarmi.",
+        "href": "pages/contact.html",
+        "external": false
+      }
+    ]
   },
   "hero": {
     "eyebrow": "Gratis · Open source · IT",

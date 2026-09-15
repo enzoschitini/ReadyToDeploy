@@ -24,7 +24,28 @@
       { "label": "Projetos", "href": "pages/projects.html" },
       { "label": "Mentoria", "href": "pages/contact.html" }
     ],
-    "cta": { "label": "Entrar", "href": "pages/contact.html" }
+    "cta": { "label": "Contratar", "href": "pages/contact.html" }
+  },
+  "contractModal": {
+    "closeLabel": "Fechar",
+    "avatarAlt": "Foto de perfil",
+    "kicker": "Mentoria",
+    "subtitle": "Tenha mentoria de programação e IA na sua instituição.",
+    "linkedinHref": "https://www.linkedin.com/in/enzoschitini",
+    "cards": [
+      {
+        "title": "Contatar agora",
+        "description": "Clique aqui para me chamar no LinkedIn diretamente.",
+        "href": "https://www.linkedin.com/in/enzoschitini",
+        "external": true
+      },
+      {
+        "title": "Entender melhor",
+        "description": "Clique aqui para entender melhor o programa de mentoria antes de entrar em contato.",
+        "href": "pages/contact.html",
+        "external": false
+      }
+    ]
   },
   "hero": {
     "eyebrow": "Grátis · Open source · PT-BR",
