@@ -2,63 +2,63 @@
 <p>La maggior parte dei programmi deve comportarsi in modo diverso a seconda della situazione: approvare o rifiutare un pagamento, concedere o bloccare un accesso, applicare uno sconto o no. Questo comportamento è controllato dal <strong>flusso condizionale</strong>, e in Python viene scritto con le parole chiave <code>if</code>, <code>elif</code> e <code>else</code>.</p>
 <h2>Motivazione</h2>
 <p>Stai sviluppando il sistema di pagamento con carta di credito di un <em>e-commerce</em>. Prima di approvare l'acquisto, il sistema deve confrontare il codice di sicurezza (CVV) fornito dal cliente con il codice registrato in banca.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Código digitado pelo cliente e código salvo no cadastro
-codigo_de_seguranca_informado = '291'
-codigo_de_seguranca_cadastro = '010'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Codice digitato dal cliente e codice salvato nel registro
+codice_sicurezza_inserito = '291'
+codice_sicurezza_registrato = '010'
 </code></pre></div>
 <p><strong>Come facciamo eseguire al programma un tratto di codice diverso a seconda che i due codici siano uguali o no?</strong></p>
 <h2>if / else</h2>
 <p>La struttura <code>if</code> / <code>else</code> esegue un blocco di codice <strong>se</strong> una condizione è <code>True</code>, e un altro blocco <strong>altrimenti</strong> (quando è <code>False</code>):</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if condicao:
-  # executado quando condicao é True
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if condizione:
+  # eseguito quando condizione è True
 else:
-  # executado quando condicao é False
+  # eseguito quando condizione è False
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> Python usa l'<strong>indentazione</strong> (il rientro all'inizio della riga) per sapere cosa appartiene a ciascun blocco. Tutte le righe di uno stesso blocco devono avere lo stesso rientro, altrimenti il codice non viene eseguito.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">esta_chovendo = False
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">sta_piovendo = False
 
-if esta_chovendo:
-  print('Leve um guarda-chuva')
+if sta_piovendo:
+  print('Prendi un ombrello')
 else:
-  print('Não precisa de guarda-chuva')
-# Não precisa de guarda-chuva
+  print('Ombrello non necessario')
+# Ombrello non necessario
 </code></pre></div>
 <p>Applicando al nostro problema: confrontiamo i due codici con <code>==</code> (visto nel Modulo 01) e usiamo il risultato come condizione.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if codigo_de_seguranca_informado == codigo_de_seguranca_cadastro:
-  print('Pagamento aprovado')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if codice_sicurezza_inserito == codice_sicurezza_registrato:
+  print('Pagamento approvato')
 else:
-  print('Erro: código de segurança inválido')
-# Erro: código de segurança inválido
+  print('Errore: codice di sicurezza non valido')
+# Errore: codice di sicurezza non valido
 </code></pre></div>
 <h2>Condizioni composte con and / or</h2>
 <p>Spesso è necessario valutare <strong>più di una condizione</strong> allo stesso tempo. Per questo, combiniamo gli operatori logici <code>and</code> e <code>or</code> (visti nel Modulo 01) direttamente nella condizione dell'<code>if</code>.</p>
 <p><strong>Esempio:</strong> oltre al codice di sicurezza, il sistema richiede anche che la password fornita sia corretta. Il pagamento viene approvato solo se <strong>entrambe</strong> le condizioni sono vere.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">codigo_de_seguranca_informado = '852'
-codigo_de_seguranca_cadastro = '852'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">codice_sicurezza_inserito = '852'
+codice_sicurezza_registrato = '852'
 
-senha_informada = '7783'
-senha_cadastro = '7783'
+password_inserita = '7783'
+password_registrata = '7783'
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Os parênteses em cada comparação deixam a condição mais fácil de ler
-if (codigo_de_seguranca_informado == codigo_de_seguranca_cadastro) and (senha_informada == senha_cadastro):
-  print('Pagamento aprovado')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Le parentesi in ogni confronto rendono la condizione più facile da leggere
+if (codice_sicurezza_inserito == codice_sicurezza_registrato) and (password_inserita == password_registrata):
+  print('Pagamento approvato')
 else:
-  print('Erro: pagamento não autorizado')
-# Pagamento aprovado
+  print('Errore: pagamento non autorizzato')
+# Pagamento approvato
 </code></pre></div>
 <blockquote>
 <p>Puoi trovare anche gli operatori <code>&amp;</code> (e) e <code>|</code> (o) in librerie come <strong>Pandas</strong>. Nel Python "puro", però, dentro un <code>if</code>, la forma raccomandata e più leggibile è usare <code>and</code> e <code>or</code>.</p>
 </blockquote>
 <h2>if / elif / else</h2>
 <p>Quando esistono <strong>più di due</strong> possibilità, usiamo <code>elif</code> (abbreviazione di "<em>else if</em>") per concatenare più condizioni. Python testa ogni condizione <strong>nell'ordine in cui appare</strong> ed esegue il blocco della <strong>prima</strong> che è vera — ignorando tutte le altre, anche se sono anch'esse vere.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if condicao_1:
-  # executado se condicao_1 for True
-elif condicao_2:
-  # executado se condicao_1 for False e condicao_2 for True
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if condizione_1:
+  # eseguito se condizione_1 è True
+elif condizione_2:
+  # eseguito se condizione_1 è False e condizione_2 è True
 else:
-  # executado se nenhuma das anteriores for True
+  # eseguito se nessuna delle precedenti è True
 </code></pre></div>
 <h2>Rivisitando la motivazione</h2>
 <p>Ora abbiamo tutto per gestire le <strong>quattro</strong> combinazioni possibili tra codice di sicurezza e password, ognuna con un messaggio diverso:</p>
@@ -71,24 +71,24 @@ else:
 <tr><td>No</td><td>No</td><td>Errore: codice di sicurezza e password non validi</td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">codigo_de_seguranca_informado = '802'
-codigo_de_seguranca_cadastro = '852'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">codice_sicurezza_inserito = '802'
+codice_sicurezza_registrato = '852'
 
-senha_informada = '7703'
-senha_cadastro = '7783'
+password_inserita = '7703'
+password_registrata = '7783'
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if (codigo_de_seguranca_informado == codigo_de_seguranca_cadastro) and (senha_informada == senha_cadastro):
-  print('Pagamento aprovado')
-elif (codigo_de_seguranca_informado != codigo_de_seguranca_cadastro) and (senha_informada == senha_cadastro):
-  print('Erro: código de segurança inválido')
-elif (codigo_de_seguranca_informado == codigo_de_seguranca_cadastro) and (senha_informada != senha_cadastro):
-  print('Erro: senha inválida')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">if (codice_sicurezza_inserito == codice_sicurezza_registrato) and (password_inserita == password_registrata):
+  print('Pagamento approvato')
+elif (codice_sicurezza_inserito != codice_sicurezza_registrato) and (password_inserita == password_registrata):
+  print('Errore: codice di sicurezza non valido')
+elif (codice_sicurezza_inserito == codice_sicurezza_registrato) and (password_inserita != password_registrata):
+  print('Errore: password non valida')
 else:
-  print('Erro: código de segurança e senha inválidos')
-# Erro: código de segurança e senha inválidos
+  print('Errore: codice di sicurezza e password non validi')
+# Errore: codice di sicurezza e password non validi
 </code></pre></div>
 <blockquote>
-<p>Prova a modificare i valori di <code>codigo_de_seguranca_informado</code> e <code>senha_informada</code> sopra ed eseguire nuovamente le due celle, per vedere apparire gli altri tre messaggi.</p>
+<p>Prova a modificare i valori di <code>codice_sicurezza_inserito</code> e <code>password_inserita</code> sopra ed eseguire nuovamente le due celle, per vedere apparire gli altri tre messaggi.</p>
 </blockquote>
 </div>
 

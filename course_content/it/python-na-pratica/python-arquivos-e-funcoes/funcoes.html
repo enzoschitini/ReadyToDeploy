@@ -3,29 +3,29 @@
 <h2>Motivazione</h2>
 <p>Lavori in una società di intermediazione finanziaria e devi simulare il rendimento di investimenti con <strong>interesse composto</strong> in diversi scenari. Nel regime a interesse composto, ogni anno il rendimento viene calcolato sul valore accumulato fino a quel momento: <code>valore alla fine dell'anno = valore all'inizio dell'anno × (1 + tasso di interesse annuale)</code>.</p>
 <p>Ecco come sarebbe il codice per simulare solo <strong>due</strong> scenari:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Cenário 1
-valor_inicial = 1000.00
-taxa_juros_anual = 0.05
-anos = 10
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Scenario 1
+valore_iniziale = 1000.00
+tasso_interesse_annuale = 0.05
+anni = 10
 
-valor_final = valor_inicial
-for ano in range(anos):
-    valor_final = valor_final * (1 + taxa_juros_anual)
+valore_finale = valore_iniziale
+for anno in range(anni):
+    valore_finale = valore_finale * (1 + tasso_interesse_annuale)
 
-print(f'R$ {valor_inicial:.2f} a {taxa_juros_anual:.0%} ao ano, em {anos} anos: R$ {valor_final:.2f}')
+print(f'R$ {valore_iniziale:.2f} al {tasso_interesse_annuale:.0%} annuo, in {anni} anni: R$ {valore_finale:.2f}')
 
-# Cenário 2: exatamente o mesmo código, só mudam os valores
-valor_inicial = 1020.00
-taxa_juros_anual = 0.03
-anos = 10
+# Scenario 2: esattamente lo stesso codice, cambiano solo i valori
+valore_iniziale = 1020.00
+tasso_interesse_annuale = 0.03
+anni = 10
 
-valor_final = valor_inicial
-for ano in range(anos):
-    valor_final = valor_final * (1 + taxa_juros_anual)
+valore_finale = valore_iniziale
+for anno in range(anni):
+    valore_finale = valore_finale * (1 + tasso_interesse_annuale)
 
-print(f'R$ {valor_inicial:.2f} a {taxa_juros_anual:.0%} ao ano, em {anos} anos: R$ {valor_final:.2f}')
-# R$ 1000.00 a 5% ao ano, em 10 anos: R$ 1628.89
-# R$ 1020.00 a 3% ao ano, em 10 anos: R$ 1370.79
+print(f'R$ {valore_iniziale:.2f} al {tasso_interesse_annuale:.0%} annuo, in {anni} anni: R$ {valore_finale:.2f}')
+# R$ 1000.00 al 5% annuo, in 10 anni: R$ 1628.89
+# R$ 1020.00 al 3% annuo, in 10 anni: R$ 1370.79
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> nella <em>f-string</em>, il formato <code>:.0%</code> moltiplica il numero per 100 e aggiunge il simbolo di percentuale: <code>0.05</code> diventa <code>5%</code>.</p>
@@ -35,89 +35,89 @@ print(f'R$ {valor_inicial:.2f} a {taxa_juros_anual:.0%} ao ano, em {anos} anos: 
 <h2>Definizione</h2>
 <p>Una <strong>funzione</strong> è un blocco di codice con un nome, che <strong>viene eseguito solo quando è chiamato</strong>. Abbiamo già usato diverse funzioni pronte di Python, come <code>print()</code>, <code>len()</code> e <code>open()</code>. Ora creeremo le nostre.</p>
 <p><strong>Definendo</strong> una funzione:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def nome_da_funcao(parametro_1, parametro_2):
-    # bloco de código (indentado)
-    return valor_de_retorno
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def nome_della_funzione(parametro_1, parametro_2):
+    # blocco di codice (indentato)
+    return valore_di_ritorno
 </code></pre></div>
 <p><strong>Chiamando</strong> una funzione:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">resultado = nome_da_funcao(argumento_1, argumento_2)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">risultato = nome_della_funzione(argomento_1, argomento_2)
 </code></pre></div>
 <div class="table-wrap"><table>
 <thead><tr><th>Parte</th><th>Cosa significa</th></tr></thead>
 <tbody>
 <tr><td><code>def</code></td><td>Parola chiave che inizia la definizione di una funzione</td></tr>
-<tr><td><code>nome_da_funcao</code></td><td>Nome della funzione, in <code>snake_case</code> e preferibilmente con un verbo (<code>calcular_</code>, <code>ler_</code>, <code>exibir_</code>)</td></tr>
+<tr><td><code>nome_della_funzione</code></td><td>Nome della funzione, in <code>snake_case</code> e preferibilmente con un verbo (<code>calcolare_</code>, <code>leggere_</code>, <code>mostrare_</code>)</td></tr>
 <tr><td><code>(parametro_1, ...)</code></td><td><strong>Parametri</strong>: variabili che ricevono i valori inviati nella chiamata</td></tr>
 <tr><td><code>return</code></td><td>Restituisce un risultato a chi ha chiamato la funzione</td></tr>
 </tbody>
 </table></div>
 <p><strong>Esempio:</strong> una funzione che mostra un messaggio a schermo.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Definir a função NÃO executa o código: apenas o guarda com um nome
-def exibir_mensagem(mensagem):
-    print(mensagem)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Definire la funzione NON esegue il codice: lo salva solo con un nome
+def mostrare_messaggio(messaggio):
+    print(messaggio)
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Agora sim, a função é executada (e pode ser chamada quantas vezes quisermos)
-exibir_mensagem('Olá, pessoal! Bem-vindos ao módulo 04.')
-exibir_mensagem('Funções evitam repetição de código.')
-# Olá, pessoal! Bem-vindos ao módulo 04.
-# Funções evitam repetição de código.
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Ora sì, la funzione viene eseguita (e può essere chiamata tutte le volte che vogliamo)
+mostrare_messaggio('Ciao a tutti! Benvenuti al modulo 04.')
+mostrare_messaggio('Le funzioni evitano la ripetizione del codice.')
+# Ciao a tutti! Benvenuti al modulo 04.
+# Le funzioni evitano la ripetizione del codice.
 </code></pre></div>
 <blockquote>
-<p><strong>Attenzione:</strong> così come le variabili, la funzione deve essere <strong>definita prima</strong> di essere chiamata. Se chiami <code>exibir_mensagem()</code> senza aver eseguito la cella con il <code>def</code>, Python genererà un <code>NameError</code>.</p>
+<p><strong>Attenzione:</strong> così come le variabili, la funzione deve essere <strong>definita prima</strong> di essere chiamata. Se chiami <code>mostrare_messaggio()</code> senza aver eseguito la cella con il <code>def</code>, Python genererà un <code>NameError</code>.</p>
 <p><strong>Suggerimento:</strong> è buona pratica descrivere cosa fa la funzione in una <em><strong>docstring</strong></em>, un testo tra triple virgolette subito sotto il <code>def</code>. Appare quando qualcuno usa <code>help()</code> sulla funzione.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def exibir_mensagem(mensagem):
-    '''Exibe a mensagem recebida na tela.'''
-    print(mensagem)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def mostrare_messaggio(messaggio):
+    '''Mostra a schermo il messaggio ricevuto.'''
+    print(messaggio)
 
-help(exibir_mensagem)
-# Help on function exibir_mensagem in module __main__:
+help(mostrare_messaggio)
+# Help on function mostrare_messaggio in module __main__:
 #
-# exibir_mensagem(mensagem)
-#     Exibe a mensagem recebida na tela.
+# mostrare_messaggio(messaggio)
+#     Mostra a schermo il messaggio ricevuto.
 </code></pre></div>
 <h2>Parametri e argomenti</h2>
 <p>I <strong>parametri</strong> sono le variabili dichiarate tra parentesi nel <code>def</code>. Gli <strong>argomenti</strong> sono i valori che inviamo a quei parametri al momento della chiamata. Una funzione può avere nessuno, uno o più parametri.</p>
 <p><strong>Esempio:</strong> funzione <strong>senza parametri</strong>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def obter_pi():
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def ottenere_pi():
     return 3.14159265359
 
-valor_pi = obter_pi()
-print(valor_pi)
+valore_pi = ottenere_pi()
+print(valore_pi)
 # 3.14159265359
 </code></pre></div>
 <blockquote>
-<p><strong>Attenzione:</strong> non salvare mai il risultato in una variabile con lo <strong>stesso nome</strong> della funzione, come <code>obter_pi = obter_pi()</code>. La variabile sostituisce la funzione, e una seconda chiamata <code>obter_pi()</code> genera un <code>TypeError</code>, perché ora il nome punta a un <code>float</code>, non a una funzione.</p>
+<p><strong>Attenzione:</strong> non salvare mai il risultato in una variabile con lo <strong>stesso nome</strong> della funzione, come <code>ottenere_pi = ottenere_pi()</code>. La variabile sostituisce la funzione, e una seconda chiamata <code>ottenere_pi()</code> genera un <code>TypeError</code>, perché ora il nome punta a un <code>float</code>, non a una funzione.</p>
 </blockquote>
 <p><strong>Esempio:</strong> funzione <strong>con più parametri</strong>. Gli argomenti possono essere passati in due modi: <strong>posizionali</strong> (nello stesso ordine dei parametri) o <strong>nominati</strong> (indicando <code>parametro=valore</code>, quando l'ordine non conta e la chiamata risulta più leggibile).</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcular_total_compra(preco_unitario, quantidade):
-    return preco_unitario * quantidade
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcolare_totale_acquisto(prezzo_unitario, quantita):
+    return prezzo_unitario * quantita
 
-# Argumentos posicionais: a ordem importa
-print(calcular_total_compra(12.50, 4))
+# Argomenti posizionali: l'ordine conta
+print(calcolare_totale_acquisto(12.50, 4))
 
-# Argumentos nomeados: a ordem não importa
-print(calcular_total_compra(quantidade=4, preco_unitario=12.50))
+# Argomenti nominati: l'ordine non conta
+print(calcolare_totale_acquisto(quantita=4, prezzo_unitario=12.50))
 # 50.0
 # 50.0
 </code></pre></div>
 <p><strong>Esempio:</strong> parametri con <strong>valore predefinito</strong>. Se l'argomento non viene indicato nella chiamata, il parametro assume il valore definito nel <code>def</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcular_preco_final(preco, desconto=0.0):
-    return preco * (1 - desconto)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcolare_prezzo_finale(prezzo, sconto=0.0):
+    return prezzo * (1 - sconto)
 
-print(calcular_preco_final(100))                # usa o desconto padrão (0%)
-print(calcular_preco_final(100, desconto=0.15))  # desconto de 15%
+print(calcolare_prezzo_finale(100))                # usa lo sconto predefinito (0%)
+print(calcolare_prezzo_finale(100, sconto=0.15))   # sconto del 15%
 # 100.0
 # 85.0
 </code></pre></div>
 <blockquote>
-<p><strong>Attenzione:</strong> i parametri con valore predefinito devono venire <strong>dopo</strong> i parametri obbligatori. Una definizione come <code>def calcular_preco_final(desconto=0.0, preco):</code> genera un <code>SyntaxError</code>.</p>
+<p><strong>Attenzione:</strong> i parametri con valore predefinito devono venire <strong>dopo</strong> i parametri obbligatori. Una definizione come <code>def calcolare_prezzo_finale(sconto=0.0, prezzo):</code> genera un <code>SyntaxError</code>.</p>
 </blockquote>
-<p>Possiamo anche indicare il <strong>tipo previsto</strong> di ciascun parametro e del ritorno, usando le <em><strong>type hints</strong></em> (suggerimenti di tipo): <code>parametro: tipo</code> e <code>-&gt; tipo_do_retorno</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcular_preco_final(preco: float, desconto: float = 0.0) -&gt; float:
-    return preco * (1 - desconto)
+<p>Possiamo anche indicare il <strong>tipo previsto</strong> di ciascun parametro e del ritorno, usando le <em><strong>type hints</strong></em> (suggerimenti di tipo): <code>parametro: tipo</code> e <code>-&gt; tipo_del_ritorno</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcolare_prezzo_finale(prezzo: float, sconto: float = 0.0) -&gt; float:
+    return prezzo * (1 - sconto)
 
-print(calcular_preco_final(250.0, desconto=0.10))
+print(calcolare_prezzo_finale(250.0, sconto=0.10))
 # 225.0
 </code></pre></div>
 <blockquote>
@@ -125,139 +125,139 @@ print(calcular_preco_final(250.0, desconto=0.10))
 </blockquote>
 <h2>Ritorno</h2>
 <p>Il <code>return</code> restituisce un valore a chi ha chiamato la funzione. Questo valore può essere salvato in una variabile, stampato o usato in altri calcoli.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def converter_para_maiusculas(texto: str) -&gt; str:
-    texto_maiusculo = texto.upper()
-    return texto_maiusculo
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def convertire_in_maiuscolo(testo: str) -&gt; str:
+    testo_maiuscolo = testo.upper()
+    return testo_maiuscolo
 
 nome = 'André Perez'
-nome_maiusculo = converter_para_maiusculas(nome)
+nome_maiuscolo = convertire_in_maiuscolo(nome)
 
 print(nome)
-print(nome_maiusculo)
+print(nome_maiuscolo)
 # André Perez
 # ANDRÉ PEREZ
 </code></pre></div>
 <p><strong>Mostrare non è lo stesso che restituire.</strong> Una funzione senza <code>return</code> restituisce automaticamente il valore <code>None</code>. Perciò, il risultato di una funzione che usa solo <code>print()</code> non può essere sfruttato in seguito:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def exibir_dobro(numero):
-    print(numero * 2)   # apenas mostra na tela
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def mostrare_doppio(numero):
+    print(numero * 2)   # mostra solo a schermo
 
-def calcular_dobro(numero):
-    return numero * 2   # devolve o valor
+def calcolare_doppio(numero):
+    return numero * 2   # restituisce il valore
 
-resultado_exibir = exibir_dobro(5)
-resultado_calcular = calcular_dobro(5)
+risultato_mostrare = mostrare_doppio(5)
+risultato_calcolare = calcolare_doppio(5)
 
-print(f'exibir_dobro devolveu:  {resultado_exibir}')
-print(f'calcular_dobro devolveu: {resultado_calcular}')
+print(f'mostrare_doppio ha restituito:  {risultato_mostrare}')
+print(f'calcolare_doppio ha restituito: {risultato_calcolare}')
 # 10
-# exibir_dobro devolveu:  None
-# calcular_dobro devolveu: 10
+# mostrare_doppio ha restituito:  None
+# calcolare_doppio ha restituito: 10
 </code></pre></div>
 <p>Il <code>return</code> <strong>termina anche la funzione</strong> immediatamente: nulla di ciò che si trova dopo di esso nello stesso percorso viene eseguito. Questo permette di restituire valori diversi in base a una condizione.</p>
 <p><strong>Esempio:</strong> classificando il saldo di un cliente della banca.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def classificar_saldo(saldo: float) -&gt; str:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def classificare_saldo(saldo: float) -&gt; str:
     if saldo &lt; 0:
-        return 'negativo'   # a função termina aqui se o saldo for negativo
+        return 'negativo'   # la funzione termina qui se il saldo è negativo
     if saldo == 0:
-        return 'zerado'
+        return 'zero'
     return 'positivo'
 
-print(classificar_saldo(-88))
-print(classificar_saldo(0))
-print(classificar_saldo(1787))
+print(classificare_saldo(-88))
+print(classificare_saldo(0))
+print(classificare_saldo(1787))
 # negativo
-# zerado
+# zero
 # positivo
 </code></pre></div>
 <p>Una funzione può <strong>restituire più di un valore</strong>, separandoli con la virgola. In realtà, Python unisce i valori in una <strong>tupla</strong>, che possiamo "spacchettare" in più variabili nella chiamata.</p>
 <p><strong>Esempio:</strong> separando l'utente e il provider di un'email.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def extrair_usuario_e_provedor(email: str) -&gt; tuple[str, str]:
-    partes = email.split('@')
-    usuario = partes[0]
-    provedor = partes[1]
-    return usuario, provedor
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def estrarre_utente_e_provider(email: str) -&gt; tuple[str, str]:
+    parti = email.split('@')
+    utente = parti[0]
+    provider = parti[1]
+    return utente, provider
 
-usuario, provedor = extrair_usuario_e_provedor('andre.perez@gmail.com')
+utente, provider = estrarre_utente_e_provider('andre.perez@gmail.com')
 
-print(usuario)
-print(provedor)
+print(utente)
+print(provider)
 # andre.perez
 # gmail.com
 </code></pre></div>
 <h2>Gestire errori dentro le funzioni</h2>
 <p>Le funzioni che gestiscono file possono fallire per vari motivi: cartella inesistente, mancanza di permessi, dati in un formato inatteso. Con <code>try/except</code>, la funzione può gestire l'errore e <strong>informare</strong> chi l'ha chiamata se l'operazione è andata a buon fine.</p>
 <p><strong>Esempio:</strong> una funzione riutilizzabile per registrare un file CSV a una colonna, che restituisce <code>True</code> in caso di successo e <code>False</code> in caso di errore.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def escrever_arquivo_csv(nome_arquivo: str, cabecalho: str, valores: list) -&gt; bool:
-    '''Grava um CSV de uma coluna. Retorna True se deu certo e False se houve erro.'''
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def scrivere_file_csv(nome_file: str, intestazione: str, valori: list) -&gt; bool:
+    '''Salva un CSV con una colonna. Restituisce True se è andato a buon fine e False in caso di errore.'''
     try:
-        with open(nome_arquivo, mode='w', encoding='utf-8') as arquivo:
-            arquivo.write(f'{cabecalho}\n')
-            for valor in valores:
-                arquivo.write(f'{valor}\n')
-    except Exception as erro:
-        print(f'Não foi possível gravar o arquivo: {erro}')
+        with open(nome_file, mode='w', encoding='utf-8') as file:
+            file.write(f'{intestazione}\n')
+            for valore in valori:
+                file.write(f'{valore}\n')
+    except Exception as errore:
+        print(f'Non è stato possibile salvare il file: {errore}')
         return False
 
     return True
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Chamada correta: valores é uma lista
-gravou = escrever_arquivo_csv('idades_funcao.csv', 'idade', [30, 33, 35, 30, 59])
-print(f'Gravou com sucesso? {gravou}')
-# Gravou com sucesso? True
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Chiamata corretta: valori è una lista
+salvato = scrivere_file_csv('idades_funcao.csv', 'idade', [30, 33, 35, 30, 59])
+print(f'Salvato con successo? {salvato}')
+# Salvato con successo? True
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Chamada com erro: 10 não é uma lista, então o for dentro da função falha
-gravou = escrever_arquivo_csv('idades_funcao_erro.csv', 'idade', 10)
-print(f'Gravou com sucesso? {gravou}')
-# Não foi possível gravar o arquivo: 'int' object is not iterable
-# Gravou com sucesso? False
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Chiamata con errore: 10 non è una lista, quindi il for dentro la funzione fallisce
+salvato = scrivere_file_csv('idades_funcao_erro.csv', 'idade', 10)
+print(f'Salvato con successo? {salvato}')
+# Non è stato possibile salvare il file: 'int' object is not iterable
+# Salvato con successo? False
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> nota come il programma <strong>non si è bloccato</strong> nel secondo caso. L'errore è stato gestito dentro la funzione, e il valore <code>False</code> permette al resto del codice di decidere cosa fare.</p>
 </blockquote>
 <h2>Rivisitando la motivazione</h2>
 <p>Ora possiamo inserire il calcolo dell'interesse composto in una funzione. Nota che essa si limita a <strong>calcolare e restituire</strong> il valore. Mostrare il risultato spetta a chi la chiama, il che rende la funzione più facile da riutilizzare.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcular_juros_compostos(valor_inicial: float, taxa_juros_anual: float, anos: int) -&gt; float:
-    '''Retorna o valor final de um investimento com juros compostos anuais.'''
-    valor_final = valor_inicial
-    for _ in range(anos):  # "_" indica que a variável do laço não é usada
-        valor_final = valor_final * (1 + taxa_juros_anual)
-    return valor_final
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcolare_interesse_composto(valore_iniziale: float, tasso_interesse_annuale: float, anni: int) -&gt; float:
+    '''Restituisce il valore finale di un investimento con interesse composto annuale.'''
+    valore_finale = valore_iniziale
+    for _ in range(anni):  # "_" indica che la variabile del ciclo non è usata
+        valore_finale = valore_finale * (1 + tasso_interesse_annuale)
+    return valore_finale
 </code></pre></div>
 <p>Gli stessi due scenari di prima, ora con una riga ciascuno:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_final_1 = calcular_juros_compostos(valor_inicial=1000.00, taxa_juros_anual=0.05, anos=10)
-valor_final_2 = calcular_juros_compostos(valor_inicial=1020.00, taxa_juros_anual=0.03, anos=10)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_finale_1 = calcolare_interesse_composto(valore_iniziale=1000.00, tasso_interesse_annuale=0.05, anni=10)
+valore_finale_2 = calcolare_interesse_composto(valore_iniziale=1020.00, tasso_interesse_annuale=0.03, anni=10)
 
-print(f'Cenário 1: R$ {valor_final_1:.2f}')
-print(f'Cenário 2: R$ {valor_final_2:.2f}')
-# Cenário 1: R$ 1628.89
-# Cenário 2: R$ 1370.79
+print(f'Scenario 1: R$ {valore_finale_1:.2f}')
+print(f'Scenario 2: R$ {valore_finale_2:.2f}')
+# Scenario 1: R$ 1628.89
+# Scenario 2: R$ 1370.79
 </code></pre></div>
 <p>E simulare più scenari diventa banale. <strong>Esempio:</strong> confrontando diversi tassi per lo stesso valore iniziale.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">taxas_simuladas = [0.03, 0.05, 0.08, 0.10]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">tassi_simulati = [0.03, 0.05, 0.08, 0.10]
 
-for taxa in taxas_simuladas:
-    valor_final = calcular_juros_compostos(valor_inicial=1000.00, taxa_juros_anual=taxa, anos=10)
-    print(f'Taxa de {taxa:.0%} ao ano: R$ {valor_final:.2f}')
-# Taxa de 3% ao ano: R$ 1343.92
-# Taxa de 5% ao ano: R$ 1628.89
-# Taxa de 8% ao ano: R$ 2158.92
-# Taxa de 10% ao ano: R$ 2593.74
+for tasso in tassi_simulati:
+    valore_finale = calcolare_interesse_composto(valore_iniziale=1000.00, tasso_interesse_annuale=tasso, anni=10)
+    print(f'Tasso del {tasso:.0%} annuo: R$ {valore_finale:.2f}')
+# Tasso del 3% annuo: R$ 1343.92
+# Tasso del 5% annuo: R$ 1628.89
+# Tasso del 8% annuo: R$ 2158.92
+# Tasso del 10% annuo: R$ 2593.74
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> l'interesse composto ha anche una formula diretta, <code>valore finale = valore iniziale × (1 + tasso) ^ anni</code>, che in Python diventa <code>valor_inicial * (1 + taxa_juros_anual) ** anos</code>. Poiché il calcolo è isolato in una funzione, potremmo sostituire il ciclo con la formula <strong>senza cambiare nessuna chiamata</strong>. Questo è un altro grande vantaggio delle funzioni.</p>
+<p><strong>Suggerimento:</strong> l'interesse composto ha anche una formula diretta, <code>valore finale = valore iniziale × (1 + tasso) ^ anni</code>, che in Python diventa <code>valore_iniziale * (1 + tasso_interesse_annuale) ** anni</code>. Poiché il calcolo è isolato in una funzione, potremmo sostituire il ciclo con la formula <strong>senza cambiare nessuna chiamata</strong>. Questo è un altro grande vantaggio delle funzioni.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Conferindo: a fórmula direta dá o mesmo resultado que o laço
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Verifica: la formula diretta dà lo stesso risultato del ciclo
 print(round(1000.00 * (1 + 0.05) ** 10, 2))
-print(round(calcular_juros_compostos(1000.00, 0.05, 10), 2))
+print(round(calcolare_interesse_composto(1000.00, 0.05, 10), 2))
 # 1628.89
 # 1628.89
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> il <code>round()</code> di Python usa l'<strong>arrotondamento bancario</strong>: quando il numero è esattamente nel mezzo (<code>.5</code>), arrotonda al numero <strong>pari</strong> più vicino. Perciò <code>round(2.5)</code> restituisce <code>2</code>, e non <code>3</code>.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(round(10 / 4))  # 2.5 -&gt; 2 (o par mais próximo)
-print(round(3.5))     # 3.5 -&gt; 4 (o par mais próximo)
-print(round(2.6))     # 2.6 -&gt; 3 (não está no meio: arredonda normalmente)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(round(10 / 4))  # 2.5 -&gt; 2 (il pari più vicino)
+print(round(3.5))     # 3.5 -&gt; 4 (il pari più vicino)
+print(round(2.6))     # 2.6 -&gt; 3 (non è nel mezzo: arrotonda normalmente)
 # 2
 # 4
 # 3

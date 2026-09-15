@@ -13,13 +13,13 @@
 </tbody>
 </table></div>
 <p>Prima creiamo i file di esempio. Il file del <strong>giorno 1</strong> è arrivato nel formato concordato:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def criar_arquivo(nome_arquivo: str, conteudo: str) -&gt; None:
-    '''Cria (ou sobrescreve) um arquivo de texto com o conteúdo informado.'''
-    with open(nome_arquivo, mode='w', encoding='utf-8') as arquivo:
-        arquivo.write(conteudo)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def crea_file(nome_file: str, contenuto: str) -&gt; None:
+    '''Crea (o sovrascrive) un file di testo con il contenuto indicato.'''
+    with open(nome_file, mode='w', encoding='utf-8') as file:
+        file.write(contenuto)
 
 
-criar_arquivo('telecom_dia_01.csv', '''customerID,PaymentMethod,MonthlyCharges,TotalCharges,Churn
+crea_file('telecom_giorno_01.csv', '''customerID,PaymentMethod,MonthlyCharges,TotalCharges,Churn
 7010-BRBUU,Credit card (automatic),24.1,1734.65,No
 9688-YGXVR,Credit card (automatic),88.15,3973.2,No
 9286-DOJGF,Bank transfer (automatic),74.95,2869.85,Yes
@@ -32,25 +32,25 @@ criar_arquivo('telecom_dia_01.csv', '''customerID,PaymentMethod,MonthlyCharges,T
 ''')
 </code></pre></div>
 <p>Questa è la funzione che hai scritto per sommare le fatture. Legge il file riga per riga e prende il valore della <strong>3ª colonna</strong> (<code>MonthlyCharges</code>, indice <code>2</code>):</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def somar_faturas(nome_arquivo: str) -&gt; float:
-    faturas = []
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def somma_fatture(nome_file: str) -&gt; float:
+    fatture = []
 
-    with open(nome_arquivo, mode='r', encoding='utf-8') as arquivo:
-        arquivo.readline()  # descarta o cabeçalho
-        for linha in arquivo:
-            colunas = linha.strip().split(',')
-            fatura = float(colunas[2])  # 3ª coluna: MonthlyCharges
-            faturas.append(fatura)
+    with open(nome_file, mode='r', encoding='utf-8') as file:
+        file.readline()  # scarta l'intestazione
+        for riga in file:
+            colonne = riga.strip().split(',')
+            fattura = float(colonne[2])  # 3ª colonna: MonthlyCharges
+            fatture.append(fattura)
 
-    return sum(faturas)
+    return sum(fatture)
 
 
-total_a_receber = somar_faturas('telecom_dia_01.csv')
-print(f'Total a receber: {total_a_receber:.2f}')
-# Total a receber: 497.50
+totale_da_incassare = somma_fatture('telecom_giorno_01.csv')
+print(f'Totale da incassare: {totale_da_incassare:.2f}')
+# Totale da incassare: 497.50
 </code></pre></div>
 <p>Tutto ok al giorno 1. Ma al <strong>giorno 2</strong>, l'ingegneria ha cambiato l'ordine delle colonne senza avvisare: <code>MonthlyCharges</code> ora è la 2ª colonna, e la 3ª è diventata <code>PaymentMethod</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">criar_arquivo('telecom_dia_02.csv', '''customerID,MonthlyCharges,PaymentMethod,TotalCharges,Churn
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">crea_file('telecom_giorno_02.csv', '''customerID,MonthlyCharges,PaymentMethod,TotalCharges,Churn
 7010-BRBUU,24.1,Credit card (automatic),1734.65,No
 9688-YGXVR,88.15,Credit card (automatic),3973.2,No
 9286-DOJGF,74.95,Bank transfer (automatic),2869.85,Yes
@@ -64,10 +64,10 @@ print(f'Total a receber: {total_a_receber:.2f}')
 </code></pre></div>
 <p>Elaborando il nuovo file, il programma <strong>si rompe</strong>. Senza il <code>try/except</code> sotto (che usiamo solo per non bloccare il notebook), l'esecuzione si fermerebbe qui con un <code>ValueError</code>:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
-    total_a_receber = somar_faturas('telecom_dia_02.csv')
-    print(f'Total a receber: {total_a_receber:.2f}')
-except ValueError as erro:
-    print(f'{type(erro).__name__}: {erro}')
+    totale_da_incassare = somma_fatture('telecom_giorno_02.csv')
+    print(f'Totale da incassare: {totale_da_incassare:.2f}')
+except ValueError as errore:
+    print(f'{type(errore).__name__}: {errore}')
 # ValueError: could not convert string to float: 'Credit card (automatic)'
 </code></pre></div>
 <p>Python ha provato a convertire il testo <code>'Credit card (automatic)'</code> in numero, il che è impossibile.</p>
@@ -76,12 +76,12 @@ except ValueError as erro:
 <p>Un <strong>errore in tempo di esecuzione</strong> accade mentre il programma è in esecuzione. Il codice viene eseguito normalmente <strong>fino alla riga dell'errore</strong>. In quel momento, Python "lancia" (o "solleva") un'<strong>eccezione</strong> e, se nessuno la gestisce, il programma viene interrotto.</p>
 <p>Guarda la differenza rispetto all'errore di sintassi: qui, il messaggio prima dell'errore <strong>viene</strong> mostrato.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
-    print('Esta mensagem vem antes do erro')  # é executada
-    print(10 / 0)                             # aqui a exceção é lançada
-    print('Esta mensagem vem depois do erro') # nunca é executada
-except ZeroDivisionError as erro:
-    print(f'{type(erro).__name__}: {erro}')
-# Esta mensagem vem antes do erro
+    print('Questo messaggio arriva prima dell\'errore')  # viene eseguito
+    print(10 / 0)                                        # qui l'eccezione viene lanciata
+    print('Questo messaggio arriva dopo l\'errore')       # non viene mai eseguito
+except ZeroDivisionError as errore:
+    print(f'{type(errore).__name__}: {errore}')
+# Questo messaggio arriva prima dell'errore
 # ZeroDivisionError: division by zero
 </code></pre></div>
 <p>Ogni tipo di problema genera un'eccezione con un nome diverso. Queste sono le più comuni:</p>
@@ -89,101 +89,101 @@ except ZeroDivisionError as erro:
 <thead><tr><th>Eccezione</th><th>Quando accade</th><th>Esempio</th></tr></thead>
 <tbody>
 <tr><td><code>ZeroDivisionError</code></td><td>Divisione per zero</td><td><code>10 / 0</code></td></tr>
-<tr><td><code>TypeError</code></td><td>Operazione con tipi incompatibili</td><td><code>'idade: ' + 30</code></td></tr>
+<tr><td><code>TypeError</code></td><td>Operazione con tipi incompatibili</td><td><code>'età: ' + 30</code></td></tr>
 <tr><td><code>ValueError</code></td><td>Tipo corretto, ma valore impossibile da usare</td><td><code>float('abc')</code></td></tr>
 <tr><td><code>IndexError</code></td><td>Posizione inesistente in una lista</td><td><code>[1, 2, 3][5]</code></td></tr>
 <tr><td><code>KeyError</code></td><td>Chiave inesistente in un dizionario</td><td><code>{'a': 1}['b']</code></td></tr>
-<tr><td><code>NameError</code></td><td>Variabile o funzione che non esiste</td><td><code>print(variavel_inexistente)</code></td></tr>
-<tr><td><code>AttributeError</code></td><td>Metodo o attributo che l'oggetto non ha</td><td><code>'texto'.somar()</code></td></tr>
-<tr><td><code>FileNotFoundError</code></td><td>File che non esiste</td><td><code>open('nao_existe.csv')</code></td></tr>
+<tr><td><code>NameError</code></td><td>Variabile o funzione che non esiste</td><td><code>print(variabile_inesistente)</code></td></tr>
+<tr><td><code>AttributeError</code></td><td>Metodo o attributo che l'oggetto non ha</td><td><code>'testo'.somma()</code></td></tr>
+<tr><td><code>FileNotFoundError</code></td><td>File che non esiste</td><td><code>open('non_esiste.csv')</code></td></tr>
 </tbody>
 </table></div>
 <p><strong>Esempio:</strong> operazione numerica impossibile, dividendo un conto tra zero persone.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_conta = 132.85
-quantidade_pessoas = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">importo_conto = 132.85
+numero_persone = 0
 
 try:
-    valor_por_pessoa = valor_conta / quantidade_pessoas
-except ZeroDivisionError as erro:
-    print(f'{type(erro).__name__}: {erro}')
+    importo_a_persona = importo_conto / numero_persone
+except ZeroDivisionError as errore:
+    print(f'{type(errore).__name__}: {errore}')
 # ZeroDivisionError: float division by zero
 </code></pre></div>
 <p><strong>Esempio:</strong> combinazione di tipi incompatibili, concatenando testo con numero.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome = 'André Perez'
-idade = 30
+eta = 30
 
 try:
-    apresentacao = 'Meu nome é ' + nome + ' e eu tenho ' + idade + ' anos.'
-except TypeError as erro:
-    print(f'{type(erro).__name__}: {erro}')
+    presentazione = 'Mi chiamo ' + nome + ' e ho ' + eta + ' anni.'
+except TypeError as errore:
+    print(f'{type(errore).__name__}: {errore}')
 
-# Com f-string, a conversão para texto é automática
-print(f'Meu nome é {nome} e eu tenho {idade} anos.')
+# Con f-string, la conversione in testo è automatica
+print(f'Mi chiamo {nome} e ho {eta} anni.')
 # TypeError: can only concatenate str (not "int") to str
-# Meu nome é André Perez e eu tenho 30 anos.
+# Mi chiamo André Perez e ho 30 anni.
 </code></pre></div>
 <p><strong>Esempio:</strong> accedendo a una posizione che non esiste in una lista.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anos = [2019, 2020, 2021]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anni = [2019, 2020, 2021]
 
 try:
-    ano_atual = anos[3]  # as posições válidas são 0, 1 e 2
-except IndexError as erro:
-    print(f'{type(erro).__name__}: {erro}')
+    anno_attuale = anni[3]  # le posizioni valide sono 0, 1 e 2
+except IndexError as errore:
+    print(f'{type(errore).__name__}: {errore}')
 # IndexError: list index out of range
 </code></pre></div>
 <p><strong>Esempio:</strong> accedendo a una chiave che non esiste in un dizionario.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">cursos = {
-    'python': {'nome': 'Python para Análise de Dados', 'duracao_meses': 2.5},
-    'sql': {'nome': 'SQL para Análise de Dados', 'duracao_meses': 2},
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">corsi = {
+    'python': {'nome': 'Python per l\'Analisi dei Dati', 'durata_mesi': 2.5},
+    'sql': {'nome': 'SQL per l\'Analisi dei Dati', 'durata_mesi': 2},
 }
 
-print(cursos['python'])
-print(cursos['sql'])
+print(corsi['python'])
+print(corsi['sql'])
 
 try:
-    print(cursos['analista'])
-except KeyError as erro:
-    print(f'{type(erro).__name__}: {erro}')
-# {'nome': 'Python para Análise de Dados', 'duracao_meses': 2.5}
-# {'nome': 'SQL para Análise de Dados', 'duracao_meses': 2}
+    print(corsi['analista'])
+except KeyError as errore:
+    print(f'{type(errore).__name__}: {errore}')
+# {'nome': "Python per l'Analisi dei Dati", 'durata_mesi': 2.5}
+# {'nome': "SQL per l'Analisi dei Dati", 'durata_mesi': 2}
 # KeyError: 'analista'
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> spesso si può <strong>evitare</strong> l'eccezione invece di gestirla. Per i dizionari, il metodo <code>.get(chave, valor_padrao)</code> restituisce il valore predefinito quando la chiave non esiste, senza generare errore.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">curso = cursos.get('analista', 'Curso não encontrado')
-print(curso)
-# Curso não encontrado
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">corso = corsi.get('analista', 'Corso non trovato')
+print(corso)
+# Corso non trovato
 </code></pre></div>
 <h2>Leggere il traceback</h2>
 <p>Quando un'eccezione non viene gestita, Python mostra il <em><strong>traceback</strong></em>: la "traccia" delle chiamate di funzione che hanno portato all'errore. Sembra spaventoso, ma segue sempre la stessa struttura. Il modulo <code>traceback</code> permette di mostrarlo anche quando catturiamo l'eccezione:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import traceback
 
-def calcular_valor_por_pessoa(valor_total: float, quantidade_pessoas: int) -&gt; float:
-    return valor_total / quantidade_pessoas
+def calcola_importo_a_persona(valore_totale: float, numero_persone: int) -&gt; float:
+    return valore_totale / numero_persone
 
-def fechar_conta(valor_total: float, quantidade_pessoas: int) -&gt; None:
-    valor = calcular_valor_por_pessoa(valor_total, quantidade_pessoas)
-    print(f'Cada pessoa paga {valor:.2f}')
+def chiudi_conto(valore_totale: float, numero_persone: int) -&gt; None:
+    importo = calcola_importo_a_persona(valore_totale, numero_persone)
+    print(f'Ogni persona paga {importo:.2f}')
 
 try:
-    fechar_conta(132.85, 0)
+    chiudi_conto(132.85, 0)
 except ZeroDivisionError:
-    traceback.print_exc()  # exibe o traceback completo, como se o erro não fosse tratado
+    traceback.print_exc()  # mostra il traceback completo, come se l'errore non fosse stato gestito
 # Traceback (most recent call last):
 #   File "...", line 11, in &lt;module&gt;
-#     fechar_conta(132.85, 0)
-#   File "...", line 7, in fechar_conta
-#     valor = calcular_valor_por_pessoa(valor_total, quantidade_pessoas)
-#   File "...", line 4, in calcular_valor_por_pessoa
-#     return valor_total / quantidade_pessoas
+#     chiudi_conto(132.85, 0)
+#   File "...", line 7, in chiudi_conto
+#     importo = calcola_importo_a_persona(valore_totale, numero_persone)
+#   File "...", line 4, in calcola_importo_a_persona
+#     return valore_totale / numero_persone
 # ZeroDivisionError: float division by zero
 </code></pre></div>
 <p>Leggi il <em>traceback</em> <strong>dal basso verso l'alto</strong>:</p>
 <ol>
 <li><strong>Ultima riga:</strong> il tipo dell'eccezione e il messaggio (<code>ZeroDivisionError: division by zero</code>). Inizia sempre da qui;</li>
-<li><strong>Righe subito sopra:</strong> il file, il numero di riga e la funzione dove è accaduto l'errore (<code>calcular_valor_por_pessoa</code>);</li>
-<li><strong>Righe più in alto:</strong> il percorso di chiamate fino a lì. Chi ha chiamato chi (<code>fechar_conta</code> ha chiamato <code>calcular_valor_por_pessoa</code>).</li>
+<li><strong>Righe subito sopra:</strong> il file, il numero di riga e la funzione dove è accaduto l'errore (<code>calcola_importo_a_persona</code>);</li>
+<li><strong>Righe più in alto:</strong> il percorso di chiamate fino a lì. Chi ha chiamato chi (<code>chiudi_conto</code> ha chiamato <code>calcola_importo_a_persona</code>).</li>
 </ol>
 <blockquote>
 <p><strong>Suggerimento:</strong> quando cerchi un errore su internet, copia l'<strong>ultima riga</strong> del <em>traceback</em>. È la parte più utile e di solito porta direttamente a spiegazioni e soluzioni.</p>
@@ -205,24 +205,24 @@ except ZeroDivisionError:
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(issubclass(ZeroDivisionError, ArithmeticError))  # True
 print(issubclass(IndexError, LookupError))             # True
 print(issubclass(KeyError, LookupError))               # True
-print(issubclass(ValueError, Exception))               # True: quase tudo herda de Exception
+print(issubclass(ValueError, Exception))               # True: quasi tutto eredita da Exception
 # True
 # True
 # True
 # True
 </code></pre></div>
 <p><strong>Esempio:</strong> poiché <code>IndexError</code> e <code>KeyError</code> ereditano da <code>LookupError</code>, un unico <code>except LookupError</code> gestisce entrambi i casi.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def buscar(colecao, chave_ou_posicao):
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def cerca(collezione, chiave_o_posizione):
     try:
-        return colecao[chave_ou_posicao]
-    except LookupError as erro:
-        print(f'Não encontrado ({type(erro).__name__}): {erro}')
+        return collezione[chiave_o_posizione]
+    except LookupError as errore:
+        print(f'Non trovato ({type(errore).__name__}): {errore}')
         return None
 
-buscar(anos, 10)             # lista: gera IndexError
-buscar(cursos, 'analista')   # dicionário: gera KeyError
-# Não encontrado (IndexError): list index out of range
-# Não encontrado (KeyError): 'analista'
+cerca(anni, 10)             # lista: genera IndexError
+cerca(corsi, 'analista')    # dizionario: genera KeyError
+# Non trovato (IndexError): list index out of range
+# Non trovato (KeyError): 'analista'
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> l'<strong>ordine degli <code>except</code> conta</strong>. Python usa il <strong>primo</strong> che corrisponde all'eccezione. Per questo, metti sempre le eccezioni <strong>più specifiche prima</strong> e quelle più generiche (come <code>Exception</code>) per ultime. Un <code>except Exception</code> in cima catturerebbe tutto, e gli <code>except</code> sotto non verrebbero mai usati.</p>
@@ -231,13 +231,13 @@ buscar(cursos, 'analista')   # dicionário: gera KeyError
 <h2>try / except / else / finally</h2>
 <p>Nel Modulo 03 abbiamo visto <code>try</code>, <code>except</code> e <code>finally</code>. La struttura completa ha anche il blocco <code>else</code>:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
-    # código que pode gerar uma exceção
-except TipoDeExcecao as erro:
-    # executado SE a exceção acontecer
+    # codice che può generare un'eccezione
+except TipoDiEccezione as errore:
+    # eseguito SE l'eccezione accade
 else:
-    # executado SE NENHUMA exceção acontecer
+    # eseguito SE NESSUNA eccezione accade
 finally:
-    # executado SEMPRE, com ou sem exceção
+    # eseguito SEMPRE, con o senza eccezione
 </code></pre></div>
 <div class="table-wrap"><table>
 <thead><tr><th>Blocco</th><th>Obbligatorio?</th><th>Quando viene eseguito</th></tr></thead>
@@ -249,33 +249,33 @@ finally:
 </tbody>
 </table></div>
 <p><strong>Esempio:</strong> consultando un anno in una collezione.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def consultar_ano(anos, posicao: int) -&gt; None:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def consulta_anno(anni, posizione: int) -&gt; None:
     try:
-        ano = anos[posicao]
+        anno = anni[posizione]
     except IndexError:
-        print(f'Posição inválida. Escolha um valor entre 0 e {len(anos) - 1}.')
-    except TypeError as erro:
-        print(f'Coleção não suportada: {erro}')
+        print(f'Posizione non valida. Scegli un valore tra 0 e {len(anni) - 1}.')
+    except TypeError as errore:
+        print(f'Collezione non supportata: {errore}')
     else:
-        print(f'Ano encontrado: {ano}')
+        print(f'Anno trovato: {anno}')
     finally:
-        print('Consulta finalizada.')
+        print('Consultazione terminata.')
         print('-' * 30)
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">lista_anos = [2019, 2020, 2021]
-conjunto_anos = {2019, 2020, 2021}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">lista_anni = [2019, 2020, 2021]
+insieme_anni = {2019, 2020, 2021}
 
-consultar_ano(lista_anos, 1)      # sem erro: executa o else
-consultar_ano(lista_anos, 3)      # IndexError
-consultar_ano(conjunto_anos, 0)   # TypeError: conjuntos não têm posição
-# Ano encontrado: 2020
-# Consulta finalizada.
+consulta_anno(lista_anni, 1)      # senza errore: esegue l'else
+consulta_anno(lista_anni, 3)      # IndexError
+consulta_anno(insieme_anni, 0)    # TypeError: gli insiemi non hanno posizione
+# Anno trovato: 2020
+# Consultazione terminata.
 # ------------------------------
-# Posição inválida. Escolha um valor entre 0 e 2.
-# Consulta finalizada.
+# Posizione non valida. Scegli un valore tra 0 e 2.
+# Consultazione terminata.
 # ------------------------------
-# Coleção não suportada: 'set' object is not subscriptable
-# Consulta finalizada.
+# Collezione non supportata: 'set' object is not subscriptable
+# Consultazione terminata.
 # ------------------------------
 </code></pre></div>
 <blockquote>
@@ -284,69 +284,69 @@ consultar_ano(conjunto_anos, 0)   # TypeError: conjuntos não têm posição
 <h2>Lanciare eccezioni con raise</h2>
 <p>Finora abbiamo solo <strong>reagito</strong> alle eccezioni di Python. Con la parola chiave <code>raise</code>, possiamo noi stessi <strong>lanciare</strong> un'eccezione quando rileviamo una situazione non valida, interrompendo la funzione e avvisando chi l'ha chiamata.</p>
 <p><strong>Esempio:</strong> validando i dati prima di dividere un conto.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def dividir_conta(valor_total: float, quantidade_pessoas: int) -&gt; float:
-    if quantidade_pessoas &lt;= 0:
-        raise ValueError(f'A quantidade de pessoas deve ser maior que zero (recebido: {quantidade_pessoas}).')
-    return valor_total / quantidade_pessoas
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def dividi_conto(valore_totale: float, numero_persone: int) -&gt; float:
+    if numero_persone &lt;= 0:
+        raise ValueError(f'Il numero di persone deve essere maggiore di zero (ricevuto: {numero_persone}).')
+    return valore_totale / numero_persone
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(dividir_conta(132.85, 5))
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(dividi_conto(132.85, 5))
 
 try:
-    print(dividir_conta(132.85, -2))
-except ValueError as erro:
-    print(f'Não foi possível dividir a conta: {erro}')
+    print(dividi_conto(132.85, -2))
+except ValueError as errore:
+    print(f'Non è stato possibile dividere il conto: {errore}')
 # 26.57
-# Não foi possível dividir a conta: A quantidade de pessoas deve ser maior que zero (recebido: -2).
+# Non è stato possibile dividere il conto: Il numero di persone deve essere maggiore di zero (ricevuto: -2).
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> senza la validazione, <code>dividir_conta(132.85, -2)</code> restituirebbe un valore negativo senza protestare, un <strong>errore di logica</strong>. Lanciare l'eccezione trasforma un problema silenzioso in un errore chiaro e facile da trovare.</p>
+<p><strong>Suggerimento:</strong> senza la validazione, <code>dividi_conto(132.85, -2)</code> restituirebbe un valore negativo senza protestare, un <strong>errore di logica</strong>. Lanciare l'eccezione trasforma un problema silenzioso in un errore chiaro e facile da trovare.</p>
 </blockquote>
 <p>Dentro un <code>except</code>, possiamo anche <strong>ripassare</strong> l'eccezione in avanti con un <code>raise</code> da solo. Questo è utile quando la funzione vuole registrare il problema, ma lasciare la decisione su cosa fare a chi l'ha chiamata:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def converter_valor(texto: str) -&gt; float:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def converti_valore(testo: str) -&gt; float:
     try:
-        return float(texto)
+        return float(testo)
     except ValueError:
-        print(f"[registro] valor inválido recebido: '{texto}'")
-        raise  # repassa a MESMA exceção para quem chamou
+        print(f"[log] valore non valido ricevuto: '{testo}'")
+        raise  # ripassa la STESSA eccezione a chi ha chiamato
 
 
 try:
-    converter_valor('Credit card (automatic)')
-except ValueError as erro:
-    print(f'Quem chamou recebeu o erro: {erro}')
-# [registro] valor inválido recebido: 'Credit card (automatic)'
-# Quem chamou recebeu o erro: could not convert string to float: 'Credit card (automatic)'
+    converti_valore('Credit card (automatic)')
+except ValueError as errore:
+    print(f'Chi ha chiamato ha ricevuto l\'errore: {errore}')
+# [log] valore non valido ricevuto: 'Credit card (automatic)'
+# Chi ha chiamato ha ricevuto l'errore: could not convert string to float: 'Credit card (automatic)'
 </code></pre></div>
-<p>Infine, possiamo <strong>sostituire</strong> l'eccezione con un'altra più chiara per il contesto, mantenendo l'originale come causa, con <code>raise NovaExcecao(...) from erro</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def obter_ano_atual(anos: list) -&gt; int:
+<p>Infine, possiamo <strong>sostituire</strong> l'eccezione con un'altra più chiara per il contesto, mantenendo l'originale come causa, con <code>raise NuovaEccezione(...) from errore</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def ottieni_anno_attuale(anni: list) -&gt; int:
     try:
-        return anos[3]
-    except IndexError as erro:
-        raise ValueError(f'A lista de anos precisa ter pelo menos 4 elementos (tem {len(anos)}).') from erro
+        return anni[3]
+    except IndexError as errore:
+        raise ValueError(f'La lista degli anni deve avere almeno 4 elementi (ne ha {len(anni)}).') from errore
 
 
 try:
-    obter_ano_atual([2019, 2020, 2021])
-except ValueError as erro:
-    print(f'Erro:  {erro}')
-    print(f'Causa: {type(erro.__cause__).__name__}: {erro.__cause__}')  # a exceção original
-# Erro:  A lista de anos precisa ter pelo menos 4 elementos (tem 3).
-# Causa: IndexError: list index out of range
+    ottieni_anno_attuale([2019, 2020, 2021])
+except ValueError as errore:
+    print(f'Errore: {errore}')
+    print(f'Causa:  {type(errore.__cause__).__name__}: {errore.__cause__}')  # l'eccezione originale
+# Errore: La lista degli anni deve avere almeno 4 elementi (ne ha 3).
+# Causa:  IndexError: list index out of range
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> il <code>from erro</code> preserva l'eccezione originale nel <em>traceback</em>, che passa a mostrare entrambe: "l'eccezione sopra è stata la causa diretta dell'eccezione sotto". Questo facilita molto l'investigazione del problema.</p>
+<p><strong>Suggerimento:</strong> il <code>from errore</code> preserva l'eccezione originale nel <em>traceback</em>, che passa a mostrare entrambe: "l'eccezione sopra è stata la causa diretta dell'eccezione sotto". Questo facilita molto l'investigazione del problema.</p>
 </blockquote>
 <h2>Eccezioni personalizzate</h2>
 <p>Poiché le eccezioni sono classi, possiamo creare le <strong>nostre</strong>, ereditando da <code>Exception</code> (o da un'eccezione più specifica). Un'eccezione con nome proprio chiarisce <strong>cosa</strong> è andato storto e permette a chi chiama la funzione di gestire quel caso separatamente dagli altri.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class FaturaInvalidaError(Exception):
-    '''Lançada quando um arquivo de faturas não pode ser processado.'''
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class FatturaNonValidaError(Exception):
+    '''Lanciata quando un file di fatture non può essere elaborato.'''
 
 
 try:
-    raise FaturaInvalidaError('Linha 5: valor da fatura em branco.')
-except FaturaInvalidaError as erro:
-    print(f'{type(erro).__name__}: {erro}')
-# FaturaInvalidaError: Linha 5: valor da fatura em branco.
+    raise FatturaNonValidaError('Riga 5: valore della fattura vuoto.')
+except FatturaNonValidaError as errore:
+    print(f'{type(errore).__name__}: {errore}')
+# FatturaNonValidaError: Riga 5: valore della fattura vuoto.
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> per convenzione, il nome di un'eccezione termina con <code>Error</code>, come le eccezioni native (<code>ValueError</code>, <code>KeyError</code>). La sola <em>docstring</em> basta già come corpo della classe, senza bisogno di <code>pass</code>.</p>
@@ -355,61 +355,61 @@ except FaturaInvalidaError as erro:
 <p>Torniamo all'elaborazione delle fatture. Possiamo migliorarla su due fronti:</p>
 <ol>
 <li><strong>Robustezza:</strong> invece di fidarci della posizione fissa della colonna, localizziamo la colonna <code>MonthlyCharges</code> <strong>per nome</strong>, leggendo l'intestazione. Così, cambiare l'ordine delle colonne smette di essere un problema;</li>
-<li><strong>Messaggi chiari:</strong> se comunque un dato è invalido (la colonna non esiste, un valore è in bianco...), lanciamo un <code>FaturaInvalidaError</code> dicendo <strong>a quale riga</strong> e <strong>perché</strong>, preservando l'eccezione originale con <code>from</code>.</li>
+<li><strong>Messaggi chiari:</strong> se comunque un dato è invalido (la colonna non esiste, un valore è in bianco...), lanciamo un <code>FatturaNonValidaError</code> dicendo <strong>a quale riga</strong> e <strong>perché</strong>, preservando l'eccezione originale con <code>from</code>.</li>
 </ol>
 <p>La funzione nativa <code>enumerate()</code> percorre le righe del file e, allo stesso tempo, conta ognuna di esse. Con <code>start=2</code>, il conteggio inizia da 2, perché la riga 1 è l'intestazione.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def somar_faturas(nome_arquivo: str, coluna: str = 'MonthlyCharges') -&gt; float:
-    '''Soma os valores da coluna indicada. Lança FaturaInvalidaError se algum dado for inválido.'''
-    faturas = []
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def somma_fatture(nome_file: str, colonna: str = 'MonthlyCharges') -&gt; float:
+    '''Somma i valori della colonna indicata. Lancia FatturaNonValidaError se qualche dato non è valido.'''
+    fatture = []
 
-    with open(nome_arquivo, mode='r', encoding='utf-8') as arquivo:
-        cabecalho = arquivo.readline().strip().split(',')
+    with open(nome_file, mode='r', encoding='utf-8') as file:
+        intestazione = file.readline().strip().split(',')
 
-        # 1. Localiza a coluna pelo nome (list.index lança ValueError se não existir)
+        # 1. Localizza la colonna per nome (list.index lancia ValueError se non esiste)
         try:
-            posicao_coluna = cabecalho.index(coluna)
-        except ValueError as erro:
-            raise FaturaInvalidaError(f"Coluna '{coluna}' não encontrada no cabeçalho.") from erro
+            posizione_colonna = intestazione.index(colonna)
+        except ValueError as errore:
+            raise FatturaNonValidaError(f"Colonna '{colonna}' non trovata nell'intestazione.") from errore
 
-        # 2. Converte o valor de cada linha, informando a linha exata em caso de erro
-        for numero_linha, linha in enumerate(arquivo, start=2):
-            valor = linha.strip().split(',')[posicao_coluna]
+        # 2. Converte il valore di ogni riga, indicando la riga esatta in caso di errore
+        for numero_riga, riga in enumerate(file, start=2):
+            valore = riga.strip().split(',')[posizione_colonna]
             try:
-                fatura = float(valor)
-            except ValueError as erro:
-                raise FaturaInvalidaError(f"Linha {numero_linha}: valor inválido '{valor}'.") from erro
+                fattura = float(valore)
+            except ValueError as errore:
+                raise FatturaNonValidaError(f"Riga {numero_riga}: valore non valido '{valore}'.") from errore
             else:
-                faturas.append(fatura)
+                fatture.append(fattura)
 
-    return sum(faturas)
+    return sum(fatture)
 </code></pre></div>
 <p>Ora entrambi i file vengono elaborati correttamente, e danno lo stesso totale, dato che è cambiato solo l'ordine delle colonne:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for nome_arquivo in ['telecom_dia_01.csv', 'telecom_dia_02.csv']:
-    total_a_receber = somar_faturas(nome_arquivo)
-    print(f'{nome_arquivo}: total a receber = {total_a_receber:.2f}')
-# telecom_dia_01.csv: total a receber = 497.50
-# telecom_dia_02.csv: total a receber = 497.50
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for nome_file in ['telecom_giorno_01.csv', 'telecom_giorno_02.csv']:
+    totale_da_incassare = somma_fatture(nome_file)
+    print(f'{nome_file}: totale da incassare = {totale_da_incassare:.2f}')
+# telecom_giorno_01.csv: totale da incassare = 497.50
+# telecom_giorno_02.csv: totale da incassare = 497.50
 </code></pre></div>
 <p>E se, al <strong>giorno 3</strong>, un cliente arrivasse con la fattura in bianco? La funzione non ha modo di indovinare il valore corretto, quindi <strong>non deve</strong> nascondere il problema. Invece, lancia un errore chiaro. Chi chiama la funzione decide cosa fare: qui, avvisiamo il team di ingegneria invece di inviare un totale sbagliato al team vendite.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">criar_arquivo('telecom_dia_03.csv', '''customerID,PaymentMethod,MonthlyCharges,TotalCharges,Churn
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">crea_file('telecom_giorno_03.csv', '''customerID,PaymentMethod,MonthlyCharges,TotalCharges,Churn
 7010-BRBUU,Credit card (automatic),24.1,1734.65,No
 9688-YGXVR,Credit card (automatic),88.15,3973.2,No
 9286-DOJGF,Bank transfer (automatic),,2869.85,Yes
 6994-KERXL,Electronic check,55.9,238.5,No
 ''')
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for nome_arquivo in ['telecom_dia_01.csv', 'telecom_dia_02.csv', 'telecom_dia_03.csv']:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for nome_file in ['telecom_giorno_01.csv', 'telecom_giorno_02.csv', 'telecom_giorno_03.csv']:
     try:
-        total_a_receber = somar_faturas(nome_arquivo)
-    except FaturaInvalidaError as erro:
-        print(f'[X] {nome_arquivo}: arquivo rejeitado. {erro} Avise o time de engenharia.')
+        totale_da_incassare = somma_fatture(nome_file)
+    except FatturaNonValidaError as errore:
+        print(f'[X] {nome_file}: file rifiutato. {errore} Avvisa il team di ingegneria.')
     except FileNotFoundError:
-        print(f'[X] {nome_arquivo}: arquivo não encontrado.')
+        print(f'[X] {nome_file}: file non trovato.')
     else:
-        print(f'[OK] {nome_arquivo}: total a receber = {total_a_receber:.2f}')
-# [OK] telecom_dia_01.csv: total a receber = 497.50
-# [OK] telecom_dia_02.csv: total a receber = 497.50
-# [X] telecom_dia_03.csv: arquivo rejeitado. Linha 4: valor inválido ''. Avise o time de engenharia.
+        print(f'[OK] {nome_file}: totale da incassare = {totale_da_incassare:.2f}')
+# [OK] telecom_giorno_01.csv: totale da incassare = 497.50
+# [OK] telecom_giorno_02.csv: totale da incassare = 497.50
+# [X] telecom_giorno_03.csv: file rifiutato. Riga 4: valore non valido ''. Avvisa il team di ingegneria.
 </code></pre></div>
 <p>Confronta con la versione iniziale: prima, un cambiamento nel file mandava in crash il programma con un messaggio generico (<code>could not convert string to float</code>). Ora, lo scambio di colonne viene risolto automaticamente, e un dato davvero invalido genera un messaggio che indica <strong>il file</strong>, <strong>la riga</strong> e <strong>il valore</strong> con il problema. Nel frattempo, gli altri file continuano a essere elaborati.</p>
 <blockquote>
@@ -420,11 +420,11 @@ except FaturaInvalidaError as erro:
 
 <div class="quiz" role="group" aria-labelledby="quiz-python-excecoes-runtime-q">
   <p class="kicker-cyan">// Quiz</p>
-  <p class="quiz-q" id="quiz-python-excecoes-runtime-q">Perché il codice di <code>somar_faturas</code> usa <code>raise FaturaInvalidaError(...) from erro</code> invece di lasciare semplicemente propagare il <code>ValueError</code> originale?</p>
+  <p class="quiz-q" id="quiz-python-excecoes-runtime-q">Perché il codice di <code>somma_fatture</code> usa <code>raise FatturaNonValidaError(...) from errore</code> invece di lasciare semplicemente propagare il <code>ValueError</code> originale?</p>
   <fieldset class="quiz-options">
     <legend class="sr-only">Scegli un'alternativa</legend>
-    <label class="quiz-opt" data-correct="0" data-exp="Il `from erro` non influisce sulle prestazioni — serve a dare contesto e a preservare la causa originale del problema."><input type="radio" name="quiz-python-excecoes-runtime" value="0" /><span class="txt">Perché <code>raise ... from erro</code> fa funzionare il codice più velocemente</span><span class="mark" aria-hidden="true"></span></label>
-    <label class="quiz-opt" data-correct="1" data-exp="`FaturaInvalidaError` comunica esattamente cosa è andato storto nel file, e il `from erro` mantiene visibile il `ValueError` originale come causa."><input type="radio" name="quiz-python-excecoes-runtime" value="1" /><span class="txt">Perché un'eccezione con nome e messaggio specifici (la colonna, la riga) è più chiara per chi dovrà gestire l'errore, e il <code>from</code> preserva la causa originale</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Il `from errore` non influisce sulle prestazioni — serve a dare contesto e a preservare la causa originale del problema."><input type="radio" name="quiz-python-excecoes-runtime" value="0" /><span class="txt">Perché <code>raise ... from errore</code> fa funzionare il codice più velocemente</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="`FatturaNonValidaError` comunica esattamente cosa è andato storto nel file, e il `from errore` mantiene visibile il `ValueError` originale come causa."><input type="radio" name="quiz-python-excecoes-runtime" value="1" /><span class="txt">Perché un'eccezione con nome e messaggio specifici (la colonna, la riga) è più chiara per chi dovrà gestire l'errore, e il <code>from</code> preserva la causa originale</span><span class="mark" aria-hidden="true"></span></label>
     <label class="quiz-opt" data-correct="0" data-exp="Python non lo impone — usare eccezioni personalizzate è una scelta di design, non un obbligo del linguaggio."><input type="radio" name="quiz-python-excecoes-runtime" value="2" /><span class="txt">Perché Python richiede che ogni funzione dichiari le proprie eccezioni</span><span class="mark" aria-hidden="true"></span></label>
     <label class="quiz-opt" data-correct="0" data-exp="`ValueError` continua a esistere e a essere usato normalmente — viene solo convertito in qualcosa di più specifico per questo contesto."><input type="radio" name="quiz-python-excecoes-runtime" value="3" /><span class="txt">Perché <code>ValueError</code> ha smesso di esistere a partire da questo modulo</span><span class="mark" aria-hidden="true"></span></label>
   </fieldset>

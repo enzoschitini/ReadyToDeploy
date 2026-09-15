@@ -2,61 +2,61 @@
 <p>Con <code>lambda</code> già padroneggiata, possiamo combinarla con funzioni che operano su <strong>intere collezioni</strong> in una volta sola. La prima di queste è <code>map()</code>, che trasforma ogni elemento di una collezione.</p>
 <h2>Definizione</h2>
 <p>La funzione <code>map()</code> applica una funzione a <strong>tutti</strong> gli elementi di una collezione (<code>list</code>, <code>dict</code> ecc.) e restituisce <strong>tutti</strong> gli elementi già trasformati:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">variavel = map(funcao, colecao)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">variabile = map(funzione, collezione)
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numeros = [1, 2, 3]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numeri = [1, 2, 3]
 
-numeros_ao_cubo = map(lambda num: num ** 3, numeros)
-print(numeros_ao_cubo)
+numeri_al_cubo = map(lambda num: num ** 3, numeri)
+print(numeri_al_cubo)
 # &lt;map object at 0x000002E53187AC50&gt;
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> <code>map()</code> non restituisce una <code>list</code>, ma un <strong>iteratore</strong> — per questo <code>print()</code> mostra solo l'indirizzo dell'oggetto in memoria, e non i valori. Per vedere o usare i risultati, converti con <code>list()</code>. Inoltre, un iteratore può essere <strong>percorso solo una volta</strong>: dopo essere stato convertito (o usato in un ciclo), resta "vuoto".</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(list(numeros_ao_cubo))
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(list(numeri_al_cubo))
 # [1, 8, 27]
 </code></pre></div>
 <h2>Sostituendo i cicli con map</h2>
 <p><strong>Esempio:</strong> estraendo il provider di più e-mail. Prima, la forma imperativa, con un ciclo <code>for</code>:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">emails = ['andre.perez@gmail.com', 'andre.perez@live.com', 'andre.perez@yahoo.com']
-extrair_provedor_email = lambda email: email.split(sep='@')[-1]
+estrai_provider_email = lambda email: email.split(sep='@')[-1]
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Forma imperativa: construímos a lista manualmente, item a item
-provedores = []
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Forma imperativa: costruiamo la lista manualmente, elemento per elemento
+provider = []
 for email in emails:
-    provedor = extrair_provedor_email(email)
-    provedores.append(provedor)
+    provider_email = estrai_provider_email(email)
+    provider.append(provider_email)
 
-print(provedores)
+print(provider)
 # ['gmail.com', 'live.com', 'yahoo.com']
 </code></pre></div>
 <p>Ora, lo stesso compito in stile funzionale, con <code>map()</code> — senza ciclo, senza lista vuota da riempire:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">provedores = list(map(extrair_provedor_email, emails))
-print(provedores)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">provider = list(map(estrai_provider_email, emails))
+print(provider)
 # ['gmail.com', 'live.com', 'yahoo.com']
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> quando la funzione è usata in un solo punto, non c'è bisogno di nominarla — possiamo passare la <code>lambda</code> direttamente come argomento di <code>map()</code>.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">provedores = list(map(lambda email: email.split(sep='@')[-1], emails))
-print(provedores)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">provider = list(map(lambda email: email.split(sep='@')[-1], emails))
+print(provider)
 # ['gmail.com', 'live.com', 'yahoo.com']
 </code></pre></div>
 <h2>map con più parametri</h2>
 <p><code>map()</code> accetta anche <strong>più di una collezione</strong>: in questo caso, la funzione passata deve ricevere un parametro per ogni collezione, e gli elementi vengono combinati posizione per posizione (il 1° elemento di ogni lista, poi il 2°, e così via).</p>
 <p><strong>Esempio:</strong> calcolando il rendimento di più scenari di investimento in una sola volta.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcular_retorno_investimento(valor_inicial: float, taxa_juros: float, anos: int) -&gt; float:
-    valor_final = valor_inicial
-    for _ in range(anos):
-        valor_final = valor_final * (1 + taxa_juros)
-    return round(valor_final, 2)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def calcola_rendimento_investimento(valore_iniziale: float, tasso_interesse: float, anni: int) -&gt; float:
+    valore_finale = valore_iniziale
+    for _ in range(anni):
+        valore_finale = valore_finale * (1 + tasso_interesse)
+    return round(valore_finale, 2)
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valores_iniciais = [1000, 1000, 1000]
-taxas_juros = [0.05, 0.10, 0.15]
-anos = [10, 10, 10]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valori_iniziali = [1000, 1000, 1000]
+tassi_interesse = [0.05, 0.10, 0.15]
+anni = [10, 10, 10]
 
-cenarios = list(map(calcular_retorno_investimento, valores_iniciais, taxas_juros, anos))
-print(cenarios)
+scenari = list(map(calcola_rendimento_investimento, valori_iniziali, tassi_interesse, anni))
+print(scenari)
 # [1628.89, 2593.74, 4045.56]
 </code></pre></div>
 </div>

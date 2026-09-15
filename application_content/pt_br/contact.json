@@ -1,0 +1,105 @@
+{
+  "page": "contact",
+  "lang": "pt-BR",
+  "meta": {
+    "title": "Mentoria · Ready To Deploy",
+    "description": "Leve o Ready To Deploy — currículo gratuito de programação e IA — pra dentro da sua instituição, com mentoria remota.",
+    "themeColor": "#000000"
+  },
+  "skipLink": "Pular para o conteúdo",
+  "brand": {
+    "href": "../index.html",
+    "ariaLabel": "Ready To Deploy - início",
+    "slash": "~/",
+    "name": ".ready-to-deploy.py"
+  },
+  "nav": {
+    "ariaLabel": "Principal",
+    "mobileAriaLabel": "Menu mobile",
+    "openLabel": "Abrir menu",
+    "closeLabel": "Fechar menu",
+    "active": "contact.html",
+    "links": [
+      { "label": "Módulos", "href": "modules.html" },
+      { "label": "Bootcamps", "href": "bootcamps.html" },
+      { "label": "Projetos", "href": "projects.html" },
+      { "label": "Mentoria", "href": "contact.html" }
+    ],
+    "cta": { "label": "Contratar", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+  },
+  "breadcrumbs": {
+    "ariaLabel": "Navegação estrutural",
+    "separator": "/",
+    "items": [
+      { "label": "Início", "href": "../index.html" },
+      { "label": "Mentoria" }
+    ]
+  },
+  "header": {
+    "title": "Leve um currículo completo de programação e IA para dentro da sua instituição.",
+    "lead": "Sou o criador do Ready To Deploy — 9 módulos e 9 projetos gratuitos e open source, em português. Ofereço mentoria remota pra adaptar esse conteúdo à sua escola, curso técnico ou universidade."
+  },
+  "hero": {
+    "cta": { "label": "Falar no LinkedIn →", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+  },
+  "proof": {
+    "stats": [
+      { "value": "9", "label": "módulos" },
+      { "value": "9", "label": "projetos práticos" },
+      { "value": "100%", "label": "gratuito e open source" }
+    ],
+    "links": [
+      { "label": "ver os módulos →", "href": "modules.html" },
+      { "label": "ver no GitHub →", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true }
+    ]
+  },
+  "about": {
+    "kicker": "// quem sou eu",
+    "photo": { "src": "../assets/imgs/profile.jpg", "alt": "Foto de Enzo Schitini" },
+    "paragraphs": [
+      "Sou Enzo Schitini, Cientista de Dados e Engenheiro de IA. Comecei a programar aos 12 anos e desde então acredito em aprender fazendo — foi esse princípio que me levou a criar o Ready To Deploy.",
+      "Hoje atuo como Data Science & AI Engineer na EcGlobal Business, do Grupo Stefanini, projetando agentes de IA, pipelines de RAG e sistemas de IA Generativa em produção. Antes, construí do zero uma plataforma de agentes de IA na Suportify, usando LangChain. É essa experiência prática que trago pra mentoria."
+    ]
+  },
+  "how": {
+    "kicker": "// como funciona",
+    "title": "Aulas 100% remotas.",
+    "text": "As aulas são remotas — encontro sua equipe ou seus alunos onde vocês já estão, sem custo de deslocamento nem logística extra. Começamos com uma conversa curta pra entender o contexto da sua instituição e adaptar a trilha do Ready To Deploy ao que vocês já ensinam."
+  },
+  "finalCta": {
+    "title": "Quer levar isso pra sua instituição?",
+    "text": "Me chama no LinkedIn e conta um pouco do contexto — a gente vê juntos como encaixar isso na sua escola, curso ou universidade.",
+    "button": { "label": "Falar com Enzo no LinkedIn →", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+  },
+  "footer": {
+    "brand": { "slash": "~/", "name": ".ready-to-deploy.py" },
+    "description": "Roadmaps de programação em português, gratuitos e open source. Feito com muita dedicação.",
+    "github": { "label": "github.com/enzoschitini/ready-to-deploy", "href": "https://github.com/enzoschitini/ready-to-deploy" },
+    "columns": [
+      {
+        "title": "// conteúdo",
+        "links": [
+          { "label": "Módulos", "href": "modules.html" },
+          { "label": "Projetos", "href": "projects.html" },
+          { "label": "Bootcamps", "href": "bootcamps.html" },
+          { "label": "Mentoria", "href": "contact.html" }
+        ]
+      },
+      {
+        "title": "// projeto",
+        "links": [
+          { "label": "Código no GitHub", "href": "https://github.com/enzoschitini/ready-to-deploy", "external": true },
+          { "label": "Como contribuir", "href": "https://github.com/enzoschitini/ready-to-deploy/blob/main/CONTRIBUTING.md", "external": true },
+          { "label": "Sobre o autor", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+        ]
+      }
+    ],
+    "bottom": {
+      "licenseHtml": "© 2026 · código sob <span class=\"strong\">AGPL-3.0</span> · conteúdo sob <span class=\"strong\">CC BY-SA 4.0</span>",
+      "credit": { "before": "criado por ", "label": "Enzo Schitini", "href": "https://www.linkedin.com/in/enzoschitini" }
+    }
+  },
+  "errors": {
+    "loadFailed": "Não foi possível carregar o conteúdo desta página. Abra o site por um servidor HTTP (os arquivos JSON não carregam via file://)."
+  }
+}

@@ -11,79 +11,79 @@
 <p>Lo strumento principale per trovarli è il <strong>debug</strong>: mostrare risultati intermedi per scoprire in quale punto il valore calcolato smette di essere quello atteso.</p>
 <h2>Limiti delle collezioni</h2>
 <p><strong>Esempio:</strong> calcolando il valore totale del carrello della spesa. Il risultato atteso è <strong>570,70</strong>: <code>37,65 × 10 + 81,20 × 2 + 15,90 × 2</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_total = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_totale = 0
 
-for indice in range(1, len(carrinho_compras)):
-    produto = carrinho_compras[indice]
-    valor_total += produto['preco'] * produto['quantidade']
+for indice in range(1, len(carrello_spesa)):
+    prodotto = carrello_spesa[indice]
+    valore_totale += prodotto['preco'] * prodotto['quantidade']
 
-print(f'Valor total: {valor_total:.2f}')
-# Valor total: 194.20
+print(f'Valore totale: {valore_totale:.2f}')
+# Valore totale: 194.20
 </code></pre></div>
 <p>Il codice ha funzionato senza nessun errore, ma il valore è molto più basso di quello atteso. Qualcosa è sbagliato nella <strong>logica</strong>.</p>
 <h2>Debug con print()</h2>
 <p>Il modo più semplice per fare debug è mettere una <code>print()</code> dentro il ciclo per <strong>vedere</strong> cosa succede a ogni passo:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_total = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_totale = 0
 
-for indice in range(1, len(carrinho_compras)):
-    produto = carrinho_compras[indice]
-    print(f'[depuração] índice {indice}: produto {produto["id"]}')  # print temporário
-    valor_total += produto['preco'] * produto['quantidade']
+for indice in range(1, len(carrello_spesa)):
+    prodotto = carrello_spesa[indice]
+    print(f'[debug] indice {indice}: prodotto {prodotto["id"]}')  # print temporaneo
+    valore_totale += prodotto['preco'] * prodotto['quantidade']
 
-print(f'Valor total: {valor_total:.2f}')
-# [depuração] índice 1: produto 1203
-# [depuração] índice 2: produto 8921
-# Valor total: 194.20
+print(f'Valore totale: {valore_totale:.2f}')
+# [debug] indice 1: prodotto 1203
+# [debug] indice 2: prodotto 8921
+# Valore totale: 194.20
 </code></pre></div>
-<p>Ecco, il problema è apparso: il ciclo inizia all'indice <code>1</code> e <strong>salta il primo prodotto</strong> (indice <code>0</code>, l'<code>3184</code>). Il <code>range(1, ...)</code> avrebbe dovuto essere <code>range(0, ...)</code>. Ancora meglio: percorrendo la lista direttamente con <code>for produto in carrinho_compras</code>, non c'è alcun indice da sbagliare:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_total = 0
+<p>Ecco, il problema è apparso: il ciclo inizia all'indice <code>1</code> e <strong>salta il primo prodotto</strong> (indice <code>0</code>, l'<code>3184</code>). Il <code>range(1, ...)</code> avrebbe dovuto essere <code>range(0, ...)</code>. Ancora meglio: percorrendo la lista direttamente con <code>for prodotto in carrello_spesa</code>, non c'è alcun indice da sbagliare:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_totale = 0
 
-for produto in carrinho_compras:
-    valor_total += produto['preco'] * produto['quantidade']
+for prodotto in carrello_spesa:
+    valore_totale += prodotto['preco'] * prodotto['quantidade']
 
-print(f'Valor total: {valor_total:.2f}')
-# Valor total: 570.70
+print(f'Valore totale: {valore_totale:.2f}')
+# Valore totale: 570.70
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> dopo aver trovato l'errore, <strong>rimuovi</strong> le <code>print()</code> di debug, così non riempiono l'output del programma.</p>
-<p><strong>Suggerimento:</strong> per proteggerti dagli errori di logica, puoi verificare se un risultato ha senso con <code>assert condição, 'mensagem'</code>. Se la condizione è falsa, Python lancia un <code>AssertionError</code> con il messaggio. Se è vera, non succede nulla.</p>
+<p><strong>Suggerimento:</strong> per proteggerti dagli errori di logica, puoi verificare se un risultato ha senso con <code>assert condizione, 'messaggio'</code>. Se la condizione è falsa, Python lancia un <code>AssertionError</code> con il messaggio. Se è vera, non succede nulla.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">quantidade_de_produtos = len(carrinho_compras)
-produtos_somados = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">quantita_di_prodotti = len(carrello_spesa)
+prodotti_sommati = 0
 
-for produto in carrinho_compras:
-    produtos_somados += 1
+for prodotto in carrello_spesa:
+    prodotti_sommati += 1
 
-# Se algum produto tivesse sido pulado, esta linha lançaria um AssertionError
-assert produtos_somados == quantidade_de_produtos, 'Algum produto não foi somado!'
-print('Conferência OK: todos os produtos foram somados.')
-# Conferência OK: todos os produtos foram somados.
+# Se qualche prodotto fosse stato saltato, questa riga lancerebbe un AssertionError
+assert prodotti_sommati == quantita_di_prodotti, 'Qualche prodotto non è stato sommato!'
+print('Verifica OK: tutti i prodotti sono stati sommati.')
+# Verifica OK: tutti i prodotti sono stati sommati.
 </code></pre></div>
 <h2>Cicli infiniti</h2>
 <p>Un tipo speciale di errore di logica è il <strong>ciclo infinito</strong>: un ciclo la cui condizione di arresto non viene mai raggiunta, lasciando il programma "bloccato" per sempre.</p>
 <p>È più comune con il ciclo <code>while</code> ("finché"), che ripete un blocco <strong>finché</strong> una condizione è vera. A differenza del <code>for</code>, che percorre una collezione con fine definita, il <code>while</code> dipende dal fatto che qualcosa al suo interno <strong>cambi la condizione</strong> a un certo punto.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">tentativa = 1
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">tentativo = 1
 
-while tentativa &lt;= 3:
-    print(f'Tentativa de conexão {tentativa}...')
-    tentativa += 1  # sem esta linha, tentativa seria sempre 1 e o laço nunca terminaria
+while tentativo &lt;= 3:
+    print(f'Tentativo di connessione {tentativo}...')
+    tentativo += 1  # senza questa riga, tentativo sarebbe sempre 1 e il ciclo non finirebbe mai
 
-print('Fim das tentativas.')
-# Tentativa de conexão 1...
-# Tentativa de conexão 2...
-# Tentativa de conexão 3...
-# Fim das tentativas.
+print('Fine dei tentativi.')
+# Tentativo di connessione 1...
+# Tentativo di connessione 2...
+# Tentativo di connessione 3...
+# Fine dei tentativi.
 </code></pre></div>
-<p>Se la riga <code>tentativa += 1</code> fosse stata dimenticata, la condizione <code>tentativa &lt;= 3</code> sarebbe <strong>sempre</strong> vera e il ciclo girerebbe per sempre. Per questo è così importante. Un altro modo per garantire l'uscita è usare il <code>break</code>, visto nel Modulo 03, per interrompere il ciclo quando una condizione viene raggiunta:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">contador = 0
+<p>Se la riga <code>tentativo += 1</code> fosse stata dimenticata, la condizione <code>tentativo &lt;= 3</code> sarebbe <strong>sempre</strong> vera e il ciclo girerebbe per sempre. Per questo è così importante. Un altro modo per garantire l'uscita è usare il <code>break</code>, visto nel Modulo 03, per interrompere il ciclo quando una condizione viene raggiunta:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">contatore = 0
 
-while True:          # a condição é sempre verdadeira...
-    contador += 1
-    if contador &gt; 10:
-        break        # ...então o break é a ÚNICA saída do laço
+while True:          # la condizione è sempre vera...
+    contatore += 1
+    if contatore &gt; 10:
+        break        # ...quindi il break è l'UNICA uscita dal ciclo
 
-print(f'O laço executou {contador - 1} vezes.')
-# O laço executou 10 vezes.
+print(f'Il ciclo ha eseguito {contatore - 1} volte.')
+# Il ciclo ha eseguito 10 volte.
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> se una cella continua a eseguire molto più a lungo del previsto, sospetta un ciclo infinito. In Colab, interrompi l'esecuzione cliccando sul pulsante di <strong>stop</strong> accanto alla cella (o con la scorciatoia <code>Ctrl + M</code> + <code>I</code>). Un ciclo infinito che accumula dati in memoria può persino far crashare l'intera sessione.</p>
@@ -103,12 +103,12 @@ print(f'O laço executou {contador - 1} vezes.')
 <tr><td><code>try</code> / <code>except</code></td><td>Cattura e gestisce un'eccezione</td></tr>
 <tr><td><code>else</code></td><td>Esegue solo se non c'è stata eccezione nel <code>try</code></td></tr>
 <tr><td><code>finally</code></td><td>Esegue sempre, con o senza eccezione</td></tr>
-<tr><td><code>raise Excecao('mensagem')</code></td><td>Lancia un'eccezione</td></tr>
+<tr><td><code>raise Eccezione('messaggio')</code></td><td>Lancia un'eccezione</td></tr>
 <tr><td><code>raise</code> (da solo, dentro l'<code>except</code>)</td><td>Ripassa l'eccezione attuale a chi ha chiamato</td></tr>
-<tr><td><code>raise NovaExcecao(...) from erro</code></td><td>Sostituisce l'eccezione, preservando l'originale come causa</td></tr>
-<tr><td><code>class MeuErro(Exception):</code></td><td>Crea un'eccezione personalizzata</td></tr>
+<tr><td><code>raise NuovaEccezione(...) from errore</code></td><td>Sostituisce l'eccezione, preservando l'originale come causa</td></tr>
+<tr><td><code>class MioErrore(Exception):</code></td><td>Crea un'eccezione personalizzata</td></tr>
 <tr><td><code>traceback.print_exc()</code></td><td>Mostra il <em>traceback</em> di un'eccezione catturata</td></tr>
-<tr><td><code>assert condição, 'mensagem'</code></td><td>Verifica se un risultato ha senso</td></tr>
+<tr><td><code>assert condizione, 'messaggio'</code></td><td>Verifica se un risultato ha senso</td></tr>
 </tbody>
 </table></div>
 </div>

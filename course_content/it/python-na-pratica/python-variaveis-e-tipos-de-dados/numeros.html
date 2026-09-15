@@ -5,7 +5,7 @@ business. In questa lezione conosceremo questi tipi, le loro operazioni e come c
 <p>Devi calcolare lo <strong>scontrino medio giornaliero</strong> del tuo ristorante, cioè quanto, in
 media, ha reso ciascuna vendita in un giorno. La metrica si calcola dividendo il <strong>valore totale delle
 vendite</strong> del giorno per la <strong>quantità di vendite</strong> dello stesso giorno:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">ticket médio = valor total das vendas / quantidade de vendas
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">scontrino medio = valore totale delle vendite / quantità di vendite
 </code></pre></div>
 <p>Questo è il tuo foglio di calcolo:</p>
 <div class="table-wrap"><table>
@@ -37,8 +37,8 @@ print(type(1 + 2j))   # &lt;class 'complex'&gt;
 ignora l'<code>_</code>, ma il codice diventa molto più leggibile.</p>
 </blockquote>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># L'underscore serve solo a facilitare la lettura
-faturamento_anual = 1_500_000
-print(faturamento_anual)  # 1500000
+fatturato_annuale = 1_500_000
+print(fatturato_annuale)  # 1500000
 </code></pre></div>
 <h2>Operazioni</h2>
 <p>Oltre alle quattro operazioni fondamentali, Python offre operatori più avanzati:</p>
@@ -58,58 +58,58 @@ print(faturamento_anual)  # 1500000
 a = 7
 b = 2
 
-print("Soma:           ", a + b)
-print("Subtração:      ", a - b)
-print("Multiplicação:  ", a * b)
-print("Divisão:        ", a / b)
-print("Divisão inteira:", a // b)
+print("Somma:          ", a + b)
+print("Sottrazione:    ", a - b)
+print("Moltiplicazione:", a * b)
+print("Divisione:      ", a / b)
+print("Divisione intera:", a // b)
 print("Resto:          ", a % b)
-print("Potência:       ", a ** b)
-# Soma:            9
-# Subtração:       5
-# Multiplicação:   14
-# Divisão:         3.5
-# Divisão inteira: 3
+print("Potenza:        ", a ** b)
+# Somma:           9
+# Sottrazione:     5
+# Moltiplicazione: 14
+# Divisione:       3.5
+# Divisione intera: 3
 # Resto:           1
-# Potência:        49
+# Potenza:         49
 </code></pre></div>
 <p>Nota la differenza tra <code>/</code> e <code>//</code>: la divisione comune restituisce <strong>sempre</strong>
 un <code>float</code>, anche quando il risultato è esatto. La divisione intera invece scarta la parte decimale e,
 tra due interi, restituisce un <code>int</code>.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">dividendo = 3
-divisor = 2
+divisore = 2
 
-# Divisão comum: resultado sempre float
-resultado_divisao = dividendo / divisor
-print(resultado_divisao)        # 1.5
-print(type(resultado_divisao))  # &lt;class 'float'&gt;
+# Divisione comune: risultato sempre float
+risultato_divisione = dividendo / divisore
+print(risultato_divisione)        # 1.5
+print(type(risultato_divisione))  # &lt;class 'float'&gt;
 
-# Divisão inteira: descarta a parte decimal
-resultado_divisao_inteira = dividendo // divisor
-print(resultado_divisao_inteira)        # 1
-print(type(resultado_divisao_inteira))  # &lt;class 'int'&gt;
+# Divisione intera: scarta la parte decimale
+risultato_divisione_intera = dividendo // divisore
+print(risultato_divisione_intera)        # 1
+print(type(risultato_divisione_intera))  # &lt;class 'int'&gt;
 </code></pre></div>
 <p>L'<strong>ordine di precedenza</strong> segue la matematica: prima <code>**</code>, poi <code>*</code>,
 <code>/</code>, <code>//</code> e <code>%</code>, e infine <code>+</code> e <code>-</code>. Usa le
 <strong>parentesi</strong> per rendere l'ordine esplicito:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Sem parênteses: a multiplicação acontece antes da soma
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Senza parentesi: la moltiplicazione avviene prima della somma
 print(2 + 3 * 4)    # 14
 
-# Com parênteses: a soma acontece primeiro
+# Con le parentesi: la somma avviene per prima
 print((2 + 3) * 4)  # 20
 </code></pre></div>
 <p><strong>Esempio:</strong> carrello della spesa di un e-commerce. Ogni volta che il cliente aggiunge un articolo,
 la quantità aumenta di 1.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># O carrinho começa vazio
-quantidade_itens_carrinho = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Il carrello inizia vuoto
+quantita_articoli_carrello = 0
 
-# Cliente adiciona um item: pegamos o valor atual e somamos 1
-quantidade_itens_carrinho = quantidade_itens_carrinho + 1
-print(quantidade_itens_carrinho)  # 1
+# Il cliente aggiunge un articolo: prendiamo il valore attuale e sommiamo 1
+quantita_articoli_carrello = quantita_articoli_carrello + 1
+print(quantita_articoli_carrello)  # 1
 
-# Cliente adiciona mais um item
-quantidade_itens_carrinho = quantidade_itens_carrinho + 1
-print(quantidade_itens_carrinho)  # 2
+# Il cliente aggiunge un altro articolo
+quantita_articoli_carrello = quantita_articoli_carrello + 1
+print(quantita_articoli_carrello)  # 2
 </code></pre></div>
 <p>Poiché questo schema è molto comune, Python offre gli <strong>operatori di assegnazione composta</strong>,
 che eseguono l'operazione e l'assegnazione in un solo passo:</p>
@@ -122,34 +122,34 @@ che eseguono l'operazione e l'assegnazione in un solo passo:</p>
 <tr><td><code>x /= 2</code></td><td><code>x = x / 2</code></td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Mesmo exemplo, agora com o operador +=
-quantidade_itens_carrinho = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Stesso esempio, ora con l'operatore +=
+quantita_articoli_carrello = 0
 
-quantidade_itens_carrinho += 1
-print(quantidade_itens_carrinho)  # 1
+quantita_articoli_carrello += 1
+print(quantita_articoli_carrello)  # 1
 
-quantidade_itens_carrinho += 1
-print(quantidade_itens_carrinho)  # 2
+quantita_articoli_carrello += 1
+print(quantita_articoli_carrello)  # 2
 </code></pre></div>
 <p><strong>Esempio:</strong> totale da pagare per un prodotto venduto al chilo.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Preço do quilo e quantidade comprada (250 gramas = 0.250 kg)
-preco_por_kg = 47
-quantidade_kg = 0.250
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Prezzo al chilo e quantità acquistata (250 grammi = 0.250 kg)
+prezzo_al_kg = 47
+quantita_kg = 0.250
 
-total_a_pagar = preco_por_kg * quantidade_kg
-print(total_a_pagar)  # 11.75
+totale_da_pagare = prezzo_al_kg * quantita_kg
+print(totale_da_pagare)  # 11.75
 </code></pre></div>
 <p><strong>Esempio:</strong> l'operatore <code>%</code> (resto) è molto usato per verificare se un numero è
 <strong>pari</strong> - ogni numero pari ha resto <code>0</code> quando diviso per 2.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numero_pedido = 1024
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numero_ordine = 1024
 
-resto_da_divisao = numero_pedido % 2
-print(resto_da_divisao)  # 0 - indica que o número é par
+resto_divisione = numero_ordine % 2
+print(resto_divisione)  # 0 - indica che il numero è pari
 </code></pre></div>
 <h2>Conversione</h2>
 <p>Possiamo convertire i tipi numerici tra loro con le funzioni native <code>int()</code>,
 <code>float()</code> e <code>complex()</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># float -> int: a parte decimal é DESCARTADA (não é arredondamento!)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># float -> int: la parte decimale viene SCARTATA (non è un arrotondamento!)
 print(int(3.9))  # 3
 
 # int -> float
@@ -160,51 +160,51 @@ print(complex(1))  # (1+0j)
 </code></pre></div>
 <p>Se l'obiettivo è <strong>arrotondare</strong>, usa la funzione <code>round()</code>, indicando il numero e la
 quantità di cifre decimali desiderata. È particolarmente utile per valori monetari:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_bruto = 51.326666
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_lordo = 51.326666
 
-print(round(valor_bruto))     # 51 - arredonda para o inteiro mais próximo
-print(round(valor_bruto, 2))  # 51.33 - arredonda para 2 casas decimais
+print(round(valore_lordo))     # 51 - arrotonda all'intero più vicino
+print(round(valore_lordo, 2))  # 51.33 - arrotonda a 2 cifre decimali
 </code></pre></div>
 <h2>Rivisitando la motivazione</h2>
 <p>Ora abbiamo tutti gli strumenti per compilare il foglio di calcolo del ristorante. Scontrino medio del giorno
 <strong>19/01</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_vendas_19 = 153.98
-quantidade_vendas_19 = 3
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_vendite_19 = 153.98
+quantita_vendite_19 = 3
 
-ticket_medio_19 = valor_vendas_19 / quantidade_vendas_19
-print(round(ticket_medio_19, 2))  # 51.33
+scontrino_medio_19 = valore_vendite_19 / quantita_vendite_19
+print(round(scontrino_medio_19, 2))  # 51.33
 </code></pre></div>
 <p>Scontrino medio del giorno <strong>20/01</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_vendas_20 = 337.01
-quantidade_vendas_20 = 7
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_vendite_20 = 337.01
+quantita_vendite_20 = 7
 
-ticket_medio_20 = valor_vendas_20 / quantidade_vendas_20
-print(round(ticket_medio_20, 2))  # 48.14
+scontrino_medio_20 = valore_vendite_20 / quantita_vendite_20
+print(round(scontrino_medio_20, 2))  # 48.14
 </code></pre></div>
 <p>Scontrino medio del giorno <strong>23/01</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valor_vendas_23 = 295.33
-quantidade_vendas_23 = 5
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valore_vendite_23 = 295.33
+quantita_vendite_23 = 5
 
-ticket_medio_23 = valor_vendas_23 / quantidade_vendas_23
-print(round(ticket_medio_23, 2))  # 59.07
+scontrino_medio_23 = valore_vendite_23 / quantita_vendite_23
+print(round(scontrino_medio_23, 2))  # 59.07
 </code></pre></div>
 <p>E lo scontrino medio dell'<strong>intero periodo</strong>? Una prima idea sarebbe fare la media dei tre
 scontrini giornalieri:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Média simples dos tickets diários
-media_dos_tickets = (ticket_medio_19 + ticket_medio_20 + ticket_medio_23) / 3
-print(round(media_dos_tickets, 2))  # 52.85
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Media semplice degli scontrini giornalieri
+media_scontrini = (scontrino_medio_19 + scontrino_medio_20 + scontrino_medio_23) / 3
+print(round(media_scontrini, 2))  # 52.85
 </code></pre></div>
 <p>Tuttavia, questo approccio dà lo <strong>stesso peso</strong> a tutti i giorni, anche se il giorno 20/01 ha
 avuto più del doppio delle vendite del giorno 19/01. Il modo corretto è applicare la formula stessa dello
 scontrino medio all'intero periodo: <strong>sommare tutti i valori</strong> e dividere per la <strong>somma di tutte le
 quantità</strong>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Totais do período
-valor_total_periodo = valor_vendas_19 + valor_vendas_20 + valor_vendas_23
-quantidade_total_periodo = quantidade_vendas_19 + quantidade_vendas_20 + quantidade_vendas_23
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Totali del periodo
+valore_totale_periodo = valore_vendite_19 + valore_vendite_20 + valore_vendite_23
+quantita_totale_periodo = quantita_vendite_19 + quantita_vendite_20 + quantita_vendite_23
 
-# Ticket médio do período (média ponderada pela quantidade de vendas)
-ticket_medio_periodo = valor_total_periodo / quantidade_total_periodo
-print(round(ticket_medio_periodo, 2))  # 52.42
+# Scontrino medio del periodo (media ponderata per la quantità di vendite)
+scontrino_medio_periodo = valore_totale_periodo / quantita_totale_periodo
+print(round(scontrino_medio_periodo, 2))  # 52.42
 </code></pre></div>
 <blockquote>
 <p>I due risultati sono diversi! Nell'analisi dei dati, capire <strong>cosa</strong> rappresenta una metrica

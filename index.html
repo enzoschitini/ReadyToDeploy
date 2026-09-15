@@ -218,7 +218,7 @@ h1.hero-title{
 
 .hero-lead{margin-top:1.25rem;max-width:32rem;margin-inline:auto;font-size:1rem;color:var(--muted-foreground);}
 @media (min-width:640px){.hero-lead{font-size:1.125rem;}}
-code.type{display:inline-flex;flex-shrink:0;align-items:baseline;white-space:nowrap;font-family:var(--font-mono);color:var(--brand-indigo);}
+code.type{display:inline-flex;align-items:baseline;white-space:pre-wrap;font-family:var(--font-mono);color:var(--brand-indigo);}
 .caret{margin-left:1px;display:inline-block;height:1em;width:.55em;transform:translateY(2px);background:var(--brand-indigo);}
 
 .cta-row{margin-top:2rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;}
@@ -458,6 +458,38 @@ blockquote.manifesto{
 .channel-item-cta:hover{filter:brightness(1.1);box-shadow:0 14px 34px -12px rgba(125,108,255,.7);}
 .channel-item-cta svg{width:.9rem;height:.9rem;}
 
+/* ---------- modal: contratar mentoria ---------- */
+.contract-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:1.25rem;}
+.contract-modal[hidden]{display:none;}
+.contract-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(2px);}
+.contract-modal-panel{
+  position:relative;width:100%;max-width:420px;display:flex;flex-direction:column;
+  border:1px solid var(--border);border-radius:.75rem;background:var(--card);
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.6);padding:1.5rem;
+}
+.contract-modal-close{
+  position:absolute;top:1rem;right:1rem;display:inline-flex;align-items:center;justify-content:center;
+  width:2rem;height:2rem;border-radius:9999px;border:1px solid var(--border);background:transparent;
+  color:var(--muted-foreground);transition:color .15s,border-color .15s,background-color .15s;
+}
+.contract-modal-close:hover{color:var(--foreground);border-color:var(--hover-border);background:var(--muted);}
+.contract-modal-close svg{width:1rem;height:1rem;}
+.contract-modal-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;}
+.contract-modal-avatar{width:5.5rem;height:5.5rem;border-radius:9999px;object-fit:cover;box-shadow:0 0 0 3px var(--card),0 0 0 4px var(--border);}
+.contract-modal-kicker{margin-top:.5rem;font-family:var(--font-mono);font-size:.9375rem;font-weight:700;color:var(--foreground);}
+.contract-modal-subtitle{font-size:.8125rem;color:var(--muted-foreground);max-width:32ch;}
+.contract-modal-cards{margin-top:1.5rem;display:flex;flex-direction:column;gap:.75rem;}
+.contract-card{
+  display:flex;align-items:center;gap:.75rem;border:1px solid var(--border);border-radius:.625rem;
+  padding:.875rem 1rem;transition:border-color .15s,background-color .15s;
+}
+.contract-card:hover{border-color:var(--hover-border);background:var(--muted);}
+.contract-card-body{flex:1;min-width:0;}
+.contract-card-body h4{margin:0;font-size:.875rem;font-weight:700;color:var(--foreground);}
+.contract-card-body p{margin-top:.125rem;font-size:.75rem;color:var(--muted-foreground);}
+.contract-card-arrow{flex-shrink:0;color:var(--muted-foreground);transition:transform .15s,color .15s;}
+.contract-card:hover .contract-card-arrow{transform:translateX(3px);color:var(--foreground);}
+
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -515,7 +547,7 @@ blockquote.manifesto{
 
     <div class="header-right">
       <div class="header-actions">
-        <a href="#" class="btn-sm" id="header-cta"></a>
+        <a href="#" class="btn-sm" id="header-cta" data-open-contract-modal></a>
       </div>
 
       <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
@@ -737,6 +769,22 @@ blockquote.manifesto{
   </div>
 </div>
 
+<!-- ============================ MODAL: CONTRATAR MENTORIA ============================ -->
+<div class="contract-modal" id="contract-modal" hidden>
+  <div class="contract-modal-backdrop" id="contract-modal-backdrop"></div>
+  <div class="contract-modal-panel" role="dialog" aria-modal="true" aria-labelledby="contract-modal-kicker">
+    <button type="button" class="contract-modal-close" id="contract-modal-close" aria-label="Fechar">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="contract-modal-head">
+      <img class="contract-modal-avatar" id="contract-modal-avatar" src="assets/imgs/profile.jpg" width="88" height="88" loading="lazy" />
+      <p class="contract-modal-kicker" id="contract-modal-kicker"></p>
+      <p class="contract-modal-subtitle" id="contract-modal-subtitle"></p>
+    </div>
+    <div class="contract-modal-cards" id="contract-modal-cards"></div>
+  </div>
+</div>
+
 <!-- ============================ FOOTER ============================ -->
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -802,7 +850,8 @@ blockquote.manifesto{
   var ICONS = {
     external: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>',
     github: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>',
-    youtube: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>'
+    youtube: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>',
+    arrow: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
   };
 
   /* ---------- blocos reutilizáveis dos cards ---------- */
@@ -914,6 +963,21 @@ blockquote.manifesto{
     var headerCta = $('header-cta');
     headerCta.href = c.nav.cta.href;
     headerCta.textContent = c.nav.cta.label;
+
+    /* ---------- modal: contratar mentoria ---------- */
+    var contractModal = c.contractModal;
+    if (contractModal) {
+      $('contract-modal-avatar').alt = contractModal.avatarAlt || '';
+      $('contract-modal-close').setAttribute('aria-label', contractModal.closeLabel || '');
+      text('contract-modal-kicker', contractModal.kicker);
+      text('contract-modal-subtitle', contractModal.subtitle);
+      html('contract-modal-cards', (contractModal.cards || []).map(function (card) {
+        return '<a class="contract-card" href="' + esc(card.href) + '"' + linkAttrs(card) + '>' +
+          '<div class="contract-card-body"><h4>' + esc(card.title) + '</h4><p>' + esc(card.description) + '</p></div>' +
+          '<span class="contract-card-arrow" aria-hidden="true">' + ICONS.arrow + '</span>' +
+        '</a>';
+      }).join(''));
+    }
 
     /* ---------- hero ---------- */
     text('hero-eyebrow', c.hero.eyebrow);
@@ -1081,8 +1145,28 @@ blockquote.manifesto{
     });
     $('channels-modal-close').addEventListener('click', closeChannelsModal);
     $('channels-modal-backdrop').addEventListener('click', closeChannelsModal);
+
+    /* ---------- modal: contratar mentoria ---------- */
+    var contractModal = $('contract-modal');
+    function openContractModal() {
+      contractModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContractModal() {
+      contractModal.hidden = true;
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('[data-open-contract-modal]');
+      if (!trigger) return;
+      e.preventDefault();
+      openContractModal();
+    });
+    $('contract-modal-close').addEventListener('click', closeContractModal);
+    $('contract-modal-backdrop').addEventListener('click', closeContractModal);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !channelsModal.hidden) closeChannelsModal();
+      if (e.key === 'Escape' && !contractModal.hidden) closeContractModal();
     });
 
     /* ---------- barra de progresso de scroll ---------- */
@@ -1129,27 +1213,9 @@ blockquote.manifesto{
       }, 2600);
     }
 
-    /* ---------- typewriter do parágrafo do hero ---------- */
-    var SNIPPETS = c.hero.typeSnippets;
+    /* ---------- parágrafo do hero: código já digitado + cursor piscando ---------- */
     var typeEl = $('type-text');
-    /* reserva a largura do maior snippet (fonte monoespaçada, "ch" acompanha o
-       tamanho da fonte) pra digitar/apagar não empurrar o resto do layout */
-    var maxLen = SNIPPETS.reduce(function (max, s) { return Math.max(max, s.length); }, 0);
-    typeEl.parentElement.style.width = (maxLen + 1) + 'ch';
-    if (reduced) {
-      typeEl.textContent = SNIPPETS[0];
-    } else {
-      var si = 0, ci = 0, deleting = false;
-      (function tick() {
-        var full = SNIPPETS[si];
-        ci += deleting ? -1 : 1;
-        typeEl.textContent = full.slice(0, ci);
-        var delay = deleting ? 45 : 85;
-        if (!deleting && ci === full.length) { deleting = true; delay = 1600; }
-        else if (deleting && ci === 0) { deleting = false; si = (si + 1) % SNIPPETS.length; delay = 350; }
-        setTimeout(tick, delay);
-      })();
-    }
+    typeEl.textContent = c.hero.typeSnippets[0];
   }
 
   /* ============================================================

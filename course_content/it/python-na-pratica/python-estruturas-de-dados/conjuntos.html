@@ -2,47 +2,47 @@
 <p>Le liste conservano elementi ripetuti e nell'ordine in cui sono stati inseriti. Ma, a volte, ciò che conta non è l'ordine né la ripetizione — è solo sapere <strong>quali valori diversi</strong> esistono. Per questo usiamo gli <strong>insiemi</strong>.</p>
 <h2>Motivazione</h2>
 <p>Lavori come analista di social media e devi scoprire <strong>tutti gli hashtag diversi</strong> che sono entrati nei <em>trending topics</em> di un social network durante la settimana. Hai già gli hashtag di ogni giorno, in liste separate:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">hashtags_segunda = ['#tiago', '#joao', '#bbb']
-hashtags_terca = ['#sarah', '#bbb', '#fiuk']
-hashtags_quarta = ['#gil', '#thelma', '#lourdes']
-hashtags_quinta = ['#rafa', '#fora', '#danilo']
-hashtags_sexta = ['#juliete', '#arthur', '#bbb']
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">hashtags_lunedi = ['#tiago', '#joao', '#bbb']
+hashtags_martedi = ['#sarah', '#bbb', '#fiuk']
+hashtags_mercoledi = ['#gil', '#thelma', '#lourdes']
+hashtags_giovedi = ['#rafa', '#fora', '#danilo']
+hashtags_venerdi = ['#juliete', '#arthur', '#bbb']
 </code></pre></div>
 <p>Se semplicemente concateniamo le liste della settimana, l'hashtag <code>#bbb</code> (che è apparso in tre giorni diversi) si ripeterà nel risultato:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">hashtags_semana = hashtags_segunda + hashtags_terca + hashtags_quarta + hashtags_quinta + hashtags_sexta
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">hashtags_settimana = hashtags_lunedi + hashtags_martedi + hashtags_mercoledi + hashtags_giovedi + hashtags_venerdi
 
-print(hashtags_semana)
-print(f'Total: {len(hashtags_semana)}')
+print(hashtags_settimana)
+print(f'Totale: {len(hashtags_settimana)}')
 # ['#tiago', '#joao', '#bbb', '#sarah', '#bbb', '#fiuk', '#gil', '#thelma', '#lourdes', '#rafa', '#fora', '#danilo', '#juliete', '#arthur', '#bbb']
-# Total: 15
+# Totale: 15
 </code></pre></div>
 <p>Nota che il totale (15) non rappresenta la quantità di hashtag <strong>diversi</strong> — <code>#bbb</code> è stato contato tre volte. <strong>Come eliminiamo le ripetizioni?</strong></p>
 <h2>Definizione</h2>
 <p>Gli <strong>insiemi</strong> memorizzano sequenze <strong>non ordinate</strong> di valori, <strong>senza ripetizioni</strong>. Sono del tipo <code>set</code> e vengono creati tra parentesi graffe <code>{}</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">frutas = {'banana', 'maca', 'uva', 'uva'}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">frutta = {'banana', 'mela', 'uva', 'uva'}
 
-print(frutas)
-print(type(frutas))
-# {'uva', 'maca', 'banana'}
+print(frutta)
+print(type(frutta))
+# {'uva', 'mela', 'banana'}
 # &lt;class 'set'&gt;
 </code></pre></div>
 <p>Nota che <code>'uva'</code> è stato scritto due volte, ma appare <strong>una sola volta</strong> nell'insieme. Poiché gli insiemi non hanno ordine, la sequenza mostrata può variare a ogni esecuzione.</p>
 <blockquote>
-<p><strong>Attenzione:</strong> non avendo ordine, gli insiemi <strong>non possono essere acceduti per indice</strong> (<code>frutas[0]</code> genera un errore <code>TypeError</code>).</p>
+<p><strong>Attenzione:</strong> non avendo ordine, gli insiemi <strong>non possono essere acceduti per indice</strong> (<code>frutta[0]</code> genera un errore <code>TypeError</code>).</p>
 </blockquote>
 <h2>Operazioni</h2>
 <p><strong>Differenza (<code>-</code>)</strong>: restituisce gli elementi che sono nel primo insieme, ma <strong>non</strong> sono nel secondo.</p>
 <p><strong>Esempio:</strong> paesi del nord Europa che non sono scandinavi.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">norte_europa = {'reino unido', 'suecia', 'russia', 'noruega', 'dinamarca'}
-escandinavia = {'noruega', 'dinamarca', 'suecia'}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nord_europa = {'regno unito', 'svezia', 'russia', 'norvegia', 'danimarca'}
+scandinavia = {'norvegia', 'danimarca', 'svezia'}
 
-norte_europa_nao_escandinavo = norte_europa - escandinavia
-print(norte_europa_nao_escandinavo)
-# {'reino unido', 'russia'}
+nord_europa_non_scandinavo = nord_europa - scandinavia
+print(nord_europa_non_scandinavo)
+# {'regno unito', 'russia'}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># A ordem dos operandos importa: aqui buscamos o oposto
-escandinavo_nao_norte_europa = escandinavia - norte_europa
-print(escandinavo_nao_norte_europa)  # set() vazio: todo país escandinavo está no norte da Europa
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># L'ordine degli operandi conta: qui cerchiamo l'opposto
+scandinavo_non_nord_europa = scandinavia - nord_europa
+print(scandinavo_non_nord_europa)  # set() vuoto: ogni paese scandinavo è nel nord Europa
 # set()
 </code></pre></div>
 <blockquote>
@@ -56,53 +56,53 @@ print(escandinavo_nao_norte_europa)  # set() vazio: todo país escandinavo está
 <tr><td><code>.remove(valor)</code></td><td>Rimuove un elemento dall'insieme</td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">cursos_disponiveis = {'Exatas', 'Humanas', 'Biológicas'}
-print(cursos_disponiveis)
-# {'Exatas', 'Humanas', 'Biológicas'}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">corsi_disponibili = {'Scienze esatte', 'Scienze umane', 'Scienze biologiche'}
+print(corsi_disponibili)
+# {'Scienze esatte', 'Scienze umane', 'Scienze biologiche'}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .add(): adiciona um item (se já existir, o conjunto não muda)
-cursos_disponiveis.add('Saúde')
-print(cursos_disponiveis)
-# {'Saúde', 'Exatas', 'Humanas', 'Biológicas'}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .add(): aggiunge un elemento (se esiste già, l'insieme non cambia)
+corsi_disponibili.add('Salute')
+print(corsi_disponibili)
+# {'Salute', 'Scienze esatte', 'Scienze umane', 'Scienze biologiche'}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .remove(): remove um item existente
-cursos_disponiveis.remove('Saúde')
-print(cursos_disponiveis)
-# {'Exatas', 'Humanas', 'Biológicas'}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .remove(): rimuove un elemento esistente
+corsi_disponibili.remove('Salute')
+print(corsi_disponibili)
+# {'Scienze esatte', 'Scienze umane', 'Scienze biologiche'}
 </code></pre></div>
 <h2>Conversione</h2>
 <p>È molto comune convertire una <strong>lista in insieme</strong> (per eliminare le ripetizioni) e, poi, l'<strong>insieme di nuovo in lista</strong> (per poter usare di nuovo indici e metodi di lista).</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">times_paulistas = ['São Paulo', 'Palmeiras', 'Corinthians', 'Santos']
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">squadre_paulistas = ['São Paulo', 'Palmeiras', 'Corinthians', 'Santos']
 
-# list -&gt; set: elimina eventuais repetições
-times_sem_repeticao = set(times_paulistas)
-print(times_sem_repeticao)
-print(type(times_sem_repeticao))
+# list -&gt; set: elimina eventuali ripetizioni
+squadre_senza_ripetizioni = set(squadre_paulistas)
+print(squadre_senza_ripetizioni)
+print(type(squadre_senza_ripetizioni))
 # {'Corinthians', 'Santos', 'São Paulo', 'Palmeiras'}
 # &lt;class 'set'&gt;
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># set -&gt; list: para voltar a usar índices e métodos de lista
-times_lista = list(times_sem_repeticao)
-print(times_lista)
-print(type(times_lista))
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># set -&gt; list: per tornare a usare indici e metodi di lista
+squadre_lista = list(squadre_senza_ripetizioni)
+print(squadre_lista)
+print(type(squadre_lista))
 # ['Corinthians', 'Santos', 'São Paulo', 'Palmeiras']
 # &lt;class 'list'&gt;
 </code></pre></div>
 <h2>Rivisitando la motivazione</h2>
 <p>Combinando le due conversioni, risolviamo il problema degli hashtag in un'unica riga: uniamo le liste, convertiamo in <code>set</code> (rimuovendo le ripetizioni) e torniamo a <code>list</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">hashtags_semana_unicas = list(set(hashtags_segunda + hashtags_terca + hashtags_quarta + hashtags_quinta + hashtags_sexta))
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">hashtags_settimana_uniche = list(set(hashtags_lunedi + hashtags_martedi + hashtags_mercoledi + hashtags_giovedi + hashtags_venerdi))
 
-print(hashtags_semana_unicas)
-print(f'Total de hashtags únicas: {len(hashtags_semana_unicas)}')
+print(hashtags_settimana_uniche)
+print(f'Totale hashtag uniche: {len(hashtags_settimana_uniche)}')
 # ['#sarah', '#bbb', '#thelma', '#fora', '#danilo', '#juliete', '#arthur', '#tiago', '#gil', '#joao', '#fiuk', '#lourdes', '#rafa']
-# Total de hashtags únicas: 13
+# Totale hashtag uniche: 13
 </code></pre></div>
 </div>
 
 
 <div class="quiz" role="group" aria-labelledby="quiz-python-conjuntos-q">
   <p class="kicker-cyan">// Quiz</p>
-  <p class="quiz-q" id="quiz-python-conjuntos-q">Perché <code>frutas[0]</code> genera un errore in un insieme (<code>set</code>)?</p>
+  <p class="quiz-q" id="quiz-python-conjuntos-q">Perché <code>frutta[0]</code> genera un errore in un insieme (<code>set</code>)?</p>
   <fieldset class="quiz-options">
     <legend class="sr-only">Scegli un'alternativa</legend>
     <label class="quiz-opt" data-correct="0" data-exp="Un insieme può avere diversi elementi - solo non hanno una posizione definita."><input type="radio" name="quiz-python-conjuntos" value="0" /><span class="txt">Perché gli insiemi non hanno elementi</span><span class="mark" aria-hidden="true"></span></label>
