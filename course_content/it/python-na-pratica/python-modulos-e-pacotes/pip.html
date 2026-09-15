@@ -7,10 +7,10 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Comando</th><th>Cosa fa</th></tr></thead>
 <tbody>
-<tr><td><code>pip install &lt;pacote&gt;</code></td><td>Installa la versione più recente del pacchetto</td></tr>
-<tr><td><code>pip install &lt;pacote&gt;==&lt;versão&gt;</code></td><td>Installa una versione specifica</td></tr>
+<tr><td><code>pip install &lt;pacchetto&gt;</code></td><td>Installa la versione più recente del pacchetto</td></tr>
+<tr><td><code>pip install &lt;pacchetto&gt;==&lt;versione&gt;</code></td><td>Installa una versione specifica</td></tr>
 <tr><td><code>pip freeze</code></td><td>Elenca tutti i pacchetti installati e le loro versioni</td></tr>
-<tr><td><code>pip uninstall &lt;pacote&gt;</code></td><td>Rimuove un pacchetto installato</td></tr>
+<tr><td><code>pip uninstall &lt;pacchetto&gt;</code></td><td>Rimuove un pacchetto installato</td></tr>
 </tbody>
 </table></div>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">!pip install requests==2.32.3
@@ -25,12 +25,12 @@
 <p><strong>Esempio:</strong> stai automatizzando la compilazione di una registrazione e, a partire dal CAP indicato dal cliente, devi scoprire la via, il quartiere e la città. Il ViaCEP è un servizio pubblico e gratuito per questo tipo di ricerca.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import requests
 
-resposta = requests.get('https://viacep.com.br/ws/01310930/json/')
-print(f'Status code: {resposta.status_code}')
+risposta = requests.get('https://viacep.com.br/ws/01310930/json/')
+print(f'Status code: {risposta.status_code}')
 # Status code: 200
 </code></pre></div>
 <p>Uno <code>status_code</code> pari a <code>200</code> indica che la richiesta è andata a buon fine. Il contenuto restituito arriva come testo, nel formato <strong>JSON</strong> — un formato molto usato per lo scambio di dati tra sistemi:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(resposta.text)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(risposta.text)
 # {
 #   "cep": "01310-930",
 #   "logradouro": "Avenida Paulista",
@@ -50,21 +50,21 @@ print(f'Status code: {resposta.status_code}')
 <p>Il modulo <code>json</code>, anch'esso della libreria standard, converte questo testo in un dizionario Python con <code>json.loads()</code>:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import json
 
-endereco = json.loads(resposta.text)
-print(endereco)
+indirizzo = json.loads(risposta.text)
+print(indirizzo)
 # {'cep': '01310-930', 'logradouro': 'Avenida Paulista', 'complemento': '2100', 'unidade': 'Banco Safra S.A', 'bairro': 'Bela Vista', 'localidade': 'São Paulo', 'uf': 'SP', 'estado': 'São Paulo', 'regiao': 'Sudeste', 'ibge': '3550308', 'gia': '1004', 'ddd': '11', 'siafi': '7107'}
 </code></pre></div>
 <blockquote>
-<p>Lo stesso <code>requests</code> offre già una scorciatoia per questo, senza dover importare manualmente <code>json</code>: <code>resposta.json()</code>.</p>
+<p>Lo stesso <code>requests</code> offre già una scorciatoia per questo, senza dover importare manualmente <code>json</code>: <code>risposta.json()</code>.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">endereco = resposta.json()
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">indirizzo = risposta.json()
 
-print(f"Rua: {endereco['logradouro']}")
-print(f"Bairro: {endereco['bairro']}")
-print(f"Cidade: {endereco['localidade']} - {endereco['uf']}")
-# Rua: Avenida Paulista
-# Bairro: Bela Vista
-# Cidade: São Paulo - SP
+print(f"Via: {indirizzo['logradouro']}")
+print(f"Quartiere: {indirizzo['bairro']}")
+print(f"Città: {indirizzo['localidade']} - {indirizzo['uf']}")
+# Via: Avenida Paulista
+# Quartiere: Bela Vista
+# Città: São Paulo - SP
 </code></pre></div>
 <blockquote>
 <p>Praticamente ogni pacchetto che si connette a un'API (social network, banche, sistemi di pagamento, lo stesso ChatGPT...) segue questa stessa logica: una richiesta HTTP che restituisce dati in JSON.</p>
@@ -75,9 +75,9 @@ print(f"Cidade: {endereco['localidade']} - {endereco['uf']}")
 <tbody>
 <tr><td>Importare un modulo intero</td><td>Porta tutto il contenuto, accessibile con prefisso</td><td><code>import modulo</code></td></tr>
 <tr><td>Importare nomi specifici</td><td>Porta solo ciò che è stato richiesto, senza prefisso</td><td><code>from modulo import nome</code></td></tr>
-<tr><td>Assegnare un alias all'importazione</td><td>Rinomina il modulo o il nome importato</td><td><code>import modulo as apelido</code></td></tr>
-<tr><td>Modulo</td><td>Un file <code>.py</code> con codice riutilizzabile</td><td><code>arquivo_csv.py</code></td></tr>
-<tr><td>Pacchetto</td><td>Una cartella con moduli correlati e un <code>__init__.py</code></td><td><code>arquivo/arquivo_csv.py</code></td></tr>
+<tr><td>Assegnare un alias all'importazione</td><td>Rinomina il modulo o il nome importato</td><td><code>import modulo as alias</code></td></tr>
+<tr><td>Modulo</td><td>Un file <code>.py</code> con codice riutilizzabile</td><td><code>file_csv.py</code></td></tr>
+<tr><td>Pacchetto</td><td>Una cartella con moduli correlati e un <code>__init__.py</code></td><td><code>file/file_csv.py</code></td></tr>
 <tr><td>PyPI</td><td>Repository ufficiale di pacchetti di terzi</td><td>pypi.org</td></tr>
 <tr><td>pip</td><td>Strumento per installare, elencare e rimuovere pacchetti</td><td><code>pip install</code>, <code>pip freeze</code>, <code>pip uninstall</code></td></tr>
 </tbody>

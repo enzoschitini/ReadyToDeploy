@@ -5,28 +5,28 @@ pagamento, mostrare o nascondere un messaggio. Dietro tutte queste decisioni ci 
 <h2>Motivazione</h2>
 <p>Nei siti web (social network, e-commerce, sistemi aziendali ecc.) è comune l'uso di sistemi
 di controllo degli accessi, il famoso <strong>login</strong>. In generale, l'utente fornisce due dati:
-<code>usuario</code> e <code>senha</code>.</p>
+<code>utente</code> e <code>password</code>.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dati digitati dall'utente nella schermata di login
-usuario = 'andre.perez'
-senha = 'andre123'
+utente = 'marco.rossi'
+password = 'marco123'
 </code></pre></div>
 <p>Dal lato del server, il backend del sito ha memorizzati i dati forniti al momento della
-registrazione: <code>usuario_cadastro</code> e <code>senha_cadastro</code>.</p>
+registrazione: <code>utente_registrato</code> e <code>password_registrata</code>.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dati salvati al momento della registrazione
-usuario_cadastro = 'andre.perez'
-senha_cadastro = 'andre321'
+utente_registrato = 'marco.rossi'
+password_registrata = 'marco321'
 </code></pre></div>
-<p><strong>Come confrontiamo <code>usuario</code> con <code>usuario_cadastro</code> e <code>senha</code> con
-<code>senha_cadastro</code> per decidere se l'accesso deve essere concesso o bloccato?</strong></p>
+<p><strong>Come confrontiamo <code>utente</code> con <code>utente_registrato</code> e <code>password</code> con
+<code>password_registrata</code> per decidere se l'accesso deve essere concesso o bloccato?</strong></p>
 <h2>Definizione</h2>
 <p>I booleani memorizzano <strong>valori logici</strong> e possono assumere solo due valori:
 <code>True</code> (vero) o <code>False</code> (falso). Sono del tipo <code>bool</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verdadeiro = True
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">vero = True
 falso = False
 
-print(verdadeiro)       # True
+print(vero)       # True
 print(falso)            # False
-print(type(verdadeiro)) # &lt;class 'bool'&gt;
+print(type(vero)) # &lt;class 'bool'&gt;
 </code></pre></div>
 <p>In pratica, raramente scriviamo <code>True</code> o <code>False</code> direttamente: i booleani
 sono di solito il <strong>risultato di confronti</strong>. Gli operatori di confronto sono:</p>
@@ -47,27 +47,27 @@ due valori sono uguali).</p>
 </blockquote>
 <p><strong>Esempio:</strong> bancomat. Il prelievo può essere effettuato solo se il valore è minore o uguale al
 saldo.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">saldo_em_conta = 200
-valor_do_saque = 100
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">saldo_conto = 200
+importo_prelievo = 100
 
-pode_realizar_saque = valor_do_saque &lt;= saldo_em_conta
-print(pode_realizar_saque)  # True
+puo_effettuare_prelievo = importo_prelievo &lt;= saldo_conto
+print(puo_effettuare_prelievo)  # True
 </code></pre></div>
 <p><strong>Esempio:</strong> carta di credito. Il pagamento viene approvato solo se il codice di sicurezza
 fornito è uguale a quello registrato.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">codigo_seguranca_informado = '852'
-codigo_seguranca_cadastro = '010'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">codice_sicurezza_inserito = '852'
+codice_sicurezza_registrato = '010'
 
-pode_efetuar_pagamento = codigo_seguranca_informado == codigo_seguranca_cadastro
-print(pode_efetuar_pagamento)  # False
+puo_effettuare_pagamento = codice_sicurezza_inserito == codice_sicurezza_registrato
+print(puo_effettuare_pagamento)  # False
 </code></pre></div>
 <p><strong>Esempio:</strong> il confronto tra stringhe è <strong>sensibile a maiuscole e minuscole</strong>. Per
 confrontare ignorando questa differenza, standardizza i testi prima:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">email_digitado = 'Andre.Perez@Gmail.com'
-email_cadastro = 'andre.perez@gmail.com'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">email_inserita = 'Marco.Rossi@Gmail.com'
+email_registrata = 'marco.rossi@gmail.com'
 
-print(email_digitado == email_cadastro)                  # False: lettere diverse
-print(email_digitado.lower() == email_cadastro.lower())  # True: entrambi in minuscolo
+print(email_inserita == email_registrata)                  # False: lettere diverse
+print(email_inserita.lower() == email_registrata.lower())  # True: entrambi in minuscolo
 </code></pre></div>
 <h2>Operatori logici</h2>
 <p>Gli operatori logici permettono di <strong>combinare</strong> valori booleani:</p>
@@ -108,13 +108,13 @@ print(not False)  # True
 <p><strong>Esempio:</strong> spedizione gratuita. Un negozio offre spedizione gratuita ai clienti VIP <strong>oppure</strong>
 per acquisti superiori a R$ 200,00 - a patto che l'indirizzo <strong>non</strong> sia internazionale.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">cliente_vip = False
-valor_compra = 250.00
-endereco_internacional = False
+valore_acquisto = 250.00
+indirizzo_internazionale = False
 
-compra_acima_do_minimo = valor_compra &gt; 200
-tem_frete_gratis = (cliente_vip or compra_acima_do_minimo) and not endereco_internacional
+acquisto_sopra_minimo = valore_acquisto &gt; 200
+ha_spedizione_gratis = (cliente_vip or acquisto_sopra_minimo) and not indirizzo_internazionale
 
-print(tem_frete_gratis)  # True
+print(ha_spedizione_gratis)  # True
 </code></pre></div>
 <blockquote>
 <p>Puoi trovare anche gli operatori <code>&amp;</code> (e) e <code>|</code> (o) in alcuni codici -
@@ -135,34 +135,34 @@ diventa <code>True</code>.</p>
 <tr><td>Qualsiasi stringa non vuota (es: <code>'O-'</code>, <code>' '</code>)</td><td><code>True</code></td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">idade = 19
-tipo_sanguineo = 'O-'
-quantidade_filhos = 0
-telefone_fixo = None
-telefone_comercial = ''
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">eta = 19
+gruppo_sanguigno = 'O-'
+numero_figli = 0
+telefono_fisso = None
+telefono_lavoro = ''
 
-print(bool(idade))               # True  - número diferente de zero
-print(bool(tipo_sanguineo))      # True  - string com conteúdo
-print(bool(quantidade_filhos))   # False - zero
-print(bool(telefone_fixo))       # False - None
-print(bool(telefone_comercial))  # False - string vazia
+print(bool(eta))               # True  - numero diverso da zero
+print(bool(gruppo_sanguigno))      # True  - stringa con contenuto
+print(bool(numero_figli))   # False - zero
+print(bool(telefono_fisso))       # False - None
+print(bool(telefono_lavoro))  # False - stringa vuota
 </code></pre></div>
 <h2>Rivisitando la motivazione</h2>
 <p>Ora possiamo risolvere il problema del login. <strong>Passo 1:</strong> confrontare i dati forniti
 dall'utente con i dati della registrazione:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">usuario_correto = usuario == usuario_cadastro
-senha_correta = senha == senha_cadastro
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">utente_corretto = utente == utente_registrato
+password_corretta = password == password_registrata
 
-print(f'Usuário correto? {usuario_correto}')  # Usuário correto? True
-print(f'Senha correta?   {senha_correta}')    # Senha correta?   False
+print(f'Utente corretto? {utente_corretto}')  # Utente corretto? True
+print(f'Password corretta?   {password_corretta}')    # Password corretta?   False
 </code></pre></div>
 <p><strong>Passo 2:</strong> decidere se l'accesso deve essere concesso. Per questo, <strong>entrambe le</strong>
 condizioni devono essere vere, quindi usiamo l'operatore <code>and</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">conceder_acesso = usuario_correto and senha_correta
-print(f'Acesso concedido? {conceder_acesso}')  # Acesso concedido? False
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">accesso_concesso = utente_corretto and password_corretta
+print(f'Accesso concesso? {accesso_concesso}')  # Accesso concesso? False
 </code></pre></div>
-<p>Poiché la password digitata (<code>andre123</code>) è diversa da quella registrata (<code>andre321</code>), l'accesso
-è stato <strong>bloccato</strong>. Prova a modificare il valore della variabile <code>senha</code> all'inizio e
+<p>Poiché la password digitata (<code>marco123</code>) è diversa da quella registrata (<code>marco321</code>), l'accesso
+è stato <strong>bloccato</strong>. Prova a modificare il valore della variabile <code>password</code> all'inizio e
 ripetere il ragionamento!</p>
 <h2>Riepilogo del modulo</h2>
 <p>Abbiamo chiuso la base dei tipi di dati di Python. Ecco il riepilogo di ciò che abbiamo visto:</p>

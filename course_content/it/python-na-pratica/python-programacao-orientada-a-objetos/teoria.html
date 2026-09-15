@@ -12,44 +12,44 @@
 </table></div>
 <p>Python è un linguaggio <strong>multiparadigma</strong>: permette di usare i tre stili, anche mescolati nello stesso programma. Per confrontare, vediamo lo stesso problema risolto nei tre stili: calcolare il totale di un carrello della spesa.</p>
 <p><strong>Stile imperativo:</strong> percorriamo i prezzi e accumuliamo il totale in una variabile.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">precos_carrinho = [49.90, 15.00, 120.50]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">prezzi_carrello = [49.90, 15.00, 120.50]
 
-# Passo a passo: a variável total_imperativo é alterada a cada volta do laço
-total_imperativo = 0
-for preco in precos_carrinho:
-    total_imperativo += preco
+# Passo dopo passo: la variabile totale_imperativo viene alterata ad ogni giro del ciclo
+totale_imperativo = 0
+for prezzo in prezzi_carrello:
+    totale_imperativo += prezzo
 
-print(f'Total (imperativo): {total_imperativo:.2f}')
-# Total (imperativo): 185.40
+print(f'Totale (imperativo): {totale_imperativo:.2f}')
+# Totale (imperativo): 185.40
 </code></pre></div>
 <p><strong>Stile funzionale:</strong> descriviamo il risultato combinando funzioni, senza alterare nessuna variabile lungo il percorso.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># sum() recebe a lista e devolve o total, sem modificar nada
-total_funcional = sum(precos_carrinho)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># sum() riceve la lista e restituisce il totale, senza modificare nulla
+totale_funzionale = sum(prezzi_carrello)
 
-print(f'Total (funcional): {total_funcional:.2f}')
-# Total (funcional): 185.40
+print(f'Totale (funzionale): {totale_funzionale:.2f}')
+# Totale (funzionale): 185.40
 </code></pre></div>
 <p><strong>Stile orientato agli oggetti:</strong> creiamo un "carrello" che conserva i propri elementi e sa calcolare il proprio totale. Non preoccuparti della sintassi ora: è esattamente ciò che impareremo in questo modulo.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Carrinho:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Carrello:
 
     def __init__(self):
-        self.precos = []
+        self.prezzi = []
 
-    def adicionar(self, preco: float) -&gt; None:
-        self.precos.append(preco)
+    def aggiungere(self, prezzo: float) -&gt; None:
+        self.prezzi.append(prezzo)
 
-    def total(self) -&gt; float:
-        return sum(self.precos)
+    def totale(self) -&gt; float:
+        return sum(self.prezzi)
 
 
-# O carrinho guarda os dados E as ações que fazem sentido para ele
-meu_carrinho = Carrinho()
-meu_carrinho.adicionar(49.90)
-meu_carrinho.adicionar(15.00)
-meu_carrinho.adicionar(120.50)
+# Il carrello conserva i dati E le azioni che hanno senso per lui
+mio_carrello = Carrello()
+mio_carrello.aggiungere(49.90)
+mio_carrello.aggiungere(15.00)
+mio_carrello.aggiungere(120.50)
 
-print(f'Total (orientado a objetos): {meu_carrinho.total():.2f}')
-# Total (orientado a objetos): 185.40
+print(f'Totale (orientato agli oggetti): {mio_carrello.totale():.2f}')
+# Totale (orientato agli oggetti): 185.40
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> nessun paradigma è "migliore" in tutti i casi. Per un calcolo semplice, una riga come <code>sum(precos_carrinho)</code> risolve. L'orientamento agli oggetti brilla quando il sistema cresce e comincia ad avere molti elementi (clienti, prodotti, ordini), ognuno con i propri dati e le proprie regole.</p>
@@ -60,10 +60,10 @@ print(f'Total (orientado a objetos): {meu_carrinho.total():.2f}')
 <li>quali <strong>caratteristiche</strong> ha ogni elemento di quel tipo (gli <strong>attributi</strong>);</li>
 <li>quali <strong>azioni</strong> può compiere (i <strong>metodi</strong>).</li>
 </ul>
-<p><strong>Esempio:</strong> la classe <code>Pessoa</code> definisce che ogni persona ha nome, età e documento, e che ogni persona può parlare e dormire.</p>
+<p><strong>Esempio:</strong> la classe <code>Persona</code> definisce che ogni persona ha nome, età e documento, e che ogni persona può parlare e dormire.</p>
 <h2>Oggetto</h2>
 <p>Un <strong>oggetto</strong> è un'<strong>istanza</strong> di una classe, cioè qualcosa di concreto creato a partire dalla ricetta. La classe descrive; l'oggetto esiste e ha valori propri.</p>
-<p><strong>Esempio:</strong> André, di 30 anni, è un'istanza della classe <code>Pessoa</code>. Maria, di 56 anni, è un'altra istanza della stessa classe. Entrambi seguono la stessa ricetta, ma ognuno ha i propri dati.</p>
+<p><strong>Esempio:</strong> André, di 30 anni, è un'istanza della classe <code>Persona</code>. Maria, di 56 anni, è un'altra istanza della stessa classe. Entrambi seguono la stessa ricetta, ma ognuno ha i propri dati.</p>
 <p>Pensa alla pianta di una casa: la pianta è la <strong>classe</strong>, e ogni casa costruita a partire da essa è un <strong>oggetto</strong>. Con un'unica pianta, costruiamo quante case vogliamo, e ognuna può avere un colore diverso.</p>
 <h2>Eredità</h2>
 <p>L'<strong>eredità</strong> è un modo di <strong>specializzare</strong> una classe: creiamo una nuova classe che sfrutta tutto ciò che un'altra già ha e aggiunge ciò che le è specifico.</p>
@@ -71,9 +71,9 @@ print(f'Total (orientado a objetos): {meu_carrinho.total():.2f}')
 <div class="table-wrap"><table>
 <thead><tr><th>Concetto</th><th>Analogia</th><th>Esempio</th></tr></thead>
 <tbody>
-<tr><td>Classe</td><td>La ricetta o la pianta</td><td><code>Pessoa</code></td></tr>
+<tr><td>Classe</td><td>La ricetta o la pianta</td><td><code>Persona</code></td></tr>
 <tr><td>Oggetto</td><td>Il piatto pronto o la casa costruita</td><td>André, Maria, Pedro</td></tr>
-<tr><td>Eredità</td><td>Una variazione della ricetta</td><td><code>Estudante</code> è una <code>Pessoa</code></td></tr>
+<tr><td>Eredità</td><td>Una variazione della ricetta</td><td><code>Studente</code> è una <code>Persona</code></td></tr>
 </tbody>
 </table></div>
 </div>

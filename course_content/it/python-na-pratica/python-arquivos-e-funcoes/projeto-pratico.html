@@ -9,7 +9,7 @@
 <h2>Obiettivo</h2>
 <p>Alla fine di questo progetto, avrai praticato, all'interno di un unico scenario collegato:</p>
 <ul>
-<li><strong>Lettura di file</strong> con <code>with</code>, <code>open()</code> e <code>for linha in arquivo:</code>;</li>
+<li><strong>Lettura di file</strong> con <code>with</code>, <code>open()</code> e <code>for riga in file:</code>;</li>
 <li><strong>Scrittura di file</strong>, incluso filtrare dati da un file a un altro;</li>
 <li>Creazione di <strong>funzioni</strong>, con parametri, valore predefinito e <code>return</code>;</li>
 <li><strong>Scope</strong>: la differenza tra variabili locali e globali, e la parola chiave <code>global</code>.</li>
@@ -40,7 +40,7 @@
 <p>In ogni missione: la richiesta di qualcuno del team, i dati pronti con <code># TODO</code>, il risultato atteso e un suggerimento.</p>
 <h2>Preparando il file della classe</h2>
 <p>Prima della Missione 1, occorre avere il file <code>alunos.csv</code>, esportato dal sistema di iscrizioni di Estuda Mais, nella cartella in cui il notebook è in esecuzione — usa esattamente quello che si impara nella lezione di scrittura di file del Modulo 04:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">conteudo_alunos = '''aluno_id,nome,curso,nota_final,frequencia_percentual
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">contenuto_studenti = '''studente_id,nome,corso,voto_finale,frequenza_percentuale
 1,Ana Costa,Python Básico,78,92
 2,Bruno Lima,Python Básico,45,60
 3,Carla Dias,Python Avançado,88,95
@@ -50,28 +50,28 @@
 7,Giovana Reis,Python Avançado,55,70
 '''
 
-with open('alunos.csv', mode='w', encoding='utf-8') as arquivo:
-    arquivo.write(conteudo_alunos)
+with open('alunos.csv', mode='w', encoding='utf-8') as file:
+    file.write(contenuto_studenti)
 
-print('Arquivo alunos.csv criado!')
+print('File alunos.csv creato!')
 </code></pre></div>
 <h2>Missione 1 — Voto medio della classe</h2>
 <blockquote>
 <p><strong>Larissa (Pedagogico):</strong> "Ciao, benvenuto/a nel team! Devo sapere il voto medio della classe di oggi, che si trova nel file <code>alunos.csv</code>. Riesci a leggere il file e calcolarlo per me?"</p>
 </blockquote>
-<p><strong>La tua missione:</strong> apri <code>alunos.csv</code>, scarta l'intestazione con <code>.readline()</code>, scorri le righe rimanenti con <code>for</code>, estrai il voto finale (4ª colonna) da ognuna, convertilo in <code>float</code> e salvalo in una lista <code>notas_turma</code>. Calcola <code>nota_media</code> e stampalo con una cifra decimale.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Nota média da turma
-notas_turma = []
+<p><strong>La tua missione:</strong> apri <code>alunos.csv</code>, scarta l'intestazione con <code>.readline()</code>, scorri le righe rimanenti con <code>for</code>, estrai il voto finale (4ª colonna) da ognuna, convertilo in <code>float</code> e salvalo in una lista <code>voti_classe</code>. Calcola <code>voto_medio</code> e stampalo con una cifra decimale.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Voto medio della classe
+voti_classe = []
 
-# TODO: abra alunos.csv, descarte o cabeçalho e percorra as demais linhas
-# TODO: em cada linha, separe as colunas, extraia a nota final (índice 3) como float
-#       e adicione a notas_turma
+# TODO: apri alunos.csv, scarta l'intestazione e scorri le righe rimanenti
+# TODO: in ogni riga, separa le colonne, estrai il voto finale (indice 3) come float
+#       e aggiungilo a voti_classe
 
 
-# TODO: calcule nota_media e imprima: 'Nota média da turma: X.X'
+# TODO: calcola voto_medio e stampa: 'Voto medio della classe: X.X'
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Nota média da turma: 65.1
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Voto medio della classe: 65.1
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> segui lo stesso percorso dell'età media dei clienti nella sezione 1.6 del Modulo 04: <code>.readline()</code> scarta l'intestazione, e il <code>for</code> scorre il resto. Attenzione all'indice — il voto finale è la 4ª colonna, cioè indice <code>3</code>.</p>
@@ -80,126 +80,126 @@ notas_turma = []
 <blockquote>
 <p><strong>Tiago (Dati e Report):</strong> "Ho bisogno di un file separato solo con gli studenti che hanno un voto finale sotto 50 — il coordinamento vuole chiamarli questa settimana. Salvalo in un file <code>alunos_criticos.csv</code>, mantenendo la stessa intestazione?"</p>
 </blockquote>
-<p><strong>La tua missione:</strong> leggi <code>alunos.csv</code> e scrivi in <code>alunos_criticos.csv</code> solo le righe degli studenti con voto finale <strong>minore di 50</strong>, copiando l'intestazione così com'è. Conta quanti studenti sono entrati nella lista in <code>quantidade_alunos_criticos</code>. Alla fine, stampa il contenuto del nuovo file e la quantità trovata.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Alunos que precisam de atenção
-quantidade_alunos_criticos = 0
+<p><strong>La tua missione:</strong> leggi <code>alunos.csv</code> e scrivi in <code>alunos_criticos.csv</code> solo le righe degli studenti con voto finale <strong>minore di 50</strong>, copiando l'intestazione così com'è. Conta quanti studenti sono entrati nella lista in <code>numero_studenti_critici</code>. Alla fine, stampa il contenuto del nuovo file e la quantità trovata.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Studenti che necessitano attenzione
+numero_studenti_critici = 0
 
-# TODO: leia alunos.csv e escreva em alunos_criticos.csv só as linhas com nota &lt; 50
-#       (copie o cabeçalho como está, com leitura.readline())
-#       cada linha copiada também deve incrementar quantidade_alunos_criticos
-
-
-# TODO: abra alunos_criticos.csv e imprima o conteúdo
+# TODO: leggi alunos.csv e scrivi in alunos_criticos.csv solo le righe con voto &lt; 50
+#       (copia l'intestazione così com'è, con lettura.readline())
+#       ogni riga copiata deve anche incrementare numero_studenti_critici
 
 
-# TODO: imprima quantidade_alunos_criticos com um rótulo
+# TODO: apri alunos_criticos.csv e stampa il contenuto
+
+
+# TODO: stampa numero_studenti_critici con un'etichetta
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">aluno_id,nome,curso,nota_final,frequencia_percentual
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">studente_id,nome,corso,voto_finale,frequenza_percentuale
 2,Bruno Lima,Python Básico,45,60
 4,Diego Rocha,Python Básico,32,40
 
-Alunos críticos: 2
+Studenti critici: 2
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> lo schema è lo stesso dei clienti con prestito nella sezione 2.4 del Modulo 04: un unico <code>with</code> apre entrambi i file, l'intestazione viene copiata direttamente con <code>escrita.write(leitura.readline())</code>, e ogni riga viene copiata solo se supera l'<code>if</code>.</p>
+<p><strong>Suggerimento:</strong> lo schema è lo stesso dei clienti con prestito nella sezione 2.4 del Modulo 04: un unico <code>with</code> apre entrambi i file, l'intestazione viene copiata direttamente con <code>scrittura.write(lettura.readline())</code>, e ogni riga viene copiata solo se supera l'<code>if</code>.</p>
 </blockquote>
 <h2>Missione 3 — Punteggio per il certificato</h2>
 <blockquote>
 <p><strong>Helena (Prodotto):</strong> "Per emettere il certificato, calcoliamo un punteggio finale che pesa 70% il voto e 30% la frequenza dello studente. Solo che dovrò calcolarlo per l'intera classe, e poi anche per altre classi — non voglio ricopiare questo calcolo ogni volta."</p>
 </blockquote>
-<p><strong>La tua missione:</strong> crea la funzione <code>calcular_pontuacao_final(nota_final, frequencia_percentual, peso_nota=0.7)</code>, che restituisce il punteggio ponderato arrotondato a 2 cifre decimali (la frequenza riceve il peso rimanente, <code>1 - peso_nota</code>). Poi, usala dentro un <code>for</code> per calcolare e stampare il punteggio di ogni studente della lista sotto.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Pontuação para o certificado
-alunos_nota_frequencia = [
+<p><strong>La tua missione:</strong> crea la funzione <code>calcolare_punteggio_finale(voto_finale, frequenza_percentuale, peso_voto=0.7)</code>, che restituisce il punteggio ponderato arrotondato a 2 cifre decimali (la frequenza riceve il peso rimanente, <code>1 - peso_voto</code>). Poi, usala dentro un <code>for</code> per calcolare e stampare il punteggio di ogni studente della lista sotto.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Punteggio per il certificato
+studenti_voto_frequenza = [
     ('Ana Costa', 78, 92),
     ('Bruno Lima', 45, 60),
     ('Carla Dias', 88, 95),
 ]
 
-# TODO: defina calcular_pontuacao_final(nota_final, frequencia_percentual, peso_nota=0.7) -&gt; float
-# (fórmula: nota_final * peso_nota + frequencia_percentual * (1 - peso_nota), arredondada em 2 casas)
+# TODO: definisci calcolare_punteggio_finale(voto_finale, frequenza_percentuale, peso_voto=0.7) -&gt; float
+# (formula: voto_finale * peso_voto + frequenza_percentuale * (1 - peso_voto), arrotondata a 2 cifre decimali)
 
 
-# TODO: percorra alunos_nota_frequencia com for e imprima 'Nome: XX.X pontos' para cada aluno
+# TODO: scorri studenti_voto_frequenza con for e stampa 'Nome: XX.X punti' per ogni studente
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Ana Costa: 82.2 pontos
-Bruno Lima: 49.5 pontos
-Carla Dias: 90.1 pontos
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Ana Costa: 82.2 punti
+Bruno Lima: 49.5 punti
+Carla Dias: 90.1 punti
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> definisci la funzione <strong>prima</strong> del <code>for</code> che la chiama — ricorda che una funzione deve esistere prima di essere usata (sezione 3.2 del Modulo 04). Il <code>for</code> può spacchettare la tupla di ogni studente direttamente nella testa del ciclo: <code>for nome, nota_final, frequencia_percentual in alunos_nota_frequencia:</code>.</p>
+<p><strong>Suggerimento:</strong> definisci la funzione <strong>prima</strong> del <code>for</code> che la chiama — ricorda che una funzione deve esistere prima di essere usata (sezione 3.2 del Modulo 04). Il <code>for</code> può spacchettare la tupla di ogni studente direttamente nella testa del ciclo: <code>for nome, voto_finale, frequenza_percentuale in studenti_voto_frequenza:</code>.</p>
 </blockquote>
 <h2>Missione 4 — Conteggio dei promossi</h2>
 <blockquote>
 <p><strong>Rafael (Ingegneria):</strong> "Ho bisogno di una funzione che conti quanti studenti sono stati promossi (voto finale maggiore o uguale a 60) e salvi questo numero in una variabile <strong>globale</strong>, perché anche altre parti del sistema ne avranno bisogno. Attenzione: se la funzione modifica solo la variabile senza avvisare Python, il contatore non uscirà mai da zero."</p>
 </blockquote>
-<p><strong>La tua missione:</strong> crea la variabile globale <code>quantidade_alunos_aprovados = 0</code> e la funzione <code>registrar_aprovacao(nota_final)</code>, che usa <code>global</code> per <strong>incrementare</strong> questa variabile ogni volta che <code>nota_final &gt;= 60</code>. Poi, scorri <code>notas_turma_hoje</code> chiamando la funzione per ogni voto, e stampa il totale dei promossi.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Contagem de aprovados
-quantidade_alunos_aprovados = 0
-notas_turma_hoje = [78, 45, 88, 32, 91, 67, 55]
+<p><strong>La tua missione:</strong> crea la variabile globale <code>numero_studenti_promossi = 0</code> e la funzione <code>registrare_promozione(voto_finale)</code>, che usa <code>global</code> per <strong>incrementare</strong> questa variabile ogni volta che <code>voto_finale &gt;= 60</code>. Poi, scorri <code>voti_classe_oggi</code> chiamando la funzione per ogni voto, e stampa il totale dei promossi.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Conteggio dei promossi
+numero_studenti_promossi = 0
+voti_classe_oggi = [78, 45, 88, 32, 91, 67, 55]
 
-# TODO: defina registrar_aprovacao(nota_final), usando "global quantidade_alunos_aprovados"
-# para incrementar o contador quando nota_final &gt;= 60
-
-
-# TODO: percorra notas_turma_hoje chamando registrar_aprovacao() para cada nota
+# TODO: definisci registrare_promozione(voto_finale), usando "global numero_studenti_promossi"
+# per incrementare il contatore quando voto_finale &gt;= 60
 
 
-# TODO: imprima 'Alunos aprovados: N'
+# TODO: scorri voti_classe_oggi chiamando registrare_promozione() per ogni voto
+
+
+# TODO: stampa 'Studenti promossi: N'
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Alunos aprovados: 4
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Studenti promossi: 4
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> senza la parola chiave <code>global</code> dentro la funzione, Python crea una variabile <strong>locale</strong> con lo stesso nome, e la globale fuori non cambia mai — esattamente il bug che Rafael ha descritto. Rivedi l'esempio del <code>contador_simulacoes</code> nella sezione 4.3 del Modulo 04.</p>
+<p><strong>Suggerimento:</strong> senza la parola chiave <code>global</code> dentro la funzione, Python crea una variabile <strong>locale</strong> con lo stesso nome, e la globale fuori non cambia mai — esattamente il bug che Rafael ha descritto. Rivedi l'esempio del <code>contatore_simulazioni</code> nella sezione 4.3 del Modulo 04.</p>
 </blockquote>
 <h2>Missione 5 — Report per il coordinamento</h2>
 <blockquote>
 <p><strong>Marina (Coordinamento Pedagogico):</strong> "Chiudendo la giornata, ho bisogno di un file di testo con il riepilogo della classe da portare alla riunione. Può essere una funzione — così la riutilizziamo anche per altre classi."</p>
 </blockquote>
-<p><strong>La tua missione:</strong> crea la funzione <code>gerar_relatorio_turma(caminho_arquivo, nota_media, quantidade_alunos_criticos, quantidade_alunos_aprovados)</code>, che registra un file di testo con queste tre informazioni (una per riga) e restituisce <code>True</code> in caso di successo e <code>False</code> se si verifica un errore (usa <code>try</code>/<code>except</code>, come nella sezione 3.5 del Modulo 04). Chiama la funzione salvando in <code>'relatorio_turma.txt'</code>, riutilizzando le variabili delle Missioni 1, 2 e 4. Poi, stampa se la registrazione è andata a buon fine e il contenuto del file generato.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Relatório para a coordenação
-# TODO: defina gerar_relatorio_turma(caminho_arquivo, nota_media, quantidade_alunos_criticos, quantidade_alunos_aprovados) -&gt; bool
-# ela deve escrever, uma linha por informação:
-#   Nota média da turma: X.X
-#   Alunos críticos (nota &lt; 50): N
-#   Alunos aprovados (nota &gt;= 60): N
+<p><strong>La tua missione:</strong> crea la funzione <code>generare_report_classe(percorso_file, voto_medio, numero_studenti_critici, numero_studenti_promossi)</code>, che registra un file di testo con queste tre informazioni (una per riga) e restituisce <code>True</code> in caso di successo e <code>False</code> se si verifica un errore (usa <code>try</code>/<code>except</code>, come nella sezione 3.5 del Modulo 04). Chiama la funzione salvando in <code>'relatorio_turma.txt'</code>, riutilizzando le variabili delle Missioni 1, 2 e 4. Poi, stampa se la registrazione è andata a buon fine e il contenuto del file generato.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Report per il coordinamento
+# TODO: definisci generare_report_classe(percorso_file, voto_medio, numero_studenti_critici, numero_studenti_promossi) -&gt; bool
+# deve scrivere, una riga per informazione:
+#   Voto medio della classe: X.X
+#   Studenti critici (voto &lt; 50): N
+#   Studenti promossi (voto &gt;= 60): N
 
 
-# TODO: chame a função salvando em 'relatorio_turma.txt' e guarde o retorno em relatorio_gravado
+# TODO: chiama la funzione salvando in 'relatorio_turma.txt' e conserva il valore restituito in report_salvato
 
 
-# TODO: imprima relatorio_gravado e, em seguida, o conteúdo de relatorio_turma.txt
+# TODO: stampa report_salvato e, subito dopo, il contenuto di relatorio_turma.txt
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Relatório gravado com sucesso? True
-Nota média da turma: 65.1
-Alunos críticos (nota &lt; 50): 2
-Alunos aprovados (nota &gt;= 60): 4
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Report salvato con successo? True
+Voto medio della classe: 65.1
+Studenti critici (voto &lt; 50): 2
+Studenti promossi (voto &gt;= 60): 4
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> riutilizza esattamente le variabili già calcolate: <code>nota_media</code> (Missione 1), <code>quantidade_alunos_criticos</code> (Missione 2) e <code>quantidade_alunos_aprovados</code> (Missione 4) — non ricalcolare nulla a mano. Se la funzione viene definita dopo la chiamata, Python segnalerà un <code>NameError</code>.</p>
+<p><strong>Suggerimento:</strong> riutilizza esattamente le variabili già calcolate: <code>voto_medio</code> (Missione 1), <code>numero_studenti_critici</code> (Missione 2) e <code>numero_studenti_promossi</code> (Missione 4) — non ricalcolare nulla a mano. Se la funzione viene definita dopo la chiamata, Python segnalerà un <code>NameError</code>.</p>
 </blockquote>
 <h2>Sfide extra</h2>
 <p>Le missioni sopra coprono già tutto ciò che ti serve del Modulo 04. Le sfide sotto sono <strong>totalmente opzionali</strong> — una "modalità difficile" per chi vuole andare oltre.</p>
 <h2>Extra 1 — File che non esiste</h2>
 <p>Qualcuno ha chiesto di leggere i voti del 2024, ma questo file non esiste ancora nel sistema. Gestisci l'errore con <code>try</code>/<code>except</code>, senza far bloccare il programma.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 1: arquivo que não existe
-# TODO: tente abrir e ler 'notas_2024.csv'; se der FileNotFoundError, imprima
-# 'Erro: arquivo não encontrado. Confira o nome e a pasta.'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 1: file che non esiste
+# TODO: prova ad aprire e leggere 'notas_2024.csv'; se genera FileNotFoundError, stampa
+# 'Errore: file non trovato. Controlla il nome e la cartella.'
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Erro: arquivo não encontrado. Confira o nome e a pasta.
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Errore: file non trovato. Controlla il nome e la cartella.
 </code></pre></div>
 <h2>Extra 2 — Iscrizione dell'ultimo minuto</h2>
 <p>Uno studente si è iscritto dopo la chiusura della classe. Senza cancellare ciò che è già nel file, aggiungi la sua riga alla fine di <code>alunos.csv</code> usando la modalità <code>'a'</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 2: matrícula de última hora
-novo_aluno = '8,Hugo Prado,Python Básico,72,88\n'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 2: iscrizione dell'ultimo minuto
+nuovo_studente = '8,Hugo Prado,Python Básico,72,88\n'
 
-# TODO: acrescente novo_aluno ao final de alunos.csv, sem apagar o conteúdo existente
-# TODO: reabra o arquivo, conte quantas linhas ele tem agora (len) e imprima
-# TODO: imprima também a última linha do arquivo, sem o \n do final
+# TODO: aggiungi nuovo_studente alla fine di alunos.csv, senza cancellare il contenuto esistente
+# TODO: riapri il file, conta quante righe ha adesso (len) e stampa
+# TODO: stampa anche l'ultima riga del file, senza il \n finale
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">9
@@ -207,29 +207,29 @@ novo_aluno = '8,Hugo Prado,Python Básico,72,88\n'
 </code></pre></div>
 <h2>Extra 3 — Studenti per corso</h2>
 <p>Senza modificare nessun file, scorri <code>alunos.csv</code> e conta quanti studenti sono iscritti a <code>'Python Avançado'</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 3: alunos por curso
-# TODO: percorra alunos.csv (pulando o cabeçalho) e conte quantidade_avancado
-# TODO: imprima 'Alunos em Python Avançado: N'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 3: studenti per corso
+# TODO: scorri alunos.csv (saltando l'intestazione) e conta quantita_avanzato
+# TODO: stampa 'Studenti in Python Avançado: N'
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Alunos em Python Avançado: 3
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">Studenti in Python Avançado: 3
 </code></pre></div>
 <h2>Extra 4 — La variabile esiste sempre</h2>
-<p>E se <strong>nessuno</strong> studente avesse preso il voto massimo (100)? Assegna un valore iniziale a <code>situacao_turma</code> <strong>prima</strong> dell'<code>if</code>, affinché esista sempre — anche quando la condizione è falsa.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 4: variável sempre existe
-melhor_nota_turma = 91
+<p>E se <strong>nessuno</strong> studente avesse preso il voto massimo (100)? Assegna un valore iniziale a <code>situazione_classe</code> <strong>prima</strong> dell'<code>if</code>, affinché esista sempre — anche quando la condizione è falsa.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 4: la variabile esiste sempre
+miglior_voto_classe = 91
 
-# TODO: crie situacao_turma com um valor inicial ANTES do if
-# TODO: se melhor_nota_turma == 100, atualize situacao_turma para 'nota máxima atingida!'
-# TODO: imprima situacao_turma
+# TODO: crea situazione_classe con un valore iniziale PRIMA dell'if
+# TODO: se miglior_voto_classe == 100, aggiorna situazione_classe a 'voto massimo raggiunto!'
+# TODO: stampa situazione_classe
 </code></pre></div>
 <p><strong>Risultato atteso</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">nenhuma nota máxima
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-text">nessun voto massimo
 </code></pre></div>
 <h2>Extra 5 — Valuta un nuovo studente</h2>
 <p>Scrivi la tua funzione che riceve i dati di uno studente ipotetico e decide, con le regole che preferisci, se è pronto per il certificato. Qui non c'è un risultato atteso: dai sfogo alla creatività!</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 5: sua função de avaliação
-# TODO: capriche!
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Extra 5: la tua funzione di valutazione
+# TODO: datti da fare!
 </code></pre></div>
 <h2>Checklist di autovalutazione</h2>
 <ul>

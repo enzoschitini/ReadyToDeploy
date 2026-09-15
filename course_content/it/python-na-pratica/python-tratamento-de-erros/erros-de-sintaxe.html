@@ -2,113 +2,113 @@
 <p>La <strong>sintassi</strong> è l'insieme delle regole di scrittura di un linguaggio, come la grammatica di una lingua. Quando una regola viene infranta, Python non riesce nemmeno a capire cosa deve fare, e per questo <strong>non esegue nulla</strong>.</p>
 <h2>Definizione</h2>
 <p>Prima di eseguire una cella, Python legge <strong>tutto</strong> il suo codice per comprenderlo. Se trova un errore di sintassi in questa lettura, genera un <code>SyntaxError</code> e <strong>nessuna riga viene eseguita</strong>, nemmeno quelle che vengono prima dell'errore.</p>
-<p>Per vedere questo accadere senza bloccare il notebook, useremo due funzioni native che ricevono un codice conservato in una <em>string</em>: <code>exec(codigo)</code> esegue il codice, e <code>compile(codigo, nome, 'exec')</code> si limita ad <strong>analizzare</strong> il codice, senza eseguirlo. Servono solo per questa dimostrazione — nel lavoro quotidiano scrivi il codice direttamente nella cella.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">carrinho_compras = [
+<p>Per vedere questo accadere senza bloccare il notebook, useremo due funzioni native che ricevono un codice conservato in una <em>string</em>: <code>exec(codice)</code> esegue il codice, e <code>compile(codice, nome, 'exec')</code> si limita ad <strong>analizzare</strong> il codice, senza eseguirlo. Servono solo per questa dimostrazione — nel lavoro quotidiano scrivi il codice direttamente nella cella.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">carrello_spesa = [
     {'id': 3184, 'preco': 37.65, 'quantidade': 10},
     {'id': 1203, 'preco': 81.20, 'quantidade': 2},
     {'id': 8921, 'preco': 15.90, 'quantidade': 2},
 ]
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># O print está ANTES do erro de sintaxe (falta ':' no for)...
-codigo_com_erro = '''print('Esta mensagem vem antes do erro')
-for produto in carrinho_compras
-    print(produto)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Il print è PRIMA dell'errore di sintassi (manca ':' nel for)...
+codice_con_errore = '''print('Questo messaggio arriva prima dell\\'errore')
+for prodotto in carrello_spesa
+    print(prodotto)
 '''
 
 try:
-    exec(codigo_com_erro)
-except SyntaxError as erro:
-    # ...e mesmo assim ele não é exibido: nada foi executado
-    print(f'{type(erro).__name__}: {erro.msg} (linha {erro.lineno})')
-# SyntaxError: expected ':' (linha 2)
+    exec(codice_con_errore)
+except SyntaxError as errore:
+    # ...e anche così non viene mostrato: nulla è stato eseguito
+    print(f'{type(errore).__name__}: {errore.msg} (riga {errore.lineno})')
+# SyntaxError: expected ':' (riga 2)
 </code></pre></div>
-<p>Nota che il messaggio <code>'Esta mensagem vem antes do erro'</code> <strong>non è apparso</strong>. Tieni a mente questa differenza: vedremo nella prossima lezione che, con gli errori di esecuzione, le righe precedenti all'errore vengono eseguite normalmente.</p>
+<p>Nota che il messaggio <code>'Questo messaggio arriva prima dell\'errore'</code> <strong>non è apparso</strong>. Tieni a mente questa differenza: vedremo nella prossima lezione che, con gli errori di esecuzione, le righe precedenti all'errore vengono eseguite normalmente.</p>
 <h2>Errori di sintassi comuni</h2>
 <p>Per testare vari esempi, creiamo una funzione che analizza un codice e mostra l'errore di sintassi, indicando la riga e la posizione con una freccia (<code>^</code>), come fa Python stesso:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def verificar_sintaxe(codigo: str) -&gt; None:
-    '''Analisa o código (sem executá-lo) e exibe o erro de sintaxe, se houver.'''
-    codigo = codigo.strip('\n')  # ignora linhas em branco no início e no fim
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">def verifica_sintassi(codice: str) -&gt; None:
+    '''Analizza il codice (senza eseguirlo) e mostra l'errore di sintassi, se presente.'''
+    codice = codice.strip('\n')  # ignora le righe vuote all'inizio e alla fine
     try:
-        compile(codigo, '&lt;exemplo&gt;', 'exec')
-    except SyntaxError as erro:
-        linha_com_erro = codigo.splitlines()[erro.lineno - 1]
-        print(f'{type(erro).__name__} na linha {erro.lineno}: {erro.msg}')
-        print(f'    {linha_com_erro}')
-        if erro.offset:
-            print('    ' + ' ' * (erro.offset - 1) + '^')
+        compile(codice, '&lt;esempio&gt;', 'exec')
+    except SyntaxError as errore:
+        riga_con_errore = codice.splitlines()[errore.lineno - 1]
+        print(f'{type(errore).__name__} alla riga {errore.lineno}: {errore.msg}')
+        print(f'    {riga_con_errore}')
+        if errore.offset:
+            print('    ' + ' ' * (errore.offset - 1) + '^')
     else:
-        print('Nenhum erro de sintaxe encontrado.')
+        print('Nessun errore di sintassi trovato.')
 </code></pre></div>
 <p><strong>Esempio:</strong> dimenticare i due punti (<code>:</code>) alla fine di un <code>for</code>, <code>if</code>, <code>elif</code>, <code>else</code> o <code>def</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
-for produto in carrinho_compras
-    print(produto)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verifica_sintassi('''
+for prodotto in carrello_spesa
+    print(prodotto)
 ''')
-# SyntaxError na linha 1: expected ':'
-#     for produto in carrinho_compras
+# SyntaxError alla riga 1: expected ':'
+#     for prodotto in carrello_spesa
 #                                    ^
 </code></pre></div>
 <p><strong>Esempio:</strong> mettere una condizione nell'<code>else</code>. L'<code>else</code> significa "in tutti gli altri casi", quindi <strong>non</strong> riceve mai una condizione. Per testare un'altra condizione, usa <code>elif</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
-for produto in carrinho_compras:
-    if produto['id'] == 3184:
-        print('Produto 3184')
-    else produto['id'] == 1203:
-        print('Produto 1203')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verifica_sintassi('''
+for prodotto in carrello_spesa:
+    if prodotto['id'] == 3184:
+        print('Prodotto 3184')
+    else prodotto['id'] == 1203:
+        print('Prodotto 1203')
 ''')
-# SyntaxError na linha 4: expected ':'
-#         else produto['id'] == 1203:
+# SyntaxError alla riga 4: expected ':'
+#         else prodotto['id'] == 1203:
 #              ^
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Forma correta: elif para a segunda condição
-for produto in carrinho_compras:
-    if produto['id'] == 3184:
-        print('Produto 3184')
-    elif produto['id'] == 1203:
-        print('Produto 1203')
-# Produto 3184
-# Produto 1203
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Forma corretta: elif per la seconda condizione
+for prodotto in carrello_spesa:
+    if prodotto['id'] == 3184:
+        print('Prodotto 3184')
+    elif prodotto['id'] == 1203:
+        print('Prodotto 1203')
+# Prodotto 3184
+# Prodotto 1203
 </code></pre></div>
 <p><strong>Esempio:</strong> indentazione scorretta. In Python, gli spazi all'inizio della riga definiscono quali righe appartengono a un blocco. Questo errore ha addirittura un nome proprio: <code>IndentationError</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
-for produto in carrinho_compras:
-print(produto)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verifica_sintassi('''
+for prodotto in carrello_spesa:
+print(prodotto)
 ''')
-# IndentationError na linha 2: expected an indented block after 'for' statement on line 1
-#     print(produto)
+# IndentationError alla riga 2: expected an indented block after 'for' statement on line 1
+#     print(prodotto)
 #     ^
 </code></pre></div>
 <p><strong>Esempio:</strong> dimenticare di chiudere parentesi, quadre o virgolette.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
-print('Total de produtos:', len(carrinho_compras)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verifica_sintassi('''
+print('Totale prodotti:', len(carrello_spesa)
 ''')
-# SyntaxError na linha 1: '(' was never closed
-#     print('Total de produtos:', len(carrinho_compras)
+# SyntaxError alla riga 1: '(' was never closed
+#     print('Totale prodotti:', len(carrello_spesa)
 #          ^
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
-mensagem = 'Bem-vindo ao Ready To Deploy
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verifica_sintassi('''
+messaggio = 'Benvenuto su Ready To Deploy
 ''')
-# SyntaxError na linha 1: unterminated string literal (detected at line 1)
-#     mensagem = 'Bem-vindo ao Ready To Deploy
+# SyntaxError alla riga 1: unterminated string literal (detected at line 1)
+#     messaggio = 'Benvenuto su Ready To Deploy
 #                ^
 </code></pre></div>
 <p><strong>Esempio:</strong> usare <code>=</code> (assegnazione) dove dovrebbe essere <code>==</code> (confronto).</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
-if len(carrinho_compras) = 3:
-    print('Carrinho com 3 produtos')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verifica_sintassi('''
+if len(carrello_spesa) = 3:
+    print('Carrello con 3 prodotti')
 ''')
-# SyntaxError na linha 1: cannot assign to function call here. Maybe you meant '==' instead of '='?
-#     if len(carrinho_compras) = 3:
+# SyntaxError alla riga 1: cannot assign to function call here. Maybe you meant '==' instead of '='?
+#     if len(carrello_spesa) = 3:
 #        ^
 </code></pre></div>
 <p><strong>Esempio:</strong> usare <code>return</code> fuori da una funzione. Il <code>return</code> ha senso solo dentro un <code>def</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verificar_sintaxe('''
-idade = 19
-if idade &gt; 18:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">verifica_sintassi('''
+eta = 19
+if eta &gt; 18:
     return True
 ''')
-# SyntaxError na linha 3: 'return' outside function
+# SyntaxError alla riga 3: 'return' outside function
 #         return True
 #         ^
 </code></pre></div>
@@ -116,7 +116,7 @@ if idade &gt; 18:
 <div class="table-wrap"><table>
 <thead><tr><th>Errore</th><th>Esempio sbagliato</th><th>Correzione</th></tr></thead>
 <tbody>
-<tr><td>Mancano i due punti</td><td><code>for produto in carrinho</code></td><td><code>for produto in carrinho:</code></td></tr>
+<tr><td>Mancano i due punti</td><td><code>for prodotto in carrello</code></td><td><code>for prodotto in carrello:</code></td></tr>
 <tr><td>Condizione nell'<code>else</code></td><td><code>else preco &gt; 10:</code></td><td><code>elif preco &gt; 10:</code></td></tr>
 <tr><td>Indentazione scorretta</td><td>blocco del <code>for</code> senza rientro</td><td>rientrare il blocco con 4 spazi</td></tr>
 <tr><td>Parentesi o virgolette senza chiusura</td><td><code>print('Olá'</code></td><td><code>print('Olá')</code></td></tr>

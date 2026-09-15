@@ -2,79 +2,79 @@
 <p>Liste e insiemi conservano valori "sciolti", identificati solo dalla posizione o dalla loro stessa esistenza. Ma molti dati del mondo reale arrivano in <strong>coppie</strong>: un nome di rete e la sua password, un codice fiscale e il nome del cliente. Per questo usiamo i <strong>dizionari</strong>.</p>
 <h2>Motivazione</h2>
 <p>Per connetterti a una rete wi-fi, hai bisogno di due informazioni: il <strong>nome della rete</strong> e la <strong>password di accesso</strong>. Cercando le reti disponibili, il tuo dispositivo trova una lista di nomi:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">redes_wifi_disponiveis = ['rede1', 'cnx_cnx', 'uai-fi', 'r3d3']
-print(redes_wifi_disponiveis)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">reti_wifi_disponibili = ['rede1', 'cnx_cnx', 'uai-fi', 'r3d3']
+print(reti_wifi_disponibili)
 # ['rede1', 'cnx_cnx', 'uai-fi', 'r3d3']
 </code></pre></div>
 <p>Il problema è che questa lista conserva solo i <strong>nomi</strong>. Non c'è modo di associare ogni rete alla sua password corrispondente. <strong>Come memorizziamo coppie di informazioni correlate, come nome e password?</strong></p>
 <h2>Definizione</h2>
 <p>I <strong>dizionari</strong> memorizzano dati nel formato <strong>chiave-valore</strong>: ogni elemento è composto da una <strong>chiave</strong> (usata per cercare il dato) e un <strong>valore</strong> (il dato stesso). Sono del tipo <code>dict</code> e vengono creati tra parentesi graffe <code>{}</code>, nel formato <code>{chiave: valore}</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">brasil = {'capital': 'Brasília', 'idioma': 'Português', 'populacao_milhoes': 210}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">brasile = {'capitale': 'Brasília', 'lingua': 'Portoghese', 'popolazione_milioni': 210}
 
-print(brasil)
-print(type(brasil))
-# {'capital': 'Brasília', 'idioma': 'Português', 'populacao_milhoes': 210}
+print(brasile)
+print(type(brasile))
+# {'capitale': 'Brasília', 'lingua': 'Portoghese', 'popolazione_milioni': 210}
 # &lt;class 'dict'&gt;
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> non è consentito avere <strong>chiavi duplicate</strong>. Se ripeti una chiave, l'ultimo valore assegnato a essa <strong>sovrascrive</strong> i precedenti, senza generare errori:</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">carro = {
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">auto = {
     'marca': 'Volkswagen',
-    'modelo': 'Polo',
-    'ano': 2021,
-    'ano': 2004,  # sobrescreve o valor anterior da chave 'ano'
+    'modello': 'Polo',
+    'anno': 2021,
+    'anno': 2004,  # sovrascrive il valore precedente della chiave 'anno'
 }
 
-print(carro)
-# {'marca': 'Volkswagen', 'modelo': 'Polo', 'ano': 2004}
+print(auto)
+# {'marca': 'Volkswagen', 'modello': 'Polo', 'anno': 2004}
 </code></pre></div>
 <p>Un valore di un dizionario può anche essere <strong>un altro dizionario</strong> — questo si chiama <strong>dizionario composto</strong>, molto utile per rappresentare dati con una gerarchia:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">cadastro = {
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">registro = {
     'andre': {
         'nome': 'André Perez',
-        'ano_nascimento': 1992,
-        'pai': {'nome': 'Carlos Perez', 'ano_nascimento': 1965},
-        'mae': {'nome': 'Marta Perez', 'ano_nascimento': 1968},
+        'anno_nascita': 1992,
+        'padre': {'nome': 'Carlos Perez', 'anno_nascita': 1965},
+        'madre': {'nome': 'Marta Perez', 'anno_nascita': 1968},
     }
 }
 
-print(cadastro)
-# {'andre': {'nome': 'André Perez', 'ano_nascimento': 1992, 'pai': {'nome': 'Carlos Perez', 'ano_nascimento': 1965}, 'mae': {'nome': 'Marta Perez', 'ano_nascimento': 1968}}}
+print(registro)
+# {'andre': {'nome': 'André Perez', 'anno_nascita': 1992, 'padre': {'nome': 'Carlos Perez', 'anno_nascita': 1965}, 'madre': {'nome': 'Marta Perez', 'anno_nascita': 1968}}}
 </code></pre></div>
 <p>Per accedere a un valore su più livelli, concateniamo le parentesi quadre con ogni chiave, dal livello più esterno al più interno:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">ano_nascimento_mae = cadastro['andre']['mae']['ano_nascimento']
-print(ano_nascimento_mae)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anno_nascita_madre = registro['andre']['madre']['anno_nascita']
+print(anno_nascita_madre)
 # 1968
 </code></pre></div>
 <h2>Operazioni</h2>
 <p>A differenza delle liste, gli elementi di un dizionario vengono acceduti e aggiornati tramite la <strong>chiave</strong>, e non la posizione.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">score_credito = {'123': 750, '789': 980}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">punteggio_credito = {'123': 750, '789': 980}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Acessando um valor pela chave
-score_cliente_123 = score_credito['123']
-score_cliente_789 = score_credito['789']
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Accesso a un valore tramite la chiave
+punteggio_cliente_123 = punteggio_credito['123']
+punteggio_cliente_789 = punteggio_credito['789']
 
-print(score_cliente_123)
-print(score_cliente_789)
+print(punteggio_cliente_123)
+print(punteggio_cliente_789)
 # 750
 # 980
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Atualizando um valor: atribuímos um novo valor à chave já existente
-score_credito['123'] = 435
-print(score_credito)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Aggiornamento di un valore: assegniamo un nuovo valore a una chiave già esistente
+punteggio_credito['123'] = 435
+print(punteggio_credito)
 # {'123': 435, '789': 980}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Adicionando um novo par chave-valor: basta atribuir a uma chave nova
-score_credito['456'] = 1000
-print(score_credito)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Aggiunta di una nuova coppia chiave-valore: basta assegnare a una chiave nuova
+punteggio_credito['456'] = 1000
+print(punteggio_credito)
 # {'123': 435, '789': 980, '456': 1000}
 </code></pre></div>
 <blockquote>
-<p><strong>Attenzione:</strong> accedere a una chiave che <strong>non esiste</strong> con <code>dicionario[chave]</code> genera un errore <code>KeyError</code>. Per cercare in sicurezza, usa il metodo <code>.get(chave)</code>, che restituisce <code>None</code> (invece di un errore) quando la chiave non esiste.</p>
+<p><strong>Attenzione:</strong> accedere a una chiave che <strong>non esiste</strong> con <code>dizionario[chiave]</code> genera un errore <code>KeyError</code>. Per cercare in sicurezza, usa il metodo <code>.get(chiave)</code>, che restituisce <code>None</code> (invece di un errore) quando la chiave non esiste.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(score_credito.get('456'))  # existe: retorna o valor
-print(score_credito.get('999'))  # não existe: retorna None, sem erro
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(punteggio_credito.get('456'))  # esiste: restituisce il valore
+print(punteggio_credito.get('999'))  # non esiste: restituisce None, senza errore
 # 1000
 # None
 </code></pre></div>
@@ -83,65 +83,65 @@ print(score_credito.get('999'))  # não existe: retorna None, sem erro
 <thead><tr><th>Metodo</th><th>Cosa fa</th></tr></thead>
 <tbody>
 <tr><td><code>.update(dict)</code></td><td>Aggiunge o aggiorna più coppie chiave-valore in una volta</td></tr>
-<tr><td><code>.pop(chave)</code></td><td>Rimuove un elemento tramite la chiave e <strong>restituisce</strong> il valore rimosso</td></tr>
-<tr><td><code>.get(chave)</code></td><td>Restituisce il valore della chiave, o <code>None</code> se non esiste</td></tr>
+<tr><td><code>.pop(chiave)</code></td><td>Rimuove un elemento tramite la chiave e <strong>restituisce</strong> il valore rimosso</td></tr>
+<tr><td><code>.get(chiave)</code></td><td>Restituisce il valore della chiave, o <code>None</code> se non esiste</td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">artigo = dict(
-    titulo='Módulo 02 - Estruturas de Dados',
-    corpo='Tópicos, Aulas, Listas, Conjuntos, Dicionários...',
-    total_caracteres=1530,
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">articolo = dict(
+    titolo='Modulo 02 - Strutture di Dati',
+    corpo='Argomenti, Lezioni, Liste, Insiemi, Dizionari...',
+    totale_caratteri=1530,
 )
-print(artigo)
-# {'titulo': 'Módulo 02 - Estruturas de Dados', 'corpo': 'Tópicos, Aulas, Listas, Conjuntos, Dicionários...', 'total_caracteres': 1530}
+print(articolo)
+# {'titolo': 'Modulo 02 - Strutture di Dati', 'corpo': 'Argomenti, Lezioni, Liste, Insiemi, Dizionari...', 'totale_caratteri': 1530}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .update(): atualiza um ou mais pares de uma vez
-artigo.update({'total_caracteres': 7850})
-print(artigo)
-# {'titulo': 'Módulo 02 - Estruturas de Dados', 'corpo': 'Tópicos, Aulas, Listas, Conjuntos, Dicionários...', 'total_caracteres': 7850}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .update(): aggiorna una o più coppie in una sola volta
+articolo.update({'totale_caratteri': 7850})
+print(articolo)
+# {'titolo': 'Modulo 02 - Strutture di Dati', 'corpo': 'Argomenti, Lezioni, Liste, Insiemi, Dizionari...', 'totale_caratteri': 7850}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .pop(): remove pela CHAVE e devolve o valor removido
-total_caracteres = artigo.pop('total_caracteres')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .pop(): rimuove tramite la CHIAVE e restituisce il valore rimosso
+totale_caratteri = articolo.pop('totale_caratteri')
 
-print(f'Valor removido: {total_caracteres}')
-print(artigo)
-# Valor removido: 7850
-# {'titulo': 'Módulo 02 - Estruturas de Dados', 'corpo': 'Tópicos, Aulas, Listas, Conjuntos, Dicionários...'}
+print(f'Valore rimosso: {totale_caratteri}')
+print(articolo)
+# Valore rimosso: 7850
+# {'titolo': 'Modulo 02 - Strutture di Dati', 'corpo': 'Argomenti, Lezioni, Liste, Insiemi, Dizionari...'}
 </code></pre></div>
 <h2>Conversione</h2>
 <p>Possiamo convertire le <strong>chiavi</strong> e i <strong>valori</strong> di un dizionario in liste, con i metodi <code>.keys()</code> e <code>.values()</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">artigo = dict(
-    titulo='Módulo 02 - Estruturas de Dados',
-    corpo='Tópicos, Aulas, Listas, Conjuntos, Dicionários...',
-    total_caracteres=1530,
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">articolo = dict(
+    titolo='Modulo 02 - Strutture di Dati',
+    corpo='Argomenti, Lezioni, Liste, Insiemi, Dizionari...',
+    totale_caratteri=1530,
 )
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">chaves = list(artigo.keys())
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">chiavi = list(articolo.keys())
 
-print(chaves)
-print(type(chaves))
-# ['titulo', 'corpo', 'total_caracteres']
+print(chiavi)
+print(type(chiavi))
+# ['titolo', 'corpo', 'totale_caratteri']
 # &lt;class 'list'&gt;
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valores = list(artigo.values())
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">valori = list(articolo.values())
 
-print(valores)
-print(type(valores))
-# ['Módulo 02 - Estruturas de Dados', 'Tópicos, Aulas, Listas, Conjuntos, Dicionários...', 1530]
+print(valori)
+print(type(valori))
+# ['Modulo 02 - Strutture di Dati', 'Argomenti, Lezioni, Liste, Insiemi, Dizionari...', 1530]
 # &lt;class 'list'&gt;
 </code></pre></div>
 <h2>Rivisitando la motivazione</h2>
-<p>Ora possiamo rappresentare ogni rete wi-fi come un dizionario con le chiavi <code>nome</code> e <code>senha</code>, e conservarle tutte in una lista:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">redes_wifi_disponiveis = []
+<p>Ora possiamo rappresentare ogni rete wi-fi come un dizionario con le chiavi <code>nome</code> e <code>password</code>, e conservarle tutte in una lista:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">reti_wifi_disponibili = []
 
-rede = {'nome': 'rede1', 'senha': 'cnx_cnx'}
-redes_wifi_disponiveis.append(rede)
+rete = {'nome': 'rede1', 'password': 'cnx_cnx'}
+reti_wifi_disponibili.append(rete)
 
-rede = {'nome': 'uai-fi', 'senha': 'r3d3'}
-redes_wifi_disponiveis.append(rede)
+rete = {'nome': 'uai-fi', 'password': 'r3d3'}
+reti_wifi_disponibili.append(rete)
 
-print(redes_wifi_disponiveis)
-# [{'nome': 'rede1', 'senha': 'cnx_cnx'}, {'nome': 'uai-fi', 'senha': 'r3d3'}]
+print(reti_wifi_disponibili)
+# [{'nome': 'rede1', 'password': 'cnx_cnx'}, {'nome': 'uai-fi', 'password': 'r3d3'}]
 </code></pre></div>
 <p>Ora sì: per ogni rete della lista, sappiamo esattamente qual è il nome e qual è la password corrispondente — il problema iniziale è stato risolto combinando <strong>lista</strong> (la collezione di reti) e <strong>dizionario</strong> (i dati di ogni rete).</p>
 <h2>Riepilogo del Modulo</h2>
@@ -150,7 +150,7 @@ print(redes_wifi_disponiveis)
 <tbody>
 <tr><td>Lista</td><td><code>list</code></td><td>Sì</td><td>Sì</td><td>Per indice <code>lista[i]</code></td><td><code>.append()</code>, <code>.insert()</code>, <code>.remove()</code>, <code>.pop()</code></td></tr>
 <tr><td>Insieme</td><td><code>set</code></td><td>No</td><td>No</td><td>Non indicizzato</td><td><code>.add()</code>, <code>.remove()</code>, <code>-</code>, <code>|</code>, <code>&amp;</code></td></tr>
-<tr><td>Dizionario</td><td><code>dict</code></td><td>Sì (da Python 3.7)</td><td>Chiavi no, valori sì</td><td>Per chiave <code>dic[chave]</code></td><td><code>.update()</code>, <code>.pop()</code>, <code>.get()</code>, <code>.keys()</code>, <code>.values()</code></td></tr>
+<tr><td>Dizionario</td><td><code>dict</code></td><td>Sì (da Python 3.7)</td><td>Chiavi no, valori sì</td><td>Per chiave <code>dic[chiave]</code></td><td><code>.update()</code>, <code>.pop()</code>, <code>.get()</code>, <code>.keys()</code>, <code>.values()</code></td></tr>
 </tbody>
 </table></div>
 <p>Funzioni native viste in questo modulo: <code>list()</code>, <code>set()</code>, <code>dict()</code>, <code>sum()</code>, <code>len()</code>.</p>
@@ -159,10 +159,10 @@ print(redes_wifi_disponiveis)
 
 <div class="quiz" role="group" aria-labelledby="quiz-python-dicionarios-q">
   <p class="kicker-cyan">// Quiz</p>
-  <p class="quiz-q" id="quiz-python-dicionarios-q">Cosa restituisce <code>dicionario.get('999')</code> se la chiave <code>'999'</code> non esiste?</p>
+  <p class="quiz-q" id="quiz-python-dicionarios-q">Cosa restituisce <code>dizionario.get('999')</code> se la chiave <code>'999'</code> non esiste?</p>
   <fieldset class="quiz-options">
     <legend class="sr-only">Scegli un'alternativa</legend>
-    <label class="quiz-opt" data-correct="0" data-exp="È `dicionario['999']` (con parentesi quadre) a generare il KeyError - il `.get()` esiste esattamente per evitare questo errore."><input type="radio" name="quiz-python-dicionarios" value="0" /><span class="txt">Un errore KeyError</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="È `dizionario['999']` (con parentesi quadre) a generare il KeyError - il `.get()` esiste esattamente per evitare questo errore."><input type="radio" name="quiz-python-dicionarios" value="0" /><span class="txt">Un errore KeyError</span><span class="mark" aria-hidden="true"></span></label>
     <label class="quiz-opt" data-correct="1" data-exp="Per impostazione predefinita, `.get()` restituisce `None` quando la chiave non esiste, invece di interrompere il programma con un errore."><input type="radio" name="quiz-python-dicionarios" value="1" /><span class="txt">None</span><span class="mark" aria-hidden="true"></span></label>
     <label class="quiz-opt" data-correct="0" data-exp="`.get()` non inventa un valore di tipo lista - il default è `None`."><input type="radio" name="quiz-python-dicionarios" value="2" /><span class="txt">Una lista vuota</span><span class="mark" aria-hidden="true"></span></label>
     <label class="quiz-opt" data-correct="0" data-exp="`.get()` non ha relazione con l'ordine delle chiavi; cerca esattamente la chiave richiesta."><input type="radio" name="quiz-python-dicionarios" value="3" /><span class="txt">La prima chiave del dizionario</span><span class="mark" aria-hidden="true"></span></label>

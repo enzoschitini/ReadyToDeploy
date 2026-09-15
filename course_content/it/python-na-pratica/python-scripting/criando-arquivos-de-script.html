@@ -1,19 +1,19 @@
 <div class="prose">
 <p>Un <strong>file di script</strong> è un file di testo con estensione <code>.py</code> contenente diverse righe di codice Python, salvate insieme per essere eseguite (e rieseguite) in una sola volta, sempre nello stesso modo. È il formato usato per le automazioni reali — qualcosa che deve funzionare da solo, senza un notebook aperto.</p>
 <h2>Su Google Colab</h2>
-<p>Colab non ha un editor di file tradizionale, ma puoi creare un file <code>.py</code> direttamente da una cella con il comando magico <code>%%writefile nome_do_arquivo.py</code>: tutto ciò che viene <strong>dopo</strong> questa riga, nella stessa cella, viene salvato nel file.</p>
+<p>Colab non ha un editor di file tradizionale, ma puoi creare un file <code>.py</code> direttamente da una cella con il comando magico <code>%%writefile nome_del_file.py</code>: tutto ciò che viene <strong>dopo</strong> questa riga, nella stessa cella, viene salvato nel file.</p>
 <p><strong>Esempio:</strong> uno <em>script</em> che riceve un nome dalla riga di comando e stampa un saluto.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">%%writefile saudacao.py
 import sys
 
 nome = sys.argv[1]
-print(f'Olá, {nome}!')
+print(f'Ciao, {nome}!')
 # Writing saudacao.py
 </code></pre></div>
 <p>Il modulo nativo <code>sys</code> conserva, nella lista <code>sys.argv</code>, gli <strong>argomenti della riga di comando</strong>: <code>sys.argv[0]</code> è sempre il nome dello script stesso, e <code>sys.argv[1]</code>, <code>sys.argv[2]</code>... sono i valori extra forniti da chi ha eseguito il comando.</p>
 <p>Ora eseguiamo il file appena creato, passando <code>'Maria'</code> come argomento:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-bash">!python saudacao.py Maria
-# Olá, Maria!
+# Ciao, Maria!
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> se lo script viene eseguito senza l'argomento previsto (<code>!python saudacao.py</code>, senza nessun nome), <code>sys.argv</code> avrà solo un elemento (<code>sys.argv[0]</code>), e tentare di accedere a <code>sys.argv[1]</code> genera un <code>IndexError</code>. Gli script per uso reale di solito verificano se gli argomenti necessari sono stati forniti prima di usarli.</p>
@@ -29,36 +29,36 @@ from datetime import datetime
 import requests
 
 URL = 'https://exemplo-api-financeira.com/taxa-cdi'
-ARQUIVO_SAIDA = 'taxa-cdi.csv'
+FILE_USCITA = 'taxa-cdi.csv'
 
-data_e_hora = datetime.now()
-data = data_e_hora.strftime('%Y-%m-%d')
-hora = data_e_hora.strftime('%H:%M:%S')
+data_ora = datetime.now()
+data = data_ora.strftime('%Y-%m-%d')
+ora = data_ora.strftime('%H:%M:%S')
 
-# Consultando a taxa no site
+# Consultando il tasso sul sito
 try:
-    resposta = requests.get(URL)
-    resposta.raise_for_status()
+    risposta = requests.get(URL)
+    risposta.raise_for_status()
 except requests.HTTPError:
-    print('Taxa não encontrada, mas o script vai continuar.')
-    taxa_cdi = None
-except Exception as erro:
-    print('Erro de conexão, interrompendo o script.')
-    raise erro
+    print('Tasso non trovato, ma lo script continuerà.')
+    tasso_cdi = None
+except Exception as errore:
+    print('Errore di connessione, interruzione dello script.')
+    raise errore
 else:
-    dado = json.loads(resposta.text)
-    taxa_cdi = float(dado['taxa'].replace(',', '.'))
+    dato = json.loads(risposta.text)
+    tasso_cdi = float(dato['taxa'].replace(',', '.'))
 
-# Criando o arquivo com cabeçalho, caso ainda não exista
-if not os.path.exists(ARQUIVO_SAIDA):
-    with open(file=ARQUIVO_SAIDA, mode='w', encoding='utf8') as arquivo:
-        arquivo.write('data,hora,taxa\n')
+# Creazione del file con intestazione, nel caso non esista ancora
+if not os.path.exists(FILE_USCITA):
+    with open(file=FILE_USCITA, mode='w', encoding='utf8') as file:
+        file.write('data,ora,tasso\n')
 
-# Só registra a linha se a taxa foi obtida com sucesso
-if taxa_cdi is not None:
-    with open(file=ARQUIVO_SAIDA, mode='a', encoding='utf8') as arquivo:
-        arquivo.write(f'{data},{hora},{taxa_cdi}\n')
-    print('Sucesso!')
+# Registra la riga solo se il tasso è stato ottenuto con successo
+if tasso_cdi is not None:
+    with open(file=FILE_USCITA, mode='a', encoding='utf8') as file:
+        file.write(f'{data},{ora},{tasso_cdi}\n')
+    print('Successo!')
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> le API dei siti cambiano col tempo (indirizzo, formato della risposta ecc.). Prima di usare un'API esterna in un progetto reale, controlla sempre la documentazione ufficiale e aggiornata del servizio.</p>
@@ -89,9 +89,9 @@ if taxa_cdi is not None:
 <tr><td><code>python -V</code> / <code>pip -V</code></td><td>Terminale</td><td>Verifica le versioni installate</td></tr>
 <tr><td><code>python</code></td><td>Terminale</td><td>Apre la modalità interattiva (REPL)</td></tr>
 <tr><td><code>quit()</code> / <code>exit()</code></td><td>Dentro il REPL</td><td>Esce dalla modalità interattiva</td></tr>
-<tr><td><code>python arquivo.py</code></td><td>Terminale</td><td>Esegue un file di script</td></tr>
-<tr><td><code>python arquivo.py arg1 arg2</code></td><td>Terminale</td><td>Esegue uno script passando argomenti (<code>sys.argv</code>)</td></tr>
-<tr><td><code>%%writefile arquivo.py</code></td><td>Cella di Colab</td><td>Crea un file a partire dal contenuto della cella</td></tr>
+<tr><td><code>python file.py</code></td><td>Terminale</td><td>Esegue un file di script</td></tr>
+<tr><td><code>python file.py arg1 arg2</code></td><td>Terminale</td><td>Esegue uno script passando argomenti (<code>sys.argv</code>)</td></tr>
+<tr><td><code>%%writefile file.py</code></td><td>Cella di Colab</td><td>Crea un file a partire dal contenuto della cella</td></tr>
 <tr><td><code>!comando</code></td><td>Cella di Colab</td><td>Esegue un comando da terminale dentro il notebook</td></tr>
 </tbody>
 </table></div>

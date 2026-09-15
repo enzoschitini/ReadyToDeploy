@@ -17,20 +17,20 @@
 <h2>Scrivere con write()</h2>
 <p>Il metodo <code>.write()</code> scrive una <em>string</em> nel file. <strong>Non</strong> aggiunge automaticamente l'interruzione di riga, quindi dobbiamo includere <code>\n</code> alla fine di ogni riga.</p>
 <p><strong>Esempio:</strong> salvando le età estratte nella lezione precedente in un nuovo file, <code>idades.csv</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('idades.csv', mode='w', encoding='utf-8') as arquivo:
-    arquivo.write('idade\n')  # cabeçalho
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('idades.csv', mode='w', encoding='utf-8') as file:
+    file.write('età\n')  # intestazione
 
-    for idade in idades:
-        # write() só aceita str: convertemos o número e acrescentamos a quebra de linha
-        arquivo.write(f'{idade}\n')
+    for eta in eta_clienti:
+        # write() accetta solo str: convertiamo il numero e aggiungiamo l'interruzione di riga
+        file.write(f'{eta}\n')
 
-print('Arquivo idades.csv gravado!')
-# Arquivo idades.csv gravado!
+print('File idades.csv salvato!')
+# File idades.csv salvato!
 </code></pre></div>
 <p>Leggiamo il file per verificare cosa è stato registrato:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('idades.csv', mode='r', encoding='utf-8') as arquivo:
-    print(arquivo.read())
-# idade
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('idades.csv', mode='r', encoding='utf-8') as file:
+    print(file.read())
+# età
 # 30
 # 33
 # 35
@@ -43,20 +43,20 @@ print('Arquivo idades.csv gravado!')
 # 43
 </code></pre></div>
 <blockquote>
-<p><strong>Attenzione:</strong> passare un numero direttamente a <code>.write()</code>, come <code>arquivo.write(30)</code>, genera un <code>TypeError</code>. Converti con <code>str()</code> oppure usa una <em>f-string</em>, come abbiamo fatto sopra.</p>
+<p><strong>Attenzione:</strong> passare un numero direttamente a <code>.write()</code>, come <code>file.write(30)</code>, genera un <code>TypeError</code>. Converti con <code>str()</code> oppure usa una <em>f-string</em>, come abbiamo fatto sopra.</p>
 </blockquote>
 <h2>Aggiungere contenuto con la modalità 'a'</h2>
 <p><strong>Esempio:</strong> due nuovi clienti sono stati registrati e dobbiamo includere le loro età alla fine del file, senza perdere quelle già presenti.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">novas_idades = [25, 48]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nuove_eta = [25, 48]
 
-# Modo 'a': o conteúdo existente é mantido e o novo vai para o final
-with open('idades.csv', mode='a', encoding='utf-8') as arquivo:
-    for idade in novas_idades:
-        arquivo.write(f'{idade}\n')
+# Modalità 'a': il contenuto esistente viene mantenuto e il nuovo va alla fine
+with open('idades.csv', mode='a', encoding='utf-8') as file:
+    for eta in nuove_eta:
+        file.write(f'{eta}\n')
 
-with open('idades.csv', mode='r', encoding='utf-8') as arquivo:
-    print(arquivo.read())
-# idade
+with open('idades.csv', mode='r', encoding='utf-8') as file:
+    print(file.read())
+# età
 # 30
 # 33
 # 35
@@ -76,31 +76,31 @@ with open('idades.csv', mode='r', encoding='utf-8') as arquivo:
 <h2>Leggere da un file e scrivere in un altro</h2>
 <p>È molto comune leggere un file, elaborare le righe e registrare il risultato in un altro. Un unico <code>with</code> può aprire entrambi i file, separati da virgola.</p>
 <p><strong>Esempio:</strong> copiando <code>banco.csv</code> in un file con un'altra estensione, <code>banco.txt</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as leitura, \
-     open('banco.txt', mode='w', encoding='utf-8') as escrita:
-    for linha in leitura:
-        escrita.write(linha)  # a linha já termina com \n
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as lettura, \
+     open('banco.txt', mode='w', encoding='utf-8') as scrittura:
+    for riga in lettura:
+        scrittura.write(riga)  # la riga termina già con \n
 
-print('Cópia concluída!')
-# Cópia concluída!
+print('Copia completata!')
+# Copia completata!
 </code></pre></div>
 <blockquote>
 <p><strong>Suggerimento:</strong> l'estensione (<code>.csv</code>, <code>.txt</code>) è solo parte del nome del file e serve a indicare ai programmi come aprirlo. Il contenuto dei due file è esattamente lo stesso testo.</p>
 </blockquote>
 <p><strong>Esempio:</strong> il gestore del credito ha chiesto un file solo con i clienti che hanno un <strong>prestito personale</strong> (colonna <code>loan</code>, l'8ª colonna, con valore <code>yes</code>).</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as leitura, \
-     open('clientes_com_emprestimo.csv', mode='w', encoding='utf-8') as escrita:
-    # O cabeçalho é copiado como está
-    escrita.write(leitura.readline())
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">with open('banco.csv', mode='r', encoding='utf-8') as lettura, \
+     open('clientes_com_emprestimo.csv', mode='w', encoding='utf-8') as scrittura:
+    # L'intestazione è copiata così com'è
+    scrittura.write(lettura.readline())
 
-    for linha in leitura:
-        colunas = linha.strip().split(',')
-        tem_emprestimo = colunas[7] == 'yes'  # índice 7 = 8ª coluna (loan)
-        if tem_emprestimo:
-            escrita.write(linha)
+    for riga in lettura:
+        colonne = riga.strip().split(',')
+        ha_prestito = colonne[7] == 'yes'  # indice 7 = 8ª colonna (loan)
+        if ha_prestito:
+            scrittura.write(riga)
 
-with open('clientes_com_emprestimo.csv', mode='r', encoding='utf-8') as arquivo:
-    print(arquivo.read())
+with open('clientes_com_emprestimo.csv', mode='r', encoding='utf-8') as file:
+    print(file.read())
 # age,job,marital,education,default,balance,housing,loan
 # 33,services,married,secondary,no,4789,yes,yes
 # 30,management,married,tertiary,no,1476,yes,yes

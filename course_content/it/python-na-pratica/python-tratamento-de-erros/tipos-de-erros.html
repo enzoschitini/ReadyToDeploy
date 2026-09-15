@@ -10,29 +10,29 @@
 </tbody>
 </table></div>
 <p><strong>Errore di sintassi:</strong> il codice è scritto in un modo che Python non capisce. Per questo la riga sotto è commentata: se venisse eseguita, l'intera cella fallirebbe ancora prima di iniziare.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">idade = 19
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">eta = 19
 
-# if idade &gt;= 18    # SyntaxError: faltam os dois-pontos no final
-if idade &gt;= 18:     # forma correta
-    print('Maior de idade')
-# Maior de idade
+# if eta &gt;= 18    # SyntaxError: mancano i due punti alla fine
+if eta &gt;= 18:     # forma corretta
+    print('Maggiorenne')
+# Maggiorenne
 </code></pre></div>
 <p><strong>Errore in tempo di esecuzione:</strong> il codice è scritto correttamente, ma un'operazione è impossibile con i valori ricevuti. Qui usiamo <code>try/except</code>, visto nel Modulo 03, per mostrare l'errore senza bloccare il notebook.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
     print(1 / 0)
-except ZeroDivisionError as erro:
-    # type(erro).__name__ mostra o nome da exceção
-    print(f'{type(erro).__name__}: {erro}')
+except ZeroDivisionError as errore:
+    # type(errore).__name__ mostra il nome dell'eccezione
+    print(f'{type(errore).__name__}: {errore}')
 # ZeroDivisionError: division by zero
 </code></pre></div>
 <p><strong>Errore di logica:</strong> il codice funziona senza nessun messaggio, ma il risultato è sbagliato. Qual è la media tra 8 e 10?</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nota_1 = 8
-nota_2 = 10
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">voto_1 = 8
+voto_2 = 10
 
-media = nota_1 + nota_2 / 2      # a divisão acontece antes da soma: 8 + 5
+media = voto_1 + voto_2 / 2      # la divisione avviene prima della somma: 8 + 5
 print(media)
 
-media = (nota_1 + nota_2) / 2    # os parênteses garantem a ordem correta
+media = (voto_1 + voto_2) / 2    # le parentesi garantiscono l'ordine corretto
 print(media)
 # 13.0
 # 9.0

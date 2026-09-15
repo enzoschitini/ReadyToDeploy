@@ -2,16 +2,16 @@
 <p>Buona parte del lavoro di un programma è ripetitivo: sommare tutti i valori di una lista, verificare ogni riga di un foglio di calcolo, elaborare ogni cliente di un registro. Invece di ripetere il codice manualmente, usiamo la struttura di ripetizione <code>for</code>.</p>
 <h2>Motivazione</h2>
 <p>Hai le vendite del giorno di un negozio e vuoi sapere due cose: il <strong>totale venduto</strong> e <strong>quante vendite</strong> hanno superato R$ 300,00.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">vendas_do_dia = [361, 553, 194, 13, 510, 33, 135]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">vendite_del_giorno = [361, 553, 194, 13, 510, 33, 135]
 </code></pre></div>
 <p><strong>Come elaboriamo tutti questi valori senza scrivere una riga di codice per ciascuno?</strong></p>
 <h2>for / range</h2>
 <p>La struttura <code>for</code> esegue un blocco di codice <strong>una volta per ogni elemento</strong> di una collezione. Combinata con la funzione nativa <code>range()</code>, ripete il blocco un numero determinato di volte:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for variavel_temporaria in range(inicio, fim, passo):
-  # executado uma vez para cada valor no intervalo
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for variabile_temporanea in range(inizio, fine, passo):
+  # eseguito una volta per ogni valore nell'intervallo
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for valor in range(6):
-  print(valor)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for valore in range(6):
+  print(valore)
 # 0
 # 1
 # 2
@@ -20,11 +20,11 @@
 # 5
 </code></pre></div>
 <blockquote>
-<p><code>range(fim)</code> inizia da 0; <code>range(inicio, fim)</code> definisce l'inizio; <code>range(inicio, fim, passo)</code> definisce anche l'incremento. Proprio come nello slicing delle <em>stringhe</em> (Modulo 01), il valore <code>fim</code> <strong>non</strong> viene mai incluso.</p>
+<p><code>range(fine)</code> inizia da 0; <code>range(inizio, fine)</code> definisce l'inizio; <code>range(inizio, fine, passo)</code> definisce anche l'incremento. Proprio come nello slicing delle <em>stringhe</em> (Modulo 01), il valore <code>fine</code> <strong>non</strong> viene mai incluso.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Múltiplos de 3, de 0 (incluído) até 15 (excluído)
-for multiplo_de_tres in range(0, 15, 3):
-  print(multiplo_de_tres)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Multipli di 3, da 0 (incluso) a 15 (escluso)
+for multiplo_di_tre in range(0, 15, 3):
+  print(multiplo_di_tre)
 # 0
 # 3
 # 6
@@ -33,8 +33,8 @@ for multiplo_de_tres in range(0, 15, 3):
 </code></pre></div>
 <h2>for / liste</h2>
 <p>Il modo più comune di usare il <code>for</code> è per percorrere gli elementi di una lista, uno per uno:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for venda in vendas_do_dia:
-  print(venda)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for vendita in vendite_del_giorno:
+  print(vendita)
 # 361
 # 553
 # 194
@@ -44,64 +44,64 @@ for multiplo_de_tres in range(0, 15, 3):
 # 135
 </code></pre></div>
 <p>Uno schema molto comune è <strong>accumulare</strong> un risultato a ogni ripetizione, usando una variabile creata <strong>prima</strong> del <code>for</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">total_vendido = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">totale_venduto = 0
 
-for venda in vendas_do_dia:
-  total_vendido += venda
+for vendita in vendite_del_giorno:
+  totale_venduto += vendita
 
-print(f'Total vendido: R$ {total_vendido:.2f}')
-# Total vendido: R$ 1799.00
+print(f'Totale venduto: R$ {totale_venduto:.2f}')
+# Totale venduto: R$ 1799.00
 </code></pre></div>
 <p>E possiamo combinare il <code>for</code> con l'<code>if</code> (visto nella sezione 1) per contare solo gli elementi che soddisfano una condizione:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">quantidade_vendas_acima_300 = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">quantita_vendite_sopra_300 = 0
 
-for venda in vendas_do_dia:
-  if venda &gt; 300:
-    quantidade_vendas_acima_300 += 1
+for vendita in vendite_del_giorno:
+  if vendita &gt; 300:
+    quantita_vendite_sopra_300 += 1
 
-print(f'Vendas acima de R$ 300: {quantidade_vendas_acima_300}')
-# Vendas acima de R$ 300: 3
+print(f'Vendite sopra R$ 300: {quantita_vendite_sopra_300}')
+# Vendite sopra R$ 300: 3
 </code></pre></div>
 <blockquote>
 <p>Anche le <em>stringhe</em> sono sequenze e possono essere percorse carattere per carattere. L'operatore <code>in</code> qui verifica se un carattere <strong>appartiene</strong> a un altro testo.</p>
 </blockquote>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">frase = 'Ready To Deploy'
-quantidade_vogais = 0
+quantita_vocali = 0
 
-for caractere in frase.lower():
-  if caractere in 'aeiou':
-    quantidade_vogais += 1
+for carattere in frase.lower():
+  if carattere in 'aeiou':
+    quantita_vocali += 1
 
-print(f'Quantidade de vogais: {quantidade_vogais}')
-# Quantidade de vogais: 5
+print(f'Quantità di vocali: {quantita_vocali}')
+# Quantità di vocali: 5
 </code></pre></div>
 <h2>for / dizionari</h2>
 <p>I dizionari hanno tre metodi per essere percorsi in un <code>for</code>: <code>.items()</code> (chiave e valore), <code>.keys()</code> (solo le chiavi) e <code>.values()</code> (solo i valori).</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">escore_de_credito = {'123.456.789-00': 750, '987.654.321-00': 812, '111.222.333-44': 980}
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">punteggio_di_credito = {'123.456.789-00': 750, '987.654.321-00': 812, '111.222.333-44': 980}
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .items(): retorna cada par chave-valor
-for documento, escore in escore_de_credito.items():
-  print(f'Documento {documento}: escore {escore}')
-# Documento 123.456.789-00: escore 750
-# Documento 987.654.321-00: escore 812
-# Documento 111.222.333-44: escore 980
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .items(): restituisce ogni coppia chiave-valore
+for documento, punteggio in punteggio_di_credito.items():
+  print(f'Documento {documento}: punteggio {punteggio}')
+# Documento 123.456.789-00: punteggio 750
+# Documento 987.654.321-00: punteggio 812
+# Documento 111.222.333-44: punteggio 980
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .keys(): retorna apenas as chaves
-for documento in escore_de_credito.keys():
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .keys(): restituisce solo le chiavi
+for documento in punteggio_di_credito.keys():
   print(documento)
 # 123.456.789-00
 # 987.654.321-00
 # 111.222.333-44
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .values(): retorna apenas os valores
-for escore in escore_de_credito.values():
-  print(escore)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .values(): restituisce solo i valori
+for punteggio in punteggio_di_credito.values():
+  print(punteggio)
 # 750
 # 812
 # 980
 </code></pre></div>
 <blockquote>
-<p><code>for documento in escore_de_credito:</code> (senza <code>.keys()</code>) ha esattamente lo stesso effetto, poiché percorrere direttamente un dizionario restituisce già le sue chiavi.</p>
+<p><code>for documento in punteggio_di_credito:</code> (senza <code>.keys()</code>) ha esattamente lo stesso effetto, poiché percorrere direttamente un dizionario restituisce già le sue chiavi.</p>
 </blockquote>
 <h2>break / continue</h2>
 <p>Due parole chiave controllano l'andamento di un ciclo <code>for</code>:</p>
@@ -113,39 +113,39 @@ for escore in escore_de_credito.values():
 </tbody>
 </table></div>
 <p><strong>Esempio:</strong> fermarsi non appena troviamo la prima vendita superiore a R$ 500,00.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for venda in vendas_do_dia:
-  if venda &gt; 500:
-    print(f'Primeira venda acima de R$ 500: {venda}')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for vendita in vendite_del_giorno:
+  if vendita &gt; 500:
+    print(f'Prima vendita sopra R$ 500: {vendita}')
     break
-# Primeira venda acima de R$ 500: 553
+# Prima vendita sopra R$ 500: 553
 </code></pre></div>
 <p><strong>Esempio:</strong> mostrare solo le vendite con valore <strong>pari</strong>, saltando le dispari con <code>continue</code>.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for venda in vendas_do_dia:
-  if venda % 2 != 0:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for vendita in vendite_del_giorno:
+  if vendita % 2 != 0:
     continue
-  print(f'Venda par: {venda}')
-# Venda par: 194
-# Venda par: 510
+  print(f'Vendita pari: {vendita}')
+# Vendita pari: 194
+# Vendita pari: 510
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> qualsiasi codice scritto <strong>dopo</strong> un <code>break</code> o <code>continue</code>, ancora dentro lo stesso blocco <code>if</code>, non viene mai eseguito — il ciclo è già stato interrotto o è già avanzato prima di arrivarci.</p>
 </blockquote>
 <h2>Rivisitando la motivazione</h2>
 <p>Con <code>for</code>, <code>if</code> e l'accumulo in variabili, risolviamo le due domande della motivazione in un unico ciclo:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">vendas_do_dia = [361, 553, 194, 13, 510, 33, 135]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">vendite_del_giorno = [361, 553, 194, 13, 510, 33, 135]
 
-total_vendido = 0
-quantidade_vendas_acima_300 = 0
+totale_venduto = 0
+quantita_vendite_sopra_300 = 0
 
-for venda in vendas_do_dia:
-  total_vendido += venda
-  if venda &gt; 300:
-    quantidade_vendas_acima_300 += 1
+for vendita in vendite_del_giorno:
+  totale_venduto += vendita
+  if vendita &gt; 300:
+    quantita_vendite_sopra_300 += 1
 
-print(f'Total vendido: R$ {total_vendido:.2f}')
-print(f'Vendas acima de R$ 300: {quantidade_vendas_acima_300}')
-# Total vendido: R$ 1799.00
-# Vendas acima de R$ 300: 3
+print(f'Totale venduto: R$ {totale_venduto:.2f}')
+print(f'Vendite sopra R$ 300: {quantita_vendite_sopra_300}')
+# Totale venduto: R$ 1799.00
+# Vendite sopra R$ 300: 3
 </code></pre></div>
 <h2>Riepilogo del Modulo</h2>
 <div class="table-wrap"><table>

@@ -3,10 +3,10 @@
 <h2>Motivazione</h2>
 <p>Stai calcolando quanto ogni persona deve pagare in un conto al ristorante, dividendo il valore totale per la quantità di persone. Solo che questo numero di persone arriva da un modulo compilato da un'altra persona, e a volte arriva sbagliato — incluso come zero.</p>
 <p>Se eseguiamo la divisione direttamente, Python interrompe il programma:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
-quantidade_de_pessoas = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">prezzo_totale_conto = 132.85
+quantita_persone = 0
 
-valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
+valore_per_persona = prezzo_totale_conto / quantita_persone
 # ZeroDivisionError: float division by zero
 </code></pre></div>
 <p><strong>Come evitiamo che il programma si blocchi quando accade questo?</strong></p>
@@ -16,103 +16,103 @@ valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
 <thead><tr><th>Eccezione</th><th>Si verifica quando...</th><th>Esempio</th></tr></thead>
 <tbody>
 <tr><td><code>ZeroDivisionError</code></td><td>una divisione ha divisore uguale a zero</td><td><code>10 / 0</code></td></tr>
-<tr><td><code>TypeError</code></td><td>un'operazione combina tipi incompatibili</td><td><code>'Idade: ' + 19</code></td></tr>
+<tr><td><code>TypeError</code></td><td>un'operazione combina tipi incompatibili</td><td><code>'Età: ' + 19</code></td></tr>
 <tr><td><code>ValueError</code></td><td>un valore non può essere convertito nel tipo richiesto</td><td><code>int('abc')</code></td></tr>
 <tr><td><code>IndexError</code></td><td>una posizione non esiste in una lista</td><td><code>lista[10]</code> (lista con 3 elementi)</td></tr>
-<tr><td><code>KeyError</code></td><td>una chiave non esiste in un dizionario</td><td><code>dicionario['chave_inexistente']</code></td></tr>
-<tr><td><code>NameError</code></td><td>una variabile usata non è stata definita</td><td><code>print(variavel_que_nao_existe)</code></td></tr>
+<tr><td><code>KeyError</code></td><td>una chiave non esiste in un dizionario</td><td><code>dizionario['chiave_inesistente']</code></td></tr>
+<tr><td><code>NameError</code></td><td>una variabile usata non è stata definita</td><td><code>print(variabile_che_non_esiste)</code></td></tr>
 </tbody>
 </table></div>
 <h2>try / except</h2>
 <p>La struttura <code>try</code> / <code>except</code> esegue un blocco di codice e, <strong>se</strong> si verifica un'eccezione, esegue un altro blocco al suo posto — senza interrompere il programma.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">try:
-  # código que pode falhar
+  # codice che può fallire
 except TipoDoErro:
-  # executado somente se essa exceção ocorrer
+  # eseguito solo se questa eccezione si verifica
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
-quantidade_de_pessoas = 0
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">prezzo_totale_conto = 132.85
+quantita_persone = 0
 
 try:
-  valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
-  print(f'Cada pessoa paga R$ {valor_por_pessoa:.2f}')
+  valore_per_persona = prezzo_totale_conto / quantita_persone
+  print(f'Ogni persona paga R$ {valore_per_persona:.2f}')
 except ZeroDivisionError:
-  print('Erro: a quantidade de pessoas precisa ser maior que zero.')
-# Erro: a quantidade de pessoas precisa ser maior que zero.
+  print('Errore: la quantità di persone deve essere maggiore di zero.')
+# Errore: la quantità di persone deve essere maggiore di zero.
 </code></pre></div>
 <p>Con una quantità di persone valida, il <code>try</code> viene eseguito normalmente e l'<code>except</code> non viene nemmeno valutato:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
-quantidade_de_pessoas = 2
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">prezzo_totale_conto = 132.85
+quantita_persone = 2
 
 try:
-  valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
-  print(f'Cada pessoa paga R$ {valor_por_pessoa:.2f}')
+  valore_per_persona = prezzo_totale_conto / quantita_persone
+  print(f'Ogni persona paga R$ {valore_per_persona:.2f}')
 except ZeroDivisionError:
-  print('Erro: a quantidade de pessoas precisa ser maior que zero.')
-# Cada pessoa paga R$ 66.42
+  print('Errore: la quantità di persone deve essere maggiore di zero.')
+# Ogni persona paga R$ 66.42
 </code></pre></div>
 <h2>Catturare i dettagli dell'eccezione e gestire più tipi</h2>
 <p>Possiamo catturare l'eccezione in una variabile (convenzione: <code>except ... as exc</code>) per ispezionarne il messaggio, e possiamo anche gestire <strong>più tipi di eccezione diversi</strong> nello stesso <code>try</code>, ognuno con il proprio <code>except</code>.</p>
 <p><strong>Esempio:</strong> cercare una posizione che non esiste in una lista di anni.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anos_com_vendas = [2019, 2020, 2021]
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">anni_con_vendite = [2019, 2020, 2021]
 
 try:
-  ano_mais_recente = anos_com_vendas[5]
-  print(ano_mais_recente)
+  anno_piu_recente = anni_con_vendite[5]
+  print(anno_piu_recente)
 except IndexError as exc:
-  print(f'Erro: posição inválida. A lista tem apenas {len(anos_com_vendas)} anos.')
-  print(f'Mensagem original do Python: {exc}')
-# Erro: posição inválida. A lista tem apenas 3 anos.
-# Mensagem original do Python: list index out of range
+  print(f'Errore: posizione non valida. La lista ha solo {len(anni_con_vendite)} anni.')
+  print(f'Messaggio originale di Python: {exc}')
+# Errore: posizione non valida. La lista ha solo 3 anni.
+# Messaggio originale di Python: list index out of range
 </code></pre></div>
 <p><strong>Esempio:</strong> convertire un testo proveniente da un modulo in numero, gestendo prima l'errore specifico e un errore generico alla fine.</p>
 <blockquote>
 <p><strong>Attenzione:</strong> l'ordine conta. Python testa i blocchi <code>except</code> nell'ordine in cui appaiono, quindi metti sempre gli errori <strong>più specifici prima</strong> e un <code>except Exception</code> <strong>per ultimo</strong>, come una rete di sicurezza.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">dado_de_entrada = 'não é um número'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">dato_inserito = 'non è un numero'
 
 try:
-  valor_convertido = int(dado_de_entrada)
-  print(valor_convertido)
+  valore_convertito = int(dato_inserito)
+  print(valore_convertito)
 except ValueError:
-  print('Erro: não foi possível converter o texto para número.')
+  print('Errore: non è stato possibile convertire il testo in numero.')
 except Exception as exc:
-  print(f'Erro inesperado: {exc}')
-# Erro: não foi possível converter o texto para número.
+  print(f'Errore imprevisto: {exc}')
+# Errore: non è stato possibile convertire il testo in numero.
 </code></pre></div>
 <h2>try / except / finally</h2>
 <p>Il blocco <code>finally</code> viene eseguito <strong>sempre</strong>, sia che si sia verificata un'eccezione o no. È utile per azioni che devono avvenire indipendentemente dal risultato, come confermare che un processo è terminato.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome_cliente = 'André'
-idade_cliente = 19
+eta_cliente = 19
 
 try:
-  # idade_cliente é int; o + não junta str com int (TypeError)
-  apresentacao = 'Cliente: ' + nome_cliente + ', idade: ' + idade_cliente
+  # eta_cliente è int; il + non unisce str con int (TypeError)
+  presentazione = 'Cliente: ' + nome_cliente + ', età: ' + eta_cliente
 except TypeError:
-  apresentacao = 'Cliente: ' + nome_cliente + ', idade: ' + str(idade_cliente)
+  presentazione = 'Cliente: ' + nome_cliente + ', età: ' + str(eta_cliente)
 finally:
-  print(apresentacao)
-  print('Cadastro processado.')
-# Cliente: André, idade: 19
-# Cadastro processado.
+  print(presentazione)
+  print('Registrazione completata.')
+# Cliente: André, età: 19
+# Registrazione completata.
 </code></pre></div>
 <h2>Rivisitando la motivazione</h2>
 <p>Rendiamo il calcolo del valore a persona più realistico: la quantità di persone arriva come <strong>testo</strong> dal modulo, quindi può fallire in due modi diversi — un testo che non è un numero (<code>ValueError</code>) o il numero zero (<code>ZeroDivisionError</code>). Gestiamo entrambi, e usiamo il <code>finally</code> per avvisare che il calcolo è terminato.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">preco_total_conta = 132.85
-quantidade_de_pessoas_texto = '0'  # veio como texto de um formulário
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">prezzo_totale_conto = 132.85
+quantita_persone_testo = '0'  # arrivato come testo da un modulo
 
 try:
-  quantidade_de_pessoas = int(quantidade_de_pessoas_texto)
-  valor_por_pessoa = preco_total_conta / quantidade_de_pessoas
-  print(f'Cada pessoa paga R$ {valor_por_pessoa:.2f}')
+  quantita_persone = int(quantita_persone_testo)
+  valore_per_persona = prezzo_totale_conto / quantita_persone
+  print(f'Ogni persona paga R$ {valore_per_persona:.2f}')
 except ValueError:
-  print('Erro: a quantidade de pessoas precisa ser um número.')
+  print('Errore: la quantità di persone deve essere un numero.')
 except ZeroDivisionError:
-  print('Erro: a quantidade de pessoas precisa ser maior que zero.')
+  print('Errore: la quantità di persone deve essere maggiore di zero.')
 finally:
-  print('Cálculo finalizado.')
-# Erro: a quantidade de pessoas precisa ser maior que zero.
-# Cálculo finalizado.
+  print('Calcolo terminato.')
+# Errore: la quantità di persone deve essere maggiore di zero.
+# Calcolo terminato.
 </code></pre></div>
 </div>
 

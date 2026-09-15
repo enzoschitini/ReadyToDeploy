@@ -5,26 +5,26 @@
 <p><strong>Esempio:</strong> il modulo <code>random</code>, per generare valori e scelte casuali.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import random
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">opcoes = ['pedra', 'papel', 'tesoura']
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">opzioni = ['sasso', 'carta', 'forbice']
 
-escolha_do_computador = random.choice(opcoes)
-print(escolha_do_computador)
-# tesoura
+scelta_del_computer = random.choice(opzioni)
+print(scelta_del_computer)
+# forbice
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numero_aleatorio = random.random()  # float aleatório no intervalo [0, 1)
-print(numero_aleatorio)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">numero_casuale = random.random()  # float casuale nell'intervallo [0, 1)
+print(numero_casuale)
 # 0.5191044337047542
 </code></pre></div>
 <p><strong>Esempio:</strong> il modulo <code>math</code>, con funzioni e costanti matematiche.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">import math
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">potencia = math.pow(10, 3)
-print(potencia)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">potenza = math.pow(10, 3)
+print(potenza)
 # 1000.0
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># math.ceil() sempre arredonda PARA CIMA, diferente do round() visto no Módulo 01
-numero_arredondado = math.ceil(10.1)
-print(numero_arredondado)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># math.ceil() arrotonda sempre PER ECCESSO, a differenza di round() visto nel Modulo 01
+numero_arrotondato = math.ceil(10.1)
+print(numero_arrotondato)
 # 11
 </code></pre></div>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(math.pi)
@@ -39,21 +39,21 @@ print(numero_arredondado)
 </blockquote>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">from time import time
 
-# 'time' foi importado e funciona
-print(time())  # segundos desde 01/01/1970 (a "época Unix")
+# 'time' è stato importato e funziona
+print(time())  # secondi dal 01/01/1970 (l'"epoca Unix")
 
-# sleep(1)  # NameError: name 'sleep' is not defined (sleep não foi importado)
+# sleep(1)  # NameError: name 'sleep' is not defined (sleep non è stata importata)
 # 1789135666.9954908
 </code></pre></div>
 <p>Per importare più di un nome dallo stesso modulo, li separiamo con la virgola:</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">from time import time, sleep
 
-instante_inicial = time()
-sleep(1)  # pausa a execução do programa por 1 segundo
-instante_final = time()
+istante_iniziale = time()
+sleep(1)  # mette in pausa l'esecuzione del programma per 1 secondo
+istante_finale = time()
 
-print(f'Tempo decorrido: {instante_final - instante_inicial:.2f} segundos')
-# Tempo decorrido: 1.00 segundos
+print(f'Tempo trascorso: {istante_finale - istante_iniziale:.2f} secondi')
+# Tempo trascorso: 1.00 secondi
 </code></pre></div>
 <h2>from / import / as</h2>
 <p>Possiamo dare un alias (rinominare) a un modulo o a un elemento importato con <code>as</code>. È utile per accorciare nomi lunghi o evitare conflitti con altri nomi già usati nel codice.</p>

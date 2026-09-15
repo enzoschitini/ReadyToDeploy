@@ -1,88 +1,88 @@
 <div class="prose">
-<p>Ogni studente è una persona, ma non ogni persona è uno studente. L'<strong>eredità</strong> permette alla classe <code>Estudante</code> di riutilizzare tutto ciò che la classe <code>Pessoa</code> già ha, senza copiare codice, e di aggiungere solo ciò che è specifico di uno studente.</p>
+<p>Ogni studente è una persona, ma non ogni persona è uno studente. L'<strong>eredità</strong> permette alla classe <code>Studente</code> di riutilizzare tutto ciò che la classe <code>Persona</code> già ha, senza copiare codice, e di aggiungere solo ciò che è specifico di uno studente.</p>
 <h2>Definizione</h2>
 <p>L'eredità crea una <strong>specializzazione</strong> di una classe. La classe originale è chiamata <strong>classe madre</strong> (o superclasse), e la nuova, <strong>classe figlia</strong> (o sottoclasse). La classe figlia eredita tutti gli attributi e i metodi della madre. La struttura generale è:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class ClasseMae:
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class ClasseMadre:
 
-    def __init__(self, parametros):
+    def __init__(self, parametri):
         ...
 
-class ClasseFilha(ClasseMae):
+class ClasseFiglia(ClasseMadre):
 
-    def __init__(self, parametros):
-        super().__init__(parametros_da_mae)
-        self.atributo_3 = ...
-        self.atributo_4 = ...
+    def __init__(self, parametri):
+        super().__init__(parametri_della_madre)
+        self.attributo_3 = ...
+        self.attributo_4 = ...
 
-    def metodo_3(self, parametros):
+    def metodo_3(self, parametri):
         ...
 </code></pre></div>
 <div class="table-wrap"><table>
 <thead><tr><th>Elemento</th><th>Cosa fa</th></tr></thead>
 <tbody>
-<tr><td><code>class ClasseFilha(ClasseMae):</code></td><td>Il nome della classe madre tra parentesi indica l'eredità</td></tr>
+<tr><td><code>class ClasseFiglia(ClasseMadre):</code></td><td>Il nome della classe madre tra parentesi indica l'eredità</td></tr>
 <tr><td><code>super()</code></td><td>Dà accesso ai metodi della classe madre</td></tr>
 <tr><td><code>super().__init__(...)</code></td><td>Esegue il costruttore della madre, che crea gli attributi ereditati</td></tr>
 </tbody>
 </table></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> un buon modo per sapere se l'eredità ha senso è la domanda <strong>"è un?"</strong>: uno studente <strong>è una</strong> persona? Sì, quindi <code>Estudante</code> può ereditare da <code>Pessoa</code>.</p>
+<p><strong>Suggerimento:</strong> un buon modo per sapere se l'eredità ha senso è la domanda <strong>"è un?"</strong>: uno studente <strong>è una</strong> persona? Sì, quindi <code>Studente</code> può ereditare da <code>Persona</code>.</p>
 </blockquote>
-<h2>Creando la classe Estudante</h2>
-<p>Riutilizziamo la classe <code>Pessoa</code> della lezione precedente. Ogni studente studia in un'università, quindi prima creiamo la classe <code>Universidade</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Universidade:
+<h2>Creando la classe Studente</h2>
+<p>Riutilizziamo la classe <code>Persona</code> della lezione precedente. Ogni studente studia in un'università, quindi prima creiamo la classe <code>Universita</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Universita:
 
     def __init__(self, nome: str):
         self.nome = nome
 </code></pre></div>
-<p>Ora specializziamo la classe <code>Pessoa</code> nella classe <code>Estudante</code>. Il costruttore riceve i dati di una persona <strong>più</strong> l'università, passa i dati della persona al costruttore della madre con <code>super()</code> e crea l'unico attributo nuovo:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Estudante(Pessoa):
+<p>Ora specializziamo la classe <code>Persona</code> nella classe <code>Studente</code>. Il costruttore riceve i dati di una persona <strong>più</strong> l'università, passa i dati della persona al costruttore della madre con <code>super()</code> e crea l'unico attributo nuovo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Studente(Persona):
 
-    def __init__(self, nome: str, idade: int, documento: str, universidade: Universidade):
-        # A classe mãe (Pessoa) cria os atributos nome, idade e documento
-        super().__init__(nome=nome, idade=idade, documento=documento)
-        # Atributo exclusivo de Estudante
-        self.universidade = universidade
+    def __init__(self, nome: str, eta: int, documento: str, universita: Universita):
+        # La classe madre (Persona) crea gli attributi nome, eta e documento
+        super().__init__(nome=nome, eta=eta, documento=documento)
+        # Attributo esclusivo di Studente
+        self.universita = universita
 </code></pre></div>
 <blockquote>
-<p><strong>Attenzione:</strong> <code>super().__init__()</code> è obbligatorio quando la classe figlia ha il proprio <code>__init__</code>. Senza di esso, il costruttore della madre <strong>non viene eseguito</strong>, e gli attributi <code>nome</code>, <code>idade</code> e <code>documento</code> semplicemente non esistono nell'oggetto, generando un <code>AttributeError</code> la prima volta che vengono usati.</p>
+<p><strong>Attenzione:</strong> <code>super().__init__()</code> è obbligatorio quando la classe figlia ha il proprio <code>__init__</code>. Senza di esso, il costruttore della madre <strong>non viene eseguito</strong>, e gli attributi <code>nome</code>, <code>eta</code> e <code>documento</code> semplicemente non esistono nell'oggetto, generando un <code>AttributeError</code> la prima volta che vengono usati.</p>
 </blockquote>
-<p>Nota un altro dettaglio: l'attributo <code>universidade</code> conserva un <strong>oggetto</strong> della classe <code>Universidade</code>. Questo è diverso dall'eredità:</p>
+<p>Nota un altro dettaglio: l'attributo <code>universita</code> conserva un <strong>oggetto</strong> della classe <code>Universita</code>. Questo è diverso dall'eredità:</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Relazione</th><th>Domanda</th><th>Esempio</th><th>Come appare nel codice</th></tr></thead>
 <tbody>
-<tr><td>Eredità</td><td>"è un?"</td><td>Uno studente <strong>è una</strong> persona</td><td><code>class Estudante(Pessoa):</code></td></tr>
-<tr><td>Composizione</td><td>"ha un?"</td><td>Uno studente <strong>ha una</strong> università</td><td><code>self.universidade = universidade</code></td></tr>
+<tr><td>Eredità</td><td>"è un?"</td><td>Uno studente <strong>è una</strong> persona</td><td><code>class Studente(Persona):</code></td></tr>
+<tr><td>Composizione</td><td>"ha un?"</td><td>Uno studente <strong>ha una</strong> università</td><td><code>self.universita = universita</code></td></tr>
 </tbody>
 </table></div>
 <h2>Manipolazione</h2>
 <p>Creiamo gli oggetti nello stesso modo di prima. Prima l'università, poi lo studente, che riceve l'oggetto dell'università come parametro:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">usp = Universidade(nome='Universidade de São Paulo')
-andre_estudante = Estudante(nome='Andre Perez', idade=30, documento='123', universidade=usp)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">usp = Universita(nome='Universidade de São Paulo')
+andre_studente = Studente(nome='Andre Perez', eta=30, documento='123', universita=usp)
 </code></pre></div>
-<p>La classe <code>Estudante</code> non definisce <code>__str__</code>, <code>falar()</code> né <code>dormir()</code>, ma l'oggetto riesce a usarli tutti, perché sono stati <strong>ereditati</strong> da <code>Pessoa</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># __str__ herdado de Pessoa
-print(andre_estudante)
+<p>La classe <code>Studente</code> non definisce <code>__str__</code>, <code>parlare()</code> né <code>dormire()</code>, ma l'oggetto riesce a usarli tutti, perché sono stati <strong>ereditati</strong> da <code>Persona</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># __str__ ereditato da Persona
+print(andre_studente)
 
-# Métodos herdados de Pessoa
-andre_estudante.falar(texto='Tenho prova amanhã!')
-andre_estudante.dormir(horas=2)
-# Andre Perez, 30 anos, documento: 123
-# Andre Perez diz: Tenho prova amanhã!
-# Andre Perez está dormindo... 1h de 2h
-# Andre Perez está dormindo... 2h de 2h
+# Metodi ereditati da Persona
+andre_studente.parlare(testo='Ho un esame domani!')
+andre_studente.dormire(ore=2)
+# Andre Perez, 30 anni, documento: 123
+# Andre Perez dice: Ho un esame domani!
+# Andre Perez sta dormendo... 1h di 2h
+# Andre Perez sta dormendo... 2h di 2h
 </code></pre></div>
 <p>Per accedere a un attributo di un oggetto che si trova <strong>dentro</strong> un altro, concateniamo i punti:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># andre_estudante.universidade é um objeto Universidade; .nome é o atributo dele
-print(andre_estudante.universidade.nome)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># andre_studente.universita è un oggetto Universita; .nome è il suo attributo
+print(andre_studente.universita.nome)
 # Universidade de São Paulo
 </code></pre></div>
-<p>Uno studente è, allo stesso tempo, un <code>Estudante</code> <strong>e</strong> una <code>Pessoa</code>. <code>isinstance()</code> conferma ciò, e <code>issubclass()</code> verifica la relazione tra le classi:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(isinstance(andre_estudante, Estudante))
-print(isinstance(andre_estudante, Pessoa))  # True: todo Estudante é uma Pessoa
-print(isinstance(andre, Estudante))         # False: nem toda Pessoa é um Estudante
+<p>Uno studente è, allo stesso tempo, uno <code>Studente</code> <strong>e</strong> una <code>Persona</code>. <code>isinstance()</code> conferma ciò, e <code>issubclass()</code> verifica la relazione tra le classi:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">print(isinstance(andre_studente, Studente))
+print(isinstance(andre_studente, Persona))  # True: ogni Studente è una Persona
+print(isinstance(andre, Studente))          # False: non ogni Persona è uno Studente
 
-print(issubclass(Estudante, Pessoa))
+print(issubclass(Studente, Persona))
 # True
 # True
 # False
@@ -91,51 +91,51 @@ print(issubclass(Estudante, Pessoa))
 <h2>Nuovi metodi e sovrascrittura</h2>
 <p>Oltre a ereditare, la classe figlia può:</p>
 <ul>
-<li><strong>Aggiungere</strong> metodi che hanno senso solo per lei (es.: <code>estudar()</code>);</li>
+<li><strong>Aggiungere</strong> metodi che hanno senso solo per lei (es.: <code>studiare()</code>);</li>
 <li><strong>Sovrascrivere</strong> (<em>override</em>) un metodo ereditato, definendo un'altra versione con lo stesso nome. Quando il metodo viene chiamato, Python usa la versione della classe figlia.</li>
 </ul>
-<p>Miglioriamo <code>Estudante</code>: <code>__str__</code> ereditato non menziona l'università. Nella nuova versione, sfruttiamo il testo della madre con <code>super().__str__()</code> e aggiungiamo ciò che manca:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Estudante(Pessoa):
+<p>Miglioriamo <code>Studente</code>: <code>__str__</code> ereditato non menziona l'università. Nella nuova versione, sfruttiamo il testo della madre con <code>super().__str__()</code> e aggiungiamo ciò che manca:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">class Studente(Persona):
 
-    def __init__(self, nome: str, idade: int, documento: str, universidade: Universidade):
-        super().__init__(nome=nome, idade=idade, documento=documento)
-        self.universidade = universidade
+    def __init__(self, nome: str, eta: int, documento: str, universita: Universita):
+        super().__init__(nome=nome, eta=eta, documento=documento)
+        self.universita = universita
 
-    def estudar(self, materia: str) -&gt; None:
-        # Método novo, exclusivo de Estudante
-        print(f'{self.nome} está estudando {materia} na {self.universidade.nome}')
+    def studiare(self, materia: str) -&gt; None:
+        # Metodo nuovo, esclusivo di Studente
+        print(f'{self.nome} sta studiando {materia} presso {self.universita.nome}')
 
     def __str__(self) -&gt; str:
-        # Sobrescrita: reaproveita o texto da Pessoa e acrescenta a universidade
-        return f'{super().__str__()}, estudante da {self.universidade.nome}'
+        # Sovrascrittura: riutilizza il testo di Persona e aggiunge l'università
+        return f'{super().__str__()}, studente presso {self.universita.nome}'
 </code></pre></div>
 <p>Poiché la classe è stata ridefinita, ricreiamo l'oggetto (ricorda l'avviso della lezione precedente):</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">andre_estudante = Estudante(nome='Andre Perez', idade=30, documento='123', universidade=usp)
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">andre_studente = Studente(nome='Andre Perez', eta=30, documento='123', universita=usp)
 
-print(andre_estudante)  # usa o __str__ de Estudante
-print(andre)            # continua usando o __str__ de Pessoa
+print(andre_studente)  # usa il __str__ di Studente
+print(andre)           # continua a usare il __str__ di Persona
 
-andre_estudante.estudar(materia='Programação Orientada a Objetos')
-# Andre Perez, 30 anos, documento: 123, estudante da Universidade de São Paulo
-# Andre Perez, 30 anos, documento: 123
-# Andre Perez está estudando Programação Orientada a Objetos na Universidade de São Paulo
+andre_studente.studiare(materia='Programmazione Orientata agli Oggetti')
+# Andre Perez, 30 anni, documento: 123, studente presso Universidade de São Paulo
+# Andre Perez, 30 anni, documento: 123
+# Andre Perez sta studiando Programmazione Orientata agli Oggetti presso Universidade de São Paulo
 </code></pre></div>
 <blockquote>
-<p><strong>Suggerimento:</strong> con l'eredità, un miglioramento fatto nella classe madre arriva automaticamente a tutte le classi figlie. Se domani <code>Pessoa</code> guadagnasse un metodo <code>apresentar()</code>, ogni <code>Estudante</code> lo avrebbe anche lui, senza nessuna riga in più.</p>
+<p><strong>Suggerimento:</strong> con l'eredità, un miglioramento fatto nella classe madre arriva automaticamente a tutte le classi figlie. Se domani <code>Persona</code> guadagnasse un metodo <code>presentare()</code>, ogni <code>Studente</code> lo avrebbe anche lui, senza nessuna riga in più.</p>
 </blockquote>
 <h2>Riepilogo del Modulo</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Concetto</th><th>Cos'è</th><th>Sintassi</th></tr></thead>
 <tbody>
-<tr><td>Classe</td><td>Ricetta per creare oggetti</td><td><code>class Pessoa:</code></td></tr>
+<tr><td>Classe</td><td>Ricetta per creare oggetti</td><td><code>class Persona:</code></td></tr>
 <tr><td>Costruttore</td><td>Metodo eseguito alla creazione dell'oggetto; definisce gli attributi</td><td><code>def __init__(self, nome):</code></td></tr>
 <tr><td><code>self</code></td><td>Riferimento all'oggetto stesso dentro i metodi</td><td><code>self.nome = nome</code></td></tr>
 <tr><td>Attributo</td><td>Caratteristica dell'oggetto</td><td><code>andre.nome</code></td></tr>
-<tr><td>Metodo</td><td>Azione dell'oggetto</td><td><code>andre.falar(texto='Olá')</code></td></tr>
+<tr><td>Metodo</td><td>Azione dell'oggetto</td><td><code>andre.parlare(testo='Ciao')</code></td></tr>
 <tr><td><code>__str__</code></td><td>Metodo speciale che definisce il testo mostrato dal <code>print()</code></td><td><code>def __str__(self) -&gt; str:</code></td></tr>
-<tr><td>Oggetto</td><td>Istanza concreta di una classe</td><td><code>andre = Pessoa(nome='Andre', idade=30)</code></td></tr>
-<tr><td>Metodo interno</td><td>Convenzione per metodi a uso interno della classe</td><td><code>def _extrair_conteudo(self):</code></td></tr>
-<tr><td>Eredità</td><td>Classe figlia che specializza una classe madre ("è un")</td><td><code>class Estudante(Pessoa):</code></td></tr>
+<tr><td>Oggetto</td><td>Istanza concreta di una classe</td><td><code>andre = Persona(nome='Andre', eta=30)</code></td></tr>
+<tr><td>Metodo interno</td><td>Convenzione per metodi a uso interno della classe</td><td><code>def _estrai_contenuto(self):</code></td></tr>
+<tr><td>Eredità</td><td>Classe figlia che specializza una classe madre ("è un")</td><td><code>class Studente(Persona):</code></td></tr>
 <tr><td><code>super()</code></td><td>Accesso ai metodi della classe madre</td><td><code>super().__init__(nome=nome)</code></td></tr>
 <tr><td>Sovrascrittura</td><td>Nuova versione di un metodo ereditato</td><td>ridefinire <code>__str__</code> nella classe figlia</td></tr>
 </tbody>
@@ -146,11 +146,11 @@ andre_estudante.estudar(materia='Programação Orientada a Objetos')
 
 <div class="quiz" role="group" aria-labelledby="quiz-python-heranca-q">
   <p class="kicker-cyan">// Quiz</p>
-  <p class="quiz-q" id="quiz-python-heranca-q">Cosa succede se la classe <code>Estudante(Pessoa)</code> definisce <code>__init__</code> ma dimentica di chiamare <code>super().__init__(...)</code>?</p>
+  <p class="quiz-q" id="quiz-python-heranca-q">Cosa succede se la classe <code>Studente(Persona)</code> definisce <code>__init__</code> ma dimentica di chiamare <code>super().__init__(...)</code>?</p>
   <fieldset class="quiz-options">
     <legend class="sr-only">Scegli un'alternativa</legend>
     <label class="quiz-opt" data-correct="0" data-exp="Quando la classe figlia definisce il proprio `__init__`, quello della madre viene eseguito solo se chiamato esplicitamente con `super().__init__(...)`."><input type="radio" name="quiz-python-heranca" value="0" /><span class="txt">Niente cambia: Python chiama comunque automaticamente l'<code>__init__</code> della madre</span><span class="mark" aria-hidden="true"></span></label>
-    <label class="quiz-opt" data-correct="1" data-exp="Senza `super().__init__()`, il costruttore della madre non viene mai eseguito, quindi attributi come `nome` e `idade` semplicemente non vengono creati."><input type="radio" name="quiz-python-heranca" value="1" /><span class="txt">Gli attributi definiti nell'<code>__init__</code> della madre non esistono nell'oggetto, generando AttributeError quando si tenta di usarli</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="Senza `super().__init__()`, il costruttore della madre non viene mai eseguito, quindi attributi come `nome` e `eta` semplicemente non vengono creati."><input type="radio" name="quiz-python-heranca" value="1" /><span class="txt">Gli attributi definiti nell'<code>__init__</code> della madre non esistono nell'oggetto, generando AttributeError quando si tenta di usarli</span><span class="mark" aria-hidden="true"></span></label>
     <label class="quiz-opt" data-correct="0" data-exp="È un errore di esecuzione (AttributeError nell'accedere all'attributo mancante), non un errore di sintassi rilevato prima dell'esecuzione."><input type="radio" name="quiz-python-heranca" value="2" /><span class="txt">Il programma si rifiuta di eseguire e segnala un SyntaxError prima ancora di creare l'oggetto</span><span class="mark" aria-hidden="true"></span></label>
     <label class="quiz-opt" data-correct="0" data-exp="I metodi continuano a essere ereditati normalmente; il problema riguarda solo gli attributi che l'`__init__` della madre creerebbe."><input type="radio" name="quiz-python-heranca" value="3" /><span class="txt">La classe figlia smette di ereditare i metodi della madre</span><span class="mark" aria-hidden="true"></span></label>
   </fieldset>

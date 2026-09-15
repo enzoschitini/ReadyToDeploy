@@ -7,16 +7,16 @@ indirizzi comuni alle due basi di dati. Il problema è che ogni azienda memorizz
 coordinate in modo diverso:</p>
 <ul>
 <li>Nella <strong>tua azienda</strong>, latitudine e longitudine si trovano in due variabili separate:
-<code>latitude</code> e <code>longitude</code>;</li>
+<code>latitudine</code> e <code>longitudine</code>;</li>
 <li>Nella <strong>startup acquisita</strong>, le due si trovano insieme in un'unica variabile,
-<code>latitude_longitude</code>, separate da <code>;</code>.</li>
+<code>latitudine_longitudine</code>, separate da <code>;</code>.</li>
 </ul>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Formato da sua empresa: dois valores separados
-latitude = '-22.005320'
-longitude = '-47.891040'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Formato della tua azienda: due valori separati
+latitudine = '-22.005320'
+longitudine = '-47.891040'
 
-# Formato da startup: um único texto com os dois valores
-latitude_longitude = '-22.005320;-47.891040'
+# Formato della startup: un unico testo con i due valori
+latitudine_longitudine = '-22.005320;-47.891040'
 </code></pre></div>
 <p><strong>Come possiamo standardizzare il modo in cui le coordinate vengono memorizzate perché possano essere
 confrontate?</strong></p>
@@ -26,76 +26,76 @@ possono essere scritte con:</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Delimitatore</th><th>Esempio</th><th>Uso tipico</th></tr></thead>
 <tbody>
-<tr><td>Apici singoli</td><td><code>'Olá'</code></td><td>Testi brevi</td></tr>
-<tr><td>Apici doppi</td><td><code>"Olá"</code></td><td>Testi che contengono un apostrofo, es: <code>"Joana d'Arc"</code></td></tr>
-<tr><td>Apici tripli</td><td><code>'''Olá'''</code> o <code>"""Olá"""</code></td><td>Testi su più righe</td></tr>
+<tr><td>Apici singoli</td><td><code>'Ciao'</code></td><td>Testi brevi</td></tr>
+<tr><td>Apici doppi</td><td><code>"Ciao"</code></td><td>Testi che contengono un apostrofo, es: <code>"Giovanna d'Arco"</code></td></tr>
+<tr><td>Apici tripli</td><td><code>'''Ciao'''</code> o <code>"""Ciao"""</code></td><td>Testi su più righe</td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome_aula = 'Variáveis e Tipos de Dados'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome_lezione = 'Variabili e Tipi di Dati'
 
-print(nome_aula)       # Variáveis e Tipos de Dados
-print(type(nome_aula)) # &lt;class 'str'&gt;
+print(nome_lezione)       # Variabili e Tipi di Dati
+print(type(nome_lezione)) # &lt;class 'str'&gt;
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Aspas triplas permitem textos em várias linhas
-descricao_curso = '''Ready To Deploy
-Curso de Python do zero ao deploy.'''
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Le virgolette triple permettono testi su più righe
+descrizione_corso = '''Ready To Deploy
+Corso di Python da zero al deploy.'''
 
-print(descricao_curso)
+print(descrizione_corso)
 # Ready To Deploy
-# Curso de Python do zero ao deploy.
+# Corso di Python da zero al deploy.
 </code></pre></div>
 <p>Una stringa può anche essere <strong>vuota</strong>, e la funzione nativa <code>len()</code> indica quanti
 caratteri possiede:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">string_vazia = ""
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">stringa_vuota = ""
 
-print(string_vazia)       # (nada)
-print(type(string_vazia)) # &lt;class 'str'&gt;
-print(len(string_vazia))  # 0 caracteres
+print(stringa_vuota)       # (niente)
+print(type(stringa_vuota)) # &lt;class 'str'&gt;
+print(len(stringa_vuota))  # 0 caratteri
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># len() conta TODOS os caracteres, incluindo espaços e pontuação
-cidade = "São Paulo"
-print(len(cidade))  # 9
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># len() conta TUTTI i caratteri, inclusi spazi e punteggiatura
+citta = "São Paulo"
+print(len(citta))  # 9
 </code></pre></div>
 <h2>Operazioni</h2>
 <p><strong>Concatenazione (<code>+</code>):</strong> unisce due o più stringhe in una sola.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome = 'Andre Marcos'
-sobrenome = 'Perez'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome = 'Andrea'
+cognome = 'Marchi'
 
-# Repare que os espaços também precisam ser concatenados
-apresentacao = 'Olá, meu nome é ' + nome + ' ' + sobrenome + '.'
-print(apresentacao)  # Olá, meu nome é Andre Marcos Perez.
+# Nota che anche gli spazi devono essere concatenati
+presentazione = 'Ciao, mi chiamo ' + nome + ' ' + cognome + '.'
+print(presentazione)  # Ciao, mi chiamo Andrea Marchi.
 </code></pre></div>
 <p><strong>Ripetizione (<code>*</code>):</strong> ripete una stringa un determinato numero di volte.</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Útil, por exemplo, para criar linhas separadoras
-separador = '-' * 30
-print(separador)  # ------------------------------
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Utile, per esempio, per creare righe separatrici
+separatore = '-' * 30
+print(separatore)  # ------------------------------
 </code></pre></div>
 <p><strong>Formattazione con f-string:</strong> il modo più moderno e leggibile per costruire testi. Basta mettere
 una <code>f</code> prima delle virgolette e scrivere le variabili tra parentesi graffe <code>{}</code>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome = 'Andre Marcos'
-sobrenome = 'Perez'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">nome = 'Andrea'
+cognome = 'Marchi'
 
-apresentacao = f'Olá, meu nome é {nome} {sobrenome}.'
-print(apresentacao)  # Olá, meu nome é Andre Marcos Perez.
+presentazione = f'Ciao, mi chiamo {nome} {cognome}.'
+print(presentazione)  # Ciao, mi chiamo Andrea Marchi.
 </code></pre></div>
 <p>Le f-string accettano anche numeri e permettono di <strong>formattare</strong> il valore - per esempio,
 <code>:.2f</code> mostra un <code>float</code> con due cifre decimali:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">produto = 'Notebook'
-preco_produto = 3499.9
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">prodotto = 'Notebook'
+prezzo_prodotto = 3499.9
 
-print(f'O produto {produto} custa R$ {preco_produto:.2f}')
-# O produto Notebook custa R$ 3499.90
+print(f'Il prodotto {prodotto} costa R$ {prezzo_prodotto:.2f}')
+# Il prodotto Notebook costa R$ 3499.90
 </code></pre></div>
 <blockquote>
 <p><strong>Attenzione:</strong> l'operatore <code>+</code> non unisce stringhe con numeri. Una riga come
 <code>'Idade: ' + 19</code> genera un errore (<code>TypeError</code>). In questi casi, converti il numero con
 <code>str()</code> o, meglio ancora, usa una f-string.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">idade_cliente = 19
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">eta_cliente = 19
 
-# print('Idade: ' + idade_cliente)       # ❌ TypeError
-print('Idade: ' + str(idade_cliente))    # ✅ Idade: 19
-print(f'Idade: {idade_cliente}')         # ✅ Idade: 19
+# print('Età: ' + eta_cliente)       # ❌ TypeError
+print('Età: ' + str(eta_cliente))    # ✅ Età: 19
+print(f'Età: {eta_cliente}')         # ✅ Età: 19
 </code></pre></div>
 <p><strong>Slicing (fatiamento):</strong> permette di accedere a un carattere o a una porzione della stringa a partire dalla sua
 <strong>posizione</strong> (indice). In Python, gli indici <strong>iniziano da 0</strong>.</p>
@@ -110,23 +110,23 @@ print(f'Idade: {idade_cliente}')         # ✅ Idade: 19
 <tr><td>-21</td><td>-20</td><td>-19</td><td>-18</td><td>-17</td><td>-16</td><td>-15</td><td>-14</td><td>-13</td><td>-12</td><td>-11</td><td>-10</td><td>-9</td><td>-8</td><td>-7</td><td>-6</td><td>-5</td><td>-4</td><td>-3</td><td>-2</td><td>-1</td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Índices positivos: contam a partir do início (0)
-print(f'Posição 0:  {email[0]}')   # Posição 0:  a
-print(f'Posição 11: {email[11]}')  # Posição 11: @
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Indici positivi: contano a partire dall'inizio (0)
+print(f'Posizione 0:  {email[0]}')   # Posizione 0:  a
+print(f'Posizione 11: {email[11]}')  # Posizione 11: @
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Índices negativos: contam a partir do final (-1 é o último caractere)
-print(f'Posição -1: {email[-1]}')  # Posição -1: m
-print(f'Posição -2: {email[-2]}')  # Posição -2: o
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Indici negativi: contano a partire dalla fine (-1 è l'ultimo carattere)
+print(f'Posizione -1: {email[-1]}')  # Posizione -1: m
+print(f'Posizione -2: {email[-2]}')  # Posizione -2: o
 </code></pre></div>
 <p><strong>Accedere a un intervallo</strong> con <code>texto[inicio:fim]</code>. Il carattere alla posizione
 <code>inicio</code> <strong>è incluso</strong>, ma quello alla posizione <code>fim</code> <strong>non lo è</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Do índice 0 até o 10 (o 11, que é o '@', fica de fora)
-usuario_email = email[0:11]
-print(usuario_email)  # andre.perez
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dall'indice 0 fino al 10 (l'11, che è la '@', resta escluso)
+utente_email = email[0:11]
+print(utente_email)  # andre.perez
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Do índice 12 até o final
-provedor_email = email[12:21]
-print(provedor_email)  # gmail.com
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Dall'indice 12 fino alla fine
+provider_email = email[12:21]
+print(provider_email)  # gmail.com
 </code></pre></div>
 <blockquote>
 <p>Se omettiamo l'inizio, lo slicing parte dal primo carattere; se omettiamo la fine, arriva
@@ -152,96 +152,96 @@ chiamate con la sintassi <code>texto.metodo()</code>. I più usati nella pratica
 <tr><td><code>.count(trecho)</code></td><td>Conta quante volte il tratto compare</td></tr>
 </tbody>
 </table></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">endereco = 'Avenida Paulista, 1811, São Paulo, São Paulo, Brasil.'
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">indirizzo = 'Avenida Paulista, 1811, São Paulo, São Paulo, Brasil.'
 
-# Maiúsculas e minúsculas
-print(endereco.upper())  # AVENIDA PAULISTA, 1811, SÃO PAULO, SÃO PAULO, BRASIL.
-print(endereco.lower())  # avenida paulista, 1811, são paulo, são paulo, brasil.
+# Maiuscole e minuscole
+print(indirizzo.upper())  # AVENIDA PAULISTA, 1811, SÃO PAULO, SÃO PAULO, BRASIL.
+print(indirizzo.lower())  # avenida paulista, 1811, são paulo, são paulo, brasil.
 
-# Posição onde o trecho 'Brasil' começa
-print(endereco.find('Brasil'))  # 46
+# Posizione in cui inizia il tratto 'Brasil'
+print(indirizzo.find('Brasil'))  # 46
 
-# Substituindo 'Avenida' pela abreviação 'Av.'
-print(endereco.replace('Avenida', 'Av.'))  # Av. Paulista, 1811, São Paulo, São Paulo, Brasil.
+# Sostituendo 'Avenida' con l'abbreviazione 'Av.'
+print(indirizzo.replace('Avenida', 'Av.'))  # Av. Paulista, 1811, São Paulo, São Paulo, Brasil.
 
-# Contando quantas vezes 'São Paulo' aparece
-print(endereco.count('São Paulo'))  # 2
+# Contando quante volte compare 'São Paulo'
+print(indirizzo.count('São Paulo'))  # 2
 </code></pre></div>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Limpando e padronizando um nome digitado pelo usuário
-nome_digitado = '   maria DA silva   '
-nome_padronizado = nome_digitado.strip().title()
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Ripulendo e standardizzando un nome digitato dall'utente
+nome_digitato = '   maria de rossi   '
+nome_standardizzato = nome_digitato.strip().title()
 
-print(nome_padronizado)  # Maria Da Silva
+print(nome_standardizzato)  # Maria De Rossi
 </code></pre></div>
 <blockquote>
 <p>Le stringhe sono <strong>immutabili</strong>: i metodi non modificano il testo originale, restituiscono una
 <strong>nuova</strong> stringa. Se vuoi mantenere il risultato, salvalo in una variabile.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># O texto original continua o mesmo após o replace
-endereco.replace('Avenida', 'Av.')
-print(endereco)  # Avenida Paulista, 1811, São Paulo, São Paulo, Brasil.
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Il testo originale resta lo stesso dopo il replace
+indirizzo.replace('Avenida', 'Av.')
+print(indirizzo)  # Avenida Paulista, 1811, São Paulo, São Paulo, Brasil.
 
-# Para manter a alteração, atribuímos o resultado a uma variável
-endereco_abreviado = endereco.replace('Avenida', 'Av.')
-print(endereco_abreviado)  # Av. Paulista, 1811, São Paulo, São Paulo, Brasil.
+# Per mantenere la modifica, assegniamo il risultato a una variabile
+indirizzo_abbreviato = indirizzo.replace('Avenida', 'Av.')
+print(indirizzo_abbreviato)  # Av. Paulista, 1811, São Paulo, São Paulo, Brasil.
 </code></pre></div>
 <h2>Conversione</h2>
 <p>Possiamo convertire numeri in stringhe con <code>str()</code> e stringhe in numeri con <code>int()</code>
 o <code>float()</code> - purché il testo contenga solo un numero valido.</p>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># int -> str
-idade = 19
-print(type(idade))  # &lt;class 'int'&gt;
+eta = 19
+print(type(eta))  # &lt;class 'int'&gt;
 
-idade_texto = str(idade)
-print(type(idade_texto))  # &lt;class 'str'&gt;
+eta_testo = str(eta)
+print(type(eta_testo))  # &lt;class 'str'&gt;
 </code></pre></div>
 <div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># str -> float
-valor_texto = '49.90'
-valor_numerico = float(valor_texto)
+valore_testo = '49.90'
+valore_numerico = float(valore_testo)
 
-print(valor_numerico * 2)  # 99.8
-print(type(valor_numerico))  # &lt;class 'float'&gt;
+print(valore_numerico * 2)  # 99.8
+print(type(valore_numerico))  # &lt;class 'float'&gt;
 </code></pre></div>
 <p><strong>Esempio:</strong> estrarre il valore numerico da un testo di fatturato. Combiniamo
 <strong>slicing</strong> e <strong>conversione</strong>:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">faturamento_texto = 'R$ 35 mi'
-print(faturamento_texto)       # R$ 35 mi
-print(type(faturamento_texto)) # &lt;class 'str'&gt;
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">fatturato_testo = 'R$ 35 mi'
+print(fatturato_testo)       # R$ 35 mi
+print(type(fatturato_testo)) # &lt;class 'str'&gt;
 
-# Fatiamos apenas os caracteres do número ('35') e convertemos para int
-faturamento_milhoes = int(faturamento_texto[3:5])
-print(faturamento_milhoes)       # 35
-print(type(faturamento_milhoes)) # &lt;class 'int'&gt;
+# Tagliamo solo i caratteri del numero ('35') e li convertiamo in int
+fatturato_milioni = int(fatturato_testo[3:5])
+print(fatturato_milioni)       # 35
+print(type(fatturato_milioni)) # &lt;class 'int'&gt;
 </code></pre></div>
 <h2>Rivisitando la motivazione</h2>
 <p>Separiamo la latitudine e la longitudine della startup, che si trovano insieme nel testo
-<code>latitude_longitude</code>.</p>
+<code>latitudine_longitudine</code>.</p>
 <p><strong>Passo 1:</strong> trovare la posizione del carattere <code>;</code> che divide i due valori:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">posicao_separador = latitude_longitude.find(';')
-print(posicao_separador)  # 10
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">posizione_separatore = latitudine_longitudine.find(';')
+print(posizione_separatore)  # 10
 </code></pre></div>
 <p><strong>Passo 2:</strong> estrarre la latitudine, che va dall'inizio fino al separatore (senza includerlo):</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">latitude_startup = latitude_longitude[:posicao_separador]
-print(latitude_startup)  # -22.005320
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">latitudine_startup = latitudine_longitudine[:posizione_separatore]
+print(latitudine_startup)  # -22.005320
 </code></pre></div>
 <p><strong>Passo 3:</strong> estrarre la longitudine, che va dal carattere <strong>successivo</strong> al separatore
 fino alla fine:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">longitude_startup = latitude_longitude[posicao_separador + 1:]
-print(longitude_startup)  # -47.891040
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">longitudine_startup = latitudine_longitudine[posizione_separatore + 1:]
+print(longitudine_startup)  # -47.891040
 </code></pre></div>
 <p>Fatto! Ora le due basi sono nello stesso formato:</p>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># O resultado True indica que os valores são iguais (veremos comparações na próxima aula)
-print(latitude == latitude_startup)    # True
-print(longitude == longitude_startup)  # True
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Il risultato True indica che i valori sono uguali (vedremo i confronti nella prossima lezione)
+print(latitudine == latitudine_startup)    # True
+print(longitudine == longitudine_startup)  # True
 </code></pre></div>
 <blockquote>
 <p><strong>Alternativa:</strong> il metodo <code>.split(';')</code> fa la divisione in un unico passo, restituendo
 le parti del testo in una lista.</p>
 </blockquote>
-<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">latitude_startup, longitude_startup = latitude_longitude.split(';')
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">latitudine_startup, longitudine_startup = latitudine_longitudine.split(';')
 
-print(latitude_startup)   # -22.005320
-print(longitude_startup)  # -47.891040
+print(latitudine_startup)   # -22.005320
+print(longitudine_startup)  # -47.891040
 </code></pre></div>
 </div>
 
