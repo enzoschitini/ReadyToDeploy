@@ -25,7 +25,7 @@
       { "label": "Progetti", "href": "projects.html" },
       { "label": "Mentoring", "href": "contact.html" }
     ],
-    "cta": { "label": "Scrivimi su LinkedIn", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
+    "cta": { "label": "Assumi", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
   },
   "breadcrumbs": {
     "ariaLabel": "Navigazione struttura",
@@ -37,15 +37,15 @@
   },
   "header": {
     "title": "Porta un curriculum completo di programmazione e IA nella tua istituzione.",
-    "lead": "Sono il creatore di Ready To Deploy — 41 moduli e 22 progetti gratuiti e open source, in italiano. Offro mentoring da remoto per adattare questo contenuto alla tua scuola, corso tecnico o università."
+    "lead": "Sono il creatore di Ready To Deploy — 9 moduli e 9 progetti gratuiti e open source, in italiano. Offro mentoring da remoto per adattare questo contenuto alla tua scuola, corso tecnico o università."
   },
   "hero": {
     "cta": { "label": "Scrivimi su LinkedIn →", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
   },
   "proof": {
     "stats": [
-      { "value": "41", "label": "moduli" },
-      { "value": "22", "label": "progetti pratici" },
+      { "value": "9", "label": "moduli" },
+      { "value": "9", "label": "progetti pratici" },
       { "value": "100%", "label": "gratuito e open source" }
     ],
     "links": [
