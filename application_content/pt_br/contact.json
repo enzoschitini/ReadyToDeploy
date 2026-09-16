@@ -3,7 +3,7 @@
   "lang": "pt-BR",
   "meta": {
     "title": "Mentoria · Ready To Deploy",
-    "description": "Leve o Ready To Deploy — currículo gratuito de programação e IA — pra dentro da sua instituição, com mentoria remota.",
+    "description": "Contrate mentoria remota e ao vivo baseada no Ready To Deploy — currículo gratuito e open source de programação e IA — pra sua instituição.",
     "themeColor": "#000000"
   },
   "skipLink": "Pular para o conteúdo",
@@ -36,8 +36,8 @@
     ]
   },
   "header": {
-    "title": "Leve um currículo completo de programação e IA para dentro da sua instituição.",
-    "lead": "Sou o criador do Ready To Deploy — 9 módulos e 9 projetos gratuitos e open source, em português. Ofereço mentoria remota pra adaptar esse conteúdo à sua escola, curso técnico ou universidade."
+    "title": "Contrate aulas ao vivo de programação e IA para a sua instituição.",
+    "lead": "Sou o criador do Ready To Deploy — 9 módulos e 9 projetos gratuitos e open source, em português. Sua instituição contrata a mim para dar aulas ao vivo baseadas nesse currículo, adaptadas à realidade da sua escola, curso técnico ou universidade."
   },
   "hero": {
     "cta": { "label": "Falar no LinkedIn →", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
@@ -46,7 +46,7 @@
     "stats": [
       { "value": "9", "label": "módulos" },
       { "value": "9", "label": "projetos práticos" },
-      { "value": "100%", "label": "gratuito e open source" }
+      { "value": "100%", "label": "currículo aberto e gratuito" }
     ],
     "links": [
       { "label": "ver os módulos →", "href": "modules.html" },
@@ -63,12 +63,12 @@
   },
   "how": {
     "kicker": "// como funciona",
-    "title": "Aulas 100% remotas.",
-    "text": "As aulas são remotas — encontro sua equipe ou seus alunos onde vocês já estão, sem custo de deslocamento nem logística extra. Começamos com uma conversa curta pra entender o contexto da sua instituição e adaptar a trilha do Ready To Deploy ao que vocês já ensinam."
+    "title": "Um serviço contratado, com aulas 100% remotas.",
+    "text": "A instituição contrata o projeto e eu dou as aulas ao vivo, remotamente, pra sua equipe ou seus alunos — sem custo de deslocamento nem logística extra. Começamos com uma conversa curta pra entender o contexto, definir o escopo e o investimento, e adaptar a trilha do Ready To Deploy ao que vocês já ensinam."
   },
   "finalCta": {
-    "title": "Quer levar isso pra sua instituição?",
-    "text": "Me chama no LinkedIn e conta um pouco do contexto — a gente vê juntos como encaixar isso na sua escola, curso ou universidade.",
+    "title": "Quer contratar aulas ao vivo pra sua instituição?",
+    "text": "Me chama no LinkedIn e conta um pouco do contexto — a gente vê juntos o escopo, o investimento e como encaixar isso na sua escola, curso ou universidade.",
     "button": { "label": "Falar com Enzo no LinkedIn →", "href": "https://www.linkedin.com/in/enzoschitini", "external": true }
   },
   "footer": {
